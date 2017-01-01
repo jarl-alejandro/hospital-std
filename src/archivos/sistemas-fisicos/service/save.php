@@ -5,7 +5,7 @@ $json = file_get_contents('php://input');
 $obj = json_decode($json);
 
 $tipo = $obj->tipo;
-$detalle = $obj->detalle;
+$detalle = strtoupper($obj->detalle);
 $id = $obj->id;
 
 if ($id == "") {

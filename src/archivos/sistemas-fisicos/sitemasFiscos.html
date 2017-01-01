@@ -1,5 +1,10 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
+  <style>
+    .mayuscula {
+      text-transform: uppercase;
+    }
+  </style>
   <h1 class="Title">Sistemas & Fisico</h2>
   <div class="floating-add">
     <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
@@ -12,8 +17,9 @@
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
-          <th width="10%">#</th>
-          <th width="60%">Detalle</th>
+          <th width="5%">#</th>
+          <th width="30%">Detalle</th>
+          <th width="30%">Tipo</th>
           <th width="30%"></th>
         </tr>
       </thead>
@@ -21,12 +27,18 @@
         <tr ng-if="sitemasFiscos.length === 0">
           <td colspan="5">No hay sitemasFiscos</td>
         </tr>
-        <tr ng-pagination="sitema in sitemasFiscos" ng-pagination-size="5">
+        <tr ng-pagination="sitema in sitemasFiscos" ng-pagination-size="4">
           <td>{{ $index + 1 }}</td>
           <td>{{ sitema.hgc_desc_sisfi }}</td>
+          <td style="text-transform: uppercase;">{{ renderType(sitema.hgc_tipo_sisfi) }}</td>
           <td>
-            <button class='waves-effect waves-light btn primary' ng-click="get(sitema.hgc_tipo_sisfi, sitema.hgc_desc_sisfi, sitema.hgc_id_sisfi)">Editar</button>
-            <button class='waves-effect waves-light btn danger' ng-click="delete(sitema.hgc_id_sisfi)">Eliminar</button>
+            <button class='waves-effect waves-light btn primary'
+              ng-click="get(sitema.hgc_tipo_sisfi, sitema.hgc_desc_sisfi, sitema.hgc_id_sisfi)">
+              Editar
+            </button>
+            <button class='waves-effect waves-light btn danger'
+              ng-click="delete(sitema.hgc_id_sisfi)">Eliminar
+            </button>
           </td>
         </tr>
       </tbody>
@@ -43,11 +55,14 @@
       </header>
       <div class="form__input">
         <label for="detalle">Ingresa el detalle</label>
-        <input id="detalle" type="text" placeholder='Ejemplo: Cabeza' ng-model='data.detalle'>
+        <input id="detalle" type="text" placeholder='Ejemplo: Cabeza'
+          ng-model='data.detalle'
+          style="text-transform: uppercase;"
+        >
       </div>
       <div class="form__input s-100">
         <label for="tipo">Ingresa el tipo</label>
-        <select ng-model='data.tipo' id="tipo" class='browser-default'>
+        <select ng-model='data.tipo' id="tipo" class='browser-default mayuscula'>
           <option value="" selected>Seleciona el tipo</option>
           <option value="1" selected>Revision actual de organos y sistemas</option>
           <option value="2" selected>Examen Físico</option>

@@ -4,7 +4,6 @@ const login = angular.module('Hospital')
 
 login.controller('loginController', function ($scope, $http, $location, $rootScope) {
   $scope.data = { email: '', password: '' }
-
   $scope.handleSave = function (e) {
     if ($scope.data.email === ''){
       Materialize.toast("Ingresa el email", 4000)

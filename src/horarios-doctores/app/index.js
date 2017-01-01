@@ -5,6 +5,8 @@ const horariosDoctores = angular.module('Hospital')
 horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   $('ul.tabs').tabs()
   $('ul.tabs').tabs('select_tab', 'horarios-swipe-1')
+  const hoyDate = new Date()
+  $scope.year = hoyDate.getFullYear()
 
   const mesTag = document.getElementById('mes')
   mesTag.addEventListener('change', createMes)
@@ -16,6 +18,11 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   $scope.diaHorario = ''
 
   getAll()
+
+  $scope.ValidaSoloNumeros = function ValidaSoloNumeros() {
+    if ((event.keyCode < 48) || (event.keyCode > 57))
+    event.returnValue = false
+  }
 
   $scope.mes = [
     { id: 1, nombre: 'Enero' },
@@ -42,6 +49,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
     .then(response => $scope.horarios = response.data)
 
   $scope.handleShowForm = () => $('#adignarFormHorario').modal('open')
+
   $scope.handleHours = () => {
     if ($scope.diaHorario === '') {
       Materialize.toast('Seleciona el dia que va asignar el horario', 4000)
@@ -67,9 +75,11 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
 
   $scope.handleSave = () => {
     if (validar()) {
+      $scope.data.year = $scope.year
       $http.post('src/horarios-doctores/service/save.php', $scope.data)
         .then(response => {
           console.log(response)
+          console.log($scope.data)
           if (response.data === '201') {
             Materialize.toast('Se ha guardado con exito', 4000)
             getAll()
@@ -118,6 +128,12 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
       })
   }
 
+  $scope.changeYear = () => {
+    $scope.data.mes = ''
+    const semanas = document.getElementById('semanasDelMes')
+    semanas.innerHTML = ''
+  }
+
   function getAll () {
     $http.get('src/horarios-doctores/service/getAll.php')
       .then(response => $scope.horarioDoc = response.data)
@@ -162,12 +178,12 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
     const hoy = new Date()
     if (mesTag.value !== '') {
 
-      if (mesTag.value < hoy.getMonth() + 1) {
+      if ($scope.year <= hoy.getFullYear() && mesTag.value < hoy.getMonth() + 1) {
         Materialize.toast('El mes que seleciono ya paso', 4000)
         return false
       }
       struct()
-      const year = hoy.getFullYear()
+      const year = $scope.year
       const semanas = document.getElementById('semanasDelMes')
 
       const primerDia = new Date(year, mesTag.value, 1)

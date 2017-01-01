@@ -165,7 +165,7 @@ doctores.controller('doctoresController', function ($scope, $http) {
     $('ul.tabs').tabs('select_tab', 'test-swipe-1')
 
     setTimeout(() => {
-      $('#rol').val('').trigger('change')
+      $('#rol').val('doctor').trigger('change')
       $('#profesion').val('').trigger('change')
       $('#sexo').val('').trigger('change')
     }, 100)

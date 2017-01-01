@@ -84,6 +84,13 @@
               </option>
             </select>
           </div>
+          <div class="input-field col s6">
+            <input placeholder="Escribe el año" id="year_select" type="text" ng-model='year'
+              maxlength="4" ng-keypress='ValidaSoloNumeros()'
+              ng-change='changeYear()'
+            />
+            <label for="year_select" class="active">Año</label>
+          </div>
 
           <div class="form__input" style="padding:0">
             <label for="mes">Mes</label>

@@ -155,7 +155,7 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
     $('.formContainer label.active').removeClass('active')
 
     setTimeout(() => {
-      $('#rol').val('').trigger('change')
+      $('#rol').val('enfermera').trigger('change')
       $('#profesion').val('').trigger('change')
       $('#sexo').val('').trigger('change')
     }, 100)

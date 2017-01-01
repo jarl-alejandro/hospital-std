@@ -10,7 +10,7 @@ $medico = $obj->medicos;
 $consultorio = $obj->consultorio;
 $mes = $obj->mes;
 $horarios = $obj->horarios;
-$year = date('Y');
+$year = $obj->year;
 
 $detail = $pdo->prepare("INSERT INTO hgc_dhor_asig (hgc_codi_det, hgc_dia_det, hgc_hora_det)
                           VALUES (?, ?, ?)");

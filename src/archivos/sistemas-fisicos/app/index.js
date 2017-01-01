@@ -58,4 +58,16 @@ sitemasFiscos.controller('sitemasFiscosController', function ($scope, $http) {
       }
     })
   }
+
+  $scope.renderType = function (type) {
+    let name = ''
+    if (type === 1) name = 'Revision actual de organos y sistemas'
+    else if (type === 2) name = 'Examen Físico'
+    else if (type === 3) name = 'Antecedentes Maternales'
+    else if (type === 4) name = 'Antecedentes Familiares'
+    else if (type === 5) name = 'Antecedentes Prenatales'
+    else if (type === 6) name = 'Nacimiento'
+    else if (type === 7) name = 'Recien Nacido'
+    return name
+  }
 })

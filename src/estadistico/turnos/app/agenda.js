@@ -22,6 +22,9 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     $('.days-moth').slideUp()
     $('.month-turno').slideDown()
     $scope.month = 0
+    document.querySelector('#calendario').innerHTML = ''
+    estructurar()
+    numerar()
   }
 
   $scope.handleMonth = (index) => {
@@ -33,19 +36,20 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     }
 
     $scope.month = index
+
     let dateFin = new Date(hoy.getFullYear(), $scope.month, 0)
     const diaFin = dateFin.getDate() < 10 ? "0" + dateFin.getDate() : dateFin.getDate()
-    const mes = $scope.month < 10 ? "0" + $scope.month : $scope.month
 
+    const mes = $scope.month < 10 ? "0" + $scope.month : $scope.month
     const inicio = `${hoy.getFullYear()}-${mes}-01`
     const fin = `${hoy.getFullYear()}-${mes}-${diaFin}`
 
     $(document.querySelectorAll('.mes')[$scope.month - 1]).slideDown()
 
     $http.get(
-      `src/estadistico/turnos/service/agenda.php
-      ?mes=${$scope.month}&doctor=${doctor}`
+      `src/estadistico/turnos/service/agenda.php?mes=${$scope.month}&doctor=${doctor}`
     ).then(response => {
+      console.log(response);
       if (response.data.length === 0) {
         Materialize.toast('No hay agendado nada en este mes', 4000)
       } else generateAgenda(response.data)
@@ -54,10 +58,16 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     $http.get(`src/estadistico/turnos/service/horario.php
       ?doctor=${doctor}&mes=${$scope.month}&inicio=${inicio}&fin=${fin}`
     ).then(response => {
+      console.group('-----Agendaaa...--------')
+      console.log(response)
+      console.groupEnd()
       $scope.horarioTrabajo = response.data
 
       for (let i in $scope.horarioTrabajo) {
         let item = $scope.horarioTrabajo[i]
+        console.group();
+        console.log(item)
+        console.groupEnd();
         const td = document.querySelector(`.fecha_${item.dia}`)
         td.children[1].dataset.trabajo = 1
         td.style = "background:#E91E63;transform: scale(.9);"
@@ -179,7 +189,7 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     const fechaHoy = new Date()
 
     let dia = this.parentNode.children[0].innerText
-    dia = dia < 10 ? "0"+dia : dia
+    dia = dia < 10 ? "0" + dia : dia
 
     let mesHoy = fechaHoy.getMonth() + 1 < 10 ?
       "0"+(fechaHoy.getMonth() + 1) : (fechaHoy.getMonth() + 1)
@@ -189,10 +199,10 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     const fechaFormat = `${fechaHoy.getFullYear()}-${mesHoy}-${diaHoy}`
     const fecha = `${year}-${mes}-${dia}`
 
-    if (fecha < fechaFormat) {
-      Materialize.toast('No puede ingresar turno para esta fecha', 4000)
-      return false
-    }
+    // if (fecha < fechaFormat) {
+    //   Materialize.toast('No puede ingresar turno para esta fecha', 4000)
+    //   return false
+    // }
     $('#modalAgendaListFecha').modal('open')
     localStorage.setItem('fecha', fecha)
     $('#horarions-disponibles').html("")
