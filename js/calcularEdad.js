@@ -86,17 +86,17 @@ function duration(since, until) {
 
   //Years
   years = (until.getFullYear() - since.getFullYear());
-  // if (until.getMonth() == since.getMonth()){
-  //   if (since.getDate() < (until.getDate()-1)) {
-  //     years += 1;
-  //   }
-  //   if(since.getDate()==until.getDate()){
-  //       years+= 1;
-  //   }
-  // }
-  // if(since.getMonth() > until.getMonth()){
-  //     years = (years - 1);
-  // }
+  if (until.getMonth() == since.getMonth()){
+    if (since.getDate() < (until.getDate()-1)) {
+      years += 1;
+    }
+    if(since.getDate()==until.getDate()){
+        years+= 1;
+    }
+  }
+  if(since.getMonth() > until.getMonth()){
+      years = (years - 1);
+  }
   //Months
   if(since.getDate() > until.getDate()){
     if(since.getMonth() > (until.getMonth()-1)){

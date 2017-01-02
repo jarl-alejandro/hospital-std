@@ -14,6 +14,7 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
 
   $http.get(`src/doctor/form28A/service/curva_crecimiento.php?id=${paciente}`)
   .then(response => {
+    console.log(response);
     paintBorderBySex(response.data.paciente.hgc_desc_genero)
     graficPoint(response.data.signos, response.data.paciente.hgc_fecn_pacie)
   })
@@ -159,7 +160,15 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     let y = 0
     let decimal = 0
     let longitud = parseInt(longitudParam.toString().split(".")[0])
-    y = longitud % 2 === 0 ? longitud - 49  : longitud - 45
+    // y = longitud % 2 === 0 ? longitud - 49  : longitud - 45
+    y = longitud - 45
+
+    if (longitudParam > 45 || longitudParam < 50) {
+      y = longitud - 45.5
+    }
+    else {
+      y = longitud % 2 === 0 ? longitud - 49  : longitud - 45
+    }
 
     if (y >= 10) {
       y = y.toString().split("")

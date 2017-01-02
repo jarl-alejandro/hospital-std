@@ -51,8 +51,10 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     const parametros = response.data.paciente.hgc_fecn_pacie.toString().split('-')
     const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
     const now = new Date()
-
-    $scope.edad = duration(now, fecha)
+    // $scope.edad = calcularEdad(response.data.paciente.hgc_fecn_pacie, true)
+    // $scope.edad = calcularEdad(new Date(response.data.paciente.hgc_fecn_pacie))
+    $scope.edad = duration(fecha, now)
+    // alert(JSON.stringify($scope.edad))
   })
 
   if ($stateParams.action !== 'edit') {

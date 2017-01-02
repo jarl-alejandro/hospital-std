@@ -63,7 +63,7 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
     const now = new Date()
 
-    $scope.edad = duration(now, fecha)
+    $scope.edad = duration(new Date(response.data.paciente.hgc_fecn_pacie), now)
   })
 
   $http.get('src/doctor/form28A/service/sistemas.php')

@@ -16,16 +16,20 @@ doctor.controller('pacientesDoctorController', function ($scope, $http, $locatio
     const moth = now.getMonth() - fecha.getMonth()
     const age = (year * 12) + moth
 
-    const duracion = duration(fecha, now)
+    const duracion = duration(new Date(object.fecha), now)
 
+    console.group("------");
     console.log(duracion)
+    console.log(object.fecha)
+    console.groupEnd("------");
+
     if (duracion.years >= 65) {
       $location.path(`/adulto-mayor-65/${object.id}/${object.turno}/save`)
     }
     else if (duracion.years >= 19) {
       $location.path(`/adulto-mayor/${object.id}/${object.turno}/save`)
     }
-    else if (duracion.months < 2 && duracion.years <= 0) {
+    else if (duracion.months < 2 && duracion.years === 0) {
       $location.path(`/form28A/${object.id}/${object.turno}/save`)
     }
     else if (duracion.years < 9) {

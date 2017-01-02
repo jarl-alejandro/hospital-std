@@ -84,10 +84,11 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   .then(response => {
     $scope.paciente = response.data
     $scope.fechaNacimiento = $scope.paciente.hgc_fecn_pacie
+
     const parametros = $scope.paciente.hgc_fecn_pacie.split('-')
     const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
     const now = new Date()
-    const duracion = duration(fecha, now)
+    const duracion = duration(new Date($scope.fechaNacimiento), now)
 
     if (duracion.months >= 2) {
       $scope.tipo_form = 'form028c'
@@ -162,8 +163,8 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       Materialize.toast('No pude editar ya han pasado las 24 horas', 4000)
     }
     else {
-      const duracion = duration(new Date($scope.fechaNacimiento), date)
-      console.log(duracion);
+      const duracion = duration(new Date($scope.fechaNacimiento), new Date(fecha))
+
       if (duracion.years >= 65) {
 
         $('.mayor65--input label').addClass('active')
@@ -219,6 +220,15 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
         $('#grupoPrioritado056').val(signos.hgc_grup_sigvit)
       }
       else {
+        if (duracion.years >= 2) {
+          $scope.tipo_form = 'form028c'
+          $scope.menor = false
+        }
+        else {
+          $scope.menor = true
+          $scope.tipo_form = 'form028a'
+        }
+
         $('.formPlus').slideDown()
 
         $scope.data.temperatura = signos.hgc_temp_sigvit
