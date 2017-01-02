@@ -16,7 +16,7 @@ doctor.controller('pacientesDoctorController', function ($scope, $http, $locatio
     const moth = now.getMonth() - fecha.getMonth()
     const age = (year * 12) + moth
 
-    const duracion = duration(new Date(object.fecha), now)
+    const duracion = duration(fecha, now)
 
     console.group("------");
     console.log(duracion)
