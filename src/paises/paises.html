@@ -1,0 +1,43 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+	<h1 class="Title">Paises</h2>
+	<div class="main-end">
+		<button class='btn__flat primary' ng-click="handleShowForm()">Nuevo</button>
+	</div>
+	<article class="tableContainer">
+		<table class="tableData">
+			<thead>
+				<tr>
+					<th width="10%">#</th>
+					<th width="60%">Pais</th>
+					<th width="20%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Ecuador</td>
+					<td>
+						<button class='btn__flat'>Editar</button>
+						<button class='btn__flat danger'>Eliminar</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
+	<div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
+		<article class="form ed-item s-100 m-75">
+			<header>
+			  <h3>Registrar Pais</h3>
+			</header>
+			<div class="form__input">
+			  <label for="pais">Ingresa el pais</label>
+			  <input id="pais" type="text" placeholder='Ejemplo: Ecuador' ng-model='data.pais'>
+			</div>
+			<div class='main-distribute'>
+			  <button class='btn__flat danger' ng-click="handleCancel()">Cancelar</button>
+			  <button class='btn__flat' ng-click="handleSave()">Aceptar</button>
+			</div>
+		</article>
+	</div>
+</section>

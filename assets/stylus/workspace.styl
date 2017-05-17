@@ -8,7 +8,7 @@
   border-radius 3px
   box-shadow: 0px 1px 1.5px rgba(black, .1)
   header
-    background #E57373
+    background primary
     text-align center
     color white
     padding 6px 0
@@ -48,3 +48,44 @@
     background #42b695
   &:active
     transform scale(0.9)
+
+widthTable = 700px
+.tableContainer
+  overflow-x auto
+  background white
+  box-shadow rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.1) 0px 2px 1px
+
+.tableData
+  min-width widthTable
+  border-collapse collapse
+  tr
+    border-bottom 1px solid #999
+    border-collapse collapse
+    &:hover
+      td
+        background primaryDark
+  tbody tr:last-child
+    border none
+  th
+    padding 1em
+  td
+    padding .5em
+
+.Title
+  text-align center
+  font-size 2em
+  margin 0  0.5em 0
+  color #585757
+.formContainer
+  position absolute
+  top 4em
+  visibility hidden
+  opacity 0
+  height 0
+  transition all ease .5s
+  &-active
+    visibility visible
+    opacity 1
+@media (max-width: 414px)
+  .formContainer
+    left 5em
