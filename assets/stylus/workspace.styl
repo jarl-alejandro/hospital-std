@@ -6,7 +6,7 @@
   background white
   padding 0
   border-radius 3px
-  box-shadow: 0px 1px 1.5px rgba(black, .1)
+  box-shadow 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
   header
     background primary
     text-align center
@@ -21,7 +21,7 @@
     color #929fae
     font-weight 500
     font-size 1em
-  input
+  input, textarea, select
     width 100%
     border 2px solid #d8dde3
     outline none
@@ -31,11 +31,12 @@
     line-height 1.125rem
     padding .625rem 2.5rem .625rem .9375rem
     transition all .5s ease
+    border-radius 5px
     &:focus
       border 2px solid #929fae
 
 .btn__flat
-  background #59c3a5
+  background primary
   color white
   transition all ease .5s
   outline none
@@ -45,7 +46,7 @@
   font-weight bold
   font-size 15px
   &:hover
-    background #42b695
+    background rgba(primary, .5)
   &:active
     transform scale(0.9)
 
@@ -58,12 +59,16 @@ widthTable = 700px
 .tableData
   min-width widthTable
   border-collapse collapse
+  thead
+    background deepskyblue
+    color white
   tr
     border-bottom 1px solid #999
     border-collapse collapse
+    transition all ease .3s
     &:hover
-      td
-        background primaryDark
+      background #00a3d9
+      color white
   tbody tr:last-child
     border none
   th

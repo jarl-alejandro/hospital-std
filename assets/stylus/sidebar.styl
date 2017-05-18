@@ -31,8 +31,6 @@
       text-decoration none
       transition all ease .4s
       padding 1em 0
-      &:hover
-        background primary
       i, span
         width 100%
 .sidebar__settings
@@ -57,3 +55,29 @@
   height 15px
   background-color #f6b13f
   border-radius 50%
+
+.sidebar__content
+  position relative
+  width calc(100% - 70px)
+  height calc(100vh - 70px)
+  float left
+  background red
+.main-sidebar__inner
+  position absolute
+  top 6.9em
+  left 4.4em
+  width 100%
+  height 100%
+  list-style none
+  padding-left 0
+  li
+    display flex
+    a
+      display grid
+      grid-template-columns repeat(2, 1fr)
+      width 75%
+      transition all ease .3s
+      &:hover
+        background #00a3d9
+  li:first-child
+    margin-top 2em
