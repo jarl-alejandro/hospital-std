@@ -6,7 +6,7 @@ $obj = json_decode($json);
 
 $id = $obj->id;
 
-$delete = $pdo->query("DELETE FROM hgc_barrios WHERE hgc_codi_barrio='$id'");
+$delete = $pdo->query("DELETE FROM hgc_genero WHERE hgc_codi_genero='$id'");
 
 if ($delete) {
   echo 201;

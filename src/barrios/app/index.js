@@ -22,15 +22,15 @@ barrios.controller('barriosController', function ($scope, toaster, $http) {
 		$scope.showForm = false
 	}
 	$scope.handleSave = function (e) {
-		if ($scope.data.barrio == "") {			
+		if ($scope.data.barrio == "") {
 			toaster.pop('error', "Error", "Ingresa el barrio")
 			return false
 		}
-    if ($scope.data.parroquia == "") {      
+    if ($scope.data.parroquia == "") {
       toaster.pop('error', "Error", "Ingresa la parroquia")
       return false
     }
-		$http.post("src/barrios/service/save.php", 
+		$http.post("src/barrios/service/save.php",
       { 'barrio': $scope.data.barrio, 'id': $scope.data.id, 'parroquia': $scope.data.parroquia })
       .then(response => {
       	console.log(response)
@@ -44,8 +44,8 @@ barrios.controller('barriosController', function ($scope, toaster, $http) {
       })
 	}
 
-	$scope.get = function (id, barrios, parroquia) {
-		$scope.data = { barrios, id, parroquia }
+	$scope.get = function (id, barrio, parroquia) {
+		$scope.data = { barrio, id, parroquia }
 		$scope.showForm = true
 	}
 

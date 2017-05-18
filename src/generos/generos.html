@@ -1,0 +1,44 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+	<h1 class="Title">Generos</h2>
+	<div class="main-end">
+		<button class='btn__flat primary' ng-click="handleShowForm()">Nuevo</button>
+	</div>
+	<article class="tableContainer">
+		<table class="tableData">
+			<thead>
+				<tr>
+					<th width="10%">#</th>
+					<th width="60%">genero</th>
+					<th width="20%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="genero in generos">
+					<td>{{ $index + 1 }}</td>
+					<td>{{ genero.hgc_desc_genero }}</td>
+					<td>
+						<button class='btn__flat' ng-click="get(genero.hgc_codi_genero, genero.hgc_desc_genero)">Editar</button>
+						<button class='btn__flat danger' ng-click="delete(genero.hgc_codi_genero)">Eliminar</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
+	<div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
+		<article class="form ed-item s-100 m-75">
+			<header>
+			  <h3>Registrar Genero</h3>
+			</header>
+			<div class="form__input">
+			  <label for="genero">Ingresa el genero</label>
+			  <input id="genero" type="text" placeholder='Ejemplo: Hombre' ng-model='data.genero'>
+			</div>
+			<div class='main-distribute'>
+			  <button class='btn__flat danger' ng-click="handleCancel()">Cancelar</button>
+			  <button class='btn__flat' ng-click="handleSave()">Aceptar</button>
+			</div>
+		</article>
+	</div>
+</section>
+<toaster-container toaster-options="{'close-button': true, 'position-class': 'toast-bottom-right', 'progress-bar': true}"></toaster-container>

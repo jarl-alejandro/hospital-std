@@ -36,4 +36,19 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
 			controller: 'barriosController',
 			templateUrl: 'src/barrios/barrio.html'
 		})
+		.state('etnias', {
+			url: '/etnias',
+			controller: 'etniasController',
+			templateUrl: 'src/etnias/etnias.html'
+		})
+		.state('generos', {
+			url: '/generos',
+			controller: 'generosController',
+			templateUrl: 'src/generos/generos.html'
+		})
+		.state('profesiones', {
+			url: '/profesiones',
+			controller: 'profesionesController',
+			templateUrl: 'src/profesiones/profesion.html'
+		})
 })

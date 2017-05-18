@@ -1,0 +1,44 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+	<h1 class="Title">Etnias</h2>
+	<div class="main-end">
+		<button class='btn__flat primary' ng-click="handleShowForm()">Nuevo</button>
+	</div>
+	<article class="tableContainer">
+		<table class="tableData">
+			<thead>
+				<tr>
+					<th width="10%">#</th>
+					<th width="60%">Etnia</th>
+					<th width="20%"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="etnia in etnias">
+					<td>{{ $index + 1 }}</td>
+					<td>{{ etnia.hgc_desc_etnia }}</td>
+					<td>
+						<button class='btn__flat' ng-click="get(etnia.hgc_codi_etnia, etnia.hgc_desc_etnia)">Editar</button>
+						<button class='btn__flat danger' ng-click="delete(etnia.hgc_codi_etnia)">Eliminar</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
+	<div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
+		<article class="form ed-item s-100 m-75">
+			<header>
+			  <h3>Registrar Etnia</h3>
+			</header>
+			<div class="form__input">
+			  <label for="etnia">Ingresa la etnia</label>
+			  <input id="etnia" type="text" placeholder='Ejemplo: Metizo' ng-model='data.etnia'>
+			</div>
+			<div class='main-distribute'>
+			  <button class='btn__flat danger' ng-click="handleCancel()">Cancelar</button>
+			  <button class='btn__flat' ng-click="handleSave()">Aceptar</button>
+			</div>
+		</article>
+	</div>
+</section>
+<toaster-container toaster-options="{'close-button': true, 'position-class': 'toast-bottom-right', 'progress-bar': true}"></toaster-container>
