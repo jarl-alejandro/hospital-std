@@ -1,6 +1,6 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
-	<h1 class="Title">Paises</h2>
+	<h1 class="Title">Provincias</h2>
 	<div class="main-end">
 		<button class='btn__flat primary' ng-click="handleShowForm()">Nuevo</button>
 	</div>
@@ -9,17 +9,17 @@
 			<thead>
 				<tr>
 					<th width="10%">#</th>
-					<th width="60%">Pais</th>
+					<th width="60%">Provincias</th>
 					<th width="20%"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="pais in paises">
+				<tr ng-repeat="provincia in provincias">
 					<td>{{ $index + 1 }}</td>
-					<td>{{ pais.hgc_desc_pais }}</td>
+					<td>{{ provincia.hgc_desc_provi }}</td>
 					<td>
-						<button class='btn__flat' ng-click="get(pais.hgc_codi_pais, pais.hgc_desc_pais)">Editar</button>
-						<button class='btn__flat danger' ng-click="delete(pais.hgc_codi_pais)">Eliminar</button>
+						<button class='btn__flat' ng-click="get(provincia.hgc_codi_provi, provincia.hgc_desc_provi, provincia.hgc_pais_provi)">Editar</button>
+						<button class='btn__flat danger' ng-click="delete(provincia.hgc_codi_provi)">Eliminar</button>
 					</td>
 				</tr>
 			</tbody>
@@ -28,11 +28,17 @@
 	<div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
 		<article class="form ed-item s-100 m-75">
 			<header>
-			  <h3>Registrar Pais</h3>
+			  <h3>Registrar de provincias</h3>
 			</header>
 			<div class="form__input">
-			  <label for="pais">Ingresa el pais</label>
-			  <input id="pais" type="text" placeholder='Ejemplo: Ecuador' ng-model='data.pais'>
+			  <label for="provincia">Ingresa la provincia</label>
+			  <input id="provincia" type="text" placeholder='Ejemplo: Santo Domingo' ng-model='data.provincia'>
+			</div>
+			<div class="form__input">
+			  <label for="pais">Seleciona el pais</label>
+			  <select id="pais" ng-model='data.pais'>
+			  	<option ng-repeat="pais in paises" value="{{ pais.hgc_codi_pais }}">{{ pais.hgc_desc_pais }}</option>
+			  </select>
 			</div>
 			<div class='main-distribute'>
 			  <button class='btn__flat danger' ng-click="handleCancel()">Cancelar</button>
