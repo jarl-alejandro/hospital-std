@@ -24,6 +24,7 @@
     <script src='src/etnias/app/index.js'></script>
     <script src='src/generos/app/index.js'></script>
     <script src='src/profesiones/app/index.js'></script>
+    <script src='src/usuarios/app/index.js'></script>
     <script src='src/home/app/index.js'></script>
   </body>
 </html>
