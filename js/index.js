@@ -56,4 +56,9 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
 			controller: 'usuariosController',
 			templateUrl: 'src/usuarios/usuarios.html'
 		})
+		.state('pacientes', {
+			url: '/pacientes',
+			controller: 'pacientesController',
+			templateUrl: 'src/pacientes/pacientes.html'
+		})
 })

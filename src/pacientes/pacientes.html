@@ -1,6 +1,6 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
-	<h1 class="Title">Profesionales</h2>
+	<h1 class="Title">Pacientes</h2>
 	<div class="main-end">
 		<button class='btn__flat primary' ng-click="handleShowForm()">Nuevo</button>
 	</div>
@@ -9,19 +9,19 @@
 			<thead>
 				<tr>
 					<th width="10%">#</th>
-					<th width="30%">Profesionales</th>
+					<th width="30%">Pacientes</th>
 					<th width="30%">Email</th>
 					<th width="20%"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in usuarios">
+				<tr ng-repeat="paci in pacientes">
 					<td>{{ $index + 1 }}</td>
-					<td>{{ user.hgc_nom_profe }} {{ user.hgc_ape_profe }}</td>
-					<td>{{ user.hgc_emai_profe }}</td>
+					<td>{{ paci.hgc_nom_pacie }} {{ paci.hgc_ape_pacie }}</td>
+					<td>{{ paci.hgc_emai_pacie }}</td>
 					<td>
-						<button class='btn__flat' ng-click="get(user)">Editar</button>
-						<button class='btn__flat danger' ng-click="delete(user.hgc_codi_profe)">Eliminar</button>
+						<button class='btn__flat' ng-click="get(paci)">Editar</button>
+						<button class='btn__flat danger' ng-click="delete(paci.hgc_codi_pacie)">Eliminar</button>
 					</td>
 				</tr>
 			</tbody>
@@ -74,13 +74,6 @@
 			  <select ng-model='data.sexo' id="sexo">
 					<option value="" selected>Seleciona el sexo</option>
 					<option ng-repeat="sexo in generos" value="{{ sexo.hgc_codi_genero }}">{{ sexo.hgc_desc_genero }}</option>
-			  </select>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="profesion">Ingresa la profesion</label>
-			  <select ng-model='data.profesion' id="profesion">
-					<option value="" selected>Seleciona el profesion</option>
-					<option ng-repeat="profesion in profesiones" value="{{ profesion.hgc_codi_profe }}">{{ profesion.hgc_desc_profe }}</option>
 			  </select>
 			</div>
 			<div class='main-distribute s-100'>

@@ -1,12 +1,12 @@
 <?php
 include '../../../helpers/conexion.php';
 
-$query = $pdo->query("SELECT * FROM hgc_profesion");
-$profesiones = array();
+$query = $pdo->query("SELECT * FROM hgc_profesionales");
+$profesionales = array();
 
 while ($row = $query->fetch()) {
-  $profesiones[] = $row;
+  $profesionales[] = $row;
 }
 
-$json = json_encode($profesiones);
+$json = json_encode($profesionales);
 print $json;

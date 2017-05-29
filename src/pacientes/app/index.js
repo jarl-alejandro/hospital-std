@@ -1,23 +1,19 @@
 'use strict'
 
 
-const usuarios = angular.module('Hospital')
+const pacientes = angular.module('Hospital')
 
-usuarios.controller('usuariosController', function ($scope, toaster, $http) {
+pacientes.controller('pacientesController', function ($scope, toaster, $http) {
 	$scope.showForm = false
 	$scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: ''}
-	$scope.usuarios = []
-	$scope.profesiones = []
+	$scope.pacientes = []
 	$scope.generos = []
 
 	$http.get('src/generos/service/getAll.php')
 		.then(response => $scope.generos = response.data )
 
-		$http.get('src/profesiones/service/getAll.php')
-		.then(response => $scope.profesiones = response.data )
-
-	$http.get('src/usuarios/service/getAll.php')
-		.then(response => $scope.usuarios = response.data )
+	$http.get('src/pacientes/service/getAll.php')
+		.then(response => $scope.pacientes = response.data )
 
 	$scope.handleShowForm = function (e) {
 		$scope.showForm = true
@@ -67,49 +63,44 @@ usuarios.controller('usuariosController', function ($scope, toaster, $http) {
 			toaster.pop('error', "Error", "Ingresa el genero")
 			return false
 		}
-		if ($scope.data.profesion == "") {
-			toaster.pop('error', "Error", "Ingresa la profesion")
-			return false
-		}
 
-		$http.post("src/usuarios/service/save.php", { 'profesional': $scope.data })
+		$http.post("src/pacientes/service/save.php", { 'pacientes': $scope.data })
       .then(response => {
       	console.log(response)
       	if (response.data == 201) {
       		toaster.pop('info', "Se ha guardado con exito")
       		$scope.data = { profesion: '', id: '' }
 					$scope.showForm = false
-					$http.get('src/usuarios/service/getAll.php')
-						.then(response =>$scope.usuarios = response.data)
+					$http.get('src/pacientes/service/getAll.php')
+						.then(response =>$scope.pacientes = response.data)
       	}
       })
 	}
 
-	$scope.get = function (usuario) {
+	$scope.get = function (paciente) {
 		$scope.data = {
-			id: usuario.hgc_codi_profe,
-			cedula: usuario.hgc_cedu_profe,
-			nombre: usuario.hgc_nom_profe,
-			apellido: usuario.hgc_ape_profe,
-			fechaNac: new Date(usuario.hgc_fecn_profe),
-			dni: usuario.hgc_dni_profe,
-			telefono: usuario.hgc_tele_profe,
-			ceulular: usuario.hgc_celu_profe,
-			direccion: usuario.hgc_direc_profe,
-			email: usuario.hgc_emai_profe,
-			sexo: usuario.hgc_sexo_profe,
-			profesion: usuario.hgc_profe_profe
+			id: paciente.hgc_codi_pacie,
+			cedula: paciente.hgc_cedu_pacie,
+			nombre: paciente.hgc_nom_pacie,
+			apellido: paciente.hgc_ape_pacie,
+			fechaNac: new Date(paciente.hgc_fecn_pacie),
+			dni: paciente.hgc_dni_pacie,
+			telefono: paciente.hgc_tele_pacie,
+			ceulular: paciente.hgc_celu_pacie,
+			direccion: paciente.hgc_direc_pacie,
+			email: paciente.hgc_emai_pacie,
+			sexo: paciente.hgc_sexo_pacie
 		}
 		$scope.showForm = true
 	}
 
 	$scope.delete = function (id) {
-		$http.post("src/usuarios/service/delete.php", { id })
+		$http.post("src/pacientes/service/delete.php", { id })
       .then(response => {
       	if (response.data == 201) {
       		toaster.pop('info', "Se ha eliminado con exito")
-					$http.get('src/usuarios/service/getAll.php')
-						.then(response => $scope.usuarios = response.data)
+					$http.get('src/pacientes/service/getAll.php')
+						.then(response => $scope.pacientes = response.data)
       	}
       })
 	}
