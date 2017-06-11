@@ -1,8 +1,14 @@
 angular.module('Hospital')
-	.directive('hgcMenu', function () {
-		return {
-			restrict: 'E',
-			templateUrl: 'src/menu/menu.html'
-		}
-	})
-
+  .directive('hgcMenu', function () {
+    return {
+      restrict: 'E',
+      templateUrl: 'src/menu/menu.html',
+      link: (scope, elem, attrs) => {
+        $(".button-collapse").sideNav({
+          closeOnClick: true,
+          draggable: true
+        })
+        $('.collapsible').collapsible()
+      }
+    }
+  })

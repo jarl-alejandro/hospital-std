@@ -1,86 +1,88 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
-	<h1 class="Title">Pacientes</h2>
-	<div class="main-end">
-		<button class='btn__flat primary' ng-click="handleShowForm()">Nuevo</button>
-	</div>
-	<article class="tableContainer">
-		<table class="tableData">
-			<thead>
-				<tr>
-					<th width="10%">#</th>
-					<th width="30%">Pacientes</th>
-					<th width="30%">Email</th>
-					<th width="20%"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="paci in pacientes">
-					<td>{{ $index + 1 }}</td>
-					<td>{{ paci.hgc_nom_pacie }} {{ paci.hgc_ape_pacie }}</td>
-					<td>{{ paci.hgc_emai_pacie }}</td>
-					<td>
-						<button class='btn__flat' ng-click="get(paci)">Editar</button>
-						<button class='btn__flat danger' ng-click="delete(paci.hgc_codi_pacie)">Eliminar</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</article>
-	<div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }"
-		style="top:0.5em">
-		<article class="form ed-item s-100 m-75 main-distribute">
-			<header class="s-100">
-			  <h3>Registrar profesion</h3>
-			</header>
-			<div class="form__input s-100 m-45">
-			  <label for="cedula">Ingresa el cedula</label>
-			  <input id="cedula" type="text" placeholder='Ejemplo: 1718769365' ng-model='data.cedula'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="nombre">Ingresa el nombre</label>
-			  <input id="nombre" type="text" placeholder='Ejemplo: Juan Carlos' ng-model='data.nombre'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="apellido">Ingresa el apellido</label>
-			  <input id="apellido" type="text" placeholder='Ejemplo: Torres Tuares' ng-model='data.apellido'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="fechaNac">Ingresa el fecha de nacimiento</label>
-			  <input id="fechaNac" type="date" placeholder='Ejemplo: 1997-27-10' ng-model='data.fechaNac'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="dni">Ingresa el DNI</label>
-			  <input id="dni" type="text" placeholder='Ejemplo: 22sjduyd' ng-model='data.dni'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="telefono">Ingresa el telefono</label>
-			  <input id="telefono" type="text" placeholder='Ejemplo: 02379965' ng-model='data.telefono'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="ceulular">Ingresa el ceulular</label>
-			  <input id="ceulular" type="text" placeholder='Ejemplo: 099389652' ng-model='data.ceulular'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="direccion">Ingresa el direccion</label>
-			  <input id="direccion" type="text" placeholder='Ejemplo: Via Chone' ng-model='data.direccion'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="email">Ingresa el e-mail</label>
-			  <input id="email" type="text" placeholder='Ejemplo: juancarlos@gmail.com' ng-model='data.email'>
-			</div>
-			<div class="form__input s-100 m-45">
-			  <label for="sexo">Ingresa el genero</label>
-			  <select ng-model='data.sexo' id="sexo">
-					<option value="" selected>Seleciona el sexo</option>
-					<option ng-repeat="sexo in generos" value="{{ sexo.hgc_codi_genero }}">{{ sexo.hgc_desc_genero }}</option>
-			  </select>
-			</div>
-			<div class='main-distribute s-100'>
-			  <button class='btn__flat danger' ng-click="handleCancel()">Cancelar</button>
-			  <button class='btn__flat' ng-click="handleSave()">Aceptar</button>
-			</div>
-		</article>
-	</div>
+  <h1 class="Title">Pacientes</h2>
+  <div class="main-end">
+    <button class='btn-floating btn-large waves-effect waves-light indigo darken-3' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
+  </div>
+  <article class="tableContainer">
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="30%">Pacientes</th>
+          <th width="30%">Email</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="paci in pacientes">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ paci.hgc_nom_pacie }} {{ paci.hgc_ape_pacie }}</td>
+          <td>{{ paci.hgc_emai_pacie }}</td>
+          <td>
+            <button class='waves-effect waves-light btn primary' ng-click="get(paci)">Editar</button>
+            <button class='waves-effect waves-light btn danger' ng-click="delete(paci.hgc_codi_pacie)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  <div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }"
+    style="top:0.5em">
+    <article class="form ed-item s-100 m-75 main-distribute">
+      <header class="s-100">
+        <h3>Registrar profesion</h3>
+      </header>
+      <article class="form__scroll">
+        <div class="form__input s-100 m-45">
+          <label for="cedula">Ingresa el cedula</label>
+          <input id="cedula" type="text" placeholder='Ejemplo: 1718769365' ng-model='data.cedula'>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="nombre">Ingresa el nombre</label>
+          <input id="nombre" type="text" placeholder='Ejemplo: Juan Carlos' ng-model='data.nombre'>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="apellido">Ingresa el apellido</label>
+          <input id="apellido" type="text" placeholder='Ejemplo: Torres Tuares' ng-model='data.apellido'>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="fechaNac">Ingresa el fecha de nacimiento</label>
+          <input id="fechaNac" type="date" placeholder='Ejemplo: 1997-27-10' ng-model='data.fechaNac'>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="dni">Ingresa el DNI</label>
+          <input id="dni" type="text" placeholder='Ejemplo: 22sjduyd' ng-model='data.dni'>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="telefono">Ingresa el telefono</label>
+          <input id="telefono" type="text" placeholder='Ejemplo: 02379965' ng-model='data.telefono'>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="ceulular">Ingresa el ceulular</label>
+          <input id="ceulular" type="text" placeholder='Ejemplo: 099389652' ng-model='data.ceulular'>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="direccion">Ingresa el direccion</label>
+          <input id="direccion" type="text" placeholder='Ejemplo: Via Chone' ng-model='data.direccion'>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="email">Ingresa el e-mail</label>
+          <input id="email" type="text" placeholder='Ejemplo: juancarlos@gmail.com' ng-model='data.email'>
+        </div>
+        <div class="form__input s-100 m-45">
+        <label for="sexo">Ingresa el genero</label>
+        <select ng-model='data.sexo' id="sexo" class='browser-default'>
+          <option value="" selected>Seleciona el sexo</option>
+          <option ng-repeat="sexo in generos" value="{{ sexo.hgc_codi_genero }}">{{ sexo.hgc_desc_genero }}</option>
+        </select>
+      </div>
+      </article>
+      <div class='main-distribute s-100'>
+        <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+        <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+      </div>
+    </article>
+  </div>
 </section>
 <toaster-container toaster-options="{'close-button': true, 'position-class': 'toast-bottom-right', 'progress-bar': true}"></toaster-container>

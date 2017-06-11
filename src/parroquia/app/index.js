@@ -22,15 +22,15 @@ parroquia.controller('parroquiaController', function ($scope, toaster, $http) {
 		$scope.showForm = false
 	}
 	$scope.handleSave = function (e) {
-		if ($scope.data.parroquia == "") {			
+		if ($scope.data.parroquia == "") {
 			toaster.pop('error', "Error", "Ingresa la parroquia")
 			return false
 		}
-    if ($scope.data.canton == "") {      
+    if ($scope.data.canton == "") {
       toaster.pop('error', "Error", "Ingresa el canton")
       return false
     }
-		$http.post("src/parroquia/service/save.php", 
+		$http.post("src/parroquia/service/save.php",
       { 'canton': $scope.data.canton, 'id': $scope.data.id, 'parroquia': $scope.data.parroquia })
       .then(response => {
       	console.log(response)

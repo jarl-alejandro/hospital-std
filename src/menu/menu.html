@@ -1,37 +1,61 @@
-<section class="main-sidebar">
-  <article class="sidebar__settings">
-    <div class="image">
-      <img src="assets/img/logo_inspi.png" />
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper blue darken-1">
+      <a href="#" data-activates="slide-out" class="button-collapse brand-logo">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a><i class="material-icons">more_vert</i></a></li>
+      </ul>
     </div>
-    <div class="content">
-      <span class="user__state"></span>
-      <h4 class="user__name">Alejandro Rivas</h4>
-    </div>
-  </article>
-  <nav class="sidebar__menu">
-    <ul class="sidebar__menu_list">
-      <li><a ui-sref="index"><i class="material-icons">home</i> <span>Inicio</span></a></li>
-
-      <li>
-        <a href="#"><i class="material-icons">home</i> <span>Archivos</span></a>
-        <ul class="main-sidebar__inner">
-          <li><a ui-sref="paises"><span>Paises</span></a></li>
-          <li><a ui-sref="provincias"><span>provincias</span></a></li>
-          <li><a ui-sref="cantones"><span>Cantones</span></a></li>
-          <li><a ui-sref="parroquia"><span>Parroquia</span></a></li>
-          <li><a ui-sref="barrios"><span>Barrios</span></a></li>
-          <li><a ui-sref="etnias"><span>Etnias</span></a></li>
-          <li><a ui-sref="generos"><span>Generos</span></a></li>
-          <li><a ui-sref="profesiones"><span>Profesiones</span></a></li>
-          <li><a ui-sref="usuarios"><span>Usuarios</span></a></li>
-          <li><a ui-sref="pacientes"><span>Pacientes</span></a></li>
-        </ul>
-      </li>
-
-
-      <li><a href="#"><i class="material-icons">build</i> <span>Build</span></a></li>
-      <li><a href="#"><i class="material-icons">android</i> <span>Android</span></a></li>
-      <li><a href="#"><i class="material-icons">language</i> <span>Language</span></a></li>
-    </ul>
   </nav>
-</section>
+</div>
+
+<ul id="slide-out" class="side-nav">
+  <li>
+    <div class="userView">
+      <div class="background">
+        <img src="assets/img/office.jpg">
+      </div>
+      <a href="#!user"><img class="circle" src="assets/img/yuna.jpg"></a>
+      <a href="#!name"><span class="white-text name">John Doe</span></a>
+      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div>
+  </li>
+  <li><a ui-sref="index">Inicio</a></li>
+  <li><div class="divider"></div></li>
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">Paises<i class="material-icons">arrow_drop_down</i></a>
+        <div class="collapsible-body">
+          <ul>
+            <li><a ui-sref="paises"><span>Paises</span></a></li>
+            <li><a ui-sref="provincias"><span>provincias</span></a></li>
+            <li><a ui-sref="cantones"><span>Cantones</span></a></li>
+            <li><a ui-sref="parroquia"><span>Parroquia</span></a></li>
+            <li><a ui-sref="barrios"><span>Barrios</span></a></li>
+            <li><a ui-sref="etnias"><span>Etnias</span></a></li>
+            <li><a ui-sref="generos"><span>Generos</span></a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li><div class="divider"></div></li>
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">Archivos<i class="material-icons">arrow_drop_down</i></a>
+        <div class="collapsible-body">
+          <ul>
+            <li><a ui-sref="profesiones"><span>Profesiones</span></a></li>
+            <li><a ui-sref="usuarios"><span>Usuarios</span></a></li>
+            <li><a ui-sref="pacientes"><span>Pacientes</span></a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li><div class="divider"></div></li>
+</ul>

@@ -2,15 +2,15 @@
 <section class="workSpace">
 	<h1 class="Title">Profesiones</h2>
 	<div class="main-end">
-		<button class='btn__flat primary' ng-click="handleShowForm()">Nuevo</button>
+		<button class='btn-floating btn-large waves-effect waves-light indigo darken-3' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
 	</div>
 	<article class="tableContainer">
-		<table class="tableData">
+		<table class="bordered highlight centered responsive-table">
 			<thead>
 				<tr>
 					<th width="10%">#</th>
 					<th width="60%">Profesion</th>
-					<th width="20%"></th>
+					<th width="30%"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,8 +18,8 @@
 					<td>{{ $index + 1 }}</td>
 					<td>{{ profesion.hgc_desc_profe }}</td>
 					<td>
-						<button class='btn__flat' ng-click="get(profesion.hgc_codi_profe, profesion.hgc_desc_profe)">Editar</button>
-						<button class='btn__flat danger' ng-click="delete(profesion.hgc_codi_profe)">Eliminar</button>
+						<button class='waves-effect waves-light btn primary' ng-click="get(profesion.hgc_codi_profe, profesion.hgc_desc_profe)">Editar</button>
+						<button class='waves-effect waves-light btn danger' ng-click="delete(profesion.hgc_codi_profe)">Eliminar</button>
 					</td>
 				</tr>
 			</tbody>
@@ -35,8 +35,8 @@
 			  <input id="profesion" type="text" placeholder='Ejemplo: Ingeniero' ng-model='data.profesion'>
 			</div>
 			<div class='main-distribute'>
-			  <button class='btn__flat danger' ng-click="handleCancel()">Cancelar</button>
-			  <button class='btn__flat' ng-click="handleSave()">Aceptar</button>
+			  <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+			  <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
 			</div>
 		</article>
 	</div>

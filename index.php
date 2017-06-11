@@ -5,10 +5,13 @@
     <title>Consultorio</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/toaster.min.css">
+    <link rel="stylesheet" href="assets/css/materialize.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <section class="container" ui-view></section>
+    <section ui-view></section>
+    <script type="text/javascript" src='lib/jquery.js'></script>
+    <script type="text/javascript" src='lib/materialize.min.js'></script>
     <script src='lib/angular.min.js'></script>
     <script src='lib/ui-router.js'></script>
     <script src='lib/angular-animate.min.js'></script>

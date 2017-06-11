@@ -2,15 +2,15 @@
 <section class="workSpace">
 	<h1 class="Title">Provincias</h2>
 	<div class="main-end">
-		<button class='btn__flat primary' ng-click="handleShowForm()">Nuevo</button>
+		<button class='btn-floating btn-large waves-effect waves-light indigo darken-3' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
 	</div>
 	<article class="tableContainer">
-		<table class="tableData">
+		<table class="bordered highlight centered responsive-table">
 			<thead>
 				<tr>
 					<th width="10%">#</th>
 					<th width="60%">Provincias</th>
-					<th width="20%"></th>
+					<th width="30%"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,8 +18,8 @@
 					<td>{{ $index + 1 }}</td>
 					<td>{{ provincia.hgc_desc_provi }}</td>
 					<td>
-						<button class='btn__flat' ng-click="get(provincia.hgc_codi_provi, provincia.hgc_desc_provi, provincia.hgc_pais_provi)">Editar</button>
-						<button class='btn__flat danger' ng-click="delete(provincia.hgc_codi_provi)">Eliminar</button>
+						<button class='waves-effect waves-light btn primary' ng-click="get(provincia.hgc_codi_provi, provincia.hgc_desc_provi, provincia.hgc_pais_provi)">Editar</button>
+						<button class='waves-effect waves-light btn danger' ng-click="delete(provincia.hgc_codi_provi)">Eliminar</button>
 					</td>
 				</tr>
 			</tbody>
@@ -36,13 +36,13 @@
 			</div>
 			<div class="form__input">
 			  <label for="pais">Seleciona el pais</label>
-			  <select id="pais" ng-model='data.pais'>
+			  <select id="pais" ng-model='data.pais' class='browser-default'>
 			  	<option ng-repeat="pais in paises" value="{{ pais.hgc_codi_pais }}">{{ pais.hgc_desc_pais }}</option>
 			  </select>
 			</div>
 			<div class='main-distribute'>
-			  <button class='btn__flat danger' ng-click="handleCancel()">Cancelar</button>
-			  <button class='btn__flat' ng-click="handleSave()">Aceptar</button>
+			  <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+			  <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
 			</div>
 		</article>
 	</div>
