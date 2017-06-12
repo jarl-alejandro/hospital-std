@@ -1,0 +1,57 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <h1 class="Title">Cie10</h2>
+  <div class="main-end">
+    <button class='btn-floating btn-large waves-effect waves-light indigo darken-3' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
+  </div>
+  <article class="tableContainer">
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="30%">Codigo</th>
+          <th width="30%">Detalle</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="cie in cie10Child">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ cie.hgc_codi_c10 }}</td>
+          <td>{{ cie.hgc_desc_c10 }}</td>
+          <td>
+            <button class='waves-effect waves-light btn primary' ng-click="get(cie.hgc_codi_c10, cie.hgc_desc_c10, cie.hgc_id_c10, cie.hgc_cie_c10)">Editar</button>
+            <button class='waves-effect waves-light btn danger' ng-click="delete(cie.hgc_id_c10)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  <div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
+    <article class="form ed-item s-100 m-75">
+      <header>
+        <h3>Registrar de Cie10</h3>
+      </header>
+      <div class="form__input">
+        <label for="codigo">Ingresa el codigos</label>
+        <input id="codigo" type="text" placeholder='Ejemplo: GR-001' ng-model='data.codigo'>
+      </div>
+      <div class="form__input">
+        <label for="detalle">Ingresa el detalle</label>
+        <input id="detalle" type="text" placeholder='Ejemplo: Gripe LSX' ng-model='data.detalle'>
+      </div>
+      <div class="form__input">
+        <label for="cie10">Ingresa el cie10</label>
+        <select ng-model='data.cie10' id="cie10" class='browser-default'>
+          <option value="" selected>Seleciona el cie10</option>
+          <option ng-repeat="cie in cie10" value="{{ cie.hgc_id_c10 }}">{{ cie.hgc_desc_c10 }}</option>
+        </select>
+      </div>
+      <div class='main-distribute'>
+        <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+        <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+      </div>
+    </article>
+  </div>
+</section>
+<toaster-container toaster-options="{'close-button': true, 'position-class': 'toast-bottom-right', 'progress-bar': true}"></toaster-container>

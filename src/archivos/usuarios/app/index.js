@@ -145,7 +145,7 @@ usuarios.controller('usuariosController', function ($scope, toaster, $http) {
       email: usuario.hgc_emai_profe,
       sexo: usuario.hgc_sexo_profe,
       profesion: usuario.hgc_profe_profe,
-      rol: usuario.hgc_rol_profe,
+      rol: usuario.hgc_rol_usu,
     }
     $scope.showForm = true
   }
