@@ -14,51 +14,51 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
     .state('paises', {
       url: '/paises',
       controller: 'paisController',
-      templateUrl: 'src/paises/paises.html'
+      templateUrl: 'src/datos/paises/paises.html'
     })
     .state('provincias', {
       url: '/provincias',
       controller: 'provinciasController',
-      templateUrl: 'src/provincias/provincias.html'
+      templateUrl: 'src/datos/provincias/provincias.html'
     })
     .state('cantones', {
       url: '/cantones',
       controller: 'cantonesController',
-      templateUrl: 'src/cantones/cantones.html'
+      templateUrl: 'src/datos/cantones/cantones.html'
     })
     .state('parroquia', {
       url: '/parroquia',
       controller: 'parroquiaController',
-      templateUrl: 'src/parroquia/parroquia.html'
+      templateUrl: 'src/datos/parroquia/parroquia.html'
     })
     .state('barrios', {
       url: '/barrios',
       controller: 'barriosController',
-      templateUrl: 'src/barrios/barrio.html'
+      templateUrl: 'src/datos/barrios/barrio.html'
     })
     .state('etnias', {
       url: '/etnias',
       controller: 'etniasController',
-      templateUrl: 'src/etnias/etnias.html'
+      templateUrl: 'src/datos/etnias/etnias.html'
     })
     .state('generos', {
       url: '/generos',
       controller: 'generosController',
-      templateUrl: 'src/generos/generos.html'
+      templateUrl: 'src/datos/generos/generos.html'
     })
     .state('profesiones', {
       url: '/profesiones',
       controller: 'profesionesController',
-      templateUrl: 'src/profesiones/profesion.html'
+      templateUrl: 'src/archivos/profesiones/profesion.html'
     })
     .state('usuarios', {
       url: '/usuarios',
       controller: 'usuariosController',
-      templateUrl: 'src/usuarios/usuarios.html'
+      templateUrl: 'src/archivos/usuarios/usuarios.html'
     })
     .state('pacientes', {
       url: '/pacientes',
       controller: 'pacientesController',
-      templateUrl: 'src/pacientes/pacientes.html'
+      templateUrl: 'src/archivos/pacientes/pacientes.html'
     })
 })

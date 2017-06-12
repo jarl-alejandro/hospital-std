@@ -19,16 +19,16 @@
     <script src='js/index.js'></script>
     <script src='src/menu/app/index.js'></script>
 
-    <script src='src/paises/app/index.js'></script>
-    <script src='src/provincias/app/index.js'></script>
-    <script src='src/cantones/app/index.js'></script>
-    <script src='src/parroquia/app/index.js'></script>
-    <script src='src/barrios/app/index.js'></script>
-    <script src='src/etnias/app/index.js'></script>
-    <script src='src/generos/app/index.js'></script>
-    <script src='src/profesiones/app/index.js'></script>
-    <script src='src/usuarios/app/index.js'></script>
-    <script src='src/pacientes/app/index.js'></script>
+    <script src='src/datos/paises/app/index.js'></script>
+    <script src='src/datos/provincias/app/index.js'></script>
+    <script src='src/datos/cantones/app/index.js'></script>
+    <script src='src/datos/parroquia/app/index.js'></script>
+    <script src='src/datos/barrios/app/index.js'></script>
+    <script src='src/datos/etnias/app/index.js'></script>
+    <script src='src/datos/generos/app/index.js'></script>
+    <script src='src/archivos/profesiones/app/index.js'></script>
+    <script src='src/archivos/usuarios/app/index.js'></script>
+    <script src='src/archivos/pacientes/app/index.js'></script>
     <script src='src/home/app/index.js'></script>
   </body>
 </html>
