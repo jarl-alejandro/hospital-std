@@ -29,6 +29,9 @@
     <script src='src/archivos/profesiones/app/index.js'></script>
     <script src='src/archivos/usuarios/app/index.js'></script>
     <script src='src/archivos/pacientes/app/index.js'></script>
+    <script src='src/archivos/cie10/app/index.js'></script>
+    <script src='src/archivos/sistemas-fisicos/app/index.js'></script>
     <script src='src/home/app/index.js'></script>
+    <script src='src/login/app/index.js'></script>
   </body>
 </html>

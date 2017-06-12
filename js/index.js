@@ -11,6 +11,11 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       controller: 'homeController',
       templateUrl: 'src/home/home.html'
     })
+    .state('login', {
+      url: '/login',
+      controller: 'loginController',
+      templateUrl: 'src/login/login.html'
+    })
     .state('paises', {
       url: '/paises',
       controller: 'paisController',
@@ -60,5 +65,15 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       url: '/pacientes',
       controller: 'pacientesController',
       templateUrl: 'src/archivos/pacientes/pacientes.html'
+    })
+    .state('cie10', {
+      url: '/cie10',
+      controller: 'cie10Controller',
+      templateUrl: 'src/archivos/cie10/cie10.html'
+    })
+    .state('sitemasFiscos', {
+      url: '/sistemas-fisicos',
+      controller: 'sitemasFiscosController',
+      templateUrl: 'src/archivos/sistemas-fisicos/sitemasFiscos.html'
     })
 })

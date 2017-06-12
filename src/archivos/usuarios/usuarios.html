@@ -31,7 +31,7 @@
     style="top:0.5em">
     <article class="form ed-item s-100 m-75 main-distribute">
       <header class="s-100">
-        <h3>Registrar profesion</h3>
+        <h3>Registrar usuario</h3>
       </header>
       <article class="form__scroll">
         <div class="form__input s-100 m-45">
@@ -78,12 +78,21 @@
           </select>
         </div>
         <div class="form__input s-100 m-45">
-        <label for="profesion">Ingresa la profesion</label>
-        <select ng-model='data.profesion' id="profesion" class='browser-default'>
-          <option value="" selected>Seleciona el profesion</option>
-          <option ng-repeat="profesion in profesiones" value="{{ profesion.hgc_codi_profe }}">{{ profesion.hgc_desc_profe }}</option>
-        </select>
-      </div>
+          <label for="profesion">Ingresa la profesion</label>
+          <select ng-model='data.profesion' id="profesion" class='browser-default'>
+            <option value="" selected>Seleciona el profesion</option>
+            <option ng-repeat="profesion in profesiones" value="{{ profesion.hgc_codi_profe }}">{{ profesion.hgc_desc_profe }}</option>
+          </select>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="rol">Ingresa el rol</label>
+          <select ng-model='data.rol' id="rol" class='browser-default'>
+            <option value="" selected>Seleciona el rol</option>
+            <option value="administrador" selected>Administrador</option>
+            <option value="doctor" selected>Doctor</option>
+            <option value="enfermera" selected>Enfermera</option>
+          </select>
+        </div>
       </article>
       <div class='main-distribute s-100'>
         <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>

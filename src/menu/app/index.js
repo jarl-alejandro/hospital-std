@@ -9,6 +9,7 @@ angular.module('Hospital')
           draggable: true
         })
         $('.collapsible').collapsible()
+        $('.dropdown-button').dropdown()
       }
     }
   })
