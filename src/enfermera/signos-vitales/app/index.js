@@ -3,7 +3,10 @@
 const singosVitales = angular.module('Hospital')
 
 singosVitales.controller('singosVitalesController', function ($scope, toaster, $http) {
-  
+  $pacientes = []
+
+  // $http.get('src/enfermera')
+
 })
 
 singosVitales.controller('pacienteSignoController', function ($scope, $http, $stateParams) {

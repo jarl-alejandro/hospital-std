@@ -33,6 +33,9 @@ if ($id == "") {
   $new->bindParam(10, $sexo);
   $new->execute();
 
+  $hcli = $pdo->prepare("INSERT INTO hgc_hclinica (hgc_histo_hcli) VALUES (?)");
+  $hcli->bindParam(1, $cedula);
+  $hcli->execute();
 }
 else {
   $new = $pdo->query("UPDATE hgc_paciente SET hgc_cedu_pacie='$cedula', hgc_nom_pacie='$nombre', hgc_ape_pacie='$apellido', hgc_celu_pacie='$celular', hgc_tele_pacie='$telefono', hgc_direc_pacie='$direccion', hgc_dni_pacie='$dni', hgc_emai_pacie='$email', hgc_fecn_pacie='$fechaNac', hgc_sexo_pacie='$sexo' WHERE hgc_codi_pacie='$id'");

@@ -71,7 +71,7 @@ pacientes.controller('pacientesController', function ($scope, toaster, $http) {
           toaster.pop('info', "Se ha guardado con exito")
           $scope.data = { profesion: '', id: '' }
           $scope.showForm = false
-          $http.get('src/archivospacientes/service/getAll.php')
+          $http.get('src/archivos/pacientes/service/getAll.php')
             .then(response =>$scope.pacientes = response.data)
         }
       })

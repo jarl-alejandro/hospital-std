@@ -2,7 +2,7 @@
 <section class="workSpace">
   <h1 class="Title">Turnos</h1>
   <div class="main-end">
-    <button class='btn-floating btn-large waves-effect waves-light indigo darken-3' 
+    <button class='btn-floating btn-large waves-effect waves-light indigo darken-3'
       ng-click="handleShowForm()">
       <i class="material-icons">mode_edit</i>
     </button>
@@ -11,20 +11,24 @@
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
-          <th width="10%">#</th>
-          <th width="22%">Paciente</th>
-          <th width="22%">Doctor</th>
-          <th width="22%">Fecha</th>
-          <th width="22%">Hora</th>
+          <th width="5%">#</th>
+          <th width="20%">Paciente</th>
+          <th width="20%">Doctor</th>
+          <th width="15%">Fecha</th>
+          <th width="10%">Hora Inicio</th>
+          <th width="10%">Hora Final</th>
+          <th width="10%">Estado</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Alejandro Rivas</td>
-          <td>Gabriel Alban</td>
-          <td>26 de agosto del 2107</td>
-          <td>12:50 pm</td>
+        <tr ng-repeat="turno in turnos">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ turno.paciente }}</td>
+          <td>{{ turno.doctor }}</td>
+          <td>{{ turno.hgc_fech_turno }}</td>
+          <td>{{ turno.hgc_hini_turno }}</td>
+          <td>{{ turno.hgc_fin_turno }}</td>
+          <td class="center-flex"><span class="estado_{{ turno.hgc_esta_turno }}"></span></td>
         </tr>
       </tbody>
     </table>
@@ -36,23 +40,23 @@
         <h3>Registrar de Cie10</h3>
       </header>
       <article class="formPlus-content">
-        <div class="input-field s-90 m-45">
-          <select id="paciente">
-            <option value="" selected>Selecione el paciente</option>
-            <option value="juan">juan</option>
-            <option value="joel">joel</option>
-            <option value="alejo">alejo</option>
-          </select>
+        <div class="form__input s-90 m-45">
           <label for="paciente">Paciente</label>
-        </div>
-        <div class="input-field s-90 m-45">
-          <select id="doctor">
-            <option value="" selected>Selecione el doctor</option>
-            <option value="juan">juan</option>
-            <option value="joel">joel</option>
-            <option value="alejo">alejo</option>
+          <select id="paciente" ng-model="data.paciente" class="browser-default">
+            <option value="" selected>Selecione el paciente</option>
+            <option ng-repeat="paciente in pacientes" value="{{ paciente.hgc_histo_hcli }}">
+              {{ paciente.paciente }}
+            </option>
           </select>
+        </div>
+        <div class="form__input s-90 m-45">
           <label for="doctor">Doctor</label>
+          <select id="doctor" class="browser-default">
+            <option value="" selected>Selecione el doctor</option>
+            <option ng-repeat="doc in doctor" value="{{ doc.hgc_codi_profe }}">
+              {{ doc.hgc_nom_profe }} {{ doc.hgc_ape_profe }}
+            </option>
+          </select>
         </div>
         <div class="input-field s-90 m-45">
           <input id="fecha" type="date" class="datepicker">

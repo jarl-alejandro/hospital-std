@@ -34,8 +34,19 @@ turnos.controller('turnosController', function ($scope, toaster, $http, $locatio
     aftershow: function(){}
   })
 
-  $http.get('src/archivos/pacientes/service/getAll.php')
+  $scope.turnos = []
+  $scope.pacientes = []
+  $scope.doctor = []
+  $scope.data = {}
+
+  $http.get('src/estadistico/turnos/service/getAll.php')
+    .then(response => $scope.turnos = response.data )
+
+  $http.get('src/estadistico/turnos/service/pacientes.php')
     .then(response => $scope.pacientes = response.data )
+
+  $http.get('src/estadistico/turnos/service/doctor.php')
+    .then(response => $scope.doctor = response.data )
 
   $scope.handleShowForm = function handleShowForm () {
     $('.formPlus').slideDown()
@@ -46,18 +57,30 @@ turnos.controller('turnosController', function ($scope, toaster, $http, $locatio
   }
   $scope.handleSave = function handleSave () {
     if (validar()) {
-      $http.post('src/estadistico/turnos/service/guardar.php', {
+      const parametros = $('#fecha').val().split('/')
+      const horaParam = $('#horaInicio').val().split(':')
+      const fecha2 = new Date(parametros[2] , parametros[1]-1 , parametros[0], horaParam[0], parseInt(horaParam[1])+20)
+
+      $http.post('src/estadistico/turnos/service/save.php', {
         paciente: $('#paciente').val(),
         doctor: $('#doctor').val(),
         fecha: $('#fecha').val(),
         horaInicio: $('#horaInicio').val(),
+        horaFin: `${fecha2.getHours()}:${fecha2.getMinutes()}`,
+        id: ''
       }).then(response => {
-        if (response.status === 201) {
+        if (response.data === "201") {
           $('.formPlus').slideUp()
           Materialize.toast('Se ha guarado con exito', 4000)
+          $("label.active").removeClass('active')
+          $('#paciente').val('')
+          $('#fecha').val('')
+          $('#doctor').val('')
+          $('#horaInicio').val('')
+          $http.get('src/estadistico/turnos/service/getAll.php')
+            .then(response => $scope.turnos = response.data )
         }
       })
-      Materialize.toast('Guardando', 4000)
     }
   }
 
