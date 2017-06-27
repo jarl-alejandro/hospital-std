@@ -1,0 +1,82 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <h1 class="Title">Informacion de Alejandro Rivas</h2>
+  <div class="main-end">
+    <button class='btn-floating btn-large waves-effect waves-light indigo darken-3' 
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
+  <article class="tableContainer">
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="30%">Fecha</th>
+          <th width="30%">Pulso</th>
+          <th width="30%">Temperatura</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>12/03/2017</td>
+          <td>12</td>
+          <td>78</td>
+          <td>
+            <a class='waves-effect waves-light btn'>Editar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+
+  <section class="formPlus ed-item s-80 m-75 m-offset-10" style="top:8em">
+    <div class="form ed-item s-100 m-75">
+      <header>
+        <h3>Signos Vitales</h3>
+      </header>
+      <article class="formPlus-content">
+        <div class="input-field s-90 m-45">
+          <input id="temperatura" type="text">
+          <label for="temperatura">Ingresa la temperatura</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="fr-cardiaca" type="text">
+          <label for="fr-cardiaca">Ingresa la frecuencia cardiaca</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="fr-resporatoria" type="text">
+          <label for="fr-resporatoria">Ingresa la frecuencia respiratoria</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="presion-arterial" type="text">
+          <label for="presion-arterial">Ingresa la presion arterial</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="peso" type="text">
+          <label for="peso">Ingresa el peso</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="talla" type="text">
+          <label for="talla">Ingresa la talla</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="peri-encefalico" type="text">
+          <label for="peri-encefalico">Ingresa el perimetro encefalico</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="estado-nutricion" type="text">
+          <label for="estado-nutricion">Ingresa el estado de nutriciion</label>
+        </div>
+        <div class='main-distribute s-100'>
+          <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+          <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+</section>

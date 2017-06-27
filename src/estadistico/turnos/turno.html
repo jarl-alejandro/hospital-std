@@ -1,0 +1,72 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <h1 class="Title">Turnos</h1>
+  <div class="main-end">
+    <button class='btn-floating btn-large waves-effect waves-light indigo darken-3' 
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
+  <article class="tableContainer">
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="22%">Paciente</th>
+          <th width="22%">Doctor</th>
+          <th width="22%">Fecha</th>
+          <th width="22%">Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Alejandro Rivas</td>
+          <td>Gabriel Alban</td>
+          <td>26 de agosto del 2107</td>
+          <td>12:50 pm</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+
+  <section class="formPlus ed-item s-80 m-75 m-offset-10">
+    <article class="form ed-item s-100 m-75">
+      <header>
+        <h3>Registrar de Cie10</h3>
+      </header>
+      <article class="formPlus-content">
+        <div class="input-field s-90 m-45">
+          <select id="paciente">
+            <option value="" selected>Selecione el paciente</option>
+            <option value="juan">juan</option>
+            <option value="joel">joel</option>
+            <option value="alejo">alejo</option>
+          </select>
+          <label for="paciente">Paciente</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <select id="doctor">
+            <option value="" selected>Selecione el doctor</option>
+            <option value="juan">juan</option>
+            <option value="joel">joel</option>
+            <option value="alejo">alejo</option>
+          </select>
+          <label for="doctor">Doctor</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="fecha" type="date" class="datepicker">
+          <label for="fecha">Ingresa la fecha de de consulta</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="horaInicio" type="text" class="timepicker">
+          <label for="horaInicio">Ingresa la hora de de consulta</label>
+        </div>
+      </article>
+      <div class='main-distribute'>
+        <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+        <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+      </div>
+    </article>
+  </section>
+</section>

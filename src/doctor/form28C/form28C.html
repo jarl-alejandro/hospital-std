@@ -1,0 +1,100 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <h1 class="Title">Form 28C</h2>
+  <article class="form ed-item main-distribute">
+
+    <div class="input-field s-90 m-45">
+      <textarea id="motivo-consulta" class="materialize-textarea"></textarea>
+      <label for="motivo-consulta">Motivo de Consulta</label>
+    </div>
+    <div class="input-field s-90 m-45">
+      <textarea id="motivo-consulta" class="materialize-textarea"></textarea>
+      <label for="motivo-consulta">Enfermedad o problema actual</label>
+    </div>
+    <div class="input-field s-90 m-45">
+      <textarea id="antecedente-personal" class="materialize-textarea"></textarea>
+      <label for="antecedente-personal">Antecedentes personales</label>
+    </div>
+    <div class="input-field s-90 m-45">
+      <textarea id="antecedente-familiares" class="materialize-textarea"></textarea>
+      <label for="antecedente-familiares">Antecedentes familiares</label>
+    </div>
+
+    <div class="s-90 m-45 form-select">
+      <div class="menu-form">
+        <h6 class="title">REVISIÒN ACTUAL DE ÒRGANOS Y SISTEMAS</h6>
+        <div class="menu-form--action">
+          <h6>CP &nbsp;&nbsp;&nbsp;&nbsp; SP</h6>
+          <h6>CP=CON PATOLOGÌA (describir) SP=SIN PATOLOGÌA</h6>
+        </div>
+      </div>
+      <ul class="menu-form--list">
+        <li>
+          <p>ORG. SENTIDOS</p>
+          <p>
+            <input name="group1" type="radio" id="test1" />
+            <label for="test1"></label>
+          </p>
+          <p>
+            <input name="group1" type="radio" id="test2" />
+            <label for="test2"></label>
+          </p>
+          <div class="input-field s-55 no-margin">
+            <input type="text" placeholder="Ingrese una observacion">
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="s-90 m-45 form-select">
+      <div class="menu-form">
+        <h6 class="title">EXAMEN FÌSICO</h6>
+        <div class="menu-form--action">
+          <h6>CP &nbsp;&nbsp;&nbsp;&nbsp; SP</h6>
+          <h6>CP=CON PATOLOGÌA (describir) SP=SIN PATOLOGÌA</h6>
+        </div>
+      </div>
+      <ul class="menu-form--list">
+        <li>
+          <p>CABEZA</p>
+          <p>
+            <input name="group1" type="radio" id="test1" />
+            <label for="test1"></label>
+          </p>
+          <p>
+            <input name="group1" type="radio" id="test2" />
+            <label for="test2"></label>
+          </p>
+          <div class="input-field s-55 no-margin">
+            <input type="text" placeholder="Ingrese una observacion">
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="s-90 m-45 form-select margin-top">
+      <div class="menu-form">
+        <h6 class="title-no-border">DESAROLLO PSICOMOTOR</h6>
+      </div>
+      <ul class="menu-form--list">
+        <li>
+          <p>METODO</p>
+          <div class="input-field s-70 no-margin">
+            <input type="text" placeholder="Ingrese el metodo">
+          </div>
+        </li>
+        <li>
+          <p>CLASIFICACIÒN</p>
+          <div class="input-field s-70 no-margin">
+            <input type="text" placeholder="Ingrese el clasificaciòn">
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <div class='main-distribute s-100 margin-top'>
+      <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+      <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+    </div>
+  </article>
+</section>

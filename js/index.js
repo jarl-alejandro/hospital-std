@@ -16,17 +16,7 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       controller: 'loginController',
       templateUrl: 'src/login/login.html',
       resolve: {
-        authenticated: ($q, $location, $http) => {
-          let deferred = $q.defer()
-          $http.get('src/perfil/service/me.php')
-          .then(response => {
-            if (response.data.status === 404) deferred.resolve()
-            else {
-              $location.path("/admin")
-            }
-          })
-          return deferred.promise
-        }
+        authenticated: authenticated
       }
     })
     .state('logout', {
@@ -38,18 +28,7 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       controller: 'adminController',
       templateUrl: 'src/home/admin.html',
       resolve: {
-        authenticated: ($q, $location, $http) => {
-          let deferred = $q.defer()
-          $http.get('src/perfil/service/me.php')
-          .then(response => {
-            console.log(response)
-            if (response.data.status === 404) $location.path("/login")
-            else {
-              deferred.resolve()
-            }
-          })
-          return deferred.promise
-        }
+        authenticated: authenticated
       }
     })
     .state('paises', {
@@ -122,4 +101,25 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       controller: 'sitemasFiscosController',
       templateUrl: 'src/archivos/sistemas-fisicos/sitemasFiscos.html',
     })
+    .state('turnos', {
+      url: '/turnos',
+      controller: 'turnosController',
+      templateUrl: 'src/estadistico/turnos/turno.html',
+    })
+    .state('signosVitales', {
+      url: '/signos-vitales',
+      controller: 'singosVitalesController',
+      templateUrl: 'src/enfermera/signos-vitales/signos-vitales.html'
+    })
+    .state('paciente-signos', {
+      url: '/paciente-signos/:id',
+      controller: 'pacienteSignoController',
+      templateUrl: 'src/enfermera/signos-vitales/paciente.html'
+    })
+    .state('form28C', {
+      url: '/form28C',
+      controller: 'form28CController',
+      templateUrl: 'src/doctor/form28C/form28C.html'
+    })
+
 })

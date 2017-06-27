@@ -8,5 +8,5 @@ home.controller('homeController', function ($scope) {
 })
 
 home.controller('adminController', function ($scope) {
-  
+
 })
