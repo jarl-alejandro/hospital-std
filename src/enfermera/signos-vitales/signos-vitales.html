@@ -6,18 +6,20 @@
       <thead>
         <tr>
           <th width="10%">#</th>
-          <th width="30%">Historia Clinica</th>
-          <th width="30%">Paciente</th>
-          <th width="30%"></th>
+          <th width="23%">Historia Clinica</th>
+          <th width="23%">Paciente</th>
+          <th width="23%">Doctor</th>
+          <th width="23%"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>1718760901</td>
-          <td>Alejandro Rivas</td>
+        <tr ng-repeat="paciente in pacientes">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ paciente.hgc_paci_turno }}</td>
+          <td>{{ paciente.paciente }}</td>
+          <td>{{ paciente.doctor }}</td>
           <td>
-            <a class='waves-effect waves-light btn' ui-sref="paciente-signos({id:1718760901})">Ver</a>
+            <a class='waves-effect waves-light btn' ui-sref="paciente-signos({id:1718760901, turno:paciente.hgc_id_turno})">Ver</a>
           </td>
         </tr>
       </tbody>

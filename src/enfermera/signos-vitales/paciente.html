@@ -1,8 +1,8 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
-  <h1 class="Title">Informacion de Alejandro Rivas</h2>
+  <h1 class="Title">Informacion de {{ paciente.paciente }}</h2>
   <div class="main-end">
-    <button class='btn-floating btn-large waves-effect waves-light indigo darken-3' 
+    <button class='btn-floating btn-large waves-effect waves-light indigo darken-3'
       ng-click="handleShowForm()">
       <i class="material-icons">mode_edit</i>
     </button>
@@ -13,17 +13,19 @@
         <tr>
           <th width="10%">#</th>
           <th width="30%">Fecha</th>
-          <th width="30%">Pulso</th>
           <th width="30%">Temperatura</th>
+          <th width="30%">Peso</th>
+          <th width="30%">Talla</th>
           <th width="30%"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>12/03/2017</td>
-          <td>12</td>
-          <td>78</td>
+        <tr ng-repeat="signos in signosVitales">
+          <td>{{ $index +1 }}</td>
+          <td>{{ signos.hgc_fecha_sigvit }}</td>
+          <td>{{ signos.hgc_temp_sigvit }}</td>
+          <td>{{ signos.hgc_peso_sigvit }}</td>
+          <td>{{ signos.hgc_talla_sigvit }}</td>
           <td>
             <a class='waves-effect waves-light btn'>Editar</a>
           </td>
@@ -39,35 +41,43 @@
       </header>
       <article class="formPlus-content">
         <div class="input-field s-90 m-45">
-          <input id="temperatura" type="text">
+          <input id="temperatura" type="text" ng-model="data.temperatura">
           <label for="temperatura">Ingresa la temperatura</label>
         </div>
-        <div class="input-field s-90 m-45">
-          <input id="fr-cardiaca" type="text">
+        <div class="input-field s-90 m-45" ng-hide="menor">
+          <input id="fr-cardiaca" type="text" ng-model="data.frCardica">
           <label for="fr-cardiaca">Ingresa la frecuencia cardiaca</label>
         </div>
-        <div class="input-field s-90 m-45">
-          <input id="fr-resporatoria" type="text">
+        <div class="input-field s-90 m-45" ng-hide="menor">
+          <input id="fr-resporatoria" type="text" ng-model="data.frRespiratoria">
           <label for="fr-resporatoria">Ingresa la frecuencia respiratoria</label>
         </div>
-        <div class="input-field s-90 m-45">
-          <input id="presion-arterial" type="text">
+        <div class="input-field s-90 m-45" ng-hide="menor">
+          <input id="presion-arterial" type="text" ng-model="data.prArterial">
           <label for="presion-arterial">Ingresa la presion arterial</label>
         </div>
-        <div class="input-field s-90 m-45">
-          <input id="peso" type="text">
-          <label for="peso">Ingresa el peso</label>
+        <div class="input-field s-90 m-45" ng-show="menor">
+          <input id="pulso" type="text" ng-model="data.pulso">
+          <label for="pulso">Ingresa el pulso</label>
         </div>
         <div class="input-field s-90 m-45">
-          <input id="talla" type="text">
+          <input id="peso" type="text" ng-model="data.peso">
+          <label for="peso">Ingresa el peso</label>
+        </div>
+        <div class="input-field s-90 m-45" ng-show="menor">
+          <input id="longitud" type="text" ng-model="data.longitud">
+          <label for="longitud">Ingresa la longitud</label>
+        </div>
+        <div class="input-field s-90 m-45" ng-hide="menor">
+          <input id="talla" type="text" ng-model="data.talla">
           <label for="talla">Ingresa la talla</label>
         </div>
         <div class="input-field s-90 m-45">
-          <input id="peri-encefalico" type="text">
+          <input id="peri-encefalico" type="text" ng-model="data.prEncefalico">
           <label for="peri-encefalico">Ingresa el perimetro encefalico</label>
         </div>
-        <div class="input-field s-90 m-45">
-          <input id="estado-nutricion" type="text">
+        <div class="input-field s-90 m-45" ng-hide="menor">
+          <input id="estado-nutricion" type="text" ng-model="data.estado">
           <label for="estado-nutricion">Ingresa el estado de nutriciion</label>
         </div>
         <div class='main-distribute s-100'>

@@ -112,7 +112,7 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       templateUrl: 'src/enfermera/signos-vitales/signos-vitales.html'
     })
     .state('paciente-signos', {
-      url: '/paciente-signos/:id',
+      url: '/paciente-signos/:id/:turno',
       controller: 'pacienteSignoController',
       templateUrl: 'src/enfermera/signos-vitales/paciente.html'
     })
