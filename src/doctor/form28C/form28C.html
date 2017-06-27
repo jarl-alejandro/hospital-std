@@ -1,4 +1,5 @@
 <hgc-menu></hgc-menu>
+as {{ $rootScope.user }}
 <section class="workSpace">
   <h1 class="Title">Form 28C</h2>
   <article class="form ed-item main-distribute">
@@ -29,18 +30,18 @@
         </div>
       </div>
       <ul class="menu-form--list">
-        <li>
-          <p>ORG. SENTIDOS</p>
+        <li ng-repeat="sistema in sistemas">
+          <p>{{ sistema.hgc_desc_sisfi }}</p>
           <p>
-            <input name="group1" type="radio" id="test1" />
-            <label for="test1"></label>
+            <input name="sistema_{{ sistema.hgc_id_sisfi }}" type="radio" id="cp_{{ sistema.hgc_id_sisfi }}" />
+            <label for="cp_{{ sistema.hgc_id_sisfi }}"></label>
           </p>
           <p>
-            <input name="group1" type="radio" id="test2" />
-            <label for="test2"></label>
+            <input name="sistema_{{ sistema.hgc_id_sisfi }}" type="radio" id="sp_{{ sistema.hgc_id_sisfi }}" />
+            <label for="sp_{{ sistema.hgc_id_sisfi }}"></label>
           </p>
-          <div class="input-field s-55 no-margin">
-            <input type="text" placeholder="Ingrese una observacion">
+          <div class="input-field s-50 no-margin">
+            <input type="text" placeholder="Ingrese una observacion" id="input-system-{{ sistema.hgc_id_sisfi }}">
           </div>
         </li>
       </ul>
@@ -55,18 +56,18 @@
         </div>
       </div>
       <ul class="menu-form--list">
-        <li>
-          <p>CABEZA</p>
+        <li ng-repeat="fisico in fisicos">
+          <p>{{ fisico.hgc_desc_sisfi }}</p>
           <p>
-            <input name="group1" type="radio" id="test1" />
-            <label for="test1"></label>
+            <input name="fisico_{{ fisico.hgc_id_sisfi }}" type="radio" id="cpf_{{ fisico.hgc_id_sisfi }}" />
+            <label for="cpf_{{ fisico.hgc_id_sisfi }}"></label>
           </p>
           <p>
-            <input name="group1" type="radio" id="test2" />
-            <label for="test2"></label>
+            <input name="fisico_{{ fisico.hgc_id_sisfi }}" type="radio" id="spf_{{ fisico.hgc_id_sisfi }}" />
+            <label for="spf_{{ fisico.hgc_id_sisfi }}"></label>
           </p>
           <div class="input-field s-55 no-margin">
-            <input type="text" placeholder="Ingrese una observacion">
+            <input type="text" placeholder="Ingrese una observacion" id="input-fisico-{{ sistema.hgc_id_sisfi }}">
           </div>
         </li>
       </ul>

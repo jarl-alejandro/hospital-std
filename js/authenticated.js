@@ -14,6 +14,7 @@ function authenticated ($q, $location, $http, $rootScope) {
         cedula: user.hgc_cedu_profe,
         avatar: user.hgc_avat_profe
       }
+      console.log($rootScope.user)
       if (rol === 'administrador') $location.path("/admin")
       if (rol === 'doctor') $location.path("/form28C")
       if (rol === 'enfermera') $location.path("/signos-vitales")

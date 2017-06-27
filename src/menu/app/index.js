@@ -1,5 +1,6 @@
 angular.module('Hospital')
-  .directive('hgcMenu', function () {
+  .directive('hgcMenu', function ($rootScope) {
+    console.log($rootScope.user)
     return {
       restrict: 'E',
       templateUrl: 'src/menu/menu.html',
