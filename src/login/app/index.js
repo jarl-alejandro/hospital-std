@@ -47,7 +47,7 @@ login.controller('loginController', function ($scope, toaster, $http, $location,
 login.controller('logoutController', function ($scope, $http, $location) {
   $http.post('src/login/service/logout.php')
   .then(response => {
-    console.log(response)
+    window.localStorage.clear()
     $location.path('/')
   })
 })
