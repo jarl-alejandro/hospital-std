@@ -8,8 +8,8 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
   $stateProvider
     .state('index', {
       url: '/',
-      controller: 'homeController',
-      templateUrl: 'src/home/home.html',
+      controller: 'loginController',
+      templateUrl: 'src/login/login.html',
     })
     .state('login', {
       url: '/login',
