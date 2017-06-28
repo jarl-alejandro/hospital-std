@@ -36,7 +36,9 @@
     <script src='src/archivos/sistemas-fisicos/app/index.js'></script>
     <script src='src/estadistico/turnos/app/index.js'></script>
     <script src='src/enfermera/signos-vitales/app/index.js'></script>
+    <script src='src/doctor/pacientes/app/index.js'></script>
     <script src='src/doctor/form28C/app/index.js'></script>
+    <script src='src/doctor/form28A/app/index.js'></script>
     <script src='src/home/app/index.js'></script>
     <script src='src/login/app/index.js'></script>
   </body>

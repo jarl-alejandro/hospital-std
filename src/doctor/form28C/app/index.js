@@ -1,8 +1,8 @@
 'use strict'
 
-const form = angular.module('Hospital')
+const form28C = angular.module('Hospital')
 
-form.controller('form28CController',  function ($scope, $http) {
+form28C.controller('form28CController',  function ($scope, $http) {
   $scope.sistemas = []
   $scope.fisicos = []
 

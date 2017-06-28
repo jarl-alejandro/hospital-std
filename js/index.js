@@ -167,13 +167,28 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
         authenticated: auth_roles
       }
     })
+    .state('doctor', {
+      url: '/doctor',
+      controller: 'pacientesDoctorController',
+      templateUrl: 'src/doctor/pacientes/pacientes.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
     .state('form28C', {
-      url: '/form28C',
+      url: '/form28C/:id/:turno',
       controller: 'form28CController',
       templateUrl: 'src/doctor/form28C/form28C.html',
       resolve: {
         authenticated: auth_roles
       }
     })
-
+    .state('form28A', {
+      url: '/form28A/:id/:turno',
+      controller: 'form28AController',
+      templateUrl: 'src/doctor/form28A/form28A.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
 })
