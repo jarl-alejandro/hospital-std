@@ -8,13 +8,27 @@ function authenticated ($q, $location, $http, $rootScope) {
     else {
       const user = response.data.user
       const rol = user.hgc_rol_usu
+      const name = `${user.hgc_nom_profe} ${user.hgc_ape_profe}`
+      let avatar = null
+      let isAvatar = null
+
+      if (user.hgc_avat_profe === null) {
+        const len = name.length
+        avatar = name.substr(-len, 1)
+        isAvatar = false
+      } else {
+        avatar = user.hgc_avat_profe
+        isAvatar = true
+      }
       $rootScope.user = {
         rol,
-        name: `${user.hgc_nom_profe} ${user.hgc_ape_profe}`,
+        avatar,
+        name,
         cedula: user.hgc_cedu_profe,
-        avatar: user.hgc_avat_profe
+        username: user.hgc_user_usu,
+        isAvatar
       }
-      console.log($rootScope.user)
+      window.localStorage.setItem('user', JSON.stringify($rootScope.user))
       if (rol === 'administrador') $location.path("/admin")
       if (rol === 'doctor') $location.path("/form28C")
       if (rol === 'enfermera') $location.path("/signos-vitales")
@@ -22,4 +36,10 @@ function authenticated ($q, $location, $http, $rootScope) {
     }
   })
   return deferred.promise
+}
+
+
+function auth_roles ($q, $location, $http, $rootScope) {
+  let deferred = $q.defer()
+  $rootScope.user = JSON.parse(window.localStorage.getItem('user'))
 }

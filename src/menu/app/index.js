@@ -5,6 +5,7 @@ angular.module('Hospital')
       restrict: 'E',
       templateUrl: 'src/menu/menu.html',
       link: (scope, elem, attrs) => {
+
         $(".button-collapse").sideNav({
           closeOnClick: true,
           draggable: true

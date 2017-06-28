@@ -22,12 +22,21 @@
       <div class="background">
         <img src="assets/img/office.jpg">
       </div>
-      <a><img class="circle" src="assets/img/yuna.jpg"></a>
-      <a><span class="white-text name">{{ $rootScope.user }}</span></a>
-      <a><span class="white-text email">jdandturk@gmail.com</span></a>
+      <a>
+        <div ng-if="!user.isAvatar" class="circle-avatar">{{ user.avatar }}</div>
+        <img ng-if="user.isAvatar" class="circle" src="assets/img/yuna.jpg">
+      </a>
+      <a><span class="white-text name">{{ user.name }}</span></a>
+      <a><span class="white-text email">{{ user.username }}</span></a>
     </div>
   </li>
   <li><a ui-sref="admin">Inicio</a></li>
+  <li><div class="divider"></div></li>
+
+  <li><a ui-sref="turnos">Turnos</a></li>
+  <li><a ui-sref="signosVitales">Signos Vitales</a></li>
+  <li><a ui-sref="form28C">Form 28C</a></li>
+
   <li><div class="divider"></div></li>
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">

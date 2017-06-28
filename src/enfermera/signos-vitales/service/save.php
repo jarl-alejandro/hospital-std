@@ -40,6 +40,8 @@ $new->bindParam(13, $historiaClinica);
 
 $new->execute();
 
+$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");
+
 if ($new) {
   echo 201;
 }
