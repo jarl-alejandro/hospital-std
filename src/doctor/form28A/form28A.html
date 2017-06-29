@@ -24,13 +24,13 @@
         <li ng-repeat="sistema in sistemas">
           <p>{{ sistema.hgc_desc_sisfi }}</p>
           <p>
-            <input name="sistema_{{ sistema.hgc_id_sisfi }}" type="radio" id="cp_{{ sistema.hgc_id_sisfi }}"
-              class="items_sistemas" value="0_{{sistema.hgc_id_sisfi}}" />
+            <input name="sistema_{{ sistema.hgc_id_sisfi }}" id="cp_{{ sistema.hgc_id_sisfi }}"
+              class="items_sistemas" value="0_{{sistema.hgc_id_sisfi}}" type="radio" />
             <label for="cp_{{ sistema.hgc_id_sisfi }}"></label>
           </p>
           <p>
-            <input name="sistema_{{ sistema.hgc_id_sisfi }}" type="radio" id="sp_{{ sistema.hgc_id_sisfi }}"
-              class="items_sistemas" value="1_{{sistema.hgc_id_sisfi}}" />
+            <input name="sistema_{{ sistema.hgc_id_sisfi }}" id="sp_{{ sistema.hgc_id_sisfi }}"
+              class="items_sistemas" value="1_{{sistema.hgc_id_sisfi}}" type="radio" />
             <label for="sp_{{ sistema.hgc_id_sisfi }}"></label>
           </p>
           <div class="input-field s-50 no-margin">
@@ -52,17 +52,18 @@
         <li ng-repeat="fisico in fisicos">
           <p>{{ fisico.hgc_desc_sisfi }}</p>
           <p>
-            <input name="fisico_{{ fisico.hgc_id_sisfi }}" type="radio" id="cpf_{{ fisico.hgc_id_sisfi }}"
-              class="items_fisicico" value="0_{{fisico.hgc_id_sisfi}}" />
+            <input name="fisico_{{ fisico.hgc_id_sisfi }}" id="cpf_{{ fisico.hgc_id_sisfi }}"
+              class="items_fisicico" value="0_{{fisico.hgc_id_sisfi}}" type="radio" />
             <label for="cpf_{{ fisico.hgc_id_sisfi }}"></label>
           </p>
           <p>
-            <input name="fisico_{{ fisico.hgc_id_sisfi }}" type="radio" id="spf_{{ fisico.hgc_id_sisfi }}"
-              class="items_fisicico" value="1_{{fisico.hgc_id_sisfi}}" />
+            <input name="fisico_{{ fisico.hgc_id_sisfi }}" id="spf_{{ fisico.hgc_id_sisfi }}"
+              class="items_fisicico" value="1_{{fisico.hgc_id_sisfi}}" type="radio" />
             <label for="spf_{{ fisico.hgc_id_sisfi }}"></label>
           </p>
           <div class="input-field s-55 no-margin">
-            <input type="text" placeholder="Ingrese una observacion" id="input-fisico-{{ fisico.hgc_id_sisfi }}">
+            <input type="text" placeholder="Ingrese una observacion"
+              id="input-fisico-{{ fisico.hgc_id_sisfi }}">
           </div>
         </li>
       </ul>
