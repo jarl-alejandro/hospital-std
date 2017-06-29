@@ -36,7 +36,7 @@ login.controller('loginController', function ($scope, toaster, $http, $location,
           avatar: user.hgc_avat_profe
         }
         if (rol === 'administrador') $location.path("/admin")
-        if (rol === 'doctor') $location.path("/form28C")
+        if (rol === 'doctor') $location.path("/doctor")
         if (rol === 'enfermera') $location.path("/signos-vitales")
         if (rol === 'departamento estadistico') $location.path("/turnos")
       }

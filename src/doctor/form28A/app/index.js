@@ -2,10 +2,14 @@
 
 const form28A = angular.module('Hospital')
 
-form28A.controller('form28AController',  function ($scope, $http) {
+form28A.controller('form28AController',  function ($scope, $http, $stateParams, $location) {
+  const paciente = $stateParams.id
+  const turno = $stateParams.turno
+
+  $scope.activoForm28 = false
   $scope.sistemas = []
   $scope.fisicos = []
-  $scope.data = { motivo: '', enfermedad: '' }
+  $scope.data = { motivo: '', enfermedad: '', paciente, turno }
   let array_sistemas = []
   let array_fisicos = []
 
@@ -25,27 +29,40 @@ form28A.controller('form28AController',  function ($scope, $http) {
     for(let i in items_sistemas) {
       let sistemas = items_sistemas[i]
       if(sistemas.checked === true) {
+        let tipo = sistemas.value.split('_')[0]
         let id = sistemas.value.split('_')[1]
         let observacion = document.getElementById(`input-system-${id}`).value
-        array_sistemas.push({ tipo: sistemas.value, observacion })
+        array_sistemas.push({ id, tipo, observacion })
       }
     }
 
     for(let i in items_fisicico) {
       let fisico = items_fisicico[i]
       if(fisico.checked === true) {
+        let tipo = fisico.value.split('_')[0]
         let id = fisico.value.split('_')[1]
         let observacion = document.getElementById(`input-fisico-${id}`).value
-        array_fisicos.push({ tipo: fisico.value, observacion })
+        array_fisicos.push({ id, tipo, observacion })
       }
     }
 
     if (validarForm()) {
+      $scope.activoForm28 = true
       $scope.data.sistemas = array_sistemas
       $scope.data.fisicos = array_fisicos
 
-      window.alert('Saved....')
-      console.log($scope.data)
+      $http.post('src/doctor/form28A/service/save.php', $scope.data)
+        .then(response => {
+          console.log(response)
+          if (response.data === '201') {
+            Materialize.toast('Se ha guardado con exito', 4000)
+            $location.path('/doctor')
+            $scope.activoForm28 = false
+          } else {
+            $scope.activoForm28 = false
+            Materialize.toast('Intente nuevamente', 4000)
+          }
+        })
     }
   }
 
