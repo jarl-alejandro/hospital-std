@@ -5,6 +5,8 @@ const form28C = angular.module('Hospital')
 form28C.controller('form28CController',  function ($scope, $http, $stateParams, $location) {
   const paciente = $stateParams.id
   const turno = $stateParams.turno
+  let array_sistemas = []
+  let array_fisicos = []
 
   $scope.activoForm28 = false
   $scope.sistemas = []
@@ -19,8 +21,14 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     paciente,
     turno
   }
-  let array_sistemas = []
-  let array_fisicos = []
+
+  $http.get(`src/doctor/form28C/service/paciente.php?id=${paciente}&turno=${turno}`)
+    .then(response => {
+      console.log(response)
+      if (response.data.turno === 1) $scope.activoForm28 = turno
+      $scope.data.antPersonales = response.data.paciente.hgc_antp_pacie
+      $scope.data.antfamiliares = response.data.paciente.hgc_antf_pacie
+    })
 
   $scope.handleSave = function () {
     const items_sistemas = Array.prototype.slice.call(document.querySelectorAll('.items_sistemas'))
