@@ -16,7 +16,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     clasificacion: '',
     antPersonales:'',
     antfamiliares: '',
-    clasificacion: '',
     paciente,
     turno
   }

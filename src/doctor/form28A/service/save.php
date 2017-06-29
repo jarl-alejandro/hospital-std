@@ -5,7 +5,7 @@ include '../../../../helpers/generar_codigo.php';
 $json = file_get_contents('php://input');
 $obj = json_decode($json);
 
-$codigo = setCode($pdo, 'F28-', 9, 'hgc_form28', 'hgc_cont_form28');
+$codigo = setCode($pdo, 'F28A-', 9, 'hgc_form28', 'hgc_cont_form28');
 updateCode($pdo, 'hgc_cont_form28');
 
 $motivo = $obj->motivo;
