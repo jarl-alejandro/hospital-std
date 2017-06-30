@@ -28,7 +28,7 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       controller: 'adminController',
       templateUrl: 'src/home/admin.html',
       resolve: {
-        authenticated: authenticated
+        authenticated: auth_roles
       }
     })
     .state('paises', {

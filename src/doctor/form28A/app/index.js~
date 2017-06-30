@@ -10,8 +10,7 @@ form28A.controller('form28AController',  function ($scope, $http, $stateParams, 
   $scope.sistemas = []
   $scope.fisicos = []
   $scope.data = { motivo: '', enfermedad: '', paciente, turno }
-
-	let array_sistemas = []
+  let array_sistemas = []
   let array_fisicos = []
 
   $http.get('src/doctor/form28A/service/sistemas.php')
