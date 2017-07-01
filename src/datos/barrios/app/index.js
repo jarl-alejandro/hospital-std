@@ -3,7 +3,7 @@
 const barrios = angular.module('Hospital')
 
 barrios.controller('barriosController', function ($scope, toaster, $http) {
-	$scope.showForm = false
+	$('.formContainer').slideUp()
 	$scope.data = { barrio: '', id: '', parroquia: '' }
   $scope.barrios = []
 	$scope.parroquias = []
@@ -15,19 +15,19 @@ barrios.controller('barriosController', function ($scope, toaster, $http) {
     .then(response => $scope.parroquias = response.data )
 
 	$scope.handleShowForm = function (e) {
-		$scope.showForm = true
+		$('.formContainer').slideDown()
 	}
 	$scope.handleCancel = function (e) {
 		$scope.data = { barrio: '', id: '', parroquia: '' }
-		$scope.showForm = false
+		$('.formContainer').slideUp()
 	}
 	$scope.handleSave = function (e) {
 		if ($scope.data.barrio == "") {
-			toaster.pop('error', "Error", "Ingresa el barrio")
+			Materialize.toast("Ingresa el barrio", 4000)
 			return false
 		}
     if ($scope.data.parroquia == "") {
-      toaster.pop('error', "Error", "Ingresa la parroquia")
+      Materialize.toast("Ingresa la parroquia", 4000)
       return false
     }
 		$http.post("src/datos/barrios/service/save.php",
@@ -35,9 +35,9 @@ barrios.controller('barriosController', function ($scope, toaster, $http) {
       .then(response => {
       	console.log(response)
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha guardado con exito")
+      		Materialize.toast("Se ha guardado con exito", 4000)
       		$scope.data = { barrio: '', id: '', parroquia: '' }
-					$scope.showForm = false
+					$('.formContainer').slideUp()
 					$http.get('src/datos/barrios/service/getAll.php')
 						.then(response =>$scope.barrios = response.data)
       	}
@@ -46,14 +46,14 @@ barrios.controller('barriosController', function ($scope, toaster, $http) {
 
 	$scope.get = function (id, barrio, parroquia) {
 		$scope.data = { barrio, id, parroquia }
-		$scope.showForm = true
+		$('.formContainer').slideDown()
 	}
 
 	$scope.delete = function (id) {
 		$http.post("src/datos/barrios/service/delete.php", { id })
       .then(response => {
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha eliminado con exito")
+      		Materialize.toast("Se ha eliminado con exito", 4000)
 					$http.get('src/datos/barrios/service/getAll.php')
 						.then(response => $scope.barrios = response.data)
       	}

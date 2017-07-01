@@ -7,11 +7,11 @@ login.controller('loginController', function ($scope, toaster, $http, $location,
 
   $scope.handleSave = function (e) {
     if ($scope.data.email === ''){
-      toaster.pop('error', "Error", "Ingresa el email")
+      Materialize.toast("Ingresa el email", 4000)
       return false
     }
     if ($scope.data.password === ''){
-      toaster.pop('error', "Error", "Ingresa la contraseña")
+      Materialize.toast("Ingresa la contraseña", 4000)
       return false
     }
 
@@ -20,13 +20,13 @@ login.controller('loginController', function ($scope, toaster, $http, $location,
       'password': $scope.data.password
     }).then(response => {
       if (response.data.status === 404) {
-        toaster.pop('error', "Error", "Usuario incorrecto")
+        Materialize.toast("Usuario incorrecto", 4000)
       }
       if (response.data.status === 303) {
-        toaster.pop('error', "Error", "Contraseña incorrecto")
+        Materialize.toast("Contraseña incorrecto", 4000)
       }
       if (response.data.status === 200) {
-        toaster.pop('info', "Ha iniciado sesion")
+        Materialize.toast("Ha iniciado sesion", 4000)
         const user = response.data.user
         const rol = user.hgc_rol_usu
         $rootScope.user = {

@@ -10,6 +10,9 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       url: '/',
       controller: 'loginController',
       templateUrl: 'src/login/login.html',
+      resolve: {
+        authenticated: authenticated
+      }
     })
     .state('login', {
       url: '/login',
@@ -17,6 +20,14 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       templateUrl: 'src/login/login.html',
       resolve: {
         authenticated: authenticated
+      }
+    })
+    .state('perfil', {
+      url: '/perfil',
+      controller: 'perfilController',
+      templateUrl: 'src/perfil/perfil.html',
+      resolve: {
+        authenticated: auth_roles
       }
     })
     .state('logout', {

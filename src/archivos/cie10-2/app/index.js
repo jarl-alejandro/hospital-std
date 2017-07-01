@@ -3,7 +3,7 @@
 const cie10Two = angular.module('Hospital')
 
 cie10Two.controller('cie10TwoController', function ($scope, toaster, $http) {
-  $scope.showForm = false
+  $('.formContainer').slideUp()
   $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
   $scope.cie10 = []
   $scope.cie10Child = []
@@ -15,23 +15,23 @@ cie10Two.controller('cie10TwoController', function ($scope, toaster, $http) {
     .then(response => $scope.cie10Child = response.data )
 
   $scope.handleShowForm = function (e) {
-    $scope.showForm = true
+    $('.formContainer').slideDown()
   }
   $scope.handleCancel = function (e) {
     $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
-    $scope.showForm = false
+    $('.formContainer').slideDown()
   }
   $scope.handleSave = function (e) {
     if ($scope.data.codigo === "") {
-      toaster.pop('error', "Error", "Ingresa el codigo")
+      Materialize.toast("Ingresa el codigo", 4000)
       return false
     }
     if ($scope.data.detalle === "") {
-      toaster.pop('error', "Error", "Ingresa el detalle")
+      Materialize.toast("Ingresa el detalle", 4000)
       return false
     }
     if ($scope.data.cie10 === "") {
-      toaster.pop('error', "Error", "Ingresa el cie 10")
+      Materialize.toast("Ingresa el cie 10", 4000)
       return false
     }
     $http.post("src/archivos/cie10-2/service/save.php", {
@@ -42,9 +42,9 @@ cie10Two.controller('cie10TwoController', function ($scope, toaster, $http) {
     }).then(response => {
       console.log(response)
       if (response.data == 201) {
-        toaster.pop('info', "Se ha guardado con exito")
+        Materialize.toast("Se ha guardado con exito", 4000)
         $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
-        $scope.showForm = false
+        $('.formContainer').slideUp()
         $http.get('src/archivos/cie10-2/service/getAll.php')
           .then(response => $scope.cie10Child = response.data)
       }
@@ -53,14 +53,14 @@ cie10Two.controller('cie10TwoController', function ($scope, toaster, $http) {
 
   $scope.get = function (codigo, detalle, id, cie10) {
     $scope.data = { codigo, detalle, id, cie10 }
-    $scope.showForm = true
+    $('.formContainer').slideDown()
   }
 
   $scope.delete = function (id) {
     $http.post("src/archivos/cie10-2/service/delete.php", { id })
     .then(response => {
       if (response.data == 201) {
-        toaster.pop('info', "Se ha eliminado con exito")
+        Materialize.toast("Se ha eliminado con exito", 4000)
         $http.get('src/archivos/cie10-2/service/getAll.php')
           .then(response => $scope.cie10Child = response.data)
       }

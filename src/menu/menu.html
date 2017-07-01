@@ -1,11 +1,11 @@
 <ul id="dropdown1" class="dropdown-content">
   <li><a ui-sref="logout">Salir</a></li>
   <li class="divider"></li>
-  <li><a href="#!">Perfil</a></li>
+  <li><a ui-sref="perfil">Perfil</a></li>
 </ul>
 <div class="navbar-fixed">
   <nav>
-    <div class="nav-wrapper blue darken-1">
+    <div class="nav-wrapper primary">
       <a href="#" data-activates="slide-out" class="button-collapse brand-logo">
         <i class="material-icons">menu</i>
       </a>
@@ -30,14 +30,19 @@
       <a><span class="white-text email">{{ user.username }}</span></a>
     </div>
   </li>
+
   <li><a ui-sref="admin">Inicio</a></li>
   <li><div class="divider"></div></li>
 
+  <li><a ui-sref="perfil">Perfil</a></li>
+  <li><div class="divider"></div></li>  
+
   <li><a ui-sref="turnos">Turnos</a></li>
   <li><a ui-sref="signosVitales">Signos Vitales</a></li>
+  
   <li><a ui-sref="doctor">Doctor</a></li>
-
   <li><div class="divider"></div></li>
+
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">
       <li>

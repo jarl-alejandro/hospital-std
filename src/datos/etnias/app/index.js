@@ -4,7 +4,7 @@
 const etnias = angular.module('Hospital')
 
 etnias.controller('etniasController', function ($scope, toaster, $http) {
-	$scope.showForm = false
+	$('.formContainer').slideUp()
 	$scope.data = { etnia: '', id: '' }
 	$scope.etnias = []
 
@@ -12,15 +12,15 @@ etnias.controller('etniasController', function ($scope, toaster, $http) {
 		.then(response => $scope.etnias = response.data )
 
 	$scope.handleShowForm = function (e) {
-		$scope.showForm = true
+		$('.formContainer').slideDown()
 	}
 	$scope.handleCancel = function (e) {
 		$scope.data = { pais: '', id: '' }
-		$scope.showForm = false
+		$('.formContainer').slideUp()
 	}
 	$scope.handleSave = function (e) {
 		if ($scope.data.etnia == "") {
-			toaster.pop('error', "Error", "Ingresa el etnia")
+			Materialize.toast("Ingresa el etnia", 4000)
 			return false
 		}
 		$http.post("src/datos/etnias/service/save.php", { 'etnia': $scope.data.etnia, 'id': $scope.data.id })
@@ -28,9 +28,9 @@ etnias.controller('etniasController', function ($scope, toaster, $http) {
       	console.log(response)
 					$scope.etnias = []
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha guardado con exito")
+      		Materialize.toast("Se ha guardado con exito", 4000)
       		$scope.data = { etnia: '', id: '' }
-					$scope.showForm = false
+					$('.formContainer').slideUp()
 					$http.get('src/datos/etnias/service/getAll.php')
 						.then(response => $scope.etnias = response.data)
       	}
@@ -39,14 +39,14 @@ etnias.controller('etniasController', function ($scope, toaster, $http) {
 
 	$scope.get = function (id, etnia) {
 		$scope.data = { etnia: etnia, id: id }
-		$scope.showForm = true
+		$('.formContainer').slideDown()
 	}
 
 	$scope.delete = function (id) {
 		$http.post("src/datos/etnias/service/delete.php", { id })
       .then(response => {
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha eliminado con exito")
+      		Materialize.toast("Se ha eliminado con exito", 4000)
 					$http.get('src/datos/etnias/service/getAll.php')
 						.then(response => $scope.etnias = response.data)
       	}

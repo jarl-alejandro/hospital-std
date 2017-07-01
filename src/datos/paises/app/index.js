@@ -4,7 +4,7 @@
 const paises = angular.module('Hospital')
 
 paises.controller('paisController', function ($scope, toaster, $http) {
-  $scope.showForm = false
+  $('.formContainer').slideUp()
   $scope.data = { pais: '', id: '' }
   $scope.paises = []
 
@@ -12,24 +12,24 @@ paises.controller('paisController', function ($scope, toaster, $http) {
     .then(response => $scope.paises = response.data )
 
   $scope.handleShowForm = function (e) {
-    $scope.showForm = true
+    $('.formContainer').slideDown()
   }
   $scope.handleCancel = function (e) {
     $scope.data = { pais: '', id: '' }
-    $scope.showForm = false
+    $('.formContainer').slideUp()
   }
   $scope.handleSave = function (e) {
     if ($scope.data.pais == "") {
-      toaster.pop('error', "Error", "Ingresa el pais")
+      Materialize.toast("Ingresa el pais", 4000)
       return false
     }
     $http.post("src/datos/paises/service/save.php", { 'pais': $scope.data.pais, 'id': $scope.data.id })
       .then(response => {
         console.log(response)
         if (response.data == 201) {
-          toaster.pop('info', "Se ha guardado con exito")
+          Materialize.toast("Se ha guardado con exito", 4000)
           $scope.data = { pais: '', id: '' }
-          $scope.showForm = false
+          $('.formContainer').slideUp()
           $http.get('src/datos/paises/service/getAll.php')
             .then(response =>$scope.paises = response.data)
         }
@@ -38,14 +38,14 @@ paises.controller('paisController', function ($scope, toaster, $http) {
 
   $scope.get = function (id, pais) {
     $scope.data = { pais: pais, id: id }
-    $scope.showForm = true
+    $('.formContainer').slideDown()
   }
 
   $scope.delete = function (id) {
     $http.post("src/datos/paises/service/delete.php", { id })
       .then(response => {
         if (response.data == 201) {
-          toaster.pop('info', "Se ha eliminado con exito")
+          Materialize.toast("Se ha eliminado con exito", 4000)
           $http.get('src/datos/paises/service/getAll.php')
             .then(response => $scope.paises = response.data)
         }

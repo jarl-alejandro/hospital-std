@@ -4,7 +4,7 @@
 const profesiones = angular.module('Hospital')
 
 profesiones.controller('profesionesController', function ($scope, toaster, $http) {
-	$scope.showForm = false
+	$('.formContainer').slideUp()
 	$scope.data = { profesion: '', id: '' }
 	$scope.profesiones = []
 
@@ -12,24 +12,24 @@ profesiones.controller('profesionesController', function ($scope, toaster, $http
 		.then(response => $scope.profesiones = response.data )
 
 	$scope.handleShowForm = function (e) {
-		$scope.showForm = true
+		$('.formContainer').slideDown()
 	}
 	$scope.handleCancel = function (e) {
 		$scope.data = { profesion: '', id: '' }
-		$scope.showForm = false
+		$('.formContainer').slideUp()
 	}
 	$scope.handleSave = function (e) {
 		if ($scope.data.profesion == "") {
-			toaster.pop('error', "Error", "Ingresa el profesion")
+			Materialize.toast("Ingresa el profesion", 4000)
 			return false
 		}
 		$http.post("src/archivos/profesiones/service/save.php", { 'profesion': $scope.data.profesion, 'id': $scope.data.id })
       .then(response => {
       	console.log(response)
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha guardado con exito")
+      		Materialize.toast("Se ha guardado con exito", 4000)
       		$scope.data = { profesion: '', id: '' }
-					$scope.showForm = false
+					$('.formContainer').slideUp()
 					$http.get('src/archivos/profesiones/service/getAll.php')
 						.then(response =>$scope.profesiones = response.data)
       	}
@@ -38,14 +38,14 @@ profesiones.controller('profesionesController', function ($scope, toaster, $http
 
 	$scope.get = function (id, profesion) {
 		$scope.data = { profesion, id }
-		$scope.showForm = true
+		$('.formContainer').slideDown()
 	}
 
 	$scope.delete = function (id) {
 		$http.post("src/archivos/profesiones/service/delete.php", { id })
       .then(response => {
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha eliminado con exito")
+      		Materialize.toast("Se ha eliminado con exito", 4000)
 					$http.get('src/archivos/profesiones/service/getAll.php')
 						.then(response => $scope.profesiones = response.data)
       	}

@@ -13,6 +13,10 @@
   width 79%
   padding 1em
   margin 0 auto
+  .floating-add
+    position absolute
+    right 9em
+    top 6em
 .login-img
   margin 0
   position absolute
@@ -22,19 +26,19 @@
   background white
   padding 0
   padding-bottom 2em
-  padding-top 1.5em
-  border-radius 3px
+  border-radius 1px
   box-shadow 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
   header
-    display none
     background primary
     text-align center
     color white
     padding 6px 0
-    border-radius 3px 3px 0 0
+    border-radius 1px 1px 0 0
+    margin-bottom 1em
     h3
       margin 0
       font-size: 1.5em
+      text-transform uppercase
 .form__scroll
   overflow-y auto
   height 29em
@@ -105,31 +109,16 @@
 
 widthTable = 700px
 .tableContainer
+  margin-top 2em
   overflow-x auto
   background white
-  box-shadow rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.1) 0px 2px 1px
-
-.tableData
-  min-width widthTable
-  border-collapse collapse
-  width 100%
-  thead
-    background deepskyblue
-    color white
-  tr
-    border-bottom 1px solid #999
-    border-collapse collapse
-    transition all ease .3s
-    &:hover
-      background #00a3d9
+  /*box-shadow rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.1) 0px 2px 1px*/
+  table
+    th
+      background #00bcd4
+      padding .5em
       color white
-  tbody tr:last-child
-    border none
-  th
-    padding 1em
-  td
-    padding .5em
-
+      text-transform uppercase
 .Title
   text-align center
   font-size 2em
@@ -137,6 +126,13 @@ widthTable = 700px
   color #585757
   font-weight bold !important
   border-bottom 1px solid #585757
+  background white
+  width 100%
+  padding 0.2em 1em
+  box-shadow 0 1px 1px rgba(0,0,0,.10)
+  border-radius 1px
+  border: 1px solid transparent
+  text-transform uppercase
 .formPlus
   position absolute
   top 6em
@@ -150,13 +146,7 @@ widthTable = 700px
   position absolute
   top 6em
   z-index 1111111
-  visibility hidden
-  opacity 0
-  height 0
-  transition all ease .5s
-  &-active
-    visibility visible
-    opacity 1
+  display none
 @media (max-width: 414px)
   .formContainer
     left 5em

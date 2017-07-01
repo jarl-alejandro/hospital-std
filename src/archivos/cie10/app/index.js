@@ -3,7 +3,7 @@
 const cie10 = angular.module('Hospital')
 
 cie10.controller('cie10Controller', function ($scope, toaster, $http) {
-  $scope.showForm = false
+  $('.formContainer').slideUp()
   $scope.data = { codigo: '', detalle: '', id: '' }
   $scope.cie10 = []
 
@@ -11,19 +11,19 @@ cie10.controller('cie10Controller', function ($scope, toaster, $http) {
     .then(response => $scope.cie10 = response.data )
 
   $scope.handleShowForm = function (e) {
-    $scope.showForm = true
+    $('.formContainer').slideDown()
   }
   $scope.handleCancel = function (e) {
     $scope.data = { codigo: '', detalle: '', id: '' }
-    $scope.showForm = false
+    $('.formContainer').slideUp()
   }
   $scope.handleSave = function (e) {
     if ($scope.data.codigo === "") {
-      toaster.pop('error', "Error", "Ingresa el codigo")
+     Materialize.toast("Ingresa el codigo", 4000)
       return false
     }
     if ($scope.data.detalle === "") {
-      toaster.pop('error', "Error", "Ingresa el detalle")
+     Materialize.toast("Ingresa el detalle", 4000)
       return false
     }
 
@@ -33,9 +33,9 @@ cie10.controller('cie10Controller', function ($scope, toaster, $http) {
       'id': $scope.data.id
     }).then(response => {
       if (response.data == 201) {
-        toaster.pop('info', "Se ha guardado con exito")
+        Materialize.toast("Se ha guardado con exito", 4000)
         $scope.data = { codigo: '', detalle: '', id: '' }
-        $scope.showForm = false
+        $('.formContainer').slideUp()
         $http.get('src/archivos/cie10/service/getAll.php').then(response => $scope.cie10 = response.data)
       }
     })
@@ -43,14 +43,14 @@ cie10.controller('cie10Controller', function ($scope, toaster, $http) {
 
   $scope.get = function (codigo, detalle, id) {
     $scope.data = { codigo, detalle, id }
-    $scope.showForm = true
+    $('.formContainer').slideDown()
   }
 
   $scope.delete = function (id) {
     $http.post("src/archivos/cie10/service/delete.php", { id })
     .then(response => {
       if (response.data == 201) {
-        toaster.pop('info', "Se ha eliminado con exito")
+        Materialize.toast("Se ha eliminado con exito", 4000)
         $http.get('src/archivos/cie10/service/getAll.php').then(response => $scope.cie10 = response.data)
       }
     })

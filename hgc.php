@@ -20,6 +20,8 @@
     <script src='js/index.js'></script>
     <script src='src/menu/app/index.js'></script>
 
+    <script src='src/perfil/app/index.js'></script>
+
     <script src='src/datos/paises/app/index.js'></script>
     <script src='src/datos/provincias/app/index.js'></script>
     <script src='src/datos/cantones/app/index.js'></script>

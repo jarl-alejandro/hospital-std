@@ -4,7 +4,7 @@
 const pacientes = angular.module('Hospital')
 
 pacientes.controller('pacientesController', function ($scope, toaster, $http) {
-  $scope.showForm = false
+  $('.formContainer').slideUp()
   $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: ''}
   $scope.pacientes = []
   $scope.generos = []
@@ -16,51 +16,51 @@ pacientes.controller('pacientesController', function ($scope, toaster, $http) {
     .then(response => $scope.pacientes = response.data )
 
   $scope.handleShowForm = function (e) {
-    $scope.showForm = true
+    $('.formContainer').slideDown()
   }
   $scope.handleCancel = function (e) {
     $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: ''}
-    $scope.showForm = false
+    $('.formContainer').slideUp()
   }
   $scope.handleSave = function (e) {
     if ($scope.data.cedula == "") {
-      toaster.pop('error', "Error", "Ingresa la cedula")
+      Materialize.toast("Ingresa la cedula", 4000)
       return false
     }
     if ($scope.data.nombre == "") {
-      toaster.pop('error', "Error", "Ingresa el nombre")
+      Materialize.toast("Ingresa el nombre", 4000)
       return false
     }
     if ($scope.data.apellido == "") {
-      toaster.pop('error', "Error", "Ingresa el apellido")
+      Materialize.toast("Ingresa el apellido", 4000)
       return false
     }
     if ($scope.data.fechaNac == "") {
-      toaster.pop('error', "Error", "Ingresa la fecha de nacimiento")
+      Materialize.toast("Ingresa la fecha de nacimiento", 4000)
       return false
     }
     if ($scope.data.dni == "") {
-      toaster.pop('error', "Error", "Ingresa el dni")
+      Materialize.toast("Ingresa el dni", 4000)
       return false
     }
     if ($scope.data.telefono == "") {
-      toaster.pop('error', "Error", "Ingresa el telefono")
+      Materialize.toast("Ingresa el telefono", 4000)
       return false
     }
     if ($scope.data.ceulular == "") {
-      toaster.pop('error', "Error", "Ingresa el ceulular")
+      Materialize.toast("Ingresa el ceulular", 4000)
       return false
     }
     if ($scope.data.direccion == "") {
-      toaster.pop('error', "Error", "Ingresa la direccion")
+      Materialize.toast("Ingresa la direccion", 4000)
       return false
     }
     if ($scope.data.email == "") {
-      toaster.pop('error', "Error", "Ingresa el email")
+      Materialize.toast("Ingresa el email", 4000)
       return false
     }
     if ($scope.data.sexo == "") {
-      toaster.pop('error', "Error", "Ingresa el genero")
+      Materialize.toast("Ingresa el genero", 4000)
       return false
     }
 
@@ -68,9 +68,9 @@ pacientes.controller('pacientesController', function ($scope, toaster, $http) {
       .then(response => {
         console.log(response)
         if (response.data == 201) {
-          toaster.pop('info', "Se ha guardado con exito")
+          Materialize.toast("Se ha guardado con exito", 4000)
           $scope.data = { profesion: '', id: '' }
-          $scope.showForm = false
+          $('.formContainer').slideUp()
           $http.get('src/archivos/pacientes/service/getAll.php')
             .then(response =>$scope.pacientes = response.data)
         }
@@ -91,14 +91,14 @@ pacientes.controller('pacientesController', function ($scope, toaster, $http) {
       email: paciente.hgc_emai_pacie,
       sexo: paciente.hgc_sexo_pacie
     }
-    $scope.showForm = true
+    $('.formContainer').slideDown()
   }
 
   $scope.delete = function (id) {
     $http.post("src/archivos/pacientes/service/delete.php", { id })
       .then(response => {
         if (response.data == 201) {
-          toaster.pop('info', "Se ha eliminado con exito")
+          Materialize.toast("Se ha eliminado con exito", 4000)
           $http.get('src/archivos/pacientes/service/getAll.php')
             .then(response => $scope.pacientes = response.data)
         }

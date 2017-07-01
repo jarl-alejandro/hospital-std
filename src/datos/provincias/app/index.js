@@ -4,7 +4,7 @@
 const provincias = angular.module('Hospital')
 
 provincias.controller('provinciasController', function ($scope, toaster, $http) {
-	$scope.showForm = false
+	$('.formContainer').slideUp()
 	$scope.data = { provincia: '', id: '', pais: '' }
   $scope.provincias = []
 	$scope.paises = []
@@ -16,19 +16,19 @@ provincias.controller('provinciasController', function ($scope, toaster, $http) 
     .then(response => $scope.paises = response.data )
 
 	$scope.handleShowForm = function (e) {
-		$scope.showForm = true
+		$('.formContainer').slideDown()
 	}
 	$scope.handleCancel = function (e) {
 		$scope.data = { provincia: '', id: '', pais: '' }
-		$scope.showForm = false
+		$('.formContainer').slideUp()
 	}
 	$scope.handleSave = function (e) {
 		if ($scope.data.provincia == "") {
-			toaster.pop('error', "Error", "Ingresa la provincia")
+			Materialize.toast("Ingresa la provincia", 4000)
 			return false
 		}
     if ($scope.data.pais == "") {
-      toaster.pop('error', "Error", "Ingresa el pais")
+      Materialize.toast("Ingresa el pais", 4000)
       return false
     }
 		$http.post("src/datos/provincias/service/save.php",
@@ -36,9 +36,9 @@ provincias.controller('provinciasController', function ($scope, toaster, $http) 
       .then(response => {
       	console.log(response)
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha guardado con exito")
+      		Materialize.toast("Se ha guardado con exito", 4000)
       		$scope.data = { provincias: '', id: '', pais: '' }
-					$scope.showForm = false
+					$('.formContainer').slideUp()
 					$http.get('src/datos/provincias/service/getAll.php')
 						.then(response =>$scope.provincias = response.data)
       	}
@@ -47,14 +47,14 @@ provincias.controller('provinciasController', function ($scope, toaster, $http) 
 
 	$scope.get = function (id, provincia, pais) {
 		$scope.data = { provincia, id, pais }
-		$scope.showForm = true
+		$('.formContainer').slideDown()
 	}
 
 	$scope.delete = function (id) {
 		$http.post("src/datos/provincias/service/delete.php", { id })
       .then(response => {
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha eliminado con exito")
+      		Materialize.toast("Se ha eliminado con exito", 4000)
 					$http.get('src/datos/provincias/service/getAll.php')
 						.then(response => $scope.provincias = response.data)
       	}
