@@ -1,0 +1,42 @@
+<ul id="dropdown1" class="dropdown-content">
+  <li><a ui-sref="logout">Salir</a></li>
+  <li class="divider"></li>
+  <li><a ui-sref="perfil">Perfil</a></li>
+</ul>
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper primary">
+      <a href="#" data-activates="slide-out" class="button-collapse brand-logo">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <div ng-if="!user.isAvatar" class="circle-avatar">{{ user.avatar }}</div>
+          <img ng-if="user.isAvatar" class="circle avatar-nav" width='58' src="media/avatar/{{ user.avatar }}">
+        </li>
+        <li><a data-activates="dropdown1" class="dropdown-button"><i class="material-icons">more_vert</i></a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<ul id="slide-out" class="side-nav">
+  <li>
+    <div class="userView">
+      <div class="background">
+        <img src="assets/img/office.jpg">
+      </div>
+      <a>
+        <div ng-if="!user.isAvatar" class="circle-avatar">{{ user.avatar }}</div>
+        <img ng-if="user.isAvatar" class="circle" src="media/avatar/{{ user.avatar }}">
+      </a>
+      <a><span class="white-text name">{{ user.name }}</span></a>
+      <a><span class="white-text email">{{ user.username }}</span></a>
+    </div>
+  </li>
+
+  <li><a ui-sref="signosVitales">Inicio</a></li>
+
+  <li><div class="divider"></div></li>
+  <li><a ui-sref="logout">Salir</a></li>
+</ul>
