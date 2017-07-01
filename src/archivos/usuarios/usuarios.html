@@ -15,6 +15,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr ng-if="usuarios.length === 0">
+          <td colspan="5">No hay usuarios</td>
+        </tr>
         <tr ng-repeat="user in usuarios">
           <td>{{ $index + 1 }}</td>
           <td>{{ user.hgc_nom_profe }} {{ user.hgc_ape_profe }}</td>

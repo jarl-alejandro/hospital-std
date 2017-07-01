@@ -15,6 +15,9 @@
 				</tr>
 			</thead>
 			<tbody>
+        <tr ng-if="paises.length === 0">
+          <td colspan="5">No hay paises</td>
+        </tr>
 				<tr ng-repeat="pais in paises">
 					<td>{{ $index + 1 }}</td>
 					<td>{{ pais.hgc_desc_pais }}</td>

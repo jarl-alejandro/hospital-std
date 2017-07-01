@@ -15,6 +15,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr ng-if="cie10Child.length === 0">
+          <td colspan="5">No hay cie10</td>
+        </tr>
         <tr ng-repeat="cie in cie10Child">
           <td>{{ $index + 1 }}</td>
           <td>{{ cie.hgc_codi_c10 }}</td>

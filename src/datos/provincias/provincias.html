@@ -14,6 +14,9 @@
 				</tr>
 			</thead>
 			<tbody>
+        <tr ng-if="provincias.length === 0">
+          <td colspan="5">No hay provincias</td>
+        </tr>
 				<tr ng-repeat="provincia in provincias">
 					<td>{{ $index + 1 }}</td>
 					<td>{{ provincia.hgc_desc_provi }}</td>

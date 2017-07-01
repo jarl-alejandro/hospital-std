@@ -14,6 +14,9 @@
 				</tr>
 			</thead>
 			<tbody>
+        <tr ng-if="etnias.length === 0">
+          <td colspan="5">No hay etnias</td>
+        </tr>
 				<tr ng-repeat="etnia in etnias">
 					<td>{{ $index + 1 }}</td>
 					<td>{{ etnia.hgc_desc_etnia }}</td>
