@@ -27,7 +27,7 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       controller: 'perfilController',
       templateUrl: 'src/perfil/perfil.html',
       resolve: {
-        authenticated: auth_roles
+        authenticated: profile_me
       }
     })
     .state('logout', {
