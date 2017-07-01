@@ -27,18 +27,7 @@ login.controller('loginController', function ($scope, toaster, $http, $location,
       }
       if (response.data.status === 200) {
         Materialize.toast("Ha iniciado sesion", 4000)
-        const user = response.data.user
-        const rol = user.hgc_rol_usu
-        $rootScope.user = {
-          rol,
-          name: `${user.hgc_nom_profe} ${user.hgc_ape_profe}`,
-          cedula: user.hgc_cedu_profe,
-          avatar: user.hgc_avat_profe
-        }
-        if (rol === 'administrador') $location.path("/admin")
-        if (rol === 'doctor') $location.path("/doctor")
-        if (rol === 'enfermera') $location.path("/signos-vitales")
-        if (rol === 'departamento estadistico') $location.path("/turnos")
+        $location.path("/login")
       }
     })
   }

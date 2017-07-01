@@ -24,7 +24,7 @@
       </div>
       <a>
         <div ng-if="!user.isAvatar" class="circle-avatar">{{ user.avatar }}</div>
-        <img ng-if="user.isAvatar" class="circle" src="assets/img/yuna.jpg">
+        <img ng-if="user.isAvatar" class="circle" src="media/avatar/{{ user.avatar }}">
       </a>
       <a><span class="white-text name">{{ user.name }}</span></a>
       <a><span class="white-text email">{{ user.username }}</span></a>

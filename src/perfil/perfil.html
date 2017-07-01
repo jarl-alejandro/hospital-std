@@ -1,4 +1,40 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
 	<h1 class="Title">{{ user.name }}</h1>
+	<section class="perfil-container">
+		<input type="file" id="upload-avatar" class="none" accept="image/*" >
+		<label class="btn-floating btn-large waves-effect waves-light primary floating-avatar" for="upload-avatar"><i class="material-icons">publish</i></label>
+		
+		<article class="perfil--avatar">
+			<p ng-if="!user.isAvatar">{{ user.avatar }}</p>
+    	<img ng-if="user.isAvatar"src="media/avatar/{{ user.avatar }}">
+		</article>
+		
+		<article class="perfil-info">
+			<button class="waves-effect waves-light btn bxn primary" ng-click="handlepasswordModal()">
+				Cambiar contraseña <i class="material-icons right">https</i>
+			</button>
+		</article>
+
+	</section>
 </section>
+
+<div id="password-container" class="modal">
+  <div class="modal-content">
+    <h4 class="title-password">Cambiar contraseña</h4>
+    <div class="input-field">
+      <input id="password1" type="password" ng-model="password.password1">
+      <label for="password1">Ingresa tu nueva contraseña</label>
+    </div>
+    <div class="input-field">
+      <input id="password2" type="password" ng-model="password.password2">
+      <label for="password2">Repite tu contraseña</label>
+    </div>
+  </div>
+  <div class="modal-footer password-footer">
+    <button class="modal-action modal-close waves-effect waves-light danger btn bxn" 
+			ng-click="handleClosePass()">Cerrar</button>
+    <button class="modal-action modal-close waves-effect waves-light primary btn bxn"
+			ng-click="handleSavePass()">Guardar</button>
+  </div>
+</div>
