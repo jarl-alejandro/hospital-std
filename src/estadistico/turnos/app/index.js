@@ -2,7 +2,7 @@
 
 const turnos = angular.module('Hospital')
 
-turnos.controller('turnosController', function ($scope, toaster, $http, $location) {
+turnos.controller('turnosController', function ($scope, $http, $location) {
   $('select').material_select()
   $('.datepicker').pickadate({
     selectMonths: true,

@@ -3,7 +3,7 @@
 
 const pacientes = angular.module('Hospital')
 
-pacientes.controller('pacientesController', function ($scope, toaster, $http) {
+pacientes.controller('pacientesController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: ''}
   $scope.pacientes = []
@@ -72,7 +72,7 @@ pacientes.controller('pacientesController', function ($scope, toaster, $http) {
           $scope.data = { profesion: '', id: '' }
           $('.formContainer').slideUp()
           $http.get('src/archivos/pacientes/service/getAll.php')
-            .then(response =>$scope.pacientes = response.data)
+            .then(response => $scope.pacientes = response.data)
         }
       })
   }
@@ -95,7 +95,7 @@ pacientes.controller('pacientesController', function ($scope, toaster, $http) {
   }
 
   $scope.delete = function (id) {
-    $http.post("src/archivos/pacientes/service/delete.php", { id })
+    $http.post("src/archivos/pacientes/service/delete.php", { 'id':id })
       .then(response => {
         if (response.data == 201) {
           Materialize.toast("Se ha eliminado con exito", 4000)

@@ -2,7 +2,7 @@
 
 const barrios = angular.module('Hospital')
 
-barrios.controller('barriosController', function ($scope, toaster, $http) {
+barrios.controller('barriosController', function ($scope, $http) {
 	$('.formContainer').slideUp()
 	$scope.data = { barrio: '', id: '', parroquia: '' }
   $scope.barrios = []

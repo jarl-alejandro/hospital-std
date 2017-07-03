@@ -3,7 +3,7 @@
 
 const etnias = angular.module('Hospital')
 
-etnias.controller('etniasController', function ($scope, toaster, $http) {
+etnias.controller('etniasController', function ($scope, $http) {
 	$('.formContainer').slideUp()
 	$scope.data = { etnia: '', id: '' }
 	$scope.etnias = []

@@ -2,7 +2,7 @@
 
 const login = angular.module('Hospital')
 
-login.controller('loginController', function ($scope, toaster, $http, $location, $rootScope) {
+login.controller('loginController', function ($scope, $http, $location, $rootScope) {
   $scope.data = { email: '', password: '' }
 
   $scope.handleSave = function (e) {

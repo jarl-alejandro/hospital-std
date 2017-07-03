@@ -2,7 +2,7 @@
 
 const singosVitales = angular.module('Hospital')
 
-singosVitales.controller('singosVitalesController', function ($scope, toaster, $http) {
+singosVitales.controller('singosVitalesController', function ($scope, $http) {
   $scope.pacientes = []
 
   $http.get('src/enfermera/signos-vitales/service/pacientes.php')

@@ -3,7 +3,7 @@
 
 const cantones = angular.module('Hospital')
 
-cantones.controller('cantonesController', function ($scope, toaster, $http) {
+cantones.controller('cantonesController', function ($scope, $http) {
 	$('.formContainer').slideUp()
 	$scope.data = { provincia: '', id: '', canton: '' }
   $scope.cantones = []

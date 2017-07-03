@@ -3,7 +3,7 @@
 
 const paises = angular.module('Hospital')
 
-paises.controller('paisController', function ($scope, toaster, $http) {
+paises.controller('paisController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $scope.data = { pais: '', id: '' }
   $scope.paises = []

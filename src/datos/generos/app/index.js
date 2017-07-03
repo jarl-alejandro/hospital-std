@@ -2,7 +2,7 @@
 
 const generos = angular.module('Hospital')
 
-generos.controller('generosController', function ($scope, toaster, $http) {
+generos.controller('generosController', function ($scope, $http) {
 	$('.formContainer').slideUp()
 	$scope.data = { genero: '', id: '' }
 	$scope.generos = []

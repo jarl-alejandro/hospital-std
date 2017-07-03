@@ -3,7 +3,7 @@
 
 const sitemasFiscos = angular.module('Hospital')
 
-sitemasFiscos.controller('sitemasFiscosController', function ($scope, toaster, $http) {
+sitemasFiscos.controller('sitemasFiscosController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $scope.data = { tipo: '', detalle: '', id: '' }
   $scope.sitemasFiscos = []

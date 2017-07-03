@@ -3,7 +3,7 @@
 
 const usuarios = angular.module('Hospital')
 
-usuarios.controller('usuariosController', function ($scope, toaster, $http) {
+usuarios.controller('usuariosController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $scope.data = {
     id: '',

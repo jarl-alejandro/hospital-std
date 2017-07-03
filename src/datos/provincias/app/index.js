@@ -3,7 +3,7 @@
 
 const provincias = angular.module('Hospital')
 
-provincias.controller('provinciasController', function ($scope, toaster, $http) {
+provincias.controller('provinciasController', function ($scope, $http) {
 	$('.formContainer').slideUp()
 	$scope.data = { provincia: '', id: '', pais: '' }
   $scope.provincias = []

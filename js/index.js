@@ -1,6 +1,6 @@
 'use strict'
 
-const hospital = angular.module('Hospital', ['ui.router', 'toaster', 'ngAnimate'])
+const hospital = angular.module('Hospital', ['ui.router', 'ngAnimate'])
 
 hospital.config(($stateProvider, $urlRouterProvider) => {
   $urlRouterProvider.otherwise('/')
@@ -158,6 +158,14 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       url: '/turnos',
       controller: 'turnosController',
       templateUrl: 'src/estadistico/turnos/turno.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
+    .state('activarTurnos', {
+      url: '/activar-turnos',
+      controller: 'turnosActiveController',
+      templateUrl: 'src/estadistico/activar-turnos/turno.html',
       resolve: {
         authenticated: auth_roles
       }

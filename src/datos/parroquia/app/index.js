@@ -2,7 +2,7 @@
 
 const parroquia = angular.module('Hospital')
 
-parroquia.controller('parroquiaController', function ($scope, toaster, $http) {
+parroquia.controller('parroquiaController', function ($scope, $http) {
 	$('.formContainer').slideUp()
 	$scope.data = { parroquia: '', id: '', canton: '' }
   $scope.parroquias = []

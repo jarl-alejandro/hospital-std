@@ -10,7 +10,7 @@ $fecha = $obj->fecha;
 $horaInicio = $obj->horaInicio;
 $horaFin = $obj->horaFin;
 $id = $obj->id;
-$estado = 'turno';
+$estado = 'desactive';
 
 if ($id == "") {
   $new = $pdo->prepare("INSERT INTO hgc_turno (hgc_paci_turno, hgc_doct_turno, hgc_esta_turno,

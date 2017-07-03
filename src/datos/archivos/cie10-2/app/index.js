@@ -1,17 +1,17 @@
 'use strict'
 
-const cie10One = angular.module('Hospital')
+const cie10Two = angular.module('Hospital')
 
-cie10One.controller('cie10OneController', function ($scope, toaster, $http) {
+cie10Two.controller('cie10TwoController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
   $scope.cie10 = []
   $scope.cie10Child = []
 
-  $http.get('src/archivos/cie10/service/getAll.php')
+  $http.get('src/archivos/cie10-1/service/getAll.php')
     .then(response => $scope.cie10 = response.data )
 
-  $http.get('src/archivos/cie10-1/service/getAll.php')
+  $http.get('src/archivos/cie10-2/service/getAll.php')
     .then(response => $scope.cie10Child = response.data )
 
   $scope.handleShowForm = function (e) {
@@ -19,7 +19,7 @@ cie10One.controller('cie10OneController', function ($scope, toaster, $http) {
   }
   $scope.handleCancel = function (e) {
     $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
-   $('.formContainer').slideUp()
+    $('.formContainer').slideDown()
   }
   $scope.handleSave = function (e) {
     if ($scope.data.codigo === "") {
@@ -34,7 +34,7 @@ cie10One.controller('cie10OneController', function ($scope, toaster, $http) {
       Materialize.toast("Ingresa el cie 10", 4000)
       return false
     }
-    $http.post("src/archivos/cie10-1/service/save.php", {
+    $http.post("src/archivos/cie10-2/service/save.php", {
       'codigo': $scope.data.codigo,
       'detalle': $scope.data.detalle,
       'id': $scope.data.id,
@@ -44,9 +44,8 @@ cie10One.controller('cie10OneController', function ($scope, toaster, $http) {
       if (response.data == 201) {
         Materialize.toast("Se ha guardado con exito", 4000)
         $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
-        
         $('.formContainer').slideUp()
-        $http.get('src/archivos/cie10-1/service/getAll.php')
+        $http.get('src/archivos/cie10-2/service/getAll.php')
           .then(response => $scope.cie10Child = response.data)
       }
     })
@@ -54,15 +53,15 @@ cie10One.controller('cie10OneController', function ($scope, toaster, $http) {
 
   $scope.get = function (codigo, detalle, id, cie10) {
     $scope.data = { codigo, detalle, id, cie10 }
-   $('.formContainer').slideDown()
+    $('.formContainer').slideDown()
   }
 
   $scope.delete = function (id) {
-    $http.post("src/archivos/cie10-1/service/delete.php", { id })
+    $http.post("src/archivos/cie10-2/service/delete.php", { id })
     .then(response => {
       if (response.data == 201) {
-       Materialize.toast("Se ha eliminado con exito", 4000)
-        $http.get('src/archivos/cie10-1/service/getAll.php')
+        Materialize.toast("Se ha eliminado con exito", 4000)
+        $http.get('src/archivos/cie10-2/service/getAll.php')
           .then(response => $scope.cie10Child = response.data)
       }
     })

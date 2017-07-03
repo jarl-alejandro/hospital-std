@@ -2,7 +2,7 @@
 
 const cie10 = angular.module('Hospital')
 
-cie10.controller('cie10Controller', function ($scope, toaster, $http) {
+cie10.controller('cie10Controller', function ($scope, $http) {
   $('.formContainer').slideUp()
   $scope.data = { codigo: '', detalle: '', id: '' }
   $scope.cie10 = []

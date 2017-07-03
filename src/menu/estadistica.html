@@ -11,7 +11,7 @@
       </a>
       <ul class="right hide-on-med-and-down">
         <li>
-          <div ng-if="!user.isAvatar" class="circle-avatar">{{ user.avatar }}</div>
+          <div ng-if="!user.isAvatar" class="circle-avatar circle-avatar--name">{{ user.avatar }}</div>
           <img ng-if="user.isAvatar" class="circle avatar-nav" width='58' src="media/avatar/{{ user.avatar }}">
         </li>
         <li><a data-activates="dropdown1" class="dropdown-button"><i class="material-icons">more_vert</i></a></li>
@@ -35,8 +35,14 @@
     </div>
   </li>
 
-  <li><a ui-sref="Turnos">Inicio</a></li>
-
+  <li><a ui-sref="turnos">Turnos</a></li>
   <li><div class="divider"></div></li>
+
+  <li><a ui-sref="pacientes"><span>Pacientes</span></a></li>
+  <li><div class="divider"></div></li>
+
+  <li><a ui-sref="activarTurnos"><span>Activar turnos</span></a></li>
+  <li><div class="divider"></div></li>
+
   <li><a ui-sref="logout">Salir</a></li>
 </ul>
