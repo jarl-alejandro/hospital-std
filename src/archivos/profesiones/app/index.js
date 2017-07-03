@@ -3,7 +3,7 @@
 
 const profesiones = angular.module('Hospital')
 
-profesiones.controller('profesionesController', function ($scope, toaster, $http) {
+profesiones.controller('profesionesController', function ($scope, $http) {
 	$('.formContainer').slideUp()
 	$scope.data = { profesion: '', id: '' }
 	$scope.profesiones = []

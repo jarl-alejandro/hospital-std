@@ -42,38 +42,125 @@
       <header>
         <h3>Registrar de nuevo turno</h3>
       </header>
-      <article class="formPlus-content">
-        <div class="form__input s-90 m-45">
-          <label for="paciente">Paciente</label>
-          <select id="paciente" ng-model="data.paciente" class="browser-default">
-            <option value="" selected>Selecione el paciente</option>
-            <option ng-repeat="paciente in pacientes" value="{{ paciente.hgc_histo_hcli }}">
-              {{ paciente.paciente }}
-            </option>
-          </select>
-        </div>
-        <div class="form__input s-90 m-45">
-          <label for="doctor">Doctor</label>
-          <select id="doctor" class="browser-default">
-            <option value="" selected>Selecione el doctor</option>
-            <option ng-repeat="doc in doctor" value="{{ doc.hgc_codi_profe }}">
-              {{ doc.hgc_nom_profe }} {{ doc.hgc_ape_profe }}
-            </option>
-          </select>
-        </div>
+      <div class="formPlus-content">
+        <button class="s-90 m-45 waves-effect waves-light btn primary" 
+          data-target="pacienteModal">Paciente
+        </button>
+
+        <button class="s-90 m-45 waves-effect waves-light btn primary" 
+          data-target="doctorModal">Doctor
+        </button>
+
         <div class="input-field s-90 m-45">
           <input id="fecha" type="date" class="datepicker">
           <label for="fecha">Ingresa la fecha de de consulta</label>
         </div>
+
         <div class="input-field s-90 m-45">
           <input id="horaInicio" type="text" class="timepicker">
           <label for="horaInicio">Ingresa la hora de de consulta</label>
         </div>
-      </article>
-      <div class='main-distribute'>
-        <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
-        <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+
+        <div class='main-distribute'>
+          <button class='waves-effect waves-light btn danger' style="margin-right: 1em;" 
+            ng-click="handleCancel()">Cancelar
+          </button>
+          <button class='waves-effect waves-light btn primary' ng-click="handleSave()">
+            Aceptar
+          </button>
+        </div>
+
       </div>
     </article>
   </section>
 </section>
+
+<div id="pacienteModal" class="modal">
+  <div class="modal-content">
+    <h4 class="title-modal">Pacientes</h4>
+    <div class="input-field col s6">
+      <input id="buscadorPaciente" type="text" ng-pagination-search="pacientes">
+      <label for="buscadorPaciente">Buscador</label>
+    </div>
+
+    <table class="bordered highlight responsive-table centered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Historia clinica</th>
+          <th>Cliente</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="pacientes.length === 0">
+          <td colspan="4">No hay pacientes</td>
+        </tr>
+        <tr ng-pagination="paciente in pacientes" ng-pagination-size="2">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ paciente.hgc_histo_hcli }}</td>
+          <td>{{ paciente.paciente }}</td>
+          <td>
+            <button class="waves-effect waves-light btn primary modal-action modal-close"
+              ng-click="handlePaciente(paciente.hgc_histo_hcli)">
+              <i class="material-icons">done_all</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="pacientes"></ng-pagination-control>
+    </div>
+  </div>
+  <div class="modal-footer main-distribute">
+    <button class="modal-action modal-close waves-effect waves-light btn danger">
+      Cancelar
+    </button>
+  </div>
+</div>
+
+<div id="doctorModal" class="modal">
+  <div class="modal-content">
+    <h4 class="title-modal">Doctor</h4>
+    <div class="input-field col s6">
+      <input id="buscadorDoctor" type="text" ng-pagination-search="doctor">
+      <label for="buscadorDoctor">Buscador</label>
+    </div>
+    <table class="bordered highlight responsive-table centered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cedula</th>
+          <th>Doctor</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="doctor.length === 0">
+          <td colspan="4">No hay doctor</td>
+        </tr>
+        <tr ng-pagination="doc in doctor" ng-pagination-size="2">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ doc.hgc_codi_profe }}</td>
+          <td>{{ doc.hgc_nom_profe }} {{ doc.hgc_ape_profe }}</td>
+          <td>
+            <button class="waves-effect waves-light btn primary modal-action modal-close"
+              ng-click="handleDoctor(doc.hgc_codi_profe)">
+              <i class="material-icons">done_all</i>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="doctor"></ng-pagination-control>
+    </div>
+  </div>
+  <div class="modal-footer main-distribute">
+    <button class="modal-action modal-close waves-effect waves-light btn danger">
+      Cancelar
+    </button>
+  </div>
+</div>

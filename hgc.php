@@ -16,6 +16,7 @@
     <script src='lib/angular.min.js'></script>
     <script src='lib/ui-router.js'></script>
     <script src='lib/angular-animate.min.js'></script>
+    <script src='lib/ngPagination.js'></script>
   <!-- Para validar que si el usuario esta o no logueado y que rol es -->
     <script src='js/authenticated.js'></script>
   <!-- Inicio de la aplicacion -->

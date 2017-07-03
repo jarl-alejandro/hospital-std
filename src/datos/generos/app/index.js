@@ -26,7 +26,7 @@ generos.controller('generosController', function ($scope, $http) {
       .then(response => {
       	console.log(response)
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha guardado con exito")
+      		Materialize.toast("Se ha guardado con exito", 4000)
       		$scope.data = { genero: '', id: '' }
 					$('.formContainer').slideUp()
 					$http.get('src/datos/generos/service/getAll.php')
@@ -44,7 +44,7 @@ generos.controller('generosController', function ($scope, $http) {
 		$http.post("src/datos/generos/service/delete.php", { id })
       .then(response => {
       	if (response.data == 201) {
-      		toaster.pop('info', "Se ha eliminado con exito")
+      		Materialize.toast("Se ha eliminado con exito", 4000)
 					$http.get('src/datos/generos/service/getAll.php')
 						.then(response => $scope.generos = response.data)
       	}

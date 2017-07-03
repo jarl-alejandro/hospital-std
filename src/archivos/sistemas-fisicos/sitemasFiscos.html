@@ -1,6 +1,6 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
-  <h1 class="Title">Cie10</h2>
+  <h1 class="Title">Sistemas & Fisico</h2>
   <div class="floating-add">
     <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
   </div>
@@ -9,22 +9,20 @@
       <thead>
         <tr>
           <th width="10%">#</th>
-          <th width="30%">Codigo</th>
-          <th width="30%">Detalle</th>
+          <th width="60%">Detalle</th>
           <th width="30%"></th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-if="cie10.length === 0">
-          <td colspan="5">No hay cie10</td>
+        <tr ng-if="sitemasFiscos.length === 0">
+          <td colspan="5">No hay sitemasFiscos</td>
         </tr>
-        <tr ng-repeat="cie in cie10">
+        <tr ng-repeat="sitema in sitemasFiscos">
           <td>{{ $index + 1 }}</td>
-          <td>{{ cie.hgc_codi_c10 }}</td>
-          <td>{{ cie.hgc_desc_c10 }}</td>
+          <td>{{ sitema.hgc_desc_sisfi }}</td>
           <td>
-            <button class='waves-effect waves-light btn primary' ng-click="get(cie.hgc_codi_c10, cie.hgc_desc_c10, cie.hgc_id_c10)">Editar</button>
-            <button class='waves-effect waves-light btn danger' ng-click="delete(cie.hgc_id_c10)">Eliminar</button>
+            <button class='waves-effect waves-light btn primary' ng-click="get(sitema.hgc_tipo_sisfi, sitema.hgc_desc_sisfi, sitema.hgc_id_sisfi)">Editar</button>
+            <button class='waves-effect waves-light btn danger' ng-click="delete(sitema.hgc_id_sisfi)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -33,15 +31,19 @@
   <div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
     <article class="form ed-item s-100 m-75">
       <header>
-        <h3>Registrar de Cie10</h3>
+        <h3>Registrar de sistemas y examanes fisicos</h3>
       </header>
       <div class="form__input">
-        <label for="codigo">Ingresa el codigo</label>
-        <input id="codigo" type="text" placeholder='Ejemplo: GR-001' ng-model='data.codigo'>
-      </div>
-      <div class="form__input">
         <label for="detalle">Ingresa el detalle</label>
-        <input id="detalle" type="text" placeholder='Ejemplo: Gripe' ng-model='data.detalle'>
+        <input id="detalle" type="text" placeholder='Ejemplo: Cabeza' ng-model='data.detalle'>
+      </div>
+      <div class="form__input s-100">
+        <label for="tipo">Ingresa el tipo</label>
+        <select ng-model='data.tipo' id="tipo" class='browser-default'>
+          <option value="" selected>Seleciona el tipo</option>
+          <option value="1" selected>Revision actual de organos y sistemas</option>
+          <option value="2" selected>Examen Físico</option>
+        </select>
       </div>
       <div class='main-distribute'>
         <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
@@ -50,4 +52,4 @@
     </article>
   </div>
 </section>
-<toaster-container toaster-options="{'close-button': true, 'position-class': 'toast-bottom-right', 'progress-bar': true}"></toaster-container>
+

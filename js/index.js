@@ -1,6 +1,6 @@
 'use strict'
 
-const hospital = angular.module('Hospital', ['ui.router', 'ngAnimate'])
+const hospital = angular.module('Hospital', ['ui.router', 'ngAnimate', 'ngPagination'])
 
 hospital.config(($stateProvider, $urlRouterProvider) => {
   $urlRouterProvider.otherwise('/')

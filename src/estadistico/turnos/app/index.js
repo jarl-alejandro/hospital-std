@@ -4,6 +4,8 @@ const turnos = angular.module('Hospital')
 
 turnos.controller('turnosController', function ($scope, $http, $location) {
   $('select').material_select()
+  $('.modal').modal()
+
   $('.datepicker').pickadate({
     selectMonths: true,
     selectYears: 15,
@@ -38,6 +40,7 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $scope.pacientes = []
   $scope.doctor = []
   $scope.data = {}
+  $scope.buscador = { doctor: '', paciente: '' }
 
   $http.get('src/estadistico/turnos/service/getAll.php')
     .then(response => $scope.turnos = response.data )
@@ -55,6 +58,15 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $scope.handleCancel = function handleCancel () {
     $('.formPlus').slideUp()
   }
+
+  $scope.handlePaciente = function (id) {
+    $scope.data.paciente = id
+  }
+
+  $scope.handleDoctor = function (id) {
+    $scope.data.doctor = id
+  }
+
   $scope.handleSave = function handleSave () {
     if (validar()) {
       const parametros = $('#fecha').val().split('/')
@@ -106,4 +118,8 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
       return false
     } else return true
   }
+
+  // Inicio de paginador
+ 
+  // Fin del paginador
 })

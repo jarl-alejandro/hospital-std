@@ -36,7 +36,7 @@ login.controller('loginController', function ($scope, $http, $location, $rootSco
 login.controller('logoutController', function ($scope, $http, $location) {
   $http.post('src/login/service/logout.php')
   .then(response => {
-    window.localStorage.clear()
     $location.path('/')
+    window.localStorage.clear()
   })
 })
