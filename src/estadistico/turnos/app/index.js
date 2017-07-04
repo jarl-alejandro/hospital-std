@@ -61,10 +61,12 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
 
   $scope.handlePaciente = function (id) {
     $scope.data.paciente = id
+    $('#pacienteModal').modal('close')
   }
 
   $scope.handleDoctor = function (id) {
     $scope.data.doctor = id
+    $('#pacienteModal').modal('close')
   }
 
   $scope.handleSave = function handleSave () {
@@ -74,8 +76,8 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
       const fecha2 = new Date(parametros[2] , parametros[1]-1 , parametros[0], horaParam[0], parseInt(horaParam[1])+20)
 
       $http.post('src/estadistico/turnos/service/save.php', {
-        paciente: $('#paciente').val(),
-        doctor: $('#doctor').val(),
+        paciente: $scope.data.paciente,
+        doctor: $scope.data.doctor,
         fecha: $('#fecha').val(),
         horaInicio: $('#horaInicio').val(),
         horaFin: `${fecha2.getHours()}:${fecha2.getMinutes()}`,

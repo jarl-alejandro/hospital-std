@@ -18,6 +18,15 @@ agenda.controller('agendaController', function ($scope, $http) {
   $scope.handleMonth = function (index) {
     $scope.month = index
     $(document.querySelectorAll('.mes')[$scope.month - 1]).slideDown()
+
+    $http.get(`src/estadistico/agenda/service/agenda.php?mes=${$scope.month}`)
+      .then(response => {
+        console.log(response)
+        if (response.data.length === 0) {
+          Materialize.toast('No hay agendado nada en este mes', 4000)
+        } else generateAgenda(response.data)
+      })
+
     setTimeout(() => {
       $('.mes__active').removeClass('mes__active')
       $('.months-diary').slideUp()
@@ -31,6 +40,48 @@ agenda.controller('agendaController', function ($scope, $http) {
     $('.months-diary').slideDown()
     $scope.month = 0
   }
+
+  function generateAgenda (data) {
+    for (let i in data) {
+      let item = data[i]
+      let fecha = item.hgc_fech_turno
+      let celda = document.querySelector(`.fecha_${fecha}`)
+      let template = `<ul class="agenda__item">
+        <li>Paciente: ${item.paciente}</li>
+        <li>Doctor: ${item.doctor}</li>
+        <li>Hora Inicio: ${item.hgc_hini_turno}</li>
+        <li>Hora Fin: ${item.hgc_fin_turno}</li>
+      </ul>`
+      celda.innerHTML += template
+    }
+  }
+
+  function fechaPorDia(year, dia) {
+    var date = new Date(year, 0)
+    return new Date(date.setDate(dia))
+  }
+
+  function numerar() {
+    let hoy = new Date()
+    let year = hoy.getFullYear()
+    for (i = 1; i < 366; i++) {
+      let fecha = fechaPorDia(year, i);
+      let mes = fecha.getMonth();
+      let select_tabla = document.getElementsByClassName('tabla_mes')[mes];
+      let dia = fecha.getDate()
+      let dia_semana = fecha.getDay();
+      if (dia == 1) {var sem = 0;}
+      select_tabla.children[2].children[sem].children[dia_semana].innerText = dia;
+
+      let mesClass = (mes + 1) < 10 ? `0${mes+1}`: mes + 1
+      let diaClass = (dia + 1) < 10 ? `0${dia}`: dia
+      let className = `fecha_${year}-${mesClass}-${diaClass}`
+
+      select_tabla.children[2].children[sem].children[dia_semana].className = className;
+      if (dia_semana == 6) { sem = sem + 1; }
+    }
+  }
+
 
   function estructurar() {
     for (let m = 0; m <= 11; m++) {
@@ -78,23 +129,4 @@ agenda.controller('agendaController', function ($scope, $http) {
       }
     }
   }
-
-  function fechaPorDia(year, dia) {
-    var date = new Date(year, 0)
-    return new Date(date.setDate(dia))
-  }
-
-  function numerar() {
-    for (i = 1; i < 366; i++) {
-      let fecha = fechaPorDia(2017, i);
-      let mes = fecha.getMonth();
-      let select_tabla = document.getElementsByClassName('tabla_mes')[mes];
-      let dia = fecha.getDate()
-      let dia_semana = fecha.getDay();
-      if (dia == 1) {var sem = 0;}
-      select_tabla.children[2].children[sem].children[dia_semana].innerText = dia;
-      if (dia_semana == 6) { sem = sem + 1; }
-    }
-  }
-
 })
