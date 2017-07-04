@@ -43,21 +43,55 @@ agenda.controller('agendaController', function ($scope, $http) {
   }
 
   function generateAgenda (data) {
+    $scope.DB = []
     for (let i in data) {
       let item = data[i]
       let fecha = item.hgc_fech_turno
       let celda = document.querySelector(`.fecha_${fecha}`)
       celda.classList.add('agenda-ocupado')
-      DB.push(item)
+      celda.dataset.fecha = fecha
+      $scope.DB.push(item)
     }
 
     const agendas = document.querySelectorAll('.agenda-ocupado')
 
     for (let i=0; i<agendas.length; i++) {
-      agendas[i].addEventListener('click', function (event) {
-        const info = event.target.dataset
-        console.log(info)
+      agendas[i].addEventListener('click', event => {
         $('#modalAgenda').modal('open')
+        $('#agenda__container').html('')
+
+        for (let i in $scope.DB) {
+          let item = $scope.DB[i]
+          if (item.hgc_fech_turno === event.target.dataset.fecha) {
+            let template = `<article class="agenda__item">
+              <ul>
+                <li>
+                  <p>Paciente:</p>
+                  <p>${item.paciente}</p>
+                </li>
+                <li>
+                  <p>Doctor:</p>
+                  <p>${item.doctor}</p>
+                </li>
+                <li>
+                  <p>Fecha:</p>
+                  <p>${item.hgc_fech_turno}</p>
+                </li>
+                <li>
+                  <p>Hora Inicial:</p>
+                  <p>${item.hgc_hini_turno}</p>
+                </li>
+                <li>
+                  <p>Hora Final:</p>
+                  <p>${item.hgc_fin_turno}</p>
+                </li>
+              </ul>
+            </article>`
+            document.querySelector('#agenda__container').innerHTML += template
+            console.log(item)
+          }
+        }
+
       })
     }
   }

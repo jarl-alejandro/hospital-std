@@ -55,19 +55,27 @@
     box-shadow 0px 0px 25px rgba(90, 80, 80, 0.78) inset
   &:active
     transform scale(0.8)
+#agenda__container
+  display grid
+  grid-template-columns 50% 50%
+  grid-gap 1em
 
 .agenda__item
-  border-bottom 1px solid #d0d0d0
-  display grid
-  grid-template-columns 27% 66%
-  justify-content center
-  &:last-child
-    border-bottom inherit
-
+  ul
+    background danger
+    color white
+    box-shadow 1px 1px 6px rgba(0,0,0,0.5)
+    li
+      display grid
+      grid-template-columns 50% 50%
+      padding 2px 5px
+      p
+        margin 0
 .agenda__title
   color #585757
   text-align center
   text-transform uppercase
   font-weight bold
+
 #modalAgenda
   width 40%
