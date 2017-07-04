@@ -120,6 +120,6 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   }
 
   // Inicio de paginador
- 
+
   // Fin del paginador
 })

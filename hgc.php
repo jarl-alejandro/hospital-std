@@ -44,6 +44,7 @@
 
     <script src='src/estadistico/turnos/app/index.js'></script>
     <script src='src/estadistico/activar-turnos/app/index.js'></script>
+    <script src='src/estadistico/agenda/app/index.js'></script>
 
     <script src='src/enfermera/signos-vitales/app/index.js'></script>
 

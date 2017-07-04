@@ -1,0 +1,49 @@
+<hgc-menu-estadistica></hgc-menu-estadistica>
+<section class="workSpace">
+  <h1 class="Title">Agenda</h1>
+  <section class="months-diary">
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 1}"
+      ng-click="handleMonth(1)">Enero
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 2}"
+      ng-click="handleMonth(2)">Febrero
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 3}"
+      ng-click="handleMonth(3)">Marzo
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 4}"
+      ng-click="handleMonth(4)">Abril
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 5}"
+      ng-click="handleMonth(5)">Mayo
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 6}"
+      ng-click="handleMonth(6)">Junio
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 7}"
+      ng-click="handleMonth(7)">Julio
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 8}"
+      ng-click="handleMonth(8)">Agosto
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 9}"
+      ng-click="handleMonth(9)">Septiembre
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 10}"
+      ng-click="handleMonth(10)">Octubre
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 11}"
+      ng-click="handleMonth(11)">Noviembre
+    </artice>
+    <artice class="months-diary--mes" ng-class="{'mes__active': month == 12}"
+      ng-click="handleMonth(12)">Diciembre
+    </artice>
+  </section>
+  <section class="days-moth none">
+    <div class="main-end">
+      <button class="waves-effect waves-light btn primary"
+        ng-click="handleBack()">Atras</button>
+    </div>
+    <section id="calendario"></section>
+  </section>
+</section>
