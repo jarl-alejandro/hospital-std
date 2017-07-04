@@ -4,6 +4,7 @@ const agenda = angular.module('Hospital')
 
 agenda.controller('agendaController', function ($scope, $http) {
   $scope.month = 0
+  $scope.DB = []
   const hoy = new Date()
 
   var mes_text = [
@@ -46,13 +47,18 @@ agenda.controller('agendaController', function ($scope, $http) {
       let item = data[i]
       let fecha = item.hgc_fech_turno
       let celda = document.querySelector(`.fecha_${fecha}`)
-      let template = `<ul class="agenda__item">
-        <li>Paciente: ${item.paciente}</li>
-        <li>Doctor: ${item.doctor}</li>
-        <li>Hora Inicio: ${item.hgc_hini_turno}</li>
-        <li>Hora Fin: ${item.hgc_fin_turno}</li>
-      </ul>`
-      celda.innerHTML += template
+      celda.classList.add('agenda-ocupado')
+      DB.push(item)
+    }
+
+    const agendas = document.querySelectorAll('.agenda-ocupado')
+
+    for (let i=0; i<agendas.length; i++) {
+      agendas[i].addEventListener('click', function (event) {
+        const info = event.target.dataset
+        console.log(info)
+        $('#modalAgenda').modal('open')
+      })
     }
   }
 
