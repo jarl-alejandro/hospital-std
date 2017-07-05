@@ -42,6 +42,7 @@
     <script src='src/archivos/cie10-2/app/index.js'></script>
     <script src='src/archivos/sistemas-fisicos/app/index.js'></script>
     <script src='src/archivos/institucion/app/index.js'></script>
+    <script src='src/archivos/tipologia/app/index.js'></script>
 
     <script src='src/estadistico/turnos/app/index.js'></script>
     <script src='src/estadistico/activar-turnos/app/index.js'></script>

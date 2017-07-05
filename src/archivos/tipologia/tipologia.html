@@ -1,0 +1,74 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <div class="Title">Tipologia</div>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary'
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
+  <div class="tableContainer">
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descripcion</th>
+          <th>Visible</th>
+          <th>Acciòn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="tipologias.length === 0">
+          <td colspan="4">No hay tipologias</td>
+        </tr>
+        <tr ng-repeat='tipologia in tipologias'>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ tipologia.hgc_desc_tipo }}</td>
+          <td>
+            <input type="checkbox" id="visible_{{ tipologia.hgc_codi_tipo }}"
+              ng-if="tipologia.hgc_est_tipo === false"
+              ng-click="handleVisible(tipologia)" />
+            <input type="checkbox" id="visible_{{ tipologia.hgc_codi_tipo }}"
+                ng-if="tipologia.hgc_est_tipo === true" checked
+                ng-click="handleVisible(tipologia)" />
+            <label for="visible_{{ tipologia.hgc_codi_tipo }}"></label>
+          </td>
+          <td>
+            <button class="waves-effect waves-light btn primary"
+              ng-click="handleEdit(tipologia)">Editar
+            </button>
+            <button class="waves-effect waves-light btn danger"
+              ng-click="handleDelete(tipologia.hgc_codi_tipo)">Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div id="modalInstitucion" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="title-password">Registrar Tipologia</h4>
+    <article>
+      <div class="input-field">
+        <input id="descricion" type="text" ng-model='data.descripcion'>
+        <label for="descricion">Descripcion</label>
+      </div>
+      <p class="main-center">
+        <input type="checkbox" id="visible" checked ng-model='data.visible' />
+        <label for="visible">visible</label>
+      </p>
+    </article>
+  </div>
+  <div class="modal-footer main-center">
+    <button class="modal-action modal-close waves-effect waves-light btn danger bxn"
+      ng-click='handleClose()'>
+      Cerrar
+    </button>
+    <button class="waves-effect waves-light btn primary bxn" style="margin-left:1em"
+      ng-click='handleSave()'>
+      Guardar
+    </button>
+  </div>
+</div>
