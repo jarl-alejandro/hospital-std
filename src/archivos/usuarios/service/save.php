@@ -38,8 +38,8 @@ if ($id == "") {
   $new->bindParam(11, $sexo);
   $new->execute();
 
-  $newUser = $pdo->prepare("INSERT INTO hgc_usuario (hgc_codi_usu, hgc_user_usu, hgc_pass_usu, hgc_rol_usu)
-                VALUES (?, ?, ?, ?)");
+  $newUser = $pdo->prepare("INSERT INTO hgc_usuario (hgc_codi_usu, hgc_user_usu, hgc_pass_usu,
+    hgc_rol_usu) VALUES (?, ?, ?, ?)");
 
   $newUser->bindParam(1, $cedula);
   $newUser->bindParam(2, $email);
