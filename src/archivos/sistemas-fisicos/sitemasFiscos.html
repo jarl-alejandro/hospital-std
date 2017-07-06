@@ -4,7 +4,11 @@
   <div class="floating-add">
     <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
   </div>
-  <article class="tableContainer">
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="sitemasFiscos">
+      <label for="buscador">Buscador</label>
+    </div>
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
@@ -17,7 +21,7 @@
         <tr ng-if="sitemasFiscos.length === 0">
           <td colspan="5">No hay sitemasFiscos</td>
         </tr>
-        <tr ng-repeat="sitema in sitemasFiscos">
+        <tr ng-pagination="sitema in sitemasFiscos" ng-pagination-size="5">
           <td>{{ $index + 1 }}</td>
           <td>{{ sitema.hgc_desc_sisfi }}</td>
           <td>
@@ -27,8 +31,12 @@
         </tr>
       </tbody>
     </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="sitemasFiscos"></ng-pagination-control>
+    </div>
   </article>
-  <div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
+  <div class="formContainer ed-item s-80 m-75 m-offset-5"
+    ng-class="{ 'formContainer-active': showForm }">
     <article class="form ed-item s-100 m-75">
       <header>
         <h3>Registrar de sistemas y examanes fisicos</h3>
@@ -52,4 +60,3 @@
     </article>
   </div>
 </section>
-

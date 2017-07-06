@@ -7,7 +7,11 @@
       <i class="material-icons">mode_edit</i>
     </button>
   </div>
-  <div class="tableContainer">
+  <div class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="tipologias">
+      <label for="buscador">Buscador</label>
+    </div>
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
@@ -21,7 +25,7 @@
         <tr ng-if="tipologias.length === 0">
           <td colspan="4">No hay tipologias</td>
         </tr>
-        <tr ng-repeat='tipologia in tipologias'>
+        <tr ng-pagination='tipologia in tipologias' ng-pagination-size="5">
           <td>{{ $index + 1 }}</td>
           <td>{{ tipologia.hgc_desc_tipo }}</td>
           <td>
@@ -44,6 +48,9 @@
         </tr>
       </tbody>
     </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="tipologias"></ng-pagination-control>
+    </div>
   </div>
 </section>
 

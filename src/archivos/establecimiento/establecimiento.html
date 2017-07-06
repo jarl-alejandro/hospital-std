@@ -7,7 +7,11 @@
       <i class="material-icons">mode_edit</i>
     </button>
   </div>
-  <div class="tableContainer">
+  <div class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="establecimientos">
+      <label for="buscador">Buscador</label>
+    </div>
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
@@ -23,7 +27,8 @@
         <tr ng-if="establecimientos.length === 0">
           <td colspan="6">No hay establecimiento</td>
         </tr>
-        <tr ng-repeat="establecimiento in establecimientos">
+        <tr ng-pagination="establecimiento in establecimientos"
+          ng-pagination-size="6">
           <td>{{ $index + 1 }}</td>
           <td>{{ establecimiento.hgc_desc_inst }}</td>
           <td>{{ establecimiento.hgc_desc_tipo }}</td>
@@ -48,6 +53,10 @@
           </td>
         </tr>
       </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="establecimientos"></ng-pagination-control>
+    </div>
   </div>
 </section>
 

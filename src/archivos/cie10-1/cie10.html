@@ -4,7 +4,11 @@
   <div class="floating-add">
     <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
   </div>
-  <article class="tableContainer">
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="cie10Child">
+      <label for="buscador">Buscador</label>
+    </div>
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
@@ -18,7 +22,7 @@
         <tr ng-if="cie10Child.length === 0">
           <td colspan="5">No hay cie10</td>
         </tr>
-        <tr ng-repeat="cie in cie10Child">
+        <tr ng-pagination="cie in cie10Child" ng-pagination-size="6">
           <td>{{ $index + 1 }}</td>
           <td>{{ cie.hgc_codi_c10 }}</td>
           <td>{{ cie.hgc_desc_c10 }}</td>
@@ -29,7 +33,11 @@
         </tr>
       </tbody>
     </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="cie10Child"></ng-pagination-control>
+    </div>
   </article>
+
   <div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
     <article class="form ed-item s-100 m-75">
       <header>
@@ -57,4 +65,3 @@
     </article>
   </div>
 </section>
-

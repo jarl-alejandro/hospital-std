@@ -4,7 +4,11 @@
   <div class="floating-add">
     <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
   </div>
-  <article class="tableContainer">
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="usuarios">
+      <label for="buscador">Buscador</label>
+    </div>
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
@@ -18,7 +22,7 @@
         <tr ng-if="usuarios.length === 0">
           <td colspan="5">No hay usuarios</td>
         </tr>
-        <tr ng-repeat="user in usuarios">
+        <tr ng-pagination="user in usuarios" ng-pagination-size="5">
           <td>{{ $index + 1 }}</td>
           <td>{{ user.hgc_nom_profe }} {{ user.hgc_ape_profe }}</td>
           <td>{{ user.hgc_emai_profe }}</td>
@@ -29,9 +33,13 @@
         </tr>
       </tbody>
     </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="usuarios"></ng-pagination-control>
+    </div>
   </article>
-  <div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }"
-    style="top:0.5em">
+
+  <div class="formContainer ed-item s-80 m-75 m-offset-5"
+    ng-class="{ 'formContainer-active': showForm }" style="top:0.5em">
     <article class="form ed-item s-100 m-75 main-distribute">
       <header class="s-100">
         <h3>Registrar usuario</h3>
@@ -105,4 +113,3 @@
     </article>
   </div>
 </section>
-
