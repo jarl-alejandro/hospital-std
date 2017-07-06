@@ -1,0 +1,85 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <div class="Title">Especialidades</div>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary'
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
+  <div class="tableContainer">
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descripcion</th>
+          <th>Servicio</th>
+          <th>Visible</th>
+          <th>Acciòn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="especialidades.length === 0">
+          <td colspan="4">No hay especialidades</td>
+        </tr>
+        <tr ng-repeat='especialidad in especialidades'>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ especialidad.hgc_desc_espe }}</td>
+          <td>{{ especialidad.hgc_desc_serv }}</td>
+          <td>
+            <input type="checkbox" id="visible_{{ especialidad.hgc_codi_espe }}"
+              ng-if="especialidad.hgc_est_espe === false"
+              ng-click="handleVisible(especialidad)" />
+            <input type="checkbox" id="visible_{{ especialidad.hgc_codi_espe }}"
+                ng-if="especialidad.hgc_est_espe === true" checked
+                ng-click="handleVisible(especialidad)" />
+            <label for="visible_{{ especialidad.hgc_codi_espe }}"></label>
+          </td>
+          <td>
+            <button class="waves-effect waves-light btn primary"
+              ng-click="handleEdit(especialidad)">Editar
+            </button>
+            <button class="waves-effect waves-light btn danger"
+              ng-click="handleDelete(especialidad.hgc_codi_espe)">Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div id="modalInstitucion" class="modal modal-fixed-footer" style="height: 60%;">
+  <div class="modal-content">
+    <h4 class="title-password">Registrar Especialidad</h4>
+    <article>
+      <div class="input-field">
+        <input id="descricion" type="text" ng-model='data.descripcion'>
+        <label for="descricion">Descripcion</label>
+      </div>
+      <div class="form__input" style="padding:0">
+        <label for="servicio">Servicio</label>
+        <select ng-model='data.servicio' id="servicio" class='browser-default'>
+          <option value="" selected>Seleciona</option>
+          <option ng-repeat="servicio in servicios"
+            value="{{ servicio.hgc_codi_serv }}">{{ servicio.hgc_desc_serv }}
+          </option>
+        </select>
+      </div>
+      <p class="main-center">
+        <input type="checkbox" id="visible" checked ng-model='data.visible' />
+        <label for="visible">visible</label>
+      </p>
+    </article>
+  </div>
+  <div class="modal-footer main-center">
+    <button class="modal-action modal-close waves-effect waves-light btn danger bxn"
+      ng-click='handleClose()'>
+      Cerrar
+    </button>
+    <button class="waves-effect waves-light btn primary bxn" style="margin-left:1em"
+      ng-click='handleSave()'>
+      Guardar
+    </button>
+  </div>
+</div>
