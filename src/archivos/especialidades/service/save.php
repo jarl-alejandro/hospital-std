@@ -20,9 +20,8 @@ if ($id == "") {
 }
 else {
   $new = $pdo->query("UPDATE hgc_especialidad SET hgc_desc_espe='$descripcion',
-    hgc_est_espe='$visible', hgc_est_espe='$servicio' WHERE hgc_codi_espe='$id'");
+    hgc_est_espe='$visible', hgc_serv_espe='$servicio' WHERE hgc_codi_espe='$id'");
 }
-
 if ($new) {
   echo 201;
 }

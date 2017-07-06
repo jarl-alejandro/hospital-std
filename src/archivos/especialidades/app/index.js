@@ -23,7 +23,7 @@ especialidad.controller('especialidadController', function ($scope, $http) {
       Materialize.toast('Debe ingresar la descripcion', 4000)
       return false
     }
-    if ($scope.data.servicio.trim() === '') {
+    if ($scope.data.servicio === '') {
       Materialize.toast('Debe ingresar el servicio', 4000)
       return false
     }
@@ -62,7 +62,7 @@ especialidad.controller('especialidadController', function ($scope, $http) {
       descripcion: especialidad.hgc_desc_espe,
       visible: especialidad.hgc_est_espe,
       id: especialidad.hgc_codi_espe,
-      servicio: especialidad.hgc_serv_espe
+      servicio: especialidad.hgc_codi_serv
     }
     $('.input-field label').addClass('active')
     $('#modalInstitucion').modal('open')

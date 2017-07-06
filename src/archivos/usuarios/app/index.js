@@ -5,6 +5,9 @@ const usuarios = angular.module('Hospital')
 
 usuarios.controller('usuariosController', function ($scope, $http) {
   $('.formContainer').slideUp()
+  $('ul.tabs').tabs()
+  $('ul.tabs').tabs('select_tab', 'test-swipe-1')
+
   $scope.data = {
     id: '',
     cedula: '',
@@ -18,25 +21,108 @@ usuarios.controller('usuariosController', function ($scope, $http) {
     email: '',
     sexo: '',
     profesion: '',
-    rol: ''
+    rol: '',
+    especialidades: []
   }
   $scope.usuarios = []
   $scope.profesiones = []
   $scope.generos = []
+  $scope.especialidades = []
 
-  $http.get('src/datos/generos/service/getAll.php')
-    .then(response => $scope.generos = response.data )
+  getAll()
 
-    $http.get('src/archivos/profesiones/service/getAll.php')
+  $http.get('src/archivos/profesiones/service/getAll.php')
     .then(response => $scope.profesiones = response.data )
 
   $http.get('src/archivos/usuarios/service/getAll.php')
     .then(response => $scope.usuarios = response.data )
 
+  $http.get('src/archivos/especialidades/service/getAll.php')
+    .then(response => $scope.especialidades = response.data)
+
   $scope.handleShowForm = function (e) {
     $('.formContainer').slideDown()
   }
-  $scope.handleCancel = function (e) {
+
+  $scope.handleCancel = () => clear()
+
+  $scope.handleSave = function (e) {
+    getEspecialidadesDoctor()
+    if (validar()) {
+      $http.post("src/archivos/usuarios/service/save.php", {
+        'profesional': $scope.data
+      }).then(response => {
+        console.log(response)
+        if (response.data == 201) {
+          Materialize.toast("Se ha guardado con exito", 4000)
+          getAll()
+          clear()
+        }
+      })
+    }
+  }
+
+  $scope.get = function (usuario) {
+    $http.post('src/archivos/usuarios/service/especialidades.php', {
+      id: usuario.hgc_cedu_profe
+    }).then(response => {
+      console.log(response)
+
+      for (let i in response.data) {
+        let item = response.data[i]
+        document.querySelector(`#confir_${item.hgc_esp_det}`).checked = true
+      }
+    })
+
+    $scope.data = {
+      id: usuario.hgc_codi_profe,
+      cedula: usuario.hgc_cedu_profe,
+      nombre: usuario.hgc_nom_profe,
+      apellido: usuario.hgc_ape_profe,
+      fechaNac: new Date(usuario.hgc_fecn_profe),
+      dni: usuario.hgc_dni_profe,
+      telefono: usuario.hgc_tele_profe,
+      ceulular: usuario.hgc_celu_profe,
+      direccion: usuario.hgc_direc_profe,
+      email: usuario.hgc_emai_profe,
+      sexo: usuario.hgc_sexo_profe,
+      profesion: usuario.hgc_profe_profe,
+      rol: usuario.hgc_rol_usu,
+    }
+    $('.formContainer').slideDown()
+  }
+
+  $scope.delete = function (id) {
+    $http.post("src/archivos/usuarios/service/delete.php", { id })
+      .then(response => {
+        if (response.data == 201) {
+          Materialize.toast("Se ha eliminado con exito", 4000)
+          $http.get('src/archivos/usuarios/service/getAll.php')
+            .then(response => $scope.usuarios = response.data)
+        }
+      })
+  }
+
+  function getAll () {
+    $http.get('src/archivos/usuarios/service/getAll.php')
+    .then(response =>$scope.usuarios = response.data)
+  }
+
+  function getEspecialidadesDoctor () {
+    const confirmar = Array.prototype.slice.call(
+      document.querySelectorAll('.confirmarEspecialidad')
+    )
+    $scope.data.especialidades = []
+
+    for (let i in confirmar) {
+      let item = confirmar[i]
+      if (item.checked === true) {
+        $scope.data.especialidades.push({ especialidades: item.dataset.esp })
+      }
+    }
+  }
+
+  function clear () {
     $scope.data = {
       id: '',
       cedula: '',
@@ -50,11 +136,19 @@ usuarios.controller('usuariosController', function ($scope, $http) {
       email: '',
       sexo: '',
       profesion: '',
-      rol: ''
+      rol: '',
+      especialidades: []
     }
     $('.formContainer').slideUp()
+    $('ul.tabs').tabs('select_tab', 'test-swipe-1')
+    
+    const confirmar = Array.prototype.slice.call(
+      document.querySelectorAll('.confirmarEspecialidad')
+    )
+    for (let i in confirmar) confirmar[i].checked = false
   }
-  $scope.handleSave = function (e) {
+
+  function validar () {
     if ($scope.data.cedula == "") {
       Materialize.toast("Ingresa la cedula", 4000)
       return false
@@ -103,61 +197,10 @@ usuarios.controller('usuariosController', function ($scope, $http) {
       Materialize.toast("Ingresa el rol", 4000)
       return false
     }
-
-    $http.post("src/archivos/usuarios/service/save.php", { 'profesional': $scope.data })
-      .then(response => {
-        console.log(response)
-        if (response.data == 201) {
-          Materialize.toast("Se ha guardado con exito", 4000)
-          $scope.data = {
-            id: '',
-            cedula: '',
-            nombre: '',
-            apellido: '',
-            fechaNac: '',
-            dni: '',
-            telefono: '',
-            ceulular: '',
-            direccion: '',
-            email: '',
-            sexo: '',
-            profesion: '',
-            rol: ''
-          }
-          $('.formContainer').slideUp()
-          $http.get('src/archivos/usuarios/service/getAll.php')
-            .then(response =>$scope.usuarios = response.data)
-        }
-      })
-  }
-
-  $scope.get = function (usuario) {
-    $scope.data = {
-      id: usuario.hgc_codi_profe,
-      cedula: usuario.hgc_cedu_profe,
-      nombre: usuario.hgc_nom_profe,
-      apellido: usuario.hgc_ape_profe,
-      fechaNac: new Date(usuario.hgc_fecn_profe),
-      dni: usuario.hgc_dni_profe,
-      telefono: usuario.hgc_tele_profe,
-      ceulular: usuario.hgc_celu_profe,
-      direccion: usuario.hgc_direc_profe,
-      email: usuario.hgc_emai_profe,
-      sexo: usuario.hgc_sexo_profe,
-      profesion: usuario.hgc_profe_profe,
-      rol: usuario.hgc_rol_usu,
+    if ($scope.data.especialidades.length === 0) {
+      Materialize.toas('Selecione la/las especialidades del doctor', 4000)
+      return false
     }
-    $('.formContainer').slideDown()
-  }
-
-  $scope.delete = function (id) {
-    $http.post("src/archivos/usuarios/service/delete.php", { id })
-      .then(response => {
-        if (response.data == 201) {
-          Materialize.toast("Se ha eliminado con exito", 4000)
-          $http.get('src/archivos/usuarios/service/getAll.php')
-            .then(response => $scope.usuarios = response.data)
-        }
-      })
+    else return true
   }
 })
