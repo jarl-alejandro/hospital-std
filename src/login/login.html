@@ -2,20 +2,24 @@
   <figure class="login-img">
     <img src="assets/img/logo_inspi.png" alt="Logo hospital" style="height: 8em;">
   </figure>
-  <article class="form ed-item s-100 m-35">
-    <header>
-      <h3>Inicar Sesión</h3>
+  <article class="form ed-item s-100 m-35 ">
+    <header style="background: inherit; color:#585757; margin:0; padding:0;">
+      <h3 class="loginForm">Inicar Sesión</h3>
     </header>
-    <div class="form__input">
-      <label for="email">Ingresa el e-mail</label>
-      <input id="email" type="text" placeholder='pepito@gmail.com' ng-model='data.email'>
-    </div>
-    <div class="form__input">
-      <label for="password">Ingresa su contraseña</label>
-      <input id="password" type="password" placeholder='pepitopassword' ng-model='data.password'>
+    <div style="padding:0 1em">
+      <div class="input-field">
+        <input id="email" type="text" ng-model='data.email'>
+        <label for="email">Ingresa el e-mail</label>
+      </div>
+      <div class="input-field">
+        <input id="password" type="password" ng-model='data.password'>
+        <label for="password">Ingresa su contraseña</label>
+      </div>
     </div>
     <div class='main-distribute'>
-      <button class='waves-effect waves-light btn primary s-80' ng-click="handleSave()">Entrar</button>
+      <button class='waves-effect waves-light btn primary s-80 bxn'
+       ng-click="handleSave()">Entrar
+     </button>
     </div>
   </article>
 </div>
