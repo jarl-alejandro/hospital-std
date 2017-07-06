@@ -1,0 +1,81 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <div class="Title">Actividad</div>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary'
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
+  <div class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="actividades">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descripcion</th>
+          <th>Visible</th>
+          <th>Acciòn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="actividades.length === 0">
+          <td colspan="4">No hay actividades</td>
+        </tr>
+        <tr ng-pagination='actividad in actividades' ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ actividad.hgc_desc_acti }}</td>
+          <td>
+            <input type="checkbox" id="visible_{{ actividad.hgc_codi_acti }}"
+              ng-if="actividad.hgc_est_acti === false"
+              ng-click="handleVisible(actividad)" />
+            <input type="checkbox" id="visible_{{ actividad.hgc_codi_acti }}"
+                ng-if="actividad.hgc_est_acti === true" checked
+                ng-click="handleVisible(actividad)" />
+            <label for="visible_{{ actividad.hgc_codi_acti }}"></label>
+          </td>
+          <td>
+            <button class="waves-effect waves-light btn primary"
+              ng-click="handleEdit(actividad)">Editar
+            </button>
+            <button class="waves-effect waves-light btn danger"
+              ng-click="handleDelete(actividad.hgc_codi_acti)">Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="actividades"></ng-pagination-control>
+    </div>
+  </div>
+</section>
+
+<div id="modalInstitucion" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="title-password">Registrar Actividades</h4>
+    <article>
+      <div class="input-field">
+        <input id="descricion" type="text" ng-model='data.descripcion'>
+        <label for="descricion">Descripcion</label>
+      </div>
+      <p class="main-center">
+        <input type="checkbox" id="visible" checked ng-model='data.visible' />
+        <label for="visible">visible</label>
+      </p>
+    </article>
+  </div>
+  <div class="modal-footer main-center">
+    <button class="modal-action modal-close waves-effect waves-light btn danger bxn"
+      ng-click='handleClose()'>
+      Cerrar
+    </button>
+    <button class="waves-effect waves-light btn primary bxn" style="margin-left:1em"
+      ng-click='handleSave()'>
+      Guardar
+    </button>
+  </div>
+</div>

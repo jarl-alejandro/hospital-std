@@ -46,6 +46,7 @@
     <script src='src/archivos/establecimiento/app/index.js'></script>
     <script src='src/archivos/servicios/app/index.js'></script>
     <script src='src/archivos/especialidades/app/index.js'></script>
+    <script src='src/archivos/actividad/app/index.js'></script>
 
     <script src='src/estadistico/turnos/app/index.js'></script>
     <script src='src/estadistico/activar-turnos/app/index.js'></script>
