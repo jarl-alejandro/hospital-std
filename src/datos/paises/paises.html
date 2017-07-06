@@ -1,48 +1,60 @@
 <hgc-menu></hgc-menu>
 
 <section class="workSpace">
-	<h1 class="Title">Paises</h2>
-	<div class="floating-add">
-		<button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
-	</div>
-	<article class="tableContainer">
-		<table class="bordered highlight centered responsive-table">
-			<thead>
-				<tr>
-					<th width="10%">#</th>
-					<th width="60%">Pais</th>
-					<th width="30%"></th>
-				</tr>
-			</thead>
-			<tbody>
+  <h1 class="Title">Paises</h2>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
+  </div>
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="paises">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="60%">Pais</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
         <tr ng-if="paises.length === 0">
           <td colspan="5">No hay paises</td>
         </tr>
-				<tr ng-repeat="pais in paises">
-					<td>{{ $index + 1 }}</td>
-					<td>{{ pais.hgc_desc_pais }}</td>
-					<td>
-						<button class='waves-effect waves-light btn primary' ng-click="get(pais.hgc_codi_pais, pais.hgc_desc_pais)">Editar</button>
-						<button class='waves-effect waves-light btn danger' ng-click="delete(pais.hgc_codi_pais)">Eliminar</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</article>
-	<div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
-		<article class="form ed-item s-100 m-75">
-			<header>
-			  <h3>Registrar Pais</h3>
-			</header>
-			<div class="form__input">
-			  <label for="pais">Ingresa el pais</label>
-			  <input id="pais" type="text" placeholder='Ejemplo: Ecuador' ng-model='data.pais'>
-			</div>
-			<div class='main-distribute'>
-			  <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
-			  <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
-			</div>
-		</article>
-	</div>
-</section>
+        <tr ng-pagination="pais in paises" ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ pais.hgc_desc_pais }}</td>
+          <td>
+            <button class='waves-effect waves-light btn primary'
+              ng-click="get(pais.hgc_codi_pais, pais.hgc_desc_pais)">Editar
+            </button>
+            <button class='waves-effect waves-light btn danger'
+              ng-click="delete(pais.hgc_codi_pais)">Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="paises"></ng-pagination-control>
+    </div>
+  </article>
 
+  <div class="formContainer ed-item s-80 m-75 m-offset-5"
+    ng-class="{ 'formContainer-active': showForm }">
+    <article class="form ed-item s-100 m-75">
+      <header>
+        <h3>Registrar Pais</h3>
+      </header>
+      <div class="form__input">
+        <label for="pais">Ingresa el pais</label>
+        <input id="pais" type="text" placeholder='Ejemplo: Ecuador' ng-model='data.pais'>
+      </div>
+      <div class='main-distribute'>
+        <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+        <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+      </div>
+    </article>
+  </div>
+</section>

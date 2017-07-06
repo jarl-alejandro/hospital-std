@@ -1,47 +1,55 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
-	<h1 class="Title">Generos</h2>
-	<div class="floating-add">
-		<button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
-	</div>
-	<article class="tableContainer">
-		<table class="bordered highlight centered responsive-table">
-			<thead>
-				<tr>
-					<th width="10%">#</th>
-					<th width="60%">genero</th>
-					<th width="30%"></th>
-				</tr>
-			</thead>
-			<tbody>
+  <h1 class="Title">Generos</h2>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
+  </div>
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="generos">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="60%">genero</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
         <tr ng-if="generos.length === 0">
           <td colspan="5">No hay generos</td>
         </tr>
-				<tr ng-repeat="genero in generos">
-					<td>{{ $index + 1 }}</td>
-					<td>{{ genero.hgc_desc_genero }}</td>
-					<td>
-						<button class='waves-effect waves-light btn primary' ng-click="get(genero.hgc_codi_genero, genero.hgc_desc_genero)">Editar</button>
-						<button class='waves-effect waves-light btn danger' ng-click="delete(genero.hgc_codi_genero)">Eliminar</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</article>
-	<div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
-		<article class="form ed-item s-100 m-75">
-			<header>
-			  <h3>Registrar Genero</h3>
-			</header>
-			<div class="form__input">
-			  <label for="genero">Ingresa el genero</label>
-			  <input id="genero" type="text" placeholder='Ejemplo: Hombre' ng-model='data.genero'>
-			</div>
-			<div class='main-distribute'>
-			  <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
-			  <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
-			</div>
-		</article>
-	</div>
-</section>
+        <tr ng-pagination="genero in generos" ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ genero.hgc_desc_genero }}</td>
+          <td>
+            <button class='waves-effect waves-light btn primary' ng-click="get(genero.hgc_codi_genero, genero.hgc_desc_genero)">Editar</button>
+            <button class='waves-effect waves-light btn danger' ng-click="delete(genero.hgc_codi_genero)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="generos"></ng-pagination-control>
+    </div>
+  </article>
 
+  <div class="formContainer ed-item s-80 m-75 m-offset-5"
+    ng-class="{ 'formContainer-active': showForm }">
+    <article class="form ed-item s-100 m-75">
+      <header>
+        <h3>Registrar Genero</h3>
+      </header>
+      <div class="form__input">
+        <label for="genero">Ingresa el genero</label>
+        <input id="genero" type="text" placeholder='Ejemplo: Hombre' ng-model='data.genero'>
+      </div>
+      <div class='main-distribute'>
+        <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+        <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+      </div>
+    </article>
+  </div>
+</section>

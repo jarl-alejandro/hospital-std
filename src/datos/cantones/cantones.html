@@ -1,53 +1,61 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
-	<h1 class="Title">Cantones</h2>
-	<div class="floating-add">
-		<button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
-	</div>
-	<article class="tableContainer">
-		<table class="bordered highlight centered responsive-table">
-			<thead>
-				<tr>
-					<th width="10%">#</th>
-					<th width="60%">Cantones</th>
-					<th width="30%"></th>
-				</tr>
-			</thead>
-			<tbody>
+  <h1 class="Title">Cantones</h2>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
+  </div>
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="cantones">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="60%">Cantones</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
         <tr ng-if="cantones.length === 0">
           <td colspan="5">No hay cantones</td>
         </tr>
-				<tr ng-repeat="canton in cantones">
-					<td>{{ $index + 1 }}</td>
-					<td>{{ canton.hgc_desc_canton }}</td>
-					<td>
-						<button class='waves-effect waves-light btn primary' ng-click="get(canton.hgc_codi_canton, canton.hgc_desc_canton, canton.hgc_provi_canton)">Editar</button>
-						<button class='waves-effect waves-light btn danger' ng-click="delete(canton.hgc_codi_canton)">Eliminar</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</article>
-	<div class="formContainer ed-item s-80 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }">
-		<article class="form ed-item s-100 m-75">
-			<header>
-			  <h3>Registra el canton</h3>
-			</header>
-			<div class="form__input">
-			  <label for="canton">Ingresa el canton</label>
-			  <input id="canton" type="text" placeholder='Ejemplo: Santo Domingo' ng-model='data.canton'>
-			</div>
-			<div class="form__input">
-			  <label for="provincia">Seleciona la provincia</label>
-			  <select id="provincia" class='browser-default' ng-model='data.provincia'>
-			  	<option ng-repeat="provincia in provincias" value="{{ provincia.hgc_codi_provi }}">{{ provincia.hgc_desc_provi }}</option>
-			  </select>
-			</div>
-			<div class='main-distribute'>
-			  <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
-			  <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
-			</div>
-		</article>
-	</div>
-</section>
+        <tr ng-pagination="canton in cantones" ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ canton.hgc_desc_canton }}</td>
+          <td>
+            <button class='waves-effect waves-light btn primary' ng-click="get(canton.hgc_codi_canton, canton.hgc_desc_canton, canton.hgc_provi_canton)">Editar</button>
+            <button class='waves-effect waves-light btn danger' ng-click="delete(canton.hgc_codi_canton)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="cantones"></ng-pagination-control>
+    </div>
+  </article>
 
+  <div class="formContainer ed-item s-80 m-75 m-offset-5"
+    ng-class="{ 'formContainer-active': showForm }">
+    <article class="form ed-item s-100 m-75">
+      <header>
+        <h3>Registra el canton</h3>
+      </header>
+      <div class="form__input">
+        <label for="canton">Ingresa el canton</label>
+        <input id="canton" type="text" placeholder='Ejemplo: Santo Domingo' ng-model='data.canton'>
+      </div>
+      <div class="form__input">
+        <label for="provincia">Seleciona la provincia</label>
+        <select id="provincia" class='browser-default' ng-model='data.provincia'>
+          <option ng-repeat="provincia in provincias" value="{{ provincia.hgc_codi_provi }}">{{ provincia.hgc_desc_provi }}</option>
+        </select>
+      </div>
+      <div class='main-distribute'>
+        <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
+        <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+      </div>
+    </article>
+  </div>
+</section>
