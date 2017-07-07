@@ -48,6 +48,7 @@
     <script src='src/archivos/especialidades/app/index.js'></script>
     <script src='src/archivos/actividad/app/index.js'></script>
     <script src='src/archivos/horarios/app/index.js'></script>
+    <script src='src/archivos/consultorios/app/index.js'></script>
 
     <script src='src/estadistico/turnos/app/index.js'></script>
     <script src='src/estadistico/activar-turnos/app/index.js'></script>
@@ -59,7 +60,7 @@
     <script src='src/doctor/form28C/app/index.js'></script>
     <script src='src/doctor/form28A/app/index.js'></script>
 
-    <script type="text/javascript" src="src/horarios-doctores/app/index.js"></script>
+    <script src="src/horarios-doctores/app/index.js"></script>
 
     <script src='src/home/app/index.js'></script>
     <script src='src/login/app/index.js'></script>
