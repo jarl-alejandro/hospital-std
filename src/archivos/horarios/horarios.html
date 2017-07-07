@@ -1,0 +1,90 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <h2 class="Title">Horarios</h2>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary'
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
+  <div class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="horarios">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Entrada</th>
+          <th>Salida</th>
+          <th>Visible</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="horarios.length === 0">
+          <td colspan="4">No hay horarios</td>
+        </tr>
+        <tr ng-pagination="horario in horarios" ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ horario.hgc_ent_hora }}</td>
+          <td>{{ horario.hgc_sal_hora }}</td>
+          <td>
+            <input type="checkbox" id="visible_{{ horario.hgc_codi_hora }}"
+              ng-if="horario.hgc_est_hora === false"
+              ng-click="handleVisible(horario)" />
+            <input type="checkbox" id="visible_{{ horario.hgc_codi_hora }}"
+                ng-if="horario.hgc_est_hora === true" checked
+                ng-click="handleVisible(horario)" />
+            <label for="visible_{{ horario.hgc_codi_hora }}"></label>
+          </td>
+          <td>
+            <button class="waves-effect waves-light btn primary"
+              ng-click="handleEdit(horario)">Editar
+            </button>
+            <button class="waves-effect waves-light btn danger"
+              ng-click="handleDelete(horario.hgc_codi_hora)">Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="horarios"></ng-pagination-control>
+    </div>
+  </div>
+</section>
+
+<div id="modalInstitucion" class="modal modal-fixed-footer" style="height:58%;">
+  <div class="modal-content">
+    <h4 class="title-password">Registrar Horario</h4>
+    <article>
+
+      <div class="input-field">
+        <input id="entrada" type="time" ng-model='data.entrada'>
+        <label for="entrada" class="active">Entrada</label>
+      </div>
+
+      <div class="input-field">
+        <input id="salida" type="time" ng-model='data.salida'>
+        <label for="salida" class="active">Salida</label>
+      </div>
+
+      <p class="main-center">
+        <input type="checkbox" id="visible" checked ng-model='data.visible' />
+        <label for="visible">visible</label>
+      </p>
+    </article>
+  </div>
+  <div class="modal-footer main-center">
+    <button class="modal-action modal-close waves-effect waves-light btn danger bxn"
+      ng-click='handleClose()'>
+      Cerrar
+    </button>
+    <button class="waves-effect waves-light btn primary bxn" style="margin-left:1em"
+      ng-click='handleSave()'>
+      Guardar
+    </button>
+  </div>
+</div>
