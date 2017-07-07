@@ -11,7 +11,7 @@ agenda.controller('agendaController', function ($scope, $http) {
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
     "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ]
-  var dia_text = ["Dom", "Lun", "Mar", "Mie", "Juv", "Vie", "Sab"]
+  var dia_text = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"]
 
   estructurar()
   numerar()
@@ -105,11 +105,13 @@ agenda.controller('agendaController', function ($scope, $http) {
     let hoy = new Date()
     let year = hoy.getFullYear()
     for (i = 1; i < 366; i++) {
-      let fecha = fechaPorDia(year, i);
-      let mes = fecha.getMonth();
+      let fecha = fechaPorDia(year, i)
+      let mes = fecha.getMonth()
+
       let select_tabla = document.getElementsByClassName('tabla_mes')[mes];
       let dia = fecha.getDate()
-      let dia_semana = fecha.getDay();
+      let dia_semana = fecha.getDay()
+
       if (dia == 1) {var sem = 0;}
       select_tabla.children[2].children[sem].children[dia_semana].innerText = dia;
 

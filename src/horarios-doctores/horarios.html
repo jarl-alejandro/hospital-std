@@ -19,6 +19,7 @@
         <li class="tab col s3"><a href="#horarios-swipe-2">Horarios</a></li>
       </ul>
 
+      <!-- Informacion basica para la asignacion de horarios -->
       <div id="horarios-swipe-1" class="col s12">
         <div class="form__input" style="padding:0">
           <label for="medicos">Medicos y Enefermeras</label>
@@ -30,6 +31,7 @@
             </option>
           </select>
         </div>
+
         <article class="grid-divider">
           <div class="form__input" style="padding:0">
             <label for="consultorio">Consultorios</label>
@@ -52,7 +54,29 @@
         </article>
       </div>
 
-      <div id="horarios-swipe-2" class="col s12">Test 2</div>
+      <!-- Horarios para el doctor -->
+      <div id="horarios-swipe-2" class="col s12">
+        <div class="main-end">
+          <button class="waves-effect waves-light btn primary" ng-click="handleHours()">
+            <i class="material-icons">hourglass_full</i>
+          </button>
+        </div>
+        <table class="bordered highlight centered responsive-table">
+          <thead>
+            <tr>
+              <th>Dom</th>
+              <th>Lun</th>
+              <th>Mar</th>
+              <th>Mie</th>
+              <th>Jue</th>
+              <th>Vie</th>
+              <th>Sab</tr>
+            </tr>
+          </thead>
+          <tbody id="semanasDelMes">
+          </tbody>
+        </table>
+      </div>
     </article>
   </div>
   <div class="modal-footer main-center">
