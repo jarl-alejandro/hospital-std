@@ -1,4 +1,68 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
   <h2 class="Title">Asignar Horarios</h2>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary'
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
 </section>
+
+
+<div id="adignarFormHorario" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="title-password">Registrar Horario a Doctor</h4>
+    <article class="tabs-horarios">
+      <ul id="tabs-horarios" class="tabs">
+        <li class="tab col s3"><a class="active" href="#horarios-swipe-1">Informacion</a></li>
+        <li class="tab col s3"><a href="#horarios-swipe-2">Horarios</a></li>
+      </ul>
+
+      <div id="horarios-swipe-1" class="col s12">
+        <div class="form__input" style="padding:0">
+          <label for="medicos">Medicos y Enefermeras</label>
+          <select ng-model='data.medicos' id="medicos" class='browser-default'>
+            <option value="" selected>Seleciona</option>
+            <option ng-repeat="medico in medicos"
+              value="{{ medico.hgc_codi_profe }}">
+              {{ medico.hgc_nom_profe }} {{ medico.hgc_ape_profe }}
+            </option>
+          </select>
+        </div>
+        <article class="grid-divider">
+          <div class="form__input" style="padding:0">
+            <label for="consultorio">Consultorios</label>
+            <select ng-model='data.consultorio' id="consultorio" class='browser-default'>
+              <option value="" selected>Seleciona</option>
+              <option ng-repeat="consultorio in consultorios"
+                value="{{ consultorio.hgc_codi_cons }}">
+                {{ consultorio.hgc_desc_cons }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form__input" style="padding:0">
+            <label for="mes">Mes</label>
+            <select ng-model='data.mes' id="mes" class='browser-default'>
+              <option value="" selected>Seleciona</option>
+              <option ng-repeat="mes in mes" value="{{ mes.id }}">{{ mes.nombre }}</option>
+            </select>
+          </div>
+        </article>
+      </div>
+
+      <div id="horarios-swipe-2" class="col s12">Test 2</div>
+    </article>
+  </div>
+  <div class="modal-footer main-center">
+    <button class="modal-action modal-close waves-effect waves-light btn danger bxn"
+      ng-click='handleClose()'>
+      Cerrar
+    </button>
+    <button class="waves-effect waves-light btn primary bxn" style="margin-left:1em"
+      ng-click='handleSave()'>
+      Guardar
+    </button>
+  </div>
+</div>
