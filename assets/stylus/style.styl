@@ -69,3 +69,16 @@ td, th
     margin-bottom 1em
 .dia
   cursor pointer
+.hours
+  i
+    transition all ease .3s
+    animation-name girando
+    animation-iteration-count infinite
+    animation-timing-function linear
+    animation-duration 1s
+    transform-style preserve-3d
+@keyframes girando
+  from
+    transform rotate(0deg)
+  to
+    transform rotate(360deg)

@@ -57,7 +57,7 @@
       <!-- Horarios para el doctor -->
       <div id="horarios-swipe-2" class="col s12">
         <div class="main-end">
-          <button class="waves-effect waves-light btn primary" ng-click="handleHours()">
+          <button class="waves-effect waves-light btn primary hours" ng-click="handleHours()">
             <i class="material-icons">hourglass_full</i>
           </button>
         </div>
@@ -78,6 +78,55 @@
         </table>
       </div>
     </article>
+  </div>
+  <div class="modal-footer main-center">
+    <button class="modal-action modal-close waves-effect waves-light btn danger bxn"
+      ng-click='handleClose()'>
+      Cerrar
+    </button>
+    <button class="waves-effect waves-light btn primary bxn" style="margin-left:1em"
+      ng-click='handleSave()'>
+      Guardar
+    </button>
+  </div>
+</div>
+
+<!-- Horarios -->
+<div id="modalInstitucion" class="modal modal-fixed-footer" style="height: 85%;">
+  <div class="modal-content">
+    <h4 class="title-password">Horarios</h4>
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="horarios">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Entrada</th>
+          <th>Salida</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="horarios.length === 0">
+          <td colspan="3">No hay horarios</td>
+        </tr>
+        <tr ng-pagination="horario in horarios" ng-pagination-size="2">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ horario.hgc_ent_hora }}</td>
+          <td>{{ horario.hgc_sal_hora }}</td>
+          <td>
+            <button class="waves-effect waves-light btn primary"
+              ng-click="handleEdit(horario)"><i class="material-icons">done_all</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="horarios"></ng-pagination-control>
+    </div>
   </div>
   <div class="modal-footer main-center">
     <button class="modal-action modal-close waves-effect waves-light btn danger bxn"

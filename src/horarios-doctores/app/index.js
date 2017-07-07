@@ -8,7 +8,9 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   mesTag.addEventListener('change', createMes)
   $scope.medicos = []
   $scope.consultorios = []
+  $scope.horarios = []
   $scope.data = { medicos: '', consultorio: '', mes: '' }
+  $scope.diaHorario = ''
 
   $scope.mes = [
     { id: 1, nombre: 'Enero' },
@@ -31,8 +33,17 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   $http.get('src/horarios-doctores/service/medicos.php')
     .then(response => $scope.medicos = response.data)
 
+  $http.get('src/archivos/horarios/service/getAll.php')
+    .then(response => $scope.horarios = response.data)
+
   $scope.handleShowForm = () => $('#adignarFormHorario').modal('open')
-  $scope.handleHours = () => alert('ola')
+  $scope.handleHours = () => {
+    if ($scope.diaHorario === '') {
+      Materialize.toast('Seleciona el dia que va asignar el horario', 4000)
+      return false
+    }
+    $('#modalInstitucion').modal('open')
+  }
 
   function fechaPorDia(year, dia, mes) {
     var date = new Date(year, mes)
@@ -65,16 +76,15 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
         if (dia_semana == 6) sem = sem + 1
       }
     }
-    handleEventMes()
+    handleEventMonth()
   }
 
-  function handleEventMes () {
+  function handleEventMonth () {
     const dias = document.querySelectorAll('.dia')
 
     for (let i=0; i<dias.length; i++) {
       dias[i].addEventListener('click', event => {
-        const id = event.target.dataset.dia
-        console.log(id)
+        $scope.diaHorario = event.target.dataset.dia
       })
     }
   }
