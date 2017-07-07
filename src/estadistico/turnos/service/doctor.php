@@ -1,7 +1,11 @@
 <?php
 include '../../../../helpers/conexion.php';
 
-$query = $pdo->query("SELECT * FROM view_user WHERE hgc_rol_usu='doctor'");
+$especialidad = $_GET['especialidad'];
+
+$query = $pdo->query("SELECT * FROM view_doctor_especialidad
+  WHERE hgc_codi_espe='$especialidad'");
+
 $doctor = array();
 
 while ($row = $query->fetch()) {

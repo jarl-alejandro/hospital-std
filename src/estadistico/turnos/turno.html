@@ -7,7 +7,11 @@
       <i class="material-icons">mode_edit</i>
     </button>
   </div>
-  <article class="tableContainer">
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="turnos">
+      <label for="buscador">Buscador</label>
+    </div>
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
@@ -24,7 +28,7 @@
         <tr ng-if="turnos.length === 0">
           <td colspan="7">No hay turnos</td>
         </tr>
-        <tr ng-repeat="turno in turnos">
+        <tr ng-pagination="turno in turnos" ng-pagination-size="5">
           <td>{{ $index + 1 }}</td>
           <td>{{ turno.paciente }}</td>
           <td>{{ turno.doctor }}</td>
@@ -35,6 +39,9 @@
         </tr>
       </tbody>
     </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="turnos"></ng-pagination-control>
+    </div>
   </article>
 
   <section class="formPlus ed-item s-80 m-75 m-offset-10">
@@ -123,43 +130,92 @@
 <div id="doctorModal" class="modal">
   <div class="modal-content">
     <h4 class="title-modal">Doctor</h4>
-    <div class="input-field col s6">
-      <input id="buscadorDoctor" type="text" ng-pagination-search="doctor">
-      <label for="buscadorDoctor">Buscador</label>
-    </div>
-    <table class="bordered highlight responsive-table centered">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Cedula</th>
-          <th>Doctor</th>
-          <th>Accion</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-if="doctor.length === 0">
-          <td colspan="4">No hay doctor</td>
-        </tr>
-        <tr ng-pagination="doc in doctor" ng-pagination-size="2">
-          <td>{{ $index + 1 }}</td>
-          <td>{{ doc.hgc_codi_profe }}</td>
-          <td>{{ doc.hgc_nom_profe }} {{ doc.hgc_ape_profe }}</td>
-          <td>
-            <button class="waves-effect waves-light btn primary modal-action modal-close"
-              ng-click="handleDoctor(doc.hgc_codi_profe)">
-              <i class="material-icons">done_all</i>
-            </button>
-          </td>
-        </tr>
 
-      </tbody>
-    </table>
-    <div class="main-distribute paging-container">
-      <ng-pagination-control pagination-id="doctor"></ng-pagination-control>
-    </div>
+    <article id="serviciosList">
+
+      <div class="form__input">
+        <label for="servicio">Servicio</label>
+        <select ng-model='data.servicio' id="servicio" class='browser-default'>
+          <option value="" selected>Selecione</option>
+          <option ng-repeat="servicio in servicios" value="{{ servicio.hgc_codi_serv }}">
+            {{ servicio.hgc_desc_serv }}
+          </option>
+        </select>
+      </div>
+
+      <div class="main-distribute">
+        <button class="waves-effect waves-light btn primary"
+          ng-click="handleSiguiente(1)">Siguiente
+        </button>
+      </div>
+    </article>
+
+    <article id="especialidadesList" class="none">
+      <div class="form__input">
+        <label for="servicio">Servicio</label>
+        <select ng-model='data.especialidad' id="especialidad" class='browser-default'>
+          <option value="" selected>Selecione</option>
+          <option ng-repeat="especialidad in especialidades" value="{{ especialidad.hgc_codi_espe }}">
+            {{ especialidad.hgc_desc_espe }}
+          </option>
+        </select>
+      </div>
+      <div class="main-distribute">
+        <button class="waves-effect waves-light btn danger"
+          ng-click="handleAtras(1)">Atras
+        </button>
+        <button class="waves-effect waves-light btn primary"
+          ng-click="handleSiguiente(2)">Siguiente
+        </button>
+      </div>
+    </article>
+
+    <article id="doctorTable" class="none">
+      <div class="input-field col s6">
+        <input id="buscadorDoctor" type="text" ng-pagination-search="doctor">
+        <label for="buscadorDoctor">Buscador</label>
+      </div>
+      <table class="bordered highlight responsive-table centered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Cedula</th>
+            <th>Doctor</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-if="doctor.length === 0">
+            <td colspan="4">No hay doctor para la especialidad de <b>{{ especialidad_name }}</b> que seleciono</td>
+          </tr>
+          <tr ng-pagination="doc in doctor" ng-pagination-size="2">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ doc.hgc_codi_profe }}</td>
+            <td>{{ doc.doctor }}</td>
+            <td>
+              <button class="waves-effect waves-light btn primary modal-action modal-close"
+                ng-click="handleDoctor(doc.hgc_codi_profe)">
+                <i class="material-icons">done_all</i>
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="main-distribute paging-container">
+        <ng-pagination-control pagination-id="doctor"></ng-pagination-control>
+      </div>
+      <div class="main-end">
+        <button class="waves-effect waves-light btn danger"
+          ng-click="handleAtras(2)">Atras
+        </button>
+      </div>
+    </article>
+
   </div>
   <div class="modal-footer main-distribute">
-    <button class="modal-action modal-close waves-effect waves-light btn danger">
+    <button class="modal-action modal-close waves-effect waves-light btn danger"
+      ng-click="handleCancel()">
       Cancelar
     </button>
   </div>

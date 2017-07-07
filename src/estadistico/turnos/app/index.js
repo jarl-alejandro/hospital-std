@@ -39,17 +39,20 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $scope.turnos = []
   $scope.pacientes = []
   $scope.doctor = []
-  $scope.data = {}
+  $scope.servicios = []
+  $scope.especialidades = []
+  $scope.especialidad_name = ''
+  $scope.data = { especialidad: '', servicio: '' }
   $scope.buscador = { doctor: '', paciente: '' }
 
   $http.get('src/estadistico/turnos/service/getAll.php')
-    .then(response => $scope.turnos = response.data )
+    .then(response => $scope.turnos = response.data)
 
   $http.get('src/estadistico/turnos/service/pacientes.php')
-    .then(response => $scope.pacientes = response.data )
+    .then(response => $scope.pacientes = response.data)
 
-  $http.get('src/estadistico/turnos/service/doctor.php')
-    .then(response => $scope.doctor = response.data )
+  $http.get('src/archivos/servicios/service/getAll.php')
+    .then(response => $scope.servicios = response.data)
 
   $scope.handleShowForm = function handleShowForm () {
     $('.formPlus').slideDown()
@@ -67,6 +70,53 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $scope.handleDoctor = function (id) {
     $scope.data.doctor = id
     $('#pacienteModal').modal('close')
+  }
+
+  $scope.handleSiguiente = (index) => {
+    if (index === 1) {
+      if ($scope.data.servicio === '') {
+        Materialize.toast('Debe selecionar el servicio', 4000)
+        return false
+      }
+      $('#serviciosList').slideUp()
+      $('#especialidadesList').slideDown()
+
+      $http.get(`src/estadistico/turnos/service/especialidades.php
+        ?service=${$scope.data.servicio}`
+      ).then(response => $scope.especialidades = response.data)
+
+    } else if (index === 2) {
+
+      if ($scope.data.especialidad === '') {
+        Materialize.toast('Debe selecionar la especialidad', 4000)
+        return false
+      }
+      const select = document.querySelector('#especialidad')
+      $scope.especialidad_name = select.children[select.selectedIndex].innerText.trim()
+
+      $http.get(`src/estadistico/turnos/service/doctor.php
+        ?especialidad=${$scope.data.especialidad}`
+      ).then(response => $scope.doctor = response.data)
+
+      $('#especialidadesList').slideUp()
+      $('#doctorTable').slideDown()
+    }
+  }
+
+  $scope.handleAtras = (index) => {
+    if (index === 1) {
+      $('#serviciosList').slideDown()
+      $('#especialidadesList').slideUp()
+    } else if (index === 2) {
+      $('#especialidadesList').slideDown()
+      $('#doctorTable').slideUp()
+    }
+  }
+
+  $scope.handleCancel = () => {
+    $('#serviciosList').slideDown()
+    $('#especialidadesList').slideUp()
+    $('#doctorTable').slideUp()
   }
 
   $scope.handleSave = function handleSave () {
