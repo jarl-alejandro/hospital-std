@@ -20,6 +20,17 @@ $profesion = $profesional->profesion;
 $sexo = $profesional->sexo;
 $rol = $profesional->rol;
 $password = sha1($cedula);
+$especialidades = $profesional->especialidades;
+
+$pdo->query("DELETE FROM hgc_det_doc WHERE hgc_doc_det='$cedula'");
+
+$detail = $pdo->prepare("INSERT INTO hgc_det_doc (hgc_doc_det, hgc_esp_det) VALUES (?, ?)");
+
+foreach ($especialidades as $row) {
+  $detail->bindParam(1, $cedula);
+  $detail->bindParam(2, $row->especialidades);
+  $detail->execute();
+}
 
 if ($id == "") {
   $new = $pdo->prepare("INSERT INTO hgc_profesionales (hgc_cedu_profe, hgc_nom_profe, hgc_ape_profe, hgc_celu_profe, hgc_tele_profe, hgc_direc_profe, hgc_dni_profe, hgc_emai_profe, hgc_fecn_profe, hgc_profe_profe, hgc_sexo_profe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");

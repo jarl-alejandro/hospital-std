@@ -1,7 +1,7 @@
 <?php
 include '../../../../helpers/conexion.php';
 
-$query = $pdo->query("SELECT * FROM view_user WHERE hgc_rol_usu='admision' or hgc_rol_usu='administrador'");
+$query = $pdo->query("SELECT * FROM view_user WHERE hgc_rol_usu='doctor'");
 $profesionales = array();
 
 while ($row = $query->fetch()) {

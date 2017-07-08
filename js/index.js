@@ -114,6 +114,22 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
         authenticated: auth_roles
       }
     })
+    .state('doctores', {
+      url: '/doctores',
+      controller: 'doctoresController',
+      templateUrl: 'src/archivos/doctores/doctores.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
+    .state('enfermeras', {
+      url: '/enfermeras',
+      controller: 'enfermerasController',
+      templateUrl: 'src/archivos/enfermeras/enfermeras.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
     .state('pacientes', {
       url: '/pacientes',
       controller: 'pacientesController',
@@ -214,6 +230,22 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       url: '/consultorios',
       controller: 'consultorioController',
       templateUrl: 'src/archivos/consultorios/consultorio.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
+    .state('cargos', {
+      url: '/cargos',
+      controller: 'cargosController',
+      templateUrl: 'src/archivos/cargos-enfermeras/cargos.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
+    .state('perfilesEnfermeras', {
+      url: '/perfiles-enfermeras',
+      controller: 'perfilEnfermerasController',
+      templateUrl: 'src/archivos/perfiles-enfermeras/perfiles-enfermeras.html',
       resolve: {
         authenticated: auth_roles
       }

@@ -1,9 +1,9 @@
 'use strict'
 
 
-const usuarios = angular.module('Hospital')
+const enfermeras = angular.module('Hospital')
 
-usuarios.controller('usuariosController', function ($scope, $http) {
+enfermeras.controller('enfermerasController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $('ul.tabs').tabs()
   $('ul.tabs').tabs('select_tab', 'test-swipe-1')
@@ -21,19 +21,24 @@ usuarios.controller('usuariosController', function ($scope, $http) {
     email: '',
     sexo: '',
     profesion: '',
-    rol: '',
+    rol: 'enfermera',
+    especialidades: []
   }
   $scope.usuarios = []
   $scope.profesiones = []
   $scope.generos = []
+  $scope.especialidades = []
 
   getAll()
 
   $http.get('src/archivos/profesiones/service/getAll.php')
     .then(response => $scope.profesiones = response.data )
 
-  $http.get('src/archivos/usuarios/service/getAll.php')
+  $http.get('src/archivos/enfermeras/service/getAll.php')
     .then(response => $scope.usuarios = response.data )
+
+  $http.get('src/archivos/especialidades/service/getAll.php')
+    .then(response => $scope.especialidades = response.data)
 
   $scope.handleShowForm = function (e) {
     $('.formContainer').slideDown()
@@ -42,8 +47,9 @@ usuarios.controller('usuariosController', function ($scope, $http) {
   $scope.handleCancel = () => clear()
 
   $scope.handleSave = function (e) {
+    getEspecialidadesDoctor()
     if (validar()) {
-      $http.post("src/archivos/usuarios/service/save.php", {
+      $http.post("src/archivos/enfermeras/service/save.php", {
         'profesional': $scope.data
       }).then(response => {
         console.log(response)
@@ -57,6 +63,16 @@ usuarios.controller('usuariosController', function ($scope, $http) {
   }
 
   $scope.get = function (usuario) {
+    $http.post('src/archivos/enfermeras/service/especialidades.php', {
+      id: usuario.hgc_cedu_profe
+    }).then(response => {
+      console.log(response)
+
+      for (let i in response.data) {
+        let item = response.data[i]
+        document.querySelector(`#confir_${item.hgc_esp_det}`).checked = true
+      }
+    })
 
     $scope.data = {
       id: usuario.hgc_codi_profe,
@@ -77,19 +93,33 @@ usuarios.controller('usuariosController', function ($scope, $http) {
   }
 
   $scope.delete = function (id) {
-    $http.post("src/archivos/usuarios/service/delete.php", { id })
+    $http.post("src/archivos/enfermeras/service/delete.php", { id })
       .then(response => {
         if (response.data == 201) {
           Materialize.toast("Se ha eliminado con exito", 4000)
-          $http.get('src/archivos/usuarios/service/getAll.php')
+          $http.get('src/archivos/enfermeras/service/getAll.php')
             .then(response => $scope.usuarios = response.data)
         }
       })
   }
 
   function getAll () {
-    $http.get('src/archivos/usuarios/service/getAll.php')
+    $http.get('src/archivos/enfermeras/service/getAll.php')
     .then(response =>$scope.usuarios = response.data)
+  }
+
+  function getEspecialidadesDoctor () {
+    const confirmar = Array.prototype.slice.call(
+      document.querySelectorAll('.confirmarEspecialidad')
+    )
+    $scope.data.especialidades = []
+
+    for (let i in confirmar) {
+      let item = confirmar[i]
+      if (item.checked === true) {
+        $scope.data.especialidades.push({ especialidades: item.dataset.esp })
+      }
+    }
   }
 
   function clear () {
@@ -106,10 +136,16 @@ usuarios.controller('usuariosController', function ($scope, $http) {
       email: '',
       sexo: '',
       profesion: '',
-      rol: '',
+      rol: 'enfermera',
+      especialidades: []
     }
     $('.formContainer').slideUp()
     $('ul.tabs').tabs('select_tab', 'test-swipe-1')
+
+    const confirmar = Array.prototype.slice.call(
+      document.querySelectorAll('.confirmarEspecialidad')
+    )
+    for (let i in confirmar) confirmar[i].checked = false
   }
 
   function validar () {
@@ -159,6 +195,10 @@ usuarios.controller('usuariosController', function ($scope, $http) {
     }
     if ($scope.data.rol == "") {
       Materialize.toast("Ingresa el rol", 4000)
+      return false
+    }
+    if ($scope.data.especialidades.length === 0) {
+      Materialize.toas('Selecione la/las especialidades del doctor', 4000)
       return false
     }
     else return true

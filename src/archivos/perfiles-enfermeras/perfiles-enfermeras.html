@@ -1,0 +1,81 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <div class="Title">Pefiles Enfermeras</div>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary'
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
+  <div class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="perfiles">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descripcion</th>
+          <th>Visible</th>
+          <th>Acciòn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="perfiles.length === 0">
+          <td colspan="4">No hay perfiles</td>
+        </tr>
+        <tr ng-pagination='perfil in perfiles' ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ perfil.hgc_desc_perf }}</td>
+          <td>
+            <input type="checkbox" id="visible_{{ perfil.hgc_codi_perf }}"
+              ng-if="perfil.hgc_est_perf === false"
+              ng-click="handleVisible(perfil)" />
+            <input type="checkbox" id="visible_{{ perfil.hgc_codi_perf }}"
+                ng-if="perfil.hgc_est_perf === true" checked
+                ng-click="handleVisible(perfil)" />
+            <label for="visible_{{ perfil.hgc_codi_perf }}"></label>
+          </td>
+          <td>
+            <button class="waves-effect waves-light btn primary"
+              ng-click="handleEdit(perfil)">Editar
+            </button>
+            <button class="waves-effect waves-light btn danger"
+              ng-click="handleDelete(perfil.hgc_codi_perf)">Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="perfiles"></ng-pagination-control>
+    </div>
+  </div>
+</section>
+
+<div id="modalInstitucion" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="title-password">Registrar Perfiles</h4>
+    <article>
+      <div class="input-field">
+        <input id="descricion" type="text" ng-model='data.descripcion'>
+        <label for="descricion">Descripcion</label>
+      </div>
+      <p class="main-center">
+        <input type="checkbox" id="visible" checked ng-model='data.visible' />
+        <label for="visible">visible</label>
+      </p>
+    </article>
+  </div>
+  <div class="modal-footer main-center">
+    <button class="modal-action modal-close waves-effect waves-light btn danger bxn"
+      ng-click='handleClose()'>
+      Cerrar
+    </button>
+    <button class="waves-effect waves-light btn primary bxn" style="margin-left:1em"
+      ng-click='handleSave()'>
+      Guardar
+    </button>
+  </div>
+</div>

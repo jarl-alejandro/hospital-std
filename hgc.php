@@ -35,7 +35,11 @@
     <script src='src/datos/generos/app/index.js'></script>
 
     <script src='src/archivos/profesiones/app/index.js'></script>
+
     <script src='src/archivos/usuarios/app/index.js'></script>
+    <script src='src/archivos/doctores/app/index.js'></script>
+    <script src='src/archivos/enfermeras/app/index.js'></script>
+
     <script src='src/archivos/pacientes/app/index.js'></script>
     <script src='src/archivos/cie10/app/index.js'></script>
     <script src='src/archivos/cie10-1/app/index.js'></script>
@@ -49,6 +53,8 @@
     <script src='src/archivos/actividad/app/index.js'></script>
     <script src='src/archivos/horarios/app/index.js'></script>
     <script src='src/archivos/consultorios/app/index.js'></script>
+    <script src='src/archivos/cargos-enfermeras/app/index.js'></script>
+    <script src='src/archivos/perfiles-enfermeras/app/index.js'></script>
 
     <script src='src/estadistico/turnos/app/index.js'></script>
     <script src='src/estadistico/activar-turnos/app/index.js'></script>

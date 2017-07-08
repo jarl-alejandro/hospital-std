@@ -1,0 +1,81 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <div class="Title">Cargos</div>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary'
+      ng-click="handleShowForm()">
+      <i class="material-icons">mode_edit</i>
+    </button>
+  </div>
+  <div class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="cargos">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descripcion</th>
+          <th>Visible</th>
+          <th>Acciòn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="cargos.length === 0">
+          <td colspan="4">No hay cargos</td>
+        </tr>
+        <tr ng-pagination='cargo in cargos' ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ cargo.hgc_desc_carg }}</td>
+          <td>
+            <input type="checkbox" id="visible_{{ cargo.hgc_codi_carg }}"
+              ng-if="cargo.hgc_est_carg === false"
+              ng-click="handleVisible(cargo)" />
+            <input type="checkbox" id="visible_{{ cargo.hgc_codi_carg }}"
+                ng-if="cargo.hgc_est_carg === true" checked
+                ng-click="handleVisible(cargo)" />
+            <label for="visible_{{ cargo.hgc_codi_carg }}"></label>
+          </td>
+          <td>
+            <button class="waves-effect waves-light btn primary"
+              ng-click="handleEdit(cargo)">Editar
+            </button>
+            <button class="waves-effect waves-light btn danger"
+              ng-click="handleDelete(cargo.hgc_codi_carg)">Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="cargos"></ng-pagination-control>
+    </div>
+  </div>
+</section>
+
+<div id="modalInstitucion" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="title-password">Registrar Cargos</h4>
+    <article>
+      <div class="input-field">
+        <input id="descricion" type="text" ng-model='data.descripcion'>
+        <label for="descricion">Descripcion</label>
+      </div>
+      <p class="main-center">
+        <input type="checkbox" id="visible" checked ng-model='data.visible' />
+        <label for="visible">visible</label>
+      </p>
+    </article>
+  </div>
+  <div class="modal-footer main-center">
+    <button class="modal-action modal-close waves-effect waves-light btn danger bxn"
+      ng-click='handleClose()'>
+      Cerrar
+    </button>
+    <button class="waves-effect waves-light btn primary bxn" style="margin-left:1em"
+      ng-click='handleSave()'>
+      Guardar
+    </button>
+  </div>
+</div>

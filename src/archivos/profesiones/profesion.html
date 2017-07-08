@@ -42,10 +42,12 @@
       <header>
         <h3>Registrar profesion</h3>
       </header>
-      <div class="form__input">
-        <label for="profesion">Ingresa el profesion</label>
-        <input id="profesion" type="text" placeholder='Ejemplo: Ingeniero' ng-model='data.profesion'>
-      </div>
+      <article class="main-center">
+        <div class="input-field s-95">
+          <input id="profesion" type="text" ng-model='data.profesion'>
+          <label for="profesion">Ingresa el profesion</label>
+        </div>
+      </article>
       <div class='main-distribute'>
         <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
         <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>

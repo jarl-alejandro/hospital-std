@@ -1,6 +1,6 @@
 <hgc-menu></hgc-menu>
 <section class="workSpace">
-  <h1 class="Title">Usuarios</h2>
+  <h1 class="Title">Enfermeras</h2>
   <div class="floating-add">
     <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
   </div>
@@ -42,12 +42,13 @@
     ng-class="{ 'formContainer-active': showForm }" style="top:0.5em">
     <article class="form ed-item s-100 m-75 main-distribute">
       <header class="s-100">
-        <h3>Registrar usuario</h3>
+        <h3>Registrar de Enfermeras</h3>
       </header>
       <article class="form__scroll">
         <ul id="tabs-swipe-demo" class="tabs s-100">
           <li class="tab s-30"><a class="active" href="#test-swipe-1">General</a></li>
           <li class="tab s-30"><a href="#test-swipe-2">Informacion</a></li>
+          <li class="tab s-30"><a href="#test-swipe-3">Especialidades</a></li>
         </ul>
         <div id="test-swipe-1" class="s-100">
           <div class="form__input">
@@ -106,12 +107,44 @@
           <div class="form__input s-100">
             <label for="rol">Ingresa el rol</label>
             <select ng-model='data.rol' id="rol" class='browser-default'>
-              <option value="" selected>Seleciona el rol</option>
-              <option value="administrador">Administrador</option>
-              <option value="admision">Admision</option>
+              <option value="enfermera" selected>Enfermera</option>
             </select>
           </div>
         </div>
+
+        <div id="test-swipe-3" class="col s-100">
+          <div class="input-field s-90 s-offset-5">
+            <input id="buscador" type="text" ng-pagination-search="especialidades">
+            <label for="buscador">Buscador</label>
+          </div>
+          <table class="bordered highlight centered responsive-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Especialidad</th>
+                <th>Confirmar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-if="especialidades.length === 0">
+                <td colspan="3">No hay especialidades</td>
+              </tr>
+              <tr ng-pagination="especialidad in especialidades" ng-pagination-size="4">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ especialidad.hgc_desc_espe }}</td>
+                <td>
+                  <input type="checkbox" id="confir_{{ especialidad.hgc_codi_espe }}"
+                    class="confirmarEspecialidad" data-esp="{{especialidad.hgc_codi_espe}}" />
+                  <label for="confir_{{ especialidad.hgc_codi_espe }}"></label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="main-distribute paging-container s-100">
+            <ng-pagination-control pagination-id="especialidades"></ng-pagination-control>
+          </div>
+        </div>
+
       </article>
       <div class='main-distribute s-100'>
         <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
