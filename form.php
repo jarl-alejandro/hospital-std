@@ -1,3 +1,6 @@
+<?php
+echo date('Y');
+?>
 <section class="workSpace">
   <form class='form ed-item s-50'>
     <header>

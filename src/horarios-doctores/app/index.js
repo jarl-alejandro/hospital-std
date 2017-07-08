@@ -4,13 +4,18 @@ const horariosDoctores = angular.module('Hospital')
 
 horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   $('ul.tabs').tabs()
+  $('ul.tabs').tabs('select_tab', 'horarios-swipe-1')
+
   const mesTag = document.getElementById('mes')
   mesTag.addEventListener('change', createMes)
   $scope.medicos = []
   $scope.consultorios = []
   $scope.horarios = []
-  $scope.data = { medicos: '', consultorio: '', mes: '' }
+  $scope.horarioDoc = []
+  $scope.data = { medicos: '', consultorio: '', mes: '', horarios: [], id: '' }
   $scope.diaHorario = ''
+
+  getAll()
 
   $scope.mes = [
     { id: 1, nombre: 'Enero' },
@@ -43,6 +48,103 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
       return false
     }
     $('#modalInstitucion').modal('open')
+  }
+
+  $scope.setHorario = (horario) => {
+    const hoy = new Date()
+    const mes = $scope.data.mes < 10 ? '0'+$scope.data.mes : $scope.data.mes
+    const year = hoy.getFullYear()
+    const ctx = {
+      codigo: horario.hgc_codi_hora,
+      dia: `${year}-${mes}-${$scope.diaHorario}`
+    }
+
+    $scope.data.horarios.push(ctx)
+  }
+
+  $scope.handleSave = () => {
+    if (validar()) {
+      $http.post('src/horarios-doctores/service/save.php', $scope.data)
+        .then(response => {
+          console.log(response)
+          if (response.data === '201') {
+            Materialize.toast('Se ha guardado con exito', 4000)
+            getAll()
+            close()
+          }
+        })
+    }
+  }
+  $scope.handleClose = () => close()
+
+  $scope.handleEdit = (horario) => {
+    $scope.data = {
+      medicos: horario.hgc_codi_profe,
+      consultorio: horario.hgc_codi_profe,
+      mes: horario.hgc_mes_hora,
+      horarios: [],
+      id: horario.hgc_codi_hora
+    }
+    mesTag.value = horario.hgc_mes_hora
+    createMes()
+
+    $('#adignarFormHorario').modal('open')
+    $http.get(`src/horarios-doctores/service/horarios.php?id=${horario.hgc_codi_hora}`)
+      .then(response => {
+        for(let i in response.data) {
+          const item = response.data[i]
+          const ctx = {
+            codigo: item.hgc_hora_det,
+            dia: item.hgc_dia_det
+          }
+          $scope.data.horarios.push(ctx)
+        }
+      })
+    console.log($scope.data)
+  }
+
+  $scope.handleDelete = (id) => {
+    $http.post('src/horarios-doctores/service/delete.php', { id })
+      .then(response => {
+        console.log(response)
+        getAll()
+        Materialize.toast('Se ha eliminado con exito', 4000)
+      })
+  }
+
+  function getAll () {
+    $http.get('src/horarios-doctores/service/getAll.php')
+      .then(response => $scope.horarioDoc = response.data)
+  }
+
+  function close () {
+    $('#adignarFormHorario').modal('close')
+    $('ul.tabs').tabs('select_tab', 'horarios-swipe-1')
+    $scope.data = { medicos: '', consultorio: '', mes: '', horarios: [] }
+    $scope.diaHorario = ''
+    document.getElementById('semanasDelMes').innerHTML = ''
+  }
+
+  function validar () {
+    const data = $scope.data
+    if (data.medicos === '') {
+      Materialize.toast('Selecione el medico', 4000)
+      $('#medicos').focus()
+      return false
+    }
+    if (data.consultorio === '') {
+      Materialize.toast('Selecione el consultorio', 4000)
+      $('#consultorio').focus()
+      return false
+    }
+    if (data.mes === '') {
+      Materialize.toast('Selecione el mes', 4000)
+      $('#mes').focus()
+      return false
+    }
+    if (data.horarios.length === 0){
+      Materialize.toast('Ingrese los horarios para el doctor', 4000)
+    } else return true
   }
 
   function fechaPorDia(year, dia, mes) {
@@ -90,6 +192,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   }
 
   function struct () {
+    $scope.data.horarios = []
     const semanas = document.getElementById('semanasDelMes')
     semanas.innerHTML = ''
     for (let i = 1; i <= 6; i++){
