@@ -62,6 +62,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
     $scope.data.horarios.push(ctx)
     document.querySelector(`#semanasDelMes td[data-dia="${$scope.diaHorario}"]`)
       .className = 'dias-asiganado__active'
+    $scope.diaHorario = ''
   }
 
   $scope.handleSave = () => {
@@ -105,7 +106,6 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
             .className = 'dias-asiganado__active'
         }
       })
-    console.log($scope.data)
   }
 
   $scope.handleDelete = (id) => {
@@ -191,6 +191,10 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
 
     for (let i=0; i<dias.length; i++) {
       dias[i].addEventListener('click', event => {
+        if ($scope.diaHorario !== ''){
+            Materialize.toast('Ya ha selecionado el dia ingrese el horario', 4000)
+            return false
+        }
         dias[i].className = 'dias-asiganado__select'
         $scope.diaHorario = event.target.dataset.dia
       })
