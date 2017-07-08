@@ -60,6 +60,8 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
     }
 
     $scope.data.horarios.push(ctx)
+    document.querySelector(`#semanasDelMes td[data-dia="${$scope.diaHorario}"]`)
+      .className = 'dias-asiganado__active'
   }
 
   $scope.handleSave = () => {
@@ -98,6 +100,9 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
             dia: item.hgc_dia_det
           }
           $scope.data.horarios.push(ctx)
+          const dia = ctx.dia.split("-")[2]
+          document.querySelector(`#semanasDelMes td[data-dia="${dia}"]`)
+            .className = 'dias-asiganado__active'
         }
       })
     console.log($scope.data)
@@ -120,7 +125,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   function close () {
     $('#adignarFormHorario').modal('close')
     $('ul.tabs').tabs('select_tab', 'horarios-swipe-1')
-    $scope.data = { medicos: '', consultorio: '', mes: '', horarios: [] }
+    $scope.data = { medicos: '', consultorio: '', mes: '', horarios: [], id: '' }
     $scope.diaHorario = ''
     document.getElementById('semanasDelMes').innerHTML = ''
   }
@@ -186,6 +191,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
 
     for (let i=0; i<dias.length; i++) {
       dias[i].addEventListener('click', event => {
+        dias[i].className = 'dias-asiganado__select'
         $scope.diaHorario = event.target.dataset.dia
       })
     }
