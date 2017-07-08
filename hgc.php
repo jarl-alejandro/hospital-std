@@ -39,6 +39,7 @@
     <script src='src/archivos/usuarios/app/index.js'></script>
     <script src='src/archivos/doctores/app/index.js'></script>
     <script src='src/archivos/enfermeras/app/index.js'></script>
+    <script src='src/archivos/pasantes/app/index.js'></script>
 
     <script src='src/archivos/pacientes/app/index.js'></script>
     <script src='src/archivos/cie10/app/index.js'></script>

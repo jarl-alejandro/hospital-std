@@ -198,7 +198,7 @@ doctores.controller('doctoresController', function ($scope, $http) {
       return false
     }
     if ($scope.data.especialidades.length === 0) {
-      Materialize.toas('Selecione la/las especialidades del doctor', 4000)
+      Materialize.toast('Selecione la/las especialidades del doctor', 4000)
       return false
     }
     else return true

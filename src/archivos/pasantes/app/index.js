@@ -1,12 +1,31 @@
 'use strict'
 
 
-const enfermeras = angular.module('Hospital')
+const pasantes = angular.module('Hospital')
 
-enfermeras.controller('enfermerasController', function ($scope, $http) {
+pasantes.controller('pasantesController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $('ul.tabs').tabs()
   $('ul.tabs').tabs('select_tab', 'test-swipe-1')
+
+  $('.datepicker').pickadate({
+    selectMonths: true,
+    selectYears: 15,
+    clear: 'Limpiar',
+    close: 'OK',
+    today: 'Hoy',
+    format: 'dd/mm/yyyy',
+    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Dicembre'],
+    monthsShort: ['Ene', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+    weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+    labelMonthNext: 'Siguiente mes',
+    labelMonthPrev: 'Mes Anterior',
+    labelMonthSelect: 'Selecione el mes',
+    labelYearSelect: 'Selecione el año',
+    min: new Date(),
+  })
 
   $scope.data = {
     id: '',
@@ -21,7 +40,11 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
     email: '',
     sexo: '',
     profesion: '',
-    rol: 'enfermera',
+    tipoPasante: '',
+    fecha_ingreso: '',
+    fecha_egreso: '',
+    universidad: '',
+    rol: 'pasantes',
     especialidades: []
   }
   $scope.usuarios = []
@@ -34,8 +57,11 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
   $http.get('src/archivos/profesiones/service/getAll.php')
     .then(response => $scope.profesiones = response.data )
 
-  $http.get('src/archivos/enfermeras/service/getAll.php')
+  $http.get('src/archivos/pasantes/service/getAll.php')
     .then(response => $scope.usuarios = response.data )
+
+  $http.get('src/datos/generos/service/getAll.php')
+    .then(response => $scope.generos = response.data )
 
   $http.get('src/archivos/especialidades/service/getAll.php')
     .then(response => $scope.especialidades = response.data)
@@ -49,7 +75,7 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
   $scope.handleSave = function (e) {
     getEspecialidadesDoctor()
     if (validar()) {
-      $http.post("src/archivos/enfermeras/service/save.php", {
+      $http.post("src/archivos/pasantes/service/save.php", {
         'profesional': $scope.data
       }).then(response => {
         console.log(response)
@@ -63,7 +89,7 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
   }
 
   $scope.get = function (usuario) {
-    $http.post('src/archivos/enfermeras/service/especialidades.php', {
+    $http.post('src/archivos/pasantes/service/especialidades.php', {
       id: usuario.hgc_cedu_profe
     }).then(response => {
       console.log(response)
@@ -73,7 +99,7 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
         document.querySelector(`#confir_${item.hgc_esp_det}`).checked = true
       }
     })
-
+    console.log(usuario)
     $scope.data = {
       id: usuario.hgc_codi_profe,
       cedula: usuario.hgc_cedu_profe,
@@ -88,23 +114,27 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
       sexo: usuario.hgc_sexo_profe,
       profesion: usuario.hgc_profe_profe,
       rol: usuario.hgc_rol_usu,
+      tipoPasante: usuario.hgc_tipo_pasa,
+      fecha_ingreso: usuario.hgc_fing_pasa,
+      fecha_egreso: usuario.hgc_fegr_pasa,
+      universidad: usuario.hgc_univ_pasa,
     }
     $('.formContainer').slideDown()
   }
 
   $scope.delete = function (id) {
-    $http.post("src/archivos/enfermeras/service/delete.php", { id })
+    $http.post("src/archivos/pasantes/service/delete.php", { id })
       .then(response => {
         if (response.data == 201) {
           Materialize.toast("Se ha eliminado con exito", 4000)
-          $http.get('src/archivos/enfermeras/service/getAll.php')
+          $http.get('src/archivos/pasantes/service/getAll.php')
             .then(response => $scope.usuarios = response.data)
         }
       })
   }
 
   function getAll () {
-    $http.get('src/archivos/enfermeras/service/getAll.php')
+    $http.get('src/archivos/pasantes/service/getAll.php')
     .then(response =>$scope.usuarios = response.data)
   }
 
@@ -136,7 +166,11 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
       email: '',
       sexo: '',
       profesion: '',
-      rol: 'enfermera',
+      rol: 'pasantes',
+      tipoPasante: '',
+      fecha_ingreso: '',
+      fecha_egreso: '',
+      universidad: '',
       especialidades: []
     }
     $('.formContainer').slideUp()
@@ -197,8 +231,24 @@ enfermeras.controller('enfermerasController', function ($scope, $http) {
       Materialize.toast("Ingresa el rol", 4000)
       return false
     }
+    if ($scope.data.universidad == "") {
+      Materialize.toast("Ingresa el rol", 4000)
+      return false
+    }
+    if ($scope.data.fecha_ingreso == "") {
+      Materialize.toast("Ingresa la fecha de ingreso", 4000)
+      return false
+    }
+    if ($scope.data.fecha_egreso == "") {
+      Materialize.toast("Ingresa la fecha de egreso", 4000)
+      return false
+    }
+    if ($scope.data.tipoPasante == "") {
+      Materialize.toast("Ingresa el tipo de pasante", 4000)
+      return false
+    }
     if ($scope.data.especialidades.length === 0) {
-      Materialize.toast('Selecione la/las especialidades de la enfermera', 4000)
+      Materialize.toast('Selecione la/las especialidades del pasante', 4000)
       return false
     }
     else return true
