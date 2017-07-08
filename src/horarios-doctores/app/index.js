@@ -102,6 +102,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
           }
           $scope.data.horarios.push(ctx)
           const dia = ctx.dia.split("-")[2]
+          console.log(`#semanasDelMes td[data-dia="${dia}"]`)
           document.querySelector(`#semanasDelMes td[data-dia="${dia}"]`)
             .className = 'dias-asiganado__active'
         }
