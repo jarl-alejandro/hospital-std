@@ -44,7 +44,8 @@
       <header class="s-100">
         <h3>Registrar profesion</h3>
       </header>
-      <article class="form__scroll">
+      <article class="form__scroll"
+        style="display:flex;flex-wrap: wrap;justify-content: center;">
         <div class="form__input s-100 m-45">
           <label for="cedula">Ingresa el cedula</label>
           <input id="cedula" type="text" placeholder='Ejemplo: 1718769365' ng-model='data.cedula'>
@@ -87,6 +88,10 @@
             <option value="" selected>Seleciona el sexo</option>
             <option ng-repeat="sexo in generos" value="{{ sexo.hgc_codi_genero }}">{{ sexo.hgc_desc_genero }}</option>
           </select>
+        </div>
+        <div class="form__input s-100 m-45">
+          <label for="ubicacion">Ingresa la ubicacion</label>
+          <input id="ubicacion" type="text" ng-model='data.ubicacion' placeholder="A01-1-1-01" ng-disabled="true">
         </div>
       </article>
       <div class='main-distribute s-100'>

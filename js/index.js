@@ -186,6 +186,14 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
         authenticated: auth_roles
       }
     })
+    .state('nivelInstitucion', {
+      url: '/nivel-institucion',
+      controller: 'nivelInstitucionController',
+      templateUrl: 'src/archivos/nivel-institucion/nivel_institucion.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
     .state('tipologia', {
       url: '/tipologia',
       controller: 'tipologiaController',

@@ -1,7 +1,7 @@
 <?php
 include '../../../../helpers/conexion.php';
 
-$query = $pdo->query("SELECT * FROM hgc_paciente");
+$query = $pdo->query("SELECT * FROM view_paciente");
 $pacientes = array();
 
 while ($row = $query->fetch()) {

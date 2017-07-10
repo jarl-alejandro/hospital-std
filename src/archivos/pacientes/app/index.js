@@ -1,11 +1,10 @@
 'use strict'
 
-
 const pacientes = angular.module('Hospital')
 
 pacientes.controller('pacientesController', function ($scope, $http) {
   $('.formContainer').slideUp()
-  $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: ''}
+  $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: ''}
   $scope.pacientes = []
   $scope.generos = []
 
@@ -19,7 +18,7 @@ pacientes.controller('pacientesController', function ($scope, $http) {
     $('.formContainer').slideDown()
   }
   $scope.handleCancel = function (e) {
-    $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: ''}
+    $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: ''}
     $('.formContainer').slideUp()
   }
   $scope.handleSave = function (e) {
@@ -69,7 +68,7 @@ pacientes.controller('pacientesController', function ($scope, $http) {
         console.log(response)
         if (response.data == 201) {
           Materialize.toast("Se ha guardado con exito", 4000)
-          $scope.data = { profesion: '', id: '' }
+          clear()
           $('.formContainer').slideUp()
           $http.get('src/archivos/pacientes/service/getAll.php')
             .then(response => $scope.pacientes = response.data)
@@ -78,18 +77,20 @@ pacientes.controller('pacientesController', function ($scope, $http) {
   }
 
   $scope.get = function (paciente) {
+    const fecha =  paciente.hgc_fecn_pacie === null ? '' : new Date(paciente.hgc_fecn_pacie)
     $scope.data = {
       id: paciente.hgc_codi_pacie,
       cedula: paciente.hgc_cedu_pacie,
       nombre: paciente.hgc_nom_pacie,
       apellido: paciente.hgc_ape_pacie,
-      fechaNac: new Date(paciente.hgc_fecn_pacie),
+      fechaNac: fecha,
       dni: paciente.hgc_dni_pacie,
       telefono: paciente.hgc_tele_pacie,
       ceulular: paciente.hgc_celu_pacie,
       direccion: paciente.hgc_direc_pacie,
       email: paciente.hgc_emai_pacie,
-      sexo: paciente.hgc_sexo_pacie
+      sexo: paciente.hgc_sexo_pacie,
+      ubicacion: paciente.hgc_ubica_hcli
     }
     $('.formContainer').slideDown()
   }
@@ -103,5 +104,9 @@ pacientes.controller('pacientesController', function ($scope, $http) {
             .then(response => $scope.pacientes = response.data)
         }
       })
+  }
+
+  function clear () {
+    $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: ''}
   }
 })

@@ -52,7 +52,7 @@ institucion.controller('institucionController', function ($scope, $http) {
     $scope.data = {
       descripcion: institucion.hgc_desc_inst,
       visible: institucion.hgc_est_inst,
-      id: institucion.hgc_codi_inst
+      id: institucion.hgc_codi_inst,
     }
     $('.input-field label').addClass('active')
     $('#modalInstitucion').modal('open')
