@@ -18,15 +18,17 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
       const age = getAgeByMonth(item.fecha, fechaNacimiento)
       const peso = parseFloat(item.peso)
       let y = 0
+
       if (peso === 1) y = 7
       else if (peso === 2) y = 14
-      else if (peso === 3) y = 59
-      else if (peso >= 4) {
-        if (peso % 2 === 0) {
-          y = (23 * peso) + 59
-        } else {
-          y = (23 * peso) + 59
+      else if (peso > 2) {
+        let celda = 46
+        let base = 14
+
+        for (let i=0; i<peso; i++) {
+          y = celda * i - 22 - base
         }
+        console.log(y)
       }
 
       s.circle(age*28.5, y, 50).attr({
