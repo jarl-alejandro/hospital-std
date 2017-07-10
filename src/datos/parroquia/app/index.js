@@ -41,7 +41,11 @@ parroquia.controller('parroquiaController', function ($scope, $http) {
   }
 
   $scope.get = function (parroquia) {
-    console.log(parroquia)
+    setTimeout(() => {
+      $('#circuitos').val(parroquia.hgc_circ_parro).trigger('change')
+      $('#canton').val(parroquia.hgc_cant_parro).trigger('change')
+    }, 100)
+
     $scope.data = {
       parroquia: parroquia.hgc_desc_parro,
       id: parroquia.hgc_codi_parro,
