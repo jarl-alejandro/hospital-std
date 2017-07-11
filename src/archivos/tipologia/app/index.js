@@ -24,6 +24,10 @@ tipologia.controller('tipologiaController', function ($scope, $http) {
       Materialize.toast('Debe ingresar la descripcion', 4000)
       return false
     }
+    if ($scope.data.nivelInstitucion === '') {
+      Materialize.toast('Debe selecionar el nivel de institucion', 4000)
+      return false
+    }
 
     $http.post('src/archivos/tipologia/service/save.php', {
       id: $scope.data.id,

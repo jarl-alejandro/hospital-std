@@ -110,15 +110,43 @@
       </div>
 
       <div class="main-distribute">
-        <div class="input-field s-100">
+        <div class="input-field s-100 m-45">
           <input id="descricion" type="text" ng-model='data.descripcion'>
           <label for="descricion">Descripcion</label>
         </div>
-        <div class="input-field s-100">
+        <div class="input-field s-100 m-45">
           <input id="direccion" type="text" ng-model='data.direccion'>
           <label for="direccion">Direccion</label>
         </div>
       </div>
+
+      <div class="main-distribute" ng-controller="validForm">
+        <div class="input-field s-100 m-45">
+          <input id="telefono" type="text" ng-model='data.telefono'
+            ng-keypress="ValidaSoloNumeros()" maxlength="10">
+          <label for="telefono">Telefono</label>
+        </div>
+        <div class="input-field s-100 m-45">
+          <input id="celular" type="text" ng-model='data.celular'
+            ng-keypress="ValidaSoloNumeros()" maxlength="10">
+          <label for="celular">Celular</label>
+        </div>
+      </div>
+
+      <div class="main-distribute">
+
+        <div class="form__input s-100">
+          <label for="parroquia">Parroquia</label>
+          <select ng-model='data.parroquia' id="parroquia" class='browser-default'>
+            <option value="" selected>Seleciona</option>
+            <option ng-repeat="parroquia in parroquias" value="{{ parroquia.hgc_codi_parro }}">
+              {{ parroquia.hgc_desc_parro }}
+            </option>
+          </select>
+        </div>
+
+      </div>
+
       <p class="main-center">
         <input type="checkbox" id="visible" checked ng-model='data.visible' />
         <label for="visible">visible</label>

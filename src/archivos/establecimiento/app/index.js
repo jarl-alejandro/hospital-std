@@ -6,9 +6,10 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
   $scope.establecimientos = []
   $scope.instituciones = []
   $scope.tipologias = []
+  $scope.parroquias = []
   $scope.data = {
     id: '', visible: true, descripcion: '', tipologia: '', institucion: '',
-    red: '', horas: '', direccion: ''
+    red: '', horas: '', direccion: '', telefono: '', celular: '', parroquia: ''
   }
 
   getAll()
@@ -18,6 +19,9 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
 
   $http.get('src/archivos/tipologia/service/getAll.php')
     .then(response => $scope.tipologias = response.data)
+
+  $http.get('src/datos/parroquia/service/getAll.php')
+    .then(response => $scope.parroquias = response.data)
 
   $scope.handleShowForm = () => $('#modalEstablecimiento').modal('open')
   $scope.handleClose = () => close()
@@ -33,6 +37,9 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
         descripcion: $scope.data.descripcion,
         direccion: $scope.data.direccion,
         visible: $scope.data.visible === true ? 1 : 0,
+        telefono: $scope.data.telefono,
+        celular: $scope.data.celular,
+        parroquia: $scope.data.parroquia
       }).then(response => {
         console.log(response)
         if (response.data === '201') {
@@ -64,7 +71,10 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
       institucion: establecimiento.hgc_codi_inst,
       red: establecimiento.hgc_red_esta,
       horas: establecimiento.hgc_hate_esta,
-      direccion: establecimiento.hgc_dire_esta
+      direccion: establecimiento.hgc_dire_esta,
+      telefono: establecimiento.hgc_tele_esta,
+      celular: establecimiento.hgc_celu_esta,
+      parroquia: establecimiento.hgc_parr_esta
     }
   }
 
@@ -84,7 +94,7 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
     $('#modalEstablecimiento label.active').removeClass('active')
     $scope.data = {
       id: '', visible: true, descripcion: '', tipologia: '', institucion: '',
-      red: '', horas: '', direccion: ''
+      red: '', horas: '', direccion: '', telefono: '', celular: '', parroquia: ''
     }
   }
 
@@ -111,7 +121,19 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
     if (data.direccion === '') {
       Materialize.toast('Ingrese la direccion', 4000)
       return false
-    } else return true
+    }
+    if (data.telefono === '') {
+      Materialize.toast('Ingrese la telefono', 4000)
+      return false
+    }
+    if (data.celular === '') {
+      Materialize.toast('Ingrese la celular', 4000)
+      return false
+    }
+    if (data.parroquia === '') {
+      Materialize.toast('Ingrese la parroquia', 4000)
+      return false
+    }else return true
   }
 
 })
