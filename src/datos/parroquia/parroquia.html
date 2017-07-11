@@ -40,22 +40,65 @@
     </div>
   </article>
 
-  <div class="formContainer ed-item s-80 m-75 m-offset-5"
+  <div class="formContainer ed-item s-90 m-75 m-offset-5"
     ng-class="{ 'formContainer-active': showForm }">
     <article class="form ed-item s-100 m-75">
       <header>
         <h3>Registrar de parroquia</h3>
       </header>
-      <div class="form__input">
-        <label for="parroquia">Ingresa la parroquia</label>
-        <input id="parroquia" type="text" placeholder='Ejemplo: Rio Verde' ng-model='data.parroquia'>
+      <ul id="tabs-swipe-demo" class="tabs">
+        <li class="tab col s3"><a class="active" href="#tabs-swipe-1">Informacion</a></li>
+        <li class="tab col s3"><a href="#tabs-swipe-2">Circuitos</a></li>
+      </ul>
+
+      <div id="tabs-swipe-1" class="s-100">
+        <div class="form__input">
+          <label for="parroquia">Ingresa la parroquia</label>
+          <input id="parroquia" type="text" placeholder='Ejemplo: Rio Verde' ng-model='data.parroquia'>
+        </div>
+        <div class="form__input">
+          <label for="canton">Seleciona</label>
+          <select id="canton" ng-model='data.canton' class='browser-default'>
+            <option value="" selected>Canton</option>
+            <option ng-repeat="canton in cantones" value="{{ canton.hgc_codi_canton }}">{{ canton.hgc_desc_canton }}</option>
+          </select>
+        </div>
       </div>
-      <div class="form__input">
-        <label for="canton">Seleciona el canton</label>
-        <select id="canton" ng-model='data.canton' class='browser-default'>
-          <option ng-repeat="canton in cantones" value="{{ canton.hgc_codi_canton }}">{{ canton.hgc_desc_canton }}</option>
-        </select>
+
+      <div id="tabs-swipe-2" class="s-100">
+        <div class="input-field s-90 s-offset-5">
+          <input id="buscador" type="text" ng-pagination-search="ciruitos">
+          <label for="buscador">Buscador</label>
+        </div>
+        <table class="bordered highlight centered responsive-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Circuito</th>
+              <th>Confirmar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-if="ciruitos.length === 0">
+              <td colspan="3">No hay ciruitos</td>
+            </tr>
+            <tr ng-pagination="ciruito in ciruitos" ng-pagination-size="3">
+              <td>{{ $index + 1 }}</td>
+              <td>{{ ciruito.hgc_desc_circ }}</td>
+              <td>
+                <input type="checkbox" id="confir_{{ ciruito.hgc_codi_circ }}"
+                  class="confirmarEspecialidad" data-circ="{{ciruito.hgc_codi_circ}}" />
+                <label for="confir_{{ ciruito.hgc_codi_circ }}"></label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="main-distribute paging-container s-100">
+          <ng-pagination-control pagination-id="ciruitos"></ng-pagination-control>
+        </div>
+
       </div>
+
       <div class='main-distribute'>
         <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
         <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>

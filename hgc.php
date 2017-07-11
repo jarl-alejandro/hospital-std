@@ -77,5 +77,8 @@
 
     <script src='src/home/app/index.js'></script>
     <script src='src/login/app/index.js'></script>
+    <script type="text/javascript">
+      $('ul.tabs').tabs()
+    </script>
   </body>
 </html>
