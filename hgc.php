@@ -61,6 +61,7 @@
     <script src='src/archivos/perfiles-enfermeras/app/index.js'></script>
     <script src='src/archivos/distrito/app/index.js'></script>
     <script src='src/archivos/circuito/app/index.js'></script>
+    <script src='src/archivos/zonas/app/index.js'></script>
 
     <script src='src/estadistico/turnos/app/index.js'></script>
     <script src='src/estadistico/activar-turnos/app/index.js'></script>

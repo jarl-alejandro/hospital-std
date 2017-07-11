@@ -282,6 +282,14 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
         authenticated: auth_roles
       }
     })
+    .state('zonas', {
+      url: '/zonas',
+      controller: 'zonasController',
+      templateUrl: 'src/archivos/zonas/zonas.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
     .state('horariosDoctores', {
       url: '/horarios-doctores',
       controller: 'horariosDocController',
