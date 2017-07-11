@@ -25,7 +25,7 @@
           <td>{{ $index + 1 }}</td>
           <td>{{ canton.hgc_desc_canton }}</td>
           <td>
-            <button class='waves-effect waves-light btn primary' ng-click="get(canton.hgc_codi_canton, canton.hgc_desc_canton, canton.hgc_provi_canton)">Editar</button>
+            <button class='waves-effect waves-light btn primary' ng-click="get(canton.hgc_codi_canton, canton.hgc_desc_canton, canton.hgc_provi_canton, canton.hgc_dist_canton)">Editar</button>
             <button class='waves-effect waves-light btn danger' ng-click="delete(canton.hgc_codi_canton)">Eliminar</button>
           </td>
         </tr>
@@ -46,12 +46,29 @@
         <label for="canton">Ingresa el canton</label>
         <input id="canton" type="text" placeholder='Ejemplo: Santo Domingo' ng-model='data.canton'>
       </div>
-      <div class="form__input">
-        <label for="provincia">Seleciona la provincia</label>
-        <select id="provincia" class='browser-default' ng-model='data.provincia'>
-          <option ng-repeat="provincia in provincias" value="{{ provincia.hgc_codi_provi }}">{{ provincia.hgc_desc_provi }}</option>
-        </select>
+
+      <div class="main-distribute">
+        <div class="form__input s-100 m-50">
+          <label for="provincia">Seleciona</label>
+          <select id="provincia" class='browser-default' ng-model='data.provincia'>
+            <option value="" selected>Provincia</option>
+            <option ng-repeat="provincia in provincias" value="{{ provincia.hgc_codi_provi }}">
+              {{ provincia.hgc_desc_provi }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form__input s-100 m-50">
+          <label for="distrito">Seleciona</label>
+          <select id="distrito" class='browser-default' ng-model='data.distrito'>
+            <option value="" selected>Distrito</option>
+            <option ng-repeat="distrito in distritos" value="{{ distrito.hgc_codi_dist }}">
+              {{ distrito.hgc_desc_dist }}
+            </option>
+          </select>
+        </div>
       </div>
+
       <div class='main-distribute'>
         <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
         <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>

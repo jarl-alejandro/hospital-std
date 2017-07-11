@@ -28,7 +28,7 @@
           <td>{{ provincia.hgc_desc_provi }}</td>
           <td>
             <button class='waves-effect waves-light btn primary'
-              ng-click="get(provincia.hgc_codi_provi, provincia.hgc_desc_provi, provincia.hgc_pais_provi)">Editar
+              ng-click="get(provincia.hgc_codi_provi, provincia.hgc_desc_provi, provincia.hgc_pais_provi, provincia.hgc_zona_provi)">Editar
             </button>
             <button class='waves-effect waves-light btn danger'
               ng-click="delete(provincia.hgc_codi_provi)">Eliminar
@@ -52,12 +52,28 @@
         <label for="provincia">Ingresa la provincia</label>
         <input id="provincia" type="text" placeholder='Ejemplo: Santo Domingo' ng-model='data.provincia'>
       </div>
-      <div class="form__input">
-        <label for="pais">Seleciona el pais</label>
-        <select id="pais" ng-model='data.pais' class='browser-default'>
-          <option ng-repeat="pais in paises" value="{{ pais.hgc_codi_pais }}">{{ pais.hgc_desc_pais }}</option>
-        </select>
+      <div class="main-distribute">
+
+        <div class="form__input s-100 m-50">
+          <label for="pais">Seleciona el pais</label>
+          <select id="pais" ng-model='data.pais' class='browser-default'>
+            <option value="" selected>Pais</option>
+            <option ng-repeat="pais in paises" value="{{ pais.hgc_codi_pais }}">{{ pais.hgc_desc_pais }}</option>
+          </select>
+        </div>
+
+        <div class="form__input s-100 m-50">
+          <label for="zonas">Seleciona</label>
+          <select id="zonas" class='browser-default' ng-model='data.zona'>
+            <option value="" selected>Zonas</option>
+            <option ng-repeat="zona in zonas" value="{{ zona.hgc_codi_zona }}">
+              {{ zona.hgc_desc_zona }}
+            </option>
+          </select>
+        </div>
+
       </div>
+
       <div class='main-distribute'>
         <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
         <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
