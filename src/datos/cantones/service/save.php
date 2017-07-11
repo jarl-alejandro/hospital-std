@@ -23,6 +23,7 @@ else {
     hgc_provi_canton='$provincia', hgc_dist_canton='$distrito' WHERE hgc_codi_canton='$id'");
 }
 
+
 if ($new) {
   echo 201;
 }

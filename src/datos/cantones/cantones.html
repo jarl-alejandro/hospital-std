@@ -49,9 +49,9 @@
 
       <div class="main-distribute">
         <div class="form__input s-100 m-50">
-          <label for="provincia">Seleciona</label>
+          <label for="provincia">Provincia</label>
           <select id="provincia" class='browser-default' ng-model='data.provincia'>
-            <option value="" selected>Provincia</option>
+            <option value="" selected>Seleciona</option>
             <option ng-repeat="provincia in provincias" value="{{ provincia.hgc_codi_provi }}">
               {{ provincia.hgc_desc_provi }}
             </option>
@@ -59,9 +59,9 @@
         </div>
 
         <div class="form__input s-100 m-50">
-          <label for="distrito">Seleciona</label>
+          <label for="distrito">Distrito</label>
           <select id="distrito" class='browser-default' ng-model='data.distrito'>
-            <option value="" selected>Distrito</option>
+            <option value="" selected>Seleciona</option>
             <option ng-repeat="distrito in distritos" value="{{ distrito.hgc_codi_dist }}">
               {{ distrito.hgc_desc_dist }}
             </option>
