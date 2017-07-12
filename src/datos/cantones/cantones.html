@@ -12,9 +12,11 @@
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
-          <th width="10%">#</th>
-          <th width="60%">Cantones</th>
-          <th width="30%"></th>
+          <th>#</th>
+          <th>Provincia</th>
+          <th>Cantones</th>
+          <th>Distrito</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -23,7 +25,9 @@
         </tr>
         <tr ng-pagination="canton in cantones" ng-pagination-size="5">
           <td>{{ $index + 1 }}</td>
+          <td>{{ canton.hgc_desc_provi }}</td>
           <td>{{ canton.hgc_desc_canton }}</td>
+          <td>{{ canton.hgc_desc_dist }}</td>
           <td>
             <button class='waves-effect waves-light btn primary' ng-click="get(canton.hgc_codi_canton, canton.hgc_desc_canton, canton.hgc_provi_canton, canton.hgc_dist_canton)">Editar</button>
             <button class='waves-effect waves-light btn danger' ng-click="delete(canton.hgc_codi_canton)">Eliminar</button>

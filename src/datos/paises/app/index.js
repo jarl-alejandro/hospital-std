@@ -5,39 +5,33 @@ const paises = angular.module('Hospital')
 
 paises.controller('paisController', function ($scope, $http) {
   $('.formContainer').slideUp()
-  $scope.data = { pais: '', id: '' }
+  $scope.data = { pais: '', id: '', codigoPostal:'' }
   $scope.paises = []
+  getAll()
 
-  $http.get('src/datos/paises/service/getAll.php')
-    .then(response => $scope.paises = response.data )
+  $scope.handleShowForm = () =>$('.formContainer').slideDown()
+  $scope.handleCancel = () => clear()
 
-  $scope.handleShowForm = function (e) {
-    $('.formContainer').slideDown()
-  }
-  $scope.handleCancel = function (e) {
-    $scope.data = { pais: '', id: '' }
-    $('.formContainer').slideUp()
-  }
   $scope.handleSave = function (e) {
-    if ($scope.data.pais == "") {
-      Materialize.toast("Ingresa el pais", 4000)
-      return false
-    }
-    $http.post("src/datos/paises/service/save.php", { 'pais': $scope.data.pais, 'id': $scope.data.id })
-      .then(response => {
+    if (validar()) {
+      $http.post("src/datos/paises/service/save.php", {
+        'pais': $scope.data.pais,
+        'id': $scope.data.id,
+        'codigoPostal': $scope.data.codigoPostal
+      }).then(response => {
         console.log(response)
         if (response.data == 201) {
           Materialize.toast("Se ha guardado con exito", 4000)
-          $scope.data = { pais: '', id: '' }
-          $('.formContainer').slideUp()
-          $http.get('src/datos/paises/service/getAll.php')
-            .then(response =>$scope.paises = response.data)
+          clear()
+          getAll()
         }
       })
+    }
   }
 
-  $scope.get = function (id, pais) {
-    $scope.data = { pais: pais, id: id }
+  $scope.get = function (id, pais, codigoPostal) {
+    $scope.data = { pais, id, codigoPostal }
+    $('.formContainer label').addClass('active')
     $('.formContainer').slideDown()
   }
 
@@ -46,9 +40,34 @@ paises.controller('paisController', function ($scope, $http) {
       .then(response => {
         if (response.data == 201) {
           Materialize.toast("Se ha eliminado con exito", 4000)
-          $http.get('src/datos/paises/service/getAll.php')
-            .then(response => $scope.paises = response.data)
+          getAll()
         }
       })
+  }
+
+  function getAll () {
+    $http.get('src/datos/paises/service/getAll.php')
+    .then(response => $scope.paises = response.data )
+  }
+
+  function clear () {
+    $scope.data = { pais: '', id: '', codigoPostal: '' }
+    $('.formContainer label.active').removeClass('active')
+    $('.formContainer').slideUp()
+  }
+
+  function validar () {
+    const data = $scope.data
+    if (data.pais === '') {
+      Materialize.toast('Ingrese el pais', 4000)
+      $('#pais').focus()
+      return false
+    }
+    if (data.codigoPostal === '') {
+      Materialize.toast('Ingrese el codigo postal', 4000)
+      $('#codigoPostal').focus()
+      return false
+    }
+    else return true
   }
 })

@@ -1,7 +1,7 @@
 <?php
 include '../../../../helpers/conexion.php';
 
-$query = $pdo->query("SELECT * FROM hgc_cantones");
+$query = $pdo->query("SELECT * FROM view_cantones");
 $cantones = array();
 
 while ($row = $query->fetch()) {

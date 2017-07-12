@@ -5,8 +5,9 @@ const parroquia = angular.module('Hospital')
 parroquia.controller('parroquiaController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $('ul.tabs').tabs()
+  $('.browser-default').select2()
 
-  $scope.data = { parroquia: '', id: '', canton: '', circuitos: [] }
+  $scope.data = { parroquia: '', id: '', canton: '', circuito: '' }
   $scope.parroquias = []
   $scope.cantones = []
   $scope.ciruitos = []
@@ -22,13 +23,12 @@ parroquia.controller('parroquiaController', function ($scope, $http) {
   $scope.handleCancel = () => clear()
 
   $scope.handleSave = function (e) {
-    getCircuitos()
     if (validar()) {
       $http.post("src/datos/parroquia/service/save.php",{
         'canton': $scope.data.canton,
         'id': $scope.data.id,
         'parroquia': $scope.data.parroquia,
-        'circuitos': $scope.data.circuitos
+        'circuito': $scope.data.circuito
       }).then(response => {
         console.log(response)
         if (response.data == 201) {
@@ -40,12 +40,14 @@ parroquia.controller('parroquiaController', function ($scope, $http) {
     }
   }
 
-  $scope.get = function (id, parroquia, canton) {
-    $scope.data.parroquia = parroquia
-    $scope.data.id = id
-    $scope.data.canton = canton
-    $http.get(`src/datos/parroquia/service/ciruito_detalle.php?id=${$scope.data.id}`)
-    .then(response => selectCircuitos(response.data))
+  $scope.get = function (parroquia) {
+    console.log(parroquia)
+    $scope.data = {
+      parroquia: parroquia.hgc_desc_parro,
+      id: parroquia.hgc_codi_parro,
+      canton: parroquia.hgc_cant_parro,
+      circuito: parroquia.hgc_circ_parro
+    }
     $('.formContainer').slideDown()
   }
 
@@ -66,34 +68,7 @@ parroquia.controller('parroquiaController', function ($scope, $http) {
 
   function clear () {
     $('.formContainer').slideUp()
-    $scope.data = { parroquia: '', id: '', canton: '', circuitos: [] }
-    const confirmar = Array.prototype.slice.call(
-      document.querySelectorAll('.confirmarCircuitos')
-    )
-    for (let i in confirmar) confirmar[i].checked = false
-  }
-
-  function selectCircuitos (data) {
-    $scope.data.circuitos = []
-    for (let i in data) {
-      let item = data[i]
-      document.querySelector(`#confir_${item.hgc_circ_parr}`).checked = true
-      $scope.data.circuitos.push({ circuito: item.hgc_circ_parr })
-    }
-  }
-
-  function getCircuitos () {
-    const confirmar = Array.prototype.slice.call(
-      document.querySelectorAll('.confirmarCircuitos')
-    )
-    $scope.data.circuitos = []
-
-    for (let i in confirmar) {
-      let item = confirmar[i]
-      if (item.checked === true) {
-        $scope.data.circuitos.push({ circuito: item.dataset.circ })
-      }
-    }
+    $scope.data = { parroquia: '', id: '', canton: '', circuito: '' }
   }
 
   function validar () {
@@ -105,8 +80,8 @@ parroquia.controller('parroquiaController', function ($scope, $http) {
       Materialize.toast("Ingresa el canton", 4000)
       return false
     }
-    if ($scope.data.circuitos.length === 0) {
-      Materialize.toast(`Escoge los circuitos para la parroquia ${$scope.data.parroquia}`)
+    if ($scope.data.circuitos === "") {
+      Materialize.toast(`Seleciona el circuito`)
       return false
     } else return true
   }
