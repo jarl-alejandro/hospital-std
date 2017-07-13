@@ -11,6 +11,7 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
     id: '', visible: true, descripcion: '', tipologia: '', institucion: '',
     red: '', horas: '', direccion: '', telefono: '', celular: '', parroquia: ''
   }
+  $('.browser-default').select2()
 
   getAll()
 
@@ -76,6 +77,14 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
       celular: establecimiento.hgc_celu_esta,
       parroquia: establecimiento.hgc_parr_esta
     }
+
+    setTimeout(() => {
+      $('#institucion').val(establecimiento.hgc_codi_inst).trigger('change')
+      $('#tipologia').val(establecimiento.hgc_codi_tipo).trigger('change')
+      $('#red').val(establecimiento.hgc_red_esta).trigger('change')
+      $('#hora').val(establecimiento.hgc_hate_esta).trigger('change')
+      $('#parroquia').val(establecimiento.hgc_parr_esta).trigger('change')
+    }, 100)
   }
 
   $scope.handleDelete = (id) => {
@@ -96,6 +105,13 @@ establecimiento.controller('establecimientoController', function ($scope, $http)
       id: '', visible: true, descripcion: '', tipologia: '', institucion: '',
       red: '', horas: '', direccion: '', telefono: '', celular: '', parroquia: ''
     }
+    setTimeout(() => {
+      $('#institucion').val('').trigger('change')
+      $('#tipologia').val('').trigger('change')
+      $('#red').val('').trigger('change')
+      $('#hora').val('').trigger('change')
+      $('#parroquia').val('').trigger('change')
+    }, 100)
   }
 
   function getAll () {

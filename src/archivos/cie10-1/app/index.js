@@ -7,6 +7,7 @@ cie10One.controller('cie10OneController', function ($scope, $http) {
   $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
   $scope.cie10 = []
   $scope.cie10Child = []
+  $('.browser-default').select2()
 
   $http.get('src/archivos/cie10/service/getAll.php')
     .then(response => $scope.cie10 = response.data )
@@ -20,7 +21,12 @@ cie10One.controller('cie10OneController', function ($scope, $http) {
   $scope.handleCancel = function (e) {
     $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
    $('.formContainer').slideUp()
+   $('label.active').removeClass('active')
+   setTimeout(() => {
+     $('#cie10').val('').trigger('change')
+   }, 100)
   }
+
   $scope.handleSave = function (e) {
     if ($scope.data.codigo === "") {
       Materialize.toast("Ingresa el codigo", 4000)
@@ -44,7 +50,7 @@ cie10One.controller('cie10OneController', function ($scope, $http) {
       if (response.data == 201) {
         Materialize.toast("Se ha guardado con exito", 4000)
         $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
-        
+
         $('.formContainer').slideUp()
         $http.get('src/archivos/cie10-1/service/getAll.php')
           .then(response => $scope.cie10Child = response.data)
@@ -55,6 +61,9 @@ cie10One.controller('cie10OneController', function ($scope, $http) {
   $scope.get = function (codigo, detalle, id, cie10) {
     $scope.data = { codigo, detalle, id, cie10 }
    $('.formContainer').slideDown()
+   setTimeout(() => {
+     $('#cie10').val(cie10).trigger('change')
+   }, 100)
   }
 
   $scope.delete = function (id) {

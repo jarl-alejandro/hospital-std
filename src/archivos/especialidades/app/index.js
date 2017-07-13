@@ -7,6 +7,7 @@ especialidad.controller('especialidadController', function ($scope, $http) {
   $scope.especialidades = []
   $scope.servicios = []
   getAll()
+  $('.browser-default').select2()
 
   $http.get('src/archivos/servicios/service/getAll.php')
     .then(response => $scope.servicios = response.data)
@@ -16,9 +17,13 @@ especialidad.controller('especialidadController', function ($scope, $http) {
   $scope.handleClose = () => {
     $scope.data = { descripcion: '', visible: true, id: '', servicio: '' }
     $('label.active').removeClass('active')
+    setTimeout(() => {
+      $('#servicio').val('').trigger('change')
+    }, 100)
   }
 
-  $scope.handleSave = function () {
+
+  $scope.handlezave = function () {
     if ($scope.data.descripcion.trim() === '') {
       Materialize.toast('Debe ingresar la descripcion', 4000)
       return false
@@ -64,6 +69,10 @@ especialidad.controller('especialidadController', function ($scope, $http) {
       id: especialidad.hgc_codi_espe,
       servicio: especialidad.hgc_codi_serv
     }
+    setTimeout(() => {
+      $('#servicio').val(especialidad.hgc_codi_serv).trigger('change')
+    }, 100)
+
     $('.input-field label').addClass('active')
     $('#modalInstitucion').modal('open')
   }

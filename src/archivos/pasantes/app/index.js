@@ -7,6 +7,7 @@ pasantes.controller('pasantesController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $('ul.tabs').tabs()
   $('ul.tabs').tabs('select_tab', 'test-swipe-1')
+  $('.browser-default').select2()
 
   $('.datepicker').pickadate({
     selectMonths: true,
@@ -99,7 +100,7 @@ pasantes.controller('pasantesController', function ($scope, $http) {
         document.querySelector(`#confir_${item.hgc_esp_det}`).checked = true
       }
     })
-    console.log(usuario)
+
     $scope.data = {
       id: usuario.hgc_codi_profe,
       cedula: usuario.hgc_cedu_profe,
@@ -119,7 +120,14 @@ pasantes.controller('pasantesController', function ($scope, $http) {
       fecha_egreso: usuario.hgc_fegr_pasa,
       universidad: usuario.hgc_univ_pasa,
     }
+    setTimeout(() => {
+      $('#rol').val(usuario.hgc_rol_usu).trigger('change')
+      $('#profesion').val(usuario.hgc_profe_profe).trigger('change')
+      $('#sexo').val(usuario.hgc_sexo_profe).trigger('change')
+    }, 100)
+
     $('.formContainer').slideDown()
+    $('.formContainer label').addClass('active')
   }
 
   $scope.delete = function (id) {
@@ -175,6 +183,13 @@ pasantes.controller('pasantesController', function ($scope, $http) {
     }
     $('.formContainer').slideUp()
     $('ul.tabs').tabs('select_tab', 'test-swipe-1')
+    $('.formContainer label.active').removeClass('active')
+
+    setTimeout(() => {
+      $('#rol').val('').trigger('change')
+      $('#profesion').val('').trigger('change')
+      $('#sexo').val('').trigger('change')
+    }, 100)
 
     const confirmar = Array.prototype.slice.call(
       document.querySelectorAll('.confirmarEspecialidad')

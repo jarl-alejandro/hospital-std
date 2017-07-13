@@ -51,13 +51,13 @@
         <input id="canton" type="text" placeholder='Ejemplo: Santo Domingo' ng-model='data.canton'>
       </div>
 
-      <div class="main-distribute">
+      <div class="main-distribute" style="margin-bottom:1em">
         <div class="form__input s-100 m-50">
           <label for="provincia">Provincia</label>
           <select id="provincia" class='browser-default' ng-model='data.provincia'>
             <option value="" selected>Seleciona</option>
             <option ng-repeat="provincia in provincias" value="{{ provincia.hgc_codi_provi }}">
-              {{ provincia.hgc_desc_provi }}
+              {{ provincia.hgc_desc_provi }} - {{ provincia.hgc_desc_zona }}
             </option>
           </select>
         </div>

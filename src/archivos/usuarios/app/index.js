@@ -26,11 +26,15 @@ usuarios.controller('usuariosController', function ($scope, $http) {
   $scope.usuarios = []
   $scope.profesiones = []
   $scope.generos = []
+  $('.browser-default').select2()
 
   getAll()
 
   $http.get('src/archivos/profesiones/service/getAll.php')
     .then(response => $scope.profesiones = response.data )
+
+  $http.get('src/datos/generos/service/getAll.php')
+    .then(response => $scope.generos = response.data )
 
   $http.get('src/archivos/usuarios/service/getAll.php')
     .then(response => $scope.usuarios = response.data )
@@ -73,6 +77,11 @@ usuarios.controller('usuariosController', function ($scope, $http) {
       profesion: usuario.hgc_profe_profe,
       rol: usuario.hgc_rol_usu,
     }
+    setTimeout(() => {
+      $('#rol').val(usuario.hgc_rol_usu).trigger('change')
+      $('#profesion').val(usuario.hgc_profe_profe).trigger('change')
+      $('#sexo').val(usuario.hgc_sexo_profe).trigger('change')
+    }, 100)
     $('.formContainer').slideDown()
   }
 
@@ -108,6 +117,11 @@ usuarios.controller('usuariosController', function ($scope, $http) {
       profesion: '',
       rol: '',
     }
+    setTimeout(() => {
+      $('#rol').val('').trigger('change')
+      $('#profesion').val('').trigger('change')
+      $('#sexo').val('').trigger('change')
+    }, 100)
     $('.formContainer').slideUp()
     $('ul.tabs').tabs('select_tab', 'test-swipe-1')
   }

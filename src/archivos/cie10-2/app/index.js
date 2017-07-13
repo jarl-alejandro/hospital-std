@@ -7,6 +7,7 @@ cie10Two.controller('cie10TwoController', function ($scope, $http) {
   $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
   $scope.cie10 = []
   $scope.cie10Child = []
+  $('.browser-default').select2()
 
   $http.get('src/archivos/cie10-1/service/getAll.php')
     .then(response => $scope.cie10 = response.data )
@@ -19,7 +20,10 @@ cie10Two.controller('cie10TwoController', function ($scope, $http) {
   }
   $scope.handleCancel = function (e) {
     $scope.data = { codigo: '', detalle: '', id: '', cie10: '' }
-    $('.formContainer').slideDown()
+    $('.formContainer').slideUp()
+    setTimeout(() => {
+      $('#cie10').val('').trigger('change')
+    }, 100)
   }
   $scope.handleSave = function (e) {
     if ($scope.data.codigo === "") {
@@ -54,6 +58,9 @@ cie10Two.controller('cie10TwoController', function ($scope, $http) {
   $scope.get = function (codigo, detalle, id, cie10) {
     $scope.data = { codigo, detalle, id, cie10 }
     $('.formContainer').slideDown()
+    setTimeout(() => {
+      $('#cie10').val(cie10).trigger('change')
+    }, 100)
   }
 
   $scope.delete = function (id) {

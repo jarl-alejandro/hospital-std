@@ -7,6 +7,7 @@ doctores.controller('doctoresController', function ($scope, $http) {
   $('.formContainer').slideUp()
   $('ul.tabs').tabs()
   $('ul.tabs').tabs('select_tab', 'test-swipe-1')
+  $('.browser-default').select2()
 
   $scope.data = {
     id: '',
@@ -30,6 +31,9 @@ doctores.controller('doctoresController', function ($scope, $http) {
   $scope.especialidades = []
 
   getAll()
+
+  $http.get('src/datos/generos/service/getAll.php')
+    .then(response => $scope.generos = response.data )
 
   $http.get('src/archivos/profesiones/service/getAll.php')
     .then(response => $scope.profesiones = response.data )
@@ -74,6 +78,12 @@ doctores.controller('doctoresController', function ($scope, $http) {
       }
     })
 
+    setTimeout(() => {
+      $('#rol').val(usuario.hgc_rol_usu).trigger('change')
+      $('#profesion').val(usuario.hgc_profe_profe).trigger('change')
+      $('#sexo').val(usuario.hgc_sexo_profe).trigger('change')
+    }, 100)
+
     $scope.data = {
       id: usuario.hgc_codi_profe,
       cedula: usuario.hgc_cedu_profe,
@@ -89,6 +99,7 @@ doctores.controller('doctoresController', function ($scope, $http) {
       profesion: usuario.hgc_profe_profe,
       rol: usuario.hgc_rol_usu,
     }
+    $('.formContainer label').addClass('active')
     $('.formContainer').slideDown()
   }
 
@@ -123,6 +134,8 @@ doctores.controller('doctoresController', function ($scope, $http) {
   }
 
   function clear () {
+    $('.formContainer label.active').removeClass('active')
+
     $scope.data = {
       id: '',
       cedula: '',
@@ -141,6 +154,12 @@ doctores.controller('doctoresController', function ($scope, $http) {
     }
     $('.formContainer').slideUp()
     $('ul.tabs').tabs('select_tab', 'test-swipe-1')
+
+    setTimeout(() => {
+      $('#rol').val('').trigger('change')
+      $('#profesion').val('').trigger('change')
+      $('#sexo').val('').trigger('change')
+    }, 100)
 
     const confirmar = Array.prototype.slice.call(
       document.querySelectorAll('.confirmarEspecialidad')

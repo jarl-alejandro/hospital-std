@@ -61,7 +61,7 @@
           <select id="canton" ng-model='data.canton' class='browser-default'>
             <option value="" selected>Seleciona</option>
             <option ng-repeat="canton in cantones" value="{{ canton.hgc_codi_canton }}">
-              {{ canton.hgc_desc_canton }}
+              {{ canton.hgc_desc_canton }} - {{ canton.hgc_desc_dist }}
             </option>
           </select>
         </div>

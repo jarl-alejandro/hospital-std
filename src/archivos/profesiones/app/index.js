@@ -39,6 +39,7 @@ profesiones.controller('profesionesController', function ($scope, $http) {
 	$scope.get = function (id, profesion) {
 		$scope.data = { profesion, id }
 		$('.formContainer').slideDown()
+		$('.formContainer label').addClass('active')
 	}
 
 	$scope.delete = function (id) {

@@ -73,6 +73,11 @@ parroquia.controller('parroquiaController', function ($scope, $http) {
   function clear () {
     $('.formContainer').slideUp()
     $scope.data = { parroquia: '', id: '', canton: '', circuito: '' }
+    setTimeout(() => {
+      $('#circuitos').val('').trigger('change')
+      $('#canton').val('').trigger('change')
+    }, 100)
+
   }
 
   function validar () {

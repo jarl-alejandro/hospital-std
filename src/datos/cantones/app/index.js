@@ -8,6 +8,7 @@ cantones.controller('cantonesController', function ($scope, $http) {
   $scope.cantones = []
   $scope.distritos = []
   $scope.provincias = []
+  $('.browser-default').select2()
 
   getAll()
 
@@ -41,6 +42,10 @@ cantones.controller('cantonesController', function ($scope, $http) {
 
   $scope.get = function (id, canton, provincia, distrito) {
     $scope.data = { provincia, id, canton, distrito }
+    setTimeout(() => {
+      $('#provincia').val(provincia).trigger('change')
+      $('#distrito').val(distrito).trigger('change')
+    }, 100)
     $('.formContainer').slideDown()
   }
 
@@ -62,6 +67,10 @@ cantones.controller('cantonesController', function ($scope, $http) {
   function clear () {
     $scope.data = { provincia: '', id: '', canton: '', distrito: '' }
     $('.formContainer').slideUp()
+    setTimeout(() => {
+      $('#provincia').val('').trigger('change')
+      $('#distrito').val('').trigger('change')
+    }, 100)
   }
 
   function validar () {

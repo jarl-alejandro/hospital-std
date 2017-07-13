@@ -9,6 +9,7 @@ provincias.controller('provinciasController', function ($scope, $http) {
   $scope.provincias = []
   $scope.paises = []
   $scope.zonas = []
+  $('.browser-default').select2()
 
   $http.get('src/datos/provincias/service/zonas.php')
     .then(response => $scope.zonas = response.data)
@@ -22,10 +23,16 @@ provincias.controller('provinciasController', function ($scope, $http) {
   $scope.handleShowForm = function (e) {
     $('.formContainer').slideDown()
   }
+
   $scope.handleCancel = function (e) {
     $scope.data = { provincia: '', id: '', pais: '', zona:'' }
     $('.formContainer').slideUp()
+    setTimeout(() => {
+      $('#pais').val('').trigger('change')
+      $('#zonas').val('').trigger('change')
+    }, 100)
   }
+
   $scope.handleSave = function (e) {
     if ($scope.data.provincia == "") {
       Materialize.toast("Ingresa la provincia", 4000)
@@ -59,6 +66,10 @@ provincias.controller('provinciasController', function ($scope, $http) {
 
   $scope.get = function (id, provincia, pais, zona) {
     $scope.data = { provincia, id, pais, zona }
+    setTimeout(() => {
+      $('#pais').val(pais).trigger('change')
+      $('#zonas').val(zona).trigger('change')
+    }, 100)
     $('.formContainer').slideDown()
   }
 
