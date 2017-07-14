@@ -1,10 +1,15 @@
+<?php
+include 'helpers/conexion.php';
+$qs = $pdo->query("SELECT * FROM hgc_empresa");
+$row = $qs->fetch();
+?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Hospital General Santo Domingo</title>
+    <title><?= $row['hgc_nom_empr'] ?></title>
 
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Raleway:300,500,800|Source+Sans+Pro:300,400,600,700">
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -74,14 +79,14 @@
       <div class="sections desktop">
         <div class="left"><!----></div>
         <div class="center"><a href="#">
-          <img src="assets/img/logo_inspi.png"
+          <img src="media/empresa/<?= $row['hgc_ava_empr'] ?>"
             style="width: 11.5em;background: rgba(255,255,255,0.5);padding: .5em 2em;" alt="A-SAY">
         </a></div>
         <div class="right"><!----></div>
       </div>
       <div class="sections compact hidden">
         <div class="left"><!----></div>
-        <div class="center"><a href="#"><img src="assets/img/logo_inspi.png" alt="A-SAY"></a></div>
+        <div class="center"><a href="#"><img src="media/empresa/<?= $row['hgc_ava_empr'] ?>" alt="A-SAY"></a></div>
         <div class="right"><!----></div>
       </div>
     </nav>
@@ -95,10 +100,10 @@
             <div class="fix-12-12">
               <ul class="grid">
                 <li class="col-7-12 left cell-28">
-                  <h1 class="asay-bold small ae-1 fromLeft">Hospital General de Santo Domingo</h1>
+                  <h1 class="asay-bold small ae-1 fromLeft"><?= $row['hgc_nom_empr'] ?></h1>
                   <div class="ae-2 fromLeft">
-                    <p>En el marco de la conmemoración del Día Mundial del Donante de Sangre, el Hospital General Santo Domingo (HGSD) se unió al trabajo de la Cruz Roja.</p>
-                    <p>El Centro Quirúrgico del Hospital General Santo Domingo, desarrolla técnicas quirúrgicas de mínima invasión utilizando tecnología laparoscópica.</p>
+                    <p><?= $row['hgc_mis_empr'] ?></p>
+                    <p><?= $row['hgc_vis_empr'] ?></p>
                   </div>
                   <a class="button round uppercase ae-3 fromCenter cropBottom contact" href="hgc.php">Entrar</a>
                 </li>
@@ -158,7 +163,7 @@
                   <div class="ae-2 fromLeft">
                     <p>Control both on stage and on device content and questions easily with two brand-able interfaces. A-SAY keeps users focused by pushing content you want, when you want to it to either screen.</p>
                   </div>
-                  <a class="button round uppercase teal ae-3 fromCenter cropBottom contact" href="#contact">Request a demo</a>
+                  <a class="button round uppercase teal ae-3 fromCenter cropBottom contact" href="hgc.php">Entrar</a>
                 </li>
                 <li class="col-5-12 ae-1">
                   <img class="shiftImage" src="assets/img/device/iphone-3.png" alt="iPhone Thumbnail">
@@ -273,7 +278,7 @@
                     <p>¿Estas buscandonos?</p>
                   </div>
                   <h3 class="small text-57 ae-3">Nos encontraras en</h3>
-                  <p class="small ae-4"><a href="#">Anillo Vial, Circulo de los contenintes<br>A lado del shopping</a></p>
+                  <p class="small ae-4"><a href="#"><?= $row['hgc_dir_empr'] ?></a></p>
                 </li>
                 <li class="col-6-12 left ae-1 fromRight" data-action="zoom">
                   <iframe
