@@ -1,0 +1,58 @@
+<hgc-menu></hgc-menu>
+<section class="workSpace">
+  <h2 class="Title">Empresa</h2>
+  <article class="form__empresa">
+    <input type="file" id="upload-empresa" class="none" accept="image/*" >
+    <label for="upload-empresa" data-position="left" data-delay="50"
+      data-tooltip="Subir foto de la empresa"
+      class="btn-floating btn-large waves-effect waves-light primary floating-empresa tooltipped">
+      <i class="material-icons">camera_alt</i>
+    </label>
+
+    <div class="input-field s-95" style="margin: 0 auto">
+      <input id="empresa" type="text" ng-model="data.empresa">
+      <label for="empresa">Nombre de la empresa</label>
+    </div>
+
+    <div class="grid__form" ng-controller="validForm">
+      <div class="input-field s-100">
+        <input id="direccion" type="text" ng-model="data.direccion">
+        <label for="direccion">Direccion de la empresa</label>
+      </div>
+      <div class="input-field s-100">
+        <input id="telefono" type="text" ng-model="data.telefono"
+          ng-keypress="ValidaSoloNumeros()" maxlength="10">
+        <label for="telefono">Telefono de la empresa</label>
+      </div>
+    </div>
+
+    <div class="grid__form">
+      <div class="input-field s-100">
+        <input id="fax" type="text" ng-model="data.fax">
+        <label for="fax">Fax de la empresa</label>
+      </div>
+      <div class="input-field s-100">
+        <input id="eslogan" type="text" ng-model="data.eslogan">
+        <label for="eslogan">Eslogan de la empresa</label>
+      </div>
+    </div>
+
+    <div class="grid__form">
+      <div class="input-field s-100">
+        <textarea id="mision" type="text" class="materialize-textarea"
+          ng-model="data.mision"></textarea>
+        <label for="mision">Mision de la empresa</label>
+      </div>
+      <div class="input-field s-100">
+        <textarea id="vision" type="text" class="materialize-textarea"
+          ng-model="data.vision"></textarea>
+        <label for="vision">Visio de la empresa</label>
+      </div>
+    </div>
+
+    <div class="main-distribute">
+      <button class="btn primary waves-effect waves-light"
+        ng-click="handleSave()">Guardar</button>
+    </div>
+  </article>
+</section>

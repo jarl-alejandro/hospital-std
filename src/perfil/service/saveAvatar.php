@@ -14,11 +14,11 @@ if(isset($_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'])) {
 
 	updateCode($pdo, 'hgc_cont_imagen');
 
-	$user = $pdo->query("UPDATE hgc_profesionales SET hgc_avat_profe='$img_equipo' 
+	$user = $pdo->query("UPDATE hgc_profesionales SET hgc_avat_profe='$img_equipo'
 												WHERE hgc_cedu_profe='$id'");
 
 	if($user) {
 		echo 201;
 	}
-	
+
 }

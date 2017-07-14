@@ -38,11 +38,24 @@
   <li><a ui-sref="admin">Inicio</a></li>
   <li><div class="divider"></div></li>
 
-  <li><a ui-sref="perfil">Perfil</a></li>
-  <li><div class="divider"></div></li>
-
   <li><a ui-sref="horariosDoctores">Horarios Doctores</a></li>
   <li><div class="divider"></div></li>
+
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">Config
+          <i class="material-icons">arrow_drop_down</i>
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li><a ui-sref="empresa"><span>Empresa</span></a></li>
+            <li><a ui-sref="perfil"><span>Perfil</span></a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
 
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">
@@ -62,6 +75,7 @@
       </li>
     </ul>
   </li>
+
   <li><div class="divider"></div></li>
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">

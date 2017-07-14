@@ -42,6 +42,14 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
         authenticated: auth_roles
       }
     })
+    .state('empresa', {
+      url: '/empresa',
+      controller: 'empresaController',
+      templateUrl: 'src/config/empresa/empresa.html',
+      resolve: {
+        authenticated: auth_roles
+      }
+    })
     .state('paises', {
       url: '/paises',
       controller: 'paisController',
