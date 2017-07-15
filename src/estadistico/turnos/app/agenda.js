@@ -139,8 +139,12 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   }
 
   function fechaSelecionada () {
-    alert("ok...")
-    console.log(this)
+    let dia = this.parentNode.children[0].innerText
+    dia = dia < 10 ? "0"+dia : dia
+    const mes = $scope.month < 10 ? "0"+$scope.month : $scope.month
+    const year = hoy.getFullYear()
+    const fecha = `${dia}/${mes}/${year}`
+    localStorage.setItem('fecha', fecha)
   }
 
   function estructurar() {
