@@ -64,7 +64,8 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
 
   $scope.handleDoctor = function (id) {
     $scope.data.doctor = id
-    $('#pacienteModal').modal('close')
+    localStorage.setItem('doctor', id)
+    $('#doctorModal').modal('close')
   }
 
   $scope.handleSiguiente = (index) => {

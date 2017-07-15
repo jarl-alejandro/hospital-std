@@ -22,10 +22,15 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   }
 
   $scope.handleMonth = (index) => {
+    const doctor = localStorage.getItem('doctor')
+    if (doctor === null) {
+      Materialize.toast('Debe selecionar primero el doctor')
+      return false
+    }
     $scope.month = index
     $(document.querySelectorAll('.mes')[$scope.month - 1]).slideDown()
 
-    $http.get(`src/estadistico/turnos/service/agenda.php?mes=${$scope.month}`)
+    $http.get(`src/estadistico/turnos/service/agenda.php?mes=${$scope.month}&doctor=${doctor}`)
       .then(response => {
         console.log(response)
         if (response.data.length === 0) {
