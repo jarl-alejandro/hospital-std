@@ -2,6 +2,8 @@ const agendaTurno = angular.module('Hospital')
 
 agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   $scope.month = 0
+  $scope.DB = []
+
   const hoy = new Date()
 
   var mes_text = [
@@ -50,8 +52,8 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
       let item = data[i]
       let fecha = item.hgc_fech_turno
       let celda = document.querySelector(`.fecha_${fecha}`)
-      celda.classList.add('agenda-ocupado')
-      celda.dataset.fecha = fecha
+      celda.children[0].classList.add('agenda-ocupado')
+      celda.children[0].dataset.fecha = fecha
       $scope.DB.push(item)
     }
 
@@ -115,15 +117,30 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
       let dia_semana = fecha.getDay()
 
       if (dia == 1) {var sem = 0;}
-      select_tabla.children[2].children[sem].children[dia_semana].innerText = dia;
+      select_tabla.children[2].children[sem].children[dia_semana]
+        .innerHTML = `<a>${dia}</a>`;
+      select_tabla.children[2].children[sem].children[dia_semana]
+        .innerHTML += `<button class="select_fecha btn bxn waves-effect waves-light">A</button>`;
 
       let mesClass = (mes + 1) < 10 ? `0${mes+1}`: mes + 1
       let diaClass = (dia + 1) < 10 ? `0${dia}`: dia
-      let className = `fecha_${year}-${mesClass}-${diaClass}`
+      let className = `item_calendar fecha_${year}-${mesClass}-${diaClass}`
 
       select_tabla.children[2].children[sem].children[dia_semana].className = className;
       if (dia_semana == 6) { sem = sem + 1; }
     }
+
+    const selectsMes = Array.prototype.slice.call(document.querySelectorAll('.select_fecha'))
+
+    for (let i in selectsMes) {
+      let item = selectsMes[i]
+      item.addEventListener('click', fechaSelecionada)
+    }
+  }
+
+  function fechaSelecionada () {
+    alert("ok...")
+    console.log(this)
   }
 
   function estructurar() {
