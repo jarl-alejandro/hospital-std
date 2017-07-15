@@ -11,7 +11,7 @@ pacientes.controller('pacientesController', function ($scope, $http) {
   $http.get('src/datos/generos/service/getAll.php')
     .then(response => $scope.generos = response.data )
 
-  $http.get('src/archivos/pacientes/service/getAll.php')
+  $http.get('src/estadistico/pacientes/service/getAll.php')
     .then(response => $scope.pacientes = response.data )
 
   $scope.handleShowForm = function (e) {
@@ -63,14 +63,14 @@ pacientes.controller('pacientesController', function ($scope, $http) {
       return false
     }
 
-    $http.post("src/archivos/pacientes/service/save.php", { 'pacientes': $scope.data })
+    $http.post("src/estadistico/pacientes/service/save.php", { 'pacientes': $scope.data })
       .then(response => {
         console.log(response)
         if (response.data == 201) {
           Materialize.toast("Se ha guardado con exito", 4000)
           clear()
           $('.formContainer').slideUp()
-          $http.get('src/archivos/pacientes/service/getAll.php')
+          $http.get('src/estadistico/pacientes/service/getAll.php')
             .then(response => $scope.pacientes = response.data)
         }
       })
@@ -96,11 +96,11 @@ pacientes.controller('pacientesController', function ($scope, $http) {
   }
 
   $scope.delete = function (id) {
-    $http.post("src/archivos/pacientes/service/delete.php", { 'id':id })
+    $http.post("src/estadistico/pacientes/service/delete.php", { 'id':id })
       .then(response => {
         if (response.data == 201) {
           Materialize.toast("Se ha eliminado con exito", 4000)
-          $http.get('src/archivos/pacientes/service/getAll.php')
+          $http.get('src/estadistico/pacientes/service/getAll.php')
             .then(response => $scope.pacientes = response.data)
         }
       })

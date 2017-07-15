@@ -1,14 +1,37 @@
 primary = #00bcd4
 danger = #f1746b
+rouse = #E91E63
+naranja = #F44336
+azul = #3F51B5
+amarillo = #FF9800
+
 .danger
-	background danger !important
-	&:hover
-		background rgba(danger, 0.8) !important
+  background danger !important
+  &:hover
+    background rgba(danger, 0.8) !important
 
 .primary
-	background primary !important
+  background primary !important
 
 nav
-	box-shadow inherit !important
+  box-shadow inherit !important
 .red
-	background red
+  background red
+.rouse
+  background rouse !important
+
+.backgroud-anim
+  transition all ease .3s
+  animation background_boton 2s .5s infinite alternate ease-in-out forwards
+
+@keyframes background_boton
+  0%
+    background rouse
+  20%
+    background azul
+  50%
+    background naranja
+  80%
+    background amarillo
+  100%
+    background danger

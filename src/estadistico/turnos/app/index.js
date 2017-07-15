@@ -54,13 +54,8 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $http.get('src/archivos/servicios/service/getAll.php')
     .then(response => $scope.servicios = response.data)
 
-  $scope.handleShowForm = function handleShowForm () {
-    $('.formPlus').slideDown()
-  }
-
-  $scope.handleCancel = function handleCancel () {
-    $('.formPlus').slideUp()
-  }
+  $scope.handleShowForm = () => $('.formPlus').slideDown()
+  $scope.handleCancelForm = () => $('.formPlus').slideUp()
 
   $scope.handlePaciente = function (id) {
     $scope.data.paciente = id
@@ -171,7 +166,5 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
     } else return true
   }
 
-  // Inicio de paginador
-
-  // Fin del paginador
+  $scope.handleFecha = () => $('.month-turno').slideDown()
 })

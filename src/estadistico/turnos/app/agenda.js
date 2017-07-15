@@ -1,10 +1,7 @@
-// 'use strict'
+const agendaTurno = angular.module('Hospital')
 
-const agenda = angular.module('Hospital')
-
-agenda.controller('agendaController', function ($scope, $http) {
+agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   $scope.month = 0
-  $scope.DB = []
   const hoy = new Date()
 
   var mes_text = [
@@ -12,15 +9,23 @@ agenda.controller('agendaController', function ($scope, $http) {
     "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ]
   var dia_text = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"]
-
   estructurar()
   numerar()
 
-  $scope.handleMonth = function (index) {
+  $scope.cerrar = () => $('.month-turno').slideUp()
+
+  $scope.handleBack = () => {
+    $(document.querySelectorAll('.mes')[$scope.month - 1]).slideUp()
+    $('.days-moth').slideUp()
+    $('.month-turno').slideDown()
+    $scope.month = 0
+  }
+
+  $scope.handleMonth = (index) => {
     $scope.month = index
     $(document.querySelectorAll('.mes')[$scope.month - 1]).slideDown()
 
-    $http.get(`src/estadistico/agenda/service/agenda.php?mes=${$scope.month}`)
+    $http.get(`src/estadistico/turnos/service/agenda.php?mes=${$scope.month}`)
       .then(response => {
         console.log(response)
         if (response.data.length === 0) {
@@ -29,17 +34,9 @@ agenda.controller('agendaController', function ($scope, $http) {
       })
 
     setTimeout(() => {
-      $('.mes__active').removeClass('mes__active')
-      $('.months-diary').slideUp()
+      $('.month-turno').slideUp()
       $('.days-moth').slideDown()
     }, 500)
-  }
-
-  $scope.handleBack = function () {
-    $(document.querySelectorAll('.mes')[$scope.month - 1]).slideUp()
-    $('.days-moth').slideUp()
-    $('.months-diary').slideDown()
-    $scope.month = 0
   }
 
   function generateAgenda (data) {

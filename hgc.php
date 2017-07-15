@@ -47,7 +47,6 @@
     <script src='src/archivos/enfermeras/app/index.js'></script>
     <script src='src/archivos/pasantes/app/index.js'></script>
 
-    <script src='src/archivos/pacientes/app/index.js'></script>
     <script src='src/archivos/cie10/app/index.js'></script>
     <script src='src/archivos/cie10-1/app/index.js'></script>
     <script src='src/archivos/cie10-2/app/index.js'></script>
@@ -68,8 +67,11 @@
     <script src='src/archivos/zonas/app/index.js'></script>
 
     <script src='src/estadistico/turnos/app/index.js'></script>
+    <script src='src/estadistico/turnos/app/agenda.js'></script>
+
     <script src='src/estadistico/activar-turnos/app/index.js'></script>
     <script src='src/estadistico/agenda/app/index.js'></script>
+    <script src='src/estadistico/pacientes/app/index.js'></script>
 
     <script src='src/enfermera/signos-vitales/app/index.js'></script>
 
