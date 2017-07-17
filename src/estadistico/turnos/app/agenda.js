@@ -163,6 +163,7 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   }
 
   function fechaSelecionada () {
+    $('#modalAgendaListFecha').modal('open')
     const doctor = localStorage.getItem('doctor')
     const mes = $scope.month < 10 ? "0"+$scope.month : $scope.month
     const year = hoy.getFullYear()
@@ -176,32 +177,42 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     for (let i in $scope.horarioTrabajo) {
       let item = $scope.horarioTrabajo[i]
       if (item.dia === fecha) {
-        console.log(item)
-        $http.get(`src/estadistico/turnos/service/turno.php?doctor=${doctor}&fecha=${fecha}`)
-        .then(response => {
-          console.log(response)
-          let horaInicio
-          if (response.data === "false") {
-            horaInicio = item.entrada
-          } else {
-            horaInicio = response.data.hgc_fin_turno
-          }
+        let dateArr = item.dia.split('-')
+        let hoursArr = item.entrada.split(':')
+        let horaFechaSal = item.salida.split(':')
+        $('#horarions-disponibles ul').html("")
 
-          const parametros = item.dia.split('-')
-          const horaParam = horaInicio.split(':')
-          const fecha2 = new Date(parametros[2] , parametros[1]-1 , parametros[0], horaParam[0], parseInt(horaParam[1])+20)
+        let fechaEntrada = new Date(dateArr[0], dateArr[1], dateArr[2], hoursArr[0], hoursArr[1])
+        let fechaEntre = new Date(dateArr[0], dateArr[1], dateArr[2], hoursArr[0], hoursArr[1]+20)
 
-          let hours = fecha2.getHours() < 10 ? '0'+fecha2.getHours() : fecha2.getHours()
-          let minutes = fecha2.getMinutes() < 10 ? '0'+fecha2.getMinutes() : fecha2.getMinutes()
-          let horaFinal = `${hours}:${minutes}`
+        let hours = fechaEntrada.getHours() < 10 ? "0"+fechaEntrada.getHours() : fechaEntrada.getHours()
+        let minutes = fechaEntrada.getMinutes() < 10 ? "0"+fechaEntrada.getMinutes() : fechaEntrada.getMinutes()
 
-          if (item.entrada <= horaInicio && item.salida >= horaFinal) {
-            localStorage.setItem('horaInicio', horaInicio)
-            localStorage.setItem('horaFinal', horaFinal)
-            Materialize.toast('Ya ha selecionado su turno', 4000)
-          } else Materialize.toast('Su turno esta fuera del tiempo', 4000)
+        let hoursFin = fechaEntre.getHours() < 10 ? "0"+fechaEntre.getHours() : fechaEntre.getHours()
+        let minutesFin = fechaEntre.getMinutes() < 10 ? "0"+fechaEntre.getMinutes() : fechaEntre.getMinutes()
+        let fechaInicio = `${hours}:${minutes}`
+        let fechaFin = `${hoursFin}:${minutesFin}`
+        let iniPlus = 0
+        let finPlus = 20
 
-        })
+        while (fechaFin <= item.salida) {
+          let template = `<li>
+            <input type="checkbox" id="test5" />
+            <label for="test5">${fechaInicio} - ${fechaFin}</label>
+          </li>`
+          $('#horarions-disponibles ul').append(template)
+          iniPlus += 20
+          finPlus += 20
+          fechaEntrada = new Date(dateArr[0], dateArr[1], dateArr[2], hoursArr[0], hoursArr[1]+iniPlus)
+          let hours = fechaEntrada.getHours() < 10 ? "0"+fechaEntrada.getHours() : fechaEntrada.getHours()
+          let minutes = fechaEntrada.getMinutes() < 10 ? "0"+fechaEntrada.getMinutes() : fechaEntrada.getMinutes()
+
+          fechaEntre = new Date(dateArr[0], dateArr[1], dateArr[2], hoursArr[0], hoursArr[1]+finPlus)
+          hoursFin = fechaEntre.getHours() < 10 ? "0"+fechaEntre.getHours() : fechaEntre.getHours()
+          minutesFin = fechaEntre.getMinutes() < 10 ? "0"+fechaEntre.getMinutes() : fechaEntre.getMinutes()
+          fechaInicio = `${hours}:${minutes}`
+          fechaFin = `${hoursFin}:${minutesFin}`
+        }
         return false
       }
     }
