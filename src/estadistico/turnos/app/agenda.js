@@ -181,6 +181,9 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
         let hoursArr = item.entrada.split(':')
         let horaFechaSal = item.salida.split(':')
         $('#horarions-disponibles ul').html("")
+        let iniPlus = 0
+        let index = 0
+        let finPlus = 20
 
         let fechaEntrada = new Date(dateArr[0], dateArr[1], dateArr[2], hoursArr[0], hoursArr[1])
         let fechaEntre = new Date(dateArr[0], dateArr[1], dateArr[2], hoursArr[0], hoursArr[1]+20)
@@ -192,20 +195,19 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
         let minutesFin = fechaEntre.getMinutes() < 10 ? "0"+fechaEntre.getMinutes() : fechaEntre.getMinutes()
         let fechaInicio = `${hours}:${minutes}`
         let fechaFin = `${hoursFin}:${minutesFin}`
-        let iniPlus = 0
-        let finPlus = 20
 
         while (fechaFin <= item.salida) {
           let template = `<li>
-            <input type="checkbox" id="test5" />
-            <label for="test5">${fechaInicio} - ${fechaFin}</label>
+            <input type="checkbox" id="turno_fecha_${index}" data-inicio="${fechaInicio}" data-fin="${fechaFin}" />
+            <label for="turno_fecha_${index}">${fechaInicio} - ${fechaFin}</label>
           </li>`
           $('#horarions-disponibles ul').append(template)
           iniPlus += 20
           finPlus += 20
+          index++
           fechaEntrada = new Date(dateArr[0], dateArr[1], dateArr[2], hoursArr[0], hoursArr[1]+iniPlus)
-          let hours = fechaEntrada.getHours() < 10 ? "0"+fechaEntrada.getHours() : fechaEntrada.getHours()
-          let minutes = fechaEntrada.getMinutes() < 10 ? "0"+fechaEntrada.getMinutes() : fechaEntrada.getMinutes()
+          hours = fechaEntrada.getHours() < 10 ? "0"+fechaEntrada.getHours() : fechaEntrada.getHours()
+          minutes = fechaEntrada.getMinutes() < 10 ? "0"+fechaEntrada.getMinutes() : fechaEntrada.getMinutes()
 
           fechaEntre = new Date(dateArr[0], dateArr[1], dateArr[2], hoursArr[0], hoursArr[1]+finPlus)
           hoursFin = fechaEntre.getHours() < 10 ? "0"+fechaEntre.getHours() : fechaEntre.getHours()
