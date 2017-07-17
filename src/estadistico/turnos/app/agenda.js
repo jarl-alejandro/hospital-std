@@ -3,6 +3,7 @@ const agendaTurno = angular.module('Hospital')
 agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   $scope.month = 0
   $scope.DB = []
+  $scope.horarioTrabajo = []
 
   const hoy = new Date()
 
@@ -30,20 +31,42 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
       return false
     }
     $scope.month = index
+    var dateFin = new Date(hoy.getFullYear(), $scope.month, 0)
+    const diaFin = dateFin.getDate() < 10 ? "0" + dateFin.getDate() : dateFin.getDate()
+    const mes = $scope.month < 10 ? "0" + $scope.month : $scope.month
+
+    const inicio = `${hoy.getFullYear()}-${mes}-01`
+    const fin = `${hoy.getFullYear()}-${mes}-${diaFin}`
+
     $(document.querySelectorAll('.mes')[$scope.month - 1]).slideDown()
 
     $http.get(`src/estadistico/turnos/service/agenda.php?mes=${$scope.month}&doctor=${doctor}`)
       .then(response => {
-        console.log(response)
         if (response.data.length === 0) {
           Materialize.toast('No hay agendado nada en este mes', 4000)
         } else generateAgenda(response.data)
+      })
+
+    $http.get(`src/estadistico/turnos/service/horario.php
+      ?doctor=${doctor}&inicio=${inicio}&fin=${fin}`)
+      .then(response => {
+        $scope.horarioTrabajo = response.data
+
+        for (let i in $scope.horarioTrabajo) {
+          let item = $scope.horarioTrabajo[i]
+          const td = document.querySelector(`.fecha_${item.dia}`)
+          td.style = "background:#E91E63;transform: scale(.9);"
+          td.dataset.entrada = item.entrada
+          td.dataset.salida = item.salida
+          td.dataset.dia = item.dia
+        }
       })
 
     setTimeout(() => {
       $('.month-turno').slideUp()
       $('.days-moth').slideDown()
     }, 500)
+
   }
 
   function generateAgenda (data) {
@@ -92,7 +115,6 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
               </ul>
             </article>`
             document.querySelector('#agenda__container').innerHTML += template
-            console.log(item)
           }
         }
 
@@ -105,7 +127,7 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     return new Date(date.setDate(dia))
   }
 
-  function numerar() {
+  function numerar () {
     let hoy = new Date()
     let year = hoy.getFullYear()
     for (i = 1; i < 366; i++) {
@@ -122,8 +144,10 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
       select_tabla.children[2].children[sem].children[dia_semana]
         .innerHTML += `<button class="select_fecha btn bxn waves-effect waves-light">A</button>`;
 
+
       let mesClass = (mes + 1) < 10 ? `0${mes+1}`: mes + 1
-      let diaClass = (dia + 1) < 10 ? `0${dia}`: dia
+      let diaClass = dia + 1 < 10 ? `0${dia}`: dia
+      if (dia === 9) diaClass = "0" + diaClass
       let className = `item_calendar fecha_${year}-${mesClass}-${diaClass}`
 
       select_tabla.children[2].children[sem].children[dia_semana].className = className;
@@ -139,15 +163,51 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   }
 
   function fechaSelecionada () {
-    let dia = this.parentNode.children[0].innerText
-    dia = dia < 10 ? "0"+dia : dia
+    const doctor = localStorage.getItem('doctor')
     const mes = $scope.month < 10 ? "0"+$scope.month : $scope.month
     const year = hoy.getFullYear()
-    const fecha = `${dia}/${mes}/${year}`
+
+    let dia = this.parentNode.children[0].innerText
+    dia = dia < 10 ? "0"+dia : dia
+
+    const fecha = `${year}-${mes}-${dia}`
     localStorage.setItem('fecha', fecha)
+
+    for (let i in $scope.horarioTrabajo) {
+      let item = $scope.horarioTrabajo[i]
+      if (item.dia === fecha) {
+        console.log(item)
+        $http.get(`src/estadistico/turnos/service/turno.php?doctor=${doctor}&fecha=${fecha}`)
+        .then(response => {
+          console.log(response)
+          let horaInicio
+          if (response.data === "false") {
+            horaInicio = item.entrada
+          } else {
+            horaInicio = response.data.hgc_fin_turno
+          }
+
+          const parametros = item.dia.split('-')
+          const horaParam = horaInicio.split(':')
+          const fecha2 = new Date(parametros[2] , parametros[1]-1 , parametros[0], horaParam[0], parseInt(horaParam[1])+20)
+
+          let hours = fecha2.getHours() < 10 ? '0'+fecha2.getHours() : fecha2.getHours()
+          let minutes = fecha2.getMinutes() < 10 ? '0'+fecha2.getMinutes() : fecha2.getMinutes()
+          let horaFinal = `${hours}:${minutes}`
+
+          if (item.entrada <= horaInicio && item.salida >= horaFinal) {
+            localStorage.setItem('horaInicio', horaInicio)
+            localStorage.setItem('horaFinal', horaFinal)
+            Materialize.toast('Ya ha selecionado su turno', 4000)
+          } else Materialize.toast('Su turno esta fuera del tiempo', 4000)
+
+        })
+        return false
+      }
+    }
   }
 
-  function estructurar() {
+  function estructurar () {
     for (let m = 0; m <= 11; m++) {
       let mes = document.createElement("DIV")
       mes.className = "mes none"

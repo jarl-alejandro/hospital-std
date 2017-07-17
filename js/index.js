@@ -237,7 +237,7 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
     .state('actividad', {
       url: '/actividad',
       controller: 'actividadController',
-      templateUrl: 'src/archivos/horarios/horarios.html',
+      templateUrl: 'src/archivos/actividad/actividad.html',
       resolve: {
         authenticated: auth_roles
       }
