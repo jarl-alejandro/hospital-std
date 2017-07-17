@@ -16,7 +16,10 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $scope.buscador = { doctor: '', paciente: '' }
 
   $http.get('src/estadistico/turnos/service/getAll.php')
-    .then(response => $scope.turnos = response.data)
+    .then(response => {
+      console.log(response)
+      $scope.turnos = response.data
+    })
 
   $http.get('src/estadistico/turnos/service/pacientes.php')
     .then(response => $scope.pacientes = response.data)

@@ -168,15 +168,26 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
       Materialize.toast('El doctor no trabaja este dia', 4000)
       return false
     }
-    $('#modalAgendaListFecha').modal('open')
+
     const doctor = localStorage.getItem('doctor')
     const mes = $scope.month < 10 ? "0"+$scope.month : $scope.month
     const year = hoy.getFullYear()
+    const fechaHoy = new Date()
 
     let dia = this.parentNode.children[0].innerText
     dia = dia < 10 ? "0"+dia : dia
 
+    let mesHoy = fechaHoy.getMonth() < 10 ? "0"+fechaHoy.getMonth() : fechaHoy.getMonth()
+    let diaHoy = fechaHoy.getDate() < 10 ? "0"+fechaHoy.getDate() : fechaHoy.getDate()
+
+    const fechaFormat = `${fechaHoy.getFullYear()}-${mesHoy}-${diaHoy}`
     const fecha = `${year}-${mes}-${dia}`
+
+    if (fecha >= fechaFormat) {
+      Materialize.toast('No puede ingresar turno para esta fecha', 4000)
+      return false
+    }
+    $('#modalAgendaListFecha').modal('open')
     localStorage.setItem('fecha', fecha)
     $('#horarions-disponibles ul').html("")
 
