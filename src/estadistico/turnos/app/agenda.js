@@ -55,6 +55,7 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
         for (let i in $scope.horarioTrabajo) {
           let item = $scope.horarioTrabajo[i]
           const td = document.querySelector(`.fecha_${item.dia}`)
+          td.children[1].dataset.trabajo = 1
           td.style = "background:#E91E63;transform: scale(.9);"
           td.dataset.entrada = item.entrada
           td.dataset.salida = item.salida
@@ -162,7 +163,11 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     }
   }
 
-  function fechaSelecionada () {
+  function fechaSelecionada (e) {
+    if(e.target.dataset.trabajo === undefined) {
+      Materialize.toast('El doctor no trabaja este dia', 4000)
+      return false
+    }
     $('#modalAgendaListFecha').modal('open')
     const doctor = localStorage.getItem('doctor')
     const mes = $scope.month < 10 ? "0"+$scope.month : $scope.month
@@ -173,6 +178,7 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
 
     const fecha = `${year}-${mes}-${dia}`
     localStorage.setItem('fecha', fecha)
+    $('#horarions-disponibles ul').html("")
 
     for (let i in $scope.horarioTrabajo) {
       let item = $scope.horarioTrabajo[i]
@@ -180,7 +186,6 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
         let dateArr = item.dia.split('-')
         let hoursArr = item.entrada.split(':')
         let horaFechaSal = item.salida.split(':')
-        $('#horarions-disponibles ul').html("")
         let iniPlus = 0
         let index = 0
         let finPlus = 20
@@ -219,7 +224,6 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
 
         $http.get(`src/estadistico/turnos/service/turno.php?doctor=${doctor}&fecha=${fecha}`)
         .then(response => {
-          console.log(response)
           for (let i in response.data) {
             let item = response.data[i]
             let selector = `input[data-inicio="${item.hgc_hini_turno}"][data-fin="${item.hgc_fin_turno}"]`

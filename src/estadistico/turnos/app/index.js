@@ -44,18 +44,16 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
         horaIndex++
         $scope.data.fecha = localStorage.getItem('fecha')
         $scope.data.horaInical = item.dataset.inicio
-        $scope.data.horaFinal = item.dataset.inicio
+        $scope.data.horaFinal = item.dataset.fin
         $('#modalAgendaListFecha').modal('close')
         $('.month-turno').slideUp()
         $('.days-moth').slideUp()
-        console.log($scope.data)
         return false
       }
     }
     if (horaIndex === 0){
       Materialize.toast('Debe ingresar un hora para el turno', 4000)
     }
-    console.log($scope.data)
   }
 
   $scope.handleDoctor = function (id) {
