@@ -193,12 +193,13 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
 
         let hoursFin = fechaEntre.getHours() < 10 ? "0"+fechaEntre.getHours() : fechaEntre.getHours()
         let minutesFin = fechaEntre.getMinutes() < 10 ? "0"+fechaEntre.getMinutes() : fechaEntre.getMinutes()
+
         let fechaInicio = `${hours}:${minutes}`
         let fechaFin = `${hoursFin}:${minutesFin}`
 
         while (fechaFin <= item.salida) {
           let template = `<li>
-            <input type="checkbox" id="turno_fecha_${index}" data-inicio="${fechaInicio}" data-fin="${fechaFin}" />
+            <input type="checkbox" id="turno_fecha_${index}" data-inicio="${fechaInicio}" data-fin="${fechaFin}" class="horario__turno" />
             <label for="turno_fecha_${index}">${fechaInicio} - ${fechaFin}</label>
           </li>`
           $('#horarions-disponibles ul').append(template)
@@ -215,6 +216,18 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
           fechaInicio = `${hours}:${minutes}`
           fechaFin = `${hoursFin}:${minutesFin}`
         }
+
+        $http.get(`src/estadistico/turnos/service/turno.php?doctor=${doctor}&fecha=${fecha}`)
+        .then(response => {
+          console.log(response)
+          for (let i in response.data) {
+            let item = response.data[i]
+            let selector = `input[data-inicio="${item.hgc_hini_turno}"][data-fin="${item.hgc_fin_turno}"]`
+            let li = document.querySelector(selector)
+            li.checked = true
+            li.disabled = true
+          }
+        })
         return false
       }
     }

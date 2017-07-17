@@ -3,11 +3,13 @@ include '../../../../helpers/conexion.php';
 
 $doctor = $_GET["doctor"];
 $fecha = $_GET["fecha"];
+$array = array();
 
 $qs = $pdo->query("SELECT * FROM hgc_turno WHERE hgc_doct_turno='$doctor'
-    AND hgc_fech_turno='$fecha' ORDER BY hgc_fin_turno DESC LIMIT 1");
+    AND hgc_fech_turno='$fecha'");
 
+while ($row = $qs->fetch()) {
+  $array[] = $row;
+}
 
-$row = $qs->fetch();
-
-echo json_encode($row);
+echo json_encode($array);

@@ -6,43 +6,13 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $('select').material_select()
   $('.modal').modal()
 
-  $('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15,
-    clear: 'Limpiar',
-    close: 'OK',
-    today: 'Hoy',
-    format: 'dd/mm/yyyy',
-    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Dicembre'],
-    monthsShort: ['Ene', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-    weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
-    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-    weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
-    labelMonthNext: 'Siguiente mes',
-    labelMonthPrev: 'Mes Anterior',
-    labelMonthSelect: 'Selecione el mes',
-    labelYearSelect: 'Selecione el año',
-    min: new Date(),
-  })
-  $('.timepicker').pickatime({
-    default: 'now',
-    fromnow: 0,
-    twelvehour: false,
-    donetext: 'OK',
-    cleartext: 'Limpiar',
-    canceltext: 'Cancelar',
-    autoclose: false,
-    ampmclickable: true,
-    aftershow: function(){}
-  })
-
   $scope.turnos = []
   $scope.pacientes = []
   $scope.doctor = []
   $scope.servicios = []
   $scope.especialidades = []
   $scope.especialidad_name = ''
-  $scope.data = { especialidad: '', servicio: '' }
+  $scope.data = { especialidad: '', servicio: '', fecha: '', horaInical: '', horaFinal: '' }
   $scope.buscador = { doctor: '', paciente: '' }
 
   $http.get('src/estadistico/turnos/service/getAll.php')
@@ -60,6 +30,32 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $scope.handlePaciente = function (id) {
     $scope.data.paciente = id
     $('#pacienteModal').modal('close')
+  }
+
+  $scope.handleHorario = () => {
+    let horario_turno = Array.prototype.slice.call(
+      document.querySelectorAll('.horario__turno')
+    )
+    let horaIndex = 0
+
+    for (let i in horario_turno) {
+      let item = horario_turno[i]
+      if (item.checked === true && item.disabled === false) {
+        horaIndex++
+        $scope.data.fecha = localStorage.getItem('fecha')
+        $scope.data.horaInical = item.dataset.inicio
+        $scope.data.horaFinal = item.dataset.inicio
+        $('#modalAgendaListFecha').modal('close')
+        $('.month-turno').slideUp()
+        $('.days-moth').slideUp()
+        console.log($scope.data)
+        return false
+      }
+    }
+    if (horaIndex === 0){
+      Materialize.toast('Debe ingresar un hora para el turno', 4000)
+    }
+    console.log($scope.data)
   }
 
   $scope.handleDoctor = function (id) {
@@ -117,16 +113,13 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
 
   $scope.handleSave = function handleSave () {
     if (validar()) {
-      const parametros = $('#fecha').val().split('/')
-      const horaParam = $('#horaInicio').val().split(':')
-      const fecha2 = new Date(parametros[2] , parametros[1]-1 , parametros[0], horaParam[0], parseInt(horaParam[1])+20)
 
       $http.post('src/estadistico/turnos/service/save.php', {
         paciente: $scope.data.paciente,
         doctor: $scope.data.doctor,
-        fecha: $('#fecha').val(),
-        horaInicio: $('#horaInicio').val(),
-        horaFin: `${fecha2.getHours()}:${fecha2.getMinutes()}`,
+        fecha: $scope.data.fecha,
+        horaInicio: $scope.data.horaInical,
+        horaFin: $scope.data.horaFinal,
         id: ''
       }).then(response => {
         if (response.data === "201") {
