@@ -17,30 +17,63 @@ $longitud = $obj->longitud;
 $pulso = $obj->pulso;
 $turno = $obj->turno;
 $historiaClinica = $obj->historiaClinica;
+
+$id = $obj->id;
+
 $hoy = date("Y/m/d");
+$hora = date("h:i");
 
-$new = $pdo->prepare("INSERT INTO hgc_sigvit (hgc_temp_sigvit, hgc_frcar_sigvit, hgc_frresp_sigvit,
-  hgc_prart_sigvit, hgc_peso_sigvit, hgc_talla_sigvit, hgc_prence_sigvit, hgc_esta_sigvit, hgc_longi_sigvit,
-  hgc_puls_sigvit, hgc_turno_sigvit, hgc_fecha_sigvit, hgc_hcli_sigvit)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+if ($id == "") {
+  $new = $pdo->prepare("INSERT INTO hgc_sigvit (hgc_temp_sigvit, hgc_frcar_sigvit,
+    hgc_frresp_sigvit, hgc_prart_sigvit, hgc_peso_sigvit, hgc_talla_sigvit,
+    hgc_prence_sigvit, hgc_esta_sigvit, hgc_longi_sigvit, hgc_puls_sigvit,
+    hgc_turno_sigvit, hgc_fecha_sigvit, hgc_hcli_sigvit, hgc_hora_sigvit)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-$new->bindParam(1, $temperatura);
-$new->bindParam(2, $frCardica);
-$new->bindParam(3, $frRespiratoria);
-$new->bindParam(4, $prArterial);
-$new->bindParam(5, $peso);
-$new->bindParam(6, $talla);
-$new->bindParam(7, $prEncefalico);
-$new->bindParam(8, $estado);
-$new->bindParam(9, $longitud);
-$new->bindParam(10, $pulso);
-$new->bindParam(11, $turno);
-$new->bindParam(12, $hoy);
-$new->bindParam(13, $historiaClinica);
+  $new->bindParam(1, $temperatura);
+  $new->bindParam(2, $frCardica);
+  $new->bindParam(3, $frRespiratoria);
+  $new->bindParam(4, $prArterial);
+  $new->bindParam(5, $peso);
+  $new->bindParam(6, $talla);
+  $new->bindParam(7, $prEncefalico);
+  $new->bindParam(8, $estado);
+  $new->bindParam(9, $longitud);
+  $new->bindParam(10, $pulso);
+  $new->bindParam(11, $turno);
+  $new->bindParam(12, $hoy);
+  $new->bindParam(13, $historiaClinica);
+  $new->bindParam(14, $hora);
 
-$new->execute();
+  $new->execute();
+}
+else {
+  $new = $pdo->prepare("UPDATE hgc_sigvit SET hgc_temp_sigvit=?, hgc_frcar_sigvit=?,
+    hgc_frresp_sigvit=?, hgc_prart_sigvit=?, hgc_peso_sigvit=?, hgc_talla_sigvit=?,
+    hgc_prence_sigvit=?, hgc_esta_sigvit=?, hgc_longi_sigvit=?, hgc_puls_sigvit=?,
+    hgc_turno_sigvit=?, hgc_fecha_sigvit=?, hgc_hcli_sigvit=?, hgc_hora_sigvit=?
+    WHERE hgc_id_sigvit=?");
 
-$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");
+  $new->bindParam(1, $temperatura);
+  $new->bindParam(2, $frCardica);
+  $new->bindParam(3, $frRespiratoria);
+  $new->bindParam(4, $prArterial);
+  $new->bindParam(5, $peso);
+  $new->bindParam(6, $talla);
+  $new->bindParam(7, $prEncefalico);
+  $new->bindParam(8, $estado);
+  $new->bindParam(9, $longitud);
+  $new->bindParam(10, $pulso);
+  $new->bindParam(11, $turno);
+  $new->bindParam(12, $hoy);
+  $new->bindParam(13, $historiaClinica);
+  $new->bindParam(14, $hora);
+  $new->bindParam(15, $id);
+
+  $new->execute();
+}
+$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales'
+    WHERE hgc_id_turno='$turno'");
 
 if ($new) {
   echo 201;

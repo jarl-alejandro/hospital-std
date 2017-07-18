@@ -53,16 +53,16 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   $scope.setHorario = (horario) => {
     const hoy = new Date()
     const mes = $scope.data.mes < 10 ? '0'+$scope.data.mes : $scope.data.mes
+    const dia = $scope.diaHorario < 10 ? '0'+$scope.diaHorario : $scope.diaHorario
     const year = hoy.getFullYear()
     const ctx = {
       codigo: horario.hgc_codi_hora,
-      dia: `${year}-${mes}-${$scope.diaHorario}`
+      dia: `${year}-${mes}-${dia}`
     }
 
     $scope.data.horarios.push(ctx)
     document.querySelector(`#semanasDelMes td[data-dia="${$scope.diaHorario}"]`)
       .className = 'dias-asiganado__active'
-    $scope.diaHorario = ''
   }
 
   $scope.handleSave = () => {
@@ -83,7 +83,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   $scope.handleEdit = (horario) => {
     $scope.data = {
       medicos: horario.hgc_codi_profe,
-      consultorio: horario.hgc_codi_profe,
+      consultorio: horario.hgc_codi_cons,
       mes: horario.hgc_mes_hora,
       horarios: [],
       id: horario.hgc_codi_hora
@@ -192,6 +192,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
 
     for (let i=0; i<dias.length; i++) {
       dias[i].addEventListener('click', event => {
+        $scope.diaHorario = ''
         if ($scope.diaHorario !== ''){
             Materialize.toast('Ya ha selecionado el dia ingrese el horario', 4000)
             return false

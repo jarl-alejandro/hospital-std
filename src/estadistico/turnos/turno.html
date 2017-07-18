@@ -56,12 +56,12 @@
         </button>
 
         <button class="s-90 m-45 waves-effect waves-light btn-flat img-boton"
-          data-target="doctorModal">Doctor
+          data-target="doctorModal" ng-disabled="data.paciente === ''">Doctor
           <img ng-src="assets/img/doctor.png" alt="Doctor">
         </button>
 
         <button class="s-80 waves-effect waves-light btn-flat mg-top flex-boton"
-          ng-click="handleFecha()">
+          ng-click="handleFecha()" ng-disabled="data.doctor === ''">
           Fecha <i class="material-icons">watch_later</i>
         </button>
 
@@ -187,7 +187,7 @@
           </tr>
           <tr ng-pagination="doc in doctor" ng-pagination-size="2">
             <td>{{ $index + 1 }}</td>
-            <td>{{ doc.hgc_codi_profe }}</td>
+            <td>{{ doc.hgc_cedu_profe }}</td>
             <td>{{ doc.doctor }}</td>
             <td>
               <button class="waves-effect waves-light btn primary modal-action modal-close"

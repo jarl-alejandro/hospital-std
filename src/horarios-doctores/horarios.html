@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <tr ng-if="horarioDoc.length === 0">
-          <td colspan="5">No hay horarios asignados</td>
+          <td colspan="6">No hay horarios asignados</td>
         </tr>
         <tr ng-pagination="horario in horarioDoc" ng-pagination-size="6">
           <td>{{ $index + 1 }}</td>

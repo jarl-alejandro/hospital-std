@@ -20,6 +20,11 @@
         </tr>
       </thead>
       <tbody>
+        <tr ng-if="signosVitales.length === 0">
+          <td colspan="6">No hay registro de signos vitales de
+            <b>{{ paciente.paciente }}</b>
+          </td>
+        </tr>
         <tr ng-repeat="signos in signosVitales">
           <td>{{ $index +1 }}</td>
           <td>{{ signos.hgc_fecha_sigvit }}</td>
@@ -27,7 +32,9 @@
           <td>{{ signos.hgc_peso_sigvit }}</td>
           <td>{{ signos.hgc_talla_sigvit }}</td>
           <td>
-            <a class='waves-effect waves-light btn'>Editar</a>
+            <button class='waves-effect waves-light btn'
+              ng-click="handleEdit(signos)">Editar
+            </button>
           </td>
         </tr>
       </tbody>
@@ -39,50 +46,59 @@
       <header>
         <h3>Signos Vitales</h3>
       </header>
-      <article class="formPlus-content">
+      <article class="formPlus-content" ng-controller="validForm">
         <div class="input-field s-90 m-45">
-          <input id="temperatura" type="text" ng-model="data.temperatura">
-          <label for="temperatura">Ingresa la temperatura</label>
+          <input id="temperatura" type="text" ng-model="data.temperatura"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="temperatura">Ingresa la temperatura (°C)</label>
         </div>
         <div class="input-field s-90 m-45" ng-hide="menor">
-          <input id="fr-cardiaca" type="text" ng-model="data.frCardica">
-          <label for="fr-cardiaca">Ingresa la frecuencia cardiaca</label>
+          <input id="fr-cardiaca" type="text" ng-model="data.frCardica"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="fr-cardiaca">Ingresa la frecuencia cardiaca (fc)</label>
         </div>
         <div class="input-field s-90 m-45" ng-hide="menor">
-          <input id="fr-resporatoria" type="text" ng-model="data.frRespiratoria">
-          <label for="fr-resporatoria">Ingresa la frecuencia respiratoria</label>
+          <input id="fr-resporatoria" type="text" ng-model="data.frRespiratoria"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="fr-resporatoria">Ingresa la frecuencia respiratoria (fr)</label>
         </div>
         <div class="input-field s-90 m-45" ng-hide="menor">
-          <input id="presion-arterial" type="text" ng-model="data.prArterial">
-          <label for="presion-arterial">Ingresa la presion arterial</label>
+          <input id="presion-arterial" type="text" ng-model="data.prArterial"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="presion-arterial">Ingresa la presion arterial (pr)</label>
         </div>
         <div class="input-field s-90 m-45" ng-show="menor">
-          <input id="pulso" type="text" ng-model="data.pulso">
-          <label for="pulso">Ingresa el pulso</label>
+          <input id="pulso" type="text" ng-model="data.pulso"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="pulso">Ingresa el pulso (x 1)</label>
         </div>
         <div class="input-field s-90 m-45">
-          <input id="peso" type="text" ng-model="data.peso">
-          <label for="peso">Ingresa el peso</label>
+          <input id="peso" type="text" ng-model="data.peso"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="peso">Ingresa el peso (kg)</label>
         </div>
         <div class="input-field s-90 m-45" ng-show="menor">
-          <input id="longitud" type="text" ng-model="data.longitud">
-          <label for="longitud">Ingresa la longitud</label>
+          <input id="longitud" type="text" ng-model="data.longitud"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="longitud">Ingresa la longitud (cm)</label>
         </div>
         <div class="input-field s-90 m-45" ng-hide="menor">
-          <input id="talla" type="text" ng-model="data.talla">
-          <label for="talla">Ingresa la talla</label>
+          <input id="talla" type="text" ng-model="data.talla"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="talla">Ingresa la talla (cm)</label>
         </div>
         <div class="input-field s-90 m-45">
-          <input id="peri-encefalico" type="text" ng-model="data.prEncefalico">
-          <label for="peri-encefalico">Ingresa el perimetro encefalico</label>
-        </div>
-        <div class="input-field s-90 m-45" ng-hide="menor">
-          <input id="estado-nutricion" type="text" ng-model="data.estado">
-          <label for="estado-nutricion">Ingresa el estado de nutriciion</label>
+          <input id="peri-encefalico" type="text" ng-model="data.prEncefalico"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="peri-encefalico">Ingresa el perimetro encefalico (cm)</label>
         </div>
         <div class='main-distribute s-100'>
-          <button class='waves-effect waves-light btn danger' ng-click="handleCancel()">Cancelar</button>
-          <button class='waves-effect waves-light btn primary' ng-click="handleSave()">Aceptar</button>
+          <button class='waves-effect waves-light btn danger'
+            ng-click="handleCancel()">Cancelar
+          </button>
+          <button class='waves-effect waves-light btn primary'
+            ng-click="handleSave()">Aceptar
+          </button>
         </div>
 
       </article>

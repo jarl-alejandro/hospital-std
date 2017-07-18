@@ -12,14 +12,19 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   $scope.servicios = []
   $scope.especialidades = []
   $scope.especialidad_name = ''
-  $scope.data = { especialidad: '', servicio: '', fecha: '', horaInical: '', horaFinal: '' }
+  $scope.data = {
+    especialidad: '',
+    servicio: '',
+    fecha: '',
+    horaInical: '',
+    horaFinal: '',
+    paciente: '',
+    doctor: ''
+  }
   $scope.buscador = { doctor: '', paciente: '' }
 
   $http.get('src/estadistico/turnos/service/getAll.php')
-    .then(response => {
-      console.log(response)
-      $scope.turnos = response.data
-    })
+    .then(response => $scope.turnos = response.data)
 
   $http.get('src/estadistico/turnos/service/pacientes.php')
     .then(response => $scope.pacientes = response.data)
@@ -28,7 +33,7 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
     .then(response => $scope.servicios = response.data)
 
   $scope.handleShowForm = () => $('.formPlus').slideDown()
-  $scope.handleCancelForm = () => $('.formPlus').slideUp()
+  $scope.handleCancelForm = () =>  closeTurnoForm()
 
   $scope.handlePaciente = function (id) {
     $scope.data.paciente = id
@@ -63,6 +68,10 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
     $scope.data.doctor = id
     localStorage.setItem('doctor', id)
     $('#doctorModal').modal('close')
+
+    $('#serviciosList').slideDown()
+    $('#especialidadesList').slideUp()
+    $('#doctorTable').slideUp()
   }
 
   $scope.handleSiguiente = (index) => {
@@ -124,8 +133,10 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
         id: ''
       }).then(response => {
         if (response.data === "201") {
-          $('.formPlus').slideUp()
-          Materialize.toast('Se ha guarado con exito', 4000)
+          localStorage.setItem('fecha', '')
+          localStorage.setItem('doctor', '')
+          closeTurnoForm()
+          Materialize.toast('Debe activar el turno', 4000)
           $("label.active").removeClass('active')
           $('#paciente').val('')
           $('#fecha').val('')
@@ -136,6 +147,19 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
         }
       })
     }
+  }
+
+  function closeTurnoForm () {
+    $scope.data = {
+      especialidad: '',
+      servicio: '',
+      fecha: '',
+      horaInical: '',
+      horaFinal: '',
+      paciente: '',
+      doctor: ''
+    }
+    $('.formPlus').slideUp()
   }
 
   function validar () {

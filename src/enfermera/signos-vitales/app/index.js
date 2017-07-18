@@ -12,62 +12,123 @@ singosVitales.controller('singosVitalesController', function ($scope, $http) {
 singosVitales.controller('pacienteSignoController', function ($scope, $http, $stateParams) {
   const id = $stateParams.id
   const turno = $stateParams.turno
+
   $scope.activeSignosBtn = false
   $scope.menor = false
   $scope.paciente = {}
   $scope.signosVitales = []
   $scope.data = {
-    temperatura: '', frCardica: '', frRespiratoria: '', prArterial: '', peso: '',
-    talla: '', prEncefalico: '', estado: '', longitud: '', pulso: '', turno, historiaClinica: id
+    temperatura: '',
+    frCardica: '',
+    frRespiratoria: '',
+    prArterial: '',
+    peso: '',
+    talla: '',
+    prEncefalico: '',
+    estado: '',
+    longitud: '',
+    pulso: '',
+    turno,
+    historiaClinica: id,
+    id: ''
   }
 
-  $http.get(`src/enfermera/signos-vitales/service/turno.php?id=${turno}`)
-    .then(response => {
-      if (response.data.hgc_esta_turno === 'signosVitales') $scope.activeSignosBtn = true
-    })
+  $http.get(
+    `src/enfermera/signos-vitales/service/turno.php?id=${turno}`
+  )
+  .then(response => {
+    if (response.data.hgc_esta_turno === 'signosVitales')
+      $scope.activeSignosBtn = true
+  })
 
-  $http.get(`src/enfermera/signos-vitales/service/getAll.php?id=${id}`)
-    .then(response => $scope.signosVitales = response.data)
+  $http.get(
+    `src/enfermera/signos-vitales/service/getAll.php?id=${id}`
+  ).then(response => $scope.signosVitales = response.data)
 
-  $http.get(`src/enfermera/signos-vitales/service/pacienteOne.php?id=${id}`)
-    .then(response => {
-      $scope.paciente = response.data
-      const parametros = $scope.paciente.hgc_fecn_pacie.split('-')
-      const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
-      const now = new Date()
-      const year = now.getFullYear() - fecha.getFullYear()
-      const moth = now.getMonth() - fecha.getMonth()
-      const age = (year * 12) + moth
+  $http.get(
+    `src/enfermera/signos-vitales/service/pacienteOne.php?id=${id}`
+  )
+  .then(response => {
+    $scope.paciente = response.data
+    const parametros = $scope.paciente.hgc_fecn_pacie.split('-')
+    const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
+    const now = new Date()
+    const year = now.getFullYear() - fecha.getFullYear()
+    const moth = now.getMonth() - fecha.getMonth()
+    const age = (year * 12) + moth
 
-      if (age < 2) $scope.menor = true
-      else $scope.menor = false
-    })
+    if (age < 2) $scope.menor = true
+    else $scope.menor = false
+  })
 
-  $scope.handleShowForm = function handleShowForm () {
-    $('.formPlus').slideDown()
-  }
-
-  $scope.handleCancel = function handleCancel () {
-    $('.formPlus').slideUp()
-  }
+  $scope.handleShowForm = () => $('.formPlus').slideDown()
+  $scope.handleCancel = () => closeForm()
 
   $scope.handleSave = function handleSave () {
     if (validar()) {
+      $scope.data.estado = $scope.data.peso / ($scope.data.talla ** 2)
       $http.post('src/enfermera/signos-vitales/service/save.php', $scope.data)
       .then(response => {
         if (response.data === "201") {
           $scope.activeSignosBtn = true
           Materialize.toast('Se ha guarado con exito', 4000)
-          $('.formPlus').slideUp()
-          $('label.active').removeClass('active')
-          $scope.data = {
-            temperatura: '', frCardica: '', frRespiratoria: '', prArterial: '', peso: '',
-            talla: '', prEncefalico: '', estado: '', longitud: '', pulso: '', turno, historiaClinica: id
-          }
+          closeForm()
           $http.get(`src/enfermera/signos-vitales/service/getAll.php?id=${id}`)
           .then(response => $scope.signosVitales = response.data)
         }
       })
+    }
+  }
+
+  $scope.handleEdit = (signos) => {
+    const hoy = new Date()
+
+    const fecha = signos.hgc_fecha_sigvit
+    const hora = signos.hgc_hora_sigvit
+    const array = fecha.split('-')
+    const horaArray = hora.split(':')
+
+    let date = new Date(array[0], array[1]-1, array[2],
+      parseInt(horaArray[0])+24, horaArray[1])
+
+    if (hoy > date) {
+      Materialize.toast('No pude editar ya han pasado las 24 horas', 4000)
+    } else {
+      $('.formPlus').slideDown()
+      console.log(signos)
+      $scope.data.temperatura = signos.hgc_temp_sigvit
+      $scope.data.frCardica = signos.hgc_frcar_sigvit
+      $scope.data.frRespiratoria = signos.hgc_frresp_sigvit
+      $scope.data.prArterial = signos.hgc_prart_sigvit
+      $scope.data.peso = signos.hgc_peso_sigvit
+      $scope.data.talla = signos.hgc_talla_sigvit
+      $scope.data.prEncefalico = signos.hgc_prence_sigvit
+      $scope.data.estado = signos.hgc_esta_sigvit
+      $scope.data.longitud = signos.hgc_longi_sigvit
+      $scope.data.pulso = signos.hgc_puls_sigvit
+      $scope.data.id = signos.hgc_id_sigvit
+      $('.formPlus-content label').addClass('active')
+    }
+  }
+
+  function closeForm () {
+    $('.formPlus').slideUp()
+    $('label.active').removeClass('active')
+
+    $scope.data = {
+      temperatura: '',
+      frCardica: '',
+      frRespiratoria: '',
+      prArterial: '',
+      peso: '',
+      talla: '',
+      prEncefalico: '',
+      estado: '',
+      longitud: '',
+      pulso: '',
+      turno,
+      historiaClinica: id,
+      id: ''
     }
   }
 
