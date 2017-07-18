@@ -1,0 +1,31 @@
+<hgc-menu-doctor></hgc-menu-doctor>
+<section class="workSpace">
+  <h1 class="Title">Pacientes Atendidos</h2>
+  <article class="tableContainer">
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+          <tr>
+            <th width="10%">#</th>
+            <th width="23%">Historia Clinica</th>
+            <th width="23%">Paciente</th>
+            <th width="23%">Doctor</th>
+            <th width="23%"></th>
+          </tr>
+        </thead>
+      <tbody>
+          <tr ng-if="pacientes.length === 0">
+            <td colspan="5">No hay pacientes</td>
+          </tr>
+          <tr ng-repeat="paciente in pacientes">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ paciente.hgc_paci_turno }}</td>
+            <td>{{ paciente.paciente }}</td>
+            <td>{{ paciente.doctor }}</td>
+            <td>
+              <a class='waves-effect waves-light btn'
+                ng-click="form({id: paciente.hgc_paci_turno, turno:paciente.hgc_id_turno, fecha: paciente.hgc_fecn_pacie})">Ver</a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </article>

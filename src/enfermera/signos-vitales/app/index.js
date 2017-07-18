@@ -95,7 +95,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       Materialize.toast('No pude editar ya han pasado las 24 horas', 4000)
     } else {
       $('.formPlus').slideDown()
-      console.log(signos)
       $scope.data.temperatura = signos.hgc_temp_sigvit
       $scope.data.frCardica = signos.hgc_frcar_sigvit
       $scope.data.frRespiratoria = signos.hgc_frresp_sigvit

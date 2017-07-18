@@ -76,6 +76,7 @@
     <script src='src/enfermera/signos-vitales/app/index.js'></script>
 
     <script src='src/doctor/pacientes/app/index.js'></script>
+    <script src='src/doctor/atendidos/app/index.js'></script>
     <script src='src/doctor/form28C/app/index.js'></script>
     <script src='src/doctor/form28A/app/index.js'></script>
 
