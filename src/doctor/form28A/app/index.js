@@ -2,27 +2,45 @@
 
 const form28A = angular.module('Hospital')
 
-form28A.controller('form28AController',  function ($scope, $http, $stateParams, $location) {
+form28A.controller('form28AController', function ($scope, $http, $stateParams, $location) {
   const paciente = $stateParams.id
   const turno = $stateParams.turno
+  const hoy = new Date()
 
   $scope.activoForm28 = false
   $scope.sistemas = []
   $scope.fisicos = []
+  $scope.pacient = {}
+  $scope.empresa = {}
+  $scope.year = hoy.getFullYear()
   $scope.data = { motivo: '', enfermedad: '', paciente, turno }
 
 	let array_sistemas = []
   let array_fisicos = []
 
   $http.get('src/doctor/form28A/service/sistemas.php')
-    .then(response => $scope.sistemas = response.data)
+  .then(response => $scope.sistemas = response.data)
 
   $http.get('src/doctor/form28A/service/fisico.php')
-    .then(response => $scope.fisicos = response.data)
+  .then(response => $scope.fisicos = response.data)
+
+  $http.get(`src/doctor/form28A/service/paciente.php?id=${paciente}`)
+  .then(response => $scope.pacient = response.data)
+
+  $http.get('src/config/empresa/service/get.php')
+  .then(response => {
+    if (response.data.cont === 1) {
+      $scope.empresa = response.data.empresa
+    }
+  })
 
   $scope.handleSave = function () {
-    const items_sistemas = Array.prototype.slice.call(document.querySelectorAll('.items_sistemas'))
-    const items_fisicico = Array.prototype.slice.call(document.querySelectorAll('.items_fisicico'))
+    const items_sistemas = Array.prototype.slice.call(
+      document.querySelectorAll('.items_sistemas')
+    )
+    const items_fisicico = Array.prototype.slice.call(
+      document.querySelectorAll('.items_fisicico')
+    )
 
     array_sistemas = []
     array_fisicos = []

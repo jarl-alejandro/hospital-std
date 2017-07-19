@@ -42,8 +42,9 @@ if ($id == "") {
   $new->bindParam(10, $sexo);
   $new->execute();
 
-  $hcli = $pdo->prepare("INSERT INTO hgc_hclinica (hgc_histo_hcli, hgc_ubica_hcli, hgc_aper_hcli,
-                            hgc_hora_hcli, hgc_user_hcli) VALUES (?, ?, ?, ?, ?)");
+  $hcli = $pdo->prepare("INSERT INTO hgc_hclinica (hgc_histo_hcli, hgc_ubica_hcli,
+    hgc_aper_hcli, hgc_hora_hcli, hgc_user_hcli) VALUES (?, ?, ?, ?, ?)");
+
   $hcli->bindParam(1, $cedula);
   $hcli->bindParam(2, $ubicacion);
   $hcli->bindParam(3, $apertura);

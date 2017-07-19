@@ -1,0 +1,392 @@
+<section ng-controller="hoja1Conroller" class="s-100 main-distribute">
+  <!-- Antecedentes Maternos -->
+  <div class="s-90 m-45 form-select">
+    <div class="menu-form">
+      <h6 class="form28__list">
+        <a style="color:white">1 ANTECEDENTES MATERNOS</a>
+        <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+          Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+        </a>
+      </h6>
+      <div style="display: flex;justify-content: space-around;">
+        <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+        <h6>OBSERVACIONES</h6>
+      </div>
+    </div>
+    <ul class="menu-form--list">
+      <li ng-repeat="materno in ant_maternos">
+        <p>{{ materno.hgc_desc_sisfi }}</p>
+        <p>
+          <input name="materno_{{ materno.hgc_id_sisfi }}" id="si_{{ materno.hgc_id_sisfi }}"
+            class="items_materno" value="0_{{materno.hgc_id_sisfi}}" type="radio" />
+          <label for="si_{{ materno.hgc_id_sisfi }}"></label>
+        </p>
+        <p>
+          <input name="materno_{{ materno.hgc_id_sisfi }}" id="no_{{ materno.hgc_id_sisfi }}"
+            class="items_materno" value="1_{{materno.hgc_id_sisfi}}" type="radio" />
+          <label for="no_{{ materno.hgc_id_sisfi }}"></label>
+        </p>
+        <div class="input-field s-55 no-margin">
+          <input type="text" placeholder="Ingrese una observacion"
+            id="input-materno-{{ materno.hgc_id_sisfi }}">
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- /Antecedentes Maternos -->
+
+  <!-- Antecedentes familiares -->
+  <div class="s-90 m-45 form-select">
+    <div class="menu-form">
+      <h6 class="form28__list">
+        <a style="color:white">2 ANTECEDENTES FAMILIARES</a>
+        <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+          Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+        </a>
+      </h6>
+      <div style="display: flex;justify-content: space-around;">
+        <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+        <h6>OBSERVACIONES</h6>
+      </div>
+    </div>
+    <ul class="menu-form--list">
+      <li ng-repeat="fami in ant_familiares">
+        <p>{{ fami.hgc_desc_sisfi }}</p>
+        <p>
+          <input name="fami_{{ fami.hgc_id_sisfi }}" id="si_{{ fami.hgc_id_sisfi }}"
+            class="items_fami" value="0_{{fami.hgc_id_sisfi}}" type="radio" />
+          <label for="si_{{ fami.hgc_id_sisfi }}"></label>
+        </p>
+        <p>
+          <input name="fami_{{ fami.hgc_id_sisfi }}" id="no_{{ fami.hgc_id_sisfi }}"
+            class="items_fami" value="1_{{fami.hgc_id_sisfi}}" type="radio" />
+          <label for="no_{{ fami.hgc_id_sisfi }}"></label>
+        </p>
+        <div class="input-field s-55 no-margin">
+          <input type="text" placeholder="Ingrese una observacion"
+            id="input-fami-{{ fami.hgc_id_sisfi }}">
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- /Antecedentes familiares -->
+
+  <!-- Antecedentes obstreticos -->
+  <article class="s-100">
+    <p class="form__tag">ANTECEDENTES OBSTRETICOS</p>
+  </article>
+  <!-- /Antecedentes obstreticos -->
+
+  <!-- Antecedentes Prenatales -->
+  <div class="s-100 form-select" style="margin-bottom:1em">
+    <div class="menu-form">
+      <h6 class="form28__list">
+        <a style="color:white">4 ANTECEDENTES PRENATALES</a>
+        <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+          Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+        </a>
+      </h6>
+      <div style="display: flex;justify-content: space-around;">
+        <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+        <h6>OBSERVACIONES</h6>
+      </div>
+    </div>
+    <ul class="menu-form--list" style="display: grid;grid-template-columns: 50% 50%;">
+      <li ng-repeat="prenat in ant_prenatales">
+        <p>{{ prenat.hgc_desc_sisfi }}</p>
+        <p>
+          <input name="prenat_{{ prenat.hgc_id_sisfi }}" id="si_{{ prenat.hgc_id_sisfi }}"
+            class="items_prenat" value="0_{{prenat.hgc_id_sisfi}}" type="radio" />
+          <label for="si_{{ prenat.hgc_id_sisfi }}"></label>
+        </p>
+        <p>
+          <input name="prenat_{{ prenat.hgc_id_sisfi }}" id="no_{{ prenat.hgc_id_sisfi }}"
+            class="items_prenat" value="1_{{prenat.hgc_id_sisfi}}" type="radio" />
+          <label for="no_{{ prenat.hgc_id_sisfi }}"></label>
+        </p>
+        <div class="input-field s-55 no-margin">
+          <input type="text" placeholder="Ingrese una observacion"
+            id="input-prenat-{{ materno.hgc_id_sisfi }}">
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- /Antecedentes Maternos -->
+
+  <!-- Antecedentes familiares -->
+  <div class="s-100 form-select" style="margin-bottom:1em">
+    <div class="menu-form">
+      <h6 class="form28__list">
+        <a style="color:white;width: 8em;">5 Nacimiento</a>
+        <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+          Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+        </a>
+      </h6>
+      <div style="display: flex;justify-content: space-around;">
+        <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+        <h6>OBSERVACIONES</h6>
+      </div>
+    </div>
+    <ul class="menu-form--list" style="display: grid;grid-template-columns: 50% 50%;">
+      <li ng-repeat="nacim in nacimientos">
+        <p>{{ nacim.hgc_desc_sisfi }}</p>
+        <p>
+          <input name="nacim_{{ nacim.hgc_id_sisfi }}" id="si_{{ nacim.hgc_id_sisfi }}"
+            class="items_nacim" value="0_{{nacim.hgc_id_sisfi}}" type="radio" />
+          <label for="si_{{ nacim.hgc_id_sisfi }}"></label>
+        </p>
+        <p>
+          <input name="nacim_{{ nacim.hgc_id_sisfi }}" id="no_{{ nacim.hgc_id_sisfi }}"
+            class="items_nacim" value="1_{{nacim.hgc_id_sisfi}}" type="radio" />
+          <label for="no_{{ nacim.hgc_id_sisfi }}"></label>
+        </p>
+        <div class="input-field s-55 no-margin">
+          <input type="text" placeholder="Ingrese una observacion"
+            id="input-nacim-{{ nacim.hgc_id_sisfi }}">
+        </div>
+      </li>
+    </ul>
+
+    <div class="main-end">
+      <article class="atendidos-por__form s-60">
+        <ul class="atendidos__menu">
+          <li>ATENDIDO POR:</li>
+          <li>MEDIC</li>
+          <li>OESTE</li>
+          <li>ENFER</li>
+          <li>AUXIL</li>
+          <li>ESTUD</li>
+          <li>EMPIR</li>
+          <li>OTRO</li>
+        </ul>
+        <ul class="atendidos__menu">
+          <li>PARTO:</li>
+          <li>
+            <input type="checkbox" id="parto_medic" />
+            <label for="parto_medic"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="parto_oeste" />
+            <label for="parto_oeste"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="parto_enfer" />
+            <label for="parto_enfer"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="parto_aux" />
+            <label for="parto_aux"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="parto_estud" />
+            <label for="parto_estud"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="parto_empir" />
+            <label for="parto_empir"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="parto_otro" />
+            <label for="parto_otro"></label>
+          </li>
+        </ul>
+        <ul class="atendidos__menu">
+          <li>NEONATO:</li>
+          <li>
+            <input type="checkbox" id="neonato_medic" />
+            <label for="neonato_medic"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="neonato_oeste" />
+            <label for="neonato_oeste"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="neonato_enfer" />
+            <label for="neonato_enfer"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="neonato_aux" />
+            <label for="neonato_aux"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="neonato_estud" />
+            <label for="neonato_estud"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="neonato_empir" />
+            <label for="neonato_empir"></label>
+          </li>
+          <li>
+            <input type="checkbox" id="neonato_otro" />
+            <label for="neonato_otro"></label>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+  <!-- /Antecedentes familiares -->
+
+  <!-- Recien Nacido -->
+  <article class="s-100 main-distribute">
+    <p class="form__tag s-100">RECIEN NACIDO</p>
+    <div class="s-90 m-45 form-select">
+      <section style="border-bottom:1px solid black">
+        <ul>
+          <li style="display:flex">
+            <p>REANIMACION (especifique tipo)</p>
+            <p>
+              <input name="reanimacion" id="si_reanimacion"
+                class="items_recien" value="0" type="radio" />
+              <label for="si_reanimacion"></label>
+            </p>
+            <p>
+              <input name="reanimacion" id="no_reanimacion"
+                class="items_recien" value="1" type="radio" />
+              <label for="no_reanimacion"></label>
+            </p>
+            <div class="input-field s-55 no-margin">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input-recien-reanimacion">
+            </div>
+          </li>
+        </ul>
+        <article class="form__grid_nacido">
+          <div class="input-field s-95">
+            <input id="apagar_1min" type="text">
+            <label for="apagar_1min">APAGAR 1 MIN</label>
+          </div>
+          <div class="input-field s-95">
+            <input id="apagar_5min" type="text">
+            <label for="apagar_5min">APAGAR 5 MIN</label>
+          </div>
+        </article>
+
+        <article class="form__grid_nacido_2">
+          <div class="input-field s-95">
+            <input id="peso_nacer" type="text">
+            <label for="peso_nacer">PESO AL NACER</label>
+          </div>
+          <div class="input-field s-95">
+            <input id="longitud" type="text">
+            <label for="longitud">LONGITUD</label>
+          </div>
+          <div class="input-field s-95">
+            <input id="p_cefalico" type="text">
+            <label for="p_cefalico">P. CEFALICO</label>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <article class="form__grid_nacido">
+          <div class="input-field s-95">
+            <input id="edad_gestion" type="text">
+            <label for="edad_gestion" style="font-size: 12px;">EDAD GESTIONAL X EXAMEN FISICO</label>
+          </div>
+          <div class="input-field s-95">
+            <input id="relacion_peso" type="text">
+            <label for="relacion_peso" style="font-size: 12px;">RELACION PESO / EDAD GESTIONAL</label>
+          </div>
+        </article>
+        <ul>
+          <li style="display:flex">
+            <p>TIPIFICACION SANGUINEA (registro grupo factor)</p>
+            <p>
+              <input name="tipificacion_sangio" id="si_tipificacion_sangio"
+                class="items_tipifi" value="0" type="radio" />
+              <label for="si_tipificacion_sangio"></label>
+            </p>
+            <p>
+              <input name="tipificacion_sangio" id="no_tipificacion_sangio"
+                class="items_tipifi" value="1" type="radio" />
+              <label for="no_tipificacion_sangio"></label>
+            </p>
+            <div class="input-field s-55 no-margin">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input-recien-tipificacion_sangio">
+            </div>
+          </li>
+
+          <li style="display:flex">
+            <p>EXAMENES ESPECIALES (asociados a tiesfo)</p>
+            <p>
+              <input name="examen_especial" id="si_examen_especial"
+                class="items_examen_especial" value="0" type="radio" />
+              <label for="si_examen_especial"></label>
+            </p>
+            <p>
+              <input name="examen_especial" id="no_examen_especial"
+                class="items_examen_especial" value="1" type="radio" />
+              <label for="no_examen_especial"></label>
+            </p>
+            <div class="input-field s-55 no-margin">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input-recien-examen_especial">
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Lista -->
+    <div class="s-90 m-45 form-select">
+      <div class="menu-form">
+        <h6 class="form28__list">
+          <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+            Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+          </a>
+        </h6>
+        <div style="display: flex;justify-content: space-around;">
+          <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+          <h6>OBSERVACIONES</h6>
+        </div>
+      </div>
+      <ul class="menu-form--list">
+        <li ng-repeat="recien in recien_nacidos">
+          <p>{{ recien.hgc_desc_sisfi }}</p>
+          <p>
+            <input name="recien_{{ recien.hgc_id_sisfi }}" id="si_{{ recien.hgc_id_sisfi }}"
+              class="items_recien" value="0_{{recien.hgc_id_sisfi}}" type="radio" />
+            <label for="si_{{ recien.hgc_id_sisfi }}"></label>
+          </p>
+          <p>
+            <input name="recien_{{ recien.hgc_id_sisfi }}" id="no_{{ recien.hgc_id_sisfi }}"
+              class="items_recien" value="1_{{recien.hgc_id_sisfi}}" type="radio" />
+            <label for="no_{{ recien.hgc_id_sisfi }}"></label>
+          </p>
+          <div class="input-field s-55 no-margin">
+            <input type="text" placeholder="Ingrese una observacion"
+              id="input-recien-{{ recien.hgc_id_sisfi }}">
+          </div>
+        </li>
+        <li>
+          <div class="input-field s-95">
+            <input id="tamizaje" type="text">
+            <label for="tamizaje">TAMIZAJE</label>
+          </div>
+        </li>
+        <li>
+          <div class="input-field s-95">
+            <input id="condicion_egreso" type="text">
+            <label for="condicion_egreso">CONDICION AL EGRESO</label>
+          </div>
+        </li>
+        <li>
+          <div class="input-field s-95">
+            <input id="referido_de" type="text">
+            <label for="referido_de">REFERIDO DE</label>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- /Lista -->
+  </article>
+  <!-- /Recien Nacido -->
+
+  <div class='main-distribute s-100 margin-top' style="margin-bottom: 1em">
+    <button class='waves-effect waves-light btn primary' ng-click="handleNext()"
+      ng-disabled="activoForm28">SIGUIENTE
+    </button>
+  </div>
+
+</section>

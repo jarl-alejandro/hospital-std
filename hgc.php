@@ -23,9 +23,9 @@
   <!-- Para validar que si el usuario esta o no logueado y que rol es -->
     <script src='js/authenticated.js'></script>
   <!-- Inicio de la aplicacion -->
-  <script src='js/index.js'></script>
+    <script src='js/index.js'></script>
   <!-- functiones que valida los inputs -->
-  <script src='js/valid.js'></script>
+    <script src='js/valid.js'></script>
   <!-- Direcitva  para el menu y que menu presenta-->
     <script src='src/menu/app/index.js'></script>
 
@@ -79,6 +79,7 @@
     <script src='src/doctor/atendidos/app/index.js'></script>
     <script src='src/doctor/form28C/app/index.js'></script>
     <script src='src/doctor/form28A/app/index.js'></script>
+    <script src='src/doctor/form28A/app/hoja1.js'></script>
 
     <script src="src/horarios-doctores/app/index.js"></script>
 
