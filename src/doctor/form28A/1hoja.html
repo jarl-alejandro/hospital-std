@@ -1,6 +1,6 @@
 <section ng-controller="hoja1Conroller" class="s-100 main-distribute">
   <!-- Antecedentes Maternos -->
-  <div class="s-90 m-45 form-select">
+  <div class="s-90 m-45 form-select none">
     <div class="menu-form">
       <h6 class="form28__list">
         <a style="color:white">1 ANTECEDENTES MATERNOS</a>
@@ -36,7 +36,7 @@
   <!-- /Antecedentes Maternos -->
 
   <!-- Antecedentes familiares -->
-  <div class="s-90 m-45 form-select">
+  <div class="s-90 m-45 form-select none">
     <div class="menu-form">
       <h6 class="form28__list">
         <a style="color:white">2 ANTECEDENTES FAMILIARES</a>
@@ -72,8 +72,101 @@
   <!-- /Antecedentes familiares -->
 
   <!-- Antecedentes obstreticos -->
-  <article class="s-100">
-    <p class="form__tag">ANTECEDENTES OBSTRETICOS</p>
+  <article class="s-100" style="position:relative;margin-bottom:1em">
+    <p class="form__tag s-100">ANTECEDENTES OBSTRETICOS</p>
+    <article style="margin-top: -0.5em;">
+      <div class="s-15">
+        <label style="font-size: 11px;" for="fecha_embarazoAnt">
+          FECHA FIN EMBARAZO ANTERIOR
+        </label>
+        <input type="text" id="fecha_embarazoAnt" class="input__antecedentes">
+      </div>
+      <div class="s-5 obstretico_circle meno__1year obsetretico_label">
+        <div class="checkedContainer1Year">
+          <input type="checkbox" id="menor1" />
+          <label for="menor1"></label>
+        </div>
+        <label for="menor1">MENOS DE 1 AÑO</label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" style="left:14.5em;">
+      <div class="s-10" id="gestas_previas-container">
+        <label for="gestas_previas">GESTAS PREVIAS</label>
+        <input type="text" id="gestas_previas" class="input__antecedentes">
+      </div>
+
+      <div class="s-5 obstretico_circle gemelar_previo obsetretico_label"
+        id="gemelar_previo_container">
+        <div class="checkedContainer1Year">
+          <input type="checkbox" id="gemelar_previo" />
+          <label for="gemelar_previo"></label>
+        </div>
+        <label for="gemelar_previo">GEMELAR PREVIO</label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" style="left:24.5em;">
+      <div class="s-10">
+        <label for="abortos">ABORTOS</label>
+        <input type="text" id="abortos" class="input__antecedentes">
+      </div>
+
+      <div class="s-10" id="partos__container">
+        <input type="text" id="partos" class="input__antecedentes">
+        <label for="partos" style="margin: -1.5em 1em 0 2em;display: block;">PARTOS</label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" style="left:35.4em;">
+      <div class="s-10" id="partos_vaginales-container">
+        <label for="partos__vaginales" style="font-size: 10px;">PARTOS VAGINALES</label>
+        <input type="text" id="partos__vaginales" class="input__antecedentes">
+      </div>
+
+      <div class="s-10" id="cesarias_container">
+        <input type="text" id="cesarias" class="input__antecedentes">
+        <label for="cesarias" style="margin: -1.5em 1em 0 2em;display: block;">CESARIAS</label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" style="left:47em;">
+      <div class="s-10" id="nacido_vivos-container">
+        <label for="nacido_vivos" style="font-size: 10px;">NACIDOS VIVOS</label>
+        <input type="text" id="nacido_vivos" class="input__antecedentes">
+      </div>
+
+      <div class="s-10" id="nacido_muerto-container">
+        <input type="text" id="nacido_muerto" class="input__antecedentes">
+        <label for="nacido_muerto" style="margin: -1.5em 1em 0 2em;display: block;">
+          NACIDOS MUERTES
+        </label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" style="left:59em;">
+      <div class="s-10" id="hijos_vivos-container">
+        <label for="hijos_vivos" style="font-size: 10px;">HIJOS VIVOS</label>
+        <input type="text" id="hijos_vivos" class="input__antecedentes">
+      </div>
+    </article>
+
+    <article class="divider_absolute-muertos" style="left:57em;">
+      <div class="s-10" id="muerto7menor-container">
+        <input type="text" id="muerto7menor" class="input__antecedentes" style="margin-left: -1.5em;">
+        <label for="muerto7menor" style="margin: -1.5em 1em 0 0;display: block;font-size: 10px;">
+          MUERTOS < 7 DIAS
+        </label>
+      </div>
+
+      <div class="s-10" id="muerto7mayor-container">
+        <input type="text" id="muerto7mayor" class="input__antecedentes">
+        <label for="muerto7mayor" style="margin: -1.5em 1em 0 2em;display: block;font-size: 10px;">
+          MUERTOS > 7 DIAS
+        </label>
+      </div>
+    </article>
+
   </article>
   <!-- /Antecedentes obstreticos -->
 
