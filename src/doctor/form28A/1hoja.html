@@ -72,48 +72,65 @@
   <!-- /Antecedentes familiares -->
 
   <!-- Antecedentes obstreticos -->
-  <article class="s-100" style="position:relative;margin-bottom:1em">
+  <article class="s-100" style="position:relative;margin: 2em 0;"
+    ng-controller="validForm">
     <p class="form__tag s-100">ANTECEDENTES OBSTRETICOS</p>
     <article style="margin-top: -0.5em;">
+
       <div class="s-15">
         <label style="font-size: 11px;" for="fecha_embarazoAnt">
           FECHA FIN EMBARAZO ANTERIOR
         </label>
-        <input type="text" id="fecha_embarazoAnt" class="input__antecedentes">
+        <input type="text" id="fecha_embarazoAnt"
+          class="input__antecedentes datepicker" ng-model="data.fechaEmbarazo"
+          ng-disabled="!abstre.embarazo"
+        >
       </div>
+
       <div class="s-5 obstretico_circle meno__1year obsetretico_label">
-        <div class="checkedContainer1Year">
-          <input type="checkbox" id="menor1" />
+        <div>
+          <input type="checkbox" id="menor1" ng-model="abstre.embarazo" />
           <label for="menor1"></label>
         </div>
-        <label for="menor1">MENOS DE 1 AÑO</label>
+        <label for="menor1" class="label">MENOS DE 1 AÑO</label>
       </div>
+
     </article>
 
     <article class="divider_absolute" style="left:14.5em;">
       <div class="s-10" id="gestas_previas-container">
         <label for="gestas_previas">GESTAS PREVIAS</label>
-        <input type="text" id="gestas_previas" class="input__antecedentes">
+        <input type="text" id="gestas_previas" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.gestasPrevias" maxlength="4"
+        >
       </div>
 
       <div class="s-5 obstretico_circle gemelar_previo obsetretico_label"
         id="gemelar_previo_container">
-        <div class="checkedContainer1Year">
-          <input type="checkbox" id="gemelar_previo" />
+        <div>
+          <input type="checkbox" id="gemelar_previo" ng-model="abstre.gemelar"/>
           <label for="gemelar_previo"></label>
         </div>
-        <label for="gemelar_previo">GEMELAR PREVIO</label>
+        <label for="gemelar_previo" class="label">GEMELAR PREVIO</label>
       </div>
     </article>
 
     <article class="divider_absolute" style="left:24.5em;">
       <div class="s-10">
         <label for="abortos">ABORTOS</label>
-        <input type="text" id="abortos" class="input__antecedentes">
+        <input type="text" id="abortos" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar"
+          ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.abortos" maxlength="4"
+        >
       </div>
 
       <div class="s-10" id="partos__container">
-        <input type="text" id="partos" class="input__antecedentes">
+        <input type="text" id="partos" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.partos" maxlength="4"
+        >
         <label for="partos" style="margin: -1.5em 1em 0 2em;display: block;">PARTOS</label>
       </div>
     </article>
@@ -121,11 +138,17 @@
     <article class="divider_absolute" style="left:35.4em;">
       <div class="s-10" id="partos_vaginales-container">
         <label for="partos__vaginales" style="font-size: 10px;">PARTOS VAGINALES</label>
-        <input type="text" id="partos__vaginales" class="input__antecedentes">
+        <input type="text" id="partos__vaginales" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.partosVaginales" maxlength="4"
+        >
       </div>
 
       <div class="s-10" id="cesarias_container">
-        <input type="text" id="cesarias" class="input__antecedentes">
+        <input type="text" id="cesarias" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.cesarias" maxlength="4"
+        >
         <label for="cesarias" style="margin: -1.5em 1em 0 2em;display: block;">CESARIAS</label>
       </div>
     </article>
@@ -133,11 +156,17 @@
     <article class="divider_absolute" style="left:47em;">
       <div class="s-10" id="nacido_vivos-container">
         <label for="nacido_vivos" style="font-size: 10px;">NACIDOS VIVOS</label>
-        <input type="text" id="nacido_vivos" class="input__antecedentes">
+        <input type="text" id="nacido_vivos" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.nacidosVivos" maxlength="4"
+        >
       </div>
 
       <div class="s-10" id="nacido_muerto-container">
-        <input type="text" id="nacido_muerto" class="input__antecedentes">
+        <input type="text" id="nacido_muerto" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.nacidosMuertos" maxlength="4"
+        >
         <label for="nacido_muerto" style="margin: -1.5em 1em 0 2em;display: block;">
           NACIDOS MUERTES
         </label>
@@ -147,21 +176,33 @@
     <article class="divider_absolute" style="left:59em;">
       <div class="s-10" id="hijos_vivos-container">
         <label for="hijos_vivos" style="font-size: 10px;">HIJOS VIVOS</label>
-        <input type="text" id="hijos_vivos" class="input__antecedentes">
+        <input type="text" id="hijos_vivos" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.hijosVivos" maxlength="4"
+        >
       </div>
     </article>
 
     <article class="divider_absolute-muertos" style="left:57em;">
       <div class="s-10" id="muerto7menor-container">
-        <input type="text" id="muerto7menor" class="input__antecedentes" style="margin-left: -1.5em;">
-        <label for="muerto7menor" style="margin: -1.5em 1em 0 0;display: block;font-size: 10px;">
+        <input type="text" id="muerto7menor" class="input__antecedentes"
+          style="margin-left: -1.5em;" ng-disabled="!abstre.gemelar"
+          ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.muertosMenor7" maxlength="4"
+        >
+        <label for="muerto7menor"
+          style="margin: -1.5em 1em 0 0;display: block;font-size: 10px;">
           MUERTOS < 7 DIAS
         </label>
       </div>
 
       <div class="s-10" id="muerto7mayor-container">
-        <input type="text" id="muerto7mayor" class="input__antecedentes">
-        <label for="muerto7mayor" style="margin: -1.5em 1em 0 2em;display: block;font-size: 10px;">
+        <input type="text" id="muerto7mayor" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.muertosMayor7" maxlength="4"
+        >
+        <label for="muerto7mayor"
+          style="margin:-1.5em 1em 0 2em;display:block;font-size: 10px;">
           MUERTOS > 7 DIAS
         </label>
       </div>
@@ -326,7 +367,9 @@
       <section style="border-bottom:1px solid black">
         <ul>
           <li style="display:flex">
-            <p>REANIMACION (especifique tipo)</p>
+            <p>REANIMACION <br>
+              <span style="font-size: 12px;">(especifique tipo)</span>
+            </p>
             <p>
               <input name="reanimacion" id="si_reanimacion"
                 class="items_recien" value="0" type="radio" />
@@ -343,28 +386,39 @@
             </div>
           </li>
         </ul>
+
         <article class="form__grid_nacido">
           <div class="input-field s-95">
-            <input id="apagar_1min" type="text">
+            <input id="apagar_1min" type="text"
+              ng-model="data.apagar1Min"
+            />
             <label for="apagar_1min">APAGAR 1 MIN</label>
           </div>
           <div class="input-field s-95">
-            <input id="apagar_5min" type="text">
+            <input id="apagar_5min" type="text"
+              ng-model="data.apagar5Min"
+            />
             <label for="apagar_5min">APAGAR 5 MIN</label>
           </div>
         </article>
 
         <article class="form__grid_nacido_2">
           <div class="input-field s-95">
-            <input id="peso_nacer" type="text">
+            <input id="peso_nacer" type="text"
+              ng-model="pesoNacer"
+            />
             <label for="peso_nacer">PESO AL NACER</label>
           </div>
           <div class="input-field s-95">
-            <input id="longitud" type="text">
+            <input id="longitud" type="text"
+              ng-model="data.longitud"
+            />
             <label for="longitud">LONGITUD</label>
           </div>
           <div class="input-field s-95">
-            <input id="p_cefalico" type="text">
+            <input id="p_cefalico" type="text"
+              ng-model="data.pCefalico"
+            />
             <label for="p_cefalico">P. CEFALICO</label>
           </div>
         </article>
@@ -373,12 +427,20 @@
       <section>
         <article class="form__grid_nacido">
           <div class="input-field s-95">
-            <input id="edad_gestion" type="text">
-            <label for="edad_gestion" style="font-size: 12px;">EDAD GESTIONAL X EXAMEN FISICO</label>
+            <input id="edad_gestion" type="text"
+              ng-model="data.edadGestion"
+            />
+            <label for="edad_gestion" style="font-size: 12px;">
+              EDAD GESTIONAL X EXAMEN FISICO
+            </label>
           </div>
           <div class="input-field s-95">
-            <input id="relacion_peso" type="text">
-            <label for="relacion_peso" style="font-size: 12px;">RELACION PESO / EDAD GESTIONAL</label>
+            <input id="relacion_peso" type="text"
+              ng-model="data.relacionPeso"
+            />
+            <label for="relacion_peso" style="font-size: 12px;">
+              RELACION PESO / EDAD GESTIONAL
+            </label>
           </div>
         </article>
         <ul>
@@ -386,17 +448,21 @@
             <p>TIPIFICACION SANGUINEA (registro grupo factor)</p>
             <p>
               <input name="tipificacion_sangio" id="si_tipificacion_sangio"
-                class="items_tipifi" value="0" type="radio" />
+                class="items_tipifi" value="0" type="radio"
+              />
               <label for="si_tipificacion_sangio"></label>
             </p>
             <p>
               <input name="tipificacion_sangio" id="no_tipificacion_sangio"
-                class="items_tipifi" value="1" type="radio" />
+                class="items_tipifi" value="1" type="radio"
+              />
               <label for="no_tipificacion_sangio"></label>
             </p>
             <div class="input-field s-55 no-margin">
               <input type="text" placeholder="Ingrese una observacion"
-                id="input-recien-tipificacion_sangio">
+                id="input-recien-tipificacion_sangio"
+                ng-model="data.tipoficacionSanguinea"
+              />
             </div>
           </li>
 
@@ -404,17 +470,20 @@
             <p>EXAMENES ESPECIALES (asociados a tiesfo)</p>
             <p>
               <input name="examen_especial" id="si_examen_especial"
-                class="items_examen_especial" value="0" type="radio" />
+                class="items_examen_especial" value="0" type="radio"
+              />
               <label for="si_examen_especial"></label>
             </p>
             <p>
               <input name="examen_especial" id="no_examen_especial"
-                class="items_examen_especial" value="1" type="radio" />
+                class="items_examen_especial" value="1" type="radio"
+              />
               <label for="no_examen_especial"></label>
             </p>
             <div class="input-field s-55 no-margin">
               <input type="text" placeholder="Ingrese una observacion"
-                id="input-recien-examen_especial">
+                id="input-recien-examen_especial" ng-model="data.examenesEspeciales"
+              />
             </div>
           </li>
         </ul>
@@ -435,6 +504,7 @@
         </div>
       </div>
       <ul class="menu-form--list">
+
         <li ng-repeat="recien in recien_nacidos">
           <p>{{ recien.hgc_desc_sisfi }}</p>
           <p>
@@ -452,21 +522,22 @@
               id="input-recien-{{ recien.hgc_id_sisfi }}">
           </div>
         </li>
+
         <li>
           <div class="input-field s-95">
-            <input id="tamizaje" type="text">
+            <input id="tamizaje" type="text" ng-model="data.tamizaje">
             <label for="tamizaje">TAMIZAJE</label>
           </div>
         </li>
         <li>
           <div class="input-field s-95">
-            <input id="condicion_egreso" type="text">
+            <input id="condicion_egreso" type="text" ng-model="data.condicionEgreso">
             <label for="condicion_egreso">CONDICION AL EGRESO</label>
           </div>
         </li>
         <li>
           <div class="input-field s-95">
-            <input id="referido_de" type="text">
+            <input id="referido_de" type="text" ng-model="data.referido">
             <label for="referido_de">REFERIDO DE</label>
           </div>
         </li>

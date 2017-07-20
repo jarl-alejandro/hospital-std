@@ -3,7 +3,7 @@
   border-radius 3px
 .menu-form
   color white
-  background rgba(30, 136, 229, 0.8)
+  background primary
   padding .2em 1em
   border-bottom 1px solid #666
   .title
@@ -36,7 +36,8 @@
   div
     border 1px solid #6b6a6a
   label
-    background #eee
+    background primary
+    color white
     display block
     border-bottom 1px solid #6b6a6a
   input
@@ -64,8 +65,9 @@
   border 1px solid #6b6a6a
   ul
     &:first-child
-      background #6b6a6a
+      background primary
       margin 0
+      color white
 .atendidos__menu
   display flex
   justify-content space-around
@@ -123,10 +125,14 @@
     width 2.5em
 .obsetretico_label
   position relative
-  label
+  .label
     position absolute
     top 3em
     width 9em
+  div
+    margin-left 15px
+    display flex
+    align-items center
 .gemelar_previo
   a
     border 1px solid #9e9e9e !important

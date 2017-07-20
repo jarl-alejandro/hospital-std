@@ -13,7 +13,32 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
   $scope.pacient = {}
   $scope.empresa = {}
   $scope.year = hoy.getFullYear()
-  $scope.data = { motivo: '', enfermedad: '', paciente, turno }
+  $scope.data = {
+    motivo: '', enfermedad: '', paciente, turno,
+    gestasPrevias: '',
+    abortos: '',
+    partos: '',
+    partosVaginales: '',
+    cesarias: '',
+    nacidosVivos: '',
+    hijosVivos: '',
+    muertosMenor7: '',
+    muertosMayor7: '',
+    nacidosMuertos: '',
+    fechaEmbarazo: '',
+    tamizaje: '',
+    condicionEgreso: '',
+    referido: '',
+    edadGestion: '',
+    relacionPeso: '',
+    tipoficacionSanguinea: '',
+    examenesEspeciales: '',
+    apagar1Min: '',
+    apagar_5min: '',
+    longitud: '',
+    pCefalico: '',
+    pesoNacer: ''
+  }
 
 	let array_sistemas = []
   let array_fisicos = []
@@ -34,7 +59,12 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     }
   })
 
-  $scope.handleSave = function () {
+  $scope.handleBack = () => {
+    $('#hoja__1').slideDown()
+    $('#hoja__2').slideUp()
+  }
+
+  $scope.handleSave = () => {
     const items_sistemas = Array.prototype.slice.call(
       document.querySelectorAll('.items_sistemas')
     )
@@ -66,22 +96,26 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     }
 
     if (validarForm()) {
-      $scope.activoForm28 = true
+      // $scope.activoForm28 = true
       $scope.data.sistemas = array_sistemas
       $scope.data.fisicos = array_fisicos
 
+      console.log($scope.data)
+
+      /*
       $http.post('src/doctor/form28A/service/save.php', $scope.data)
-        .then(response => {
-          console.log(response)
-          if (response.data === '201') {
-            Materialize.toast('Se ha guardado con exito', 4000)
-            $location.path('/doctor')
-            $scope.activoForm28 = false
-          } else {
-            $scope.activoForm28 = false
-            Materialize.toast('Intente nuevamente', 4000)
-          }
-        })
+      .then(response => {
+        console.log(response)
+        if (response.data === '201') {
+          Materialize.toast('Se ha guardado con exito', 4000)
+          $location.path('/doctor')
+          $scope.activoForm28 = false
+        } else {
+        Materialize.toast('Intente nuevamente', 4000)
+          $scope.activoForm28 = false
+        }
+      })
+      */
     }
   }
 
