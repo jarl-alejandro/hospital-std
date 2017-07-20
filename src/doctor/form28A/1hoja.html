@@ -372,17 +372,23 @@
             </p>
             <p>
               <input name="reanimacion" id="si_reanimacion"
-                class="items_recien" value="0" type="radio" />
+                class="items_recien" value="si" type="radio"
+                ng-model="data.reanimacionCheck"
+              />
               <label for="si_reanimacion"></label>
             </p>
             <p>
               <input name="reanimacion" id="no_reanimacion"
-                class="items_recien" value="1" type="radio" />
+                class="items_recien" value="no" type="radio"
+                ng-model="data.reanimacionCheck"
+              />
               <label for="no_reanimacion"></label>
             </p>
             <div class="input-field s-55 no-margin">
               <input type="text" placeholder="Ingrese una observacion"
-                id="input-recien-reanimacion">
+                id="input-recien-reanimacion"
+                ng-model="data.reanimacion"
+              />
             </div>
           </li>
         </ul>
@@ -448,13 +454,15 @@
             <p>TIPIFICACION SANGUINEA (registro grupo factor)</p>
             <p>
               <input name="tipificacion_sangio" id="si_tipificacion_sangio"
-                class="items_tipifi" value="0" type="radio"
+                class="items_tipifi" value="si" type="radio"
+                ng-model="data.tipoficacionSanguineaCheck"
               />
               <label for="si_tipificacion_sangio"></label>
             </p>
             <p>
               <input name="tipificacion_sangio" id="no_tipificacion_sangio"
-                class="items_tipifi" value="1" type="radio"
+                class="items_tipifi" value="no" type="radio"
+                ng-model="data.tipoficacionSanguineaCheck"
               />
               <label for="no_tipificacion_sangio"></label>
             </p>
@@ -470,13 +478,15 @@
             <p>EXAMENES ESPECIALES (asociados a tiesfo)</p>
             <p>
               <input name="examen_especial" id="si_examen_especial"
-                class="items_examen_especial" value="0" type="radio"
+                class="items_examen_especial" value="si" type="radio"
+                ng-model="data.examenesEspecialesCheck"
               />
               <label for="si_examen_especial"></label>
             </p>
             <p>
               <input name="examen_especial" id="no_examen_especial"
-                class="items_examen_especial" value="1" type="radio"
+                class="items_examen_especial" value="no" type="radio"
+                ng-model="data.examenesEspecialesCheck"
               />
               <label for="no_examen_especial"></label>
             </p>

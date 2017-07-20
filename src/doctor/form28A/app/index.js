@@ -32,12 +32,16 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     edadGestion: '',
     relacionPeso: '',
     tipoficacionSanguinea: '',
+    tipoficacionSanguineaCheck: 'no',
     examenesEspeciales: '',
+    examenesEspecialesCheck: 'no',
     apagar1Min: '',
     apagar_5min: '',
     longitud: '',
     pCefalico: '',
-    pesoNacer: ''
+    pesoNacer: '',
+    reanimacion: '',
+    reanimacionCheck: 'no'
   }
 
 	let array_sistemas = []
