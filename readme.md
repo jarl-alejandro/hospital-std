@@ -14,4 +14,5 @@
   - stylus -c -w -o css stylus\style.styl
 
 
-algo
+0 -> SI
+1 -> NO

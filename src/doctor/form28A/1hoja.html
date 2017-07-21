@@ -17,18 +17,24 @@
       <li ng-repeat="materno in ant_maternos">
         <p>{{ materno.hgc_desc_sisfi }}</p>
         <p>
-          <input name="materno_{{ materno.hgc_id_sisfi }}" id="si_{{ materno.hgc_id_sisfi }}"
-            class="items_materno" value="0_{{materno.hgc_id_sisfi}}" type="radio" />
+          <input name="materno_{{ materno.hgc_id_sisfi }}"
+            id="si_{{ materno.hgc_id_sisfi }}"
+            class="items_materno items__form"
+            value="0_{{materno.hgc_id_sisfi}}_1" type="radio"
+          />
           <label for="si_{{ materno.hgc_id_sisfi }}"></label>
         </p>
         <p>
-          <input name="materno_{{ materno.hgc_id_sisfi }}" id="no_{{ materno.hgc_id_sisfi }}"
-            class="items_materno" value="1_{{materno.hgc_id_sisfi}}" type="radio" />
+          <input name="materno_{{ materno.hgc_id_sisfi }}"
+            id="no_{{ materno.hgc_id_sisfi }}"
+            class="items_materno items__form"
+            value="1_{{materno.hgc_id_sisfi}}_1" type="radio"
+          />
           <label for="no_{{ materno.hgc_id_sisfi }}"></label>
         </p>
         <div class="input-field s-55 no-margin">
           <input type="text" placeholder="Ingrese una observacion"
-            id="input-materno-{{ materno.hgc_id_sisfi }}">
+            id="input__form-{{ materno.hgc_id_sisfi }}">
         </div>
       </li>
     </ul>
@@ -53,18 +59,24 @@
       <li ng-repeat="fami in ant_familiares">
         <p>{{ fami.hgc_desc_sisfi }}</p>
         <p>
-          <input name="fami_{{ fami.hgc_id_sisfi }}" id="si_{{ fami.hgc_id_sisfi }}"
-            class="items_fami" value="0_{{fami.hgc_id_sisfi}}" type="radio" />
+          <input name="fami_{{ fami.hgc_id_sisfi }}"
+            id="si_{{ fami.hgc_id_sisfi }}"
+            class="items_fami items__form"
+            value="0_{{fami.hgc_id_sisfi}}_2" type="radio"
+          />
           <label for="si_{{ fami.hgc_id_sisfi }}"></label>
         </p>
         <p>
-          <input name="fami_{{ fami.hgc_id_sisfi }}" id="no_{{ fami.hgc_id_sisfi }}"
-            class="items_fami" value="1_{{fami.hgc_id_sisfi}}" type="radio" />
+          <input name="fami_{{ fami.hgc_id_sisfi }}"
+            id="no_{{ fami.hgc_id_sisfi }}"
+            class="items_fami items__form"
+            value="1_{{fami.hgc_id_sisfi}}_2" type="radio"
+          />
           <label for="no_{{ fami.hgc_id_sisfi }}"></label>
         </p>
         <div class="input-field s-55 no-margin">
           <input type="text" placeholder="Ingrese una observacion"
-            id="input-fami-{{ fami.hgc_id_sisfi }}">
+            id="input__form-{{ fami.hgc_id_sisfi }}" />
         </div>
       </li>
     </ul>
@@ -229,25 +241,31 @@
       <li ng-repeat="prenat in ant_prenatales">
         <p>{{ prenat.hgc_desc_sisfi }}</p>
         <p>
-          <input name="prenat_{{ prenat.hgc_id_sisfi }}" id="si_{{ prenat.hgc_id_sisfi }}"
-            class="items_prenat" value="0_{{prenat.hgc_id_sisfi}}" type="radio" />
+          <input name="prenat_{{ prenat.hgc_id_sisfi }}"
+            id="si_{{ prenat.hgc_id_sisfi }}"
+            class="items_prenat items__form"
+            value="0_{{prenat.hgc_id_sisfi}}_4" type="radio"
+          />
           <label for="si_{{ prenat.hgc_id_sisfi }}"></label>
         </p>
         <p>
-          <input name="prenat_{{ prenat.hgc_id_sisfi }}" id="no_{{ prenat.hgc_id_sisfi }}"
-            class="items_prenat" value="1_{{prenat.hgc_id_sisfi}}" type="radio" />
+          <input name="prenat_{{ prenat.hgc_id_sisfi }}"
+            id="no_{{ prenat.hgc_id_sisfi }}"
+            class="items_prenat items__form"
+            value="1_{{prenat.hgc_id_sisfi}}_4" type="radio" />
           <label for="no_{{ prenat.hgc_id_sisfi }}"></label>
         </p>
         <div class="input-field s-55 no-margin">
           <input type="text" placeholder="Ingrese una observacion"
-            id="input-prenat-{{ materno.hgc_id_sisfi }}">
+            id="input__form-{{ prenat.hgc_id_sisfi }}"
+          />
         </div>
       </li>
     </ul>
   </div>
   <!-- /Antecedentes Maternos -->
 
-  <!-- Antecedentes familiares -->
+  <!-- Nacimientos -->
   <div class="s-100 form-select" style="margin-bottom:1em">
     <div class="menu-form">
       <h6 class="form28__list">
@@ -265,18 +283,24 @@
       <li ng-repeat="nacim in nacimientos">
         <p>{{ nacim.hgc_desc_sisfi }}</p>
         <p>
-          <input name="nacim_{{ nacim.hgc_id_sisfi }}" id="si_{{ nacim.hgc_id_sisfi }}"
-            class="items_nacim" value="0_{{nacim.hgc_id_sisfi}}" type="radio" />
+          <input name="nacim_{{ nacim.hgc_id_sisfi }}"
+            id="si_{{ nacim.hgc_id_sisfi }}"
+            class="items_nacim items__form"
+            value="0_{{nacim.hgc_id_sisfi}}_5" type="radio"
+          />
           <label for="si_{{ nacim.hgc_id_sisfi }}"></label>
         </p>
         <p>
-          <input name="nacim_{{ nacim.hgc_id_sisfi }}" id="no_{{ nacim.hgc_id_sisfi }}"
-            class="items_nacim" value="1_{{nacim.hgc_id_sisfi}}" type="radio" />
+          <input name="nacim_{{ nacim.hgc_id_sisfi }}"
+            id="no_{{ nacim.hgc_id_sisfi }}"
+            class="items_nacim items__form"
+            value="1_{{nacim.hgc_id_sisfi}}_5" type="radio"
+          />
           <label for="no_{{ nacim.hgc_id_sisfi }}"></label>
         </p>
         <div class="input-field s-55 no-margin">
           <input type="text" placeholder="Ingrese una observacion"
-            id="input-nacim-{{ nacim.hgc_id_sisfi }}">
+            id="input__form-{{ nacim.hgc_id_sisfi }}">
         </div>
       </li>
     </ul>
@@ -296,75 +320,95 @@
         <ul class="atendidos__menu">
           <li>PARTO:</li>
           <li>
-            <input type="checkbox" id="parto_medic" />
+            <input type="checkbox" class="item_atendido" id="parto_medic" />
             <label for="parto_medic"></label>
           </li>
           <li>
-            <input type="checkbox" id="parto_oeste" />
+            <input type="checkbox" class="item_atendido" id="parto_oeste" />
             <label for="parto_oeste"></label>
           </li>
           <li>
-            <input type="checkbox" id="parto_enfer" />
+            <input type="checkbox" class="item_atendido" id="parto_enfer" />
             <label for="parto_enfer"></label>
           </li>
           <li>
-            <input type="checkbox" id="parto_aux" />
-            <label for="parto_aux"></label>
+            <input type="checkbox" class="item_atendido" id="parto_auxil" />
+            <label for="parto_auxil"></label>
           </li>
           <li>
-            <input type="checkbox" id="parto_estud" />
+            <input type="checkbox" class="item_atendido" id="parto_estud" />
             <label for="parto_estud"></label>
           </li>
           <li>
-            <input type="checkbox" id="parto_empir" />
+            <input type="checkbox" class="item_atendido" id="parto_empir" />
             <label for="parto_empir"></label>
           </li>
           <li>
-            <input type="checkbox" id="parto_otro" />
+            <input type="checkbox" class="item_atendido" id="parto_otro" />
             <label for="parto_otro"></label>
           </li>
         </ul>
         <ul class="atendidos__menu">
           <li>NEONATO:</li>
           <li>
-            <input type="checkbox" id="neonato_medic" />
+            <input type="checkbox" class="item_atendido" id="neonato_medic"
+            />
             <label for="neonato_medic"></label>
           </li>
           <li>
-            <input type="checkbox" id="neonato_oeste" />
+            <input type="checkbox" class="item_atendido" id="neonato_oeste"
+            />
             <label for="neonato_oeste"></label>
           </li>
           <li>
-            <input type="checkbox" id="neonato_enfer" />
+            <input type="checkbox" class="item_atendido" id="neonato_enfer"
+            />
             <label for="neonato_enfer"></label>
           </li>
           <li>
-            <input type="checkbox" id="neonato_aux" />
-            <label for="neonato_aux"></label>
+            <input type="checkbox" class="item_atendido" id="neonato_auxil"
+            />
+            <label for="neonato_auxil"></label>
           </li>
           <li>
-            <input type="checkbox" id="neonato_estud" />
+            <input type="checkbox" class="item_atendido" id="neonato_estud"
+            />
             <label for="neonato_estud"></label>
           </li>
           <li>
-            <input type="checkbox" id="neonato_empir" />
+            <input type="checkbox" class="item_atendido" id="neonato_empir"
+            />
             <label for="neonato_empir"></label>
           </li>
           <li>
-            <input type="checkbox" id="neonato_otro" />
+            <input type="checkbox" class="item_atendido" id="neonato_otro"
+            />
             <label for="neonato_otro"></label>
           </li>
         </ul>
       </article>
     </div>
   </div>
-  <!-- /Antecedentes familiares -->
+  <!-- /Nacimientos -->
 
   <!-- Recien Nacido -->
-  <article class="s-100 main-distribute">
-    <p class="form__tag s-100">RECIEN NACIDO</p>
+  <article class="s-100 main-distribute" ng-controller="validForm">
+    <p class="form__tag s-100">6 RECIEN NACIDO</p>
     <div class="s-90 m-45 form-select">
       <section style="border-bottom:1px solid black">
+
+        <div class="menu-form">
+          <h6 class="form28__list">
+            <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+              Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+            </a>
+          </h6>
+          <div style="display: flex;justify-content: space-around;">
+            <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+            <h6>OBSERVACIONES</h6>
+          </div>
+        </div>
+
         <ul>
           <li style="display:flex">
             <p>REANIMACION <br>
@@ -396,6 +440,7 @@
         <article class="form__grid_nacido">
           <div class="input-field s-95">
             <input id="apagar_1min" type="text"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
               ng-model="data.apagar1Min"
             />
             <label for="apagar_1min">APAGAR 1 MIN</label>
@@ -403,6 +448,7 @@
           <div class="input-field s-95">
             <input id="apagar_5min" type="text"
               ng-model="data.apagar5Min"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
             <label for="apagar_5min">APAGAR 5 MIN</label>
           </div>
@@ -411,19 +457,22 @@
         <article class="form__grid_nacido_2">
           <div class="input-field s-95">
             <input id="peso_nacer" type="text"
-              ng-model="pesoNacer"
+              ng-model="data.pesoNacer"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
             <label for="peso_nacer">PESO AL NACER</label>
           </div>
           <div class="input-field s-95">
             <input id="longitud" type="text"
               ng-model="data.longitud"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
             <label for="longitud">LONGITUD</label>
           </div>
           <div class="input-field s-95">
             <input id="p_cefalico" type="text"
               ng-model="data.pCefalico"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
             <label for="p_cefalico">P. CEFALICO</label>
           </div>
@@ -435,6 +484,7 @@
           <div class="input-field s-95">
             <input id="edad_gestion" type="text"
               ng-model="data.edadGestion"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
             <label for="edad_gestion" style="font-size: 12px;">
               EDAD GESTIONAL X EXAMEN FISICO
@@ -443,6 +493,7 @@
           <div class="input-field s-95">
             <input id="relacion_peso" type="text"
               ng-model="data.relacionPeso"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
             <label for="relacion_peso" style="font-size: 12px;">
               RELACION PESO / EDAD GESTIONAL
@@ -518,18 +569,24 @@
         <li ng-repeat="recien in recien_nacidos">
           <p>{{ recien.hgc_desc_sisfi }}</p>
           <p>
-            <input name="recien_{{ recien.hgc_id_sisfi }}" id="si_{{ recien.hgc_id_sisfi }}"
-              class="items_recien" value="0_{{recien.hgc_id_sisfi}}" type="radio" />
+            <input name="recien_{{ recien.hgc_id_sisfi }}"
+              id="si_{{ recien.hgc_id_sisfi }}"
+              class="items_recien items__form"
+              value="0_{{recien.hgc_id_sisfi}}_6" type="radio"
+            />
             <label for="si_{{ recien.hgc_id_sisfi }}"></label>
           </p>
           <p>
-            <input name="recien_{{ recien.hgc_id_sisfi }}" id="no_{{ recien.hgc_id_sisfi }}"
-              class="items_recien" value="1_{{recien.hgc_id_sisfi}}" type="radio" />
+            <input name="recien_{{ recien.hgc_id_sisfi }}"
+              id="no_{{ recien.hgc_id_sisfi }}"
+              class="items_recien items__form"
+              value="1_{{recien.hgc_id_sisfi}}_6" type="radio"
+            />
             <label for="no_{{ recien.hgc_id_sisfi }}"></label>
           </p>
           <div class="input-field s-55 no-margin">
             <input type="text" placeholder="Ingrese una observacion"
-              id="input-recien-{{ recien.hgc_id_sisfi }}">
+              id="input__form-{{ recien.hgc_id_sisfi }}">
           </div>
         </li>
 

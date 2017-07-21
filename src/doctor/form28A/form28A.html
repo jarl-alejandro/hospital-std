@@ -28,6 +28,38 @@
           ng-model="pacient.paciente.hgc_histo_hcli" disabled>
       </div>
     </header>
+
+    <h2 class="Title s-100 no-margin">SIGNOS VITALES</h2>
+    <header style="background:inherit" class="header__form28"
+      ng-controller="signosFormController">
+      <div class="s-100 m-20">
+        <label for="">TEMPERATURA</label>
+        <input type="text" style="margin-bottom: 0;color: black;" disabled
+          ng-model="signos.hgc_temp_sigvit"
+        >
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">PULSO</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_puls_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">PESO</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_peso_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">LONGITUD</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_longi_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">PERIMETRO CEFALICO</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_prence_sigvit" disabled>
+      </div>
+    </header>
+
     <p class="form__tag">FUENTE DE INFORMACION:</p>
     <div id="hoja__1" class="main-distribute"
       ng-include="'src/doctor/form28A/1hoja.html'">
@@ -38,7 +70,7 @@
 
     <div class="footer__form28">
       <p>SHS-MSP / HCU form. 028A / {{year}}</p>
-      <p>ATENCION AL NIÑO / NIÁ MENOR DE 2 MESES</p>
+      <p>ATENCION AL NIÑO / NIÑA MENOR DE 2 MESES</p>
     </div>
   </article>
 </section>

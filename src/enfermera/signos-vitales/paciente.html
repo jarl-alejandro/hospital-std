@@ -1,6 +1,34 @@
 <hgc-menu-enfermera></hgc-menu-enfermera>
 <section class="workSpace">
   <h1 class="Title">Informacion de {{ paciente.paciente }}</h2>
+  <header style="background:inherit" class="header__form28">
+    <div class="s-100 m-25 white">
+      <label class="center-align">ESTABLECIMIENTO</label>
+      <input type="text" style="margin-bottom: 0" disabled
+        ng-model="empresa.hgc_nom_empr" class="black-text"
+      >
+    </div>
+    <div  class="s-100 m-25 white">
+      <label class="center-align">NOMBRES Y APELLIDOS</label>
+      <input type="text" style="margin-bottom: 0"
+        ng-model="pacient.paciente.paciente" disabled class="black-text">
+    </div>
+    <div  class="s-100 m-10 white">
+      <label class="center-align">SEXO(HM)</label>
+      <input type="text" style="margin-bottom: 0"
+        ng-model="pacient.sexo.hgc_desc_genero" disabled class="black-text">
+    </div>
+    <div  class="s-100 m-20 white">
+      <label class="center-align">FECHA DE NACIMIENTO</label>
+      <input type="text" style="margin-bottom: 0"
+        ng-model="pacient.paciente.hgc_fecn_pacie" disabled class="black-text">
+    </div>
+    <div  class="s-100 m-20 white">
+      <label class="center-align">Nº HISTORIA CLINICA</label>
+      <input type="text" style="margin-bottom: 0"
+        ng-model="pacient.paciente.hgc_histo_hcli" disabled class="black-text">
+    </div>
+  </header>
   <div class="floating-add">
     <button class='btn-floating btn-large waves-effect waves-light primary'
       ng-disabled="activeSignosBtn" ng-click="handleShowForm()">

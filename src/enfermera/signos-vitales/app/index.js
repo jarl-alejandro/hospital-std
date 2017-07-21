@@ -17,6 +17,9 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $scope.menor = false
   $scope.paciente = {}
   $scope.signosVitales = []
+  $scope.empresa = {}
+  $scope.pacient = {}
+
   $scope.data = {
     temperatura: '',
     frCardica: '',
@@ -40,6 +43,15 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     if (response.data.hgc_esta_turno === 'signosVitales')
       $scope.activeSignosBtn = true
   })
+
+  $http.get('src/config/empresa/service/get.php')
+  .then(response => {
+    if (response.data.cont === 1)
+      $scope.empresa = response.data.empresa
+  })
+
+  $http.get(`src/doctor/form28A/service/paciente.php?id=${id}`)
+  .then(response => $scope.pacient = response.data)
 
   $http.get(
     `src/enfermera/signos-vitales/service/getAll.php?id=${id}`

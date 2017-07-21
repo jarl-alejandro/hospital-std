@@ -29,8 +29,119 @@ hoja1.controller('hoja1Conroller', function ($scope, $http) {
   .then(response => $scope.recien_nacidos = response.data)
 
   $scope.handleNext = () => {
-    $('#hoja__1').slideUp()
-    $('#hoja__2').slideDown()
+    if (validar()) {
+      $('#hoja__1').slideUp()
+      $('#hoja__2').slideDown()
+    }
+  }
+
+  function validar () {
+    const gestasPrevias = $('#gestas_previas')
+    const abortos = $('#abortos')
+    const partos = $('#partos')
+    const partosVaginales = $('#partos__vaginales')
+    const cesarias = $('#cesarias')
+    const nacidoVivos = $('#nacido_vivos')
+    const nacidoMuerto = $('#nacido_muerto')
+    const hijosVivos = $('#hijos_vivos')
+    const muerto7menor = $('#muerto7menor')
+    const muerto7mayor = $('#muerto7mayor')
+    const totalPartos = parseInt(abortos.val()) + parseInt(partos.val())
+    const totalCesaria = parseInt(partosVaginales.val()) + parseInt(cesarias.val())
+    const nacidosVivosMu = parseInt(nacidoVivos.val()) + parseInt(nacidoMuerto.val())
+    const lifeDied = parseInt(muerto7mayor.val()) + parseInt(muerto7menor.val()) + parseInt(hijosVivos.val())
+
+    const menorChecked = document.querySelector('#menor1').checked
+    const gemelarChecked = document.querySelector('#gemelar_previo').checked
+
+    if (menorChecked === true) {
+      if ($('#fecha_embarazoAnt').val().trim() === '') {
+        Materialize.toast('Ingrese la fecha', 4000)
+        $('#fecha_embarazoAnt').focus()
+        return false
+      }
+      else if (gemelarChecked === false) {
+        return true
+      }
+    }
+    if (gemelarChecked === true) {
+      if (gestasPrevias.val().trim() === '') {
+        Materialize.toast('Ingrese la gestas previas', 4000)
+        gestasPrevias.focus()
+        return false
+      }
+      if (abortos.val().trim() === '') {
+        Materialize.toast('Ingrese los abortos', 4000)
+        abortos.focus()
+        return false
+      }
+      if (partos.val().trim() === '') {
+        Materialize.toast('Ingrese los partos', 4000)
+        partos.focus()
+        return false
+      }
+      if (totalPartos != gestasPrevias.val()) {
+        Materialize.toast('No coindicen los partos que ha nacido', 4000)
+        partos.focus()
+        return false
+      }
+      if (partosVaginales.val() === '') {
+        Materialize.toast('Ingrese los partos vaginales', 4000)
+        partosVaginales.focus()
+        return false
+      }
+      if (cesarias.val() === '') {
+        Materialize.toast('Ingrese las cesarias', 4000)
+        cesarias.focus()
+        return false
+      }
+      if (totalCesaria != partos.val()) {
+        Materialize.toast('No coinciden los partos', 4000)
+        cesarias.focus()
+        return false
+      }
+      if (nacidoVivos.val() === '') {
+        Materialize.toast('Ingrese los hijos nacidos vivos', 4000)
+        nacidoVivos.focus()
+        return false
+      }
+      if (nacidoMuerto.val() === '') {
+        Materialize.toast('Ingrese los hijos nacidos muertos', 4000)
+        nacidoMuerto.focus()
+        return false
+      }
+      if (nacidosVivosMu != totalCesaria) {
+        Materialize.toast('No coinciden los hijo', 4000)
+        nacidoVivos.focus()
+        return false
+      }
+      if (hijosVivos.val() === '') {
+        Materialize.toast('Ingrese los hijos vivos', 4000)
+        hijosVivos.focus()
+        return false
+      }
+      if (muerto7menor.val() === '') {
+        Materialize.toast('Ingrese los hijos muertos menor a 7 dias', 4000)
+        muerto7menor.focus()
+        return false
+      }
+      if (muerto7mayor.val() === '') {
+        Materialize.toast('Ingrese los hijos muertos menor a 7 dias', 4000)
+        muerto7mayor.focus()
+        return false
+      }
+      if (nacidoVivos.val() != lifeDied) {
+        Materialize.toast('No coinciden los hijo', 4000)
+        muerto7mayor.focus()
+        return false
+      }
+      else if (menorChecked === false) return true
+      else return true
+    }
+
+    if (menorChecked === false && gemelarChecked === false) {
+      return true
+    }
   }
 
   $('.datepicker').pickadate({
@@ -51,4 +162,13 @@ hoja1.controller('hoja1Conroller', function ($scope, $http) {
    labelYearSelect: 'Selecione el año',
    max: new Date(),
  })
+})
+
+
+hoja1.controller('signosFormController', function ($scope, $http, $stateParams) {
+  $scope.signos = {}
+  const turno = $stateParams.turno
+
+  $http.get(`src/doctor/form28A/service/signosVitales.php?turno=${turno}`)
+  .then(response => $scope.signos = response.data)
 })

@@ -14,7 +14,10 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
   $scope.empresa = {}
   $scope.year = hoy.getFullYear()
   $scope.data = {
-    motivo: '', enfermedad: '', paciente, turno,
+    motivo: '',
+    enfermedad: '',
+    paciente,
+    turno,
     gestasPrevias: '',
     abortos: '',
     partos: '',
@@ -36,7 +39,7 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     examenesEspeciales: '',
     examenesEspecialesCheck: 'no',
     apagar1Min: '',
-    apagar_5min: '',
+    apagar5Min: '',
     longitud: '',
     pCefalico: '',
     pesoNacer: '',
@@ -46,6 +49,8 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
 
 	let array_sistemas = []
   let array_fisicos = []
+  let array_form = []
+  let array_atendido = []
 
   $http.get('src/doctor/form28A/service/sistemas.php')
   .then(response => $scope.sistemas = response.data)
@@ -69,15 +74,15 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
   }
 
   $scope.handleSave = () => {
-    const items_sistemas = Array.prototype.slice.call(
-      document.querySelectorAll('.items_sistemas')
-    )
-    const items_fisicico = Array.prototype.slice.call(
-      document.querySelectorAll('.items_fisicico')
-    )
+    const items_sistemas = [...document.querySelectorAll('.items_sistemas')]
+    const items_fisicico = [...document.querySelectorAll('.items_fisicico')]
+    const items__form = [...document.querySelectorAll('.items__form')]
+    const items_atendido = [...document.querySelectorAll('.item_atendido')]
 
     array_sistemas = []
     array_fisicos = []
+    array_form = []
+    array_atendido = []
 
     for(let i in items_sistemas) {
       let sistemas = items_sistemas[i]
@@ -99,14 +104,35 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
       }
     }
 
+    for (let i in items__form) {
+      let item = items__form[i]
+      if (item.checked === true) {
+        let tipo = item.value.split('_')[0]
+        let id = item.value.split('_')[1]
+        let seccion = item.value.split('_')[2]
+        let observacion = document.getElementById(`input__form-${id}`).value
+
+        array_form.push({ id, tipo, observacion, seccion })
+      }
+    }
+
+    for (let i in items_atendido) {
+      let item = items_atendido[i]
+      if (item.checked === true) {
+        let tipo = item.id.split('_')[0]
+        let atendido = item.id.split('_')[1]
+
+        array_atendido.push({ atendido, tipo })
+      }
+    }
+
     if (validarForm()) {
-      // $scope.activoForm28 = true
+      $scope.activoForm28 = true
       $scope.data.sistemas = array_sistemas
       $scope.data.fisicos = array_fisicos
+      $scope.data.form = array_form
+      $scope.data.atendido = array_atendido
 
-      console.log($scope.data)
-
-      /*
       $http.post('src/doctor/form28A/service/save.php', $scope.data)
       .then(response => {
         console.log(response)
@@ -119,7 +145,6 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
           $scope.activoForm28 = false
         }
       })
-      */
     }
   }
 
