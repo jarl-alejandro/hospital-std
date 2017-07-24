@@ -29,10 +29,10 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
         }
       }
 
-      s.circle(age*28.5, y, 40).attr({
+      s.circle(age*28.5, y, 50).attr({
         fill: `${dame_color_aleatorio()}`,
         stroke: `${dame_color_aleatorio()}`,
-        strokeWidth: 1
+        strokeWidth: 2
       }).animate({r: 4}, 1000)
 
     })
