@@ -21,12 +21,15 @@
     </script>
     <script type="text/javascript" src='lib/jquery.js'></script>
     <script type="text/javascript" src='lib/materialize.js'></script>
+
     <script src='lib/angular.min.js'></script>
     <script src='lib/ui-router.js'></script>
     <script src='lib/angular-animate.min.js'></script>
     <script src='lib/ngPagination.js'></script>
     <script src='lib/select2.min.js'></script>
     <script src='lib/snap.svg-min.js'></script>
+
+    <script src='js/a-say.js'></script>
 
   <!-- Para validar que si el usuario esta o no logueado y que rol es -->
     <script src='js/authenticated.js'></script>

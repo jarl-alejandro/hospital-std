@@ -2,26 +2,64 @@
 
 const grafica028A = angular.module('Hospital')
 
-grafica028A.controller('graficas028AController', function ($scope, $http) {
+grafica028A.controller('graficas028AController', function ($scope, $http, $stateParams) {
   const s = Snap("#grafica_curva_crecimiento")
-  const bigCircle = s.circle(150, 150, 5)
-  const bigCircle1 = s.circle(200, 200, 5)
+  const paciente = $stateParams.id
+  const now = new Date()
 
-  bigCircle.attr({
-    fill: "#bada55",
-    stroke: "#000",
-    strokeWidth: 1
+  $http.get(`src/doctor/form28A/service/curva_crecimiento.php?id=${paciente}`)
+  .then(response => {
+    paintBorderBySex(response.data.paciente.hgc_desc_genero)
+    graficPoint(response.data.signos, response.data.paciente.hgc_fecn_pacie)
   })
 
-  bigCircle1.attr({
-    fill: "#bada55",
-    stroke: "#000",
-    strokeWidth: 1
-  })
+  function graficPoint (data, fechaNacimiento) {
+    data.map((item, index) => {
+      const age = getAgeByMonth(item.fecha, fechaNacimiento)
+      const peso = parseFloat(item.peso)
+      let y = 0
+      if (peso === 1) y = 7
+      else if (peso === 2) y = 14
+      else if (peso === 3) y = 59
+      else if (peso >= 4) {
+        if (peso % 2 === 0) {
+          y = (23 * peso) + 59
+        } else {
+          y = (23 * peso) + 59
+        }
+      }
 
-  const line = s.path('M431.484,316.158C513.005,316.146,594.525,124.644,702.011,125.322')
-  line.attr({ fill: 'red' })
+      s.circle(age*28.5, y, 40).attr({
+        fill: `${dame_color_aleatorio()}`,
+        stroke: `${dame_color_aleatorio()}`,
+        strokeWidth: 1
+      }).animate({r: 4}, 1000)
 
-  // bigCircle.animate({r: 50}, 1000);
+    })
+  }
+
+  function getAgeByMonth (dateAttended, fechaNacimiento) {
+    let aFecha1 = dateAttended.split('-')
+    let aFecha2 = fechaNacimiento.split('-')
+    let fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2])
+    let fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2])
+    let dif = fFecha2 - fFecha1
+    let dias = Math.floor(dif / (1000 * 60 * 60 * 24))
+    semanas = dias / 7
+    semanas = semanas.toFixed(1)
+    return parseFloat(semanas)
+  }
+
+  function paintBorderBySex (sexo) {
+    if (sexo === 'Hombre') {
+      $('.grafica028A').css({
+        'background-image': `url(assets/img/graficas/peso_hombre.png)`
+      })
+    } else {
+      $('.grafica028A').css({
+        'background-image': `url(assets/img/graficas/peso_mujer.png)`
+      })
+    }
+  }
 
 })
