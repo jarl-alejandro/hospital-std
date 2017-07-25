@@ -62,8 +62,11 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
 
       if (index !== 0) {
         s.line(age*28.5, y, datoX, datoY).attr({
-          strokeWidth: 3, stroke: `${dame_color_aleatorio()}`
-        })
+          strokeWidth: 3,
+          stroke: `${dame_color_aleatorio()}`,
+          strokeDasharray: '9px',
+          strokeDashoffset: '7px'
+        }).animate({ strokeDasharray: '21px' }, 4000)
       }
 
 
