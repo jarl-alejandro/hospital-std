@@ -26,6 +26,10 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     let datoY = 0
     data.map((item, index) => {
       const age = getAgeByMonth(item.fecha, fechaNacimiento)
+      console.group('----Fecha Iniciado----')
+      console.log(item.fecha)
+      console.log(fechaNacimiento)
+      console.groupEnd()
       const peso = parseFloat(item.peso)
       let y = 0
 
@@ -70,8 +74,8 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
   }
 
   function getAgeByMonth (dateAttended, fechaNacimiento) {
-    let aFecha1 = dateAttended.split('-')
-    let aFecha2 = fechaNacimiento.split('-')
+    let aFecha1 = fechaNacimiento.split('-')
+    let aFecha2 = dateAttended.split('-')
     let fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2])
     let fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2])
     let dif = fFecha2 - fFecha1
