@@ -27,14 +27,14 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
 
         for (let i=0; i<peso; i++) {
           if (peso % 1 === 0) {
-            y = celda * i - 22 - base
+            y = celda * i - 20 - base
           } else {
             let a = i - 1
             let decimal = peso % 1
             decimal = parseFloat(decimal.toFixed(2))
             let fraccion = 1 / decimal
             fraccion = parseInt(fraccion)
-            y = (celda * a - 22 - base) + (celda / fraccion)
+            y = (celda * a - 20 - base) + (celda / fraccion)
           }
         }
         console.log(y)
