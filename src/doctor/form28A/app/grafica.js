@@ -11,6 +11,14 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
   .then(response => {
     paintBorderBySex(response.data.paciente.hgc_desc_genero)
     graficPoint(response.data.signos, response.data.paciente.hgc_fecn_pacie)
+
+    // s.path('M 88 28 C 719 156 199 1  100 100 M 190 100 z').attr({
+    //   stroke: `${dame_color_aleatorio()}`,
+    //   strokeWidth: 50,
+    //   fill: 'none'
+    // }).animate({ strokeWidth: 2 }, 1000)
+    // s.line(88, 27, 396.15000000000003, 81).attr({strokeWidth: 3, stroke: `${dame_color_aleatorio()}`})
+
   })
 
   function graficPoint (data, fechaNacimiento) {
@@ -37,7 +45,7 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
             y = (celda * a - 20 - base) + (celda / fraccion)
           }
         }
-        console.log(y)
+
       }
 
       s.circle(age*28.5, y, 50).attr({
@@ -45,6 +53,10 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
         stroke: `${dame_color_aleatorio()}`,
         strokeWidth: 2
       }).animate({r: 4}, 1000)
+
+      s.line(age*28.5, y, 396.15000000000003, 81).attr({
+        strokeWidth: 3, stroke: `${dame_color_aleatorio()}`
+      })
 
     })
   }
