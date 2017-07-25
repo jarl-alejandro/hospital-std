@@ -84,12 +84,12 @@
   <!-- /Antecedentes familiares -->
 
   <!-- Antecedentes obstreticos -->
-  <article class="s-100" style="position:relative;margin: 2em 0;"
+  <article class="s-100" style="position:relative;overflow: auto;height: 15.5em;margin-bottom:1em;"
     ng-controller="validForm">
     <p class="form__tag s-100">ANTECEDENTES OBSTRETICOS</p>
     <article style="margin-top: -0.5em;">
 
-      <div class="s-15">
+      <div class="s-45 m-25 l-15">
         <label style="font-size: 11px;" for="fecha_embarazoAnt">
           FECHA FIN EMBARAZO ANTERIOR
         </label>
@@ -99,7 +99,7 @@
         >
       </div>
 
-      <div class="s-5 obstretico_circle meno__1year obsetretico_label">
+      <div class="s-15 m-5 obstretico_circle meno__1year obsetretico_label">
         <div>
           <input type="checkbox" id="menor1" ng-model="abstre.embarazo" />
           <label for="menor1"></label>
@@ -110,7 +110,7 @@
     </article>
 
     <article class="divider_absolute" style="left:14.5em;">
-      <div class="s-10" id="gestas_previas-container">
+      <div class="s-30 m-15 l-10" id="gestas_previas-container">
         <label for="gestas_previas">GESTAS PREVIAS</label>
         <input type="text" id="gestas_previas" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
@@ -118,7 +118,7 @@
         >
       </div>
 
-      <div class="s-5 obstretico_circle gemelar_previo obsetretico_label"
+      <div class="s-10 m-5 obstretico_circle gemelar_previo obsetretico_label"
         id="gemelar_previo_container">
         <div>
           <input type="checkbox" id="gemelar_previo" ng-model="abstre.gemelar"/>
@@ -129,7 +129,7 @@
     </article>
 
     <article class="divider_absolute" style="left:24.5em;">
-      <div class="s-10">
+      <div class="s-20 m-15 l-10">
         <label for="abortos">ABORTOS</label>
         <input type="text" id="abortos" class="input__antecedentes"
           ng-disabled="!abstre.gemelar"
@@ -138,7 +138,7 @@
         >
       </div>
 
-      <div class="s-10" id="partos__container">
+      <div class="s-20 m-15 l-10" id="partos__container">
         <input type="text" id="partos" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
           ng-model="data.partos" maxlength="4"
@@ -148,7 +148,7 @@
     </article>
 
     <article class="divider_absolute" style="left:35.4em;">
-      <div class="s-10" id="partos_vaginales-container">
+      <div class="s-35 m-15 l-10" id="partos_vaginales-container">
         <label for="partos__vaginales" style="font-size: 10px;">PARTOS VAGINALES</label>
         <input type="text" id="partos__vaginales" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
@@ -156,7 +156,7 @@
         >
       </div>
 
-      <div class="s-10" id="cesarias_container">
+      <div class="s-25 m-15 l-10" id="cesarias_container">
         <input type="text" id="cesarias" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
           ng-model="data.cesarias" maxlength="4"
@@ -166,7 +166,7 @@
     </article>
 
     <article class="divider_absolute" style="left:47em;">
-      <div class="s-10" id="nacido_vivos-container">
+      <div class="s-35 m-15 l-10" id="nacido_vivos-container">
         <label for="nacido_vivos" style="font-size: 10px;">NACIDOS VIVOS</label>
         <input type="text" id="nacido_vivos" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
@@ -174,7 +174,7 @@
         >
       </div>
 
-      <div class="s-10" id="nacido_muerto-container">
+      <div class="s-35 m-15 l-10" id="nacido_muerto-container">
         <input type="text" id="nacido_muerto" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
           ng-model="data.nacidosMuertos" maxlength="4"
@@ -186,7 +186,7 @@
     </article>
 
     <article class="divider_absolute" style="left:59em;">
-      <div class="s-10" id="hijos_vivos-container">
+      <div class="s-25 m-10" id="hijos_vivos-container">
         <label for="hijos_vivos" style="font-size: 10px;">HIJOS VIVOS</label>
         <input type="text" id="hijos_vivos" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
@@ -196,7 +196,7 @@
     </article>
 
     <article class="divider_absolute-muertos" style="left:57em;">
-      <div class="s-10" id="muerto7menor-container">
+      <div class="s-25 m-10" id="muerto7menor-container">
         <input type="text" id="muerto7menor" class="input__antecedentes"
           style="margin-left: -1.5em;" ng-disabled="!abstre.gemelar"
           ng-keypress="ValidaSoloNumeros()"
@@ -208,7 +208,7 @@
         </label>
       </div>
 
-      <div class="s-10" id="muerto7mayor-container">
+      <div class="s-25 m-10" id="muerto7mayor-container">
         <input type="text" id="muerto7mayor" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
           ng-model="data.muertosMayor7" maxlength="4"
@@ -237,7 +237,7 @@
         <h6>OBSERVACIONES</h6>
       </div>
     </div>
-    <ul class="menu-form--list" style="display: grid;grid-template-columns: 50% 50%;">
+    <ul class="menu-form--list grid-dinamic">
       <li ng-repeat="prenat in ant_prenatales">
         <p>{{ prenat.hgc_desc_sisfi }}</p>
         <p>
@@ -279,7 +279,7 @@
         <h6>OBSERVACIONES</h6>
       </div>
     </div>
-    <ul class="menu-form--list" style="display: grid;grid-template-columns: 50% 50%;">
+    <ul class="menu-form--list grid-dinamic">
       <li ng-repeat="nacim in nacimientos">
         <p>{{ nacim.hgc_desc_sisfi }}</p>
         <p>
@@ -306,7 +306,7 @@
     </ul>
 
     <div class="main-end">
-      <article class="atendidos-por__form s-60">
+      <article class="atendidos-por__form s-100 m-60">
         <ul class="atendidos__menu">
           <li>ATENDIDO POR:</li>
           <li>MEDIC</li>
@@ -408,27 +408,26 @@
             <h6>OBSERVACIONES</h6>
           </div>
         </div>
-
         <ul>
-          <li style="display:flex">
-            <p>REANIMACION <br>
+          <li style="display:flex;flex-wrap:wrap">
+            <p class="s-70 m-30">REANIMACION <br>
               <span style="font-size: 12px;">(especifique tipo)</span>
             </p>
-            <p>
+            <p class="s-15 m-10">
               <input name="reanimacion" id="si_reanimacion"
                 class="items_recien" value="si" type="radio"
                 ng-model="data.reanimacionCheck"
               />
               <label for="si_reanimacion"></label>
             </p>
-            <p>
+            <p class="s-15 m-10">
               <input name="reanimacion" id="no_reanimacion"
                 class="items_recien" value="no" type="radio"
                 ng-model="data.reanimacionCheck"
               />
               <label for="no_reanimacion"></label>
             </p>
-            <div class="input-field s-55 no-margin">
+            <div class="input-field s-90 s-offset-5 m-45">
               <input type="text" placeholder="Ingrese una observacion"
                 id="input-recien-reanimacion"
                 ng-model="data.reanimacion"
@@ -501,23 +500,23 @@
           </div>
         </article>
         <ul>
-          <li style="display:flex">
-            <p>TIPIFICACION SANGUINEA (registro grupo factor)</p>
-            <p>
+          <li style="display:flex;flex-wrap:wrap">
+            <p class="s-70 m-30">TIPIFICACION SANGUINEA (registro grupo factor)</p>
+            <p class="s-15 m-10">
               <input name="tipificacion_sangio" id="si_tipificacion_sangio"
                 class="items_tipifi" value="si" type="radio"
                 ng-model="data.tipoficacionSanguineaCheck"
               />
               <label for="si_tipificacion_sangio"></label>
             </p>
-            <p>
+            <p class="s-15 m-10">
               <input name="tipificacion_sangio" id="no_tipificacion_sangio"
                 class="items_tipifi" value="no" type="radio"
                 ng-model="data.tipoficacionSanguineaCheck"
               />
               <label for="no_tipificacion_sangio"></label>
             </p>
-            <div class="input-field s-55 no-margin">
+            <div class="input-field s-90 s-offset-5 m-45">
               <input type="text" placeholder="Ingrese una observacion"
                 id="input-recien-tipificacion_sangio"
                 ng-model="data.tipoficacionSanguinea"
@@ -525,23 +524,23 @@
             </div>
           </li>
 
-          <li style="display:flex">
-            <p>EXAMENES ESPECIALES (asociados a tiesfo)</p>
-            <p>
+          <li style="display:flex;flex-wrap:wrap">
+            <p class="s-70 m-30">EXAMENES ESPECIALES (asociados a riesfo)</p>
+            <p class="s-15 m-10">
               <input name="examen_especial" id="si_examen_especial"
                 class="items_examen_especial" value="si" type="radio"
                 ng-model="data.examenesEspecialesCheck"
               />
               <label for="si_examen_especial"></label>
             </p>
-            <p>
+            <p class="s-15 m-10">
               <input name="examen_especial" id="no_examen_especial"
                 class="items_examen_especial" value="no" type="radio"
                 ng-model="data.examenesEspecialesCheck"
               />
               <label for="no_examen_especial"></label>
             </p>
-            <div class="input-field s-55 no-margin">
+            <div class="input-field s-90 s-offset-5 m-45">
               <input type="text" placeholder="Ingrese una observacion"
                 id="input-recien-examen_especial" ng-model="data.examenesEspeciales"
               />
@@ -584,7 +583,7 @@
             />
             <label for="no_{{ recien.hgc_id_sisfi }}"></label>
           </p>
-          <div class="input-field s-55 no-margin">
+          <div class="input-field s-60 m-55 no-margin">
             <input type="text" placeholder="Ingrese una observacion"
               id="input__form-{{ recien.hgc_id_sisfi }}">
           </div>

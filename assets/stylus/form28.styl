@@ -1,6 +1,7 @@
 .form-select
   border 1px solid #666
   border-radius 3px
+  margin-bottom 1em
 .menu-form
   color white
   background primary
@@ -278,3 +279,12 @@
   position absolute
   top -2.5em
   left 1.3em
+.grid-dinamic
+  display grid
+  grid-template-columns 50% 50%
+
+@media (max-width: 360px)
+  .grid-dinamic
+  .form__grid_nacido
+  .form__grid_nacido_2
+    grid-template-columns 100%
