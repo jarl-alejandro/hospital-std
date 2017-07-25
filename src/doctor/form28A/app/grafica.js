@@ -22,6 +22,8 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
   })
 
   function graficPoint (data, fechaNacimiento) {
+    let datoX = 0
+    let datoY = 0
     data.map((item, index) => {
       const age = getAgeByMonth(item.fecha, fechaNacimiento)
       const peso = parseFloat(item.peso)
@@ -54,11 +56,15 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
         strokeWidth: 2
       }).animate({r: 4}, 1000)
 
-      if (index !== 1) {
-        s.line(age*28.5, y, 396.15000000000003, 81).attr({
+      if (index !== 0) {
+        s.line(age*28.5, y, datoX, datoY).attr({
           strokeWidth: 3, stroke: `${dame_color_aleatorio()}`
         })
       }
+
+
+      datoX = age*28.5
+      datoY = y
 
     })
   }
