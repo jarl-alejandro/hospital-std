@@ -89,7 +89,7 @@
     <p class="form__tag s-100">ANTECEDENTES OBSTRETICOS</p>
     <article style="margin-top: -0.5em;">
 
-      <div class="s-45 m-25 l-15">
+      <div class="s-45 m-30 l-15">
         <label style="font-size: 10px;" for="fecha_embarazoAnt">
           FECHA FIN EMBARAZO ANTERIOR
         </label>
@@ -110,7 +110,7 @@
     </article>
 
     <article class="divider_absolute" style="left:14.5em;">
-      <div class="s-30 m-15 l-10" id="gestas_previas-container">
+      <div class="s-35 m-15 l-10" id="gestas_previas-container">
         <label for="gestas_previas">GESTAS PREVIAS</label>
         <input type="text" id="gestas_previas" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
@@ -147,8 +147,8 @@
       </div>
     </article>
 
-    <article class="divider_absolute" style="left:35.4em;">
-      <div class="s-35 m-15 l-10" id="partos_vaginales-container">
+    <article class="divider_absolute" id="partos-wrapper">
+      <div class="s-40 m-20 l-10" id="partos_vaginales-container">
         <label for="partos__vaginales" style="font-size: 10px;">PARTOS VAGINALES</label>
         <input type="text" id="partos__vaginales" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
@@ -156,7 +156,7 @@
         >
       </div>
 
-      <div class="s-35 m-15 l-10" id="cesarias_container">
+      <div class="s-40 m-20 l-10" id="cesarias_container">
         <input type="text" id="cesarias" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
           ng-model="data.cesarias" maxlength="4"
@@ -186,7 +186,7 @@
     </article>
 
     <article class="divider_absolute" style="left:59em;">
-      <div class="s-25 m-10" id="hijos_vivos-container">
+      <div class="s-30 m-15 l-10" id="hijos_vivos-container">
         <label for="hijos_vivos" style="font-size: 10px;">HIJOS VIVOS</label>
         <input type="text" id="hijos_vivos" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
@@ -196,7 +196,7 @@
     </article>
 
     <article class="divider_absolute-muertos" style="left:57em;">
-      <div class="s-25 m-10" id="muerto7menor-container">
+      <div class="s-25 m-15 l-10" id="muerto7menor-container">
         <input type="text" id="muerto7menor" class="input__antecedentes"
           style="margin-left: -1.5em;" ng-disabled="!abstre.gemelar"
           ng-keypress="ValidaSoloNumeros()"
@@ -208,7 +208,7 @@
         </label>
       </div>
 
-      <div class="s-25 m-10" id="muerto7mayor-container">
+      <div class="s-25 m-15 l-10" id="muerto7mayor-container">
         <input type="text" id="muerto7mayor" class="input__antecedentes"
           ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
           ng-model="data.muertosMayor7" maxlength="4"
@@ -438,7 +438,7 @@
         </ul>
 
         <article class="form__grid_nacido">
-          <div class="input-field s-90">
+          <div class="input-field s-95">
             <input id="apagar_1min" type="text"
               ng-keypress="ValidaSoloNumeros()" maxlength="4"
               ng-model="data.apagar1Min"

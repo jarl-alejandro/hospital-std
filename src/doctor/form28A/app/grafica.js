@@ -11,14 +11,6 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
   .then(response => {
     paintBorderBySex(response.data.paciente.hgc_desc_genero)
     graficPoint(response.data.signos, response.data.paciente.hgc_fecn_pacie)
-
-    // s.path('M 88 28 C 719 156 199 1  100 100 M 190 100 z').attr({
-    //   stroke: `${dame_color_aleatorio()}`,
-    //   strokeWidth: 50,
-    //   fill: 'none'
-    // }).animate({ strokeWidth: 2 }, 1000)
-    // s.line(88, 27, 396.15000000000003, 81).attr({strokeWidth: 3, stroke: `${dame_color_aleatorio()}`})
-
   })
 
   function graficPoint (data, fechaNacimiento) {
@@ -26,10 +18,6 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     let datoY = 0
     data.map((item, index) => {
       const age = getAgeByMonth(item.fecha, fechaNacimiento)
-      console.group('----Fecha Iniciado----')
-      console.log(item.fecha)
-      console.log(fechaNacimiento)
-      console.groupEnd()
       const peso = parseFloat(item.peso)
       let y = 0
 
@@ -51,7 +39,6 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
             y = (celda * a - 20 - base) + (celda / fraccion)
           }
         }
-
       }
 
       s.circle(age*28.5, y, 50).attr({
@@ -68,11 +55,8 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
           strokeDashoffset: '7px'
         }).animate({ strokeDasharray: '21px' }, 4000)
       }
-
-
       datoX = age*28.5
       datoY = y
-
     })
   }
 
