@@ -77,10 +77,16 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
       $('.grafica028A').css({
         'background-image': `url(assets/img/graficas/peso_hombre.png)`
       })
+      $('.GraficaHeaderPeso-title').html(`Peso para la edad Niños`)
+      $('.GraficaHeader-nina').removeClass('GraficaHeader-nina')
+      $('.GraficaHeader-title').addClass('GraficaHeader-nino')
     } else {
       $('.grafica028A').css({
         'background-image': `url(assets/img/graficas/peso_mujer.png)`
       })
+      $('.GraficaHeaderPeso-title').html(`Peso para la edad Niñas`)
+      $('.GraficaHeader-nino').removeClass('GraficaHeader-nino')
+      $('.GraficaHeader-title').addClass('GraficaHeader-nina')
     }
   }
 

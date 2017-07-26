@@ -1,9 +1,14 @@
 #grafica-section
-  display flex
-  justify-content center
-  flex-wrap wrap
+  overflow auto
+  width 76em
+  display grid
+  grid-template-columns 50% 50% 50%
+  grid-gap 32em
+.Grafica-wrapper
+  width 180%
+  margin-left 3em
 .grafica028A
-  width 77%
+  width 100%
   height 30em
   margin-bottom 2em
   background-size 100% 100%
@@ -26,8 +31,12 @@
 .GraficaHeader
   &-title
     margin 0
-    color #0197d6
-    border-bottom 3px solid #0197d6
     text-align center
-.GraficaHeader-message
-  text-align center
+  &-message
+    text-align center
+  &-nino
+    border-bottom 3px solid #0197d6
+    color #0197d6
+  &-nina
+    color #e57eb5
+    border-bottom 3px solid #e57eb5
