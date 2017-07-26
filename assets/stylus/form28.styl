@@ -18,6 +18,7 @@
       display flex
       border-bottom 1px solid #666
       justify-content space-around
+      flex-wrap wrap
   &--action
     display flex
     justify-content space-between
@@ -72,6 +73,7 @@
 .atendidos__menu
   display flex
   justify-content space-around
+  flex-wrap wrap
   li
     &:first-child
       width 8em
@@ -281,10 +283,86 @@
   left 1.3em
 .grid-dinamic
   display grid
-  grid-template-columns 50% 50%
+  grid-template-columns 49% 49%
+  grid-gap .5em
+
+.nacido__label
+  font-size 12px !important
+#partos-vaginales-wrapper
+  left 47em
+@media (max-width: 800px)
+  .form__grid_nacido_2
+    grid-template-columns 48% 48%
+  .form__grid_nacido
+    grid-template-columns 100%
+
+  .meno__1year:before
+    content ""
+    right 2.2em
+    width 2.4em
+  #gestas_previas-container:after
+    content ""
+    width 3.3em
+  #gemelar_previo_container:after
+    content ""
+    width 7.9em
+    left 2.1em
+  #partos__container
+    &:after
+      content ""
+      width 4.1em
+      left 6.8em
+    &:before
+      height 5.3em
+      top -3.5em
+      left 8.9em
+  #cesarias_container:before
+    content ""
+    height 4.1em
+  #partos-vaginales-wrapper
+    left 46em
+  #muerto7mayor-container:before
+    content ""
+    width 11em
+  #hijos_vivos-container:before
+    width 6.1em
+  #muerto7menor-container:before
+    right 106%
+
+@media (max-width: 732px)
+  body
+    background red
+  .grid-dinamic
+    grid-template-columns 100%
+    grid-gap 0
 
 @media (max-width: 360px)
   .grid-dinamic
   .form__grid_nacido
   .form__grid_nacido_2
     grid-template-columns 100%
+  .grid-dinamic
+    grid-gap 0
+  .atendido-container
+    margin-top 1em
+  .nacido__label
+    font-size 11px !important
+  .meno__1year:before
+    right 2.7em
+  #gestas_previas-container
+    label
+      font-size 10px
+  #gemelar_previo_container:after
+    content ""
+    left 1.8em
+    width: 8.1em
+  #gestas_previas-container:after
+    width 4.3em
+  #partos__container:after
+    left 3.8em
+    width 7.1em
+  #partos__container:before
+    height 7.9em
+    top -4.2em
+    left 7.5em
+    transform rotate(64deg)
