@@ -4,6 +4,9 @@ const grafica028A = angular.module('Hospital')
 
 grafica028A.controller('graficas028AController', function ($scope, $http, $stateParams) {
   const s = Snap("#grafica_curva_crecimiento")
+  const longitud = Snap('#grafica_curva_crecimientoLongitud')
+  const perimetro = Snap('#grafica_curva_crecimientoPerimetro')
+
   const paciente = $stateParams.id
   const now = new Date()
 
@@ -16,48 +19,141 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
   function graficPoint (data, fechaNacimiento) {
     let datoX = 0
     let datoY = 0
+    let datoXPerimetro = 0
+    let datoYPerimetro = 0
+
     data.map((item, index) => {
       const age = getAgeByMonth(item.fecha, fechaNacimiento)
-      const peso = parseFloat(item.peso)
-      let y = 0
+      const yPeso = coordinateYPeso(parseFloat(item.peso))
+      const yPerimetro = coordinateYPerimetro(parseFloat(item.pencefalico))
+      const yLongitud = coordinateYLongitud(parseFloat(item.longitud))
 
-      if (peso === 1) y = 7
-      else if (peso === 2) y = 14
-      else if (peso > 2) {
-        let celda = 46
-        let base = 14
+      s.circle(age*28.5, yPeso, 50).attr({
+        fill: `${dame_color_aleatorio()}`,
+        stroke: `${dame_color_aleatorio()}`,
+        strokeWidth: 2
+      }).animate({r: 5}, 1000).mouseover(
+        function () {
+          let div = document.createElement('div')
+          div.classList.add('tooltip-svg')
+          div.innerText = `edad: ${age}, peso: ${yPeso}`
 
-        for (let i=0; i<peso; i++) {
-          if (peso % 1 === 0) {
-            y = celda * i - 20 - base
-          } else {
-            let a = i - 1
-            let decimal = peso % 1
-            decimal = parseFloat(decimal.toFixed(2))
-            let fraccion = 1 / decimal
-            fraccion = parseInt(fraccion)
-            y = (celda * a - 20 - base) + (celda / fraccion)
-          }
+          div.style.top = `-${yPeso}%`
+          div.style.left = `20%`
+          document.querySelector('.grafica028A').appendChild(div)
+
+          console.log(this)
         }
-      }
+      ).mouseout(function () {
+          setTimeout(() => {
+            document.querySelector('.tooltip-svg').remove()
+          }, 600)
+      })
 
-      s.circle(age*28.5, y, 50).attr({
+      longitud.circle(age*28.5, yLongitud, 50).attr({
+        fill: `${dame_color_aleatorio()}`,
+        stroke: `${dame_color_aleatorio()}`,
+        strokeWidth: 2
+      }).animate({r: 4}, 1000)
+
+      perimetro.circle(age*65, yPerimetro, 50).attr({
         fill: `${dame_color_aleatorio()}`,
         stroke: `${dame_color_aleatorio()}`,
         strokeWidth: 2
       }).animate({r: 4}, 1000)
 
       if (index !== 0) {
-        s.line(age*28.5, y, datoX, datoY).attr({
+        s.line(age*28.5, yPeso, datoX, datoY).attr({
+          strokeWidth: 3,
+          stroke: `${dame_color_aleatorio()}`,
+          strokeDasharray: '9px',
+          strokeDashoffset: '7px'
+        }).animate({ strokeDasharray: '21px' }, 4000)
+
+        perimetro.line(age*65, yPerimetro, datoXPerimetro, datoYPerimetro).attr({
           strokeWidth: 3,
           stroke: `${dame_color_aleatorio()}`,
           strokeDasharray: '9px',
           strokeDashoffset: '7px'
         }).animate({ strokeDasharray: '21px' }, 4000)
       }
+
       datoX = age*28.5
-      datoY = y
+      datoY = yPeso
+
+      datoXPerimetro = age*65
+      datoYPerimetro = yPerimetro
     })
+  }
+
+  function coordinateYPeso (peso) {
+    let y = 0
+
+    if (peso === 1) y = 7
+    else if (peso === 2) y = 14
+    else if (peso > 2) {
+      let celda = 46
+      let base = 14
+
+      for (let i=0; i<peso; i++) {
+        if (peso % 1 === 0) {
+          y = celda * i - 20 - base
+        } else {
+          let a = i - 1
+          let decimal = peso % 1
+          decimal = parseFloat(decimal.toFixed(2))
+          let fraccion = 1 / decimal
+          fraccion = parseInt(fraccion)
+          y = (celda * a - 20 - base) + (celda / fraccion)
+        }
+      }
+    }
+    return y
+  }
+
+  function coordinateYPerimetro (perimetro) {
+    let y = 0
+    let celda = 33.5
+    let array = perimetro.toString().split("")
+    perimetro = perimetro - 30
+
+    for (let i=0; i<perimetro; i++) {
+      if (perimetro % 1 === 0) {
+        y = celda * i
+      } else {
+
+        let a = i - 1
+        let decimal = perimetro % 1
+        decimal = parseFloat(decimal.toFixed(2))
+        let fraccion = 1 / decimal
+        fraccion = parseInt(fraccion)
+        y = (celda * a) + (celda / fraccion)
+      }
+    }
+    return y
+  }
+
+  function coordinateYLongitud (longitud) {
+    let y = 0
+    let celda = 70
+    longitud = longitud - 45
+    let a = -3
+
+    for (let i=0; i<longitud; i++) a++
+
+    for (let i=0; i<a; i++) {
+      if (a % 1 === 0) {
+        y = celda * i
+      } else {
+        let u = i - 1
+        let decimal = longitud % 1
+        decimal = parseFloat(decimal.toFixed(2))
+        let fraccion = 1 / decimal
+        fraccion = parseInt(fraccion)
+        y = (celda * u) + (celda / fraccion)
+      }
+    }
+    return y
   }
 
   function getAgeByMonth (dateAttended, fechaNacimiento) {

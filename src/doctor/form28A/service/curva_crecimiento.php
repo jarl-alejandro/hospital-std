@@ -8,7 +8,7 @@ $qs_pac = $pdo->query("SELECT * FROM view_pacientesexo WHERE hgc_cedu_pacie='$id
 $row_paciente = $qs_pac->fetch();
 
 $qs = $pdo->query("SELECT * FROM view_signosvitales WHERE hgc_hcli_sigvit='$id'
-  ORDER BY hgc_peso_sigvit");
+  ORDER BY hgc_fecha_sigvit");
 
 while ($row = $qs->fetch()) {
   $paciente = array(
