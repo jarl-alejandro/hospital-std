@@ -220,8 +220,8 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
       $('.grafica028APerimetro').css({'background-image': `url(assets/img/graficas/perimetro_hombre.png)`})
 
       $('.GraficaHeaderPeso-title').html(`Peso para la edad Niños`)
-      $('.GraficaHeaderPerimetro-title').html(`Perímetro cefálico para la edad Niñas`)
-      $('.GraficaHeaderLongitud-title').html(`Longitud para la edad Niñas`)
+      $('.GraficaHeaderPerimetro-title').html(`P. cefálico para la edad Niños`)
+      $('.GraficaHeaderLongitud-title').html(`Longitud para la edad Niños`)
 
       $('.GraficaHeader-nina').removeClass('GraficaHeader-nina')
       $('.GraficaHeader-title').addClass('GraficaHeader-nino')
@@ -231,7 +231,7 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
       $('.grafica028APerimetro').css({'background-image': `url(assets/img/graficas/perimetro_mujer.png)`})
 
       $('.GraficaHeaderPeso-title').html(`Peso para la edad Niñas`)
-      $('.GraficaHeaderPerimetro-title').html(`Perímetro cefálico para la edad Niñas`)
+      $('.GraficaHeaderPerimetro-title').html(`P. cefálico para la edad Niñas`)
       $('.GraficaHeaderLongitud-title').html(`Longitud para la edad Niñas`)
 
       $('.GraficaHeader-nino').removeClass('GraficaHeader-nino')

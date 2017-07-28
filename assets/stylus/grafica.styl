@@ -1,22 +1,15 @@
 #grafica-section
   overflow auto
-  width 76em
-  display grid
-  grid-template-columns 50% 50% 50%
-  grid-gap 32em
-#grafica_curva_crecimientoPerimetro
-  width 58.4em
-  left 5.6em
-  height 25.8em
-#grafica_curva_crecimientoLongitud
-  width 58.6em
-  left 7.6%
-#grafica_curva_crecimiento
-  left 7.2%
-  width 86.8%
-.Grafica-wrapper
-  width 180%
-  margin-left 3em
+  width 100%
+  white-space nowrap
+  scroll-snap-points-x repeat(100%)
+  scroll-snap-type: mandatary
+  .Grafica-wrapper
+    display inline-block
+    width 98%
+    margin 1%
+    line-heigth 18px
+
 .grafica028A
 .grafica028ALongitud
 .grafica028APerimetro
@@ -40,6 +33,8 @@
     top 1.2em
 
 .GraficaHeader
+  display grid
+  grid-template-columns 78% 20%
   &-title
     margin 0
     text-align center
@@ -51,6 +46,8 @@
   &-nina
     color #e57eb5
     border-bottom 3px solid #e57eb5
+  figure
+    margin 0
 
 .tooltip-svg
   z-index 111
@@ -83,3 +80,15 @@
 
 circle
   cursor pointer
+@media (max-width: 412px)
+  .GraficaHeader-title
+    font-size 18px
+    width 93%
+  .GraficaHeader
+    grid-template-columns 100%
+  .GraficaHeader figure
+    text-align center
+
+@media (max-width: 320px)
+  .GraficaHeader-title
+    font-size 15px
