@@ -170,10 +170,11 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     return y
   }
 
-  function coordinateYLongitud (longitud) {
+  function coordinateYLongitud (longitudParam) {
     let celda = 70
     let y = 0
-
+    let decimal = 0
+    let longitud = parseInt(longitudParam.toString().split(".")[0])
     y = longitud % 2 === 0 ? longitud - 49  : longitud - 45
 
     if (y >= 10) {
@@ -184,12 +185,15 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     y = y > 3 ? y + 1: y
     longitud === 65 && y++
 
-    console.group('-----------')
-    console.log(longitud)
-    console.log(y)
-    console.groupEnd()
+    if (longitudParam.toString().split(".")[1] !== undefined) {
+      decimal = parseInt(longitudParam.toString().split(".")[1])
+      decimal = decimal * 7
+      console.log(decimal)
+    }
 
-    return y * celda
+    // console.log(y)
+
+    return y * celda + decimal
   }
 
   function getAgeByMonth (dateAttended, fechaNacimiento) {
