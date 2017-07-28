@@ -32,6 +32,7 @@ hoja1.controller('hoja1Conroller', function ($scope, $http) {
     if (validar()) {
       $('#hoja__1').slideUp()
       $('#hoja__2').slideDown()
+      setTimeout(() => window.scrollTo(0, 0), 100)
     }
   }
 
