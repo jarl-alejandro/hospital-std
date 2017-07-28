@@ -10,6 +10,8 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
   const paciente = $stateParams.id
   const now = new Date()
 
+  $scope.sexo = 'Hombre'
+
   $http.get(`src/doctor/form28A/service/curva_crecimiento.php?id=${paciente}`)
   .then(response => {
     paintBorderBySex(response.data.paciente.hgc_desc_genero)
@@ -22,61 +24,96 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     let datoXPerimetro = 0
     let datoYPerimetro = 0
 
+    $scope.colorSexo = $scope.sexo === 'Hombre' ? '#0197d6' : '#e47db4'
+
     data.map((item, index) => {
       const age = getAgeByMonth(item.fecha, fechaNacimiento)
       const yPeso = coordinateYPeso(parseFloat(item.peso))
       const yPerimetro = coordinateYPerimetro(parseFloat(item.pencefalico))
       const yLongitud = coordinateYLongitud(parseFloat(item.longitud))
 
-      s.circle(age*28.5, yPeso, 50).attr({
-        fill: `${dame_color_aleatorio()}`,
-        stroke: `${dame_color_aleatorio()}`,
-        strokeWidth: 2
-      }).animate({r: 5}, 1000).mouseover(
-        function () {
-          let div = document.createElement('div')
-          div.classList.add('tooltip-svg')
-          div.innerText = `edad: ${age}, peso: ${yPeso}`
-
-          div.style.top = `-${yPeso}%`
-          div.style.left = `20%`
-          document.querySelector('.grafica028A').appendChild(div)
-
-          console.log(this)
-        }
-      ).mouseout(function () {
-          setTimeout(() => {
-            document.querySelector('.tooltip-svg').remove()
-          }, 600)
-      })
-
-      longitud.circle(age*28.5, yLongitud, 50).attr({
-        fill: `${dame_color_aleatorio()}`,
-        stroke: `${dame_color_aleatorio()}`,
-        strokeWidth: 2
-      }).animate({r: 4}, 1000)
-
-      perimetro.circle(age*65, yPerimetro, 50).attr({
-        fill: `${dame_color_aleatorio()}`,
-        stroke: `${dame_color_aleatorio()}`,
-        strokeWidth: 2
-      }).animate({r: 4}, 1000)
-
       if (index !== 0) {
         s.line(age*28.5, yPeso, datoX, datoY).attr({
           strokeWidth: 3,
-          stroke: `${dame_color_aleatorio()}`,
-          strokeDasharray: '9px',
-          strokeDashoffset: '7px'
+          stroke: `${$scope.colorSexo}`,
         }).animate({ strokeDasharray: '21px' }, 4000)
 
         perimetro.line(age*65, yPerimetro, datoXPerimetro, datoYPerimetro).attr({
           strokeWidth: 3,
-          stroke: `${dame_color_aleatorio()}`,
-          strokeDasharray: '9px',
-          strokeDashoffset: '7px'
+          stroke: `${$scope.colorSexo}`
         }).animate({ strokeDasharray: '21px' }, 4000)
       }
+
+      s.circle(age*28.5, yPeso, 50).attr({
+        fill: `none`,
+        stroke: `${$scope.colorSexo}`,
+        strokeWidth: 7
+      }).animate({r: 5}, 1000).mouseover(function () {
+        let div = document.createElement('div')
+        document.querySelector('.grafica028A').appendChild(div)
+
+        age === 0 ? 1 : age
+
+        div.innerText = `edad: ${age} semana, peso: ${item.peso} kg`
+        div.classList.add(`tooltip-svg-${$scope.sexo}`)
+        div.classList.add('tooltip-svg')
+        div.style.bottom = `${yPeso+35}px`
+        div.style.left = `${age+12}%`
+      }).mouseout(function () {
+          setTimeout(() => {
+            if (document.querySelector('.tooltip-svg') !== null)
+              document.querySelector('.tooltip-svg').remove()
+          }, 600)
+      })
+
+      longitud.circle(age*28.5, yLongitud, 50).attr({
+        fill: `none`,
+        stroke: `${$scope.colorSexo}`,
+        strokeWidth: 7
+      }).animate({r: 5}, 1000).mouseover(
+        function () {
+          if (document.querySelector('.tooltip-svg') !== null)
+            document.querySelector('.tooltip-svg').remove()
+
+          let div = document.createElement('div')
+          document.querySelector('.grafica028A').appendChild(div)
+
+          age === 0 ? 1 : age
+
+          div.innerText = `edad: ${age} semana, peso: ${item.peso} kg`
+          div.classList.add(`tooltip-svg-${$scope.sexo}`)
+          div.classList.add('tooltip-svg')
+          div.style.bottom = `${yPeso+35}px`
+          div.style.left = `${age+12}%`
+        }
+      ).mouseout(function () {
+          setTimeout(() => {
+            if (document.querySelector('.tooltip-svg') !== null)
+              document.querySelector('.tooltip-svg').remove()
+          }, 600)
+      })
+
+      perimetro.circle(age*65, yPerimetro, 50).attr({
+        fill: `none`,
+        stroke: `${$scope.colorSexo}`,
+        strokeWidth: 7
+      }).animate({r: 5}, 1000).mouseover(function () {
+        let div = document.createElement('div')
+        document.querySelector('.grafica028APerimetro').appendChild(div)
+
+        age === 0 ? 1 : age
+
+        div.innerText = `edad: ${age} semana, P. cefálico : ${item.pencefalico} cm`
+        div.classList.add(`tooltip-svg-${$scope.sexo}`)
+        div.classList.add('tooltip-svg')
+        div.style.bottom = `${yPerimetro+35}px`
+        div.style.left = `${(age*2)+8.5}em`
+      }).mouseout(function () {
+          setTimeout(() => {
+            if (document.querySelector('.tooltip-svg') !== null)
+              document.querySelector('.tooltip-svg').remove()
+          }, 600)
+      })
 
       datoX = age*28.5
       datoY = yPeso
@@ -134,26 +171,25 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
   }
 
   function coordinateYLongitud (longitud) {
-    let y = 0
     let celda = 70
-    longitud = longitud - 45
-    let a = -3
+    let y = 0
 
-    for (let i=0; i<longitud; i++) a++
+    y = longitud % 2 === 0 ? longitud - 49  : longitud - 45
 
-    for (let i=0; i<a; i++) {
-      if (a % 1 === 0) {
-        y = celda * i
-      } else {
-        let u = i - 1
-        let decimal = longitud % 1
-        decimal = parseFloat(decimal.toFixed(2))
-        let fraccion = 1 / decimal
-        fraccion = parseInt(fraccion)
-        y = (celda * u) + (celda / fraccion)
-      }
+    if (y >= 10) {
+      y = y.toString().split("")
+      y = parseInt(y[0]) + parseInt(y[1]) + 1
     }
-    return y
+
+    y = y > 3 ? y + 1: y
+    longitud === 65 && y++
+
+    console.group('-----------')
+    console.log(longitud)
+    console.log(y)
+    console.groupEnd()
+
+    return y * celda
   }
 
   function getAgeByMonth (dateAttended, fechaNacimiento) {
@@ -165,10 +201,13 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     let dias = Math.floor(dif / (1000 * 60 * 60 * 24))
     semanas = dias / 7
     semanas = semanas.toFixed(1)
+    semanas = Math.round(semanas)
+
     return parseFloat(semanas)
   }
 
   function paintBorderBySex (sexo) {
+    $scope.sexo = sexo
     if (sexo === 'Hombre') {
       $('.grafica028A').css({ 'background-image': `url(assets/img/graficas/peso_hombre.png)` })
       $('.grafica028ALongitud').css({'background-image': `url(assets/img/graficas/longitud_hombre.png)`})

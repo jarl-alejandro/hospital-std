@@ -12,6 +12,13 @@
   <body>
     <section ui-view></section>
   <!-- Librerias -->
+
+    <script type="text/javascript">
+      window.nodeRequire = require;
+      delete window.require;
+      delete window.exports;
+      delete window.module;
+    </script>
     <script type="text/javascript" src='lib/jquery.js'></script>
     <script type="text/javascript" src='lib/materialize.js'></script>
 

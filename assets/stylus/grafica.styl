@@ -38,7 +38,6 @@
     height 86.78%
     left 7.4%
     top 1.2em
-    background rgba(0,0,0,.1)
 
 .GraficaHeader
   &-title
@@ -54,6 +53,21 @@
     border-bottom 3px solid #e57eb5
 
 .tooltip-svg
-  background black
-  color white
+  z-index 111
+  background white
+  color black
   position absolute
+  padding 1em 2em
+  border-radius 1px
+  box-shadow 0px 0px 1px rgba(0,0,0,0.5)
+  transition all ease 1s
+  display flex
+  justify-content center
+  align-items center
+  &-Mujer
+    border 3px solid #e47db4
+  &-Hombre
+    border 3px solid #0197d6
+
+circle
+  cursor pointer
