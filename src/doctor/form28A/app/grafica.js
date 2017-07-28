@@ -23,6 +23,8 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     let datoY = 0
     let datoXPerimetro = 0
     let datoYPerimetro = 0
+    let datoXLongitud = 0
+    let datoYLongitud = 0
 
     $scope.colorSexo = $scope.sexo === 'Hombre' ? '#0197d6' : '#e47db4'
 
@@ -39,6 +41,11 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
         }).animate({ strokeDasharray: '21px' }, 4000)
 
         perimetro.line(age*65, yPerimetro, datoXPerimetro, datoYPerimetro).attr({
+          strokeWidth: 3,
+          stroke: `${$scope.colorSexo}`
+        }).animate({ strokeDasharray: '21px' }, 4000)
+
+        longitud.line(age*35.5, yLongitud, datoXLongitud, datoYLongitud).attr({
           strokeWidth: 3,
           stroke: `${$scope.colorSexo}`
         }).animate({ strokeDasharray: '21px' }, 4000)
@@ -66,7 +73,7 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
           }, 600)
       })
 
-      longitud.circle(age*28.5, yLongitud, 50).attr({
+      longitud.circle(age*35.5, yLongitud, 50).attr({
         fill: `none`,
         stroke: `${$scope.colorSexo}`,
         strokeWidth: 7
@@ -120,6 +127,9 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
 
       datoXPerimetro = age*65
       datoYPerimetro = yPerimetro
+
+      datoXLongitud = age*35.5
+      datoYLongitud = yLongitud
     })
   }
 
@@ -190,9 +200,6 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
       decimal = decimal * 7
       console.log(decimal)
     }
-
-    // console.log(y)
-
     return y * celda + decimal
   }
 
