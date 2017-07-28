@@ -78,9 +78,6 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
         stroke: `${$scope.colorSexo}`,
         strokeWidth: 7
       }).animate({r: 5}, 1000).mouseover(function () {
-        if (document.querySelector('.tooltip-svg') !== null)
-          document.querySelector('.tooltip-svg').remove()
-
         let div = document.createElement('div')
         document.querySelector('.grafica028ALongitud').appendChild(div)
 
