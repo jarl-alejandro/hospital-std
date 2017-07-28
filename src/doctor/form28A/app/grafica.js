@@ -77,23 +77,21 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
         fill: `none`,
         stroke: `${$scope.colorSexo}`,
         strokeWidth: 7
-      }).animate({r: 5}, 1000).mouseover(
-        function () {
-          if (document.querySelector('.tooltip-svg') !== null)
-            document.querySelector('.tooltip-svg').remove()
+      }).animate({r: 5}, 1000).mouseover(function () {
+        if (document.querySelector('.tooltip-svg') !== null)
+          document.querySelector('.tooltip-svg').remove()
 
-          let div = document.createElement('div')
-          document.querySelector('.grafica028A').appendChild(div)
+        let div = document.createElement('div')
+        document.querySelector('.grafica028ALongitud').appendChild(div)
 
-          age === 0 ? 1 : age
+        age === 0 ? 1 : age
 
-          div.innerText = `edad: ${age} semana, peso: ${item.peso} kg`
-          div.classList.add(`tooltip-svg-${$scope.sexo}`)
-          div.classList.add('tooltip-svg')
-          div.style.bottom = `${yPeso+35}px`
-          div.style.left = `${age+12}%`
-        }
-      ).mouseout(function () {
+        div.innerText = `edad: ${age} semana, longitud: ${item.longitud} cm`
+        div.classList.add(`tooltip-svg-${$scope.sexo}`)
+        div.classList.add('tooltip-svg')
+        div.style.bottom = `${yLongitud+35}px`
+        div.style.left = `${age+13}%`
+      }).mouseout(function () {
           setTimeout(() => {
             if (document.querySelector('.tooltip-svg') !== null)
               document.querySelector('.tooltip-svg').remove()
