@@ -1,6 +1,7 @@
 <hgc-menu-enfermera></hgc-menu-enfermera>
 <section class="workSpace">
   <h1 class="Title">Informacion de {{ paciente.paciente }}</h2>
+
   <header style="background:inherit" class="header__form28">
     <div class="s-100 m-25 white">
       <label class="center-align">ESTABLECIMIENTO</label>
@@ -29,21 +30,29 @@
         ng-model="pacient.paciente.hgc_histo_hcli" disabled class="black-text">
     </div>
   </header>
+
   <div class="floating-add">
-    <button class='btn-floating btn-large waves-effect waves-light primary'
-      ng-disabled="activeSignosBtn" ng-click="handleShowForm()">
+
+    <button class='btn-floating btn-large waves-effect waves-light primary none'
+      ng-disabled="activeSignosBtn" ng-click="handleShowForm()" id="signosVitales">
       <i class="material-icons">mode_edit</i>
     </button>
+
+    <label for="inputPDF" class='btn-floating btn-large waves-effect waves-light primary' id="filepdf">
+      <i class="material-icons">picture_as_pdf</i>
+    </label>
+    <input type="file" id="inputPDF" class="none" accept="application/pdf">
+
   </div>
   <article class="tableContainer">
     <table class="bordered highlight centered responsive-table">
       <thead>
         <tr>
           <th width="10%">#</th>
-          <th width="30%">Fecha</th>
-          <th width="30%">Temperatura</th>
-          <th width="30%">Peso</th>
-          <th width="30%">Talla</th>
+          <th width="15%">Fecha</th>
+          <th width="15%">Temperatura</th>
+          <th width="15%">Peso</th>
+          <th width="15%">Talla</th>
           <th width="30%"></th>
         </tr>
       </thead>
@@ -60,8 +69,11 @@
           <td>{{ signos.hgc_peso_sigvit }}</td>
           <td>{{ signos.hgc_talla_sigvit }}</td>
           <td>
-            <button class='waves-effect waves-light btn'
+            <button class='waves-effect waves-light btn primary'
               ng-click="handleEdit(signos)">Editar
+            </button>
+            <button class='waves-effect waves-light btn rouse'
+              ng-click="handleReport(signos)">Imprimir
             </button>
           </td>
         </tr>

@@ -12,6 +12,8 @@ singosVitales.controller('singosVitalesController', function ($scope, $http) {
 singosVitales.controller('pacienteSignoController', function ($scope, $http, $stateParams) {
   const id = $stateParams.id
   const turno = $stateParams.turno
+  const filePDF = document.getElementById('inputPDF')
+  filePDF.addEventListener('change', handleUploadPDF)
 
   $scope.activeSignosBtn = false
   $scope.menor = false
@@ -36,11 +38,16 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     id: ''
   }
 
-  $http.get(
-    `src/enfermera/signos-vitales/service/turno.php?id=${turno}`
-  )
+  $http.get(`src/enfermera/signos-vitales/service/turno.php?id=${turno}`)
   .then(response => {
+
+    if (response.data.hgc_esta_turno === 'pdf') {
+      $('#filepdf').fadeOut()
+      $('#signosVitales').fadeIn()
+    }
     if (response.data.hgc_esta_turno === 'signosVitales')
+      $('#filepdf').fadeOut()
+      $('#signosVitales').fadeIn()
       $scope.activeSignosBtn = true
   })
 
@@ -76,11 +83,16 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $scope.handleShowForm = () => $('.formPlus').slideDown()
   $scope.handleCancel = () => closeForm()
 
+  $scope.handleReport = () => {
+    window.open (`src/enfermera/signos-vitales/reporte/signos-vitales.php`, "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
+  }
+
   $scope.handleSave = function handleSave () {
     if (validar()) {
       $scope.data.estado = $scope.data.peso / ($scope.data.talla ** 2)
       $http.post('src/enfermera/signos-vitales/service/save.php', $scope.data)
       .then(response => {
+        console.log(response)
         if (response.data === "201") {
           $scope.activeSignosBtn = true
           Materialize.toast('Se ha guarado con exito', 4000)
@@ -120,6 +132,28 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       $scope.data.id = signos.hgc_id_sigvit
       $('.formPlus-content label').addClass('active')
     }
+  }
+
+  function handleUploadPDF (e) {
+    const formData = new FormData()
+    const xhr = new XMLHttpRequest()
+
+    formData.append('filePDF', filePDF.files[0])
+    formData.append('turno', turno)
+
+    xhr.open('POST', 'src/enfermera/signos-vitales/service/uploadFile.php')
+    xhr.onload = function (e) {
+      if (this.status === 200) {
+
+        if (this.responseText === '201') {
+          Materialize.toast('Se ha subido el PDF', 4000)
+          $('#filepdf').fadeOut()
+          $('#signosVitales').fadeIn()
+        }
+      }
+    }
+
+    xhr.send(formData)
   }
 
   function closeForm () {

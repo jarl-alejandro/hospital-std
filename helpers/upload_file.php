@@ -17,3 +17,12 @@ function upload_image_large ($codeImage, $routeImage) {
   copy($ruta, $destino);
   return $imagen;
 }
+
+function upload_pdf ($codeFile, $fileName, $routeFile) {
+  $file = $_FILES[$fileName];
+  $file = $codeFile . ".pdf";
+  $ruta = $_FILES[$fileName]["tmp_name"];
+  $destino = $routeFile."/".$file;
+  copy($ruta, $destino);
+  return $file;
+}

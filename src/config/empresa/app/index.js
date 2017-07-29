@@ -52,7 +52,7 @@ empresa.controller('empresaController', function ($scope, $http) {
 
     xhr.onload = function (e) {
       if (this.status == 200) {
-          var json = JSON.parse(this.responseText)
+        var json = JSON.parse(this.responseText)
         if (json.status === '201') {
           Materialize.toast('Ha cambiado su foto', 4000)
         }
