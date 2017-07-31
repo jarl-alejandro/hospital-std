@@ -26,19 +26,25 @@ $content = '<!DOCTYPE html>
 				box-sizing: border-box;
 			}
 			header {
-				height: 4em;
-				text-align: center;
-				border-bottom: 1px solid #585757;
+				border-bottom: 2px solid #585757;
+				display: flex;
+				align-items: center;
+				width: 100%;
+				margin-bottom: 1em;
 			}
 			.headerLogo {
-				width: 60%;
-    		height: 9em;
+				width: 20%;
+    		height: 3em;
+				display: inline-block;
+				float: left;
 			}
 			.titulo {
-				text-align: center;
-				display:block;
-				color: #585757;
 				font-weight: bold;
+				width: 80%;
+				margin: 0;
+				display: inline-block;
+				float: right;
+				margin-bottom: .1em;
 			}
 			table {
 				margin-bottom: 1em;
@@ -55,13 +61,17 @@ $content = '<!DOCTYPE html>
 		</style>
 	</head>
 	<body>
-		<header>
+		<header name="headerSignosVitales">
 			<img class="headerLogo" src="../../../../assets/img/reportes/logo.jpg" />
-		</header>';
+			<h3 class="titulo">Signos Vitales</h3>
+		</header>
+		';
 
-$content .='<div><h3 class="titulo s-100">Signos Vitales</h3>';
+$content .= '<div>';
+
 
 while ($row = $qs->fetch()){
+	for ($i = 0; $i < 10; $i++) {
 	$index++;
 	if ($row["hgc_talla_sigvit"] === '') {
 		$content .= '<table class="bordered highlight centered responsive-table">
@@ -120,12 +130,16 @@ while ($row = $qs->fetch()){
 		</table>';
 	}
 }
+}
 
-$content .='</div>';
-$content .='</body></html>';
+$content .= '</div>';
+$content .= '</body></html>';
 
-// $mpdf = new mPDF();
-$mpdf = new mPDF('c', 'A4-L'); 
+$mpdf = new mPDF('c', 'A4-L');
+// $mpdf->WriteHTML($content);
 
-$mpdf->WriteHTML($content);
+$mpdf->SetHeader('Document Title|Center Text|{PAGENO}');
+
+$mpdf->WriteHTML('Document text');
+
 $mpdf->Output();
