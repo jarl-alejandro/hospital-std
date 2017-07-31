@@ -40,15 +40,16 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $http.get(`src/enfermera/signos-vitales/service/turno.php?id=${turno}`)
   .then(response => {
-
+    console.log(response)
     if (response.data.hgc_esta_turno === 'pdf') {
       $('#filepdf').fadeOut()
       $('#signosVitales').fadeIn()
     }
-    if (response.data.hgc_esta_turno === 'signosVitales')
+    if (response.data.hgc_esta_turno === 'signosVitales') {
       $('#filepdf').fadeOut()
       $('#signosVitales').fadeIn()
       $scope.activeSignosBtn = true
+    }
   })
 
   $http.get('src/config/empresa/service/get.php')
@@ -206,10 +207,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       }
       if (data.prEncefalico === '') {
         Materialize.toast('Ingresa el perimetro encefalico', 4000)
-        return false
-      }
-      if (data.estado === '') {
-        Materialize.toast('Ingresa el estado de nutricion', 4000)
         return false
       } else return true
     }
