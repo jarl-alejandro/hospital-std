@@ -17,6 +17,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $scope.activeSignosBtn = false
   $scope.menor = false
+  $scope.pacientId = id
   $scope.paciente = {}
   $scope.signosVitales = []
   $scope.empresa = {}
@@ -84,16 +85,18 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $scope.handleShowForm = () => $('.formPlus').slideDown()
   $scope.handleCancel = () => closeForm()
 
-  $scope.handleReport = () => {
-    window.open (`src/enfermera/signos-vitales/reporte/signos-vitales.php`, "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
+  $scope.handleReport = (id) => {
+    // let id = signos.hgc_hcli_sigvit
+    window.open (`src/enfermera/signos-vitales/reporte/signos-vitales.php?id=${id}`, "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
   }
 
   $scope.handleSave = function handleSave () {
     if (validar()) {
       $scope.data.estado = $scope.data.peso / ($scope.data.talla ** 2)
+
       $http.post('src/enfermera/signos-vitales/service/save.php', $scope.data)
       .then(response => {
-        console.log(response)
+
         if (response.data === "201") {
           $scope.activeSignosBtn = true
           Materialize.toast('Se ha guarado con exito', 4000)
@@ -101,6 +104,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
           $http.get(`src/enfermera/signos-vitales/service/getAll.php?id=${id}`)
           .then(response => $scope.signosVitales = response.data)
         }
+
       })
     }
   }

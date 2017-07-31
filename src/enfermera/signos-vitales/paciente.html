@@ -53,7 +53,11 @@
           <th width="15%">Temperatura</th>
           <th width="15%">Peso</th>
           <th width="15%">Talla</th>
-          <th width="30%"></th>
+          <th width="30%">
+            <button class='waves-effect waves-light btn rouse'
+              ng-click="handleReport(pacientId)">Imprimir
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -71,9 +75,6 @@
           <td>
             <button class='waves-effect waves-light btn primary'
               ng-click="handleEdit(signos)">Editar
-            </button>
-            <button class='waves-effect waves-light btn rouse'
-              ng-click="handleReport(signos)">Imprimir
             </button>
           </td>
         </tr>

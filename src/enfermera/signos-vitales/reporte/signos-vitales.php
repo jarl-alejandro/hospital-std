@@ -1,12 +1,16 @@
 <?php
 date_default_timezone_set('America/Guayaquil');
 require_once('../../../../helpers/conexion.php');
-
 require_once('../../../../mpd/mpdf.php');
 
-
-$qs = $pdo->query("SELECT * FROM hgc_sigvit");
+$id = $_GET['id'];
 $index = 0;
+
+$mpdf = new mPDF('c', 'A4-L');
+
+$qs = $pdo->query("SELECT * FROM hgc_sigvit WHERE hgc_hcli_sigvit='$id'");
+$query = $pdo->query("SELECT * FROM view_paciente WHERE hgc_cedu_pacie='$id'");
+$paciente = $query->fetch();
 
 $content = '<!DOCTYPE html>
 	<html lang="en">
@@ -31,6 +35,9 @@ $content = '<!DOCTYPE html>
 				align-items: center;
 				width: 100%;
 				margin-bottom: 1em;
+			}
+			p{
+				margin: 0;
 			}
 			.headerLogo {
 				width: 20%;
@@ -65,14 +72,19 @@ $content = '<!DOCTYPE html>
 			<img class="headerLogo" src="../../../../assets/img/reportes/logo.jpg" />
 			<h3 class="titulo">Signos Vitales</h3>
 		</header>
-		';
+		<div style="margin-bottom:1em">
+			<p>Nombre y Apellido: '.$paciente["paciente"] .'</p>
+			<p>Historia Clinica: #'.$paciente["hgc_histo_hcli"] .'</p>
+		</div>';
 
 $content .= '<div>';
 
+$headerIndex = 0;
 
-while ($row = $qs->fetch()){
-	for ($i = 0; $i < 10; $i++) {
+while ($row = $qs->fetch()) {
 	$index++;
+	$headerIndex++;
+
 	if ($row["hgc_talla_sigvit"] === '') {
 		$content .= '<table class="bordered highlight centered responsive-table">
 			<thead style="background: red">
@@ -129,17 +141,19 @@ while ($row = $qs->fetch()){
 			</tbody>
 		</table>';
 	}
-}
+	
+	if ($headerIndex == 6) {
+		$headerIndex = 0;
+		$content .= '<header name="headerSignosVitales">
+			<img class="headerLogo" src="../../../../assets/img/reportes/logo.jpg" />
+			<h3 class="titulo">Signos Vitales</h3>
+		</header>';
+	}
 }
 
 $content .= '</div>';
 $content .= '</body></html>';
 
-$mpdf = new mPDF('c', 'A4-L');
-// $mpdf->WriteHTML($content);
 
-$mpdf->SetHeader('Document Title|Center Text|{PAGENO}');
-
-$mpdf->WriteHTML('Document text');
-
+$mpdf->WriteHTML($content);
 $mpdf->Output();
