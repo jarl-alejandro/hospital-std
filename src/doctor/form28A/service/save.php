@@ -165,6 +165,7 @@ foreach ($fisicos as $row) {
 
   $detail->execute();
 }
+
 foreach ($form as $row) {
   $id = $row->id;
   $tipo = $row->tipo;

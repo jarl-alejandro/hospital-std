@@ -22,8 +22,8 @@
             <td>{{ paciente.paciente }}</td>
             <td>{{ paciente.doctor }}</td>
             <td>
-              <a class='waves-effect waves-light btn'
-                ng-click="form(paciente)">Ver</a>
+              <a class='waves-effect waves-light btn danger'
+                ng-click="handlePrint(paciente.hgc_id_turno)">Imprimir</a>
             </td>
           </tr>
         </tbody>

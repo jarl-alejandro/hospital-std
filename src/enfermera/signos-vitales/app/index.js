@@ -85,8 +85,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $scope.handleShowForm = () => $('.formPlus').slideDown()
   $scope.handleCancel = () => closeForm()
 
-  $scope.handleReport = (id) => {
-    // let id = signos.hgc_hcli_sigvit
+  $scope.handleReport = id => {
     window.open (`src/enfermera/signos-vitales/reporte/signos-vitales.php?id=${id}`, "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
   }
 

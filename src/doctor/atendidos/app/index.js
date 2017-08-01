@@ -8,16 +8,10 @@ atendidos.controller('atendidosController', function ($scope, $http, $location) 
   $http.get('src/doctor/atendidos/service/getAll.php')
   .then(response => $scope.pacientes = response.data)
 
-  $scope.form = object => {
-    const parametros = object.hgc_fecn_pacie.split('-')
-    const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
-    const now = new Date()
-    const year = now.getFullYear() - fecha.getFullYear()
-    const moth = now.getMonth() - fecha.getMonth()
-    const age = (year * 12) + moth
-    console.log(object)
-
-    if (age < 2) $location.path(`/form28A/${object.hgc_paci_turno}/${object.hgc_id_turno}`)
-    else $location.path(`/form28C/${object.hgc_paci_turno}/${object.hgc_id_turno}`)
+  $scope.handlePrint = turno => {
+    alert(turno)
+    window.open (`src/doctor/atendidos/reporte/form28A.php?turno=${turno}`,
+      "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
   }
+
 })
