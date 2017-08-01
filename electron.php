@@ -85,6 +85,7 @@
     <script src='src/estadistico/pacientes/app/index.js'></script>
 
     <script src='src/enfermera/signos-vitales/app/index.js'></script>
+    <script src='src/enfermera/pacientes-atendidos/app/index.js'></script>
 
     <script src='src/doctor/pacientes/app/index.js'></script>
     <script src='src/doctor/atendidos/app/index.js'></script>

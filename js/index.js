@@ -334,9 +334,13 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       url: '/signos-vitales',
       controller: 'singosVitalesController',
       templateUrl: 'src/enfermera/signos-vitales/signos-vitales.html',
-      resolve: {
-        authenticated: auth_roles
-      }
+      resolve: { authenticated: auth_roles }
+    })
+    .state('pacAnteEnfermeria', {
+      url: '/pacientes-antendidos-enfermeria',
+      controller: 'pacAtenController',
+      templateUrl: 'src/enfermera/pacientes-atendidos/pacientes.html',
+      resolve: { authenticated: auth_roles }
     })
     .state('paciente-signos', {
       url: '/paciente-signos/:id/:turno',
