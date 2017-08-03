@@ -1,6 +1,6 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
-  <article class="form ed-item main-distribute">
+  <article class="form ed-item">
     <h1 class="Title no-margin s-100">Form 28C</h2>
 
     <!-- Establecimiento -->
@@ -76,84 +76,85 @@
     </header>
     <!--  /SignosVitales -->
 
-    <div class="input-field s-90 m-45">
-      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.motivo"></textarea>
-      <label for="motivo-consulta">Motivo de Consulta *</label>
-    </div>
-    <div class="input-field s-90 m-45">
-      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.enfermedad"></textarea>
-      <label for="motivo-consulta">Enfermedad o problema actual *</label>
-    </div>
-    <div class="input-field s-90 m-45">
-      <textarea id="antecedente-personal" class="materialize-textarea"
-        ng-model="data.antPersonales"></textarea>
-      <label for="antecedente-personal" class="active">Antecedentes personales</label>
-    </div>
-    <div class="input-field s-90 m-45">
-      <textarea id="antecedente-familiares" class="materialize-textarea"
-        ng-model="data.antfamiliares"></textarea>
-      <label for="antecedente-familiares" class="active">Antecedentes familiares</label>
-    </div>
-
-    <div class="s-90 m-45 form-select">
-      <div class="menu-form">
-        <h6 class="title">REVISIÒN ACTUAL DE ÒRGANOS Y SISTEMAS</h6>
-        <div class="menu-form--action">
-          <h6>CP &nbsp;&nbsp;&nbsp;&nbsp; SP</h6>
-          <h6>CP=CON PATOLOGÌA (describir) SP=SIN PATOLOGÌA</h6>
-        </div>
+    <section id="form28C-Workaspace" class="main-distribute">
+      <div class="input-field s-90 m-45">
+        <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.motivo"></textarea>
+        <label for="motivo-consulta">Motivo de Consulta *</label>
       </div>
-      <ul class="menu-form--list">
-        <li ng-repeat="sistema in sistemas">
-          <p>{{ sistema.hgc_desc_sisfi }}</p>
-          <p>
-            <input name="sistema_{{ sistema.hgc_id_sisfi }}" id="cp_{{ sistema.hgc_id_sisfi }}"
-              class="items_sistemas" value="0_{{sistema.hgc_id_sisfi}}" type="radio" />
-            <label for="cp_{{ sistema.hgc_id_sisfi }}"></label>
-          </p>
-          <p>
-            <input name="sistema_{{ sistema.hgc_id_sisfi }}" id="sp_{{ sistema.hgc_id_sisfi }}"
-              type="radio" class="items_sistemas" value="1_{{sistema.hgc_id_sisfi}}"/>
-            <label for="sp_{{ sistema.hgc_id_sisfi }}"></label>
-          </p>
-          <div class="input-field s-95 l-55 main-center no-margin">
-            <input type="text" placeholder="Ingrese una observacion"
-              id="input-system-{{ sistema.hgc_id_sisfi }}">
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="s-90 m-45 form-select">
-      <div class="menu-form">
-        <h6 class="title">EXAMEN FÌSICO</h6>
-        <div class="menu-form--action">
-          <h6>CP &nbsp;&nbsp;&nbsp;&nbsp; SP</h6>
-          <h6>CP=CON PATOLOGÌA (describir) SP=SIN PATOLOGÌA</h6>
-        </div>
+      <div class="input-field s-90 m-45">
+        <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.enfermedad"></textarea>
+        <label for="motivo-consulta">Enfermedad o problema actual *</label>
       </div>
-      <ul class="menu-form--list">
-        <li ng-repeat="fisico in fisicos">
-          <p>{{ fisico.hgc_desc_sisfi }}</p>
-          <p>
-            <input name="fisico_{{ fisico.hgc_id_sisfi }}" id="cpf_{{ fisico.hgc_id_sisfi }}"
-              type="radio" class="items_fisicico" value="0_{{fisico.hgc_id_sisfi}}" />
-            <label for="cpf_{{ fisico.hgc_id_sisfi }}"></label>
-          </p>
-          <p>
-            <input name="fisico_{{ fisico.hgc_id_sisfi }}" id="spf_{{ fisico.hgc_id_sisfi }}"
-              type="radio" class="items_fisicico" value="1_{{fisico.hgc_id_sisfi}}" />
-            <label for="spf_{{ fisico.hgc_id_sisfi }}"></label>
-          </p>
-          <div class="input-field s-95 l-55 main-center no-margin">
-            <input type="text" placeholder="Ingrese una observacion"
-              id="input-fisico-{{ fisico.hgc_id_sisfi }}">
-          </div>
-        </li>
-      </ul>
-    </div>
+      <div class="input-field s-90 m-45">
+        <textarea id="antecedente-personal" class="materialize-textarea"
+          ng-model="data.antPersonales"></textarea>
+        <label for="antecedente-personal" class="active">Antecedentes personales</label>
+      </div>
+      <div class="input-field s-90 m-45">
+        <textarea id="antecedente-familiares" class="materialize-textarea"
+          ng-model="data.antfamiliares"></textarea>
+        <label for="antecedente-familiares" class="active">Antecedentes familiares</label>
+      </div>
 
-    <div class="s-90 m-45 form-select margin-top">
+      <div class="s-90 m-45 form-select">
+        <div class="menu-form">
+          <h6 class="title">REVISIÒN ACTUAL DE ÒRGANOS Y SISTEMAS</h6>
+          <div class="menu-form--action">
+            <h6>CP &nbsp;&nbsp;&nbsp;&nbsp; SP</h6>
+            <h6>CP=CON PATOLOGÌA (describir) SP=SIN PATOLOGÌA</h6>
+          </div>
+        </div>
+        <ul class="menu-form--list">
+          <li ng-repeat="sistema in sistemas">
+            <p>{{ sistema.hgc_desc_sisfi }}</p>
+            <p>
+              <input name="sistema_{{ sistema.hgc_id_sisfi }}" id="cp_{{ sistema.hgc_id_sisfi }}"
+                class="items_sistemas" value="0_{{sistema.hgc_id_sisfi}}" type="radio" />
+              <label for="cp_{{ sistema.hgc_id_sisfi }}"></label>
+            </p>
+            <p>
+              <input name="sistema_{{ sistema.hgc_id_sisfi }}" id="sp_{{ sistema.hgc_id_sisfi }}"
+                type="radio" class="items_sistemas" value="1_{{sistema.hgc_id_sisfi}}"/>
+              <label for="sp_{{ sistema.hgc_id_sisfi }}"></label>
+            </p>
+            <div class="input-field s-95 l-55 main-center no-margin">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input-system-{{ sistema.hgc_id_sisfi }}">
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="s-90 m-45 form-select">
+        <div class="menu-form">
+          <h6 class="title">EXAMEN FÌSICO</h6>
+          <div class="menu-form--action">
+            <h6>CP &nbsp;&nbsp;&nbsp;&nbsp; SP</h6>
+            <h6>CP=CON PATOLOGÌA (describir) SP=SIN PATOLOGÌA</h6>
+          </div>
+        </div>
+        <ul class="menu-form--list">
+          <li ng-repeat="fisico in fisicos">
+            <p>{{ fisico.hgc_desc_sisfi }}</p>
+            <p>
+              <input name="fisico_{{ fisico.hgc_id_sisfi }}" id="cpf_{{ fisico.hgc_id_sisfi }}"
+                type="radio" class="items_fisicico" value="0_{{fisico.hgc_id_sisfi}}" />
+              <label for="cpf_{{ fisico.hgc_id_sisfi }}"></label>
+            </p>
+            <p>
+              <input name="fisico_{{ fisico.hgc_id_sisfi }}" id="spf_{{ fisico.hgc_id_sisfi }}"
+                type="radio" class="items_fisicico" value="1_{{fisico.hgc_id_sisfi}}" />
+              <label for="spf_{{ fisico.hgc_id_sisfi }}"></label>
+            </p>
+            <div class="input-field s-95 l-55 main-center no-margin">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input-fisico-{{ fisico.hgc_id_sisfi }}">
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="s-90 m-45 form-select margin-top">
       <div class="menu-form">
         <h6 class="title-no-border">DESAROLLO PSICOMOTOR</h6>
       </div>
@@ -173,10 +174,16 @@
       </ul>
 
     </div>
-    <div class='main-distribute s-100 margin-top'>
-      <button class='waves-effect waves-light btn primary' ng-click="handleSave()"
-        ng-disabled="activoForm28">Aceptar</button>
-    </div>
+
+      <div class='main-distribute s-100 margin-top'>
+        <button class="waves-effect waves-light btn" ng-click="handleVacunas()">Vacunas</button>
+        <button class="waves-effect waves-light btn rouse" ng-click="handleCie10()">CIE 10</button>
+        <button class='waves-effect waves-light btn primary' ng-click="handleSave()"
+          ng-disabled="activoForm28">Aceptar</button>
+      </div>
+    </section>
+
+    <section id="cie10-Workspace" class="none" ng-include="'src/doctor/form28C/cie10.html'"></section>
 
     <div class="footer__form28 s-100">
       <p>SNS-MSP / HCU - form. 028C/{{year}}</p>

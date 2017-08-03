@@ -52,6 +52,13 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
       $scope.data.antfamiliares = response.data.paciente.hgc_antf_form28
     })
 
+  $scope.handleVacunas = () => Materialize.toast('Estamos en desarollo', 4000)
+
+  $scope.handleCie10 = () => {
+    $('#form28C-Workaspace').slideUp()
+    $('#cie10-Workspace').slideDown()
+  }
+
   $scope.handleSave = function () {
     const items_sistemas = Array.prototype.slice.call(document.querySelectorAll('.items_sistemas'))
     const items_fisicico = Array.prototype.slice.call(document.querySelectorAll('.items_fisicico'))
