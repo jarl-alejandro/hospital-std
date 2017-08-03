@@ -6,7 +6,7 @@ require_once('../../../../mpd/mpdf.php');
 
 $turno = $_GET['turno'];
 $index = 0;
-$mpdf = new mPDF('c');
+$mpdf = new mPDF();
 
 $qs = $pdo->query("SELECT * FROM hgc_form28 WHERE hgc_turno_form28='$turno'");
 $row = $qs->fetch();
@@ -22,7 +22,9 @@ $row_sex = $qs_sex->fetch();
 $qs_empresa = $pdo->query("SELECT * FROM hgc_empresa");
 $row_empresa = $qs_empresa->fetch();
 
-$qs_detail = $pdo->query("SELECT * FROM hgc_sisfis WHERE hgc_tipo_sisfi='3'")
+$qs_detail = $pdo->query("SELECT * FROM hgc_sisfis WHERE hgc_tipo_sisfi='3'");
+
+$qsAntFamliar = $pdo->query("SELECT * FROM hgc_sisfis WHERE hgc_tipo_sisfi='4'");
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +33,7 @@ $qs_detail = $pdo->query("SELECT * FROM hgc_sisfis WHERE hgc_tipo_sisfi='3'")
     <meta charset="utf-8">
     <title>Form 028A</title>
     <link rel="stylesheet" href="../../../../assets/css/materialize.css">
-    <!-- <link rel="stylesheet" href="./form028a.css"> -->
+    <link rel="stylesheet" href="./form028a.css">
   </head>
   <body>
     <header name="headerSignosVitales">
@@ -63,7 +65,10 @@ $qs_detail = $pdo->query("SELECT * FROM hgc_sisfis WHERE hgc_tipo_sisfi='3'")
     <p class="tag__information" style="width: 30%;">FUENTE DE INFORMACION:</p>
 
     <article class="AntecedentesMaternos">
-      <h5 class="AntecedentesMaternos-title">1. ANTECEDENTES MATERNOS</h5>
+      <h5 class="AntecedentesMaternos-title">
+        <p style="float:left;">1. ANTECEDENTES MATERNOS</p>
+        <p style="background:red;width:5em;float:right;margin:0">Marcar "✔"</p>
+      </h5>
       <div class="AntecedentesMaternos--menu">
         <p class="menu-mat-1" style="width:20%">SI</p>
         <p class="menu-mat-1" style="width:20%">NO</p>
@@ -74,12 +79,36 @@ $qs_detail = $pdo->query("SELECT * FROM hgc_sisfis WHERE hgc_tipo_sisfi='3'")
         <p class="menu-mat-1" style="width:20%">NO</p>
         <p class="menu-mat-1" style="width:60%">OBSERVACION</p>
       </div>
-      <div class="AntecedentesMaternos--menu">
+      <div class="AntecedentesMaternos--list">
         <?php foreach ($qs_detail as $row): ?>
-          <p><?= $row['hgc_desc_sisfi'] ?></p>
-          <input type="radio" />
-          <input type="radio" />
-          <input type="text" />
+          <div class="list--item">
+            <p class="list-item--label"><?= $row['hgc_desc_sisfi'] ?></p>
+            <p class="list-item--radio"><input type="radio" /></p>
+            <p class="list-item--radio"><input type="radio" /></p>
+            <p class="list-item--input"></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </article>
+
+    <article class="AntecedentesFamiliar">
+      <h5 class="AntecedentesMaternos-title">1. ANTECEDENTES FAMILIARES</h5>
+      <div class="AntecedentesMaternos--menu">
+        <p class="menu-mat-1" style="width:20%">SI</p>
+        <p class="menu-mat-1" style="width:20%">NO</p>
+        <p class="menu-mat-1" style="width:60%">OBSERVACION</p>
+      </div>
+      <div class="AntecedentesFamiliar--list">
+        <?php foreach ($qsAntFamliar as $row): ?>
+          <div class="list--item-familiar">
+            <p class="list-item--label"><?= $row['hgc_desc_sisfi'] ?></p>
+            <p class="list-item--radio"><input type="radio" /></p>
+            <p class="list-item--radio"><input type="radio" /></p>
+            <p class="list-item--input">
+              Estas es una respuestas muy larrga para ver Estas es una respuestas muy larrga para ver
+              Estas es una respuestas muy larrga para ver Estas es una respuestas muy larrga para ver
+            </p>
+          </div>
         <?php endforeach; ?>
       </div>
     </article>
@@ -89,7 +118,6 @@ $qs_detail = $pdo->query("SELECT * FROM hgc_sisfis WHERE hgc_tipo_sisfi='3'")
 <?php
   $stylesheet = file_get_contents('form028a.css');
   $mpdf->SetDisplayMode('fullpage');
-  $mpdf->WriteHTML($stylesheet,1);
   $mpdf->WriteHTML(ob_get_clean());
   $mpdf->Output();
 ?>

@@ -9,7 +9,6 @@ atendidos.controller('atendidosController', function ($scope, $http, $location) 
   .then(response => $scope.pacientes = response.data)
 
   $scope.handlePrint = turno => {
-    alert(turno)
     window.open (`src/doctor/atendidos/reporte/form28A.php?turno=${turno}`,
       "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
   }

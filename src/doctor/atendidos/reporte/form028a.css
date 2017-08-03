@@ -1,5 +1,5 @@
 body{
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Roboto",sans-serif;
   margin: 0;
   padding: 0;
@@ -11,6 +11,12 @@ header {
   align-items: center;
   width: 100%;
   margin-bottom: 1em;
+}
+input{
+  border: 0;
+  border-bottom: 1px solid black;
+  background: red;
+  color: yellow;
 }
 p{
   margin: 0;
@@ -53,6 +59,8 @@ p{
 .AntecedentesMaternos {
   border: 1px solid black;
   margin-top: 1px;
+  width: 53%;
+  float: left;
 }
 .AntecedentesMaternos-title {
   background: #00bcd4;
@@ -85,4 +93,42 @@ p{
 }
 .menu-mat-1 {
   float: left;
+}
+.AntecedentesMaternos--list{
+  width: 100%;
+}
+.list--item {
+  float: left;
+  width: 50%;
+}
+.list--item p, .list--item-familiar  p{
+  float: left;
+}
+.list-item--label {
+  width: 30%;
+  font-size: 10px;
+}
+.list-item--radio {
+  width: 2em;
+  text-align: center;
+}
+.list-item--input{
+  width: 51%;
+  border-bottom: 1px solid black;
+  font-size: 11px;
+  padding: 0;
+  margin: 0;
+  background: gray;
+}
+.AntecedentesFamiliar--list{
+  width: 100%;
+}
+
+.AntecedentesFamiliar {
+  border: 1px solid black;
+  margin-top: 1px;
+  width: 45%;
+  float: left;
+  margin-left: 1%;
+  height: auto;
 }

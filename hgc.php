@@ -30,6 +30,10 @@
     <script src='js/index.js'></script>
   <!-- functiones que valida los inputs -->
     <script src='js/valid.js'></script>
+
+    <script src='js/libs/sprintf.js'></script>
+    <script src='js/libs/base64.js'></script>
+    <script src='js/jspdf.js'></script>
   <!-- Direcitva  para el menu y que menu presenta-->
     <script src='src/menu/app/index.js'></script>
 
