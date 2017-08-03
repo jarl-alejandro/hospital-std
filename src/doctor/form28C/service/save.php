@@ -21,7 +21,7 @@ $paciente = $obj->paciente;
 $turno = $obj->turno;
 
 $new = $pdo->prepare("INSERT INTO hgc_form28 (hgc_codi_form28, hgc_moti_form28, hgc_enfer_form28,
-  hgc_meto_form28, hgc_clas_form28, hgc_paci_form28, hgc_turno_form28) VALUES (?, ?, ?, ?, ?, ?, ?)");
+  hgc_meto_form28, hgc_clas_form28, hgc_paci_form28, hgc_turno_form28, hgc_antp_form28, hgc_antf_form28) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $new->bindParam(1, $codigo);
 $new->bindParam(2, $motivo);
@@ -30,13 +30,13 @@ $new->bindParam(4, $metodo);
 $new->bindParam(5, $clasificacion);
 $new->bindParam(6, $paciente);
 $new->bindParam(7, $turno);
+$new->bindParam(8, $antPersonales);
+$new->bindParam(9, $antfamiliares);
 
 $new->execute();
 
-$pdo->query("UPDATE hgc_paciente SET hgc_antp_pacie='$antPersonales', hgc_antf_pacie='$antfamiliares'
-          WHERE hgc_cedu_pacie='$paciente'");
-
-$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form' WHERE hgc_id_turno='$turno'");
+// $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form' WHERE hgc_id_turno='$turno'");
+// Descomentar cuando haya terminado el trabajo
 
 $detail = $pdo->prepare("INSERT INTO hgc_dform28 (hgc_form_dform28, hgc_codi_dform28, hgc_tipo_dform28,
   hgc_obser_dform28) VALUES (?, ?, ?, ?)");

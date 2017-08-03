@@ -29,6 +29,18 @@
       </div>
     </header>
 
+    <asider class="consultas s-100">
+      <div class="consultas-number">
+        <p><strong>CONSULTA:</strong> {{consulta}}</p>
+      </div>
+      <div class="consultas-fecha">
+        <p><strong>FECHA:</strong> {{fecha}}</p>
+      </div>
+      <div class="consultas-edad">
+        <p><strong>EDAD:</strong> {{edad}}</p>
+      </div>
+    </asider>
+
     <h2 class="Title s-100 no-margin">SIGNOS VITALES</h2>
     <header style="background:inherit;flex-wrap:wrap" class="header__form28"
       ng-controller="signosFormController">
@@ -66,8 +78,8 @@
       ng-include="'src/doctor/form28A/1hoja.html'">
     </div>
     <div id="hoja__2" class="main-distribute none"
-    ng-include="'src/doctor/form28A/2hoja.html'">
-  </div>
+      ng-include="'src/doctor/form28A/2hoja.html'">
+    </div>
 
     <div id="grafica" ng-include="'src/doctor/form28A/grafica.html'"></div>
 

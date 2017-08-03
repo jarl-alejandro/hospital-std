@@ -5,9 +5,16 @@ const form28C = angular.module('Hospital')
 form28C.controller('form28CController',  function ($scope, $http, $stateParams, $location) {
   const paciente = $stateParams.id
   const turno = $stateParams.turno
+
+  const hoy = new Date()
+  const dia = hoy.getDate() < 10 ? '0' + hoy.getDate() : hoy.getDate()
+  const mes = hoy.getMonth() < 10 ? '0' + (hoy.getMonth() + 1) : (hoy.getMonth() + 1)
+
   let array_sistemas = []
   let array_fisicos = []
 
+  $scope.year = hoy.getFullYear()
+  $scope.fecha = `${dia}/${mes}/${hoy.getFullYear()}`
   $scope.activoForm28 = false
   $scope.sistemas = []
   $scope.fisicos = []
@@ -22,12 +29,27 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     turno
   }
 
+  $http.get('src/config/empresa/service/get.php')
+  .then(response => {
+    if (response.data.cont === 1) {
+      $scope.empresa = response.data.empresa
+    }
+  })
+
+  $http.get(`src/doctor/form28A/service/paciente.php?id=${paciente}`)
+  .then(response => $scope.pacient = response.data)
+
+  $http.get(`src/doctor/form28C/service/consultas.php?id=${paciente}`)
+  .then(response => {
+    $scope.consulta = response.data.count + 1
+    $scope.edad = calcularEdad(response.data.form.hgc_fecn_pacie)
+  })
+
   $http.get(`src/doctor/form28C/service/paciente.php?id=${paciente}&turno=${turno}`)
     .then(response => {
-      console.log(response)
       if (response.data.turno === 1) $scope.activoForm28 = turno
-      $scope.data.antPersonales = response.data.paciente.hgc_antp_pacie
-      $scope.data.antfamiliares = response.data.paciente.hgc_antf_pacie
+      $scope.data.antPersonales = response.data.paciente.hgc_antf_form28
+      $scope.data.antfamiliares = response.data.paciente.hgc_antf_form28
     })
 
   $scope.handleSave = function () {

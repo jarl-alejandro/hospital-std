@@ -7,7 +7,11 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
   const turno = $stateParams.turno
   const hoy = new Date()
 
+  const dia = hoy.getDate() < 10 ? '0' + hoy.getDate() : hoy.getDate()
+  const mes = hoy.getMonth() < 10 ? '0' + (hoy.getMonth() + 1) : (hoy.getMonth() + 1)
+
   $scope.activoForm28 = false
+  $scope.fecha = `${dia}/${mes}/${hoy.getFullYear()}`
   $scope.sistemas = []
   $scope.fisicos = []
   $scope.pacient = {}
@@ -51,6 +55,12 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
   let array_fisicos = []
   let array_form = []
   let array_atendido = []
+
+  $http.get(`src/doctor/form28C/service/consultas.php?id=${paciente}`)
+  .then(response => {
+    $scope.consulta = response.data.count + 1
+    $scope.edad = calcularEdad(response.data.form.hgc_fecn_pacie)
+  })
 
   $http.get('src/doctor/form28A/service/sistemas.php')
   .then(response => $scope.sistemas = response.data)

@@ -18,6 +18,5 @@ doctor.controller('pacientesDoctorController', function ($scope, $http, $locatio
 
     if (age < 2) $location.path(`/form28A/${object.id}/${object.turno}`)
     else $location.path(`/form28C/${object.id}/${object.turno}`)
-
   }
 })

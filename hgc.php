@@ -37,6 +37,9 @@
   <!-- Direcitva  para el menu y que menu presenta-->
     <script src='src/menu/app/index.js'></script>
 
+    <!-- Calcular la edad -->
+    <script src='js/calcularEdad.js'></script>
+
     <script src='src/perfil/app/index.js'></script>
     <script src='src/config/empresa/app/index.js'></script>
 
