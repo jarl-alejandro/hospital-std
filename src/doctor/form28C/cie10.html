@@ -1,32 +1,38 @@
-<section class="s-100 l-75 cie-container" ng-controller="cie10FilterFormController">
-  <table class="bordered striped highlight centered responsive-table cie-table">
-    <thead>
-      <tr>
-        <th width="55%">10 DIAGNÓSTICOS / <span>CIE</span></th>
-        <th width="25%">CIE</th>
-        <th width="10%">PRE</th>
-        <th width="10%">DEF</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="cie-nombre1"></td>
-        <td class="input-field">
-          <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
+<section ng-controller="cie10FilterFormController">
+  <article class="s-100 l-75 cie-container">
+    <table class="bordered striped highlight centered responsive-table cie-table">
+      <thead>
+        <tr>
+          <th width="55%">10 DIAGNÓSTICOS / <span>CIE</span></th>
+          <th width="25%">CIE</th>
+          <th width="10%">PRE</th>
+          <th width="10%">DEF</th>
+        </tr>
+      </thead>
+      <tbody id="cie-table">
+        <tr>
+          <td id="cie-nombre1"></td>
+          <td class="input-field">
+            <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
             class="u-noMargin filter-cie10" id="column1" data-index="1" />
-        </td>
-        <td id="cie-pre1"></td>
-        <td id="cie-def1"></td>
-      </tr>
-      <tr>
-        <td id="cie-nombre2"></td>
-        <td class="input-field">
-          <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
+          </td>
+          <td id="cie-pre1"></td>
+          <td id="cie-def1"></td>
+        </tr>
+        <tr>
+          <td id="cie-nombre2"></td>
+          <td class="input-field">
+            <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
             class="u-noMargin filter-cie10" id="column2" data-index="2" />
-        </td>
-        <td id="cie-pre2"></td>
-        <td id="cie-def2"></td>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+          <td id="cie-pre2"></td>
+          <td id="cie-def2"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="waves-effect waves-light btn primary" ng-click="handleNewCIE10()">
+      <i class="material-icons">add</i>
+    </button>
+  </article>
 </section>

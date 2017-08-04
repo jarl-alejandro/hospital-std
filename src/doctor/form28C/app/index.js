@@ -12,6 +12,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
 
   let array_sistemas = []
   let array_fisicos = []
+  let cie10Data = []
 
   $scope.year = hoy.getFullYear()
   $scope.fecha = `${dia}/${mes}/${hoy.getFullYear()}`
@@ -62,9 +63,20 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
   $scope.handleSave = function () {
     const items_sistemas = Array.prototype.slice.call(document.querySelectorAll('.items_sistemas'))
     const items_fisicico = Array.prototype.slice.call(document.querySelectorAll('.items_fisicico'))
+    let cieInputs = [...document.querySelectorAll('.cie--input')]
 
+    cie10Data = []
     array_sistemas = []
     array_fisicos = []
+
+    for (let i in cieInputs) {
+      if (cieInputs[i].checked === true) {
+        cie10Data.push({
+          codigo: cieInputs[i].dataset.codigo,
+          value: cieInputs[i].dataset.value
+        })
+      }
+    }
 
     for(let i in items_sistemas) {
       let sistemas = items_sistemas[i]
@@ -86,12 +98,14 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
       }
     }
 
-    if (validarForm()) {
+    if (validarForm(cieInputs)) {
       $scope.activoForm28 = false
       $scope.data.sistemas = array_sistemas
       $scope.data.fisicos = array_fisicos
+      $scope.data.ci10 = cie10Data
+      console.log($scope.data)
 
-      $http.post('src/doctor/form28C/service/save.php', $scope.data)
+      /*$http.post('src/doctor/form28C/service/save.php', $scope.data)
         .then(response => {
           console.log(response)
           if (response.data === '201') {
@@ -103,6 +117,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
             Materialize.toast('Intente nuevamente', 4000)
           }
         })
+        */
     }
   }
 
@@ -112,7 +127,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
   $http.get('src/doctor/form28C/service/fisico.php')
     .then(response => $scope.fisicos = response.data)
 
-  function validarForm () {
+  function validarForm (cieInputs) {
     const data = $scope.data
 
     if (data.motivo === '') {
@@ -138,6 +153,15 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     if (data.clasificacion === '') {
       Materialize.toast('Ingrese la clasificacion del desarollo psicomotor', 4000)
       return false
-    } else return true
+    }
+    if (cieInputs.length === 0) {
+      Materialize.toast('Debe ingresar los cie10', 4000)
+      return false
+    }
+    if (cie10Data.length < cieInputs.length) {
+      Materialize.toast('Debe selecionar los cie10', 4000)
+      return false
+    }
+    else return true
   }
 })
