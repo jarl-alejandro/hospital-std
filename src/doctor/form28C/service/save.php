@@ -26,8 +26,11 @@ $ci10 = $obj->ci10;
 $prescripcion = $obj->prescripcion;
 
 $new = $pdo->prepare("INSERT INTO hgc_form28 (hgc_codi_form28, hgc_moti_form28, hgc_enfer_form28,
-  hgc_meto_form28, hgc_clas_form28, hgc_paci_form28, hgc_turno_form28, hgc_antp_form28, hgc_antf_form28,
-  hgc_pltra_form28) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+   hgc_meto_form28, hgc_clas_form28, hgc_paci_form28, hgc_turno_form28, hgc_antp_form28, hgc_antf_form28,
+   hgc_pltra_form28) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+// $new = $pdo->prepare("select guardar_form28c(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
 
 $new->bindParam(1, $codigo);
 $new->bindParam(2, $motivo);
@@ -42,7 +45,7 @@ $new->bindParam(10, $planTratamiento);
 
 $new->execute();
 
-// $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form' WHERE hgc_id_turno='$turno'");
+$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form' WHERE hgc_id_turno='$turno'");
 // Descomentar cuando haya terminado el trabajo
 
 $detail = $pdo->prepare("INSERT INTO hgc_dform28 (hgc_form_dform28, hgc_codi_dform28, hgc_tipo_dform28,

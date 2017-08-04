@@ -111,7 +111,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
           console.log(response)
           if (response.data === '201') {
             Materialize.toast('Se ha guardado con exito', 4000)
-            // $location.path('/doctor')
+            $location.path('/doctor')
             $scope.activoForm28 = false
           } else {
             $scope.activoForm28 = false
