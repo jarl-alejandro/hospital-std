@@ -11,7 +11,10 @@
       </thead>
       <tbody id="cie-table">
         <tr>
-          <td id="cie-nombre1"></td>
+          <td id="cie-nombre1" class="input-field">
+            <input type="text" placeholder="Ingresa el nombre CIE 10"
+              class="u-noMargin filter-cie-nombre10" id="column-nombre-1" data-index="1" />
+          </td>
           <td class="input-field">
             <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
             class="u-noMargin filter-cie10" id="column1" data-index="1" />
@@ -20,7 +23,10 @@
           <td id="cie-def1"></td>
         </tr>
         <tr>
-          <td id="cie-nombre2"></td>
+          <td id="cie-nombre2" class="input-field">
+            <input type="text" placeholder="Ingresa el nombre CIE 10"
+              class="u-noMargin filter-cie-nombre10" id="column-nombre-2" data-index="2" />
+          </td>
           <td class="input-field">
             <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
             class="u-noMargin filter-cie10" id="column2" data-index="2" />
@@ -35,4 +41,57 @@
       <i class="material-icons">add</i>
     </button>
   </article>
+
+  <article class="s-100 l-70 form-select">
+    <div class="menu-form">
+      <h6>11 PLAN DE TRATAMIENTO</h6>
+    </div>
+    <div class="input-field">
+      <textarea id="plandeTratamiento" class="materialize-textarea" ng-model="data.planTratamiento"
+        placeholder="Ingresa el plan de tratamiento"></textarea>
+    </div>
+  </article>
+
+  <article class="s-95 form-select">
+    <div class="menu-form">
+      <h6>12 EVOLUCIÒN PRESCRIPCIONES MÈDICAS</h6>
+    </div>
+    <div>
+      <table class="bordered striped highlight centered responsive-table cie-table">
+        <thead>
+          <tr>
+            <th style="border:0;" width="10%">FECHA</th>
+            <th style="border:0;border-left:1px solid #585757" width="10%">HORA</th>
+            <th style="border:0;border-left:1px solid #585757" width="40%">NOTAS DE EVOLUCION</th>
+            <th style="border:0;border-left:1px solid #585757" width="40%">PRESCRIPCIONES MÈDICAS</th>
+          </tr>
+        </thead>
+        <tbody class="table_preescipcion">
+          <tr>
+            <td class="input-field" style="border-left:0">
+              <input class="u-noMargin datepicker" type="text" ng-model="data.prescripcion.fecha"
+                placeholder="dd/mm/YYYY">
+            </td>
+            <td class="input-field">
+              <input class="u-noMargin timepicker" type="text" ng-model="data.prescripcion.tiempo"
+                placeholder="h:i">
+            </td>
+            <td class="input-field">
+              <input class="u-noMargin" type="text" ng-model="data.prescripcion.nota">
+            </td>
+            <td class="input-field">
+              <input class="u-noMargin" type="text" ng-model="data.prescripcion.prescipcion">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  <div class='main-distribute s-100 margin-top'>
+    <button class="waves-effect waves-light btn danger" ng-click="handleBack()">Atras</button>
+    <button class='waves-effect waves-light btn primary' ng-click="handleSave()"
+      ng-disabled="activoForm28">Aceptar</button>
+  </div>
+
 </section>

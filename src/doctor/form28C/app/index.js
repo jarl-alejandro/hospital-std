@@ -58,6 +58,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
   $scope.handleCie10 = () => {
     $('#form28C-Workaspace').slideUp()
     $('#cie10-Workspace').slideDown()
+    setTimeout(() => window.scrollTo(0, 0), 100)
   }
 
   $scope.handleSave = function () {
@@ -105,19 +106,18 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
       $scope.data.ci10 = cie10Data
       console.log($scope.data)
 
-      /*$http.post('src/doctor/form28C/service/save.php', $scope.data)
+      $http.post('src/doctor/form28C/service/save.php', $scope.data)
         .then(response => {
           console.log(response)
           if (response.data === '201') {
             Materialize.toast('Se ha guardado con exito', 4000)
-            $location.path('/doctor')
+            // $location.path('/doctor')
             $scope.activoForm28 = false
           } else {
             $scope.activoForm28 = false
             Materialize.toast('Intente nuevamente', 4000)
           }
         })
-        */
     }
   }
 
@@ -158,7 +158,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
       Materialize.toast('Debe ingresar los cie10', 4000)
       return false
     }
-    if (cie10Data.length < cieInputs.length) {
+    if (cie10Data.length !== document.getElementById('cie-table').children.length) {
       Materialize.toast('Debe selecionar los cie10', 4000)
       return false
     }

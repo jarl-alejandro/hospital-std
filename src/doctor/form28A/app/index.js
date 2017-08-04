@@ -81,6 +81,7 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
   $scope.handleBack = () => {
     $('#hoja__1').slideDown()
     $('#hoja__2').slideUp()
+    setTimeout(() => window.scrollTo(0, 0), 100)
   }
 
   $scope.handleSave = () => {
