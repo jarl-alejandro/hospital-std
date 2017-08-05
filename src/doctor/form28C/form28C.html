@@ -176,12 +176,17 @@
     </div>
 
       <div class='main-distribute s-100 margin-top'>
-        <button class="waves-effect waves-light btn" ng-click="handleVacunas()">Vacunas</button>
-        <button class="waves-effect waves-light btn rouse" ng-click="handleCie10()">Siguiente</button>
+        <button class="waves-effect waves-light btn danger" ng-click="handleVacunas()">Vacunas</button>
+        <button class="waves-effect waves-light btn primary" ng-click="handleCie10()">Siguiente</button>
       </div>
     </section>
 
     <section id="cie10-Workspace" class="none" ng-include="'src/doctor/form28C/cie10.html'"></section>
+    <section id="grafico-Workspace" class="none" ng-include="'src/doctor/form28C/grafico.html'"></section>
+
+    <div class="main-distribute s-100 margin-top">
+      <button class="waves-effect waves-light btn rouse" ng-click="handleGraphic()">Graficas</button>
+    </div>
 
     <div class="footer__form28 s-100">
       <p>SNS-MSP / HCU - form. 028C/{{year}}</p>

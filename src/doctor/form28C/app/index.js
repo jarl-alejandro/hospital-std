@@ -2,7 +2,7 @@
 
 const form28C = angular.module('Hospital')
 
-form28C.controller('form28CController',  function ($scope, $http, $stateParams, $location) {
+form28C.controller('form28CController',  function ($scope, $http, $stateParams, $location, $rootScope) {
   const paciente = $stateParams.id
   const turno = $stateParams.turno
 
@@ -38,7 +38,10 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
   })
 
   $http.get(`src/doctor/form28A/service/paciente.php?id=${paciente}`)
-  .then(response => $scope.pacient = response.data)
+  .then(response => {
+    $scope.pacient = response.data
+    $rootScope.sexo = $scope.pacient.sexo.hgc_desc_genero
+  })
 
   $http.get(`src/doctor/form28C/service/consultas.php?id=${paciente}`)
   .then(response => {
@@ -58,6 +61,14 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
   $scope.handleCie10 = () => {
     $('#form28C-Workaspace').slideUp()
     $('#cie10-Workspace').slideDown()
+    setTimeout(() => window.scrollTo(0, 0), 100)
+  }
+
+  $scope.handleGraphic = () => {
+    $('#form28C-Workaspace').slideUp()
+    $('#cie10-Workspace').slideUp()
+    $('#grafico-Workspace').slideDown()
+    console.log($scope.pacient.sexo.hgc_desc_genero)
     setTimeout(() => window.scrollTo(0, 0), 100)
   }
 

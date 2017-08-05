@@ -91,6 +91,8 @@
     <script src='src/doctor/atendidos/app/index.js'></script>
     <script src='src/doctor/form28C/app/index.js'></script>
     <script src='src/doctor/form28C/app/cie10.js'></script>
+    <script src='src/doctor/form28C/app/grafica.js'></script>
+
     <script src='src/doctor/form28A/app/index.js'></script>
     <script src='src/doctor/form28A/app/hoja1.js'></script>
     <script src='src/doctor/form28A/app/grafica.js'></script>
