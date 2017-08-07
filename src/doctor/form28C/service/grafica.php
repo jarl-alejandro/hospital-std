@@ -7,7 +7,7 @@ $signos = array();
 $qs_pac = $pdo->query("SELECT * FROM view_pacientesexo WHERE hgc_cedu_pacie='$id'");
 $row_paciente = $qs_pac->fetch();
 
-$qs = $pdo->query("SELECT * FROM view_signosvitales WHERE hgc_hcli_sigvit='$id' AND hgc_frcar_sigvit=''
+$qs = $pdo->query("SELECT * FROM view_signosvitales WHERE hgc_hcli_sigvit='$id' AND hgc_frcar_sigvit!=''
   ORDER BY hgc_fecha_sigvit");
 
 while ($row = $qs->fetch()) {
@@ -17,6 +17,7 @@ while ($row = $qs->fetch()) {
     'longitud'    => $row['hgc_longi_sigvit'],
     'pencefalico' => $row['hgc_prence_sigvit'],
     'sexo'        => $row['hgc_desc_genero'],
+    'imc'        => $row['hgc_esta_sigvit'],
   );
   $signos[] = $paciente;
 }

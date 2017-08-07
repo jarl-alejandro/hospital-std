@@ -99,7 +99,8 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
         fill: `none`,
         stroke: `${$scope.colorSexo}`,
         strokeWidth: 7
-      }).animate({r: 5}, 1000).mouseover(function () {
+      }).animate({r: 5}, 1000)
+      .mouseover(function () {
         let div = document.createElement('div')
         document.querySelector('.grafica028APerimetro').appendChild(div)
 
