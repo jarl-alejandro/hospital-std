@@ -1,4 +1,4 @@
-function calcularEdad (nacimiento) {
+function calcularEdad (nacimiento, flag=null) {
   var fecha = nacimiento
   if(validate_fecha(fecha) == true){
     var values = fecha.split("-");
@@ -35,8 +35,16 @@ function calcularEdad (nacimiento) {
       ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
       dias = ultimoDiaMes.getDate()-(dia-ahora_dia);
     }
-    let edad_person = `${ edad } años ${ meses } meses ${ dias } dias`
-    return edad_person
+    if (flag === null) {
+      let edad_person = `${ edad } años ${ meses } meses ${ dias } dias`
+      return edad_person
+    } else {
+      return {
+        edad: edad,
+        meses: meses,
+        dias: dias,
+      }
+    }
   }
   else{
     Materialize.toast("incorrecta", 4000)

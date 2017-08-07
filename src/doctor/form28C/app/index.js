@@ -41,6 +41,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
   .then(response => {
     $scope.pacient = response.data
     $rootScope.sexo = $scope.pacient.sexo.hgc_desc_genero
+    $rootScope.fechaNacimiento = response.data.paciente.hgc_fecn_pacie
   })
 
   $http.get(`src/doctor/form28C/service/consultas.php?id=${paciente}`)
@@ -68,7 +69,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     $('#form28C-Workaspace').slideUp()
     $('#cie10-Workspace').slideUp()
     $('#grafico-Workspace').slideDown()
-    console.log($scope.pacient.sexo.hgc_desc_genero)
     setTimeout(() => window.scrollTo(0, 0), 100)
   }
 
@@ -115,11 +115,9 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
       $scope.data.sistemas = array_sistemas
       $scope.data.fisicos = array_fisicos
       $scope.data.ci10 = cie10Data
-      console.log($scope.data)
 
       $http.post('src/doctor/form28C/service/save.php', $scope.data)
         .then(response => {
-          console.log(response)
           if (response.data === '201') {
             Materialize.toast('Se ha guardado con exito', 4000)
             $location.path('/doctor')

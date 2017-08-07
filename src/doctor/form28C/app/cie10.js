@@ -10,9 +10,8 @@ cie10FilterForm.controller('cie10FilterFormController', function ($scope, $http,
 
   $http.get(`src/doctor/form28C/service/prescripciones-medicas.php?id=${paciente}`)
   .then(response => {
-    console.log(response)
+
     response.data.map(item => {
-      console.log(item)
       let template = `<tr>
         <td style="border-left:0">${item.hgc_fec_presc}</td>
         <td>${item.hgc_hor_presc}</td>
@@ -21,6 +20,7 @@ cie10FilterForm.controller('cie10FilterFormController', function ($scope, $http,
       </tr>`
       $('.table_preescipcion').prepend(template)
     })
+
   })
 
   $scope.handleBack = () => {
