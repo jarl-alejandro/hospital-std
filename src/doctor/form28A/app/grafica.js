@@ -29,6 +29,7 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
     $scope.colorSexo = $scope.sexo === 'Hombre' ? '#0197d6' : '#e47db4'
 
     data.map((item, index) => {
+      const duracion = duration(new Date(fechaNacimiento), new Date(item.fecha))
       const age = getAgeByMonth(item.fecha, fechaNacimiento)
       const yPeso = coordinateYPeso(parseFloat(item.peso))
       const yPerimetro = coordinateYPerimetro(parseFloat(item.pencefalico))
@@ -52,25 +53,18 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
       }
 
       s.circle(age*28.5, yPeso, 50).attr({
-        fill: `none`,
+        fill: `${$scope.colorSexo}`,
         stroke: `${$scope.colorSexo}`,
         strokeWidth: 7
       }).animate({r: 5}, 1000).mouseover(function () {
-        let div = document.createElement('div')
-        document.querySelector('.grafica028A').appendChild(div)
-
-        age === 0 ? 1 : age
-
-        div.innerText = `edad: ${age} semana, peso: ${item.peso} kg`
-        div.classList.add(`tooltip-svg-${$scope.sexo}`)
-        div.classList.add('tooltip-svg')
-        div.style.bottom = `${yPeso+35}px`
-        div.style.left = `${age+12}%`
-      }).mouseout(function () {
-          setTimeout(() => {
-            if (document.querySelector('.tooltip-svg') !== null)
-              document.querySelector('.tooltip-svg').remove()
-          }, 600)
+        let toaster = document.querySelector('.toaster')
+        toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 80) + 'px'
+        toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 46) + 'px'
+        toaster.innerText = `Peso: ${item.peso} - Edad: ${duracion.years} años, ${duracion.months} mes`
+        $('.toaster').slideDown()
+      })
+      .mouseout(function () {
+        $('.toaster').slideUp()
       })
 
       longitud.circle(age*35.5, yLongitud, 50).attr({
@@ -78,44 +72,28 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
         stroke: `${$scope.colorSexo}`,
         strokeWidth: 7
       }).animate({r: 5}, 1000).mouseover(function () {
-        let div = document.createElement('div')
-        document.querySelector('.grafica028ALongitud').appendChild(div)
-
-        age === 0 ? 1 : age
-
-        div.innerText = `edad: ${age} semana, longitud: ${item.longitud} cm`
-        div.classList.add(`tooltip-svg-${$scope.sexo}`)
-        div.classList.add('tooltip-svg')
-        div.style.bottom = `${yLongitud+35}px`
-        div.style.left = `${age+13}%`
+        let toaster = document.querySelector('.toaster-longitud')
+        toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 80) + 'px'
+        toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 46) + 'px'
+        toaster.innerText = `Longitud: ${item.longitud} - Edad: ${duracion.years} años, ${duracion.months} mes`
+        $('.toaster-longitud').slideDown()
       }).mouseout(function () {
-          setTimeout(() => {
-            if (document.querySelector('.tooltip-svg') !== null)
-              document.querySelector('.tooltip-svg').remove()
-          }, 600)
+        $('.toaster-longitud').slideUp()
       })
 
       perimetro.circle(age*65, yPerimetro, 50).attr({
-        fill: `none`,
+        fill: `${$scope.colorSexo}`,
         stroke: `${$scope.colorSexo}`,
         strokeWidth: 7
       }).animate({r: 5}, 1000)
       .mouseover(function () {
-        let div = document.createElement('div')
-        document.querySelector('.grafica028APerimetro').appendChild(div)
-
-        age === 0 ? 1 : age
-
-        div.innerText = `edad: ${age} semana, P. cefálico : ${item.pencefalico} cm`
-        div.classList.add(`tooltip-svg-${$scope.sexo}`)
-        div.classList.add('tooltip-svg')
-        div.style.bottom = `${yPerimetro+35}px`
-        div.style.left = `${(age*2)+8.5}em`
+        let toaster = document.querySelector('.toaster-cefalico')
+        toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 89) + 'px'
+        toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 46) + 'px'
+        toaster.innerText = `P. Cefalico: ${item.pencefalico} - Edad: ${duracion.years} años, ${duracion.months} mes`
+        $('.toaster-cefalico').slideDown()
       }).mouseout(function () {
-          setTimeout(() => {
-            if (document.querySelector('.tooltip-svg') !== null)
-              document.querySelector('.tooltip-svg').remove()
-          }, 600)
+        $('.toaster-cefalico').slideUp()
       })
 
       datoX = age*28.5

@@ -9,6 +9,7 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
   const peso = Snap("#form28CPeso")
   const imc = Snap("#form28CIMC")
   const cefalico = Snap("#form28CCEFALICO")
+  const longitud = Snap('#form28CLongitud')
 
   setTimeout(() => {
     renderByDate($scope.fechaNacimiento)
@@ -23,10 +24,15 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
 
   let datoPesoX = 0
   let datPesoY = 0
+
   let datoIMCX = 0
   let datIMCY = 0
+
   let datoCefalicoX = 0
   let datCefalicoY = 0
+
+  let datolongitudX = 0
+  let datolongitudY = 0
 
   function renderPoint (data, index) {
     $scope.colorSexo = $scope.sexo === 'Hombre' ? '#0197d6' : '#e47db4'
@@ -35,16 +41,36 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
     const duracion = duration(new Date($scope.fechaNacimiento), new Date(data.fecha))
     const ageMonth = (duracion.years * 12) + duracion.months
 
+    let tallaData = data.talla - 44
+    let decimalTalla = parseInt((data.talla - 44).toString().split(".")[1])
+    let celdatalla = 34
+
+    if (tallaData === 1) tallaData = tallaData
+    if (tallaData < 16) tallaData = tallaData / 3
+    if (tallaData >= 16) tallaData = tallaData / 4
+    if ((data.talla - 44) >= 36) tallaData = (data.talla - 44) / 4.5
+    if (tallaData === 18) tallaData -= 1
+
+    tallaData = parseInt(tallaData)
+
+    if (tallaData === 0) tallaData = 1
+    if (tallaData >= 5) celdatalla = 33
+
+    tallaData = parseFloat(tallaData + "." + decimalTalla)
+
     const imcData = data.imc - 9
     const celdaIMC = imcData === 1 ? 32 : 37
 
     const cefalicoData = data.pencefalico - 31
     const celdaCefalico = cefalicoData === 1 ? 23 : 24
 
-    console.log(duracion)
-
     if (index !== 0) {
       peso.line((ageMonth/2)*28, 18*(data.peso-1), datoPesoX, datPesoY).attr({
+        strokeWidth: 3,
+        stroke: `${$scope.colorSexo}`,
+      }).animate({ strokeDasharray: '21px' }, 4000)
+
+      longitud.line((ageMonth/2)*28, celdatalla * tallaData, datolongitudX, datolongitudY).attr({
         strokeWidth: 3,
         stroke: `${$scope.colorSexo}`,
       }).animate({ strokeDasharray: '21px' }, 4000)
@@ -74,6 +100,22 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
     })
     .mouseout(function () {
       $('.toaster').slideUp()
+    })
+
+    longitud.circle((ageMonth/2)*28, celdatalla * tallaData, 50).attr({
+      fill: `${$scope.colorSexo}`,
+      stroke: `${$scope.colorSexo}`,
+      strokeWidth: 7
+    }).animate({r: 5}, 1000)
+    .mouseover(function () {
+      let toaster = document.querySelector('.toaster-longitud')
+      toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 80) + 'px'
+      toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 46) + 'px'
+      toaster.innerText = `Talla: ${data.talla} - Edad: ${duracion.years} años, ${duracion.months} mes`
+      $('.toaster-longitud').slideDown()
+    })
+    .mouseout(function () {
+      $('.toaster-longitud').slideUp()
     })
 
     imc.circle((ageMonth/2)*28, celdaIMC*(imcData), 50).attr({
@@ -111,6 +153,9 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
     datoPesoX = (ageMonth/2)*28
     datPesoY = 18*(data.peso-1)
 
+    datolongitudX = (ageMonth/2)*28
+    datolongitudY = celdatalla * tallaData
+
     datoIMCX = (ageMonth/2)*28
     datIMCY = celdaIMC * imcData
 
@@ -139,7 +184,7 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
     if ($scope.fechaFlag === false){
       if (sexo === 'Hombre') {
         $('.GraficaPeso img').attr('src', 'assets/img/graficas/ninos-2meses_5anos/peso.png')
-        $('.GraficaLongitud img').attr('src', 'assets/img/graficas/ninos-2meses_5anos/longitud.png')
+        $('.GraficaLongitud img').attr('src', 'assets/img/graficas/ninos-2meses_5anos/talla.png')
         $('.GraficaCefalico img').attr('src', 'assets/img/graficas/ninos-2meses_5anos/cefalico.png')
         $('.GraficaIMC img').attr('src', 'assets/img/graficas/ninos-2meses_5anos/imc.png')
 
@@ -153,7 +198,7 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
       }
       else {
         $('.GraficaPeso img').attr('src', 'assets/img/graficas/ninas-2mese_5anos/peso.png')
-        $('.GraficaLongitud img').attr('src', 'assets/img/graficas/ninas-2mese_5anos/longitud.png')
+        $('.GraficaLongitud img').attr('src', 'assets/img/graficas/ninas-2mese_5anos/talla.png')
         $('.GraficaCefalico img').attr('src', 'assets/img/graficas/ninas-2mese_5anos/cefalico.png')
         $('.GraficaIMC img').attr('src', 'assets/img/graficas/ninas-2mese_5anos/imc.png')
 

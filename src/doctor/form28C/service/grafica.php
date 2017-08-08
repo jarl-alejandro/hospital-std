@@ -18,6 +18,7 @@ while ($row = $qs->fetch()) {
     'pencefalico' => $row['hgc_prence_sigvit'],
     'sexo'        => $row['hgc_desc_genero'],
     'imc'        => $row['hgc_esta_sigvit'],
+    'talla'        => $row['hgc_talla_sigvit'],
   );
   $signos[] = $paciente;
 }

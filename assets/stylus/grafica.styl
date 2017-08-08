@@ -27,11 +27,17 @@
     position absolute
     transform scaleY(-1)
     z-index 11
-    width 86.2%
+    width 83.2%
     height 86.78%
     left 7.4%
     top 1.2em
-
+.grafica028APerimetro
+  svg
+    width 81.2%
+    left 8.3%
+.GraficaLongitud
+  img
+    height 41em
 .GraficaHeader
   display grid
   grid-template-columns 78% 20%
@@ -103,28 +109,28 @@ circle
 #form28CIMC
 #form28CCEFALICO
 #form28CLongitud
-  background rgba(0,0,0,0.5)
   position absolute
   top 11.5%
   left 6.7%
-  width 89.4%
+  width 86.4%
   height 76.9%
   transform scaleY(-1)
 
 #form28CLongitud
-  top 12.5%
-  left 6.2%
-  width 89.1%
-  height 76.5%
+  top 11.5%
+  left 5.3%
+  width 87.5%
+  height 79.1%
+
 #form28CCEFALICO
   top 12%
   left 8%
-  width 86.4%
+  width 82.4%
   height 75.9%
 #form28CIMC
   top 12.3%
   left 6.6%
-  width 88.4%
+  width 85.4%
   height 75.9%
 .GraficaPeso
   position relative
@@ -133,11 +139,38 @@ circle
 .toaster-imc
 .toaster-cefalico
 .toaster-longitud
+.toaster-peso-mayor
+.toaster-talla-mayor
+.toaster-imc-mayor
   position absolute
   color white
   background hsl(120, 50%, 40%)
   padding .5em 1em
   display none
+  z-index 10
+
+// mayor 5 años hasta 9 años
+.Peso28CMayor
+.Talla28CMayor
+.IMC28CMayor
+  background rgba(black, .5)
+  position absolute
+  transform scaleY(-1)
+  top 13.4%
+  left 7%
+  width 83.4%
+  height 78.2%
+.Talla28CMayor
+  top 13.8%
+  left 8%
+  width 85.6%
+  height 77.5%
+.IMC28CMayor
+  top 13.1%
+  left 8.3%
+  width 86.5%
+  height 75.6%
+
 @media (max-width: 412px)
   .GraficaHeader-title
     font-size 18px
