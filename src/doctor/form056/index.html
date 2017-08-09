@@ -1,7 +1,107 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
+  <style scoped>
+    .workSpace {width: 100%;}
+  </style>
   <article class="form ed-item">
     <h1 class="Title no-margin s-100">Form 056</h2>
+
+    <article class="grid-header">
+      <div class="form056-header-names">
+        <ul class="form056-header-names--head">
+          <li>APELLIDOS:</li>
+          <li>PATERNO</li>
+          <li>MATERNO</li>
+          <li>NOMBRES</li>
+        </ul>
+        <ul class="form056-header-names--body">
+          <li></li>
+          <li>{{ apellidos[0] }}</li>
+          <li>{{ apellidos[1] }}</li>
+          <li>{{ paciente.hgc_nom_pacie }}</li>
+        </ul>
+      </div>
+
+      <div class="form056-header-establecimiento">
+        <p class="u-noMargin"><strong>Nùmeros de Historia Clìnica:</strong>
+          {{ paciente.hgc_histo_hcli }}
+        </p>
+        <p class="u-noMargin"><strong>ESTABLECIMIENTO:</strong>
+          {{ empresa.hgc_nom_empr }}
+        </p>
+      </div>
+    </article>
+
+    <div class="grid-paciente">
+      <aside class="pacientes-informacion">
+        <fieldset style="margin-top:1em" class="s-100">
+          <label class="s-10 bold-input" style="display:inline-block">DIRECCIÒN</label>
+          <input style="display: inline-block;width: 89%;margin: 0;" value="VIA QUEVEDO"
+            disabled ng-model="paciente.hgc_direc_pacie" />
+
+          <div class="container-code-pronvia">
+            <div>
+              <label class="bold-input" style="display: inline-flex;width: 34%;text-align: center;">
+                PROVINCIA, CANTÒN, PARROQUIA
+              </label>
+              <input style="display: inline-block;width: 65%;margin: 0;" disabled ng-model="provincia" />
+            </div>
+            <div class="celda-code-container">
+            <p class="u-noMargin bold-input">Codigo</p>
+            <p class="u-noMargin celda-code"></p>
+            <p class="u-noMargin celda-code"></p>
+            <p class="u-noMargin celda-code"></p>
+            <p class="u-noMargin celda-code"></p>
+            <p class="u-noMargin celda-code"></p>
+            <p class="u-noMargin celda-code"></p>
+          </div>
+            <div class="grid-cellphone">
+              <label class="bold-input" style="display: inline-block">Telefono</label>
+              <input type="text" disabled value="3766354" style="display: inline-block">
+            </div>
+            <div>
+              <p>
+                <input type="checkbox" id="Domicilio" />
+                <label for="Domicilio">Domicilio</label>
+              </p>
+            </div>
+          </div>
+
+          <article class="container-grid-lugar">
+            <div>
+              <label class="bold-input" style="width: 19%;display:inline-block">LUGAR DE NACIMIENTO</label>
+              <input style="display: inline-block;width: 79%;margin: 0;" disabled
+                ng-model="paciente.hgc_lunac_pacie" />
+            </div>
+            <div class="grid-cellphone">
+              <label class="bold-input" style="display: inline-block">Telefono</label>
+              <input type="text" disabled value="3766354" style="display: inline-block">
+            </div>
+            <div>
+              <p>
+                <input type="checkbox" id="mensaje" />
+                <label for="mensaje">mensaje</label>
+              </p>
+            </div>
+          </article>
+
+        </fieldset>
+      </aside>
+
+      <aside class="paciente-nacimiento">
+        <p>FECHA DE NACIMIENTO</p>
+        <ul class="paciente-nacimiento--header">
+          <li>dia</li>
+          <li>mes</li>
+          <li>año</li>
+        </ul>
+        <ul>
+          <li>12</li>
+          <li>08</li>
+          <li>2017</li>
+        </ul>
+      </aside>
+    </div>
 
   </article>
 </section>
