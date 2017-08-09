@@ -30,22 +30,52 @@ angular.module('Hospital')
     const duracion = duration(new Date($scope.fechaNacimiento), new Date(item.fecha))
     const ageMonth = (duracion.years * 12) + duracion.months
 
+    let celdaYear = duracion.years - 5
+    const cx = (155 * celdaYear) + (duracion.months/3) * 37
+    // const cx = (155 * celdaYear) + (duracion.months/4) * 37
+
+    console.log((duracion.months/3))
+
+    let pesoAltura = 50
+    let pesoCelda = (item.peso - 14) / 3
+    let decimalPeso = item.peso.toString().split(".")[1]
+    pesoCelda = parseInt(pesoCelda)
+
+    if (pesoCelda >= 5) pesoCelda = (item.peso - 14) / 4
+    if (item.peso >= 50) pesoCelda = pesoCelda -= 1
+    if (pesoCelda === 0) pesoCelda = 1
+    if (pesoCelda >= 2) pesoAltura = 55
+    if (pesoCelda >= 5) pesoAltura = 57
+    if (pesoCelda >= 8) pesoAltura = 58
+
+    if($scope.sexo === 'Mujer') {
+      pesoAltura = 52
+      if (pesoCelda >= 2) pesoAltura = 55
+      if (pesoCelda >= 5) pesoAltura = 52.5
+      if (pesoCelda >= 8) pesoAltura = 53.5
+    }
+
+    pesoCelda = parseInt(pesoCelda)
+    pesoCelda = parseFloat(pesoCelda + "." + parseInt(decimalPeso/2))
+
     let pointTalla = item.talla - 90
     if (pointTalla   !== 0) pointTalla = parseInt(pointTalla.toString().split("")[0])
 
-    let imcData = (item.imc - 10)
+    let imcData = item.imc - 10
     let celdaIMC = 14
-    let base = 28
 
-    if (imcData === 2) imcData = 1
-    if (imcData > 2) celdaIMC = 16
-
-    let celdaYear = duracion.years - 5
-    const cx = (155 * celdaYear) + (duracion.months/3) * 37
+    imcData = imcData / 2
+    if (imcData >= 2) celdaIMC = 34
+    if (imcData >= 3) celdaIMC = 37
+    if (imcData >= 4) celdaIMC = 42
+    if (imcData >= 6) celdaIMC = 44.5
+    if (imcData >= 7) celdaIMC = 45
+    if (imcData >= 8) celdaIMC = 46
+    if (imcData >= 10) celdaIMC = 47
 
     if (index !== 0) {
 
-      peso.line(cx, 18*(item.peso-1), datoPesoX, datPesoY).attr({
+      peso.line(cx, pesoAltura * pesoCelda, datoPesoX, datPesoY).attr({
         strokeWidth: 3,
         stroke: `${$scope.colorSexo}`,
       }).animate({ strokeDasharray: '21px' }, 4000)
@@ -61,7 +91,7 @@ angular.module('Hospital')
       }).animate({ strokeDasharray: '21px' }, 4000)
     }
 
-    peso.circle(cx, 18*(item.peso-1), 50).attr({
+    peso.circle(cx, pesoAltura * pesoCelda, 50).attr({
       fill: `${$scope.colorSexo}`,
       stroke: `${$scope.colorSexo}`,
       strokeWidth: 7
@@ -83,7 +113,6 @@ angular.module('Hospital')
       strokeWidth: 7
     }).animate({r: 5}, 1000)
     .mouseover(function () {
-      console.log(duracion)
       let toaster = document.querySelector('.toaster-talla-mayor')
       toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 85) + 'px'
       toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 55) + 'px'
@@ -95,7 +124,7 @@ angular.module('Hospital')
     })
 
     // IMC graphic
-    imc.circle(cx, (celdaIMC * imcData), 50).attr({
+    imc.circle(cx, celdaIMC * imcData, 50).attr({
       fill: `${$scope.colorSexo}`,
       stroke: `${$scope.colorSexo}`,
       strokeWidth: 7
@@ -113,10 +142,10 @@ angular.module('Hospital')
     // IMC graphic
 
     datoPesoX = cx
-    datPesoY = 18*(item.peso-1)
+    datPesoY = pesoAltura * pesoCelda
 
     datoIMCX = cx
-    datIMCY = (celdaIMC * imcData)
+    datIMCY = celdaIMC * imcData
 
     datoTallaX = cx
     datoTallaY = 52 * pointTalla

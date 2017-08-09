@@ -233,6 +233,23 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
         $('.mayor .GraficaLongitud h4').html('TALLA/EDAD - NIÑA DE 5 A 9 AÑOS (cm)')
         $('.mayor .GraficaIMC h4').html('INDICE DE MASA CORPORAL - NIÑA DE 5 A 9 AÑOS (kg/m2)')
 
+        const tallaSvg =  document.querySelector('.Talla28CMayor')
+        const pesoSvg = document.querySelector('.Peso28CMayor')
+        const imcSVG = document.querySelector('.IMC28CMayor')
+        tallaSvg.style.left = '9%'
+        tallaSvg.style.width = '85.1%'
+        tallaSvg.style.height = '77.9%'
+
+        pesoSvg.style.top = '17.2%'
+        pesoSvg.style.left = '7.5%'
+        pesoSvg.style.width = '83.1%'
+        pesoSvg.style.height = '74.3%'
+
+        imcSVG.style.top = '13.8%'
+        imcSVG.style.left = '7.3%'
+        imcSVG.style.width = '87.5%'
+        imcSVG.style.height = '74.9%'
+
         $('.footer-msp').html('MSP HCU - Form 028 A4/09')
         $('.footer-graphic').html('CURVA DE CRECIMIENTO DEL NIÑA DE 5 A 9 AÑOS')
       }
