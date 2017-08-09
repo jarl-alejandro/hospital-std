@@ -44,7 +44,8 @@ if ($id == "") {
   $new->bindParam(13, $hora);
   $new->bindParam(14, $turno);
 
-  $new->execute();  
+  $new->execute();
+  $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");
 }
 else {
   $new = $pdo->prepare("UPDATE hgc_sigvit SET hgc_temp_sigvit=?, hgc_frcar_sigvit=?,
@@ -71,8 +72,6 @@ else {
 
   $new->execute();
 }
-
-$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");
 
 if ($new) {
   echo 201;

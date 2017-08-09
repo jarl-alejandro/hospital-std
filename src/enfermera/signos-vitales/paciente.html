@@ -104,8 +104,7 @@
           <label for="fr-resporatoria">Ingresa la frecuencia respiratoria (fr)</label>
         </div>
         <div class="input-field s-90 m-45" ng-hide="menor">
-          <input id="presion-arterial" type="text" ng-model="data.prArterial"
-            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <input id="presion-arterial" type="text" ng-model="data.prArterial" maxlength="5">
           <label for="presion-arterial">Ingresa la presion arterial (pr)</label>
         </div>
         <div class="input-field s-90 m-45" ng-show="menor">
@@ -139,6 +138,55 @@
           </button>
           <button class='waves-effect waves-light btn primary'
             ng-click="handleSave()">Aceptar
+          </button>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <section class="formPlus056 ed-item s-80 m-75 m-offset-10" style="top:8em"
+    ng-controller="formCtrl056SigVit">
+    <div class="form ed-item s-100 m-75">
+      <header>
+        <h3>Signos Vitales</h3>
+      </header>
+      <input type="hidden" id="idform056" />
+      <article class="formPlus-content" ng-controller="validForm">
+        <div class="input-field s-90 m-45">
+          <input id="imc056" type="text" ng-model="dataform056.imc"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="imc056">Indice de Masa corporal (IMC)</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <input id="fr-cardiaca056" type="text" ng-model="dataform056.frCardica"
+            ng-keypress="ValidaSoloDecimal()" maxlength="8">
+          <label for="fr-cardiaca056">Ingresa la frecuencia cardiaca (latido / min)</label>
+        </div>
+
+        <div class="input-field s-90 m-45">
+          <input id="presion-arterial056" type="text" ng-model="dataform056.prArterial" maxlength="8">
+          <label for="presion-arterial056">Ingresa la presion arterial (100/70)</label>
+        </div>
+
+        <div class="input-field s-90 m-45">
+          <input id="peso056" type="text" ng-model="dataform056.peso"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="peso056">Ingresa el peso (kg)</label>
+        </div>
+
+        <div class="input-field s-90 m-45">
+          <input id="talla056" type="text" ng-model="dataform056.talla"
+            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+          <label for="talla056">Ingresa la talla (ml)</label>
+        </div>
+
+        <div class='main-distribute s-100'>
+          <button class='waves-effect waves-light btn danger'
+            ng-click="handleCancel056()">Cancelar
+          </button>
+          <button class='waves-effect waves-light btn primary'
+            ng-click="handleSave056()">Aceptar
           </button>
         </div>
 

@@ -9,7 +9,7 @@ singosVitales.controller('singosVitalesController', function ($scope, $http) {
     .then(response => $scope.pacientes = response.data)
 })
 
-singosVitales.controller('pacienteSignoController', function ($scope, $http, $stateParams) {
+singosVitales.controller('pacienteSignoController', function ($scope, $http, $stateParams, $rootScope) {
   const id = $stateParams.id
   const turno = $stateParams.turno
   const filePDF = document.getElementById('inputPDF')
@@ -19,7 +19,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $scope.menor = false
   $scope.pacientId = id
   $scope.paciente = {}
-  $scope.signosVitales = []
+  $rootScope.signosVitales = []
   $scope.empresa = {}
   $scope.pacient = {}
 
@@ -41,7 +41,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $http.get(`src/enfermera/signos-vitales/service/turno.php?id=${turno}`)
   .then(response => {
-    console.log(response)
     if (response.data.hgc_esta_turno === 'pdf') {
       $('#filepdf').fadeOut()
       $('#signosVitales').fadeIn()
@@ -64,13 +63,14 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $http.get(
     `src/enfermera/signos-vitales/service/getAll.php?id=${id}`
-  ).then(response => $scope.signosVitales = response.data)
+  ).then(response => $rootScope.signosVitales = response.data)
 
   $http.get(
     `src/enfermera/signos-vitales/service/pacienteOne.php?id=${id}`
   )
   .then(response => {
     $scope.paciente = response.data
+    $scope.fechaNacimiento = $scope.paciente.hgc_fecn_pacie
     const parametros = $scope.paciente.hgc_fecn_pacie.split('-')
     const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
     const now = new Date()
@@ -82,7 +82,11 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     else $scope.menor = false
   })
 
-  $scope.handleShowForm = () => $('.formPlus').slideDown()
+  $scope.handleShowForm = () => {
+    const duracion = duration(new Date($scope.fechaNacimiento), new Date())
+    if (duracion.years >= 10) $('.formPlus056').slideDown()
+    else $('.formPlus').slideDown()
+  }
   $scope.handleCancel = () => closeForm()
 
   $scope.handleReport = id => {
@@ -91,7 +95,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $scope.handleSave = function handleSave () {
     if (validar()) {
-      $scope.data.estado = $scope.data.peso / ($scope.data.talla ** 2)
+      $scope.data.estado = $scope.data.peso / $scope.data.talla
 
       $http.post('src/enfermera/signos-vitales/service/save.php', $scope.data)
       .then(response => {
@@ -122,18 +126,34 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     if (hoy > date) {
       Materialize.toast('No pude editar ya han pasado las 24 horas', 4000)
     } else {
-      $('.formPlus').slideDown()
-      $scope.data.temperatura = signos.hgc_temp_sigvit
-      $scope.data.frCardica = signos.hgc_frcar_sigvit
-      $scope.data.frRespiratoria = signos.hgc_frresp_sigvit
-      $scope.data.prArterial = signos.hgc_prart_sigvit
-      $scope.data.peso = signos.hgc_peso_sigvit
-      $scope.data.talla = signos.hgc_talla_sigvit
-      $scope.data.prEncefalico = signos.hgc_prence_sigvit
-      $scope.data.estado = signos.hgc_esta_sigvit
-      $scope.data.longitud = signos.hgc_longi_sigvit
-      $scope.data.pulso = signos.hgc_puls_sigvit
-      $scope.data.id = signos.hgc_id_sigvit
+      const duracion = duration(new Date($scope.fechaNacimiento), new Date())
+      if (duracion.years >= 10) {
+        $('.formPlus056').slideDown()
+        console.log(signos)
+
+        $('#fr-cardiaca056').val(signos.hgc_frcar_sigvit)
+        $('#presion-arterial056').val(signos.hgc_prart_sigvit)
+        $('#peso056').val(signos.hgc_peso_sigvit)
+        $('#talla056').val(signos.hgc_talla_sigvit)
+        $('#imc056').val(signos.hgc_imc_sigvit)
+        $("#idform056").val(signos.hgc_id_sigvit)
+      }
+      else {
+        $('.formPlus').slideDown()
+
+        $scope.data.temperatura = signos.hgc_temp_sigvit
+        $scope.data.frCardica = signos.hgc_frcar_sigvit
+        $scope.data.frRespiratoria = signos.hgc_frresp_sigvit
+        $scope.data.prArterial = signos.hgc_prart_sigvit
+        $scope.data.peso = signos.hgc_peso_sigvit
+        $scope.data.talla = signos.hgc_talla_sigvit
+        $scope.data.prEncefalico = signos.hgc_prence_sigvit
+        $scope.data.estado = signos.hgc_esta_sigvit
+        $scope.data.longitud = signos.hgc_longi_sigvit
+        $scope.data.pulso = signos.hgc_puls_sigvit
+        $scope.data.id = signos.hgc_id_sigvit
+      }
+
       $('.formPlus-content label').addClass('active')
     }
   }
@@ -230,6 +250,107 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
         Materialize.toast('Ingresa el perimetro encefalico', 4000)
         return false
       } else return true
+    }
+    else return true
+  }
+
+})
+
+singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $stateParams, $rootScope) {
+  $scope.dataform056 = {
+    imc: '',
+    frCardica: '',
+    prArterial: '',
+    peso: '',
+    talla: '',
+    turno: $stateParams.turno,
+    historiaClinica: $stateParams.id,
+    id: ''
+  }
+
+  $scope.handleCancel056 = () => closeForm056()
+
+  $scope.handleSave056 = () => {
+    editform056()
+    if (validar056()) {
+      $http.post('src/enfermera/signos-vitales/service/save056.php', $scope.dataform056)
+      .then(response => {
+        console.log(response)
+        if (response.data === '201') {
+          getAll056()
+          closeForm056()
+          Materialize.toast('Se ha guarado con exito', 4000)
+          // location.reload()
+        }
+      })
+
+    }
+  }
+
+  function editform056 () {
+    if ($('#idform056').val() !== '') {
+      $scope.dataform056 = {
+        id: $('#idform056').val(),
+        imc: $('#imc056').val(),
+        frCardica: $('#fr-cardiaca056').val(),
+        prArterial: $('#presion-arterial056').val(),
+        peso: $('#peso056').val(),
+        talla: $('#talla056').val(),
+        turno: $stateParams.turno,
+        historiaClinica: $stateParams.id,
+      }
+    }
+  }
+
+  function getAll056(){
+    $http.get(
+      `src/enfermera/signos-vitales/service/getAll.php?id=${$stateParams.id}`
+    ).then(response => $rootScope.signosVitales = response.data)
+
+  }
+
+  function closeForm056 () {
+    $('.formPlus056').slideUp()
+    $('label.active').removeClass('active')
+    $('#idform056').val('')
+    $scope.dataform056 = {
+      imc: '',
+      frCardica: '',
+      prArterial: '',
+      peso: '',
+      talla: '',
+      turno: $stateParams.turno,
+      historiaClinica: $stateParams.id,
+      id: ''
+    }
+  }
+
+  function validar056 () {
+    const form = $scope.dataform056
+    if (form.imc.trim() === '') {
+      Materialize.toast('Ingrese el indice de masa corporal', 4000)
+      $('#imc056').focus()
+      return false
+    }
+    if (form.frCardica.trim() === '') {
+      Materialize.toast('Ingrese el indice de masa corporal', 4000)
+      $('#fr-cardiaca056').focus()
+      return false
+    }
+    if (form.prArterial.trim() === '') {
+      Materialize.toast('Ingrese el indice de masa corporal', 4000)
+      $('#presion-arterial056').focus()
+      return false
+    }
+    if (form.peso.trim() === '') {
+      Materialize.toast('Ingrese el indice de masa corporal', 4000)
+      $('#peso056').focus()
+      return false
+    }
+    if (form.talla.trim() === '') {
+      Materialize.toast('Ingrese el indice de masa corporal', 4000)
+      $('#talla056').focus()
+      return false
     }
     else return true
   }
