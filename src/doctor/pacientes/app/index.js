@@ -16,7 +16,12 @@ doctor.controller('pacientesDoctorController', function ($scope, $http, $locatio
     const moth = now.getMonth() - fecha.getMonth()
     const age = (year * 12) + moth
 
+    const duracion = duration(new Date(fecha), new Date())
+    console.log(duracion)
+    console.log(fecha)
+
     if (age < 2) $location.path(`/form28A/${object.id}/${object.turno}`)
+    if (duracion.years >= 10) $location.path(`/form056/${object.id}/${object.turno}`)
     else $location.path(`/form28C/${object.id}/${object.turno}`)
   }
 })
