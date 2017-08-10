@@ -1,7 +1,6 @@
 .bold-input
   color #585757 !important
   font-weight bold
-
 .grid-header
   display grid
   grid-template-columns 70% 30%
@@ -85,3 +84,198 @@
   grid-template-columns 64% 25% 25%
   label
     font-size 12px
+.u-companion
+  display grid
+  grid-template-columns 73% 30%
+  border 1px solid #ccc
+  margin-top 7px
+.Informacion-consulta
+  display grid
+  grid-template-columns repeat(2,1fr)
+  grid-gap 2px
+  &-paciente
+    width 100%
+    display grid
+    grid-template-columns 36% 36% 26%
+    grid-template-rows 4em 0 0
+    border 1px solid #ccc
+    margin-top 7px
+  &-companion
+    width 98%
+    margin-left 13px
+    &--list
+      display grid
+      grid-template-columns repeat(4, 1fr)
+    p
+      text-align center
+  &-fecha
+    text-align center
+    display grid
+    grid-template-columns 24% 68%
+    align-items end
+    p
+      text-transform uppercase
+    &--boody
+    &--header
+      display grid
+      margin 0
+    &--header
+      grid-template-columns repeat(3, 1fr)
+    &--boody
+      grid-template-columns repeat(6, 1fr)
+      li
+        border 1px solid #ccc
+  &-edad
+    text-align center
+    display grid
+    grid-template-columns 30% 80%
+    align-items end
+    p
+      text-transform uppercase
+    &--boody
+    &--header
+      display grid
+      margin 0
+    &--header
+      grid-template-columns repeat(2, 1fr)
+    &--boody
+      grid-template-columns repeat(4, 1fr)
+      li
+        border 1px solid #ccc
+        &:nth-child(2)
+          margin-right 3px
+.Motivo-consulta
+  display grid
+  grid-template-columns repeat(2, 1fr)
+  grid-gap 20px
+  &--title
+    background hsl(0, 0%, 20%)
+    padding 2px 10px
+    display flex
+    align-items center
+    justify-content space-between
+    color white
+    a
+      display flex
+      color white
+      margin 0
+  &--self-list
+    input
+      margin 0 !important
+  &--self-item
+    display grid
+    grid-template-columns 80% 20%
+    overflow hidden
+    margin 0
+    align-items end
+    grid-gap 15px
+
+.consulta-cie--code
+  height 27px
+  width 88%
+  margin 0
+  border 1px solid #ccc
+.motivo-add
+  transition all ease .5s
+  &:hover
+    background hsl(0, 30%, 30%)
+  &:active
+    transform scale(0.9)
+.Antecedente-personales
+  &--grid
+    display grid
+    grid-template-columns repeat(13, 1fr)
+  &--item
+    border 1px solid #ccc
+  &--name
+    font-size 11px
+    text-align center
+    height 4.6em
+  &--options
+    margin-left 1em
+    p
+      margin 0
+.Antecedente-familiares
+  &--grid
+    display grid
+    grid-template-columns repeat(11, 1fr)
+.no-check::before
+  background yellow
+.no-check-input:checked + label:after
+  background-color #ffff00
+  border 2px solid #ffff00
+.no-check-input:checked + label:before
+  background-color transparent
+  border-right 2px solid #ffff00
+  border-bottom 2px solid #ffff00
+.Familia
+  border 1px solid #828282
+  &--title
+  &-grid
+    padding 0 10px
+  &-name
+    margin 0
+  &-list
+    display grid
+    grid-template-columns 36% 70%
+  &-options
+    display grid
+    grid-template-columns repeat(3, 1fr)
+    align-items center
+    p
+      margin 0
+  &-header
+    display grid
+    grid-template-columns repeat(4, 1fr)
+    p
+      text-align center
+      margin 0
+.Nivel-instruccion
+  border 1px solid #828282
+  &-title
+    margin 0
+    color #585757
+    font-weight bold
+    text-transform uppercase
+    margin-bottom .5em
+    text-align center
+  &--item
+    display flex
+    justify-content: space-around
+    p
+      margin 0
+    p:nth-child(2)
+      order -2
+  &--name
+    width 55%
+    text-align center
+.grid-padres-madres
+  display grid
+  grid-template-columns repeat(2, 1fr)
+  p
+    font-weight bold
+    color #585757
+    margin 3.3px 0
+.Trabajo-Instruccion
+  margin-left -5px
+.Trabajo-Instruccion
+.Familia
+.Familiar
+  display inline-block
+  vertical-align top
+.Ocupacion-instruccion
+  border 1px solid #828282
+
+.Percepcion-familiar
+  border 1px solid #828282
+  &--list
+    display grid
+    grid-template-columns repeat(4, 1fr)
+  &--item
+    text-align center
+.small-size
+  font-size 11px
+.paint-driagrama
+  background #feff97
+  height 22em
+  width 100%
