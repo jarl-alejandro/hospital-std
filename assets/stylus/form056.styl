@@ -1,6 +1,8 @@
 .bold-input
   color #585757 !important
   font-weight bold
+.u-border-right
+  border-right 1px solid #828282
 .grid-header
   display grid
   grid-template-columns 70% 30%
@@ -256,13 +258,10 @@
     font-weight bold
     color #585757
     margin 3.3px 0
-.Trabajo-Instruccion
-  margin-left -5px
-.Trabajo-Instruccion
-.Familia
-.Familiar
-  display inline-block
-  vertical-align top
+.FamiliarVivienda-grid
+  display grid
+  grid-template-columns 20% 20% 40% 20%
+
 .Ocupacion-instruccion
   border 1px solid #828282
 
@@ -271,11 +270,214 @@
   &--list
     display grid
     grid-template-columns repeat(4, 1fr)
+    padding-bottom 3px
   &--item
     text-align center
 .small-size
   font-size 11px
 .paint-driagrama
   background #feff97
-  height 22em
+  height 21.3em
   width 100%
+.FamilarDriagama
+  border 1px solid #828282
+.ApgarFamiliar
+  border 1px solid #828282
+  &-title
+    text-align center
+    margin 0
+    @extend .bold-input
+  &-item
+    margin 0
+.FamilarObservacion
+  border 1px solid #828282
+  &-title
+    @extend .ApgarFamiliar-title
+  &-text
+    margin 0 !important
+  &-field
+    margin-top 0
+.Vivienda
+  border 1px solid #828282
+
+.EnergiaElectrica
+  display grid
+  grid-template-columns 60% 40%
+  align-items center
+  border-bottom 1px solid #828282
+  &-title
+    margin 0
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+.ServiciosBasicos
+  @extend .EnergiaElectrica
+  grid-template-columns 31% 69%
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+  &-item
+    font-size 12px
+    text-align center
+.Cuotas
+    border-bottom 1px solid #828282
+
+.Paper2
+  display none
+
+.EducacionPaper2
+  display grid
+  grid-template-columns repeat(8, 1fr)
+  border 1px solid #828282
+  &-title
+    text-align center
+    margin 0
+    display block
+.EducacionEstudia
+  border-right 1px solid #828282
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+    text-align center
+    margin 0
+  &-title
+    text-align center
+    margin 0
+.NivelEstudia
+.CursoGradoEstudia
+  border-right 1px solid #828282
+
+.DisercionEstudia
+  &-grid
+    display grid
+    grid-template-columns 60% 40%
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+    margin 0
+
+.TrabajoPaper
+  display grid
+  grid-template-columns 24% 8% 8% 20% 10% 10% 10% 10%
+  border 1px solid #828282
+.TrabajoActividad
+  &-header
+    display grid
+    grid-template-columns repeat(2, 1fr)
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+
+.EdadInicioTrab
+  &-head
+    font-size 11px
+    display block
+    text-align center
+  &-title
+    font-size 12px
+.TrabajoByHoras
+  &-head
+    height 4em
+  &-title
+    font-size 12px
+  &-footer
+    font-size 11px
+    text-align center
+    display inline-grid
+    width 8em
+
+.HorasTrabajo
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+
+.RazonTrabajo
+  &-item--list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+
+.TrabajoLegalizado-list
+  display grid
+  grid-template-columns repeat(3, 1fr)
+  justify-content center
+
+.VidaSocialAceptacion
+  &-list
+    display flex
+    flex-wrap wrap
+  &-item
+    width 100%
+.VidaSocial
+  display grid
+  grid-template-columns 20% 15% 15% 17% 33%
+  border 1px solid #828282
+  &-header
+    display grid
+    grid-template-columns repeat(2, 1fr)
+  &-novio
+    border-bottom 1px solid #585757
+  &-novio
+  &-amigos
+    display grid
+    grid-template-columns repeat(2, 1fr)
+    align-items center
+    &--list
+      display grid
+      grid-template-columns repeat(2, 1fr)
+
+.ActividadGruapal
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+
+.OtrasActividades-list
+  display grid
+  grid-template-columns repeat(4, 1fr)
+
+.Habitos
+  display grid
+  grid-template-columns 17% 10% 10% 10% 8% 8% 9% 9% 8% 11%
+  border 1px solid #585757
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+
+.HabitosDreams-grid
+  display grid
+  grid-template-columns repeat(2, 1fr)
+
+.OtroToxico
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+
+.ConduceVehiculo
+  &-grid
+    display grid
+    grid-template-columns repeat(2, 1fr)
+
+.Ginecologia
+  border 1px solid #585757
+  display grid
+  grid-template-columns 20% 18% 10% 10% 13% 14% 15%
+.MenarcaEspermarca
+  &-grid
+    margin-top 10px
+    display grid
+    grid-template-columns repeat(2, 1fr)
+    grid-gap 10px
+
+.FechaUltilMenstruacion
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+    grid-gap 5px
+  &-form
+    grid-template-columns repeat(3, 1fr)
+    display grid
+    grid-gap 5px
+
+.CiclosRegulares
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)

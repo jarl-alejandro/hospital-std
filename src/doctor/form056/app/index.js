@@ -263,6 +263,11 @@ angular.module('Hospital')
     $('#motivo-list-company').append(template)
   }
 
+  $scope.handleNextPaper = () => {
+    $('.Paper1').slideUp()
+    $('.Paper2').slideDown()
+  }
+
   var canvas = document.querySelector('#paint');
   var ctx = canvas.getContext('2d');
 
@@ -275,8 +280,8 @@ angular.module('Hospital')
 
   /* Mouse Capturing Work */
   canvas.addEventListener('mousemove', function(e) {
-  mouse.x = e.pageX - this.offsetLeft;
-  mouse.y = e.pageY - this.offsetTop;
+    mouse.x = e.pageX - this.offsetLeft;
+    mouse.y = e.pageY - this.offsetTop;
   }, false);
 
   /* Drawing on Paint App */
@@ -286,14 +291,14 @@ angular.module('Hospital')
   ctx.strokeStyle = 'black';
 
   canvas.addEventListener('mousedown', function(e) {
-  ctx.beginPath();
-  ctx.moveTo(mouse.x, mouse.y);
+    ctx.beginPath();
+    ctx.moveTo(mouse.x, mouse.y);
 
-  canvas.addEventListener('mousemove', onPaint, false);
+    canvas.addEventListener('mousemove', onPaint, false);
   }, false);
 
   canvas.addEventListener('mouseup', function() {
-  canvas.removeEventListener('mousemove', onPaint, false);
+    canvas.removeEventListener('mousemove', onPaint, false);
   }, false);
 
   var onPaint = function() {
@@ -301,6 +306,5 @@ angular.module('Hospital')
     ctx.stroke();
   };
   // End Paint
-
 
 })
