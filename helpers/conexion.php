@@ -4,7 +4,8 @@ try {
   $pdo = new PDO('pgsql:host=localhost;
             port=5432;dbname=consultas',
             'postgres',
-            '123456');
+            '123456'
+          );
 
     /*$pdo = new PDO('pgsql:host=172.20.19.117
             port=5433;
