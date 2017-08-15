@@ -2,7 +2,7 @@
 
 try {
   $pdo = new PDO('pgsql:host=localhost;
-            port=5432;dbname=consultas',
+            port=5432;dbname=hospital',
             'postgres',
             '123456'
           );

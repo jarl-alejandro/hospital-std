@@ -99,6 +99,7 @@
     <script src='src/doctor/form28A/app/grafica.js'></script>
 
     <script src='src/doctor/form056/app/index.js'></script>
+    <script src='src/doctor/form056/app/canvas.js'></script>
 
     <script src="src/horarios-doctores/app/index.js"></script>
     <script src='src/home/app/index.js'></script>

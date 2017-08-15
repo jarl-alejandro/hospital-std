@@ -1,3 +1,5 @@
+color_plomo = #585757
+
 .bold-input
   color #585757 !important
   font-weight bold
@@ -481,3 +483,103 @@
   &-list
     display grid
     grid-template-columns repeat(2, 1fr)
+.Sexualidad
+  display grid
+  grid-template-columns repeat(8, 1fr)
+  border 1px solid #585757
+  &-item__grid,
+  &-list__menu
+    display grid
+    grid-template-columns repeat(2, 1fr)
+  &-relsex__grid
+    @extend .Sexualidad-list__menu
+    grid-gap 1em
+    padding-left 10px
+  &-list__relsex
+    display grid
+    grid-template-columns repeat(1, 1fr)
+  &-anticoncepcion
+    display grid
+    grid-template-columns repeat(2, 1fr)
+    padding 10px
+    text-align center
+  &-list-three
+    display grid
+    grid-template-columns repeat(3, 1fr)
+    text-align center
+    margin 0
+
+.InicioEdadSex
+  &-check--list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+  &-grid
+    @extend .InicioEdadSex-check--list
+    grid-gap 10px
+
+.Psicoemocional
+  display grid
+  grid-template-columns 12% 21% 23% 25% 15%
+  border 1px solid color_plomo
+  &-list
+    margin 0
+    display grid
+    grid-template-columns repeat(2, 1fr)
+.PsicoPrefen-list
+  display grid
+  grid-template-columns repeat(3, 1fr)
+
+.Percepcion-list
+  display grid
+  grid-template-columns repeat(3, 1fr)
+.PsicoPrefen
+  label
+    font-size 13px !important
+.ExamenFisico
+  border 1px solid color_plomo
+  &-top
+  &-bottom
+    display grid
+    &--item
+      border-right 1px solid color_plomo
+      &:last-child
+        border-right none
+  &-top
+    grid-template-columns repeat(9, 1fr)
+  &-bottom
+    grid-template-columns repeat(9, 1fr)
+  &-list
+    display grid
+    grid-template-columns repeat(2, 1fr)
+
+.centilWrapper
+  border-bottom 1px solid #585757
+  padding 10px
+  label
+    margin-left 10px
+.pielFaneras-list
+  display grid
+  grid-template-columns repeat(2, 1fr)
+.ExamenFisico-bottom__fisic
+  display grid
+  grid-template-columns repeat(9, 1fr)
+  border-top 1px solid #585757
+  &--item
+    text-align center
+.tanner-list__grid
+  display grid
+  grid-template-columns repeat(3, 1fr)
+  li
+    font-size 13px
+.response
+  border 1px solid #585757
+  width 74%
+  display inline-block
+.proximaVisit
+  display inline-block
+  width 23%
+  a,
+  input
+    display inline-block
+  input
+    width 46% !important
