@@ -262,7 +262,10 @@
 
   <!-- Antecedentes Personales -->
   <article class="Antecedente-personales">
-    <p class="Motivo-consulta--title">3. ANTECEDENTES PERSONALES</p>
+    <p class="Motivo-consulta--title">
+      3. ANTECEDENTES PERSONALES
+      <a ng-click="refreshCheck('.Antecedente-personales--grid')" class="u-pointer"><i class="material-icons">cached</i></a>
+    </p>
     <article class="Antecedente-personales--grid">
       <div ng-repeat="item in antecendesPersonales" class="Antecedente-personales--item">
         <p class="bold-input Antecedente-personales--name">{{ item.name }}</p>
@@ -287,7 +290,11 @@
 
   <!-- Antecedentes Familiares -->
   <article class="Antecedente-personales">
-    <p class="Motivo-consulta--title">3. ANTECEDENTES FAMILIARES</p>
+    <p class="Motivo-consulta--title">3. ANTECEDENTES FAMILIARES
+      <a ng-click="refreshCheck('.Antecedente-familiares--grid')" class="u-pointer">
+        <i class="material-icons">cached</i>
+      </a>
+    </p>
     <article class="Antecedente-familiares--grid">
       <div ng-repeat="item in antecendesFamiliares" class="Antecedente-personales--item">
         <p class="bold-input Antecedente-personales--name">{{ item.name }}</p>
@@ -313,7 +320,11 @@
   <section class="FamiliarVivienda-grid">
     <!-- Familia -->
     <section class="Familia">
-      <p class="Motivo-consulta--title s-80" style="margin:0">5. FAMILIA</p>
+      <p class="Motivo-consulta--title s-80" style="margin:0">5. FAMILIA
+        <a ng-click="refreshCheck('.Familia-grid')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
       <P class="u-noMargin Familia--title">CONVIVE CON</P>
       <article class="Familia-grid">
         <div class="Familia-header">
@@ -327,13 +338,18 @@
           <div class="Familia-options">
             <p ng-repeat="check in item.options">
               <input type="{{ check.type }}" name="{{item.id}}" id="{{ check.id }}"
-                class="{{ check.class }}-input" class="{{ check.class }}-input" />
+                class="{{ check.class }}-input" class="{{ check.class }}-input"
+                ng-click="shouldBeDisabled(check)" />
               <label for="{{ check.id }}" class="{{ check.class }}"></label>
             </p>
           </div>
         </div>
       </article>
-      <p class="u-noMargin Familia--title" style="margin-top:2em !important">VIVE</p>
+      <p class="u-noMargin Familia--title" style="margin-top:2em !important">VIVE
+        <a ng-click="refreshCheckVive('.Familia-list')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
       <article class="Familia-grid">
         <div class="Familia-header">
           <p></p>
@@ -344,7 +360,8 @@
           <p class="Familia-name">{{ item.name }}</p>
           <div class="Familia-options">
             <p ng-repeat="check in item.options">
-              <input type="{{ check.type }}" name="{{item.id}}" id="{{ check.id }}"
+              <input type="radio" name="{{item.id}}" id="{{ check.id }}"
+                ng-disabled="item.id == 'vive4'" ng-click="shouldInsDisabled(check)"
                 class="{{ check.class }}-input" class="{{ check.class }}-input" />
               <label for="{{ check.id }}" class="{{ check.class }}"></label>
             </p>
@@ -353,20 +370,29 @@
       </article>
     </section>
     <!-- End Familia -->
+
     <!-- Trabajo Instruncion -->
     <section class="Trabajo-Instruccion">
       <!-- Nivel de Instrucciòn -->
       <article class="Nivel-instruccion">
-        <p class="Nivel-instruccion-title">Nivel de instrucciòn</p>
+        <p class="Nivel-instruccion-title cross-center main-distribute">Nivel de instrucciòn
+          <a ng-click="refreshCheck('.instruc056')" class="u-pointer main-center">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
         <div class="grid-padres-madres">
           <p class="Nivel-instruccion--padre">Padre o sustituto</p>
           <p class="Nivel-instruccion--madre">Madre o sustituto</p>
         </div>
-        <div ng-repeat="item in nivelInstruccion" class="Nivel-instruccion--item">
+        <div ng-repeat="item in nivelInstruccion" class="Nivel-instruccion--item instruc056">
           <p class="Nivel-instruccion--name">{{ item.instr }}</p>
           <p ng-repeat="check in item.options">
-            <input name="{{ item.name }}" type="radio" id="{{ check }}"  class="{{ check }}-input" />
-            <label for="{{ check }}" class="{{check}}"></label>
+            <input name="hombre" type="radio" id="{{ check }}-hombre"  class="{{ check }}-input" />
+            <label for="{{ check }}-hombre" class="{{check}}"></label>
+          </p>
+          <p ng-repeat="check in item.options">
+            <input name="mujer" type="radio" id="{{ check }}-mujer"  class="{{ check }}-input" />
+            <label for="{{ check }}-mujer" class="{{check}}"></label>
           </p>
         </div>
       </article>
@@ -374,17 +400,26 @@
 
       <!-- Trabajo -->
       <article class="Nivel-instruccion">
-        <p class="Nivel-instruccion-title">TRABAJO</p>
+        <p class="Nivel-instruccion-title cross-center main-distribute">TRABAJO
+          <a ng-click="refreshCheck('.trabajo056')" class="u-pointer main-center">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
         <div class="grid-padres-madres">
           <p class="Nivel-instruccion--padre">Padre o sustituto</p>
           <p class="Nivel-instruccion--madre">Madre o sustituto</p>
         </div>
-        <div ng-repeat="item in trabajo" class="Nivel-instruccion--item">
+        <div ng-repeat="item in trabajo" class="Nivel-instruccion--item trabajo056">
           <p class="Nivel-instruccion--name">{{ item.trab }}</p>
           <p ng-repeat="check in item.options">
-            <input name="{{ item.name }}" type="radio" id="{{ check }}"  class="{{ check }}-input" />
-            <label for="{{ check }}" class="{{check}}"></label>
+            <input name="hombre-trabajo" type="radio" id="{{ check }}-hombre" class="{{ check }}-input" />
+            <label for="{{ check }}-hombre" class="{{check}}"></label>
           </p>
+          <p ng-repeat="check in item.options">
+            <input name="mujer-trabajo" type="radio" id="{{ check }}-mujer" class="{{ check }}-input" />
+            <label for="{{ check }}-mujer" class="{{check}}"></label>
+          </p>
+
         </div>
       </article>
       <!-- End Trabajo -->
@@ -400,6 +435,9 @@
 
       <!-- Percepcion -->
       <article class="Percepcion-familiar">
+        <a ng-click="refreshCheck('.Percepcion-familiar--list')" class="u-pointer main-center">
+          <i class="material-icons">cached</i>
+        </a>
         <ul class="Percepcion-familiar--list">
           <li class="Percepcion-familiar--item">Buena</li>
           <li class="Percepcion-familiar--item">Regular</li>
@@ -438,7 +476,11 @@
       </article>
 
       <article class="ApgarFamiliar">
-        <p class="ApgarFamiliar-title">Apgar Familiar</p>
+        <p class="ApgarFamiliar-title cross-center main-distribute">Apgar Familiar
+          <a ng-click="refreshCheck('.ApgarFamiliar')" class="u-pointer main-center">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
         <p class="ApgarFamiliar-item">
           <input name="apgarFamiliar" type="radio" id="severamenteDisfuncional" class="no-check-input" />
           <label for="severamenteDisfuncional" class="no-check"> 0 - 3 Familias Severamente Disfuncional</label>
@@ -463,9 +505,14 @@
       </article>
     </section>
     <!-- End Familiar -->
+
     <!-- Vivienda -->
     <section class="Vivienda">
-      <p class="Motivo-consulta--title u-noMargin">6. VIVIENDA</p>
+      <p class="Motivo-consulta--title u-noMargin">6. VIVIENDA
+        <a ng-click="refreshCheck('.EnergiaElectrica')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
 
       <!-- Servicios Basicos -->
       <article class="EnergiaElectrica">
@@ -487,8 +534,13 @@
       <!-- End Servicios Basicos -->
 
       <!-- Servicios Basicos -->
-      <article class="ServiciosBasicos">
-        <p class="bold-input EnergiaElectrica-title">AGUA</p>
+      <article class="ServiciosBasicos" style="position:relative">
+        <a ng-click="refreshCheck('.ServiciosBasicos-list')" class="u-pointer main-end"
+          style="position:absolute;">
+          <i class="material-icons">cached</i>
+        </a>
+
+        <p class="bold-input EnergiaElectrica-title" style="margin-top: 1.2em;">AGUA</p>
         <ul class="ServiciosBasicos-list u-noMargin">
           <li class="ServiciosBasicos-item">en el hogar</li>
           <li class="ServiciosBasicos-item">fuera del hogar</li>
@@ -506,13 +558,13 @@
         <p class="bold-input EnergiaElectrica-title">EXCRETAS</p>
         <ul class="ServiciosBasicos-list u-noMargin">
           <li class="ServiciosBasicos-item">
-            <input name="excretasServiciosBasicos" type="radio" id="ServiciosBasicos-si" />
-            <label for="ServiciosBasicos-si"></label>
+            <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-si" />
+            <label for="ServiciosBasicos_excr-si"></label>
           </li>
           <li class="ServiciosBasicos-item">
-            <input name="excretasServiciosBasicos" type="radio" id="ServiciosBasicos-no"
+            <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-no"
               class="no-check-input" />
-            <label for="ServiciosBasicos-no" class="no-check"></label>
+            <label for="ServiciosBasicos_excr-no" class="no-check"></label>
           </li>
         </ul>
       </article>

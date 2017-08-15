@@ -281,18 +281,18 @@ color_plomo = #585757
   background #feff97
   height 21.3em
   width 100%
-.FamilarDriagama
-  border 1px solid #828282
 .ApgarFamiliar
-  border 1px solid #828282
+  border-top 1px solid #828282
+  border-bottom 1px solid #828282
   &-title
     text-align center
     margin 0
     @extend .bold-input
   &-item
     margin 0
-.FamilarObservacion
+.Familiar
   border 1px solid #828282
+.FamilarObservacion
   &-title
     @extend .ApgarFamiliar-title
   &-text
@@ -461,7 +461,8 @@ color_plomo = #585757
 .Ginecologia
   border 1px solid #585757
   display grid
-  grid-template-columns 20% 18% 10% 10% 13% 14% 15%
+  grid-template-columns 17% 13% 13% 12% 15% 15% 15%
+  // grid-template-columns 20% 18% 10% 10% 13% 14% 15%
 .MenarcaEspermarca
   &-grid
     margin-top 10px
@@ -482,7 +483,12 @@ color_plomo = #585757
 .CiclosRegulares
   &-list
     display grid
+    grid-template-columns repeat(3, 1fr)
+.flujosPatologia
+  &-list
+    display grid
     grid-template-columns repeat(2, 1fr)
+
 .Sexualidad
   display grid
   grid-template-columns repeat(8, 1fr)
@@ -541,6 +547,7 @@ color_plomo = #585757
   &-bottom
     display grid
     &--item
+      text-align center
       border-right 1px solid color_plomo
       &:last-child
         border-right none

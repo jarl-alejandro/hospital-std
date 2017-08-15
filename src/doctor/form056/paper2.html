@@ -4,7 +4,11 @@
   <section class="EducacionPaper2">
 
     <article class="EducacionEstudia">
-      <p class="Motivo-consulta--title EducacionPaper2-title">7. EDUCACION</p>
+      <p class="Motivo-consulta--title EducacionPaper2-title" style="display:flex;">7. EDUCACION
+        <a ng-click="refreshCheck('.EducacionPaper2')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
       <p class="bold-input EducacionEstudia-title">ESTUDIA</p>
       <ul class="EducacionEstudia-list">
         <li class="EducacionEstudia-item">si</li>
@@ -148,24 +152,28 @@
   <section class="TrabajoPaper">
     <article class="TrabajoActividad u-border-right">
       <div class="TrabajoActividad-header">
-        <p class="Motivo-consulta--title EducacionPaper2-title">8. Trabajo</p>
+        <p class="Motivo-consulta--title EducacionPaper2-title" style="display:flex">8. Trabajo
+          <a ng-click="refreshCheck('.TrabajoPaper')" class="u-pointer">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
         <p class="bold-input u-noMargin center-align TrabajoActividad-title">Actividad</p>
       </div>
       <ul class="TrabajoActividad-list">
         <li class="TrabajoActividad-item">
-          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-si" />
+          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-trabaja" />
           <label for="TrabajoActividad-trabaja">trabaja</label>
         </li>
         <li class="TrabajoActividad-item">
-          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-si" />
+          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-1vez" />
           <label for="TrabajoActividad-1vez">busca 1era. vez</label>
         </li>
         <li class="TrabajoActividad-item">
-          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-si" />
+          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-no-busco" />
           <label for="TrabajoActividad-no-busco">no y no busco</label>
         </li>
         <li class="TrabajoActividad-item">
-          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-si" />
+          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-desocupado" />
           <label for="TrabajoActividad-desocupado">desocupado</label>
         </li>
       </ul>
@@ -309,7 +317,11 @@
   <section class="VidaSocial">
     <article class="u-border-right VidaSocialAceptacion">
       <div class="VidaSocial-header">
-        <p class="Motivo-consulta--title u-noMargin">9. VIDA SOCIAL</p>
+        <p class="Motivo-consulta--title u-noMargin">9. VIDA SOCIAL
+          <a ng-click="refreshCheck('.VidaSocial')" class="u-pointer">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
         <p class="u-noMargin bold-input center-align">ACEPTACION</p>
       </div>
       <ul class="VidaSocialAceptacion-list">
@@ -379,7 +391,7 @@
         <li class="ActividadGruapal-item">
           <input name="ActividadGruapal" type="radio" id="ActividadGruapal-no"
             class="no-check-input" />
-          <label for="vidaSociActividadGruapalalAmigo-no" class="no-check"></label>
+          <label for="ActividadGruapal-no" class="no-check"></label>
         </li>
       </ul>
     </article>
@@ -427,7 +439,11 @@
   <!-- Habitos -->
   <section class="Habitos">
     <article class="u-border-right HabitosDreams">
-      <p class="Motivo-consulta--title u-noMargin">10. HABITOS</p>
+      <p class="Motivo-consulta--title u-noMargin">10. HABITOS
+        <a ng-click="refreshCheck('.Habitos')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
       <div class="HabitosDreams-grid">
         <div class="Habitos-checked">
           <p class="bold-input u-noMargin center-align">SUEÑO NORMAL</p>
@@ -575,9 +591,12 @@
 
   <!-- Gineco -->
   <section class="Ginecologia">
-
     <article class="u-border-right MenarcaEspermarca">
-      <p class="Motivo-consulta--title u-noMargin">11. GINECO-UROLOGICO</p>
+      <p class="Motivo-consulta--title u-noMargin">11. GINECO-UROLOGICO
+        <a ng-click="refreshCheck('.Ginecologia')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
       <p class="u-noMargin bold-input">MENARCA/ESPERMARCA</p>
       <div class="MenarcaEspermarca-grid">
         <div class="input-field u-noMargin">
@@ -664,16 +683,16 @@
 
     <article class="u-border-right FlujoPatSec">
       <p class="u-noMargin bold-input center-align">FLUJOS PATOLOGICOS SECRECION PENEANA</p>
-      <ul class="CiclosRegulares-list center-align u-noMargin">
-        <li class="CiclosRegulares-item">si</li>
-        <li class="CiclosRegulares-item">no</li>
-        <li class="CiclosRegulares-item">
-          <input name="Dismenorrea" type="radio" id="Dismenorrea-si" />
-          <label for="Dismenorrea-si"></label>
+      <ul class="flujosPatologia-list center-align u-noMargin">
+        <li class="flujosPatologia-item">si</li>
+        <li class="flujosPatologia-item">no</li>
+        <li class="flujosPatologia-item">
+          <input name="flujosPatologia" type="radio" id="flujosPatologia-si" />
+          <label for="flujosPatologia-si"></label>
         </li>
-        <li class="CiclosRegulares-item">
-          <input name="Dismenorrea" type="radio" id="Dismenorrea-no" class="no-check-input" />
-          <label for="Dismenorrea-no" class="no-check"></label>
+        <li class="flujosPatologia-item">
+          <input name="flujosPatologia" type="radio" id="flujosPatologia-no" class="no-check-input" />
+          <label for="flujosPatologia-no" class="no-check"></label>
         </li>
       </ul>
     </article>
@@ -727,9 +746,12 @@
 
   <!-- Sexualidad -->
   <section class="Sexualidad">
-
     <article class="Sexualidad-item u-border-right">
-      <p class="Motivo-consulta--title u-noMargin">12. Sexualidad</p>
+      <p class="Motivo-consulta--title u-noMargin">12. Sexualidad
+        <a ng-click="refreshCheck('.Sexualidad')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
       <div class="Sexualidad-item__grid">
         <p class="Sexualidad-item__title bold-input">NECESITA INFORMACION</p>
         <div class="Sexualidad-list">
@@ -949,7 +971,11 @@
   <!-- SITUACION PSICOEMOCIONAL -->
   <section class="Psicoemocional">
     <article class="Psicoemocional-item">
-      <p class="Motivo-consulta--title u-noMargin">SITUACION PSICOEMOCIONAL</p>
+      <p class="Motivo-consulta--title u-noMargin" style="font-size:12px">SITUACION PSICOEMOCIONAL
+        <a ng-click="refreshCheck('.Psicoemocional')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
     </article>
     <article class="Psicoemocional-item u-border-right">
       <p class="bold-input u-noMargin">IMAGEN CORPORAL</p>
@@ -1068,7 +1094,11 @@
   <section class="ExamenFisico">
     <section class="ExamenFisico-top">
       <article class="ExamenFisico-top--item">
-        <p class="Motivo-consulta--title u-noMargin">14. EXAMEN FISICO</p>
+        <p class="Motivo-consulta--title u-noMargin">14. EXAMEN FISICO
+          <a ng-click="refreshCheck('.ExamenFisico')" class="u-pointer">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
         <p class="bold-input">Aspecto General</p>
         <ul class="ExamenFisico-list">
           <li class="ExamenFisico-item">normal</li>
@@ -1237,7 +1267,7 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="genitoUrinario" type="radio" id="abdomen-normal" />
+            <input class="with-gap" name="abdomen" type="radio" id="abdomen-normal" />
             <label for="abdomen-normal"></label>
           </li>
           <li class="pielFaneras-item">

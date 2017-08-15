@@ -187,35 +187,35 @@ angular.module('Hospital')
 
   $scope.vive = [
     { id: 'vive1', name: 'en instituc.', options: [
-      { id: 'vive1-1', name: 'no', class: 'no-check', val: 1, type: 'checkbox' },
       { id: 'vive1-2', name: 'En la casa', class: 'nose-check', val: 2, type: 'radio' },
+      { id: 'vive1-1', name: 'no', class: 'no-check', val: 1, type: 'checkbox' },
     ]},
     { id: 'vive2', name: 'en la calle', options: [
-      { id: 'vive2-1', name: 'no', class: 'no-check', val: 1, type: 'checkbox' },
       { id: 'vive2-2', name: 'En la casa', class: 'nose-check', val: 2, type: 'radio' },
+      { id: 'vive2-1', name: 'no', class: 'no-check', val: 1, type: 'checkbox' },
     ]},
     { id: 'vive3', name: 'solo', options: [
-      { id: 'vive3-1', name: 'no', class: 'no-check', val: 1, type: 'checkbox' },
       { id: 'vive3-2', name: 'En la casa', class: 'nose-check', val: 2, type: 'radio' },
+      { id: 'vive3-1', name: 'no', class: 'no-check', val: 1, type: 'checkbox' },
     ]},
     { id: 'vive4', name: 'COMPARTE LA CAMA', options: [
-      { id: 'vive4-1', name: 'no', class: 'no-check', val: 1, type: 'checkbox'},
       { id: 'vive4-2', name: 'En la casa', class: 'nose-check', val: 2, type: 'radio'},
+      { id: 'vive4-1', name: 'no', class: 'no-check', val: 1, type: 'checkbox'},
     ]},
   ]
 
   $scope.nivelInstruccion = [
-    { instr: 'analfabeto', name: 'analbabeto', options: [ 'padreAnalbabeto', 'madreAnalbabeto' ] },
-    { instr: 'prim. incomp', name: 'prim-incomp', options: [ 'primIncompPadre', 'primIncompMadre' ] },
-    { instr: 'primario', name: 'primario', options: [ 'primarioPadre', 'madrePrimario' ] },
-    { instr: 'secund./tècnicos', name: 'secund-tecnico', options: [ 'secundTecnicoPadre', 'secundTecnicoMadre' ] },
-    { instr: 'univ./terciario', name: 'univ-terciario', options: [ 'univTerciarioPadre', 'univTerciarioMadre' ] },
+    { instr: 'analfabeto', name: 'analbabeto', options: [ 'padreAnalbabeto' ] },
+    { instr: 'prim. incomp', name: 'prim-incomp', options: [ 'primIncompPadre' ] },
+    { instr: 'primario', name: 'primario', options: [ 'primarioPadre' ] },
+    { instr: 'secund./tècnicos', name: 'secund-tecnico', options: [ 'secundTecnicoPadre' ] },
+    { instr: 'univ./terciario', name: 'univ-terciario', options: [ 'univTerciarioPadre' ] },
   ]
 
   $scope.trabajo = [
-    { trab: 'ninguno', name: 'ninguno', options: [ 'padreNinguno', 'madreNinguno' ] },
-    { trab: 'no estable', name: 'no-estable', options: [ 'padreNoEstable', 'madreNoEstable' ] },
-    { trab: 'estable', name: 'estable', options: [ 'padreEstable', 'madreEstable' ] },
+    { trab: 'ninguno', name: 'ninguno', options: [ 'padreNinguno' ] },
+    { trab: 'no estable', name: 'no-estable', options: [ 'padreNoEstable' ] },
+    { trab: 'estable', name: 'estable', options: [ 'padreEstable'] },
   ]
 
   $http.get(`src/doctor/form056/service/paciente.php?id=${$stateParams.id}`)
@@ -273,6 +273,70 @@ angular.module('Hospital')
     $('.Paper1').slideDown()
     $('.Paper2').slideUp()
     setTimeout(() => window.scrollTo(0, 0), 100)
+  }
+
+  $scope.refreshCheck = (clase) => {
+    const grid = [...document.querySelectorAll(`${clase} input:checked`)]
+    grid.map(item => item.checked = false)
+  }
+
+  $scope.shouldBeDisabled = (item) => {
+    if (item.type === 'checkbox') {
+      const clase = item.id.split('-')[0]
+      const cheked = document.querySelector(`#${item.id}`).checked
+      document.querySelector(`#${clase}-2`).disabled = cheked
+      document.querySelector(`#${clase}-3`).disabled = cheked
+      if (cheked === true) {
+        document.querySelector(`#${clase}-2`).checked = false
+        document.querySelector(`#${clase}-3`).checked = false
+      }
+    }
+  }
+
+  $scope.refreshCheckVive = (clase) => {
+    $scope.refreshCheck(clase)
+    document.querySelector('#vive4-2').disabled = true
+    document.querySelector('#vive4-1').disabled = true
+    document.querySelector('#vive2-1').disabled = false
+    document.querySelector('#vive2-2').disabled = false
+    document.querySelector('#vive3-1').disabled = false
+    document.querySelector('#vive3-2').disabled = false
+
+    document.querySelector('#vive2-1').checked = false
+    document.querySelector('#vive2-2').checked = false
+    document.querySelector('#vive3-1').checked = false
+    document.querySelector('#vive3-2').checked = false
+
+    document.querySelector('#vive4-2').checked = false
+    document.querySelector('#vive4-1').checked = false
+  }
+
+  $scope.shouldInsDisabled = (item) => {
+    console.log(item)
+    if (item.id === 'vive1-1') {
+      document.querySelector('#vive4-2').disabled = false
+      document.querySelector('#vive4-1').disabled = false
+      document.querySelector('#vive2-1').disabled = true
+      document.querySelector('#vive2-2').disabled = true
+      document.querySelector('#vive3-1').disabled = true
+      document.querySelector('#vive3-2').disabled = true
+
+      document.querySelector('#vive2-1').checked = false
+      document.querySelector('#vive2-2').checked = false
+      document.querySelector('#vive3-1').checked = false
+      document.querySelector('#vive3-2').checked = false
+
+    }
+    else if (item.id === 'vive1-2') {
+      document.querySelector('#vive4-2').disabled = true
+      document.querySelector('#vive4-1').disabled = true
+      document.querySelector('#vive2-1').disabled = false
+      document.querySelector('#vive2-2').disabled = false
+      document.querySelector('#vive3-1').disabled = false
+      document.querySelector('#vive3-2').disabled = false
+      document.querySelector('#vive4-2').checked = false
+      document.querySelector('#vive4-1').checked = false
+    }
   }
 
 })
