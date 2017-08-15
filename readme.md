@@ -19,4 +19,6 @@
 nino -> mayores de 2 meses a 5 años
 nino colors -> mayores de 5 años hasta 10 años
 
-11233
+formlumarios 028A
+formlumarios 028C
+formlumarios 056
