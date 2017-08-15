@@ -29,20 +29,21 @@
     <article class="NivelEstudia">
       <p class="bold-input u-noMargin center-align">NIVEL</p>
       <p class="u-noMargin">
-        <input name="energiaElectrica" type="checkbox" id="noEscolariz" class="no-check-input" />
+        <input name="nivelEducacion" type="radio" id="noEscolariz" class="no-check-input"
+          ng-click="noEscolariz()" />
         <label for="noEscolariz" class="no-check">No escolariz</label>
       </p>
 
       <p class="u-noMargin">
-        <input name="nivelEducacion" type="radio" id="primNivel" />
+        <input name="nivelEducacion" type="radio" id="primNivel" ng-click="noEscolariz()" />
         <label for="primNivel">Prim.</label>
       </p>
       <p class="u-noMargin">
-        <input name="nivelEducacion" type="radio" id="secNivel" />
+        <input name="nivelEducacion" type="radio" id="secNivel" ng-click="noEscolariz()" />
         <label for="secNivel">Sec.</label>
       </p>
       <p class="u-noMargin">
-        <input name="nivelEducacion" type="radio" id="univNivel" />
+        <input name="nivelEducacion" type="radio" id="univNivel" ng-click="noEscolariz()" />
         <label for="univNivel">Univ.</label>
       </p>
 
@@ -51,14 +52,16 @@
     <article class="CursoGradoEstudia center-align">
       <p class="bold-input center-align u-noMargin">GRADO CURSO</p>
       <div class="input-field main-center">
-        <input type="text" maxlength="2" placeholder="Ingresa el grado o curso" style="width:95%">
+        <input type="text" maxlength="2" placeholder="Ingresa el grado o curso"
+          style="width:95%" ng-disabled="flagEducacion" />
       </div>
     </article>
 
     <article class="ApprovedYearEstudia u-border-right">
       <p class="bold-input center-align u-noMargin">AÑOS APROBADOS</p>
       <div class="input-field main-center">
-        <input type="text" maxlength="2" placeholder="ingresa los años aprobados" style="width:95%">
+        <input type="text" maxlength="2" placeholder="ingresa los años aprobados"
+          style="width:95%" ng-disabled="flagEducacion" />
       </div>
     </article>
 
@@ -69,12 +72,13 @@
         <li class="EducacionEstudia-item">no</li>
 
         <li class="EducacionEstudia-item">
-          <input name="problemasEscuela" type="radio" id="problemasEscuela-si" />
+          <input name="problemasEscuela" type="radio" id="problemasEscuela-si"
+            ng-disabled="flagEducacion" />
           <label for="problemasEscuela-si"></label>
         </li>
         <li class="problemasEscuela-item">
           <input name="problemasEscuela" type="radio" id="problemasEscuela-no"
-            class="no-check-input" />
+            class="no-check-input" ng-disabled="flagEducacion" />
           <label for="problemasEscuela-no" class="no-check"></label>
         </li>
       </ul>
@@ -84,13 +88,15 @@
       <p class="bold-input center-align u-noMargin main-justify cross-center">
         AÑOS REPETIDOS
         <span class="problemasEscuela-item main-center">
-          <input type="checkbox" id="repeatYearCausa-no" class="no-check-input" />
+          <input type="checkbox" id="repeatYearCausa-no" class="no-check-input"
+            ng-disabled="flagEducacion" />
           <label for="repeatYearCausa-no" class="no-check"></label>
         </span>
       </p>
       <p class="u-noMargin">Causa</p>
       <div class="input-field u-noMargin">
-        <input type="text" placeholder="Ingresa la causa" />
+        <input type="text" placeholder="Ingresa la causa"
+          ng-disabled="flagEducacion" />
       </div>
     </article>
 
@@ -101,19 +107,20 @@
           <li class="DisercionEstudia-item">no</li>
           <li class="DisercionEstudia-item">si</li>
           <li class="DisercionEstudia-item">
-            <input name="DisercionEstudia" type="radio" id="DisercionEstudia-no" />
+            <input name="DisercionEstudia" type="radio" id="DisercionEstudia-no"
+              ng-disabled="flagEducacion" />
             <label for="DisercionEstudia-no"></label>
           </li>
           <li class="DisercionEstudia-item">
             <input name="DisercionEstudia" type="radio" id="DisercionEstudia-si"
-              class="no-check-input" />
+              class="no-check-input" ng-disabled="flagEducacion" />
             <label for="DisercionEstudia-si" class="no-check"></label>
           </li>
         </ul>
       </div>
       <p class="u-noMargin">Causa</p>
       <div class="input-field u-noMargin">
-        <input type="text" placeholder="Ingresa una causa" />
+        <input type="text" placeholder="Ingresa una causa" ng-disabled="flagEducacion" />
       </div>
     </article>
 
@@ -124,11 +131,13 @@
           <li class="DisercionEstudia-item">no</li>
           <li class="DisercionEstudia-item">si</li>
           <li class="DisercionEstudia-item">
-            <input name="EducacionNoFormalEstudia" type="radio" id="EducacionNoFormalEstudia-no" />
+            <input name="EducacionNoFormalEstudia" type="radio"
+              id="EducacionNoFormalEstudia-no" />
             <label for="EducacionNoFormalEstudia-no"></label>
           </li>
           <li class="EducacionNoFormalEstudia-item">
-            <input name="EducacionNoFormalEstudia" type="radio" id="EducacionNoFormalEstudia-si" />
+            <input name="EducacionNoFormalEstudia" type="radio"
+              id="EducacionNoFormalEstudia-si" />
             <label for="EducacionNoFormalEstudia-si"></label>
           </li>
         </ul>

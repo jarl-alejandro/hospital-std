@@ -10,6 +10,9 @@ angular.module('Hospital')
   $scope.empresa = {}
   $scope.mensajeFlag = false
   $scope.domicilioFlag = false
+
+  $scope.flagEducacion = false
+
   $scope.hoy = fecha.getDate() < 10 ? '0'+fecha.getDate() : fecha.getDate()
   $scope.month = fecha.getMonth() < 10 ? '0'+(fecha.getMonth() + 1) : fecha.getMonth() + 1
   $scope.year = fecha.getFullYear().toString().split('')
@@ -312,7 +315,6 @@ angular.module('Hospital')
   }
 
   $scope.shouldInsDisabled = (item) => {
-    console.log(item)
     if (item.id === 'vive1-1') {
       document.querySelector('#vive4-2').disabled = false
       document.querySelector('#vive4-1').disabled = false
@@ -338,5 +340,7 @@ angular.module('Hospital')
       document.querySelector('#vive4-1').checked = false
     }
   }
+
+  $scope.noEscolariz = () => $scope.flagEducacion = document.querySelector('#noEscolariz').checked
 
 })
