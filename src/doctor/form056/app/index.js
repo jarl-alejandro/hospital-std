@@ -249,6 +249,16 @@ angular.module('Hospital')
     if (response.data.cont === 1) $scope.empresa = response.data.empresa
   })
 
+  $http.get(`src/doctor/form056/service/signos.php?id=${$stateParams.turno}`)
+  .then(response => {
+    console.log(response.data)
+    $scope.signos = response.data
+    const edadPaciente = duration(new Date($scope.paciente.hgc_fecn_pacie), new Date($scope.signos.hgc_fecha_sigvit))
+
+    $scope.cetilPesoEdad = `${$scope.signos.hgc_peso_sigvit} / ${edadPaciente.years}`
+    $scope.deTallaEdad = `${$scope.signos.hgc_talla_sigvit} / ${edadPaciente.years}`
+  })
+
   $scope.handleNextPaper = () => {
     $('.Paper1').slideUp()
     $('.Paper2').slideDown()

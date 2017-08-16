@@ -1100,7 +1100,6 @@
       </ul>
     </article>
   </section>
-
   <article class="ObservacionesPsicoemocional">
     <p class="bold-input u-noMargin">Observaciones</p>
     <div class="input-field s-100 u-noMargin">
@@ -1135,28 +1134,28 @@
 
       <article class="ExamenFisico-top--item">
         <div class="input-field centilWrapper">
-          <input type="text" id="ExamenFisico-peso" />
-          <label for="ExamenFisico-peso">Peso (kg)</label>
+          <input type="text" id="ExamenFisico-peso" disabled ng-model="signos.hgc_peso_sigvit" />
+          <label for="ExamenFisico-peso" class="active">Peso (kg)</label>
         </div>
         <div class="input-field" style="padding:10px;margin-left: 10px;">
-          <input type="text" id="ExamenFisico-talla"/>
-          <label for="ExamenFisico-talla">Talla (mm)</label>
+          <input type="text" id="ExamenFisico-talla" disabled ng-model="signos.hgc_talla_sigvit" />
+          <label for="ExamenFisico-talla" class="active">Talla (mm)</label>
         </div>
       </article>
       <article class="ExamenFisico-top--item">
         <div class="input-field centilWrapper">
-          <input type="text" id="ExamenFisico-centilPesoEdad" />
-          <label for="ExamenFisico-centilPesoEdad">Centil peso/edad</label>
+          <input type="text" id="ExamenFisico-centilPesoEdad" disabled ng-model="cetilPesoEdad" />
+          <label for="ExamenFisico-centilPesoEdad" class="active">Centil peso/edad</label>
         </div>
         <div class="input-field" style="padding:10px;margin-left: 10px;">
-          <input type="text" id="ExamenFisico-DeTallaEdad" />
-          <label for="ExamenFisico-DeTallaEdad">DE talla/edad</label>
+          <input type="text" id="ExamenFisico-DeTallaEdad" disabled ng-model="deTallaEdad" />
+          <label for="ExamenFisico-DeTallaEdad" class="active">DE talla/edad</label>
         </div>
       </article>
       <article class="ExamenFisico-top--item cross-center" style="padding:10px">
         <div class="input-field">
-          <input type="text" id="de-imc" />
-          <label for="de-imc">DE / IMC</label>
+          <input type="text" id="de-imc" ng-model="signos.hgc_imc_sigvit" disabled />
+          <label for="de-imc" class="active">DE / IMC</label>
         </div>
       </article>
       <article class="ExamenFisico-top--item center-align">
@@ -1271,12 +1270,13 @@
 
       <article class="ExamenFisico-bottom__fisic--item u-border-right">
         <div class="input-field centilWrapper">
-          <input type="text" id="presionArterial" />
-          <label for="presionArterial" style="font-size:10px">PRESION ARTERIAL</label>
+          <input type="text" id="presionArterial" ng-model="signos.hgc_prart_sigvit" disabled />
+          <label for="presionArterial" class="active" style="font-size:10px">PRESION ARTERIAL</label>
         </div>
         <div class="input-field" style="padding:10px;margin-left: 10px;">
-          <input type="text" id="frecuen-cardiac" placeholder="latidos/min" />
-          <label for="frecuen-cardiac" style="font-size:10px">FRECUENCIA CARDIACA</label>
+          <input type="text" id="frecuen-cardiac" placeholder="latidos/min"
+            ng-model="signos.hgc_frcar_sigvit" disabled />
+          <label for="frecuen-cardiac" class="active" style="font-size:10px">FRECUENCIA CARDIACA</label>
         </div>
       </article>
 
@@ -1392,7 +1392,6 @@
   <!-- END EXAMEN FISICO -->
 
   <!-- DIAGNOSTICOS - CIE10 -->
-  <!-- <section class="Motivo-consulta" ng-controller="motivoConsultaCtrl056"> -->
   <section ng-controller="motivoConsultaCtrl056">
     <article class="DiagnosticoCIE10 l-90">
       <p class="Motivo-consulta--title">
