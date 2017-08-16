@@ -12,6 +12,9 @@ angular.module('Hospital')
   $scope.domicilioFlag = false
 
   $scope.flagEducacion = false
+  $scope.flagTrabaja = false
+  $scope.urologia = false
+  $scope.relacionesSexualCheck = false
 
   $scope.hoy = fecha.getDate() < 10 ? '0'+fecha.getDate() : fecha.getDate()
   $scope.month = fecha.getMonth() < 10 ? '0'+(fecha.getMonth() + 1) : fecha.getMonth() + 1
@@ -239,6 +242,8 @@ angular.module('Hospital')
     $scope.ageYear = $scope.ageYear.toString().split('')
     $scope.ageMonth = edad.months < 10 ? '0' + edad.months : edad.months
     $scope.ageMonth = $scope.ageMonth.toString().split('')
+
+    response.data.sexo.hgc_desc_genero === 'Mujer' ? $scope.urologia = true : $scope.urologia = false
   })
 
   $http.get('src/config/empresa/service/get.php')
@@ -342,5 +347,24 @@ angular.module('Hospital')
   }
 
   $scope.noEscolariz = () => $scope.flagEducacion = document.querySelector('#noEscolariz').checked
+
+  $scope.trabajaCheck = () => {
+    const check = document.querySelector('#TrabajoActividad-trabaja').checked
+    $scope.flagTrabaja = !check
+    if (check === false) {
+      $scope.refreshCheck('.TrabajoPaper')
+      const grid = [...document.querySelectorAll('.TrabajoPaper input[type="text"]')]
+      grid.map(item => item.value = '')
+    }
+  }
+
+  $scope.relacionesSexual = () => {
+    $scope.relacionesSexualCheck = document.querySelector('#relacionesSexuales-no').checked
+    if ($scope.relacionesSexualCheck === true) {
+      $scope.refreshCheck('.Sex--item')
+      const grid = [...document.querySelectorAll('.Sex--item input[type="text"]')]
+      grid.map(item => item.value = '')
+    }
+  }
 
 })
