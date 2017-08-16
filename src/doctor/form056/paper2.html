@@ -53,7 +53,7 @@
       <p class="bold-input center-align u-noMargin">GRADO CURSO</p>
       <div class="input-field main-center">
         <input type="text" maxlength="2" placeholder="Ingresa el grado o curso"
-          style="width:95%" ng-disabled="flagEducacion" />
+          style="width:95%" ng-disabled="flagEducacion" class="observacion" data-tipo="7.1" />
       </div>
     </article>
 
@@ -61,7 +61,7 @@
       <p class="bold-input center-align u-noMargin">AÑOS APROBADOS</p>
       <div class="input-field main-center">
         <input type="text" maxlength="2" placeholder="ingresa los años aprobados"
-          style="width:95%" ng-disabled="flagEducacion" />
+          style="width:95%" ng-disabled="flagEducacion" class="observacion" data-tipo="7.2" />
       </div>
     </article>
 
@@ -96,7 +96,7 @@
       <p class="u-noMargin">Causa</p>
       <div class="input-field u-noMargin">
         <input type="text" placeholder="Ingresa la causa"
-          ng-disabled="flagEducacion" />
+          ng-disabled="flagEducacion" class="observacion" data-tipo="7.3" />
       </div>
     </article>
 
@@ -120,7 +120,7 @@
       </div>
       <p class="u-noMargin">Causa</p>
       <div class="input-field u-noMargin">
-        <input type="text" placeholder="Ingresa una causa" ng-disabled="flagEducacion" />
+        <input type="text" placeholder="Ingresa una causa" class="observacion" data-tipo="7.4" ng-disabled="flagEducacion" />
       </div>
     </article>
 
@@ -144,15 +144,15 @@
       </div>
       <p class="u-noMargin">Causa</p>
       <div class="input-field u-noMargin">
-        <input type="text" placeholder="Ingresa una causa" />
+        <input type="text" placeholder="Ingresa una causa" class="observacion" data-tipo="7.5" />
       </div>
     </article>
 
   </section>
   <article class="ObservacionesEducacion">
     <p class="bold-input u-noMargin">Observaciones</p>
-    <div class="input-field s-100 u-noMargin">
-      <input class="" placeholder="Ingresa la observacion" />
+    <div class="input-field s-100 u-noMargin" >
+      <input class="observacion" data-tipo="7" placeholder="Ingresa la observacion" />
     </div>
   </article>
   <!-- End Educacion -->
@@ -192,14 +192,16 @@
       <p class="bold-input u-noMargin center-align EdadInicioTrab-title">EDAD INICIO TRABAJO</p>
       <p class="EdadInicioTrab-head">años</p>
       <div class="input-field u-noMargin main-center">
-        <input type="text" placeholder="Ingresa la edad" maxlength="2" style="width:95%" ng-disabled="flagTrabaja">
+        <input type="text" placeholder="Ingresa la edad" maxlength="2" style="width:95%"
+          ng-disabled="flagTrabaja" class="observacion" data-tipo="8.1" />
       </div>
     </article>
 
     <article class="u-border-right TrabajoByHoras">
       <p class="bold-input u-noMargin center-align TrabajoByHoras-head">TRABAJA</p>
       <div class="input-field u-noMargin main-center">
-        <input type="text" placeholder="Ingresa la edad" maxlength="2" style="width:95%" ng-disabled="flagTrabaja">
+        <input type="text" placeholder="Ingresa la edad" maxlength="2" style="width:95%"
+          ng-disabled="flagTrabaja" class="observacion" data-tipo="8.2" />
       </div>
       <span class="TrabajoByHoras-footer">horas por semana</span>
     </article>
@@ -311,14 +313,14 @@
       <p class="bold-input u-noMargin">TIPO DE TRABAJO</p>
       <div class="input-field">
         <textarea class="materialize-textarea" placeholder="Ingrese el tipo de trabajo"
-          ng-disabled="flagTrabaja"></textarea>
+          ng-disabled="flagTrabaja" class="observacion" data-tipo="8.3"></textarea>
       </div>
     </article>
   </section>
   <article class="ObservacionesTrabajoPaper">
     <p class="bold-input u-noMargin">Observaciones</p>
     <div class="input-field s-100 u-noMargin">
-      <input class="" placeholder="Ingresa la observacion" />
+      <input class="observacion" data-tipo="8" placeholder="Ingresa la observacion" />
     </div>
   </article>
   <!-- End Trabajo -->
@@ -409,13 +411,15 @@
       <div class="VidaSocialDeporte">
         <p class="bold-input u-noMargin">DEPORTE</p>
         <div class="input-field u-noMargin">
-          <input type="text" class="u-noMargin"  placeholder="horas por semanas" />
+          <input type="text" class="u-noMargin"  placeholder="horas por semanas"
+            class="observacion" data-tipo="9.1" />
         </div>
       </div>
       <div class="VidaSocialTv">
         <p class="bold-input u-noMargin">TV</p>
         <div class="input-field u-noMargin">
-          <input type="text" class="u-noMargin"  placeholder="horas por dia" />
+          <input type="text" class="u-noMargin"  placeholder="horas por dia"
+            class="observacion" data-tipo="9.2" />
         </div>
       </div>
     </article>
@@ -434,14 +438,14 @@
       </ul>
       <div class="input-field main-center">
         <input type="text" placeholder="Escriba cuales son las avtividades que realiza"
-          style="width:95%" />
+          style="width:95%" class="observacion" data-tipo="9.3" />
       </div>
     </article>
   </section>
   <article class="ObservacionesTrabajoPaper">
     <p class="bold-input u-noMargin">Observaciones</p>
     <div class="input-field s-100 u-noMargin">
-      <input class="" placeholder="Ingresa la observacion" />
+      <input class="observacion" data-tipo="9" placeholder="Ingresa la observacion" />
     </div>
   </article>
   <!-- End VidaSocial -->
@@ -515,7 +519,7 @@
     <article class="u-border-right tabaco">
       <p class="bold-input u-noMargin center-align">TABACO</p>
       <div class="input-field main-center" style="margin-top:3em">
-        <input type="text" id="cigariilos-dia" style="width:92%" />
+        <input type="text" id="cigariilos-dia" style="width:92%" class="observacion" data-tipo="10.1" />
         <label for="cigariilos-dia" style="font-size:12px;margin-left:3px">Cigarrillos por dia</label>
       </div>
     </article>
@@ -523,7 +527,8 @@
     <article class="u-border-right edadInicioTabaco">
       <p class="bold-input u-noMargin center-align">EDAD INICIO TABACO</p>
       <div class="input-field main-center" style="margin-top:1.5em">
-        <input type="text" id="cigariilos-dia-start" style="width:92%" />
+        <input type="text" id="cigariilos-dia-start" style="width:92%"
+          class="observacion" data-tipo="10.2" />
         <label for="cigariilos-dia-start" style="font-size:12px;margin-left:4px">años</label>
       </div>
     </article>
@@ -531,7 +536,7 @@
     <article class="u-border-right Alcohol">
       <p class="bold-input u-noMargin center-align">ALCOHOL</p>
       <div class="input-field main-center" style="margin-top:3em">
-        <input type="text" id="alcohol" style="width:92%" />
+        <input type="text" id="alcohol" style="width:92%" class="observacion" data-tipo="10.3" />
         <label for="alcohol" style="font-size:11px;margin-left:3px">equivalente a litros de cerveza por semana</label>
       </div>
     </article>
@@ -539,7 +544,7 @@
     <article class="u-border-right Alcohol-start">
       <p class="bold-input u-noMargin center-align">EDAD INICIO ALCOHOL</p>
       <div class="input-field main-center" style="margin-top:1.5em">
-        <input type="text" id="alcohol-start" style="width:92%" />
+        <input type="text" id="alcohol-start" style="width:92%" class="observacion" data-tipo="10.4" />
         <label for="alcohol-start" style="font-size:11px;margin-left:3px">años</label>
       </div>
     </article>
@@ -563,7 +568,7 @@
       </ul>
 
       <div class="input-field main-center" style="margin-top:1em">
-        <input type="text" id="frecunciaTypo" style="width:92%" />
+        <input type="text" id="frecunciaTypo" style="width:92%" class="observacion" data-tipo="10.5" />
         <label for="frecunciaTypo" style="font-size:11px;margin-left:3px">frecuencia y tipo</label>
       </div>
     </article>
@@ -586,7 +591,7 @@
       </div>
 
       <div class="input-field main-center" style="margin-top:.5em">
-        <input type="text" id="cual-conduce-carro" style="width:92%" />
+        <input type="text" id="cual-conduce-carro" style="width:92%" class="observacion" data-tipo="10.6" />
         <label for="cual-conduce-carro" style="font-size:11px;margin-left:3px">¿Cuàl?</label>
       </div>
     </article>
@@ -594,7 +599,7 @@
   <article class="ObservacionesHabitos">
     <p class="bold-input u-noMargin">Observaciones</p>
     <div class="input-field s-100 u-noMargin">
-      <input class="" placeholder="Ingresa la observacion" />
+      <input class="observacion" data-tipo="10" placeholder="Ingresa la observacion" />
     </div>
   </article>
   <!-- End Habitos -->
@@ -610,11 +615,11 @@
       <p class="u-noMargin bold-input">MENARCA/ESPERMARCA</p>
       <div class="MenarcaEspermarca-grid">
         <div class="input-field u-noMargin">
-          <input type="text" id="menarca-year">
+          <input type="text" id="menarca-year" class="observacion" data-tipo="11.1" />
           <label for="menarca-year">años</label>
         </div>
         <div class="input-field u-noMargin">
-          <input type="text" id="meses-year">
+          <input type="text" id="meses-year" class="observacion" data-tipo="11.2" />
           <label for="meses-year">meses</label>
         </div>
       </div>
@@ -637,15 +642,15 @@
 
       <ul class="FechaUltilMenstruacion-form u-noMargin">
         <li class="input-field">
-          <input type="text" id="dia" ng-disabled="urologia == false" />
+          <input type="text" id="dia" ng-disabled="urologia == false" class="observacion" data-tipo="11.3" />
           <label for="dia">dia</label>
         </li>
         <li class="input-field">
-          <input type="text" id="mes" ng-disabled="urologia == false" />
+          <input type="text" id="mes" ng-disabled="urologia == false" class="observacion" data-tipo="11.4" />
           <label for="mes">mes</label>
         </li>
         <li class="input-field">
-          <input type="text" id="year" ng-disabled="urologia == false" />
+          <input type="text" id="year" ng-disabled="urologia == false" class="observacion" data-tipo="11.5"/>
           <label for="year">años</label>
         </li>
       </ul>
@@ -733,7 +738,7 @@
         </ul>
       </div>
       <div class="input-field">
-        <input type="text" id="cual-trasmision-sexual" />
+        <input type="text" id="cual-trasmision-sexual" class="observacion" data-tipo="11.6" />
         <label for="cual-trasmision-sexual">¿Cual?</label>
       </div>
     </article>
@@ -758,7 +763,7 @@
   <article class="ObservacionesGinecologia">
     <p class="bold-input u-noMargin">Observaciones</p>
     <div class="input-field s-100 u-noMargin">
-      <input class="" placeholder="Ingresa la observacion" />
+      <input class="observacion" data-tipo="11" placeholder="Ingresa la observacion" />
     </div>
   </article>
   <!-- End Gineco -->
@@ -851,7 +856,8 @@
       <p class="Sexualidad-item__title bold-input u-noMargin center-align">EDAD INICIO REL. SEX.</p>
       <div class="InicioEdadSex-grid">
         <div class="input-field" style="margin-left: 10px;">
-          <input type="text" id="edad-inicio-sex" ng-disabled="relacionesSexualCheck" />
+          <input type="text" id="edad-inicio-sex" ng-disabled="relacionesSexualCheck"
+            class="observacion" data-tipo="12.1" />
           <label for="edad-inicio-sex">Años</label>
         </div>
         <div class="InicioEdadSex-check">
@@ -982,7 +988,7 @@
   <article class="ObservacionesSexualidad">
     <p class="bold-input u-noMargin">Observaciones</p>
     <div class="input-field s-100 u-noMargin">
-      <input class="" placeholder="Ingresa la observacion" />
+      <input class="observacion" data-tipo="12" placeholder="Ingresa la observacion" />
     </div>
   </article>
   <!-- End Sexualidad -->
@@ -1449,6 +1455,6 @@
   <div class="main-distribute">
     <button class="waves-effect waves-ligth btn danger">Cancelar</button>
     <button class="waves-effect waves-ligth btn primary" ng-click="handleBackPaper1()">Atras</button>
-    <button class="waves-effect waves-ligth btn primary">Guardar Consulta</button>
+    <button class="waves-effect waves-ligth btn primary" ng-click="saveForm()">Guardar Consulta</button>
   </div>
 </section>

@@ -148,35 +148,35 @@
         <p class="s-100 u-noMargin bold-input">Acompañante</p>
         <ul class="Informacion-consulta-companion--list">
           <li>
-            <input type="radio" id="solo" name="acompaniente" />
+            <input type="radio" id="solo" name="acompaniente" value="1" />
             <label for="solo">solo</label>
           </li>
           <li>
-            <input type="radio" id="madre" name="acompaniente" />
+            <input type="radio" id="madre" name="acompaniente" value="2" />
             <label for="madre">madre</label>
           </li>
           <li>
-            <input type="radio" id="padre" name="acompaniente" />
+            <input type="radio" id="padre" name="acompaniente" value="3" />
             <label for="padre">padre</label>
           </li>
           <li>
-            <input type="radio" id="ambos" name="acompaniente" />
+            <input type="radio" id="ambos" name="acompaniente" value="4" />
             <label for="ambos">ambos</label>
           </li>
           <li>
-            <input type="radio" id="pareja" name="acompaniente" />
+            <input type="radio" id="pareja" name="acompaniente" value="5" />
             <label for="pareja">pareja</label>
           </li>
           <li>
-            <input type="radio" id="amigo" name="acompaniente" />
+            <input type="radio" id="amigo" name="acompaniente" value="6" />
             <label for="amigo">amigo/a</label>
           </li>
           <li>
-            <input type="radio" id="pariente" name="acompaniente" />
+            <input type="radio" id="pariente" name="acompaniente" value="7" />
             <label for="pariente">pariente</label>
           </li>
           <li>
-            <input type="radio" id="otro" name="acompaniente" />
+            <input type="radio" id="otro" name="acompaniente" value="8" />
             <label for="otro">otro</label>
           </li>
         </ul>
@@ -184,15 +184,15 @@
       <div class="Informacion-consulta-civilStatus">
         <p class="s-100 u-noMargin bold-input">ESTADO CIVIL</p>
         <p class="u-noMargin">
-          <input type="radio" id="cilvilSoltero" name="estadocivil" />
+          <input type="radio" id="cilvilSoltero" name="estadocivil" value="1" />
           <label for="cilvilSoltero">soltero</label>
         </p>
         <p class="u-noMargin">
-          <input type="radio" id="civilUnion" name="estadocivil" />
+          <input type="radio" id="civilUnion" name="estadocivil" value="2" />
           <label for="civilUnion">uniòn estado</label>
         </p>
         <p class="u-noMargin">
-          <input type="radio" id="civilSeparados" name="estadocivil" />
+          <input type="radio" id="civilSeparados" name="estadocivil" value="3" />
           <label for="civilSeparados">separados</label>
         </p>
       </div>
@@ -279,7 +279,7 @@
   <article class="Enfermedad-actual">
     <p class="Motivo-consulta--title">2. ENFERMEDAD ACTUAL</p>
     <div class="input-field">
-      <textarea id="enfermedad-actual" class="materialize-textarea" ng-model="data.planTratamiento"
+      <textarea id="enfermedad-actual" class="materialize-textarea" ng-model="data.enfermedadActual"
         placeholder="Ingresea la enfermedad actual"></textarea>
     </div>
   </article>
@@ -307,7 +307,7 @@
     </article>
     <p class="bold-input">Obeservaciones</p>
     <div class="input-field">
-      <textarea id="enfermedad-actual" class="materialize-textarea" ng-model="data.planTratamiento"
+      <textarea id="ant_personales" class="materialize-textarea observacion" data-tipo="3"
         placeholder="Ingresea una obeservaciones" style="padding:0"></textarea>
     </div>
   </article>
@@ -315,7 +315,7 @@
 
   <!-- Antecedentes Familiares -->
   <article class="Antecedente-personales">
-    <p class="Motivo-consulta--title">3. ANTECEDENTES FAMILIARES
+    <p class="Motivo-consulta--title">4. ANTECEDENTES FAMILIARES
       <a ng-click="refreshCheck('.Antecedente-familiares--grid')" class="u-pointer">
         <i class="material-icons">cached</i>
       </a>
@@ -336,7 +336,7 @@
     </article>
     <p class="bold-input">Obeservaciones</p>
     <div class="input-field">
-      <textarea id="ant-fami-observacion" class="materialize-textarea" ng-model="data.antFamiObservacion"
+      <textarea id="ant-fami-observacion" class="materialize-textarea observacion" data-tipo="4"
         placeholder="Ingresea una obeservaciones" style="padding:0"></textarea>
     </div>
   </article>
@@ -453,7 +453,7 @@
       <article class="Ocupacion-instruccion">
         <p class="bold-input u-noMargin">OCUPACIÒN</p>
         <div class="input-field u-noMargin">
-          <input type="text" placeholder="Ingresa la ocupacion" />
+          <input type="text" placeholder="Ingresa la ocupacion" ng-model="data.ocupacion" />
         </div>
       </article>
       <!-- End OCUPACION -->
@@ -525,7 +525,7 @@
         <p class="FamilarObservacion-title">Observaciones</p>
         <div class="input-field FamilarObservacion-field">
           <textarea id="observacion-familiar" placeholder="Ingrese las observaciones"
-            class="materialize-textarea FamilarObservacion-text"></textarea>
+            class="materialize-textarea FamilarObservacion-text observacion" data-tipo="5"></textarea>
         </div>
       </article>
     </section>
@@ -599,7 +599,8 @@
       <article class="Cuotas">
         <p class="bold-input">NÙMEROS DE CUARTOS</p>
         <div class="input-field">
-          <input type="text" maxlength="2" placeholder="Ingresa cuantos cuartos hay en casa">
+          <input type="text" maxlength="2" placeholder="Ingresa cuantos cuartos hay en casa"
+            ng-model="data.numerosCuartos" />
         </div>
       </article>
       <!-- End Numero de Cuatos -->
@@ -608,7 +609,7 @@
       <article class="ObservacionesVivienda">
         <p class="ObservacionesVivienda bold-input">Observaciones</p>
         <div class="input-field">
-          <textarea class="materialize-textarea u-noMargin" placeholder="Ingresa un observacion"
+          <textarea class="materialize-textarea u-noMargin observacion" data-tipo="4" placeholder="Ingresa un observacion"
             style="min-height: 10em;"></textarea>
         </div>
       </article>

@@ -94,7 +94,6 @@ angular.module('Hospital')
 
       $http.get(`src/doctor/form28C/service/filterNombreCI10.php?nombre=${nombreCie}`)
       .then(response => {
-        console.log(response)
         input.val(response.data.hgc_desc_c10)
         $(`#cie-${index}`).val(response.data.hgc_codi_c10)
       })
@@ -115,7 +114,6 @@ angular.module('Hospital')
 
       $http.get(`src/doctor/form28C/service/filterNombreCI10.php?nombre=${nombreCie}`)
       .then(response => {
-        console.log(response)
         input.val(response.data.hgc_desc_c10)
         $(`#cie-company-${index}`).val(response.data.hgc_codi_c10)
       })
@@ -136,7 +134,6 @@ angular.module('Hospital')
 
       $http.get(`src/doctor/form28C/service/filterCI10.php?codigo=${nombreCie}&len=${nombreCie.length}`)
       .then(response => {
-        console.log(response)
         input.val(response.data.hgc_codi_c10)
         $(`#input-${index}`).val(response.data.hgc_desc_c10)
       })
@@ -146,7 +143,6 @@ angular.module('Hospital')
   function motivoConsultaCompanyCode (e) {
     if (e.keyCode === 13) {
       let id = e.target.id
-      console.log(id)
       let index = id.split('-')[2]
       let input = $(`#${id}`)
       let nombreCie = $(`#${id}`).val().trim()
@@ -158,7 +154,6 @@ angular.module('Hospital')
 
       $http.get(`src/doctor/form28C/service/filterCI10.php?codigo=${nombreCie}&len=${nombreCie.length}`)
       .then(response => {
-        console.log(response)
         input.val(response.data.hgc_codi_c10)
         $(`#input-company-${index}`).val(response.data.hgc_desc_c10)
       })
@@ -168,7 +163,6 @@ angular.module('Hospital')
   function handleDianostico (e) {
     if (e.keyCode === 13) {
       let id = e.target.id
-      console.log(id)
       let index = id.split('-')[2]
       let input = $(`#${id}`)
       let nombreCie = $(`#${id}`).val().trim()
@@ -180,7 +174,6 @@ angular.module('Hospital')
 
       $http.get(`src/doctor/form28C/service/filterNombreCI10.php?nombre=${nombreCie}`)
       .then(response => {
-        console.log(response)
         input.val(response.data.hgc_desc_c10)
         $(`#diagnostico-cie-${index}`).val(response.data.hgc_codi_c10)
       })
@@ -201,7 +194,6 @@ angular.module('Hospital')
 
       $http.get(`src/doctor/form28C/service/filterCI10.php?codigo=${nombreCie}&len=${nombreCie.length}`)
       .then(response => {
-        console.log(response)
         input.val(response.data.hgc_codi_c10)
         $(`#diagnostico-input-${index}`).val(response.data.hgc_desc_c10)
       })
