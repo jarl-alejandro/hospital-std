@@ -1392,42 +1392,41 @@
   <!-- END EXAMEN FISICO -->
 
   <!-- DIAGNOSTICOS - CIE10 -->
-  <section ng-controller="cie10FilterFormController">
-    <article class="s-100 l-95 cie-container">
-      <table class="bordered striped highlight centered responsive-table cie-table">
-        <thead>
-          <tr>
-            <th width="55%">10 DIAGNÓSTICOS / <span>CIE</span></th>
-            <th width="25%">CIE</th>
-          </tr>
-        </thead>
-        <tbody id="cie-table">
-          <tr>
-            <td id="cie-nombre1" class="input-field">
-              <input type="text" placeholder="Ingresa el nombre CIE 10"
-                class="u-noMargin filter-cie-nombre10" id="column-nombre-1" data-index="1" />
-            </td>
-            <td class="input-field">
-              <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
-              class="u-noMargin filter-cie10" id="column1" data-index="1" />
-            </td>
-          </tr>
-          <tr>
-            <td id="cie-nombre2" class="input-field">
-              <input type="text" placeholder="Ingresa el nombre CIE 10"
-                class="u-noMargin filter-cie-nombre10" id="column-nombre-2" data-index="2" />
-            </td>
-            <td class="input-field">
-              <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
-              class="u-noMargin filter-cie10" id="column2" data-index="2" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <button class="waves-effect waves-light btn primary" ng-click="handleNewCIE10()">
-        <i class="material-icons">add</i>
-      </button>
+  <!-- <section class="Motivo-consulta" ng-controller="motivoConsultaCtrl056"> -->
+  <section ng-controller="motivoConsultaCtrl056">
+    <article class="DiagnosticoCIE10 l-90">
+      <p class="Motivo-consulta--title">
+        <a>15. DIAGNOSTICO - CIE:</a>
+        <a class="u-pointer motivo-add" ng-click="handleAddDiagnostico()">
+          <i class="material-icons">add</i>
+        </a>
+      </p>
+      <ul class="Motivo-consulta--self-list" id="diagnostico-list">
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-1"
+          class="Diagnostico-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-1"
+            class="cie-input-motivo Diagnostico-code" maxlength="4" />
+          </p>
+        </li>
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-2"
+          class="Diagnostico-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-2"
+            class="cie-input-motivo Diagnostico-code" maxlength="4" />
+          </p>
+        </li>
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-3"
+          class="Diagnostico-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-3"
+            class="cie-input-motivo Diagnostico-code" maxlength="4" />
+          </p>
+        </li>
+      </ul>
     </article>
 
     <article class="s-100 l-90 form-select">

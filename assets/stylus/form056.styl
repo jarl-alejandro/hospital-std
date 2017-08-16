@@ -149,9 +149,13 @@ color_plomo = #585757
         &:nth-child(2)
           margin-right 3px
 .Motivo-consulta
-  display grid
-  grid-template-columns repeat(2, 1fr)
-  grid-gap 20px
+  display flex
+  justify-content space-between
+  &--self,
+  &--company
+    width 49%
+    input
+      margin 0 !important
   &--title
     background hsl(0, 0%, 20%)
     padding 2px 10px
@@ -163,9 +167,6 @@ color_plomo = #585757
       display flex
       color white
       margin 0
-  &--self-list
-    input
-      margin 0 !important
   &--self-item
     display grid
     grid-template-columns 80% 20%
@@ -592,3 +593,11 @@ color_plomo = #585757
     width 46% !important
 .consulta-cie--code
   text-align center
+.cie-input-motivo
+  position relative
+  top -.4em
+.DiagnosticoCIE10
+  input
+    margin 0 !important
+  p > input
+    border none !important

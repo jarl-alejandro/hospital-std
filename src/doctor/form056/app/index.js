@@ -3,8 +3,6 @@
 angular.module('Hospital')
 .controller('formCtrl056', function ($scope, $http, $stateParams) {
   const fecha = new Date()
-  let indexMotivo = 3
-  let indexMotivoCompany = 3
 
   $scope.paciente = {}
   $scope.empresa = {}
@@ -250,26 +248,6 @@ angular.module('Hospital')
   .then(response => {
     if (response.data.cont === 1) $scope.empresa = response.data.empresa
   })
-
-  $scope.handleAddMotivoSelf = () => {
-    indexMotivo++
-    let template = `
-      <li class="input-field Motivo-consulta--self-item">
-        <input type="text" placeholder="Ingrese el motivo de consulta" id="input-${indexMotivo}" />
-        <p class="consulta-cie--code" id="cie-${indexMotivo}"></p>
-      </li>`
-    $('#motivo-list').append(template)
-  }
-
-  $scope.handleAddMotivoCompany = () => {
-    indexMotivoCompany++
-    let template = `
-      <li class="input-field Motivo-consulta--self-item">
-        <input type="text" placeholder="Ingrese el motivo de consulta" id="input-${indexMotivoCompany}" />
-        <p class="consulta-cie--code" id="cie-${indexMotivoCompany}"></p>
-      </li>`
-    $('#motivo-list-company').append(template)
-  }
 
   $scope.handleNextPaper = () => {
     $('.Paper1').slideUp()
