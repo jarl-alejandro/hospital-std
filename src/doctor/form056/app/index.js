@@ -339,7 +339,7 @@ angular.module('Hospital')
     const check = document.querySelector('#TrabajoActividad-trabaja').checked
     $scope.flagTrabaja = !check
     if (check === false) {
-      $scope.refreshCheck('.TrabajoPaper')
+      $scope.refreshCheck('.refresWorkPaper')
       const grid = [...document.querySelectorAll('.TrabajoPaper input[type="text"]')]
       grid.map(item => item.value = '')
     }

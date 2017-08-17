@@ -87,5 +87,6 @@ foreach ($anexos as $row) {
 }
 
 if ($form) {
+  $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form' WHERE hgc_id_turno='$turno'");
   echo "201";
 }

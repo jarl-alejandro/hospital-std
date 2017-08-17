@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('Hospital')
-.controller('form06SaveCtrl', function ($scope, $http, $stateParams) {
+.controller('form06SaveCtrl', function ($scope, $http, $stateParams, $location) {
   $scope.data = {
     paciente: $stateParams.id,
     turno: $stateParams.turno,
@@ -67,6 +67,7 @@ angular.module('Hospital')
       console.log(response)
       if (response.data === '201') {
         Materialize.toast('Seha guardado la consulta con exito', 4000)
+        $location.path('/doctor')
       }
     })
   }
