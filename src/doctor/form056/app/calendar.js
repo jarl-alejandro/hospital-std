@@ -195,10 +195,10 @@ angular.module('Hospital')
     const fechaFormat = `${fechaHoy.getFullYear()}-${mesHoy}-${diaHoy}`
     const fecha = `${year}-${mes}-${dia}`
 
-    // if (fecha < fechaFormat) {
-    //   Materialize.toast('No puede ingresar turno para esta fecha', 4000)
-    //   return false
-    // }
+    if (fecha < fechaFormat) {
+      Materialize.toast('No puede ingresar turno para esta fecha', 4000)
+      return false
+    }
     $(document.querySelectorAll('.mes')[$scope.month - 1]).slideUp()
     $('.days-moth').slideUp()
     $scope.month = 0
