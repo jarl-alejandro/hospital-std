@@ -133,19 +133,20 @@
           <li class="DisercionEstudia-item">si</li>
           <li class="DisercionEstudia-item">
             <input name="EducacionNoFormalEstudia" type="radio"
-              id="EducacionNoFormalEstudia-no" value="1" />
+              id="EducacionNoFormalEstudia-no" value="1" ng-click="handleDisEducaNoFormal()" />
             <label for="EducacionNoFormalEstudia-no"></label>
           </li>
           <li class="EducacionNoFormalEstudia-item">
             <input name="EducacionNoFormalEstudia" type="radio"
-              id="EducacionNoFormalEstudia-si" value="2" />
+              id="EducacionNoFormalEstudia-si" value="2" ng-click="handleDisEducaNoFormal()" />
             <label for="EducacionNoFormalEstudia-si"></label>
           </li>
         </ul>
       </div>
-      <p class="u-noMargin">Causa</p>
+      <p class="u-noMargin">¿Cual?</p>
       <div class="input-field u-noMargin">
-        <input type="text" placeholder="Ingresa una causa" class="observacion" data-tipo="7.5" />
+        <input type="text" placeholder="Ingresa una causa" class="observacion"
+          data-tipo="7.5" id="cualEducFormal" ng-disabled="disabledEducNoForm" />
       </div>
     </article>
 
@@ -577,12 +578,12 @@
         <li class="OtroToxico-item">si</li>
         <li class="OtroToxico-item">
           <input name="OtroToxico" type="radio" id="OtroToxico-no"
-            class="no-check-input" value="1" />
-          <label for="OtroToxico-no" class="no-check"></label>
+            value="1" ng-click="handleOtherToxico()" />
+          <label for="OtroToxico-no"></label>
         </li>
         <li class="OtroToxico-item">
           <input name="OtroToxico" type="radio" id="OtroToxico-si"
-            class="no-check-input" value="2" />
+            class="no-check-input" value="2" ng-click="handleOtherToxico()" />
           <label for="OtroToxico-si" class="no-check"></label>
         </li>
       </ul>
@@ -599,12 +600,12 @@
         <ul class="ConduceVehiculo-list u-noMargin center-align">
           <li class="ConduceVehiculo-item">
             <input name="ConduceVehiculo" type="radio" id="ConduceVehiculo-no"
-            class="no-check-input" value="1" />
+            class="no-check-input" value="1" ng-click="handleDriveCar()" />
             <label for="ConduceVehiculo-no" class="no-check">no</label>
           </li>
           <li class="ConduceVehiculo-item">
             <input name="ConduceVehiculo" type="radio" id="ConduceVehiculo-si"
-            class="no-check-input" value="2" />
+            class="no-check-input" value="2" ng-click="handleDriveCar()" />
             <label for="ConduceVehiculo-si" class="no-check">si</label>
           </li>
         </ul>

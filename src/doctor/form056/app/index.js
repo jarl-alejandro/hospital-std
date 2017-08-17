@@ -386,4 +386,21 @@ angular.module('Hospital')
     if ($scope.deserExclDis) $('#causaDesercionExcl').val('')
   }
 
+  $scope.disabledEducNoForm = false
+  $scope.handleDisEducaNoFormal = () => {
+    $scope.disabledEducNoForm = document.querySelector('#EducacionNoFormalEstudia-no').checked
+    if ($scope.disabledEducNoForm) $('#cualEducFormal').val('')
+  }
+
+  $scope.otherToxico = false
+  $scope.handleOtherToxico = () => {
+    $scope.otherToxico = document.querySelector('#OtroToxico-no').checked
+    if ($scope.otherToxico) $('#frecunciaTypo').val('')
+  }
+
+  $scope.conduceVehiculoDisab
+  $scope.handleDriveCar = () => {
+    $scope.conduceVehiculoDisab = document.querySelector('#ConduceVehiculo-no').checked
+  }
+
 })
