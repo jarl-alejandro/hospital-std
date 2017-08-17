@@ -22,10 +22,12 @@ $numerosCuartos = $obj->numerosCuartos;
 $turno = $obj->turno;
 $planTratamiento = $obj->planTratamiento;
 $ocupacion = $obj->ocupacion;
+$fechaProxima = $obj->fechaProxima;
 
 $form = $pdo->prepare("INSERT INTO hgc_form056 (hgc_codi_f056, hgc_paci_f056,
   hgc_ncon_f056, hgc_fech_f056, hgc_acom_f056, hgc_civi_f056, hgc_enfe_f056,
-  hgc_ncuar_f056, hgc_turno_f056, hgc_indic_f056, hgc_ocup_f056) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  hgc_ncuar_f056, hgc_turno_f056, hgc_indic_f056, hgc_ocup_f056, hgc_fetpr_f056)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $form->bindParam(1, $codigo);
 $form->bindParam(2, $paciente);
@@ -38,8 +40,22 @@ $form->bindParam(8, $numerosCuartos);
 $form->bindParam(9, $turno);
 $form->bindParam(10, $planTratamiento);
 $form->bindParam(11, $ocupacion);
-
+$form->bindParam(12, $fechaProxima);
 $form->execute();
+
+$estado = 'solicitud';
+$tipoTurno = 'subsecuente';
+$doctorTurno = $obj->doctorTurno;
+
+$new = $pdo->prepare("INSERT INTO hgc_turno (hgc_paci_turno, hgc_doct_turno, hgc_esta_turno,
+  hgc_fech_turno, hgc_tipo_turno) VALUES (?, ?, ?, ?, ?)");
+
+$new->bindParam(1, $paciente);
+$new->bindParam(2, $doctorTurno);
+$new->bindParam(3, $estado);
+$new->bindParam(4, $fechaProxima);
+$new->bindParam(5, $tipoTurno);
+$new->execute();
 
 $motivo = $obj->motivo;
 

@@ -11,6 +11,7 @@ angular.module('Hospital')
   $http.get(`src/doctor/form056/service/doctor.php?cedula=${cedula}`)
   .then(response => {
     doctor = response.data.hgc_codi_profe
+    localStorage.setItem('doctor', doctor)
   })
 
   const hoy = new Date()
