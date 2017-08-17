@@ -8,7 +8,7 @@ $json = file_get_contents('php://input');
 $obj = json_decode($json);
 
 $codigo = setCode($pdo, 'F056-', 9, 'hgc_form056', 'hgc_cont_form056');
-// updateCode($pdo, 'hgc_cont_horario');
+updateCode($pdo, 'hgc_cont_form056');
 
 $paciente = $obj->paciente;
 $ncon_qs = $pdo->query("SELECT hgc_ncon_f056 FROM hgc_form056 WHERE hgc_paci_f056='$paciente'");
@@ -69,4 +69,23 @@ foreach ($observaciones as $row) {
   $obser_qs->bindParam(3, $tipo);
 
   $obser_qs->execute();
+}
+
+$anexos = $obj->anexos;
+
+$anexo_qs = $pdo->prepare("INSERT INTO hgc_anexo_f056 (hgc_form_df056, hgc_valo_df056, hgc_tipo_df056) VALUES (?, ?, ?)");
+
+foreach ($anexos as $row) {
+  $valor = $row->valor;
+  $tipo = $row->tipo;
+
+  $anexo_qs->bindParam(1, $codigo);
+  $anexo_qs->bindParam(2, $valor);
+  $anexo_qs->bindParam(3, $tipo);
+
+  $anexo_qs->execute();
+}
+
+if ($form) {
+  echo "201";
 }

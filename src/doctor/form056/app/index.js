@@ -141,8 +141,8 @@ angular.module('Hospital')
       {id:'antFam10-3', name:'no', class:'no-check', val: 3}
     ] },
     { id: 'antFam11', name: 'OTROS', options: [
-      {id:'antFam10-1', name:'si', class:'si-check', val: 1},
-      {id:'antFam10-3', name:'no', class:'no-check', val: 3}]
+      {id:'antFam11-1', name:'si', class:'si-check', val: 1},
+      {id:'antFam11-2', name:'no', class:'no-check', val: 2}]
     },
   ]
 
@@ -251,7 +251,6 @@ angular.module('Hospital')
 
   $http.get(`src/doctor/form056/service/signos.php?id=${$stateParams.turno}`)
   .then(response => {
-    console.log(response.data)
     $scope.signos = response.data
     const edadPaciente = duration(new Date($scope.paciente.hgc_fecn_pacie), new Date($scope.signos.hgc_fecha_sigvit))
 

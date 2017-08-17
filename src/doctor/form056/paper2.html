@@ -15,12 +15,12 @@
         <li class="EducacionEstudia-item">no</li>
 
         <li class="EducacionEstudia-item">
-          <input name="EducacionEstudia" type="radio" id="EducacionEstudia-si" />
+          <input name="EducacionEstudia" type="radio" id="EducacionEstudia-si" value="1" />
           <label for="EducacionEstudia-si"></label>
         </li>
         <li class="EducacionEstudia-item">
           <input name="EducacionEstudia" type="radio" id="EducacionEstudia-no"
-            class="no-check-input" />
+            class="no-check-input" value="2" />
           <label for="EducacionEstudia-no" class="no-check"></label>
         </li>
       </ul>
@@ -30,20 +30,20 @@
       <p class="bold-input u-noMargin center-align">NIVEL</p>
       <p class="u-noMargin">
         <input name="nivelEducacion" type="radio" id="noEscolariz" class="no-check-input"
-          ng-click="noEscolariz()" />
+          ng-click="noEscolariz()" value="1" />
         <label for="noEscolariz" class="no-check">No escolariz</label>
       </p>
 
       <p class="u-noMargin">
-        <input name="nivelEducacion" type="radio" id="primNivel" ng-click="noEscolariz()" />
+        <input name="nivelEducacion" type="radio" id="primNivel" ng-click="noEscolariz()" value="2" />
         <label for="primNivel">Prim.</label>
       </p>
       <p class="u-noMargin">
-        <input name="nivelEducacion" type="radio" id="secNivel" ng-click="noEscolariz()" />
+        <input name="nivelEducacion" type="radio" id="secNivel" ng-click="noEscolariz()" value="3" />
         <label for="secNivel">Sec.</label>
       </p>
       <p class="u-noMargin">
-        <input name="nivelEducacion" type="radio" id="univNivel" ng-click="noEscolariz()" />
+        <input name="nivelEducacion" type="radio" id="univNivel" ng-click="noEscolariz()" value="4" />
         <label for="univNivel">Univ.</label>
       </p>
 
@@ -73,12 +73,12 @@
 
         <li class="EducacionEstudia-item">
           <input name="problemasEscuela" type="radio" id="problemasEscuela-si"
-            ng-disabled="flagEducacion" />
+            ng-disabled="flagEducacion" value="1" />
           <label for="problemasEscuela-si"></label>
         </li>
         <li class="problemasEscuela-item">
           <input name="problemasEscuela" type="radio" id="problemasEscuela-no"
-            class="no-check-input" ng-disabled="flagEducacion" />
+            class="no-check-input" ng-disabled="flagEducacion" value="2" />
           <label for="problemasEscuela-no" class="no-check"></label>
         </li>
       </ul>
@@ -89,7 +89,7 @@
         AÑOS REPETIDOS
         <span class="problemasEscuela-item main-center">
           <input type="checkbox" id="repeatYearCausa-no" class="no-check-input"
-            ng-disabled="flagEducacion" />
+            ng-disabled="flagEducacion" value="1" name="repeatYearCausa" />
           <label for="repeatYearCausa-no" class="no-check"></label>
         </span>
       </p>
@@ -108,12 +108,12 @@
           <li class="DisercionEstudia-item">si</li>
           <li class="DisercionEstudia-item">
             <input name="DisercionEstudia" type="radio" id="DisercionEstudia-no"
-              ng-disabled="flagEducacion" />
+              ng-disabled="flagEducacion" value="1" />
             <label for="DisercionEstudia-no"></label>
           </li>
           <li class="DisercionEstudia-item">
             <input name="DisercionEstudia" type="radio" id="DisercionEstudia-si"
-              class="no-check-input" ng-disabled="flagEducacion" />
+              class="no-check-input" ng-disabled="flagEducacion" value="2" />
             <label for="DisercionEstudia-si" class="no-check"></label>
           </li>
         </ul>
@@ -132,12 +132,12 @@
           <li class="DisercionEstudia-item">si</li>
           <li class="DisercionEstudia-item">
             <input name="EducacionNoFormalEstudia" type="radio"
-              id="EducacionNoFormalEstudia-no" />
+              id="EducacionNoFormalEstudia-no" value="1" />
             <label for="EducacionNoFormalEstudia-no"></label>
           </li>
           <li class="EducacionNoFormalEstudia-item">
             <input name="EducacionNoFormalEstudia" type="radio"
-              id="EducacionNoFormalEstudia-si" />
+              id="EducacionNoFormalEstudia-si" value="2" />
             <label for="EducacionNoFormalEstudia-si"></label>
           </li>
         </ul>
@@ -170,19 +170,23 @@
       </div>
       <ul class="TrabajoActividad-list">
         <li class="TrabajoActividad-item">
-          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-trabaja" ng-click="trabajaCheck()" />
+          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-trabaja"
+            ng-click="trabajaCheck()" value="1" />
           <label for="TrabajoActividad-trabaja">trabaja</label>
         </li>
         <li class="TrabajoActividad-item">
-          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-1vez" ng-click="trabajaCheck()" />
+          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-1vez"
+            ng-click="trabajaCheck()" value="2" />
           <label for="TrabajoActividad-1vez">busca 1era. vez</label>
         </li>
         <li class="TrabajoActividad-item">
-          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-no-busco" ng-click="trabajaCheck()" />
+          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-no-busco"
+            ng-click="trabajaCheck()" value="3" />
           <label for="TrabajoActividad-no-busco">no y no busco</label>
         </li>
         <li class="TrabajoActividad-item">
-          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-desocupado" ng-click="trabajaCheck()" />
+          <input name="TrabajoActividad" type="radio" id="TrabajoActividad-desocupado"
+            ng-click="trabajaCheck()" value="4" />
           <label for="TrabajoActividad-desocupado">desocupado</label>
         </li>
       </ul>
@@ -210,29 +214,33 @@
       <p class="bold-input u-noMargin center-align">HORAS DE TRABAJO</p>
       <ul class="HorasTrabajo-list">
         <li class="HorasTrabajo-item">
-          <input name="HorasTrabajo" type="radio" id="HorasTrabajo-morning" ng-disabled="flagTrabaja" />
+          <input name="HorasTrabajo" type="radio" id="HorasTrabajo-morning"
+            ng-disabled="flagTrabaja" value="1" />
           <label for="HorasTrabajo-morning">mañana</label>
         </li>
         <li class="HorasTrabajo-item">
           <input name="HorasTrabajo" type="radio" id="HorasTrabajo-allDay"
-            class="no-check-input" ng-disabled="flagTrabaja" />
+            class="no-check-input" ng-disabled="flagTrabaja" value="2" />
           <label for="HorasTrabajo-allDay" class="no-check">todo el dia</label>
         </li>
         <li class="HorasTrabajo-item">
-          <input name="HorasTrabajo" type="radio" id="HorasTrabajo-late" ng-disabled="flagTrabaja" />
+          <input name="HorasTrabajo" type="radio" id="HorasTrabajo-late"
+            ng-disabled="flagTrabaja" value="3" />
           <label for="HorasTrabajo-late">tarde</label>
         </li>
         <li class="HorasTrabajo-item">
           <input name="HorasTrabajo" type="radio" id="HorasTrabajo-noche"
-            class="no-check-input" ng-disabled="flagTrabaja" />
+            class="no-check-input" ng-disabled="flagTrabaja" value="4" />
           <label for="HorasTrabajo-noche" class="no-check">Noche</label>
         </li>
         <li class="HorasTrabajo-item">
-          <input name="HorasTrabajo" type="radio" id="HorasTrabajo-fin-semana" ng-disabled="flagTrabaja">
+          <input name="HorasTrabajo" type="radio" id="HorasTrabajo-fin-semana"
+            ng-disabled="flagTrabaja" value="5" />
           <label for="HorasTrabajo-fin-semana">fin de semana</label>
         </li>
         <li class="HorasTrabajo-item">
-          <input name="HorasTrabajo" type="radio" id="HorasTrabajo-nc" ng-disabled="flagTrabaja" />
+          <input name="HorasTrabajo" type="radio" id="HorasTrabajo-nc"
+            ng-disabled="flagTrabaja" value="6" />
           <label for="HorasTrabajo-nc">n/c</label>
         </li>
       </ul>
@@ -241,24 +249,29 @@
     <article class="u-border-right RazonTrabajo">
       <p class="bold-input center-align u-noMargin">RAZON DE TRABAJO</p>
       <p class="u-noMargin">
-        <input name="RazonTrabajo" type="radio" id="RazonTrabajo-economia" ng-disabled="flagTrabaja" />
+        <input name="RazonTrabajo" type="radio" id="RazonTrabajo-economia"
+          ng-disabled="flagTrabaja" value="1" />
         <label for="RazonTrabajo-economia">economia</label>
       </p>
       <p class="u-noMargin">
-        <input name="RazonTrabajo" type="radio" id="RazonTrabajo-autonomia" ng-disabled="flagTrabaja" />
+        <input name="RazonTrabajo" type="radio" id="RazonTrabajo-autonomia"
+          ng-disabled="flagTrabaja" value="2" />
         <label for="RazonTrabajo-autonomia">autonomia</label>
       </p>
       <p class="u-noMargin">
-        <input name="RazonTrabajo" type="radio" id="RazonTrabajo-like" ng-disabled="flagTrabaja" />
+        <input name="RazonTrabajo" type="radio" id="RazonTrabajo-like"
+          ng-disabled="flagTrabaja" value="3" />
         <label for="RazonTrabajo-like">me gusta</label>
       </p>
       <ul class="RazonTrabajo-item--list u-noMargin">
         <li>
-          <input name="RazonTrabajo" type="radio" id="RazonTrabajo-other" ng-disabled="flagTrabaja" />
+          <input name="RazonTrabajo" type="radio" id="RazonTrabajo-other"
+            ng-disabled="flagTrabaja" value="4" />
           <label for="RazonTrabajo-other">otra</label>
         </li>
         <li>
-          <input name="RazonTrabajo" type="radio" id="RazonTrabajo-nc" ng-disabled="flagTrabaja" />
+          <input name="RazonTrabajo" type="radio" id="RazonTrabajo-nc"
+            ng-disabled="flagTrabaja" value="5" />
           <label for="RazonTrabajo-nc">n/c</label>
         </li>
       </ul>
@@ -272,16 +285,18 @@
         <li class="TrabajoLegalizado-item">no</li>
         <li class="TrabajoLegalizado-item">n/c</li>
         <li class="TrabajoLegalizado-item">
-          <input name="TrabajoLegalizado" type="radio" id="TrabajoLegalizado-si" ng-disabled="flagTrabaja" />
+          <input name="TrabajoLegalizado" type="radio" id="TrabajoLegalizado-si"
+            ng-disabled="flagTrabaja" value="1" />
           <label for="TrabajoLegalizado-si"></label>
         </li>
         <li class="TrabajoLegalizado-item">
           <input name="TrabajoLegalizado" type="radio" id="TrabajoLegalizado-no"
-            class="no-check-input" ng-disabled="flagTrabaja" />
+            class="no-check-input" ng-disabled="flagTrabaja" value="2" />
           <label for="TrabajoLegalizado-no" class="no-check"></label>
         </li>
         <li class="TrabajoLegalizado-item">
-          <input name="TrabajoLegalizado" type="radio" id="TrabajoLegalizado-nc" ng-disabled="flagTrabaja" />
+          <input name="TrabajoLegalizado" type="radio" id="TrabajoLegalizado-nc"
+            ng-disabled="flagTrabaja" value="3" />
           <label for="TrabajoLegalizado-nc"></label>
         </li>
       </ul>
@@ -294,16 +309,18 @@
         <li class="TrabajoInsalubre-item">si</li>
         <li class="TrabajoInsalubre-item">n/c</li>
         <li class="TrabajoInsalubre-item">
-          <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-no" ng-disabled="flagTrabaja" />
+          <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-no"
+            ng-disabled="flagTrabaja" value="1" />
           <label for="TrabajoInsalubre-no"></label>
         </li>
         <li class="TrabajoInsalubre-item">
           <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-si"
-            class="no-check-input" ng-disabled="flagTrabaja" />
+            class="no-check-input" ng-disabled="flagTrabaja" value="2" />
           <label for="TrabajoInsalubre-si" class="no-check"></label>
         </li>
         <li class="TrabajoInsalubre-item">
-          <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-nc" ng-disabled="flagTrabaja" />
+          <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-nc"
+            ng-disabled="flagTrabaja" value="3" />
           <label for="TrabajoInsalubre-nc"></label>
         </li>
       </ul>
@@ -338,21 +355,21 @@
       </div>
       <ul class="VidaSocialAceptacion-list">
         <li class="VidaSocialAceptacion-item">
-          <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-aceptado" />
+          <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-aceptado" value="1" />
           <label for="VidaSocialAceptacion-aceptado">aceptado</label>
         </li>
         <li class="VidaSocialAceptacion-item">
           <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-ignorado"
-            class="no-check-input" />
+            class="no-check-input" value="2" />
           <label for="VidaSocialAceptacion-ignorado" class="no-check">ignorado</label>
         </li>
         <li class="VidaSocialAceptacion-item">
           <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-rechazado"
-            class="no-check-input" />
+            class="no-check-input" value="3" />
           <label for="VidaSocialAceptacion-rechazado" class="no-check">rechazado</label>
         </li>
         <li class="VidaSocialAceptacion-item">
-          <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-nosabe" />
+          <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-nosabe" value="4" />
           <label for="VidaSocialAceptacion-nosabe">no sabe</label>
         </li>
       </ul>
@@ -365,11 +382,11 @@
           <li class="VidaSocial-novio--item">no</li>
 
           <li class="VidaSocial-novio--item">
-            <input name="vidaSocialNovio" type="radio" id="vidaSocialNovio-si" />
+            <input name="vidaSocialNovio" type="radio" id="vidaSocialNovio-si" value="1" />
             <label for="vidaSocialNovio-si"></label>
           </li>
           <li class="VidaSocial-novio--item">
-            <input name="vidaSocialNovio" type="radio" id="vidaSocialNovio-no" />
+            <input name="vidaSocialNovio" type="radio" id="vidaSocialNovio-no" value="2" />
             <label for="vidaSocialNovio-no"></label>
           </li>
         </ul>
@@ -381,11 +398,11 @@
           <li class="VidaSocial-novio--item">no</li>
 
           <li class="VidaSocial-novio--item">
-            <input name="vidaSocialAmigo" type="radio" id="vidaSocialAmigo-si" />
+            <input name="vidaSocialAmigo" type="radio" id="vidaSocialAmigo-si" value="1" />
             <label for="vidaSocialAmigo-si"></label>
           </li>
           <li class="VidaSocial-novio--item">
-            <input name="vidaSocialAmigo" type="radio" id="vidaSocialAmigo-no" />
+            <input name="vidaSocialAmigo" type="radio" id="vidaSocialAmigo-no" value="2" />
             <label for="vidaSocialAmigo-no"></label>
           </li>
         </ul>
@@ -397,12 +414,12 @@
         <li class="ActividadGruapal-item">si</li>
         <li class="ActividadGruapal-item">no</li>
         <li class="ActividadGruapal-item">
-          <input name="ActividadGruapal" type="radio" id="ActividadGruapal-si" />
+          <input name="ActividadGruapal" type="radio" id="ActividadGruapal-si" value="1" />
           <label for="ActividadGruapal-si"></label>
         </li>
         <li class="ActividadGruapal-item">
           <input name="ActividadGruapal" type="radio" id="ActividadGruapal-no"
-            class="no-check-input" />
+            class="no-check-input" value="2" />
           <label for="ActividadGruapal-no" class="no-check"></label>
         </li>
       </ul>
@@ -427,11 +444,11 @@
       <ul class="OtrasActividades-list center-align">
         <li class="OtrasActividades-item bold-input">OTRAS ACTIVIDADES</li>
         <li class="OtrasActividades-item">
-          <input name="OtrasActividades" type="radio" id="OtrasActividades-si" />
+          <input name="OtrasActividades" type="radio" id="OtrasActividades-si" value="1" />
           <label for="OtrasActividades-si">si</label>
         </li>
         <li class="OtrasActividades-item">
-          <input name="OtrasActividades" type="radio" id="OtrasActividades-no" />
+          <input name="OtrasActividades" type="radio" id="OtrasActividades-no" value="2" />
           <label for="OtrasActividades-no">no</label>
         </li>
         <li class="OtrasActividades-item">¿Cuàles?</li>
@@ -465,12 +482,12 @@
             <li class="Habitos-item">si</li>
             <li class="Habitos-item">no</li>
             <li class="Habitos-item">
-              <input name="Habitos" type="radio" id="Habitos-si"/>
+              <input name="Habitos" type="radio" id="Habitos-si" value="1" />
               <label for="Habitos-si"></label>
             </li>
             <li class="Habitos-item">
               <input name="Habitos" type="radio" id="Habitos-no"
-              class="no-check-input" />
+                class="no-check-input" value="2" />
               <label for="Habitos-no" class="no-check"></label>
             </li>
           </ul>
@@ -489,12 +506,12 @@
         <li class="EducacionEstudia-item">no</li>
 
         <li class="EducacionEstudia-item">
-          <input name="alimentacionAdecuada" type="radio" id="alimentacionAdecuada-si" />
+          <input name="alimentacionAdecuada" type="radio" id="alimentacionAdecuada-si" value="1" />
           <label for="alimentacionAdecuada-si"></label>
         </li>
         <li class="EducacionEstudia-item">
           <input name="alimentacionAdecuada" type="radio" id="alimentacionAdecuada-no"
-            class="no-check-input" />
+            class="no-check-input" value="2" />
           <label for="alimentacionAdecuada-no" class="no-check"></label>
         </li>
       </ul>
@@ -503,7 +520,7 @@
     <article class="u-border-right comidasDia">
       <p class="bold-input EducacionEstudia-title">COMIDAS POR DIA</p>
       <p class="center-align">
-        <input name="comidaDia" type="checkbox" id="comidaDia" />
+        <input name="comidaDia" type="checkbox" id="comidaDia" value="1" />
         <label for="comidaDia"></label>
       </p>
     </article>
@@ -511,7 +528,7 @@
     <article class="u-border-right ComidadDiaFamilia">
       <p class="bold-input EducacionEstudia-title">COMIDAS POR DIA CON FAMILIA</p>
       <p class="center-align">
-        <input name="alimentacion-adecuada" type="checkbox" id="comidaDiaFamilia" />
+        <input name="alimentacion-adecuada" type="checkbox" id="comidaDiaFamilia" value="1" />
         <label for="comidaDiaFamilia"></label>
       </p>
     </article>
@@ -557,12 +574,12 @@
         <li class="OtroToxico-item">si</li>
         <li class="OtroToxico-item">
           <input name="OtroToxico" type="radio" id="OtroToxico-no"
-            class="no-check-input" />
+            class="no-check-input" value="1" />
           <label for="OtroToxico-no" class="no-check"></label>
         </li>
         <li class="OtroToxico-item">
           <input name="OtroToxico" type="radio" id="OtroToxico-si"
-            class="no-check-input" />
+            class="no-check-input" value="2" />
           <label for="OtroToxico-si" class="no-check"></label>
         </li>
       </ul>
@@ -579,12 +596,12 @@
         <ul class="ConduceVehiculo-list u-noMargin center-align">
           <li class="ConduceVehiculo-item">
             <input name="ConduceVehiculo" type="radio" id="ConduceVehiculo-no"
-            class="no-check-input" />
+            class="no-check-input" value="1" />
             <label for="ConduceVehiculo-no" class="no-check">no</label>
           </li>
           <li class="ConduceVehiculo-item">
             <input name="ConduceVehiculo" type="radio" id="ConduceVehiculo-si"
-            class="no-check-input" />
+            class="no-check-input" value="2" />
             <label for="ConduceVehiculo-si" class="no-check">si</label>
           </li>
         </ul>
@@ -630,12 +647,12 @@
       <ul class="FechaUltilMenstruacion-list center-text u-noMargin">
         <li class="FechaUltilMenstruacion-item">
           <input name="FechaUltilMenstruacion" type="radio" id="FechaUltilMenstruacion-no"
-            class="no-check-input" ng-disabled="urologia == false" />
+            class="no-check-input" ng-disabled="urologia == false" value="1" />
           <label for="FechaUltilMenstruacion-no" class="no-check">no</label>
         </li>
         <li class="FechaUltilMenstruacion-item">
           <input name="FechaUltilMenstruacion" type="radio" id="FechaUltilMenstruacion-si"
-            ng-disabled="urologia == false" />
+            ng-disabled="urologia == false" value="2" />
           <label for="FechaUltilMenstruacion-si">si</label>
         </li>
       </ul>
@@ -664,18 +681,18 @@
         <li class="CiclosRegulares-item">n/c</li>
         <li class="CiclosRegulares-item">
           <input name="CiclosRegulares" type="radio" id="CiclosRegulares-si"
-            ng-disabled="urologia == false" />
+            ng-disabled="urologia == false" value="1" />
           <label for="CiclosRegulares-si"></label>
         </li>
 
         <li class="CiclosRegulares-item">
           <input name="CiclosRegulares" type="radio" id="CiclosRegulares-no"
-            class="no-check-input" ng-disabled="urologia == false" />
+            class="no-check-input" ng-disabled="urologia == false" value="2" />
           <label for="CiclosRegulares-no" class="no-check"></label>
         </li>
         <li class="CiclosRegulares-item">
           <input name="CiclosRegulares" type="radio" id="CiclosRegulares-nc"
-            ng-disabled="urologia == false" />
+            ng-disabled="urologia == false" value="3" />
           <label for="CiclosRegulares-nc"></label>
         </li>
 
@@ -689,16 +706,16 @@
         <li class="CiclosRegulares-item">no</li>
         <li class="CiclosRegulares-item">n/c</li>
         <li class="CiclosRegulares-item">
-          <input name="Dismenorrea" type="radio" id="Dismenorrea-si" ng-disabled="urologia == false" />
+          <input name="Dismenorrea" type="radio" id="Dismenorrea-si" ng-disabled="urologia == false" value="1" />
           <label for="Dismenorrea-si"></label>
         </li>
         <li class="CiclosRegulares-item">
           <input name="Dismenorrea" type="radio" id="Dismenorrea-no"
-            class="no-check-input" ng-disabled="urologia == false" />
+            class="no-check-input" ng-disabled="urologia == false" value="2" />
           <label for="Dismenorrea-no" class="no-check"></label>
         </li>
         <li class="CiclosRegulares-item">
-          <input name="Dismenorrea" type="radio" id="Dismenorrea-nc" ng-disabled="urologia == false" />
+          <input name="Dismenorrea" type="radio" id="Dismenorrea-nc" ng-disabled="urologia == false" value="3" />
           <label for="Dismenorrea-nc"></label>
         </li>
       </ul>
@@ -710,12 +727,12 @@
         <li class="flujosPatologia-item">si</li>
         <li class="flujosPatologia-item">no</li>
         <li class="flujosPatologia-item">
-          <input name="flujosPatologia" type="radio" id="flujosPatologia-si" ng-disabled="urologia" />
+          <input name="flujosPatologia" type="radio" id="flujosPatologia-si" ng-disabled="urologia" value="1" />
           <label for="flujosPatologia-si"></label>
         </li>
         <li class="flujosPatologia-item">
           <input name="flujosPatologia" type="radio" id="flujosPatologia-no"
-            class="no-check-input" ng-disabled="urologia" />
+            class="no-check-input" ng-disabled="urologia" value="2" />
           <label for="flujosPatologia-no" class="no-check"></label>
         </li>
       </ul>
@@ -727,12 +744,12 @@
         <ul class="CiclosRegulares-list center-align u-noMargin">
           <li class="CiclosRegulares-item">
             <input name="EnfTranSexual" type="radio" id="EnfTranSexual-no"
-              class="no-check-input" />
+              class="no-check-input" value="1" />
             <label for="EnfTranSexual-no" class="no-check">no</label>
           </li>
 
           <li class="CiclosRegulares-item">
-            <input name="EnfTranSexual" type="radio" id="EnfTranSexual-si" />
+            <input name="EnfTranSexual" type="radio" id="EnfTranSexual-si" value="2" />
             <label for="EnfTranSexual-si">si</label>
           </li>
         </ul>
@@ -746,15 +763,18 @@
     <article class="u-border-right Embarazos">
       <ul class="Embarazos-list">
         <li class="Embarazos-item">
-          <input name="Embarazos" type="radio" id="Embarazos-no" class="no-check-input" ng-disabled="urologia == false" />
+          <input name="Embarazos" type="radio" id="Embarazos-no" class="no-check-input"
+            ng-disabled="urologia == false" value="1" />
           <label for="Embarazos-no" class="no-check">EMBARAZOS</label>
         </li>
         <li class="Embarazos-item">
-          <input name="Embarazos" type="radio" id="hijos-no" class="no-check-input" ng-disabled="urologia == false" />
+          <input name="Embarazos" type="radio" id="hijos-no" class="no-check-input"
+            ng-disabled="urologia == false" value="2" />
           <label for="hijos-no" class="no-check">HIJOS</label>
         </li>
         <li class="Embarazos-item">
-          <input name="Embarazos" type="radio" id="abortos-no" class="no-check-input" ng-disabled="urologia == false" />
+          <input name="Embarazos" type="radio" id="abortos-no" class="no-check-input"
+            ng-disabled="urologia == false" value="3" />
           <label for="abortos-no" class="no-check">ABORTOS</label>
         </li>
       </ul>
@@ -784,12 +804,12 @@
             <li class="Sexualidad-list__item">No</li>
             <li class="Sexualidad-list__item">
               <input class="with-gap" name="necesitaInfo"
-                type="radio" id="necesitaInfo-si" />
+                type="radio" id="necesitaInfo-si" value="1" />
               <label for="necesitaInfo-si"></label>
             </li>
             <li class="Sexualidad-list__item">
               <input class="with-gap" name="necesitaInfo"
-                type="radio" id="necesitaInfo-no" />
+                type="radio" id="necesitaInfo-no" value="2" />
               <label for="necesitaInfo-no"></label>
             </li>
           </ul>
@@ -804,7 +824,7 @@
           <li class="Sexualidad-list__item">No</li>
           <li class="Sexualidad-list__item">
             <input class="with-gap" name="tiposexalidad"
-              type="radio" id="relacionesSexuales-no" ng-click="relacionesSexual()" />
+              type="radio" id="relacionesSexuales-no" ng-click="relacionesSexual()" value="1" />
             <label for="relacionesSexuales-no"></label>
           </li>
         </ul>
@@ -815,17 +835,17 @@
         <li class="Sexualidad-three-item">ambas</li>
         <li class="Sexualidad-three-item">
           <input class="with-gap" name="tiposexalidad"
-            type="radio" id="tiposexalidad-hetero" ng-click="relacionesSexual()" />
+            type="radio" id="tiposexalidad-hetero" ng-click="relacionesSexual()" value="2" />
           <label for="tiposexalidad-hetero"></label>
         </li>
         <li class="Sexualidad-three-item">
           <input class="with-gap" name="tiposexalidad"
-            type="radio" id="tiposexalidad-homo" ng-click="relacionesSexual()" />
+            type="radio" id="tiposexalidad-homo" ng-click="relacionesSexual()" value="3" />
           <label for="tiposexalidad-homo"></label>
         </li>
         <li class="Sexualidad-three-item">
           <input class="with-gap" name="tiposexalidad"
-            type="radio" id="tiposexalidad-ambas" ng-click="relacionesSexual()" />
+            type="radio" id="tiposexalidad-ambas" ng-click="relacionesSexual()" value="4" />
           <label for="tiposexalidad-ambas"></label>
         </li>
       </ul>
@@ -836,17 +856,17 @@
       <ul class="Sexualidad-pareja--list">
         <li class="Sexualidad-pareja--item">
           <input class="with-gap" name="perejasSexualidad"
-            type="radio" id="perejasSexualidad-unica" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="perejasSexualidad-unica" ng-disabled="relacionesSexualCheck" value="1" />
           <label for="perejasSexualidad-unica">pareja unica</label>
         </li>
         <li class="Sexualidad-pareja--item">
           <input class="no-check-input" name="perejasSexualidad"
-            type="radio" id="perejasSexualidad-varias" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="perejasSexualidad-varias" ng-disabled="relacionesSexualCheck" value="2" />
           <label for="perejasSexualidad-varias"  class="no-check">varias parejas</label>
         </li>
         <li class="Sexualidad-pareja--item">
           <input class="with-gap" name="perejasSexualidad"
-            type="radio" id="perejasSexualidad-nc" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="perejasSexualidad-nc" ng-disabled="relacionesSexualCheck" value="3" />
           <label for="perejasSexualidad-nc">n/c</label>
         </li>
       </ul>
@@ -868,12 +888,12 @@
             <li class="InicioEdadSex-check-item">no</li>
             <li class="InicioEdadSex-check-item">
               <input class="with-gap" name="volundariaSex"
-                type="radio" id="volundariaSex-si" ng-disabled="relacionesSexualCheck" />
+                type="radio" id="volundariaSex-si" ng-disabled="relacionesSexualCheck" value="1" />
               <label for="volundariaSex-si"></label>
             </li>
             <li class="InicioEdadSex-check-item">
               <input class="no-check-input" name="volundariaSex"
-                type="radio" id="volundariaSex-no" ng-disabled="relacionesSexualCheck" />
+                type="radio" id="volundariaSex-no" ng-disabled="relacionesSexualCheck" value="2" />
               <label for="volundariaSex-no" class="no-check"></label>
             </li>
           </ul>
@@ -892,17 +912,17 @@
         <li class="Sexualidad-three-item">n/c</li>
         <li class="Sexualidad-three-item">
           <input class="with-gap" name="problem-rel-sex"
-            type="radio" id="problem-rel-sex-no" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="problem-rel-sex-no" ng-disabled="relacionesSexualCheck" value="1" />
           <label for="problem-rel-sex-no"></label>
         </li>
         <li class="Sexualidad-three-item">
           <input class="no-check-input" name="problem-rel-sex"
-            type="radio" id="problem-rel-sex-si" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="problem-rel-sex-si" ng-disabled="relacionesSexualCheck" value="2" />
           <label for="problem-rel-sex-si" class="no-check"></label>
         </li>
         <li class="Sexualidad-three-item">
           <input class="with-gap" name="problem-rel-sex"
-            type="radio" id="problem-rel-sex-nc" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="problem-rel-sex-nc" ng-disabled="relacionesSexualCheck" value="3" />
           <label for="problem-rel-sex-nc"></label>
         </li>
       </ul>
@@ -915,22 +935,22 @@
       <ul class="Sexualidad-anticoncepcion">
         <li class="Sexualidad-anticoncepcion--item">
           <input class="with-gap" name="anticocepcion"
-            type="radio" id="anticocepcion-siempre" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="anticocepcion-siempre" ng-disabled="relacionesSexualCheck" value="1" />
           <label for="anticocepcion-siempre">siempre</label>
         </li>
         <li class="Sexualidad-anticoncepcion--item">
           <input class="no-check-input" name="anticocepcion"
-            type="radio" id="anticocepcion-nunca" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="anticocepcion-nunca" ng-disabled="relacionesSexualCheck" value="2" />
           <label for="anticocepcion-nunca" class="no-check">nunca</label>
         </li>
         <li class="Sexualidad-anticoncepcion--item">
           <input class="no-check-input" name="anticocepcion"
-            type="radio" id="anticocepcion-aceves" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="anticocepcion-aceves" ng-disabled="relacionesSexualCheck" value="3" />
           <label for="anticocepcion-aceves" class="no-check">aveces</label>
         </li>
         <li class="Sexualidad-anticoncepcion--item">
           <input class="with-gap" name="anticocepcion"
-            type="radio" id="anticocepcion-nc" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="anticocepcion-nc" ng-disabled="relacionesSexualCheck" value="4" />
           <label for="anticocepcion-nc">n/c</label>
         </li>
       </ul>
@@ -943,22 +963,22 @@
       <ul class="Sexualidad-anticoncepcion">
         <li class="Sexualidad-anticoncepcion--item">
           <input class="with-gap" name="condon"
-            type="radio" id="condon-siempre" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="condon-siempre" ng-disabled="relacionesSexualCheck" value="1" />
           <label for="condon-siempre">siempre</label>
         </li>
         <li class="Sexualidad-anticoncepcion--item">
           <input class="no-check-input" name="condon"
-            type="radio" id="condon-nunca" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="condon-nunca" ng-disabled="relacionesSexualCheck" value="2" />
           <label for="condon-nunca" class="no-check">nunca</label>
         </li>
         <li class="Sexualidad-anticoncepcion--item">
           <input class="no-check-input" name="condon"
-            type="radio" id="condon-aceves" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="condon-aceves" ng-disabled="relacionesSexualCheck" value="3" />
           <label for="condon-aceves" class="no-check">a ceves</label>
         </li>
         <li class="Sexualidad-anticoncepcion--item">
           <input class="with-gap" name="condon"
-            type="radio" id="condon-nc" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="condon-nc" ng-disabled="relacionesSexualCheck" value="4" />
           <label for="condon-nc">n/c</label>
         </li>
       </ul>
@@ -973,12 +993,12 @@
         <li class="Sexualidad-anticoncepcion--item">si</li>
         <li class="Sexualidad-anticoncepcion--item">
           <input class="with-gap" name="abusoSexual"
-            type="radio" id="abusoSexual-no" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="abusoSexual-no" ng-disabled="relacionesSexualCheck" value="1" />
           <label for="abusoSexual-no"></label>
         </li>
         <li class="Sexualidad-anticoncepcion--item">
           <input class="no-check-input" name="abusoSexual"
-            type="radio" id="abusoSexual-si" ng-disabled="relacionesSexualCheck" />
+            type="radio" id="abusoSexual-si" ng-disabled="relacionesSexualCheck" value="2" />
           <label for="abusoSexual-si" class="no-check"></label>
         </li>
       </ul>
@@ -1007,17 +1027,17 @@
       <ul class="Psicoemocional-list">
         <li class="Psicoemocional-item">
           <input class="with-gap" name="Psicoemocional"
-            type="radio" id="Psicoemocional-conforme" />
+            type="radio" id="Psicoemocional-conforme" value="1" />
           <label for="Psicoemocional-conforme">conforme</label>
         </li>
         <li class="Psicoemocional-item">
           <input class="with-gap" name="Psicoemocional"
-            type="radio" id="Psicoemocional-crea-precacion" />
+            type="radio" id="Psicoemocional-crea-precacion" value="2" />
           <label for="Psicoemocional-crea-precacion" style="font-size: 14px;">crea precacion</label>
         </li>
         <li class="Psicoemocional-item" style="width: 1100%;">
           <input class="no-check-input" name="Psicoemocional"
-            type="radio" id="Psicoemocional-impide-rel-adem" />
+            type="radio" id="Psicoemocional-impide-rel-adem" value="3" />
           <label for="Psicoemocional-impide-rel-adem" class="no-check">impide relaciòn con demàs</label>
         </li>
       </ul>
@@ -1029,27 +1049,27 @@
         <li class="Psicoemocional-item"></li>
         <li class="Psicoemocional-item">
           <input class="no-check-input" name="Psicoemocional"
-            type="radio" id="Psicoemocional-autoPercep-triste" />
+            type="radio" id="Psicoemocional-autoPercep-triste" value="1" />
           <label for="Psicoemocional-autoPercep-triste" class="no-check">triste</label>
         </li>
         <li class="Psicoemocional-item">
           <input class="no-check-input" name="Psicoemocional"
-            type="radio" id="Psicoemocional-autoPercep-nervioso" />
+            type="radio" id="Psicoemocional-autoPercep-nervioso" value="2" />
           <label for="Psicoemocional-autoPercep-nervioso" class="no-check">nervioso</label>
         </li>
         <li class="Psicoemocional-item">
           <input class="with-gap" name="Psicoemocional"
-            type="radio" id="Psicoemocional-autoPercep-alegre" />
+            type="radio" id="Psicoemocional-autoPercep-alegre" value="3" />
           <label for="Psicoemocional-autoPercep-alegre">alegre</label>
         </li>
         <li class="Psicoemocional-item">
           <input class="no-check-input" name="Psicoemocional"
-            type="radio" id="Psicoemocional-autoPercep-timido" />
+            type="radio" id="Psicoemocional-autoPercep-timido" value="4" />
           <label for="Psicoemocional-autoPercep-timido" class="no-check">muy timido</label>
         </li>
         <li class="Psicoemocional-item">
           <input class="with-gap" name="Psicoemocional"
-            type="radio" id="Psicoemocional-autoPercep-otro" />
+            type="radio" id="Psicoemocional-autoPercep-otro" value="5" />
           <label for="Psicoemocional-autoPercep-otro">otro</label>
         </li>
       </ul>
@@ -1061,25 +1081,25 @@
         <li class="PsicoPrefen"></li>
         <li class="PsicoPrefen">
           <input class="no-check-input" name="PsicoPrefen"
-            type="radio" id="PsicoPrefen-autoPercep-padre" />
+            type="radio" id="PsicoPrefen-autoPercep-padre" value="1" />
           <label for="PsicoPrefen-autoPercep-padre" class="no-check">padre</label>
         </li>
         <li class="PsicoPrefen">
           <input class="no-check-input" name="PsicoPrefen" type="radio"
-            id="PsicoPrefen-autoPercep-otroFam" />
+            id="PsicoPrefen-autoPercep-otroFam" value="2" />
           <label for="PsicoPrefen-autoPercep-otroFam" class="no-check">otro fam.</label>
         </li>
         <li class="PsicoPrefen">
-          <input class="with-gap" name="PsicoPrefen" type="radio" id="PsicoPrefen-madre" />
+          <input class="with-gap" name="PsicoPrefen" type="radio" id="PsicoPrefen-madre" value="3" />
           <label for="PsicoPrefen-madre">madre</label>
         </li>
         <li class="PsicoPrefen">
           <input class="no-check-input" name="PsicoPrefen" type="radio"
-            id="PsicoPrefen-autoPercep-fueraHogar" />
+            id="PsicoPrefen-autoPercep-fueraHogar" value="4" />
           <label for="PsicoPrefen-autoPercep-fueraHogar" class="no-check">fuera del hogar</label>
         </li>
         <li class="PsicoPrefen">
-          <input class="with-gap" name="PsicoPrefen" type="radio" id="PsicoPrefen-ninguno" />
+          <input class="with-gap" name="PsicoPrefen" type="radio" id="PsicoPrefen-ninguno" value="4" />
           <label for="PsicoPrefen-ninguno">ninguno</label>
         </li>
       </ul>
@@ -1091,16 +1111,16 @@
         <li class="Psicoemocional-item"></li>
         <li class="Psicoemocional-item">
           <input class="no-check-input" name="proyectoVida"
-            type="radio" id="proyectoVida-confuso" />
+            type="radio" id="proyectoVida-confuso" value="1" />
           <label for="proyectoVida-confuso" class="no-check">confuso</label>
         </li>
         <li class="Psicoemocional-item">
           <input class="no-check-input" name="proyectoVida" type="radio"
-            id="proyectoVida-claro" />
+            id="proyectoVida-claro" value="2" />
           <label for="proyectoVida-claro" class="no-check">claro</label>
         </li>
         <li class="Psicoemocional-item">
-          <input class="with-gap" name="proyectoVida" type="radio" id="proyectoVida-ausente" />
+          <input class="with-gap" name="proyectoVida" type="radio" id="proyectoVida-ausente" value="3" />
           <label for="proyectoVida-ausente">ausente</label>
         </li>
       </ul>
@@ -1128,11 +1148,11 @@
           <li class="ExamenFisico-item">normal</li>
           <li class="ExamenFisico-item">anormal</li>
           <li class="ExamenFisico-item">
-            <input class="with-gap" name="ExamenFisico" type="radio" id="ExamenFisico-normal" />
+            <input class="with-gap" name="ExamenFisico" type="radio" id="ExamenFisico-normal" value="1" />
             <label for="ExamenFisico-normal"></label>
           </li>
           <li class="ExamenFisico-item">
-            <input class="no-check-input" name="ExamenFisico" type="radio" id="ExamenFisico-anormal" />
+            <input class="no-check-input" name="ExamenFisico" type="radio" id="ExamenFisico-anormal" value="2" />
             <label for="ExamenFisico-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1170,11 +1190,13 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="pielFaneras" type="radio" id="pielFaneras-normal" />
+            <input class="with-gap" name="pielFaneras" type="radio" id="pielFaneras-normal"
+              value="1" />
             <label for="pielFaneras-normal"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="pielFaneras" type="radio" id="pielFaneras-anormal" />
+            <input class="no-check-input" name="pielFaneras" type="radio" id="pielFaneras-anormal"
+              value="2" />
             <label for="pielFaneras-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1185,11 +1207,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="agudezaVisual" type="radio" id="agudezaVisual-normal" />
+            <input class="with-gap" name="agudezaVisual" type="radio" id="agudezaVisual-normal" value="1" />
             <label for="agudezaVisual-normal"></label>
           </li>
           <li class="agudezaVisual-item">
-            <input class="no-check-input" name="agudezaVisual" type="radio" id="agudezaVisual-anormal" />
+            <input class="no-check-input" name="agudezaVisual" type="radio" id="agudezaVisual-anormal" value="2" />
             <label for="agudezaVisual-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1200,11 +1222,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="agudezaAuditiva" type="radio" id="agudezaAuditiva-normal" />
+            <input class="with-gap" name="agudezaAuditiva" type="radio" id="agudezaAuditiva-normal" value="1" />
             <label for="agudezaAuditiva-normal"></label>
           </li>
           <li class="agudezaAuditiva-item">
-            <input class="no-check-input" name="agudezaAuditiva" type="radio" id="agudezaAuditiva-anormal" />
+            <input class="no-check-input" name="agudezaAuditiva" type="radio" id="agudezaAuditiva-anormal" value="2" />
             <label for="agudezaAuditiva-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1215,11 +1237,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="bocaDientes" type="radio" id="bocaDientes-normal" />
+            <input class="with-gap" name="bocaDientes" type="radio" id="bocaDientes-normal" value="1" />
             <label for="bocaDientes-normal"></label>
           </li>
           <li class="bocaDientes-item">
-            <input class="no-check-input" name="bocaDientes" type="radio" id="bocaDientes-anormal" />
+            <input class="no-check-input" name="bocaDientes" type="radio" id="bocaDientes-anormal" value="2" />
             <label for="bocaDientes-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1230,11 +1252,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="cuelloTiroides" type="radio" id="cuelloTiroides-normal" />
+            <input class="with-gap" name="cuelloTiroides" type="radio" id="cuelloTiroides-normal" value="1" />
             <label for="cuelloTiroides-normal"></label>
           </li>
           <li class="cuelloTiroides-item">
-            <input class="no-check-input" name="cuelloTiroides" type="radio" id="cuelloTiroides-anormal" />
+            <input class="no-check-input" name="cuelloTiroides" type="radio" id="cuelloTiroides-anormal" value="2" />
             <label for="cuelloTiroides-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1248,11 +1270,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="torax_mamas" type="radio" id="torax_mamas-normal" />
+            <input class="with-gap" name="torax_mamas" type="radio" id="torax_mamas-normal" value="1" />
             <label for="torax_mamas-normal"></label>
           </li>
           <li class="torax_mamas-item">
-            <input class="no-check-input" name="torax_mamas" type="radio" id="torax_mamas-anormal" />
+            <input class="no-check-input" name="torax_mamas" type="radio" id="torax_mamas-anormal" value="2" />
             <label for="torax_mamas-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1264,11 +1286,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="cardioPulmonar" type="radio" id="cardioPulmonar-normal" />
+            <input class="with-gap" name="cardioPulmonar" type="radio" id="cardioPulmonar-normal" value="1" />
             <label for="cardioPulmonar-normal"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="cardioPulmonar" type="radio" id="cardioPulmonar-anormal" />
+            <input class="no-check-input" name="cardioPulmonar" type="radio" id="cardioPulmonar-anormal" value="2" />
             <label for="cardioPulmonar-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1292,11 +1314,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="abdomen" type="radio" id="abdomen-normal" />
+            <input class="with-gap" name="abdomen" type="radio" id="abdomen-normal" value="1" />
             <label for="abdomen-normal"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="abdomen" type="radio" id="abdomen-anormal" />
+            <input class="no-check-input" name="abdomen" type="radio" id="abdomen-anormal" value="2" />
             <label for="abdomen-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1308,11 +1330,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="genitoUrinario" type="radio" id="genitoUrinario-normal" />
+            <input class="with-gap" name="genitoUrinario" type="radio" id="genitoUrinario-normal" value="1" />
             <label for="genitoUrinario-normal"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="genitoUrinario" type="radio" id="genitoUrinario-anormal" />
+            <input class="no-check-input" name="genitoUrinario" type="radio" id="genitoUrinario-anormal" value="2"/>
             <label for="genitoUrinario-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1325,15 +1347,15 @@
           <li class="pielFaneras-item">vello pub.</li>
           <li class="pielFaneras-item">genitales</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="tanner" type="radio" id="tanner-mamas" />
+            <input class="with-gap" name="tanner" type="radio" id="tanner-mamas" value="1" />
             <label for="tanner-mamas"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="tanner" type="radio" id="tanner-velloPub" />
+            <input class="no-check-input" name="tanner" type="radio" id="tanner-velloPub" value="2" />
             <label for="tanner-velloPub" class="no-check"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="tanner" type="radio" id="tanner-genitales" />
+            <input class="no-check-input" name="tanner" type="radio" id="tanner-genitales" value="3" />
             <label for="tanner-genitales" class="no-check"></label>
           </li>
         </ul>
@@ -1345,11 +1367,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="columna" type="radio" id="columna-normal" />
+            <input class="with-gap" name="columna" type="radio" id="columna-normal" value="1" />
             <label for="columna-normal"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="columna" type="radio" id="columna-anormal" />
+            <input class="no-check-input" name="columna" type="radio" id="columna-anormal" value="2" />
             <label for="columna-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1361,11 +1383,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="extremidades" type="radio" id="extremidades-normal" />
+            <input class="with-gap" name="extremidades" type="radio" id="extremidades-normal" value="1" />
             <label for="extremidades-normal"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="extremidades" type="radio" id="extremidades-anormal" />
+            <input class="no-check-input" name="extremidades" type="radio" id="extremidades-anormal" value="2" />
             <label for="extremidades-anormal" class="no-check"></label>
           </li>
         </ul>
@@ -1377,11 +1399,11 @@
           <li class="pielFaneras-item">normal</li>
           <li class="pielFaneras-item">anormal</li>
           <li class="pielFaneras-item">
-            <input class="with-gap" name="neurologico" type="radio" id="neurologico-normal" />
+            <input class="with-gap" name="neurologico" type="radio" id="neurologico-normal" value="1" />
             <label for="neurologico-normal"></label>
           </li>
           <li class="pielFaneras-item">
-            <input class="no-check-input" name="neurologico" type="radio" id="neurologico-anormal" />
+            <input class="no-check-input" name="neurologico" type="radio" id="neurologico-anormal" value="2" />
             <label for="neurologico-anormal" class="no-check"></label>
           </li>
         </ul>

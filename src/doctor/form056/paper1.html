@@ -148,35 +148,35 @@
         <p class="s-100 u-noMargin bold-input">Acompañante</p>
         <ul class="Informacion-consulta-companion--list">
           <li>
-            <input type="radio" id="solo" name="acompaniente" value="1" />
+            <input type="radio" id="solo" name="acompaniente" value="1" data-name="Acompañante" />
             <label for="solo">solo</label>
           </li>
           <li>
-            <input type="radio" id="madre" name="acompaniente" value="2" />
+            <input type="radio" id="madre" name="acompaniente" value="2" data-name="Acompañante" />
             <label for="madre">madre</label>
           </li>
           <li>
-            <input type="radio" id="padre" name="acompaniente" value="3" />
+            <input type="radio" id="padre" name="acompaniente" value="3" data-name="Acompañante" />
             <label for="padre">padre</label>
           </li>
           <li>
-            <input type="radio" id="ambos" name="acompaniente" value="4" />
+            <input type="radio" id="ambos" name="acompaniente" value="4" data-name="Acompañante" />
             <label for="ambos">ambos</label>
           </li>
           <li>
-            <input type="radio" id="pareja" name="acompaniente" value="5" />
+            <input type="radio" id="pareja" name="acompaniente" value="5" data-name="Acompañante" />
             <label for="pareja">pareja</label>
           </li>
           <li>
-            <input type="radio" id="amigo" name="acompaniente" value="6" />
+            <input type="radio" id="amigo" name="acompaniente" value="6" data-name="Acompañante" />
             <label for="amigo">amigo/a</label>
           </li>
           <li>
-            <input type="radio" id="pariente" name="acompaniente" value="7" />
+            <input type="radio" id="pariente" name="acompaniente" value="7" data-name="Acompañante" />
             <label for="pariente">pariente</label>
           </li>
           <li>
-            <input type="radio" id="otro" name="acompaniente" value="8" />
+            <input type="radio" id="otro" name="acompaniente" value="8" data-name="Acompañante" />
             <label for="otro">otro</label>
           </li>
         </ul>
@@ -184,15 +184,15 @@
       <div class="Informacion-consulta-civilStatus">
         <p class="s-100 u-noMargin bold-input">ESTADO CIVIL</p>
         <p class="u-noMargin">
-          <input type="radio" id="cilvilSoltero" name="estadocivil" value="1" />
+          <input type="radio" id="cilvilSoltero" name="estadocivil" value="1" data-name="Estado Civil" />
           <label for="cilvilSoltero">soltero</label>
         </p>
         <p class="u-noMargin">
-          <input type="radio" id="civilUnion" name="estadocivil" value="2" />
+          <input type="radio" id="civilUnion" name="estadocivil" value="2" data-name="Estado Civil" />
           <label for="civilUnion">uniòn estado</label>
         </p>
         <p class="u-noMargin">
-          <input type="radio" id="civilSeparados" name="estadocivil" value="3" />
+          <input type="radio" id="civilSeparados" name="estadocivil" value="3" data-name="Estado Civil" />
           <label for="civilSeparados">separados</label>
         </p>
       </div>
@@ -298,7 +298,7 @@
         <div class="Antecedente-personales--options">
           <p ng-repeat="check in item.options">
             <input name="{{ item.id }}" type="radio" id="{{ check.id }}"
-              class="{{ check.class }}-input" value="{{ check.val }}" />
+              class="{{ check.class }}-input" value="{{ check.val }}" value="{{$index+1}}" />
             <label for="{{ check.id }}" class="{{ check.class }}">{{ check.name }}</label>
           </p>
         </div>
@@ -327,7 +327,7 @@
         <div class="Antecedente-personales--options">
           <p ng-repeat="check in item.options">
             <input type="radio" name="{{item.id}}" id="{{ check.id }}"
-              class="{{ check.class }}-input" />
+              class="{{ check.class }}-input" value="{{$index+1}}" />
             <label for="{{ check.id }}" class="{{ check.class }}">{{ check.name }}</label>
           </p>
         </div>
@@ -364,7 +364,7 @@
             <p ng-repeat="check in item.options">
               <input type="{{ check.type }}" name="{{item.id}}" id="{{ check.id }}"
                 class="{{ check.class }}-input" class="{{ check.class }}-input"
-                ng-click="shouldBeDisabled(check)" />
+                ng-click="shouldBeDisabled(check)" value="{{$index+1}}" />
               <label for="{{ check.id }}" class="{{ check.class }}"></label>
             </p>
           </div>
@@ -387,7 +387,7 @@
             <p ng-repeat="check in item.options">
               <input type="radio" name="{{item.id}}" id="{{ check.id }}"
                 ng-disabled="item.id == 'vive4'" ng-click="shouldInsDisabled(check)"
-                class="{{ check.class }}-input" class="{{ check.class }}-input" />
+                class="{{ check.class }}-input" class="{{ check.class }}-input" value="{{$index+1}}" />
               <label for="{{ check.id }}" class="{{ check.class }}"></label>
             </p>
           </div>
@@ -412,11 +412,11 @@
         <div ng-repeat="item in nivelInstruccion" class="Nivel-instruccion--item instruc056">
           <p class="Nivel-instruccion--name">{{ item.instr }}</p>
           <p ng-repeat="check in item.options">
-            <input name="hombre" type="radio" id="{{ check }}-hombre"  class="{{ check }}-input" />
+            <input name="hombre" type="radio" id="{{ check }}-hombre"  class="{{ check }}-input" value="{{$index+1}}" />
             <label for="{{ check }}-hombre" class="{{check}}"></label>
           </p>
           <p ng-repeat="check in item.options">
-            <input name="mujer" type="radio" id="{{ check }}-mujer"  class="{{ check }}-input" />
+            <input name="mujer" type="radio" id="{{ check }}-mujer"  class="{{ check }}-input" value="{{$index+1}}" />
             <label for="{{ check }}-mujer" class="{{check}}"></label>
           </p>
         </div>
@@ -437,11 +437,11 @@
         <div ng-repeat="item in trabajo" class="Nivel-instruccion--item trabajo056">
           <p class="Nivel-instruccion--name">{{ item.trab }}</p>
           <p ng-repeat="check in item.options">
-            <input name="hombre-trabajo" type="radio" id="{{ check }}-hombre" class="{{ check }}-input" />
+            <input name="hombre-trabajo" type="radio" id="{{ check }}-hombre" class="{{ check }}-input" value="{{$index+1}}" />
             <label for="{{ check }}-hombre" class="{{check}}"></label>
           </p>
           <p ng-repeat="check in item.options">
-            <input name="mujer-trabajo" type="radio" id="{{ check }}-mujer" class="{{ check }}-input" />
+            <input name="mujer-trabajo" type="radio" id="{{ check }}-mujer" class="{{ check }}-input" value="{{$index+1}}" />
             <label for="{{ check }}-mujer" class="{{check}}"></label>
           </p>
 
@@ -470,19 +470,19 @@
           <li class="Percepcion-familiar--item small-size">No hay relaciòn</li>
 
           <li class="Percepcion-familiar--item">
-            <input name="percepcionFami" type="radio" id="Buena" />
+            <input name="percepcionFami" type="radio" id="Buena" value="1" />
             <label for="Buena"></label>
           </li>
           <li class="Percepcion-familiar--item">
-            <input name="percepcionFami" type="radio" id="Regular" />
+            <input name="percepcionFami" type="radio" id="Regular" value="2" />
             <label for="Regular"></label>
           </li>
           <li class="Percepcion-familiar--item">
-            <input name="percepcionFami" type="radio" id="Mala" class="no-check-input" />
+            <input name="percepcionFami" type="radio" id="Mala" class="no-check-input" value="3" />
             <label for="Mala" class="no-check"></label>
           </li>
           <li class="Percepcion-familiar--item">
-            <input name="percepcionFami" type="radio" id="no-relacion" class="no-check-input" />
+            <input name="percepcionFami" type="radio" id="no-relacion" class="no-check-input" value="4" />
             <label for="no-relacion" class="no-check"></label>
           </li>
         </ul>
@@ -507,15 +507,15 @@
           </a>
         </p>
         <p class="ApgarFamiliar-item">
-          <input name="apgarFamiliar" type="radio" id="severamenteDisfuncional" class="no-check-input" />
+          <input name="apgarFamiliar" type="radio" id="severamenteDisfuncional" class="no-check-input" value="1" />
           <label for="severamenteDisfuncional" class="no-check"> 0 - 3 Familias Severamente Disfuncional</label>
         </p>
         <p class="ApgarFamiliar-item">
-          <input name="apgarFamiliar" type="radio" id="mediamenteDisfuncional" class="no-check-input" />
+          <input name="apgarFamiliar" type="radio" id="mediamenteDisfuncional" class="no-check-input" value="2" />
           <label for="mediamenteDisfuncional" class="no-check"> 4 - 6 Familias Mediamente Disfuncional</label>
         </p>
         <p class="ApgarFamiliar-item">
-          <input name="apgarFamiliar" type="radio" id="familiasFuncional" />
+          <input name="apgarFamiliar" type="radio" id="familiasFuncional" value="3" />
           <label for="familiasFuncional"> 0 - 3 Familias Funcionales</label>
         </p>
 
@@ -546,12 +546,12 @@
           <li class="EnergiaElectrica-item">SI</li>
           <li class="EnergiaElectrica-item">NO</li>
           <li class="EnergiaElectrica-item">
-            <input name="energiaElectrica" type="radio" id="EnergiaElectrica-si" />
+            <input name="energiaElectrica" type="radio" id="EnergiaElectrica-si" value="1" />
             <label for="EnergiaElectrica-si"></label>
           </li>
           <li class="EnergiaElectrica-item">
             <input name="energiaElectrica" type="radio" id="EnergiaElectrica-no"
-              class="no-check-input" />
+              class="no-check-input" value="2" />
             <label for="EnergiaElectrica-no" class="no-check"></label>
           </li>
         </ul>
@@ -570,12 +570,12 @@
           <li class="ServiciosBasicos-item">en el hogar</li>
           <li class="ServiciosBasicos-item">fuera del hogar</li>
           <li class="ServiciosBasicos-item">
-            <input name="aguaServiciosBasicos" type="radio" id="ServiciosBasicos-si" />
+            <input name="aguaServiciosBasicos" type="radio" id="ServiciosBasicos-si" value="1" />
             <label for="ServiciosBasicos-si"></label>
           </li>
           <li class="ServiciosBasicos-item">
             <input name="aguaServiciosBasicos" type="radio" id="ServiciosBasicos-no"
-              class="no-check-input" />
+              class="no-check-input" value="2" />
             <label for="ServiciosBasicos-no" class="no-check"></label>
           </li>
         </ul>
@@ -583,12 +583,12 @@
         <p class="bold-input EnergiaElectrica-title">EXCRETAS</p>
         <ul class="ServiciosBasicos-list u-noMargin">
           <li class="ServiciosBasicos-item">
-            <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-si" />
+            <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-si" value="1" />
             <label for="ServiciosBasicos_excr-si"></label>
           </li>
           <li class="ServiciosBasicos-item">
             <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-no"
-              class="no-check-input" />
+              class="no-check-input" value="2" />
             <label for="ServiciosBasicos_excr-no" class="no-check"></label>
           </li>
         </ul>
