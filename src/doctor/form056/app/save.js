@@ -10,9 +10,10 @@ angular.module('Hospital')
     numerosCuartos: '',
     ocupacion: '',
   }
-
+  $scope.guardandoConsult = false
 
   $scope.saveForm = () => {
+    $scope.guardandoConsult = true
     const inputCompanion = document.querySelector('.Informacion-consulta-companion input:checked')
     const inputCivilStatus = document.querySelector('.Informacion-consulta-civilStatus input:checked')
     const listMotivo = [...document.querySelectorAll('.Motivo-consulta .consulta-cie--code input')]
@@ -64,6 +65,7 @@ angular.module('Hospital')
 
     $http.post('src/doctor/form056/service/save.php', $scope.data)
     .then(response => {
+      $scope.guardandoConsult = false
       console.log(response)
       if (response.data === '201') {
         Materialize.toast('Seha guardado la consulta con exito', 4000)

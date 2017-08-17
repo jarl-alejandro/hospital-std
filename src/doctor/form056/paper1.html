@@ -1,4 +1,4 @@
-<section class="Paper1" ng-controller="canvasFomr056Ctrl">
+<section class="Paper1" ng-controller="canvasFomr056Ctrl" ng-controller="validForm">
   <!-- Nombres del paciente y Establecimiento -->
   <article class="grid-header">
     <div class="form056-header-names">
@@ -596,11 +596,11 @@
       <!-- End Servicios Basicos -->
 
       <!-- Numero de Cuatos -->
-      <article class="Cuotas">
+      <article class="Cuotas" ng-controller="validForm">
         <p class="bold-input">NÙMEROS DE CUARTOS</p>
         <div class="input-field">
           <input type="text" maxlength="2" placeholder="Ingresa cuantos cuartos hay en casa"
-            ng-model="data.numerosCuartos" />
+            ng-model="data.numerosCuartos" ng-keypress="ValidaSoloNumeros()" />
         </div>
       </article>
       <!-- End Numero de Cuatos -->

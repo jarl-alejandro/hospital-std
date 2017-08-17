@@ -1,4 +1,4 @@
-<section class="Paper2">
+<section class="Paper2" ng-controller="validForm">
 
   <!-- Educacion -->
   <section class="EducacionPaper2">
@@ -52,7 +52,7 @@
     <article class="EducacioPperEstudia CursoGradoEstudia center-align">
       <p class="bold-input center-align u-noMargin">GRADO CURSO</p>
       <div class="input-field main-center">
-        <input type="text" maxlength="2" placeholder="Ingresa el grado o curso"
+        <input type="text" placeholder="Ingresa el grado o curso"
           style="width:95%" ng-disabled="flagEducacion" class="observacion" data-tipo="7.1" />
       </div>
     </article>
@@ -60,7 +60,7 @@
     <article class="EducacioPperEstudia ApprovedYearEstudia u-border-right">
       <p class="bold-input center-align u-noMargin">AÑOS APROBADOS</p>
       <div class="input-field main-center">
-        <input type="text" maxlength="2" placeholder="ingresa los años aprobados"
+        <input type="text" maxlength="4" placeholder="ingresa los años aprobados" ng-keypress="ValidaSoloNumeros()"
           style="width:95%" ng-disabled="flagEducacion" class="observacion" data-tipo="7.2" />
       </div>
     </article>
@@ -95,7 +95,7 @@
       </p>
       <p class="u-noMargin">Causa</p>
       <div class="input-field u-noMargin">
-        <input type="text" placeholder="Ingresa la causa" id="obsYearRepeat"
+        <input type="text" placeholder="Ingresa la causa" id="obsYearRepeat" ng-keypress="ValidaSoloNumeros()" maxlength="4"
           ng-disabled="flagEducacion || !disabledInput" class="observacion" data-tipo="7.3" />
       </div>
     </article>
@@ -199,7 +199,7 @@
       <p class="EdadInicioTrab-head">años</p>
       <div class="input-field u-noMargin main-center">
         <input type="text" placeholder="Ingresa la edad" maxlength="2" style="width:95%"
-          ng-disabled="flagTrabaja" class="observacion" data-tipo="8.1" />
+          ng-disabled="flagTrabaja" class="observacion" data-tipo="8.1" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
       </div>
     </article>
 
@@ -207,7 +207,7 @@
       <p class="bold-input u-noMargin center-align TrabajoByHoras-head">TRABAJA</p>
       <div class="input-field u-noMargin main-center">
         <input type="text" placeholder="Ingresa la edad" maxlength="2" style="width:95%"
-          ng-disabled="flagTrabaja" class="observacion" data-tipo="8.2" />
+          ng-disabled="flagTrabaja" class="observacion" data-tipo="8.2" ng-keypress="ValidaSoloNumeros()" />
       </div>
       <span class="TrabajoByHoras-footer">horas por semana</span>
     </article>
@@ -217,7 +217,7 @@
       <ul class="HorasTrabajo-list">
         <li class="HorasTrabajo-item">
           <input name="HorasTrabajo" type="radio" id="HorasTrabajo-morning"
-            ng-disabled="flagTrabaja" value="1" />
+            ng-disabled="flagTrabaja" value="1" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
           <label for="HorasTrabajo-morning">mañana</label>
         </li>
         <li class="HorasTrabajo-item">
@@ -431,14 +431,14 @@
         <p class="bold-input u-noMargin">DEPORTE</p>
         <div class="input-field u-noMargin">
           <input type="text" class="u-noMargin"  placeholder="horas por semanas"
-            class="observacion" data-tipo="9.1" />
+            class="observacion" data-tipo="9.1" ng-keypress="ValidaSoloNumeros()" maxlength="3" />
         </div>
       </div>
       <div class="VidaSocialTv">
         <p class="bold-input u-noMargin">TV</p>
         <div class="input-field u-noMargin">
           <input type="text" class="u-noMargin"  placeholder="horas por dia"
-            class="observacion" data-tipo="9.2" />
+            class="observacion" data-tipo="9.2" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
         </div>
       </div>
     </article>
@@ -498,7 +498,7 @@
         </div>
         <div class="input-field u-noMargin">
         <p class="bold-input u-noMargin cross-center main-center" style="height:4em">horas</p>
-        <input type="text" class="u-noMargin" placeholder="Ingrese las horas" />
+        <input type="text" class="u-noMargin" placeholder="Ingrese las horas" ng-keypress="ValidaSoloNumeros()" maxlength="2"/>
       </div>
       </div>
     </article>
@@ -540,7 +540,8 @@
     <article class="u-border-right tabaco">
       <p class="bold-input u-noMargin center-align">TABACO</p>
       <div class="input-field main-center" style="margin-top:3em">
-        <input type="text" id="cigariilos-dia" style="width:92%" class="observacion" data-tipo="10.1" />
+        <input type="text" id="cigariilos-dia" style="width:92%" class="observacion" data-tipo="10.1"
+          ng-keypress="ValidaSoloNumeros()" maxlength="3" />
         <label for="cigariilos-dia" style="font-size:12px;margin-left:3px">Cigarrillos por dia</label>
       </div>
     </article>
@@ -549,7 +550,7 @@
       <p class="bold-input u-noMargin center-align">EDAD INICIO TABACO</p>
       <div class="input-field main-center" style="margin-top:1.5em">
         <input type="text" id="cigariilos-dia-start" style="width:92%"
-          class="observacion" data-tipo="10.2" />
+          class="observacion" data-tipo="10.2" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
         <label for="cigariilos-dia-start" style="font-size:12px;margin-left:4px">años</label>
       </div>
     </article>
@@ -557,7 +558,7 @@
     <article class="u-border-right Alcohol">
       <p class="bold-input u-noMargin center-align">ALCOHOL</p>
       <div class="input-field main-center" style="margin-top:3em">
-        <input type="text" id="alcohol" style="width:92%" class="observacion" data-tipo="10.3" />
+        <input type="text" id="alcohol" style="width:92%" class="observacion" data-tipo="10.3" ng-keypress="ValidaSoloNumeros()" maxlength="4" />
         <label for="alcohol" style="font-size:11px;margin-left:3px">equivalente a litros de cerveza por semana</label>
       </div>
     </article>
@@ -565,7 +566,8 @@
     <article class="u-border-right Alcohol-start">
       <p class="bold-input u-noMargin center-align">EDAD INICIO ALCOHOL</p>
       <div class="input-field main-center" style="margin-top:1.5em">
-        <input type="text" id="alcohol-start" style="width:92%" class="observacion" data-tipo="10.4" />
+        <input type="text" id="alcohol-start" style="width:92%" class="observacion" data-tipo="10.4"
+          ng-keypress="ValidaSoloNumeros()" maxlength="2" />
         <label for="alcohol-start" style="font-size:11px;margin-left:3px">años</label>
       </div>
     </article>
@@ -600,8 +602,8 @@
         <ul class="ConduceVehiculo-list u-noMargin center-align">
           <li class="ConduceVehiculo-item">
             <input name="ConduceVehiculo" type="radio" id="ConduceVehiculo-no"
-            class="no-check-input" value="1" ng-click="handleDriveCar()" />
-            <label for="ConduceVehiculo-no" class="no-check">no</label>
+            value="1" ng-click="handleDriveCar()" />
+            <label for="ConduceVehiculo-no">no</label>
           </li>
           <li class="ConduceVehiculo-item">
             <input name="ConduceVehiculo" type="radio" id="ConduceVehiculo-si"
@@ -636,11 +638,11 @@
       <p class="u-noMargin bold-input">MENARCA/ESPERMARCA</p>
       <div class="MenarcaEspermarca-grid">
         <div class="input-field u-noMargin">
-          <input type="text" id="menarca-year" class="observacion" data-tipo="11.1" />
+          <input type="text" id="menarca-year" class="observacion" data-tipo="11.1" ng-keypress="ValidaSoloNumeros()" maxlength="4" />
           <label for="menarca-year">años</label>
         </div>
         <div class="input-field u-noMargin">
-          <input type="text" id="meses-year" class="observacion" data-tipo="11.2" />
+          <input type="text" id="meses-year" class="observacion" data-tipo="11.2" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
           <label for="meses-year">meses</label>
         </div>
       </div>
@@ -748,18 +750,18 @@
         <ul class="CiclosRegulares-list center-align u-noMargin">
           <li class="CiclosRegulares-item">
             <input name="EnfTranSexual" type="radio" id="EnfTranSexual-no"
-              class="no-check-input" value="1" />
+              class="no-check-input" value="1" ng-click="handleTrasmiSexual()" />
             <label for="EnfTranSexual-no" class="no-check">no</label>
           </li>
-
           <li class="CiclosRegulares-item">
-            <input name="EnfTranSexual" type="radio" id="EnfTranSexual-si" value="2" />
+            <input name="EnfTranSexual" type="radio" id="EnfTranSexual-si" value="2"
+              ng-click="handleTrasmiSexual()" />
             <label for="EnfTranSexual-si">si</label>
           </li>
         </ul>
       </div>
       <div class="input-field">
-        <input type="text" id="cual-trasmision-sexual" class="observacion" data-tipo="11.6" />
+        <input type="text" id="cual-trasmision-sexual" ng-disabled="trasmiSexuDis" class="observacion" data-tipo="11.6" />
         <label for="cual-trasmision-sexual">¿Cual?</label>
       </div>
     </article>
@@ -880,8 +882,8 @@
       <p class="Sexualidad-item__title bold-input u-noMargin center-align">EDAD INICIO REL. SEX.</p>
       <div class="InicioEdadSex-grid">
         <div class="input-field" style="margin-left: 10px;">
-          <input type="text" id="edad-inicio-sex" ng-disabled="relacionesSexualCheck"
-            class="observacion" data-tipo="12.1" />
+          <input type="text" id="edad-inicio-sex" ng-disabled="relacionesSexualCheck || ageStartDisab"
+            class="observacion" data-tipo="12.1" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
           <label for="edad-inicio-sex">Años</label>
         </div>
         <div class="InicioEdadSex-check">
@@ -891,12 +893,12 @@
             <li class="InicioEdadSex-check-item">si</li>
             <li class="InicioEdadSex-check-item">no</li>
             <li class="InicioEdadSex-check-item">
-              <input class="with-gap" name="volundariaSex"
+              <input class="with-gap" name="volundariaSex" ng-click="handleAgeStartSex()"
                 type="radio" id="volundariaSex-si" ng-disabled="relacionesSexualCheck" value="1" />
               <label for="volundariaSex-si"></label>
             </li>
             <li class="InicioEdadSex-check-item">
-              <input class="no-check-input" name="volundariaSex"
+              <input class="no-check-input" name="volundariaSex" ng-click="handleAgeStartSex()"
                 type="radio" id="volundariaSex-no" ng-disabled="relacionesSexualCheck" value="2" />
               <label for="volundariaSex-no" class="no-check"></label>
             </li>
@@ -1481,6 +1483,6 @@
   <div class="main-distribute">
     <button class="waves-effect waves-ligth btn danger">Cancelar</button>
     <button class="waves-effect waves-ligth btn primary" ng-click="handleBackPaper1()">Atras</button>
-    <button class="waves-effect waves-ligth btn primary" ng-click="saveForm()">Guardar Consulta</button>
+    <button class="waves-effect waves-ligth btn primary" ng-disabled="guardandoConsult" ng-click="saveForm()">Guardar Consulta</button>
   </div>
 </section>

@@ -398,9 +398,22 @@ angular.module('Hospital')
     if ($scope.otherToxico) $('#frecunciaTypo').val('')
   }
 
-  $scope.conduceVehiculoDisab
+  $scope.conduceVehiculoDisab = false
   $scope.handleDriveCar = () => {
     $scope.conduceVehiculoDisab = document.querySelector('#ConduceVehiculo-no').checked
+    if ($scope.conduceVehiculoDisab) $('#cual-conduce-carro').val('')
+  }
+
+  $scope.trasmiSexuDis = false
+  $scope.handleTrasmiSexual = () => {
+    $scope.trasmiSexuDis = document.querySelector('#EnfTranSexual-no').checked
+    if ($scope.trasmiSexuDis) $('#cual-trasmision-sexual').val('')
+  }
+
+  $scope.ageStartDisab = false
+  $scope.handleAgeStartSex = () => {
+    $scope.ageStartDisab = document.querySelector('#volundariaSex-no').checked
+    if ($scope.ageStartDisab) $('#edad-inicio-sex').val('')
   }
 
 })
