@@ -21,7 +21,14 @@ doctor.controller('pacientesDoctorController', function ($scope, $http, $locatio
     console.log(fecha)
 
     if (age < 2) $location.path(`/form28A/${object.id}/${object.turno}`)
-    if (duracion.years >= 10) $location.path(`/form056/${object.id}/${object.turno}`)
+    if (duracion.years >= 10) {
+      $http.get(`src/doctor/pacientes/service/form056_verify.php?paciente=${object.id}`)
+      .then(response => {
+        console.log(response)
+        if (response.data === '0') $location.path(`/form056/${object.id}/${object.turno}`)
+        if (response.data === '1') Materialize.toast('Aun no pasa el pasa el año', 4000)
+      })
+    }
     else $location.path(`/form28C/${object.id}/${object.turno}`)
   }
 })
