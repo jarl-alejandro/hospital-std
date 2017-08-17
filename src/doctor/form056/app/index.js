@@ -416,4 +416,6 @@ angular.module('Hospital')
     if ($scope.ageStartDisab) $('#edad-inicio-sex').val('')
   }
 
+  $scope.handleDateVisit = () => $('.month-turno').slideDown()
+
 })

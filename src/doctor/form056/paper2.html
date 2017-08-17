@@ -1475,8 +1475,8 @@
 
     <p class="bold-input response">Response: {{ user.name }}</p>
     <div class="proximaVisit">
-      <a class="waves-effect waves-teal btn-flat">Fecha visita</a>
-      <input type="text" disabled placeholder="dia/mes/año" />
+      <a class="waves-effect waves-teal btn-flat" ng-click="handleDateVisit()">Fecha visita</a>
+      <input type="text" disabled placeholder="año-mes-dia" id="fecha_proxima_visita"  />
     </div>
   </section>
   <!-- End DIAGNOSTICOS - CIE10 -->
