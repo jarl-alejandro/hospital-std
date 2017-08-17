@@ -333,7 +333,15 @@ angular.module('Hospital')
     }
   }
 
-  $scope.noEscolariz = () => $scope.flagEducacion = document.querySelector('#noEscolariz').checked
+
+  $scope.noEscolariz = () => {
+    $scope.flagEducacion = document.querySelector('#noEscolariz').checked
+    if ($scope.flagEducacion === true) {
+      $scope.refreshCheck('.EducacioPperEstudia')
+      const grid = [...document.querySelectorAll('.EducacionPaper2 input[type="text"]')]
+      grid.map(item => item.value = '')
+    }
+  }
 
   $scope.trabajaCheck = () => {
     const check = document.querySelector('#TrabajoActividad-trabaja').checked
@@ -352,6 +360,30 @@ angular.module('Hospital')
       const grid = [...document.querySelectorAll('.Sex--item input[type="text"]')]
       grid.map(item => item.value = '')
     }
+  }
+
+  $scope.disabledInput = false
+  $scope.repeatYearDisabled = () => {
+    $scope.disabledInput = document.querySelector('#repeatYearCausa-no').checked
+    $('#obsYearRepeat').val('')
+  }
+
+  $scope.disabledOtherActiv = false
+  $scope.handleDisabledOtherActividades = () => {
+    $scope.disabledOtherActiv = document.querySelector('#OtrasActividades-no').checked
+    if ($scope.disabledOtherActiv) $('.obsActivity').val('')
+  }
+
+  $scope.workInsalubreDis = false
+  $scope.handleWorkDisabInsalubre = () => {
+    $scope.workInsalubreDis = document.querySelector('#TrabajoInsalubre-no').checked
+    if ($scope.workInsalubreDis) $('#obserTypeWork').val('')
+  }
+
+  $scope.deserExclDis = false
+  $scope.handleDeserExclDis = () => {
+    $scope.deserExclDis = document.querySelector('#DisercionEstudia-no').checked
+    if ($scope.deserExclDis) $('#causaDesercionExcl').val('')
   }
 
 })

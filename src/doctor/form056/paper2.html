@@ -49,7 +49,7 @@
 
     </article>
 
-    <article class="CursoGradoEstudia center-align">
+    <article class="EducacioPperEstudia CursoGradoEstudia center-align">
       <p class="bold-input center-align u-noMargin">GRADO CURSO</p>
       <div class="input-field main-center">
         <input type="text" maxlength="2" placeholder="Ingresa el grado o curso"
@@ -57,7 +57,7 @@
       </div>
     </article>
 
-    <article class="ApprovedYearEstudia u-border-right">
+    <article class="EducacioPperEstudia ApprovedYearEstudia u-border-right">
       <p class="bold-input center-align u-noMargin">AÑOS APROBADOS</p>
       <div class="input-field main-center">
         <input type="text" maxlength="2" placeholder="ingresa los años aprobados"
@@ -65,7 +65,7 @@
       </div>
     </article>
 
-    <article class="ProblemaEscuelaEstudia u-border-right">
+    <article class="EducacioPperEstudia ProblemaEscuelaEstudia u-border-right">
       <p class="bold-input center-align u-noMargin">PROBLEMAS EN LA ESCUELA</p>
       <ul class="EducacionEstudia-list">
         <li class="EducacionEstudia-item">si</li>
@@ -84,23 +84,23 @@
       </ul>
     </article>
 
-    <article class="RepeatYearEstudia u-border-right">
+    <article class="EducacioPperEstudia RepeatYearEstudia u-border-right">
       <p class="bold-input center-align u-noMargin main-justify cross-center">
         AÑOS REPETIDOS
         <span class="problemasEscuela-item main-center">
           <input type="checkbox" id="repeatYearCausa-no" class="no-check-input"
-            ng-disabled="flagEducacion" value="1" name="repeatYearCausa" />
+            ng-disabled="flagEducacion" value="1" name="repeatYearCausa" ng-click="repeatYearDisabled()" />
           <label for="repeatYearCausa-no" class="no-check"></label>
         </span>
       </p>
       <p class="u-noMargin">Causa</p>
       <div class="input-field u-noMargin">
-        <input type="text" placeholder="Ingresa la causa"
-          ng-disabled="flagEducacion" class="observacion" data-tipo="7.3" />
+        <input type="text" placeholder="Ingresa la causa" id="obsYearRepeat"
+          ng-disabled="flagEducacion || !disabledInput" class="observacion" data-tipo="7.3" />
       </div>
     </article>
 
-    <article class="DisercionEstudia u-border-right">
+    <article class="EducacioPperEstudia DisercionEstudia u-border-right">
       <div class="DisercionEstudia-grid">
         <p class="bold-input u-noMargin">DESERCIÒN EXCLUSIÒN</p>
         <ul class="DisercionEstudia-list">
@@ -108,23 +108,24 @@
           <li class="DisercionEstudia-item">si</li>
           <li class="DisercionEstudia-item">
             <input name="DisercionEstudia" type="radio" id="DisercionEstudia-no"
-              ng-disabled="flagEducacion" value="1" />
+              ng-disabled="flagEducacion" value="1" ng-click="handleDeserExclDis()" />
             <label for="DisercionEstudia-no"></label>
           </li>
           <li class="DisercionEstudia-item">
             <input name="DisercionEstudia" type="radio" id="DisercionEstudia-si"
-              class="no-check-input" ng-disabled="flagEducacion" value="2" />
+              class="no-check-input" ng-disabled="flagEducacion" value="2" ng-click="handleDeserExclDis()" />
             <label for="DisercionEstudia-si" class="no-check"></label>
           </li>
         </ul>
       </div>
       <p class="u-noMargin">Causa</p>
       <div class="input-field u-noMargin">
-        <input type="text" placeholder="Ingresa una causa" class="observacion" data-tipo="7.4" ng-disabled="flagEducacion" />
+        <input type="text" placeholder="Ingresa una causa" class="observacion" data-tipo="7.4"
+          ng-disabled="flagEducacion || deserExclDis" id="causaDesercionExcl" />
       </div>
     </article>
 
-    <article class="EducacionNoFormalEstudia">
+    <article class="EducacioPperEstudia EducacionNoFormalEstudia">
       <div class="DisercionEstudia-grid">
         <p class="bold-input u-noMargin">EDUCACION NO FORMAL</p>
         <ul class="DisercionEstudia-list">
@@ -310,17 +311,17 @@
         <li class="TrabajoInsalubre-item">n/c</li>
         <li class="TrabajoInsalubre-item">
           <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-no"
-            ng-disabled="flagTrabaja" value="1" />
+            ng-disabled="flagTrabaja" value="1" ng-click="handleWorkDisabInsalubre()" />
           <label for="TrabajoInsalubre-no"></label>
         </li>
         <li class="TrabajoInsalubre-item">
           <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-si"
-            class="no-check-input" ng-disabled="flagTrabaja" value="2" />
+            class="no-check-input" ng-disabled="flagTrabaja" value="2" ng-click="handleWorkDisabInsalubre()" />
           <label for="TrabajoInsalubre-si" class="no-check"></label>
         </li>
         <li class="TrabajoInsalubre-item">
           <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-nc"
-            ng-disabled="flagTrabaja" value="3" />
+            ng-disabled="flagTrabaja" value="3" ng-click="handleWorkDisabInsalubre()" />
           <label for="TrabajoInsalubre-nc"></label>
         </li>
       </ul>
@@ -329,8 +330,8 @@
     <article class="TipoTrabajo">
       <p class="bold-input u-noMargin">TIPO DE TRABAJO</p>
       <div class="input-field">
-        <textarea class="materialize-textarea" placeholder="Ingrese el tipo de trabajo"
-          ng-disabled="flagTrabaja" class="observacion" data-tipo="8.3"></textarea>
+        <textarea class="materialize-textarea" placeholder="Ingrese el tipo de trabajo" id="obserTypeWork"
+          ng-disabled="flagTrabaja || workInsalubreDis" class="observacion" data-tipo="8.3"></textarea>
       </div>
     </article>
   </section>
@@ -444,18 +445,20 @@
       <ul class="OtrasActividades-list center-align">
         <li class="OtrasActividades-item bold-input">OTRAS ACTIVIDADES</li>
         <li class="OtrasActividades-item">
-          <input name="OtrasActividades" type="radio" id="OtrasActividades-si" value="1" />
+          <input name="OtrasActividades" type="radio" id="OtrasActividades-si" value="1"
+            ng-click="handleDisabledOtherActividades()" />
           <label for="OtrasActividades-si">si</label>
         </li>
         <li class="OtrasActividades-item">
-          <input name="OtrasActividades" type="radio" id="OtrasActividades-no" value="2" />
+          <input name="OtrasActividades" type="radio" id="OtrasActividades-no" value="2"
+            ng-click="handleDisabledOtherActividades()" />
           <label for="OtrasActividades-no">no</label>
         </li>
         <li class="OtrasActividades-item">¿Cuàles?</li>
       </ul>
       <div class="input-field main-center">
         <input type="text" placeholder="Escriba cuales son las avtividades que realiza"
-          style="width:95%" class="observacion" data-tipo="9.3" />
+          style="width:95%" class="observacion obsActivity" data-tipo="9.3" ng-disabled="disabledOtherActiv" />
       </div>
     </article>
   </section>
