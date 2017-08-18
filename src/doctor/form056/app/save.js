@@ -28,7 +28,6 @@ angular.module('Hospital')
 
     listMotivo.map(item => {
       if (item.value !== '') {
-        console.log(item.id)
         motivoConsulta.push({
           tipo: item.id.split("-")[1] === 'company' ? 'company' : 'adolecente',
           valor: item.value
@@ -66,11 +65,6 @@ angular.module('Hospital')
           tipo: item.name
         })
       }
-
-      console.group('---------Save---------------')
-      console.log({ valor: item.value, tipo: item.name })
-      console.log(item);
-      console.groupEnd()
     })
 
     $scope.data.companion = inputCompanion !== null ? inputCompanion.value : ''
@@ -82,12 +76,9 @@ angular.module('Hospital')
     $scope.data.doctorTurno = localStorage.getItem('doctor')
     $scope.data.codigoForm = $('#codigoForm056').val()
 
-    console.log($scope.data);
-
     $http.post(`src/doctor/form056/service/${$stateParams.action}.php`, $scope.data)
     .then(response => {
       $scope.guardandoConsult = false
-      console.log(response)
       if (response.data === '201') {
         Materialize.toast('Seha guardado la consulta con exito', 4000)
         $location.path('/doctor')
