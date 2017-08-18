@@ -118,10 +118,36 @@ angular.module('Hospital')
       })
 
       //Anexo
+      let familiaAnexo = 0
       anexo.map(item => {
         const tag = document.querySelector(`input[name="${item.hgc_tipo_df056}"][value="${item.hgc_valo_df056}"]`)
         tag.checked = true
+
+        if (tag.id === 'vive1-1') {
+          document.querySelector('#vive4-2').disabled = false
+          document.querySelector('#vive4-1').disabled = false
+          document.querySelector('#vive2-1').disabled = true
+          document.querySelector('#vive2-2').disabled = true
+          document.querySelector('#vive3-1').disabled = true
+          document.querySelector('#vive3-2').disabled = true
+        }
+        if (tag.id === 'vive1-1') {
+          document.querySelector('#vive4-2').disabled = true
+          document.querySelector('#vive4-1').disabled = true
+          document.querySelector('#vive2-1').disabled = false
+          document.querySelector('#vive2-2').disabled = false
+          document.querySelector('#vive3-1').disabled = false
+          document.querySelector('#vive3-2').disabled = false
+        }
+        if (tag.name.substr(0, 7) === 'familia') {
+          familiaAnexo++
+          const checked = document.querySelector(`#${tag.name}-1`).checked
+          document.querySelector(`#${tag.name}-2`).disabled = checked
+          document.querySelector(`#${tag.name}-3`).disabled = checked
+        }
+
       })
+
       if (cie.length > 0) {
         motivoContadorService.data.indexMotivo = 0
         motivoContadorService.data.indexMotivoCompany = 0
@@ -183,6 +209,18 @@ angular.module('Hospital')
         })
       }
 
+      $scope.noEscolariz()
+      $scope.trabajaCheck()
+      $scope.relacionesSexual()
+      $scope.repeatYearDisabled()
+      $scope.handleDisabledOtherActividades()
+      $scope.handleWorkDisabInsalubre()
+      $scope.handleDeserExclDis()
+      $scope.handleDisEducaNoFormal()
+      $scope.handleOtherToxico()
+      $scope.handleDriveCar()
+      $scope.handleTrasmiSexual()
+      $scope.handleAgeStartSex()
     })
   }
 })

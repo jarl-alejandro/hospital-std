@@ -19,6 +19,7 @@ atendidos.controller('atendidosController', function ($scope, $http, $location) 
     if (turno.hgc_tipo_form === '056') {
       $location.path(`/form056/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
     }
+    else Materialize.toast('Esta en proceso...', 4000)
   }
 
 })

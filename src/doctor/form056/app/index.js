@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('Hospital')
-.controller('formCtrl056', function ($scope, $http, $stateParams) {
+.controller('formCtrl056', function ($scope, $http, $stateParams, $rootScope) {
   const fecha = new Date()
 
   $scope.paciente = {}
@@ -275,7 +275,7 @@ angular.module('Hospital')
     grid.map(item => item.checked = false)
   }
 
-  $scope.shouldBeDisabled = (item) => {
+  $rootScope.shouldBeDisabled = (item) => {
     if (item.type === 'checkbox') {
       const clase = item.id.split('-')[0]
       const cheked = document.querySelector(`#${item.id}`).checked
@@ -334,16 +334,16 @@ angular.module('Hospital')
   }
 
 
-  $scope.noEscolariz = () => {
+  $rootScope.noEscolariz = () => {
     $scope.flagEducacion = document.querySelector('#noEscolariz').checked
     if ($scope.flagEducacion === true) {
-      $scope.refreshCheck('.EducacioPperEstudia')
-      const grid = [...document.querySelectorAll('.EducacionPaper2 input[type="text"]')]
+      $scope.refreshCheck('.noEscolirizadoCheck')
+      const grid = [...document.querySelectorAll('.noEscolirizadoCheck input[type="text"]')]
       grid.map(item => item.value = '')
     }
   }
 
-  $scope.trabajaCheck = () => {
+  $rootScope.trabajaCheck = () => {
     const check = document.querySelector('#TrabajoActividad-trabaja').checked
     $scope.flagTrabaja = !check
     if (check === false) {
@@ -353,7 +353,7 @@ angular.module('Hospital')
     }
   }
 
-  $scope.relacionesSexual = () => {
+  $rootScope.relacionesSexual = () => {
     $scope.relacionesSexualCheck = document.querySelector('#relacionesSexuales-no').checked
     if ($scope.relacionesSexualCheck === true) {
       $scope.refreshCheck('.Sex--item')
@@ -363,55 +363,55 @@ angular.module('Hospital')
   }
 
   $scope.disabledInput = false
-  $scope.repeatYearDisabled = () => {
+  $rootScope.repeatYearDisabled = () => {
     $scope.disabledInput = document.querySelector('#repeatYearCausa-no').checked
     $('#obsYearRepeat').val('')
   }
 
   $scope.disabledOtherActiv = false
-  $scope.handleDisabledOtherActividades = () => {
+  $rootScope.handleDisabledOtherActividades = () => {
     $scope.disabledOtherActiv = document.querySelector('#OtrasActividades-no').checked
     if ($scope.disabledOtherActiv) $('.obsActivity').val('')
   }
 
   $scope.workInsalubreDis = false
-  $scope.handleWorkDisabInsalubre = () => {
+  $rootScope.handleWorkDisabInsalubre = () => {
     $scope.workInsalubreDis = document.querySelector('#TrabajoInsalubre-no').checked
     if ($scope.workInsalubreDis) $('#obserTypeWork').val('')
   }
 
   $scope.deserExclDis = false
-  $scope.handleDeserExclDis = () => {
+  $rootScope.handleDeserExclDis = () => {
     $scope.deserExclDis = document.querySelector('#DisercionEstudia-no').checked
     if ($scope.deserExclDis) $('#causaDesercionExcl').val('')
   }
 
   $scope.disabledEducNoForm = false
-  $scope.handleDisEducaNoFormal = () => {
+  $rootScope.handleDisEducaNoFormal = () => {
     $scope.disabledEducNoForm = document.querySelector('#EducacionNoFormalEstudia-no').checked
     if ($scope.disabledEducNoForm) $('#cualEducFormal').val('')
   }
 
   $scope.otherToxico = false
-  $scope.handleOtherToxico = () => {
+  $rootScope.handleOtherToxico = () => {
     $scope.otherToxico = document.querySelector('#OtroToxico-no').checked
     if ($scope.otherToxico) $('#frecunciaTypo').val('')
   }
 
   $scope.conduceVehiculoDisab = false
-  $scope.handleDriveCar = () => {
+  $rootScope.handleDriveCar = () => {
     $scope.conduceVehiculoDisab = document.querySelector('#ConduceVehiculo-no').checked
     if ($scope.conduceVehiculoDisab) $('#cual-conduce-carro').val('')
   }
 
   $scope.trasmiSexuDis = false
-  $scope.handleTrasmiSexual = () => {
+  $rootScope.handleTrasmiSexual = () => {
     $scope.trasmiSexuDis = document.querySelector('#EnfTranSexual-no').checked
     if ($scope.trasmiSexuDis) $('#cual-trasmision-sexual').val('')
   }
 
   $scope.ageStartDisab = false
-  $scope.handleAgeStartSex = () => {
+  $rootScope.handleAgeStartSex = () => {
     $scope.ageStartDisab = document.querySelector('#volundariaSex-no').checked
     if ($scope.ageStartDisab) $('#edad-inicio-sex').val('')
   }
