@@ -7,6 +7,8 @@ angular.module('Hospital')
   if ($scope.action === 'edit') {
     $http.get(`src/doctor/form056/service/get.php?turno=${$stateParams.turno}`)
     .then(response => {
+      $('#fecha_proxima_visita-link').fadeOut()
+      $('#fecha_proxima_visita-linkOut').css('display', 'inline-block')
       const form = response.data.form
       const anexo = response.data.anexo
       const observacion = response.data.observacion
@@ -15,6 +17,7 @@ angular.module('Hospital')
       //Fomr 056
       document.querySelector(`.Informacion-consulta-companion input[value="${form.hgc_acom_f056}"]`).checked = true
       document.querySelector(`.Informacion-consulta-civilStatus input[value="${form.hgc_civi_f056}"]`).checked = true
+      $('#codigoForm056').val(form.hgc_codi_f056)
       $('#enfermedad-actual').val(form.hgc_enfe_f056)
       $('#ocupacion056').val(form.hgc_ocup_f056)
       $('#numerosCuartos056').val(form.hgc_ncuar_f056)
@@ -89,9 +92,9 @@ angular.module('Hospital')
               $('#diagnostico-list').append(template)
             }
           })
-
         })
       }
+
     })
   }
 })

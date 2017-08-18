@@ -72,6 +72,7 @@ angular.module('Hospital')
     $scope.data.anexos = anexos
     $scope.data.fechaProxima = $('#fecha_proxima_visita').val()
     $scope.data.doctorTurno = localStorage.getItem('doctor')
+    $scope.data.codigoForm = $('#codigoForm056').val()
 
     $http.post(`src/doctor/form056/service/${$stateParams.action}.php`, $scope.data)
     .then(response => {
