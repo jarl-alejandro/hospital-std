@@ -25,7 +25,7 @@ doctor.controller('pacientesDoctorController', function ($scope, $http, $locatio
       $http.get(`src/doctor/pacientes/service/form056_verify.php?paciente=${object.id}`)
       .then(response => {
         console.log(response)
-        if (response.data === '0') $location.path(`/form056/${object.id}/${object.turno}`)
+        if (response.data === '0') $location.path(`/form056/${object.id}/${object.turno}/save`)
         if (response.data === '1') Materialize.toast('Aun no pasa el pasa el año', 4000)
       })
     }

@@ -5,11 +5,11 @@
     <table class="bordered highlight centered responsive-table">
       <thead>
           <tr>
-            <th width="10%">#</th>
-            <th width="23%">Historia Clinica</th>
-            <th width="23%">Paciente</th>
-            <th width="23%">Doctor</th>
-            <th width="23%"></th>
+            <th width="5%">#</th>
+            <th width="10%">Historia Clinica</th>
+            <th width="25%">Paciente</th>
+            <th width="25%">Doctor</th>
+            <th width="30%"></th>
           </tr>
         </thead>
       <tbody>
@@ -22,6 +22,7 @@
             <td>{{ paciente.paciente }}</td>
             <td>{{ paciente.doctor }}</td>
             <td>
+              <a class='waves-effect waves-light btn primary' ng-click="handleEdit(paciente)">Editar</a>
               <a class='waves-effect waves-light btn danger'
                 ng-click="handlePrint(paciente.hgc_id_turno)">Imprimir</a>
             </td>

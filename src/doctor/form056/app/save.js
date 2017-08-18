@@ -5,10 +5,10 @@ angular.module('Hospital')
   $scope.data = {
     paciente: $stateParams.id,
     turno: $stateParams.turno,
-    enfermedadActual: '',
-    planTratamiento: '',
-    numerosCuartos: '',
-    ocupacion: '',
+    enfermedadActual: $('#enfermedad-actual').val(),
+    planTratamiento: $('#plandeTratamiento').val(),
+    numerosCuartos: $('#numerosCuartos056').val(),
+    ocupacion: $('#ocupacion056').val(),
   }
   $scope.guardandoConsult = false
 
@@ -20,6 +20,7 @@ angular.module('Hospital')
     const listDiagnostico = [...document.querySelectorAll('.DiagnosticoCIE10 p input')]
     const listObservacion = [...document.querySelectorAll('.observacion')]
     const lisChecksRadio = [...document.querySelectorAll('input[type="radio"]:checked')]
+    const lisChecksBox = [...document.querySelectorAll('input[type="checkbox"]:checked')]
 
     const motivoConsulta = []
     const observaciones = []
@@ -57,6 +58,13 @@ angular.module('Hospital')
       })
     })
 
+    lisChecksBox.map(item => {
+      anexos.push({
+        valor: item.value,
+        tipo: item.name
+      })
+    })
+
     $scope.data.companion = inputCompanion !== null ? inputCompanion.value : ''
     $scope.data.civilStatus = inputCivilStatus !== null ? inputCivilStatus.value : ''
     $scope.data.motivo = motivoConsulta
@@ -65,7 +73,7 @@ angular.module('Hospital')
     $scope.data.fechaProxima = $('#fecha_proxima_visita').val()
     $scope.data.doctorTurno = localStorage.getItem('doctor')
 
-    $http.post('src/doctor/form056/service/save.php', $scope.data)
+    $http.post(`src/doctor/form056/service/${$stateParams.action}.php`, $scope.data)
     .then(response => {
       $scope.guardandoConsult = false
       console.log(response)

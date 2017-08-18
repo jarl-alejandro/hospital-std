@@ -1,17 +1,14 @@
 angular.module('Hospital')
-.controller('motivoConsultaCtrl056', function ($scope, $http) {
-  let indexMotivo = 3
-  let indexMotivoCompany = 3
-  let indexDiagnostico = 3
+.controller('motivoConsultaCtrl056', function ($scope, $http, motivoContadorService) {
 
   $scope.handleAddMotivoSelf = () => {
-    indexMotivo++
+    motivoContadorService.data.indexMotivo++
     let template = `
       <li class="input-field Motivo-consulta--self-item">
-        <input type="text" placeholder="Ingrese el motivo de consulta" id="input-${indexMotivo}"
-          class="Motivo-consulta--self-input" />
+        <input type="text" placeholder="Ingrese el motivo de consulta"
+          id="input-${motivoContadorService.data.indexMotivo}" class="Motivo-consulta--self-input" />
         <p class="consulta-cie--code">
-          <input type="text" placeholder="Codigo cie10" id="cie-${indexMotivo}"
+          <input type="text" placeholder="Codigo cie10" id="cie-${motivoContadorService.data.indexMotivo}"
             class="cie-input-motivo code-motivo-self" maxlength="4" />
         </p>
       </li>`
@@ -24,13 +21,13 @@ angular.module('Hospital')
   }
 
   $scope.handleAddMotivoCompany = () => {
-    indexMotivoCompany++
+    motivoContadorService.data.indexMotivoCompany++
     let template = `
       <li class="input-field Motivo-consulta--self-item">
-        <input type="text" placeholder="Ingrese el motivo de consulta" id="input-${indexMotivoCompany}"
-          class="Motivo-consulta--company-input" />
+        <input type="text" placeholder="Ingrese el motivo de consulta"
+          id="input-${motivoContadorService.data.indexMotivoCompany}" class="Motivo-consulta--company-input" />
         <p class="consulta-cie--code">
-          <input type="text" placeholder="Codigo cie10"  id="cie-${indexMotivoCompany}"
+          <input type="text" placeholder="Codigo cie10"  id="cie-${motivoContadorService.data.indexMotivoCompany}"
             class="cie-input-motivo code-motivo-company" maxlength="4" />
         </p>
       </li>`
@@ -43,13 +40,13 @@ angular.module('Hospital')
   }
 
   $scope.handleAddDiagnostico = () => {
-    indexDiagnostico++
+    motivoContadorService.data.indexDiagnostico++
     let template = `
       <li class="input-field Motivo-consulta--self-item">
-        <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-${indexDiagnostico}"
+        <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-${motivoContadorService.data.indexDiagnostico}"
           class="Diagnostico-input" />
         <p class="consulta-cie--code">
-          <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-${indexDiagnostico}"
+          <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-${motivoContadorService.data.indexDiagnostico}"
             class="cie-input-motivo Diagnostico-code" maxlength="4" />
         </p>
       </li>`

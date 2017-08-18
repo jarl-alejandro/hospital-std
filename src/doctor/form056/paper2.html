@@ -498,7 +498,8 @@
         </div>
         <div class="input-field u-noMargin">
         <p class="bold-input u-noMargin cross-center main-center" style="height:4em">horas</p>
-        <input type="text" class="u-noMargin" placeholder="Ingrese las horas" ng-keypress="ValidaSoloNumeros()" maxlength="2"/>
+        <input type="text" class="u-noMargin observacion" placeholder="Ingrese las horas"
+          ng-keypress="ValidaSoloNumeros()" maxlength="2" data-tipo="10.7"/>
       </div>
       </div>
     </article>
@@ -591,7 +592,8 @@
       </ul>
 
       <div class="input-field main-center" style="margin-top:1em">
-        <input type="text" id="frecunciaTypo" style="width:92%" class="observacion" data-tipo="10.5" />
+        <input type="text" id="frecunciaTypo" style="width:92%" class="observacion" data-tipo="10.5"
+          ng-disabled="otherToxico" />
         <label for="frecunciaTypo" style="font-size:11px;margin-left:3px">frecuencia y tipo</label>
       </div>
     </article>
@@ -614,7 +616,8 @@
       </div>
 
       <div class="input-field main-center" style="margin-top:.5em">
-        <input type="text" id="cual-conduce-carro" style="width:92%" class="observacion" data-tipo="10.6" />
+        <input type="text" id="cual-conduce-carro" style="width:92%" class="observacion" data-tipo="10.6"
+          ng-disabled="conduceVehiculoDisab" />
         <label for="cual-conduce-carro" style="font-size:11px;margin-left:3px">¿Cuàl?</label>
       </div>
     </article>
@@ -1054,27 +1057,27 @@
       <ul class="Percepcion-list">
         <li class="Psicoemocional-item"></li>
         <li class="Psicoemocional-item">
-          <input class="no-check-input" name="Psicoemocional"
+          <input class="no-check-input" name="Psicoemocional-autoPercep"
             type="radio" id="Psicoemocional-autoPercep-triste" value="1" />
           <label for="Psicoemocional-autoPercep-triste" class="no-check">triste</label>
         </li>
         <li class="Psicoemocional-item">
-          <input class="no-check-input" name="Psicoemocional"
+          <input class="no-check-input" name="Psicoemocional-autoPercep"
             type="radio" id="Psicoemocional-autoPercep-nervioso" value="2" />
           <label for="Psicoemocional-autoPercep-nervioso" class="no-check">nervioso</label>
         </li>
         <li class="Psicoemocional-item">
-          <input class="with-gap" name="Psicoemocional"
+          <input class="with-gap" name="Psicoemocional-autoPercep"
             type="radio" id="Psicoemocional-autoPercep-alegre" value="3" />
           <label for="Psicoemocional-autoPercep-alegre">alegre</label>
         </li>
         <li class="Psicoemocional-item">
-          <input class="no-check-input" name="Psicoemocional"
+          <input class="no-check-input" name="Psicoemocional-autoPercep"
             type="radio" id="Psicoemocional-autoPercep-timido" value="4" />
           <label for="Psicoemocional-autoPercep-timido" class="no-check">muy timido</label>
         </li>
         <li class="Psicoemocional-item">
-          <input class="with-gap" name="Psicoemocional"
+          <input class="with-gap" name="Psicoemocional-autoPercep"
             type="radio" id="Psicoemocional-autoPercep-otro" value="5" />
           <label for="Psicoemocional-autoPercep-otro">otro</label>
         </li>
@@ -1135,7 +1138,7 @@
   <article class="ObservacionesPsicoemocional">
     <p class="bold-input u-noMargin">Observaciones</p>
     <div class="input-field s-100 u-noMargin">
-      <input class="" placeholder="Ingresa la observacion" />
+      <input class="observacion" data-tipo="13" placeholder="Ingresa la observacion" />
     </div>
   </article>
   <!-- End SITUACION PSICOEMOCIONAL -->
@@ -1420,7 +1423,7 @@
   <article class="ObservacionesExamenFisico">
     <p class="bold-input u-noMargin">Observaciones</p>
     <div class="input-field s-100 u-noMargin">
-      <input class="" placeholder="Ingresa la observacion" />
+      <input class="observacion" data-tipo="14" placeholder="Ingresa la observacion" />
     </div>
   </article>
   <!-- END EXAMEN FISICO -->

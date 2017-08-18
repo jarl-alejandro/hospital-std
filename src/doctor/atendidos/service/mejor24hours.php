@@ -14,8 +14,7 @@ $qs_user = $pdo->query("SELECT * FROM hgc_profesionales WHERE hgc_cedu_profe='$i
 $user = $qs_user->fetch();
 $codi = $user["hgc_codi_profe"];
 
-$query = $pdo->query("SELECT * FROM view_form WHERE hgc_fech_form28<='$hoy'
-      AND hgc_doct_turno='$codi'");
+$query = $pdo->query("SELECT * FROM view_form WHERE hgc_fech_form28<='$hoy' AND hgc_doct_turno='$codi'");
 $turnos = array();
 
 while ($row = $query->fetch()) {

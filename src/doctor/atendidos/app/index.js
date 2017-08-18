@@ -13,4 +13,12 @@ atendidos.controller('atendidosController', function ($scope, $http, $location) 
       "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
   }
 
+  $scope.handleEdit = turno => {
+    console.log(turno);
+
+    if (turno.hgc_tipo_form === '056') {
+      $location.path(`/form056/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
+    }
+  }
+
 })
