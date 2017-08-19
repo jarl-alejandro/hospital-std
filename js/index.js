@@ -384,4 +384,10 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       templateUrl: 'src/doctor/form056/index.html',
       resolve: { authenticated: auth_roles }
     })
+    .state('formGraphic056AB', {
+      url: '/grafica-form056/:id/:turno',
+      controller: 'formGraphic056ABCtrl',
+      templateUrl: 'src/doctor/form056/grafica.html',
+      resolve: { authenticated: auth_roles }
+    })
 })

@@ -80,8 +80,7 @@ angular.module('Hospital')
     .then(response => {
       $scope.guardandoConsult = false
       if (response.data === '201') {
-        Materialize.toast('Seha guardado la consulta con exito', 4000)
-        $location.path('/doctor')
+        $location.path(`/grafica-form056/${$stateParams.id}/${$stateParams.turno}`)
       }
     })
 
