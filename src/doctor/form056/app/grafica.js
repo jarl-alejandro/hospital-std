@@ -71,8 +71,9 @@ angular.module('Hospital')
     imcY = imcY / 2
     imcY += 0.4
 
+    console.log(  )
+
     let celdaYear = duracion.years - 10
-    console.log((duracion.months - 10));
     const cx = (celdaYear * 105)
 
     let celdaIMC = 24
@@ -98,7 +99,7 @@ angular.module('Hospital')
       let toaster = document.querySelector('.toaster-imc-mayor')
       toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 110) + 'px'
       toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 150) + 'px'
-      toaster.innerText = `IMC: ${imcData} - Edad: ${duracion.years} años, 5 mes`
+      toaster.innerText = `IMC: ${imcData} - Edad: ${duracion.years} años, ${duracion.months} mes`
       $('.toaster-imc-mayor').slideDown()
     })
     .mouseout(function () {
