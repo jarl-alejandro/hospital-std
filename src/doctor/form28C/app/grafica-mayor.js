@@ -32,9 +32,6 @@ angular.module('Hospital')
 
     let celdaYear = duracion.years - 5
     const cx = (155 * celdaYear) + (duracion.months/3) * 37
-    // const cx = (155 * celdaYear) + (duracion.months/4) * 37
-
-    console.log((duracion.months/3))
 
     let pesoAltura = 50
     let pesoCelda = (item.peso - 14) / 3
