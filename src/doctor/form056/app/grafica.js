@@ -50,7 +50,17 @@ angular.module('Hospital')
   $scope.handleToggleTwo = () => $scope.graficaFlag2 = !$scope.graficaFlag2
 
   function graphicIMC (imcData, fecha, index) {
-    const duracion = duration(new Date($scope.fechaNacimiento), new Date(fecha))
+    const atencion = fecha.split("-")
+    const nacimiento = $scope.fechaNacimiento.split("-")
+
+    const duracion = duration(
+      new Date(nacimiento[0]+"/"+nacimiento[1]+"/"+nacimiento[2]),
+      new Date(atencion[0]+"/"+atencion[1]+"/"+atencion[2])
+    )
+
+    console.log(atencion[0]+"/"+atencion[1]+"/"+atencion[2]);
+    console.log(nacimiento[0]+"/"+nacimiento[1]+"/"+nacimiento[2]);
+
     console.group("---------------------")
     console.log(duracion);
     console.log($scope.fechaNacimiento);
