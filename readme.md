@@ -23,3 +23,5 @@ nino colors -> mayores de 5 años hasta 10 años
   formlumarios 028A
   formlumarios 028C
   formlumarios 056
+    -> form 056 A
+    -> form 056 B

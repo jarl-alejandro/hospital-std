@@ -189,7 +189,14 @@ angular.module('Hospital')
     if (tallaData === 110) celdaTalla = 0
     if (tallaData > 110) celdaTalla = 0.6
     if (tallaData >= 130) celdaTalla = 1
-    // if (tallaData >= 130) celdaTalla = 1
+    if (tallaData >= 140) celdaTalla = 1.4
+    if (tallaData >= 150) celdaTalla = 1.8
+
+    if (tallaData >= 160) celdaTalla = 2.1
+    if (tallaData >= 170) celdaTalla = 2.3
+    if (tallaData >= 180) celdaTalla = 2.6
+    if (tallaData >= 190) celdaTalla = 2.8
+    if (tallaData >= 200) celdaTalla = 2.9
 
     if (index > 0) {
       talla.line(cx, celdaTalla * tallaData, datoTallaX, datTallaY).attr({
