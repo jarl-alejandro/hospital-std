@@ -9,9 +9,17 @@ angular.module('Hospital')
   $scope.colorSexo = '#0197d6'
 
   const imc = Snap('#graficaPaper-imc__svg')
+  const peso = Snap('#pesoEdad056')
+  const talla = Snap('#tallaEdad056')
 
   let datoIMCX = 0
   let datIMCY = 0
+
+  let datoPesoX = 0
+  let datPesoY = 0
+
+  let datoTallaX = 0
+  let datTallaY = 0
 
   $http.get(`src/doctor/form056/service/paciente.php?id=${$stateParams.id}`)
   .then(response => {
@@ -43,6 +51,8 @@ angular.module('Hospital')
     .then(response => {
       console.log(response)
       response.data.map((data, index) => graphicIMC(data.hgc_imc_sigvit, data.hgc_fecha_sigvit, index))
+      response.data.map((data, index) => graphicPeso(data.hgc_peso_sigvit, data.hgc_fecha_sigvit, index))
+      response.data.map((data, index) => graphicTalla(data.hgc_talla_sigvit, data.hgc_fecha_sigvit, index))
     })
   }, 500)
 
@@ -54,27 +64,17 @@ angular.module('Hospital')
     const nacimiento = $scope.fechaNacimiento.split("-")
 
     const duracion = duration(
-      new Date(nacimiento[0]+"/"+nacimiento[1]+"/"+nacimiento[2]),
-      new Date(atencion[0]+"/"+atencion[1]+"/"+atencion[2])
+      new Date(atencion[0]+"/"+atencion[1]+"/"+atencion[2]),
+      new Date(nacimiento[0]+"/"+nacimiento[1]+"/"+nacimiento[2])
     )
-
-    console.log(atencion[0]+"/"+atencion[1]+"/"+atencion[2]);
-    console.log(nacimiento[0]+"/"+nacimiento[1]+"/"+nacimiento[2]);
-
-    console.group("---------------------")
-    console.log(duracion);
-    console.log($scope.fechaNacimiento);
-    console.log(fecha);
-    console.groupEnd()
 
     let imcY = imcData - 11
     imcY = imcY / 2
     imcY += 0.4
 
-    console.log(  )
-
     let celdaYear = duracion.years - 10
-    const cx = (celdaYear * 105)
+    let celda = (28/3) * duracion.months
+    const cx = (celdaYear * 105) + celda
 
     let celdaIMC = 24
 
@@ -110,5 +110,113 @@ angular.module('Hospital')
     datoIMCX = cx
     datIMCY = celdaIMC * imcY
 
+  }
+
+  function graphicPeso (pesoData, fecha, index) {
+    const atencion = fecha.split("-")
+    const nacimiento = $scope.fechaNacimiento.split("-")
+
+    const duracion = duration(
+      new Date(atencion[0]+"/"+atencion[1]+"/"+atencion[2]),
+      new Date(nacimiento[0]+"/"+nacimiento[1]+"/"+nacimiento[2])
+    )
+    let pesoY = pesoData.toString().split('')[0] - 1
+
+    let celdaYear = duracion.years - 10
+    let celda = 6 * duracion.months
+    const cx = (celdaYear * 83) + celda
+
+    let celdaData = 0.7
+
+    if (pesoData >= 30) celdaData = 1.8
+    if (pesoData >= 35) celdaData = 2.5
+    if (pesoData >= 40) celdaData = 3.3
+    if (pesoData >= 45) celdaData = 3.8
+    if (pesoData >= 50) celdaData = 4.2
+    if (pesoData >= 55) celdaData = 4.5
+    if (pesoData >= 60) celdaData = 4.8
+    if (pesoData >= 65) celdaData = 5
+    if (pesoData >= 70) celdaData = 5.2
+    if (pesoData >= 75) celdaData = 5.4
+    if (pesoData >= 80) celdaData = 5.5
+    if (pesoData >= 85) celdaData = 5.6
+    if (pesoData >= 90) celdaData = 5.8
+    if (pesoData >= 95) celdaData = 5.9
+    if (pesoData >= 105) celdaData = 6
+
+    if (index > 0) {
+      peso.line(cx, celdaData * pesoData, datoPesoX, datPesoY).attr({
+        strokeWidth: 3,
+        stroke: `${$scope.colorSexo}`,
+      }).animate({ strokeDasharray: '21px' }, 4000)
+    }
+
+    peso.circle(cx, celdaData * pesoData, 50).attr({
+      fill: `${$scope.colorSexo}`,
+      stroke: `${$scope.colorSexo}`,
+      strokeWidth: 7
+    }).animate({r: 5}, 1000)
+    .mouseover(function () {
+      let toaster = document.querySelector('.toaster')
+      toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 215) + 'px'
+      toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 30) + 'px'
+      toaster.innerText = `Peso: ${pesoData} - Edad: ${duracion.years} años, ${duracion.months} mes`
+      $('.toaster').slideDown()
+    })
+    .mouseout(function () {
+      $('.toaster').slideUp()
+    })
+
+    datoPesoX = cx
+    datPesoY = celdaData * pesoData
+  }
+
+  function graphicTalla (tallaData, fecha, index) {
+    const atencion = fecha.split("-")
+    const nacimiento = $scope.fechaNacimiento.split("-")
+
+    const duracion = duration(
+      new Date(atencion[0]+"/"+atencion[1]+"/"+atencion[2]),
+      new Date(nacimiento[0]+"/"+nacimiento[1]+"/"+nacimiento[2])
+    )
+
+    let celdaYear = duracion.years - 10
+    let celda = (20/3) * duracion.months
+    const cx = (celdaYear * 88) + celda
+
+    let celdaTalla = 0
+
+    if (tallaData === 110) celdaTalla = 0
+    if (tallaData > 110) celdaTalla = 0.6
+    if (tallaData >= 130) celdaTalla = 1
+    // if (tallaData >= 130) celdaTalla = 1
+
+    if (index > 0) {
+      talla.line(cx, celdaTalla * tallaData, datoTallaX, datTallaY).attr({
+        strokeWidth: 3,
+        stroke: `${$scope.colorSexo}`,
+      }).animate({ strokeDasharray: '21px' }, 4000)
+    }
+
+    // talla graphic
+    talla.circle(cx, celdaTalla * tallaData, 50).attr({
+      fill: `${$scope.colorSexo}`,
+      stroke: `${$scope.colorSexo}`,
+      strokeWidth: 7
+    }).animate({r: 5}, 1000)
+    .mouseover(function () {
+      let toaster = document.querySelector('.toaster-longitud')
+      toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 195) + 'px'
+      toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 100) + 'px'
+      toaster.innerText = `Talla: ${tallaData} - Edad: ${duracion.years} años, ${duracion.months} mes`
+      $('.toaster-longitud').slideDown()
+    })
+    .mouseout(function () {
+      $('.toaster-longitud').slideUp()
+    })
+    // talla graphic
+
+    datoTallaX = cx
+    datTallaY = celdaTalla * tallaData
   }
 })
