@@ -303,5 +303,60 @@
     </section>
     <!-- End Motivo de Consulta -->
 
+    <article class="DiagnosticoCIE10 l-90">
+      <p class="Motivo-consulta--title">
+        <a>15. DIAGNOSTICO - CIE:</a>
+        <a class="u-pointer motivo-add" ng-click="handleAddDiagnostico()">
+          <i class="material-icons">add</i>
+        </a>
+      </p>
+      <ul class="Motivo-consulta--self-list" id="diagnostico-list">
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-1"
+          class="Diagnostico-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-1"
+            class="cie-input-motivo Diagnostico-code" maxlength="4" />
+          </p>
+        </li>
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-2"
+          class="Diagnostico-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-2"
+            class="cie-input-motivo Diagnostico-code" maxlength="4" />
+          </p>
+        </li>
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-3"
+          class="Diagnostico-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-3"
+            class="cie-input-motivo Diagnostico-code" maxlength="4" />
+          </p>
+        </li>
+      </ul>
+    </article>
+
+    <article class="s-100 l-90 form-select">
+      <div class="menu-form">
+        <h6>INDICACIONES E INTERCONSULTAS</h6>
+      </div>
+      <div class="input-field">
+        <textarea id="plandeTratamiento" class="materialize-textarea"
+          ng-model="data.planTratamiento"
+          placeholder="Ingresa el plan de tratamiento"></textarea>
+      </div>
+    </article>
+
+    <p class="bold-input response">Response: {{ user.name }}</p>
+    <div class="proximaVisit">
+      <a id="fecha_proxima_visita-link" class="waves-effect waves-teal btn-flat" ng-click="handleDateVisit()">Fecha proxima visita</a>
+      <a id="fecha_proxima_visita-linkOut" class="waves-effect waves-teal btn-flat" style="display:none">Fecha proxima visita</a>
+      <input type="text" disabled placeholder="año-mes-dia" id="fecha_proxima_visita"  />
+    </div>
+
   </section>
+
+  <div ng-include="'src/doctor/hoja-devolucion/calendar.html'"></div>
 </section>

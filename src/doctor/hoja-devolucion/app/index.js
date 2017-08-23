@@ -64,4 +64,6 @@ angular.module('Hospital')
     min: new Date(),
   })
 
+  $scope.handleDateVisit = () => $('.month-turno').slideDown()
+
 })
