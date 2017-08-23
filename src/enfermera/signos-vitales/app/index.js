@@ -69,6 +69,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     `src/enfermera/signos-vitales/service/pacienteOne.php?id=${id}`
   )
   .then(response => {
+    console.log(response);
     $scope.paciente = response.data
     $scope.fechaNacimiento = $scope.paciente.hgc_fecn_pacie
     const parametros = $scope.paciente.hgc_fecn_pacie.split('-')

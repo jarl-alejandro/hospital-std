@@ -178,8 +178,9 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
         let dia = fecha.getDate()
         let dia_semana = fecha.getDay()
         if (dia == 1) var sem = 0
+        let diaSet = dia < 10 ? '0'+dia : dia
         semanas.children[sem].children[dia_semana].innerHTML = dia
-        semanas.children[sem].children[dia_semana].dataset.dia = dia
+        semanas.children[sem].children[dia_semana].dataset.dia = diaSet
         semanas.children[sem].children[dia_semana].className = 'dia'
         if (dia_semana == 6) sem = sem + 1
       }
