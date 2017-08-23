@@ -11,6 +11,7 @@ angular.module('Hospital')
   const imc = Snap('#graficaPaper-imc__svg')
   const peso = Snap('#pesoEdad056')
   const talla = Snap('#tallaEdad056')
+  const speed = Snap('#Speed')
 
   let datoIMCX = 0
   let datIMCY = 0
@@ -20,6 +21,9 @@ angular.module('Hospital')
 
   let datoTallaX = 0
   let datTallaY = 0
+
+  let datoSpeedX = 0
+  let dataSpeedY = 0
 
   $http.get(`src/doctor/form056/service/paciente.php?id=${$stateParams.id}`)
   .then(response => {
@@ -49,15 +53,59 @@ angular.module('Hospital')
   setTimeout(()=> {
     $http.get(`src/doctor/form056/service/grafica.php?id=${$stateParams.id}`)
     .then(response => {
-      console.log(response)
       response.data.map((data, index) => graphicIMC(data.hgc_imc_sigvit, data.hgc_fecha_sigvit, index))
       response.data.map((data, index) => graphicPeso(data.hgc_peso_sigvit, data.hgc_fecha_sigvit, index))
       response.data.map((data, index) => graphicTalla(data.hgc_talla_sigvit, data.hgc_fecha_sigvit, index))
+      response.data.map((data, index) => graphicSpeed(data.hgc_talla_sigvit, data.hgc_fecha_sigvit, index))
     })
   }, 500)
 
   $scope.handleToggleOne = () => $scope.graficaFlag = !$scope.graficaFlag
   $scope.handleToggleTwo = () => $scope.graficaFlag2 = !$scope.graficaFlag2
+
+  function graphicSpeed (tallaData, fecha, index) {
+    const atencion = fecha.split("-")
+    const nacimiento = $scope.fechaNacimiento.split("-")
+
+    const duracion = duration(
+      new Date(atencion[0]+"/"+atencion[1]+"/"+atencion[2]),
+      new Date(nacimiento[0]+"/"+nacimiento[1]+"/"+nacimiento[2])
+    )
+
+    let celdaYear = duracion.years - 10
+    let celda = (9/2) * duracion.months
+    const cx = (celdaYear * 162) + celda
+
+    let celdaTalla = 1
+
+    if (index > 0) {
+      speed.line(cx, celdaTalla * tallaData, datoSpeedX, dataSpeedY).attr({
+        strokeWidth: 3,
+        stroke: `${$scope.colorSexo}`,
+      }).animate({ strokeDasharray: '21px' }, 4000)
+    }
+
+    // talla graphic
+    speed.circle(cx, celdaTalla * tallaData, 50).attr({
+      fill: `${$scope.colorSexo}`,
+      stroke: `${$scope.colorSexo}`,
+      strokeWidth: 7
+    }).animate({r: 5}, 1000)
+    .mouseover(function () {
+      let toaster = document.querySelector('.toaster-cefalico')
+      toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 110) + 'px'
+      toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 60) + 'px'
+      toaster.innerText = `Talla: ${tallaData} - Edad: ${duracion.years} años, ${duracion.months} mes`
+      $('.toaster-cefalico').slideDown()
+    })
+    .mouseout(function () {
+      $('.toaster-cefalico').slideUp()
+    })
+    // talla graphic
+
+    datoSpeedX = cx
+    dataSpeedY = celdaTalla * tallaData
+  }
 
   function graphicIMC (imcData, fecha, index) {
     const atencion = fecha.split("-")
