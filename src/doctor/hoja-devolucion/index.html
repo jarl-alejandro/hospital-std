@@ -1,4 +1,307 @@
 <hgc-menu-doctor></hgc-menu-doctor>
-<section class="workSpace">
+<section class="workSpace" style="width:98%">
   <h1 class="Title">Hoja de Devolucion</h2>
+
+  <section ng-controller="validForm" style="background-color: white;padding: 1em;">
+    <input type="hidden" id="codigoForm056" />
+
+    <!-- Nombres del paciente y Establecimiento -->
+    <article class="grid-header">
+      <div class="form056-header-names">
+        <ul class="form056-header-names--head">
+          <li>APELLIDOS:</li>
+          <li>PATERNO</li>
+          <li>MATERNO</li>
+          <li>NOMBRES</li>
+        </ul>
+        <ul class="form056-header-names--body">
+          <li></li>
+          <li>{{ apellidos[0] }}</li>
+          <li>{{ apellidos[1] }}</li>
+          <li>{{ paciente.hgc_nom_pacie }}</li>
+        </ul>
+      </div>
+
+      <div class="form056-header-establecimiento">
+        <p class="u-noMargin"><strong>Nùmeros de Historia Clìnica:</strong>
+          {{ paciente.hgc_histo_hcli }}
+        </p>
+        <p class="u-noMargin"><strong>ESTABLECIMIENTO:</strong>
+          {{ empresa.hgc_nom_empr }}
+        </p>
+      </div>
+    </article>
+    <!-- End Nombres del paciente y Establecimiento -->
+
+    <!-- Informacion del paciente -->
+    <div class="Evolucion-grid-paciente">
+      <!-- Consulta principal -->
+      <article class="u-border-right">
+        <p class="u-noMargin bold-input">EVOLUCIÒN Nº {{contlasN}}</p>
+        <div class="Informacion-consulta-fecha" style="grid-template-columns: 30% 70%;padding:0 4px">
+          <p class="u-noMargin bold-input">Fecha</p>
+          <div>
+            <ul class="Informacion-consulta-fecha--header">
+              <li>dia</li>
+              <li>mes</li>
+              <li>año</li>
+            </ul>
+            <ul class="Informacion-consulta-fecha--boody">
+              <li>{{ hoy[0] }}</li>
+              <li>{{ hoy[1] }}</li>
+              <li>{{ month[0] }}</li>
+              <li>{{ month[1] }}</li>
+              <li>{{ year[2] }}</li>
+              <li>{{ year[3] }}</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="center-align u-border-right" style="padding: 0 4px;">
+        <p class="u-noMargin bold-input">EDAD</p>
+        <ul class="Informacion-consulta-edad--header">
+          <li>años</li>
+          <li>meses</li>
+        </ul>
+        <ul class="Informacion-consulta-edad--boody">
+          <li>{{ ageYear[0] }}</li>
+          <li>{{ ageYear[1] }}</li>
+          <li>{{ ageMonth[0] }}</li>
+          <li>{{ ageMonth[1] }}</li>
+        </ul>
+      </article>
+      <!-- End Consulta principal -->
+
+      <!-- Compañia -->
+      <article class="u-border-right">
+        <p class="s-100 u-noMargin bold-input center-align">Acompañante</p>
+        <ul class="Informacion-consulta-companion--list Evolucion-company">
+          <li>
+            <input type="radio" id="solo" name="acompaniente" value="1" data-name="Acompañante" />
+            <label for="solo">solo</label>
+          </li>
+          <li>
+            <input type="radio" id="madre" name="acompaniente" value="2" data-name="Acompañante" />
+            <label for="madre">madre</label>
+          </li>
+          <li>
+            <input type="radio" id="padre" name="acompaniente" value="3" data-name="Acompañante" />
+            <label for="padre">padre</label>
+          </li>
+          <li>
+            <input type="radio" id="ambos" name="acompaniente" value="4" data-name="Acompañante" />
+            <label for="ambos">ambos</label>
+          </li>
+          <li>
+            <input type="radio" id="pareja" name="acompaniente" value="5" data-name="Acompañante" />
+            <label for="pareja">pareja</label>
+          </li>
+          <li>
+            <input type="radio" id="amigo" name="acompaniente" value="6" data-name="Acompañante" />
+            <label for="amigo">amigo/a</label>
+          </li>
+          <li>
+            <input type="radio" id="pariente" name="acompaniente" value="7" data-name="Acompañante" />
+            <label for="pariente">pariente</label>
+          </li>
+          <li>
+            <input type="radio" id="otro" name="acompaniente" value="8" data-name="Acompañante" />
+            <label for="otro">otro</label>
+          </li>
+        </ul>
+      </article>
+      <!-- Compañia -->
+
+      <!-- Estudios -->
+      <article class="Evolucion-estudios u-border-right Evolucion-company">
+        <p class="u-noMargin bold-input center-align">ESTUDIOS</p>
+        <ul class="Evolucion-estudios__list" style="margin: 0 1em;">
+          <li>
+            <input class="no-check" name="estudios" type="radio" id="est-ninguno" />
+            <label for="est-ninguno" class="no-check-input">Niguno</label>
+          </li>
+          <li>
+            <input class="with-gap" name="estudios" type="radio" id="est-primaria" />
+            <label for="est-primaria">Primaria</label>
+          </li>
+          <li>
+            <input class="with-gap" name="estudios" type="radio" id="secu-primaria" />
+            <label for="secu-primaria">Secund.</label>
+          </li>
+          <li>
+            <input class="with-gap" name="estudios" type="radio" id="uive-primaria" />
+            <label for="uive-primaria">univers</label>
+          </li>
+        </ul>
+        <p class="u-noMargin center-align">
+          <input class="with-gap" name="estudios" type="radio" id="mayor-primaria" />
+          <label for="mayor-primaria">años en el mayor nivel</label>
+        </p>
+      </article>
+      <!-- End Estudios -->
+
+      <!-- Estado Civil -->
+      <article class="Informacion-consulta-civilStatus u-border-right">
+        <p class="s-100 u-noMargin bold-input center-align">ESTADO CIVIL</p>
+        <p class="u-noMargin">
+          <input type="radio" id="cilvilSoltero" name="estadocivil" value="1" data-name="Estado Civil" />
+          <label for="cilvilSoltero">soltero</label>
+        </p>
+        <p class="u-noMargin">
+          <input type="radio" id="civilUnion" name="estadocivil" value="2" data-name="Estado Civil" />
+          <label for="civilUnion">uniòn estado</label>
+        </p>
+        <p class="u-noMargin">
+          <input type="radio" id="civilSeparados" name="estadocivil" value="3" data-name="Estado Civil" />
+          <label for="civilSeparados">separados</label>
+        </p>
+      </article>
+      <!-- End Estado Civil -->
+
+      <aside class="ultima-mestruacion">
+        <p class="u-noMargin bold-input center-align">FECHA DE ÙLTIMA MENSTRUACIÒN</p>
+        <ul class="ultima-mestruacion__list">
+          <li>
+            <input class="with-gap" name="group3" type="radio" id="noConoce" />
+            <label for="noConoce">No conoce</label>
+          </li>
+          <li>
+            <input class="with-gap" name="group3" type="radio" id="noCorresponde" />
+            <label for="noCorresponde">No corresponde</label>
+          </li>
+        </ul>
+        <div class="input-field" style="margin:1em">
+          <input id="menstruacion" type="text" class="datepicker" />
+          <label for="menstruacion">Fecha de la menstruacion</label>
+        </div>
+      </aside>
+    </div>
+    <!-- End de la informacion del paciente -->
+
+    <!-- SignosVitales -->
+    <article class="SignosVitalesDevolucion">
+      <div class="input-field">
+        <input id="peso" type="text" />
+        <label for="peso">Peso (kg)</label>
+      </div>
+      <div class="input-field">
+        <input id="centil" type="text" />
+        <label for="centil">Centil Peso/Edad</label>
+      </div>
+      <div class="input-field">
+        <input id="talla" type="text" />
+        <label for="talla">Talla (cm)</label>
+      </div>
+      <div class="input-field">
+        <input id="tallaEdad" type="text" />
+        <label for="tallaEdad">De Talla/Edad</label>
+      </div>
+      <div class="input-field">
+        <input id="deImc" type="text" />
+        <label for="deImc">De IMC</label>
+      </div>
+      <div class="input-field">
+        <input id="presionArterial" type="text" />
+        <label for="presionArterial">Presiòn Arterial</label>
+      </div>
+      <div class="input-field">
+        <input id="frecuenciaCardiaca" type="text" />
+        <label for="frecuenciaCardiaca">Frecuencia Cardiaca</label>
+      </div>
+      <div>
+        <p class="u-noMargin bold-input">Tanner:</p>
+        <ul class="tanner__list">
+          <li>
+            <input class="with-gap" name="Tanner" type="radio" id="mamas" />
+            <label for="mamas">mama</label>
+          </li>
+          <li>
+            <input class="with-gap" name="Tanner" type="radio" id="velloPubico" />
+            <label for="velloPubico">vello pùbico</label>
+          </li>
+          <li>
+            <input class="with-gap" name="Tanner" type="radio" id="genitales" />
+            <label for="genitales">genitales</label>
+          </li>
+        </ul>
+      </div>
+    </article>
+    <!-- SignosVitales -->
+
+    <!-- Motivo de Consulta -->
+    <section class="Motivo-consulta" ng-controller="motivoConsultaCtrl056">
+      <article class="Motivo-consulta--self">
+        <p class="Motivo-consulta--title">
+            <a>1. MOTIVO DE CONSULTA (segùn adolescente):</a>
+            <a class="u-pointer motivo-add" ng-click="handleAddMotivoSelf()">
+              <i class="material-icons">add</i>
+            </a>
+        </p>
+        <ul class="Motivo-consulta--self-list" id="motivo-list">
+            <li class="input-field Motivo-consulta--self-item">
+              <input type="text" placeholder="Ingrese el motivo de consulta" id="input-1"
+                class="Motivo-consulta--self-input" />
+              <p class="consulta-cie--code">
+                <input type="text" placeholder="Codigo cie10" id="cie-1"
+                  class="cie-input-motivo code-motivo-self" maxlength="4" />
+              </p>
+            </li>
+            <li class="input-field Motivo-consulta--self-item">
+              <input type="text" placeholder="Ingrese el motivo de consulta" id="input-2"
+                class="Motivo-consulta--self-input" />
+              <p class="consulta-cie--code">
+                <input type="text" placeholder="Codigo cie10" id="cie-2"
+                  class="cie-input-motivo code-motivo-self" maxlength="4" />
+              </p>
+            </li>
+            <li class="input-field Motivo-consulta--self-item">
+              <input type="text" placeholder="Ingrese el motivo de consulta" id="input-3"
+                class="Motivo-consulta--self-input" />
+              <p class="consulta-cie--code">
+                <input type="text" placeholder="Codigo cie10" id="cie-3"
+                  class="cie-input-motivo code-motivo-self" maxlength="4" />
+              </p>
+            </li>
+          </ul>
+      </article>
+
+      <article class="Motivo-consulta--company">
+        <p class="Motivo-consulta--title">
+            <a>MOTIVO DE CONSULTA (segùn acompañante):</a>
+            <a class="u-pointer motivo-add" ng-click="handleAddMotivoCompany()">
+              <i class="material-icons">add</i>
+            </a>
+        </p>
+        <ul class="Motivo-consulta--self-list" id="motivo-list-company">
+            <li class="input-field Motivo-consulta--self-item">
+              <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-1"
+                class="Motivo-consulta--company-input" />
+              <p class="consulta-cie--code">
+                <input type="text" placeholder="Codigo cie10"  id="cie-company-1"
+                  class="cie-input-motivo  code-motivo-company" maxlength="4" />
+              </p>
+            </li>
+            <li class="input-field Motivo-consulta--self-item">
+              <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-2"
+                class="Motivo-consulta--company-input" />
+              <p class="consulta-cie--code">
+                <input type="text" placeholder="Codigo cie10" id="cie-company-2"
+                  class="cie-input-motivo  code-motivo-company" maxlength="4" />
+              </p>
+            </li>
+            <li class="input-field Motivo-consulta--self-item">
+              <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-3"
+                class="Motivo-consulta--company-input" />
+              <p class="consulta-cie--code">
+                <input type="text" placeholder="Codigo cie10" id="cie-company-3"
+                  class="cie-input-motivo  code-motivo-company" maxlength="4" />
+              </p>
+            </li>
+          </ul>
+      </article>
+    </section>
+    <!-- End Motivo de Consulta -->
+
+  </section>
 </section>
