@@ -18,11 +18,12 @@ $historiaClinica = $obj->historiaClinica;
 $id = $obj->id;
 
 $hoy = date("Y/m/d");
+$year = date("Y");
 $hora = date("h:i");
 
 if ($id == "") {
   $new = $pdo->prepare("UPDATE hgc_sigvit SET hgc_frcar_sigvit=?, hgc_prart_sigvit=?, hgc_peso_sigvit=?,
-    hgc_talla_sigvit=?, hgc_imc_sigvit=?, hgc_fecha_sigvit=?, hgc_hcli_sigvit=?, hgc_hora_sigvit=?
+    hgc_talla_sigvit=?, hgc_imc_sigvit=?, hgc_fecha_sigvit=?, hgc_hcli_sigvit=?, hgc_hora_sigvit=?, hgc_yea_sigvit=?
     WHERE hgc_turno_sigvit=?");
 
   $new->bindParam(1, $frCardica);
@@ -33,7 +34,8 @@ if ($id == "") {
   $new->bindParam(6, $hoy);
   $new->bindParam(7, $historiaClinica);
   $new->bindParam(8, $hora);
-  $new->bindParam(9, $turno);
+  $new->bindParam(9, $year);
+  $new->bindParam(10, $turno);
 
   $new->execute();
 

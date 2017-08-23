@@ -56,12 +56,20 @@ angular.module('Hospital')
       response.data.map((data, index) => graphicIMC(data.hgc_imc_sigvit, data.hgc_fecha_sigvit, index))
       response.data.map((data, index) => graphicPeso(data.hgc_peso_sigvit, data.hgc_fecha_sigvit, index))
       response.data.map((data, index) => graphicTalla(data.hgc_talla_sigvit, data.hgc_fecha_sigvit, index))
+    })
+
+    $http.get(`src/doctor/form056/service/grafica_speed.php?id=${$stateParams.id}`)
+    .then(response => {
+      let data = response.data
       response.data.map((data, index) => graphicSpeed(data.hgc_talla_sigvit, data.hgc_fecha_sigvit, index))
+      console.log(response.data);
     })
   }, 500)
 
   $scope.handleToggleOne = () => $scope.graficaFlag = !$scope.graficaFlag
   $scope.handleToggleTwo = () => $scope.graficaFlag2 = !$scope.graficaFlag2
+
+  let speedGrowth = 0
 
   function graphicSpeed (tallaData, fecha, index) {
     const atencion = fecha.split("-")
@@ -76,20 +84,25 @@ angular.module('Hospital')
     let celda = (9/2) * duracion.months
     const cx = ((duracion.years+1) * 50.8) + celda
 
-    console.log(duracion.years);
-
     let celdaTalla = 1
     let cy = 10
 
     if (index > 0) {
-      cy = celdaTalla * tallaData
+      let tallaSpeed = tallaData - speedGrowth
+      cy = tallaSpeed * 32
+      console.group('-------------------------Talla crecimeinto--------------------------');
+      console.log(speedGrowth);
+      console.log(tallaData);
+      console.log(cy);
+      console.groupEnd();
+
       speed.line(cx, cy, datoSpeedX, dataSpeedY).attr({
         strokeWidth: 3,
         stroke: `${$scope.colorSexo}`,
       }).animate({ strokeDasharray: '21px' }, 4000)
 
       // talla graphic
-      speed.circle(cx, celdaTalla * tallaData, 50).attr({
+      speed.circle(cx, cy, 50).attr({
         fill: `${$scope.colorSexo}`,
         stroke: `${$scope.colorSexo}`,
         strokeWidth: 7
@@ -98,7 +111,7 @@ angular.module('Hospital')
         let toaster = document.querySelector('.toaster-cefalico')
         toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 110) + 'px'
         toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 60) + 'px'
-        toaster.innerText = `Talla: ${tallaData} - Edad: ${duracion.years} años, ${duracion.months} mes`
+        toaster.innerText = `Talla: ${tallaSpeed} - Edad: ${duracion.years} años, ${duracion.months} mes`
         $('.toaster-cefalico').slideDown()
       })
       .mouseout(function () {
@@ -123,7 +136,7 @@ angular.module('Hospital')
         $('.toaster-cefalico').slideUp()
       })
     }
-
+    speedGrowth = tallaData
 
     datoSpeedX = cx
     dataSpeedY = cy
