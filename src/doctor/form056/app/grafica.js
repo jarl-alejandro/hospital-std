@@ -74,37 +74,59 @@ angular.module('Hospital')
 
     let celdaYear = duracion.years - 10
     let celda = (9/2) * duracion.months
-    const cx = (celdaYear * 162) + celda
+    const cx = ((duracion.years+1) * 50.8) + celda
+
+    console.log(duracion.years);
 
     let celdaTalla = 1
+    let cy = 10
 
     if (index > 0) {
-      speed.line(cx, celdaTalla * tallaData, datoSpeedX, dataSpeedY).attr({
+      cy = celdaTalla * tallaData
+      speed.line(cx, cy, datoSpeedX, dataSpeedY).attr({
         strokeWidth: 3,
         stroke: `${$scope.colorSexo}`,
       }).animate({ strokeDasharray: '21px' }, 4000)
+
+      // talla graphic
+      speed.circle(cx, celdaTalla * tallaData, 50).attr({
+        fill: `${$scope.colorSexo}`,
+        stroke: `${$scope.colorSexo}`,
+        strokeWidth: 7
+      }).animate({r: 5}, 1000)
+      .mouseover(function () {
+        let toaster = document.querySelector('.toaster-cefalico')
+        toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 110) + 'px'
+        toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 60) + 'px'
+        toaster.innerText = `Talla: ${tallaData} - Edad: ${duracion.years} años, ${duracion.months} mes`
+        $('.toaster-cefalico').slideDown()
+      })
+      .mouseout(function () {
+        $('.toaster-cefalico').slideUp()
+      })
+      // talla graphic
+    } else {
+      cy = 10
+      speed.circle(cx, cy, 50).attr({
+        fill: `${$scope.colorSexo}`,
+        stroke: `${$scope.colorSexo}`,
+        strokeWidth: 7
+      }).animate({r: 5}, 1000)
+      .mouseover(function () {
+        let toaster = document.querySelector('.toaster-cefalico')
+        toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 110) + 'px'
+        toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 60) + 'px'
+        toaster.innerText = `Talla: 0 - Edad: ${duracion.years} años, ${duracion.months} mes`
+        $('.toaster-cefalico').slideDown()
+      })
+      .mouseout(function () {
+        $('.toaster-cefalico').slideUp()
+      })
     }
 
-    // talla graphic
-    speed.circle(cx, celdaTalla * tallaData, 50).attr({
-      fill: `${$scope.colorSexo}`,
-      stroke: `${$scope.colorSexo}`,
-      strokeWidth: 7
-    }).animate({r: 5}, 1000)
-    .mouseover(function () {
-      let toaster = document.querySelector('.toaster-cefalico')
-      toaster.style.left = (parseFloat(this.node.getAttribute("cx")) + 110) + 'px'
-      toaster.style.bottom = (parseFloat(this.node.getAttribute("cy")) + 60) + 'px'
-      toaster.innerText = `Talla: ${tallaData} - Edad: ${duracion.years} años, ${duracion.months} mes`
-      $('.toaster-cefalico').slideDown()
-    })
-    .mouseout(function () {
-      $('.toaster-cefalico').slideUp()
-    })
-    // talla graphic
 
     datoSpeedX = cx
-    dataSpeedY = celdaTalla * tallaData
+    dataSpeedY = cy
   }
 
   function graphicIMC (imcData, fecha, index) {
@@ -122,7 +144,7 @@ angular.module('Hospital')
 
     let celdaYear = duracion.years - 10
     let celda = (28/3) * duracion.months
-    const cx = (celdaYear * 105) + celda
+    const cx = (celdaYear * 104) + celda
 
     let celdaIMC = 24
 
