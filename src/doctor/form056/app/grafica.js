@@ -70,6 +70,7 @@ angular.module('Hospital')
   $scope.handleToggleTwo = () => $scope.graficaFlag2 = !$scope.graficaFlag2
 
   let speedGrowth = 0
+  let seedAnt = 0
 
   function graphicSpeed (tallaData, fecha, index) {
     const atencion = fecha.split("-")
@@ -88,13 +89,9 @@ angular.module('Hospital')
     let cy = 10
 
     if (index > 0) {
-      let tallaSpeed = tallaData - speedGrowth
+      let tallaSpeed = (tallaData - speedGrowth) + seedAnt
+      seedAnt += tallaSpeed
       cy = tallaSpeed * 32
-      console.group('-------------------------Talla crecimeinto--------------------------');
-      console.log(speedGrowth);
-      console.log(tallaData);
-      console.log(cy);
-      console.groupEnd();
 
       speed.line(cx, cy, datoSpeedX, dataSpeedY).attr({
         strokeWidth: 3,
