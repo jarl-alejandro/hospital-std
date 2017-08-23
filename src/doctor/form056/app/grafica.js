@@ -62,7 +62,6 @@ angular.module('Hospital')
     .then(response => {
       let data = response.data
       response.data.map((data, index) => graphicSpeed(data.hgc_talla_sigvit, data.hgc_fecha_sigvit, index))
-      console.log(response.data);
     })
   }, 500)
 
