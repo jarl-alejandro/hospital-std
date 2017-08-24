@@ -1,6 +1,7 @@
 <?php
 include '../../../../helpers/conexion.php';
 include '../../../../helpers/generar_codigo.php';
+date_default_timezone_set('America/Guayaquil');
 
 $json = file_get_contents('php://input');
 $obj = json_decode($json);
@@ -46,7 +47,8 @@ $new->bindParam(10, $planTratamiento);
 $new->execute();
 
 $stamp = date('Y-m-d H:i:s');
-$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form', hgc_tipo_form='form28C', hgc_fecha_consulta='$stamp' WHERE hgc_id_turno='$turno'");
+$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form', hgc_tipo_form='form28C', hgc_fecha_consulta='$stamp'
+  WHERE hgc_id_turno='$turno'");
 // Descomentar cuando haya terminado el trabajo
 
 $detail = $pdo->prepare("INSERT INTO hgc_dform28 (hgc_form_dform28, hgc_codi_dform28, hgc_tipo_dform28,

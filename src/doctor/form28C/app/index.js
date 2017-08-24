@@ -26,6 +26,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     clasificacion: '',
     antPersonales:'',
     antfamiliares: '',
+    planTratamiento: '',
     paciente,
     turno
   }
@@ -120,7 +121,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
       $scope.data.fisicos = array_fisicos
       $scope.data.ci10 = cie10Data
 
-      $http.post('src/doctor/form28C/service/save.php', $scope.data)
+      $http.post(`src/doctor/form28C/service/${$stateParams.action}.php`, $scope.data)
         .then(response => {
           if (response.data === '201') {
             Materialize.toast('Se ha guardado con exito', 4000)
@@ -177,4 +178,109 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     }
     else return true
   }
+
+
+// Editar
+
+  if ($stateParams.action === 'edit') {
+    setTimeout(
+      () => {
+        [...document.querySelectorAll('.input-field label')].map(item => {
+          item.classList.add('active')
+        })
+      },
+      500
+    )
+
+    $http.get(`src/doctor/form28C/service/get.php?turno=${turno}`)
+    .then(response => {
+      const snap = response.data
+      console.log(snap);
+
+      $scope.data = {
+        motivo: snap.form.hgc_moti_form28,
+        enfermedad: snap.form.hgc_enfer_form28,
+        metodo: snap.form.hgc_meto_form28,
+        clasificacion: snap.form.hgc_clas_form28,
+        antPersonales:snap.form.hgc_antp_form28,
+        antfamiliares: snap.form.hgc_antf_form28,
+        planTratamiento: snap.form.hgc_pltra_form28,
+        paciente,
+        turno
+      }
+      snap.detalle.map(item => {
+        setTimeout(() => {
+          let system = document.querySelector(`#input-system-${item.hgc_codi_dform28}`)
+          let fisico = document.querySelector(`#input-fisico-${item.hgc_codi_dform28}`)
+
+          if (system !== null) {
+            system.value = item.hgc_obser_dform28
+          } else if (fisico !== null) {
+            fisico.value = item.hgc_obser_dform28
+          }
+
+          const code = `${item.hgc_tipo_dform28}_${item.hgc_codi_dform28}`
+          const input = document.querySelector(`input[value="${code}"]`)
+          input.checked = true
+
+        }, 100)
+
+      })
+
+      $('#cie-table').html('')
+      snap.cie.map((item, index) => {
+        console.log(item);
+        let len = item.hgc_cie_fci.length
+        let cie10 = item.hgc_cie_fci
+
+        $http.get(`src/doctor/form28C/service/filterCI10.php?codigo=${cie10}&len=${len}`)
+        .then(response => {
+          const cieResponse = response.data
+          let template = $(`
+            <tr>
+              <td id="cie-nombre${index}" class="input-field">
+                <input type="text" placeholder="Ingresa el nombre CIE 10" value="${cieResponse.hgc_desc_c10}"
+                  class="u-noMargin filter-cie-nombre10" id="column-nombre-${index}" data-index="${index}" />
+              </td>
+              <td class="input-field">
+                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" value="${cieResponse.hgc_codi_c10}"
+                  class="u-noMargin filter-cie10" id="column${index}" data-index="${index}" />
+              </td>
+              <td id="cie-pre${index}">
+                <p>
+                  <input name="${cieResponse.hgc_codi_c10}_${index}" type="radio"
+                    id="${cieResponse.hgc_codi_c10}_${index}pre" class="cie--input"
+                    data-codigo='${cieResponse.hgc_codi_c10}' data-value='pre'
+                  />
+                  <label for="${cieResponse.hgc_codi_c10}_${index}pre"></label>
+                </p>
+              </td>
+              <td id="cie-def${index}">
+                <p>
+                  <input name="${cieResponse.hgc_codi_c10}_${index}" type="radio"
+                    id="${cieResponse.hgc_codi_c10}_${index}def" class="cie--input"
+                    data-codigo='${cieResponse.hgc_codi_c10}' data-value='def'
+                  />
+                  <label for="${cieResponse.hgc_codi_c10}_${index}def"></label>
+                </p>
+              </td>
+            </tr>
+          `)
+          $('#cie-table').append(template)
+          setTimeout(()=> {
+            const input = document.querySelector(`${cieResponse.hgc_codi_c10}_${index}def`)
+            console.log(input);
+          }, 5000)
+          // console.log(template[0].children[3].children[0].children[0]);
+          //
+          // if (template[0].children[3].children[0].children[0].dataset.value == item.hgc_val_fci) {
+          //   template[0].children[3].children[0].children[0].checked = true
+          // }
+        })
+
+      })
+
+    })
+  }
+
 })
