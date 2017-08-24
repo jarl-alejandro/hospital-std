@@ -148,7 +148,7 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
       $scope.data.form = array_form
       $scope.data.atendido = array_atendido
 
-      $http.post('src/doctor/form28A/service/save.php', $scope.data)
+      $http.post(`src/doctor/form28A/service/${$stateParams.action}.php`, $scope.data)
       .then(response => {
         console.log(response)
         if (response.data === '201') {
