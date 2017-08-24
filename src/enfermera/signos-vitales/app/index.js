@@ -42,13 +42,13 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $http.get(`src/enfermera/signos-vitales/service/turno.php?id=${turno}`)
   .then(response => {
     if (response.data.hgc_esta_turno === 'pdf') {
-      $('#filepdf').fadeOut()
-      $('#signosVitales').fadeIn()
+      $('#filepdf').hide()
+      $('#signosVitales').show()
     }
     if (response.data.hgc_esta_turno === 'signosVitales') {
-      $('#filepdf').fadeOut()
-      $('#signosVitales').fadeIn()
-      $scope.activeSignosBtn = true
+      $('#filepdf').show()
+      $('#signosVitales').hide()
+      // $scope.activeSignosBtn = true
     }
   })
 
@@ -69,7 +69,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     `src/enfermera/signos-vitales/service/pacienteOne.php?id=${id}`
   )
   .then(response => {
-    console.log(response);
     $scope.paciente = response.data
     $scope.fechaNacimiento = $scope.paciente.hgc_fecn_pacie
     const parametros = $scope.paciente.hgc_fecn_pacie.split('-')
@@ -130,7 +129,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       const duracion = duration(new Date($scope.fechaNacimiento), new Date())
       if (duracion.years >= 10) {
         $('.formPlus056').slideDown()
-        console.log(signos)
 
         $('#fr-cardiaca056').val(signos.hgc_frcar_sigvit)
         $('#presion-arterial056').val(signos.hgc_prart_sigvit)
@@ -163,17 +161,22 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     const formData = new FormData()
     const xhr = new XMLHttpRequest()
 
+    if (filePDF.files[0].size > (1024 * 1024 * 2)) {
+      Materialize.toast('No puede subir pdf mas de 2mb', 4000)
+      return false
+    }
+
     formData.append('filePDF', filePDF.files[0])
     formData.append('turno', turno)
 
     xhr.open('POST', 'src/enfermera/signos-vitales/service/uploadFile.php')
     xhr.onload = function (e) {
       if (this.status === 200) {
-
-        if (this.responseText === '201') {
+        if (this.responseText == '201') {
+          $scope.activeSignosBtn = false
           Materialize.toast('Se ha subido el PDF', 4000)
-          $('#filepdf').fadeOut()
-          $('#signosVitales').fadeIn()
+          $('#filepdf').hide()
+          $('#signosVitales').show()
         }
       }
     }
@@ -276,7 +279,6 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
     if (validar056()) {
       $http.post('src/enfermera/signos-vitales/service/save056.php', $scope.dataform056)
       .then(response => {
-        console.log(response)
         if (response.data === '201') {
           getAll056()
           closeForm056()
