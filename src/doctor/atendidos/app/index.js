@@ -6,7 +6,10 @@ atendidos.controller('atendidosController', function ($scope, $http, $location) 
   $scope.pacientes = []
 
   $http.get('src/doctor/atendidos/service/getAll.php')
-  .then(response => $scope.pacientes = response.data)
+  .then(response =>{
+    $scope.pacientes = response.data
+    console.log(response.data);
+  })
 
   $scope.handlePrint = turno => {
     window.open (`src/doctor/atendidos/reporte/form28A.php?turno=${turno}`,
