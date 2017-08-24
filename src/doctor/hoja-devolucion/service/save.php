@@ -18,16 +18,18 @@ $hoy = date("Y-m-d");
 $companion = $obj->companion;
 $civilStatus = $obj->civilStatus;
 $enfermedadActual = $obj->enfermedadActual;
-$numerosCuartos = $obj->numerosCuartos;
 $turno = $obj->turno;
 $planTratamiento = $obj->planTratamiento;
-$ocupacion = $obj->ocupacion;
 $fechaProxima = $obj->fechaProxima;
+$tanner = $obj->tanner;
+$estudios = $obj->estudios;
+$menstruacion = $obj->menstruacion;
+$noMenstruacion = $obj->noMenstruacion;
 
-$form = $pdo->prepare("INSERT INTO hgc_form056 (hgc_codi_f056, hgc_paci_f056,
-  hgc_ncon_f056, hgc_fech_f056, hgc_acom_f056, hgc_civi_f056, hgc_enfe_f056,
-  hgc_ncuar_f056, hgc_turno_f056, hgc_indic_f056, hgc_ocup_f056, hgc_fetpr_f056)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$form = $pdo->prepare("INSERT INTO hgc_form056 (hgc_codi_f056, hgc_paci_f056, hgc_ncon_f056, hgc_fech_f056,
+  hgc_acom_f056, hgc_civi_f056, hgc_enfe_f056, hgc_turno_f056, hgc_indic_f056,hgc_fetpr_f056, hgc_tanne_f056,
+  hgc_estu_f056,hgc_nomen_f056, hgc_ulmen_f056)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $form->bindParam(1, $codigo);
 $form->bindParam(2, $paciente);
@@ -36,11 +38,13 @@ $form->bindParam(4, $hoy);
 $form->bindParam(5, $companion);
 $form->bindParam(6, $civilStatus);
 $form->bindParam(7, $enfermedadActual);
-$form->bindParam(8, $numerosCuartos);
-$form->bindParam(9, $turno);
-$form->bindParam(10, $planTratamiento);
-$form->bindParam(11, $ocupacion);
-$form->bindParam(12, $fechaProxima);
+$form->bindParam(8, $turno);
+$form->bindParam(9, $planTratamiento);
+$form->bindParam(10, $fechaProxima);
+$form->bindParam(11, $tanner);
+$form->bindParam(12, $estudios);
+$form->bindParam(13, $noMenstruacion);
+$form->bindParam(14, $menstruacion);
 $form->execute();
 
 $estado = 'solicitud';
@@ -51,12 +55,12 @@ if ($fechaProxima != '') {
   $new = $pdo->prepare("INSERT INTO hgc_turno (hgc_paci_turno, hgc_doct_turno, hgc_esta_turno,
     hgc_fech_turno, hgc_tipo_turno) VALUES (?, ?, ?, ?, ?)");
 
-  $new->bindParam(1, $paciente);
-  $new->bindParam(2, $doctorTurno);
-  $new->bindParam(3, $estado);
-  $new->bindParam(4, $fechaProxima);
-  $new->bindParam(5, $tipoTurno);
-  $new->execute();
+    $new->bindParam(1, $paciente);
+    $new->bindParam(2, $doctorTurno);
+    $new->bindParam(3, $estado);
+    $new->bindParam(4, $fechaProxima);
+    $new->bindParam(5, $tipoTurno);
+    $new->execute();
 }
 
 $motivo = $obj->motivo;
@@ -74,35 +78,6 @@ foreach ($motivo as $row) {
   $motivo_qs->execute();
 }
 
-$observaciones = $obj->observaciones;
-
-$obser_qs = $pdo->prepare("INSERT INTO hgc_observ_f056 (hgc_form_df056, hgc_desc_df056, hgc_tipo_df056) VALUES (?, ?, ?)");
-
-foreach ($observaciones as $row) {
-  $desc = $row->desc;
-  $tipo = $row->tipo;
-
-  $obser_qs->bindParam(1, $codigo);
-  $obser_qs->bindParam(2, $desc);
-  $obser_qs->bindParam(3, $tipo);
-
-  $obser_qs->execute();
-}
-
-$anexos = $obj->anexos;
-
-$anexo_qs = $pdo->prepare("INSERT INTO hgc_anexo_f056 (hgc_form_df056, hgc_valo_df056, hgc_tipo_df056) VALUES (?, ?, ?)");
-
-foreach ($anexos as $row) {
-  $valor = $row->valor;
-  $tipo = $row->tipo;
-
-  $anexo_qs->bindParam(1, $codigo);
-  $anexo_qs->bindParam(2, $valor);
-  $anexo_qs->bindParam(3, $tipo);
-
-  $anexo_qs->execute();
-}
 
 if ($form) {
   $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form', hgc_tipo_form='056' WHERE hgc_id_turno='$turno'");

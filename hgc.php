@@ -108,6 +108,7 @@
 
     <script src='src/doctor/hoja-devolucion/app/index.js'></script>
     <script src='src/doctor/hoja-devolucion/app/calendar.js'></script>
+    <script src='src/doctor/hoja-devolucion/app/cie.js'></script>
 
     <script src="src/horarios-doctores/app/index.js"></script>
     <script src='src/home/app/index.js'></script>

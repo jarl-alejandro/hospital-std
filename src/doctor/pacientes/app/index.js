@@ -25,7 +25,7 @@ doctor.controller('pacientesDoctorController', function ($scope, $http, $locatio
       $http.get(`src/doctor/pacientes/service/form056_verify.php?paciente=${object.id}`)
       .then(response => {
         if (response.data === '0') $location.path(`/form056/${object.id}/${object.turno}/save`)
-        if (response.data === '1') $location.path(`/hoja-devolucion/${object.id}/${object.turno}`)
+        if (response.data === '1') $location.path(`/hoja-devolucion/${object.id}/${object.turno}/save`)
       })
     }
     else $location.path(`/form28C/${object.id}/${object.turno}`)

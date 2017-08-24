@@ -2,6 +2,7 @@
 
 angular.module('Hospital')
 .controller('formGraphic056ABCtrl', function ($scope, $http, $stateParams) {
+  setTimeout(() => window.scrollTo(0, 0), 100)
 
   $scope.paciente = {}
   $scope.graficaFlag = false

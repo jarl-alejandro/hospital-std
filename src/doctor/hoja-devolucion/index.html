@@ -118,24 +118,24 @@
         <p class="u-noMargin bold-input center-align">ESTUDIOS</p>
         <ul class="Evolucion-estudios__list" style="margin: 0 1em;">
           <li>
-            <input class="no-check" name="estudios" type="radio" id="est-ninguno" />
+            <input class="no-check" name="estudios" type="radio" id="est-ninguno" value="1" />
             <label for="est-ninguno" class="no-check-input">Niguno</label>
           </li>
           <li>
-            <input class="with-gap" name="estudios" type="radio" id="est-primaria" />
+            <input class="with-gap" name="estudios" type="radio" id="est-primaria" value="2" />
             <label for="est-primaria">Primaria</label>
           </li>
           <li>
-            <input class="with-gap" name="estudios" type="radio" id="secu-primaria" />
+            <input class="with-gap" name="estudios" type="radio" id="secu-primaria" value="3" />
             <label for="secu-primaria">Secund.</label>
           </li>
           <li>
-            <input class="with-gap" name="estudios" type="radio" id="uive-primaria" />
+            <input class="with-gap" name="estudios" type="radio" id="uive-primaria" value="4" />
             <label for="uive-primaria">univers</label>
           </li>
         </ul>
         <p class="u-noMargin center-align">
-          <input class="with-gap" name="estudios" type="radio" id="mayor-primaria" />
+          <input class="with-gap" name="estudios" type="radio" id="mayor-primaria" value="5" />
           <label for="mayor-primaria">años en el mayor nivel</label>
         </p>
       </article>
@@ -163,11 +163,11 @@
         <p class="u-noMargin bold-input center-align">FECHA DE ÙLTIMA MENSTRUACIÒN</p>
         <ul class="ultima-mestruacion__list">
           <li>
-            <input class="with-gap" name="group3" type="radio" id="noConoce" />
+            <input class="with-gap noMenstruacion" name="group3" type="radio" id="noConoce" value="1" />
             <label for="noConoce">No conoce</label>
           </li>
           <li>
-            <input class="with-gap" name="group3" type="radio" id="noCorresponde" />
+            <input class="with-gap noMenstruacion" name="group3" type="radio" id="noCorresponde" value="2" />
             <label for="noCorresponde">No corresponde</label>
           </li>
         </ul>
@@ -182,46 +182,46 @@
     <!-- SignosVitales -->
     <article class="SignosVitalesDevolucion">
       <div class="input-field">
-        <input id="peso" type="text" />
-        <label for="peso">Peso (kg)</label>
+        <input id="peso" type="text" ng-model="signos.hgc_peso_sigvit" disabled />
+        <label for="peso" class="active">Peso (kg)</label>
       </div>
       <div class="input-field">
-        <input id="centil" type="text" />
-        <label for="centil">Centil Peso/Edad</label>
+        <input id="centil" type="text" ng-model="centil" disabled />
+        <label for="centil" class="active">Centil Peso/Edad</label>
       </div>
       <div class="input-field">
-        <input id="talla" type="text" />
-        <label for="talla">Talla (cm)</label>
+        <input id="talla" type="text" ng-model="signos.hgc_talla_sigvit" disabled />
+        <label for="talla" class="active">Talla (cm)</label>
       </div>
       <div class="input-field">
-        <input id="tallaEdad" type="text" />
-        <label for="tallaEdad">De Talla/Edad</label>
+        <input id="tallaEdad" type="text" ng-model="deTalla" disabled />
+        <label for="tallaEdad" class="active">De Talla/Edad</label>
       </div>
       <div class="input-field">
-        <input id="deImc" type="text" />
-        <label for="deImc">De IMC</label>
+        <input id="deImc" type="text" ng-model="signos.hgc_imc_sigvit" disabled />
+        <label for="deImc" class="active">De IMC</label>
       </div>
       <div class="input-field">
-        <input id="presionArterial" type="text" />
-        <label for="presionArterial">Presiòn Arterial</label>
+        <input id="presionArterial" type="text" ng-model="signos.hgc_prart_sigvit" disabled />
+        <label for="presionArterial" class="active">Presiòn Arterial</label>
       </div>
       <div class="input-field">
-        <input id="frecuenciaCardiaca" type="text" />
-        <label for="frecuenciaCardiaca">Frecuencia Cardiaca</label>
+        <input id="frecuenciaCardiaca" type="text" ng-model="signos.hgc_frcar_sigvit" disabled />
+        <label for="frecuenciaCardiaca" class="active">Frecuencia Cardiaca</label>
       </div>
       <div>
         <p class="u-noMargin bold-input">Tanner:</p>
         <ul class="tanner__list">
           <li>
-            <input class="with-gap" name="Tanner" type="radio" id="mamas" />
+            <input class="with-gap tannerSigno" name="Tanner" type="radio" id="mamas" value="1" />
             <label for="mamas">mama</label>
           </li>
           <li>
-            <input class="with-gap" name="Tanner" type="radio" id="velloPubico" />
+            <input class="with-gap tannerSigno" name="Tanner" type="radio" id="velloPubico" value="2" />
             <label for="velloPubico">vello pùbico</label>
           </li>
           <li>
-            <input class="with-gap" name="Tanner" type="radio" id="genitales" />
+            <input class="with-gap tannerSigno" name="Tanner" type="radio" id="genitales" value="3" />
             <label for="genitales">genitales</label>
           </li>
         </ul>
@@ -230,7 +230,7 @@
     <!-- SignosVitales -->
 
     <!-- Motivo de Consulta -->
-    <section class="Motivo-consulta" ng-controller="motivoConsultaCtrl056">
+    <section class="Motivo-consulta" ng-controller="cieHojaDevolucionCtrl">
       <article class="Motivo-consulta--self">
         <p class="Motivo-consulta--title">
             <a>1. MOTIVO DE CONSULTA (segùn adolescente):</a>
@@ -303,7 +303,18 @@
     </section>
     <!-- End Motivo de Consulta -->
 
-    <article class="DiagnosticoCIE10 l-90">
+    <!-- Enfermedad actual -->
+    <article class="Enfermedad-actual">
+      <p class="Motivo-consulta--title">2. ENFERMEDAD ACTUAL</p>
+      <div class="input-field">
+        <textarea id="enfermedad-actual" class="materialize-textarea" ng-model="data.enfermedadActual"
+          placeholder="Ingresea la enfermedad actual"></textarea>
+      </div>
+    </article>
+    <!-- End Enfermedad actual -->
+
+    <!-- CIE -->
+    <article class="DiagnosticoCIE10 l-90" ng-controller="cieHojaDevolucionCtrl">
       <p class="Motivo-consulta--title">
         <a>15. DIAGNOSTICO - CIE:</a>
         <a class="u-pointer motivo-add" ng-click="handleAddDiagnostico()">
@@ -356,6 +367,11 @@
       <input type="text" disabled placeholder="año-mes-dia" id="fecha_proxima_visita"  />
     </div>
 
+    <div class="main-distribute">
+      <button class="waves-effect waves-ligth btn primary" ng-disabled="guardandoConsult" ng-click="saveForm()">
+        Guardar Consulta
+      </button>
+    </div>
   </section>
 
   <div ng-include="'src/doctor/hoja-devolucion/calendar.html'"></div>
