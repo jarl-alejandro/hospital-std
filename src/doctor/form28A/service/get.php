@@ -5,8 +5,8 @@ date_default_timezone_set('America/Guayaquil');
 
 $turno = $_GET['turno'];
 
-$observacion = array();
-$nacido = array();
+// $observacion = array();
+// $nacido = array();
 $detalle = array();
 $atendido = array();
 
@@ -21,18 +21,21 @@ $det = $pdo->query("SELECT * FROM hgc_dform28 WHERE hgc_form_dform28='$codigo'")
 $atend = $pdo->query("SELECT * FROM hgc_atendido WHERE hgc_form_aten='$codigo'");
 
 
-while ($row = $obs->fetch()) {
-  $observacion[] = $row;
-}
-while ($row = $nac->fetch()) {
-  $nacido[] = $row;
-}
+// while ($row = $obs->fetch()) {
+//   $observacion[] = $row;
+// }
+// while ($row = $nac->fetch()) {
+//   $nacido[] = $row;
+// }
 while ($row = $det->fetch()) {
   $detalle[] = $row;
 }
 while ($row = $atend->fetch()) {
   $atendido[] = $row;
 }
+
+$nacido = $nac->fetch();
+$observacion = $obs->fetch();
 
 $json = array('form'=>$form, 'observacion'=> $observacion,'nacido'=> $nacido,'detalle'=> $detalle,'atendido'=> $atendido);
 echo json_encode($json);

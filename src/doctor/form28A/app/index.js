@@ -187,6 +187,16 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
 
   // Editar
   if ($stateParams.action === 'edit') {
+    // document.querySelector('.input-field label').classList.add('active')
+    setTimeout(
+      () => {
+        [...document.querySelectorAll('.input-field label')].map(item => {
+          item.classList.add('active')
+        })
+      },
+      500
+    )
+
     $scope.data = {
       motivo: '',
       enfermedad: '',
@@ -225,7 +235,6 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     .then(response => {
       const form = response.data
       console.log(form);
-      $('label').addClass('active')
       $scope.data = {
         motivo: form.form.hgc_moti_form28,
         enfermedad: form.form.hgc_enfer_form28,
@@ -286,8 +295,6 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
           } else if (fisico !== null) {
             fisico.value = item.hgc_obser_dform28
           }
-          console.log(obs);
-          console.log(`#input__form-${item.hgc_codi_dform28}`);
 
           if (input !== null) {
             input.checked = true
@@ -297,9 +304,6 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
             input = document.querySelector(`input[value="${code}"]`)
             input.checked = true
           }
-
-
-
         }, 100)
 
       })
