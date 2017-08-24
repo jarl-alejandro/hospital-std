@@ -47,7 +47,11 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
   $http.get(`src/doctor/form28C/service/consultas.php?id=${paciente}`)
   .then(response => {
     $scope.consulta = response.data.count + 1
-    $scope.edad = calcularEdad(response.data.form.hgc_fecn_pacie)
+    const parametros = response.data.paciente.hgc_fecn_pacie.toString().split('-')
+    const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
+    const now = new Date()
+
+    $scope.edad = duration(now, fecha)
   })
 
   $http.get(`src/doctor/form28C/service/paciente.php?id=${paciente}&turno=${turno}`)
