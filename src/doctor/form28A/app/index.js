@@ -184,4 +184,48 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     } else return true
   }
 
+
+  // Editar
+  if ($stateParams.action === 'edit') {
+    $scope.data = {
+      motivo: '',
+      enfermedad: '',
+      paciente,
+      turno,
+      gestasPrevias: '',
+      abortos: '',
+      partos: '',
+      partosVaginales: '',
+      cesarias: '',
+      nacidosVivos: '',
+      hijosVivos: '',
+      muertosMenor7: '',
+      muertosMayor7: '',
+      nacidosMuertos: '',
+      fechaEmbarazo: '',
+      tamizaje: '',
+      condicionEgreso: '',
+      referido: '',
+      edadGestion: '',
+      relacionPeso: '',
+      tipoficacionSanguinea: '',
+      tipoficacionSanguineaCheck: 'no',
+      examenesEspeciales: '',
+      examenesEspecialesCheck: 'no',
+      apagar1Min: '',
+      apagar5Min: '',
+      longitud: '',
+      pCefalico: '',
+      pesoNacer: '',
+      reanimacion: '',
+      reanimacionCheck: 'no'
+    }
+
+    $http.get(`src/form28A/service/get.php?id=${paciente}&turno=${turno}`)
+    .then(response => {
+      const form = response.data
+      console.log(form);
+    })
+  }
+
 })
