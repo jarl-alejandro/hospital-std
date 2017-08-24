@@ -130,7 +130,9 @@ $new_recien->execute();
 // END RECIEN NACIDOS
 
 // Update turno
-$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form' WHERE hgc_id_turno='$turno'");
+$stamp = date('Y-m-d H:i:s');
+
+$pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form', hgc_tipo_form='form28A', hgc_fecha_consulta='$stamp' WHERE hgc_id_turno='$turno'");
 
 // DETALLE
 $detail = $pdo->prepare("INSERT INTO hgc_dform28 (hgc_form_dform28, hgc_codi_dform28,

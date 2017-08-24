@@ -105,6 +105,9 @@ foreach ($anexos as $row) {
 }
 
 if ($form) {
-  $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form', hgc_tipo_form='056' WHERE hgc_id_turno='$turno'");
+  $stamp = date('Y-m-d H:i:s');
+
+  $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='form', hgc_tipo_form='056', hgc_fecha_consulta='$stamp'
+    WHERE hgc_id_turno='$turno'");
   echo "201";
 }
