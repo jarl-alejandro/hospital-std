@@ -225,6 +225,7 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     .then(response => {
       const form = response.data
       console.log(form);
+      $('label').addClass('active')
       $scope.data = {
         motivo: form.form.hgc_moti_form28,
         enfermedad: form.form.hgc_enfer_form28,
@@ -258,6 +259,50 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
         reanimacion: form.nacido.hgc_reob_nac,
         reanimacionCheck: form.nacido.hgc_rean_nac
       }
+
+      form.atendido.map(item => {
+        setTimeout(() => {
+          document.querySelector(`#${item.hgc_tipo_aten}_${item.hgc_desc_aten}`).checked = true
+        }, 100)
+      })
+
+      // let tipo = item.value.split('_')[0]
+      // let id = item.value.split('_')[1]
+      // let seccion = item.value.split('_')[2]
+      // let observacion = document.getElementById(`input__form-${id}`).value
+
+      form.detalle.map(item => {
+        setTimeout(() => {
+          let code = `${item.hgc_tipo_dform28}_${item.hgc_codi_dform28}_${item.hgc_secc_dform28}`
+          let input = document.querySelector(`input[value="${code}"]`)
+          let obs = document.querySelector(`#input__form-${item.hgc_codi_dform28}`)
+          let system = document.querySelector(`#input-system-${item.hgc_codi_dform28}`)
+          let fisico = document.querySelector(`#input-fisico-${item.hgc_codi_dform28}`)
+
+          if (obs !== null) {
+            obs.value = item.hgc_obser_dform28
+          } else if (system !== null) {
+            system.value = item.hgc_obser_dform28
+          } else if (fisico !== null) {
+            fisico.value = item.hgc_obser_dform28
+          }
+          console.log(obs);
+          console.log(`#input__form-${item.hgc_codi_dform28}`);
+
+          if (input !== null) {
+            input.checked = true
+          }
+          else {
+            code = `${item.hgc_tipo_dform28}_${item.hgc_codi_dform28}`
+            input = document.querySelector(`input[value="${code}"]`)
+            input.checked = true
+          }
+
+
+
+        }, 100)
+
+      })
     })
   }
 
