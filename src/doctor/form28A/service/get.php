@@ -1,5 +1,6 @@
 <?php
 include '../../../../helpers/conexion.php';
+
 date_default_timezone_set('America/Guayaquil');
 
 $turno = $_GET['turno'];
@@ -9,15 +10,15 @@ $nacido = array();
 $detalle = array();
 $atendido = array();
 
-$qs->query("SELECT * FROM hgc_form28 WHERE hgc_turno_form28='$turno'");
+$qs = $pdo->query("SELECT * FROM hgc_form28 WHERE hgc_turno_form28='$turno'");
 $form = $qs->fetch();
 
 $codigo = $form['hgc_codi_form28'];
 
-$obs = $qs->query("SELECT * FROM hgc_obst WHERE hgc_form_obst='$codigo'");
-$nac = $qs->query("SELECT * FROM hgc_recien_nacido WHERE hgc_form_nac='$codigo'");
-$det = $qs->query("SELECT * FROM hgc_dform28 WHERE hgc_form_dform28='$codigo'");
-$atend = $qs->query("SELECT * FROM hgc_atendido WHERE hgc_form_aten='$codigo'");
+$obs = $pdo->query("SELECT * FROM hgc_obst WHERE hgc_form_obst='$codigo'");
+$nac = $pdo->query("SELECT * FROM hgc_recien_nacido WHERE hgc_form_nac='$codigo'");
+$det = $pdo->query("SELECT * FROM hgc_dform28 WHERE hgc_form_dform28='$codigo'");
+$atend = $pdo->query("SELECT * FROM hgc_atendido WHERE hgc_form_aten='$codigo'");
 
 
 while ($row = $obs->fetch()) {
@@ -33,5 +34,5 @@ while ($row = $atend->fetch()) {
   $atendido[] = $row;
 }
 
-$json = array('observacion'=> $observacion,'nacido'=> $nacido,'detalle'=> $detalle,'atendido'=> $atendido);
+$json = array('form'=>$form, 'observacion'=> $observacion,'nacido'=> $nacido,'detalle'=> $detalle,'atendido'=> $atendido);
 echo json_encode($json);

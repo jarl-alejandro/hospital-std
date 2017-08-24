@@ -221,10 +221,43 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
       reanimacionCheck: 'no'
     }
 
-    $http.get(`src/form28A/service/get.php?id=${paciente}&turno=${turno}`)
+    $http.get(`src/doctor/form28A/service/get.php?id=${paciente}&turno=${turno}`)
     .then(response => {
       const form = response.data
       console.log(form);
+      $scope.data = {
+        motivo: form.form.hgc_moti_form28,
+        enfermedad: form.form.hgc_enfer_form28,
+        paciente,
+        turno,
+        gestasPrevias: form.observacion.hgc_gpre_obst,
+        abortos: form.observacion.hgc_abor_obst,
+        partos: form.observacion.hgc_part_obst,
+        partosVaginales: form.observacion.hgc_pvag_obst,
+        cesarias: form.observacion.hgc_cesa_obst,
+        nacidosVivos: form.observacion.hgc_nviv_obst,
+        hijosVivos: form.observacion.hgc_nmue_obst,
+        muertosMenor7: form.observacion.hgc_hviv_obst,
+        muertosMayor7: form.observacion.hgc_mne7_obst,
+        nacidosMuertos: form.observacion.hgc_mma7_obst,
+        fechaEmbarazo: form.observacion.hgc_gpre_obst,
+        tamizaje: form.nacido.hgc_tami_nac,
+        condicionEgreso: form.nacido.hgc_coeg_nac,
+        referido: form.nacido.hgc_refe_nac,
+        edadGestion: form.nacido.hgc_edge_nac,
+        relacionPeso: form.nacido.hgc_repe_nac,
+        tipoficacionSanguinea: form.nacido.hgc_tipob_nac,
+        tipoficacionSanguineaCheck: form.nacido.hgc_tisa_nac,
+        examenesEspeciales: form.nacido.hgc_exob_nac,
+        examenesEspecialesCheck: form.nacido.hgc_exes_nac,
+        apagar1Min: form.nacido.hgc_ap1m_nac,
+        apagar5Min: form.nacido.hgc_ap5m_nac,
+        longitud: form.nacido.hgc_lon_nac,
+        pCefalico: form.nacido.hgc_pcef_nac,
+        pesoNacer: form.nacido.hgc_pena_nac,
+        reanimacion: form.nacido.hgc_reob_nac,
+        reanimacionCheck: form.nacido.hgc_rean_nac
+      }
     })
   }
 
