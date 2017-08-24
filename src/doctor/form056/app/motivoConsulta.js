@@ -25,7 +25,7 @@ angular.module('Hospital')
     let template = `
       <li class="input-field Motivo-consulta--self-item">
         <input type="text" placeholder="Ingrese el motivo de consulta"
-          id="input-${motivoContadorService.data.indexMotivoCompany}" class="Motivo-consulta--company-input" />
+          id="input-company-${motivoContadorService.data.indexMotivoCompany}" class="Motivo-consulta--company-input" />
         <p class="consulta-cie--code">
           <input type="text" placeholder="Codigo cie10"  id="cie-company-${motivoContadorService.data.indexMotivoCompany}"
             class="cie-input-motivo code-motivo-company" maxlength="4" />

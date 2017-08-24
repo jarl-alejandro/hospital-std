@@ -25,11 +25,6 @@ $estudios = $obj->estudios;
 $menstruacion = $obj->menstruacion;
 $noMenstruacion = $obj->noMenstruacion;
 
-$form = $pdo->prepare("INSERT INTO hgc_form056 (hgc_codi_f056, hgc_paci_f056, hgc_ncon_f056, hgc_fech_f056,
-  hgc_acom_f056, hgc_civi_f056, hgc_enfe_f056, hgc_turno_f056, hgc_indic_f056,hgc_fetpr_f056, hgc_tanne_f056,
-  hgc_estu_f056,hgc_nomen_f056, hgc_ulmen_f056)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 $form = $pdo->prepare("UPDATE hgc_form056 SET hgc_paci_f056=?, hgc_ncon_f056=?, hgc_fech_f056=?, hgc_acom_f056=?,
   hgc_civi_f056=?, hgc_enfe_f056=?, hgc_turno_f056=?, hgc_indic_f056=?, hgc_fetpr_f056=?, hgc_tanne_f056=?,
   hgc_estu_f056=?, hgc_nomen_f056=?, hgc_ulmen_f056=? WHERE hgc_codi_f056=?");
