@@ -234,10 +234,10 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     $http.get(`src/doctor/form28A/service/get.php?id=${paciente}&turno=${turno}`)
     .then(response => {
       const form = response.data
-      console.log(form);
       $scope.data = {
         motivo: form.form.hgc_moti_form28,
         enfermedad: form.form.hgc_enfer_form28,
+        id: form.form.hgc_codi_form28,
         paciente,
         turno,
         gestasPrevias: form.observacion.hgc_gpre_obst,
