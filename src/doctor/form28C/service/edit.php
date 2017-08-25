@@ -32,16 +32,16 @@ $new = $pdo->prepare("UPDATE hgc_form28 SET hgc_moti_form28=?, hgc_enfer_form28=
   hgc_meto_form28=?, hgc_clas_form28=?, hgc_paci_form28=?, hgc_turno_form28=?, hgc_antp_form28=?, hgc_antf_form28=?,
   hgc_pltra_form28=? WHERE hgc_codi_form28=?");
 
-$new->bindParam(1, $codigo);
-$new->bindParam(2, $motivo);
-$new->bindParam(3, $enfermedad);
-$new->bindParam(4, $metodo);
-$new->bindParam(5, $clasificacion);
-$new->bindParam(6, $paciente);
-$new->bindParam(7, $turno);
-$new->bindParam(8, $antPersonales);
-$new->bindParam(9, $antfamiliares);
-$new->bindParam(10, $planTratamiento);
+$new->bindParam(1, $motivo);
+$new->bindParam(2, $enfermedad);
+$new->bindParam(3, $metodo);
+$new->bindParam(4, $clasificacion);
+$new->bindParam(5, $paciente);
+$new->bindParam(6, $turno);
+$new->bindParam(7, $antPersonales);
+$new->bindParam(8, $antfamiliares);
+$new->bindParam(9, $planTratamiento);
+$new->bindParam(10, $codigo);
 
 $new->execute();
 

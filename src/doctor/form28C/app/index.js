@@ -239,7 +239,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
 
       $('#cie-table').html('')
       $('#cie-table').html('')
-      document.querySelector('#cie-table').innerHTML = ''
       form028CieService.data.index = 1
 
       snap.cie.map((item, index) => {

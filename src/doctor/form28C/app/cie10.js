@@ -8,6 +8,8 @@ cie10FilterForm.controller('cie10FilterFormController', function ($scope, $http,
   let nombreFilterCie10 = [...document.querySelectorAll('.filter-cie-nombre10')]
 
   if ($stateParams.action !== 'edit') {
+    $('#cie-table').html('')
+
     $http.get(`src/doctor/form28C/service/prescripciones-medicas.php?id=${paciente}`)
     .then(response => {
       response.data.map(item => {
