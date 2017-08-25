@@ -1,6 +1,6 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
-  <h1 class="Title">Pacientes Atendidos</h2>
+  <h1 class="Title">Reportes</h2>
   <article class="tableContainer">
     <table class="bordered highlight centered responsive-table">
       <thead>
@@ -22,7 +22,8 @@
             <td>{{ paciente.paciente }}</td>
             <td>{{ paciente.doctor }}</td>
             <td>
-              <a class='waves-effect waves-light btn primary' ng-click="handleEdit(paciente)">Editar</a>
+              <a class='waves-effect waves-light btn danger'
+                ng-click="handlePrint(paciente)">Imprimir</a>
             </td>
           </tr>
         </tbody>

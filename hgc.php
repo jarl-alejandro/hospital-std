@@ -28,6 +28,7 @@
     <script src='js/authenticated.js'></script>
   <!-- Inicio de la aplicacion -->
     <script src='js/index.js'></script>
+    <script type="text/javascript" src="src/init.js"></script>
   <!-- functiones que valida los inputs -->
     <script src='js/valid.js'></script>
 
@@ -89,6 +90,7 @@
 
     <script src='src/doctor/pacientes/app/index.js'></script>
     <script src='src/doctor/atendidos/app/index.js'></script>
+    <script src='src/doctor/reportes/app/index.js'></script>
 
     <script src='src/doctor/form28C/app/serviceCie.js'></script>
     <script src='src/doctor/form28C/app/index.js'></script>

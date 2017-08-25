@@ -1,0 +1,134 @@
+body{
+  font-size: 14px;
+  font-family: "Roboto",sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  border-bottom: 2px solid #585757;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+}
+input{
+  border: 0;
+  border-bottom: 1px solid black;
+  background: red;
+  color: yellow;
+}
+p{
+  margin: 0;
+}
+.u-noMargin {
+  margin: 0;
+}
+.u-left{
+  float: left;
+  clear: both;
+}
+.u-right{
+  float: right;
+  clear: both;
+}
+.headerLogo {
+  width: 20%;
+  height: 3em;
+  display: inline-block;
+  float: left;
+  margin-bottom: .5em;
+}
+.headerForm table tr th, tr td{
+  border: .5px solid black;
+  font-size: 12px;
+  text-align: center;
+  padding: 3px 10px;
+}
+.headerForm table tr th{
+  font-size: 10.5px;
+  background: #00bcd4;
+}
+.tag__information {
+  background: #d0d0d0;
+  padding: 3px .5em;
+  border: 1px solid black;
+  font-size: 13px;
+  margin-top: 2px;
+}
+.AntecedentesMaternos {
+  border: 1px solid black;
+  margin-top: 1px;
+  width: 53%;
+  float: left;
+}
+.AntecedentesMaternos-title {
+  background: #00bcd4;
+  border-bottom: 1px solid black;
+  margin: 0;
+  font-size: 14px;
+  padding: 4px 2px;
+}
+.AntecedentesMaternos--menu, .AntecedentesMaternos--menu2 {
+  font-size: 11px;
+}
+.AntecedentesMaternos--menu {
+  width: 45%;
+  float: left;
+}
+.AntecedentesMaternos--menu2 {
+  float: right;
+  width: 45%;
+  margin-left: 1%;
+}
+.AntecedentesMaternos--menu2 p{
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+.AntecedentesMaternos--menu p {
+  width: 100%;
+  margin: 0;
+  text-align: right;
+}
+.menu-mat-1 {
+  float: left;
+}
+.AntecedentesMaternos--list{
+  width: 100%;
+}
+.list--item {
+  float: left;
+  width: 50%;
+}
+.list--item p, .list--item-familiar  p{
+  float: left;
+}
+.list-item--label {
+  width: 30%;
+  font-size: 10px;
+}
+.list-item--radio {
+  width: 2em;
+  text-align: center;
+}
+.list-item--input{
+  width: 51%;
+  border-bottom: 1px solid black;
+  font-size: 11px;
+  padding: 0;
+  margin: 0;
+  background: gray;
+}
+.AntecedentesFamiliar--list{
+  width: 100%;
+}
+
+.AntecedentesFamiliar {
+  border: 1px solid black;
+  margin-top: 1px;
+  width: 45%;
+  float: left;
+  margin-left: 1%;
+  height: auto;
+}
