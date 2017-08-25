@@ -48,30 +48,45 @@
     <h2 class="Title s-100 no-margin">SIGNOS VITALES</h2>
     <header style="background:inherit;flex-wrap:wrap" class="header__form28"
       ng-controller="signosFormController">
-      <div class="s-100 m-20">
+      <div class="s-100 m-10">
         <label for="">TEMPERATURA</label>
-        <input type="text" style="margin-bottom: 0;color: black;" disabled
+        <input type="text" style="margin-bottom: 0;color: black;justify-content: inherit;" disabled
           ng-model="signos.hgc_temp_sigvit">
       </div>
-      <div  class="s-100 m-20">
-        <label for="">PULSO</label>
+      <div  class="s-100 m-15">
+        <label for="">Frecuencia Cardiaca</label>
         <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_puls_sigvit" disabled>
+          ng-model="signos.hgc_frcar_sigvit" disabled>
       </div>
-      <div  class="s-100 m-20">
+      <div  class="s-100 m-15">
+        <label for="">Frecuencia Respiratoria</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_frresp_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-10">
+        <label for="">Presion Arterial</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_frresp_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-10">
         <label for="">PESO</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_peso_sigvit" disabled>
       </div>
-      <div  class="s-100 m-20">
-        <label for="">LONGITUD</label>
+      <div  class="s-100 m-10">
+        <label for="">Talla</label>
         <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_longi_sigvit" disabled>
+          ng-model="signos.hgc_talla_sigvit" disabled>
       </div>
-      <div  class="s-100 m-20">
+      <div  class="s-100 m-15">
         <label for="">PERIMETRO CEFALICO</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_prence_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-15">
+        <label for="">ESTADO NUTRICIONAL</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_esta_sigvit" disabled>
       </div>
     </header>
     <!--  /SignosVitales -->

@@ -41,6 +41,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $http.get(`src/enfermera/signos-vitales/service/turno.php?id=${turno}`)
   .then(response => {
+    console.log(response);
     if (response.data.hgc_esta_turno === 'pdf') {
       $('#filepdf').hide()
       $('#signosVitales').show()
@@ -49,6 +50,10 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       $('#filepdf').show()
       $('#signosVitales').hide()
       // $scope.activeSignosBtn = true
+    }
+    if (response.data.hgc_esta_turno === 'form') {
+      $('#signosVitales').hide()
+      $('#filepdf').hide()
     }
   })
 
