@@ -12,7 +12,7 @@ angular.module('Hospital')
 
   $scope.handlePrint = turno => {
     if (turno.hgc_tipo_form === '056') {
-      window.open (`${URL_REPORTES}/056/${turno.hgc_paci_turno}/${turno.hgc_id_turno}`,
+      window.open (`${URL_REPORTES}/form056/${turno.hgc_paci_turno}/${turno.hgc_id_turno}`,
         "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
     }
     else if (turno.hgc_tipo_form === 'hojadev') {
