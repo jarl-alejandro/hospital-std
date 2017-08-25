@@ -55,12 +55,14 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     $scope.edad = duration(now, fecha)
   })
 
-  $http.get(`src/doctor/form28C/service/paciente.php?id=${paciente}&turno=${turno}`)
+  if ($stateParams.action !== 'edit') {
+    $http.get(`src/doctor/form28C/service/paciente.php?id=${paciente}&turno=${turno}`)
     .then(response => {
       if (response.data.turno === 1) $scope.activoForm28 = turno
       $scope.data.antPersonales = response.data.paciente.hgc_antf_form28
       $scope.data.antfamiliares = response.data.paciente.hgc_antf_form28
     })
+  }
 
   $scope.handleVacunas = () => Materialize.toast('Estamos en desarollo', 4000)
 
@@ -198,6 +200,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
       console.log(snap);
 
       $scope.data = {
+        id: snap.form.hgc_codi_form28,
         motivo: snap.form.hgc_moti_form28,
         enfermedad: snap.form.hgc_enfer_form28,
         metodo: snap.form.hgc_meto_form28,
@@ -236,6 +239,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
 
       $('#cie-table').html('')
       $('#cie-table').html('')
+      document.querySelector('#cie-table').innerHTML = ''
       form028CieService.data.index = 1
 
       snap.cie.map((item, index) => {
