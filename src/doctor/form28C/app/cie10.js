@@ -93,7 +93,6 @@ cie10FilterForm.controller('cie10FilterFormController', function ($scope, $http,
         .then(response => {
           if (response.data === 'false') Materialize.toast('No hay registro de CIE10', 4000)
           else renderCIE10 (response.data, index)
-          console.log(response)
         })
       }
     }

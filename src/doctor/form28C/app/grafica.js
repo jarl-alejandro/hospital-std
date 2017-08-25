@@ -85,7 +85,6 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
         stroke: `${$scope.colorSexo}`,
       }).animate({ strokeDasharray: '21px' }, 4000)
     }
-
     peso.circle((ageMonth/2)*28, 18*(data.peso-1), 50).attr({
       fill: `${$scope.colorSexo}`,
       stroke: `${$scope.colorSexo}`,
@@ -101,7 +100,6 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
     .mouseout(function () {
       $('.toaster').slideUp()
     })
-
     longitud.circle((ageMonth/2)*28, celdatalla * tallaData, 50).attr({
       fill: `${$scope.colorSexo}`,
       stroke: `${$scope.colorSexo}`,

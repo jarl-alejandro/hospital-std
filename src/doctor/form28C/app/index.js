@@ -197,7 +197,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     $http.get(`src/doctor/form28C/service/get.php?turno=${turno}`)
     .then(response => {
       const snap = response.data
-      console.log(snap);
 
       $scope.data = {
         id: snap.form.hgc_codi_form28,
@@ -349,7 +348,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
             .then(response => {
               if (response.data === 'false') Materialize.toast('No hay registro de CIE10', 4000)
               else renderCIE10 (response.data, index)
-              console.log(response)
             })
           }
         }
