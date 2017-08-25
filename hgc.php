@@ -23,8 +23,10 @@
     <script src='lib/snap.svg-min.js'></script>
 
     <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script> -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.17/fabric.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script src="js/html2canvas.svg.js"></script>
 
     <script src='js/a-say.js'></script>
 
@@ -124,9 +126,14 @@
     <script src='src/doctor/hoja-devolucion/app/calendar.js'></script>
     <script src='src/doctor/hoja-devolucion/app/cie.js'></script>
 
+    <!-- Repotes -->
+    <script src='src/doctor/reportes/forms/form28A/app/index.js'></script>
+    <script src='src/doctor/reportes/forms/form28C/app/index.js'></script>
+
     <script src="src/horarios-doctores/app/index.js"></script>
     <script src='src/home/app/index.js'></script>
     <script src='src/login/app/index.js'></script>
+
     <script type="text/javascript">
       $('ul.tabs').tabs()
     </script>

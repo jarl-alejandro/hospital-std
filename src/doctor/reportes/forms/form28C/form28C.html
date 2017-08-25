@@ -1,207 +1,90 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
-  <article class="form ed-item">
-    <h1 class="Title no-margin s-100">Form 28C</h2>
-
-    <!-- Establecimiento -->
-    <header style="background:inherit;flex-wrap:wrap" class="header__form28">
-      <div class="s-100 m-25">
-        <label for="">ESTABLECIMIENTO</label>
-        <input type="text" style="margin-bottom: 0" disabled ng-model="empresa.hgc_nom_empr">
-      </div>
-      <div  class="s-100 m-25">
-        <label for="">NOMBRES Y APELLIDOS</label>
-        <input type="text" style="margin-bottom: 0"
-          ng-model="pacient.paciente.paciente" disabled>
-      </div>
-      <div  class="s-100 m-10">
-        <label for="">SEXO(HM)</label>
-        <input type="text" style="margin-bottom: 0"
-          ng-model="pacient.sexo.hgc_desc_genero" disabled>
-      </div>
-      <div  class="s-100 m-20">
-        <label for="">FECHA DE NACIMIENTO</label>
-        <input type="text" style="margin-bottom: 0"
-          ng-model="pacient.paciente.hgc_fecn_pacie" disabled>
-      </div>
-      <div  class="s-100 m-20">
-        <label for="">Nº HISTORIA CLINICA</label>
-        <input type="text" style="margin-bottom: 0"
-          ng-model="pacient.paciente.hgc_histo_hcli" disabled>
-      </div>
-    </header>
-    <!-- /Establecimiento -->
-
-    <asider class="consultas s-100">
-      <div class="consultas-number">
-        <p><strong>CONSULTA:</strong> {{consulta}}</p>
-      </div>
-      <div class="consultas-fecha">
-        <p><strong>FECHA:</strong> {{fecha}}</p>
-      </div>
-      <div class="consultas-edad">
-        <p><strong>EDAD:</strong> {{edad.years}} años, {{edad.months}} meses, {{edad.days}} dias</p>
-      </div>
-    </asider>
-
-    <!-- Signos Vitales -->
-    <h2 class="Title s-100 no-margin">SIGNOS VITALES</h2>
-    <header style="background:inherit;flex-wrap:wrap" class="header__form28"
-      ng-controller="signosFormController">
-      <div class="s-100 m-10">
-        <label for="">TEMPERATURA</label>
-        <input type="text" style="margin-bottom: 0;color: black;justify-content: inherit;" disabled
-          ng-model="signos.hgc_temp_sigvit">
-      </div>
-      <div  class="s-100 m-15">
-        <label for="">Frecuencia Cardiaca</label>
-        <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_frcar_sigvit" disabled>
-      </div>
-      <div  class="s-100 m-15">
-        <label for="">Frecuencia Respiratoria</label>
-        <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_frresp_sigvit" disabled>
-      </div>
-      <div  class="s-100 m-10">
-        <label for="">Presion Arterial</label>
-        <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_frresp_sigvit" disabled>
-      </div>
-      <div  class="s-100 m-10">
-        <label for="">PESO</label>
-        <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_peso_sigvit" disabled>
-      </div>
-      <div  class="s-100 m-10">
-        <label for="">Talla</label>
-        <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_talla_sigvit" disabled>
-      </div>
-      <div  class="s-100 m-15">
-        <label for="">PERIMETRO CEFALICO</label>
-        <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_prence_sigvit" disabled>
-      </div>
-      <div  class="s-100 m-15">
-        <label for="">ESTADO NUTRICIONAL</label>
-        <input type="text" style="margin-bottom: 0;color: black;"
-          ng-model="signos.hgc_esta_sigvit" disabled>
-      </div>
-    </header>
-    <!--  /SignosVitales -->
-
-    <section id="form28C-Workaspace" class="main-distribute">
-      <div class="input-field s-90 m-45">
-        <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.motivo"></textarea>
-        <label for="motivo-consulta">Motivo de Consulta *</label>
-      </div>
-      <div class="input-field s-90 m-45">
-        <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.enfermedad"></textarea>
-        <label for="motivo-consulta">Enfermedad o problema actual *</label>
-      </div>
-      <div class="input-field s-90 m-45">
-        <textarea id="antecedente-personal" class="materialize-textarea"
-          ng-model="data.antPersonales"></textarea>
-        <label for="antecedente-personal" class="active">Antecedentes personales</label>
-      </div>
-      <div class="input-field s-90 m-45">
-        <textarea id="antecedente-familiares" class="materialize-textarea"
-          ng-model="data.antfamiliares"></textarea>
-        <label for="antecedente-familiares" class="active">Antecedentes familiares</label>
-      </div>
-
-      <div class="s-90 m-45 form-select">
-        <div class="menu-form">
-          <h6 class="title">REVISIÒN ACTUAL DE ÒRGANOS Y SISTEMAS</h6>
-          <div class="menu-form--action">
-            <h6>CP &nbsp;&nbsp;&nbsp;&nbsp; SP</h6>
-            <h6>CP=CON PATOLOGÌA (describir) SP=SIN PATOLOGÌA</h6>
-          </div>
-        </div>
-        <ul class="menu-form--list">
-          <li ng-repeat="sistema in sistemas">
-            <p>{{ sistema.hgc_desc_sisfi }}</p>
-            <p>
-              <input name="sistema_{{ sistema.hgc_id_sisfi }}" id="cp_{{ sistema.hgc_id_sisfi }}"
-                class="items_sistemas" value="0_{{sistema.hgc_id_sisfi}}" type="radio" />
-              <label for="cp_{{ sistema.hgc_id_sisfi }}"></label>
-            </p>
-            <p>
-              <input name="sistema_{{ sistema.hgc_id_sisfi }}" id="sp_{{ sistema.hgc_id_sisfi }}"
-                type="radio" class="items_sistemas" value="1_{{sistema.hgc_id_sisfi}}"/>
-              <label for="sp_{{ sistema.hgc_id_sisfi }}"></label>
-            </p>
-            <div class="input-field s-95 l-55 main-center no-margin">
-              <input type="text" placeholder="Ingrese una observacion"
-                id="input-system-{{ sistema.hgc_id_sisfi }}">
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="s-90 m-45 form-select">
-        <div class="menu-form">
-          <h6 class="title">EXAMEN FÌSICO</h6>
-          <div class="menu-form--action">
-            <h6>CP &nbsp;&nbsp;&nbsp;&nbsp; SP</h6>
-            <h6>CP=CON PATOLOGÌA (describir) SP=SIN PATOLOGÌA</h6>
-          </div>
-        </div>
-        <ul class="menu-form--list">
-          <li ng-repeat="fisico in fisicos">
-            <p>{{ fisico.hgc_desc_sisfi }}</p>
-            <p>
-              <input name="fisico_{{ fisico.hgc_id_sisfi }}" id="cpf_{{ fisico.hgc_id_sisfi }}"
-                type="radio" class="items_fisicico" value="0_{{fisico.hgc_id_sisfi}}" />
-              <label for="cpf_{{ fisico.hgc_id_sisfi }}"></label>
-            </p>
-            <p>
-              <input name="fisico_{{ fisico.hgc_id_sisfi }}" id="spf_{{ fisico.hgc_id_sisfi }}"
-                type="radio" class="items_fisicico" value="1_{{fisico.hgc_id_sisfi}}" />
-              <label for="spf_{{ fisico.hgc_id_sisfi }}"></label>
-            </p>
-            <div class="input-field s-95 l-55 main-center no-margin">
-              <input type="text" placeholder="Ingrese una observacion"
-                id="input-fisico-{{ fisico.hgc_id_sisfi }}">
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="s-90 m-45 form-select margin-top">
-      <div class="menu-form">
-        <h6 class="title-no-border">DESAROLLO PSICOMOTOR</h6>
-      </div>
-      <ul class="menu-form--list">
-        <li>
-          <p>METODO</p>
-          <div class="input-field s-95 l-70 main-center no-margin">
-            <input type="text" placeholder="Ingrese el metodo" ng-model="data.metodo">
-          </div>
-        </li>
-        <li>
-          <p>CLASIFICACIÒN</p>
-          <div class="input-field s-95 l-70 main-center no-margin">
-            <input type="text" placeholder="Ingrese el clasificaciòn" ng-model="data.clasificacion">
-          </div>
-        </li>
-      </ul>
-
+  <div id="exportthis">
+    <div class="main-end">
+      <button class="waves-effect waves-light btn" ng-click="export()">Imprimir</button>
     </div>
 
-      <div class='main-distribute s-100 margin-top'>
-        <button class="waves-effect waves-light btn danger" ng-click="handleVacunas()">Vacunas</button>
-        <button class="waves-effect waves-light btn primary" ng-click="handleCie10()">Siguiente</button>
+  <article class="form ed-item">
+    <section id="hoja1" ng-include="'src/doctor/reportes/forms/form28C/hoja1.html'"></section>
+    <section id="hoja2" ng-include="'src/doctor/reportes/forms/form28C/cie10.html'"></section>
+    <!-- <section id="grafico-Workspace" ng-include="'src/doctor/reportes/forms/form28C/grafico.html'"></section> -->
+
+    <style>
+    .graphicForm28C-item{
+      display: block;
+    }
+    </style>
+    <section ng-controller="graphicForm28Ctrl" class="graphicForm28C">
+      <div class="menor">
+        <section class="graphicForm28C-wrapper" id="menorGraphic">
+          <article class="GraficaPeso graphicForm28C-item">
+            <h4 class="graphicForm28C-title">PESO/EDAD - NIÑ0 MENOR DE 5 AÑOS (kg)</h4>
+            <img src="assets/img/graficas/ninos-2meses_5anos/peso.png" />
+            <svg id="form28CPeso"></svg>
+            <p class="u-noMargin text footer-msp">MPS HCU - Form 028 A2/09</p>
+            <p class="toaster">Hola Mundo</p>
+          </article>
+          <article class="GraficaLongitud graphicForm28C-item">
+            <h4 class="graphicForm28C-title">TALLA/EDAD - NIÑ0 MENOR DE 5 AÑOS (cm)</h4>
+            <img src="assets/img/graficas/ninos-2meses_5anos/longitud.png">
+            <svg id="form28CLongitud"></svg>
+            <p class="toaster-longitud">Hola Mundo</p>
+            <p class="u-noMargin u-bold main-end text footer-graphic">CURVA DE CRECIMIENTO DEL NIÑO MENOR DE 5 AÑOS</p>
+          </article>
+        </section>
+        <section class="graphicForm28C-wrapper" id="menorGraphic1">
+          <article class="GraficaCefalico graphicForm28C-item">
+            <h4 class="graphicForm28C-title">PERIMETRO CEFÀLICO - NIÑ0 MENOR DE 5 AÑOS (cm)</h4>
+            <img src="assets/img/graficas/ninos-2meses_5anos/cefalico.png">
+            <svg id="form28CCEFALICO"></svg>
+            <p class="toaster-cefalico">Hola Mundo</p>
+            <p class="u-noMargin text footer-msp">MPS HCU - Form 028 A2/09</p>
+          </article>
+          <article class="GraficaIMC graphicForm28C-item">
+            <h4 class="graphicForm28C-title">INDICE DE MASA CORPORAL - NIÑ0 MENOR DE 5 AÑOS (kg/m2)</h4>
+            <img src="assets/img/graficas/ninos-2meses_5anos/imc.png">
+            <svg id="form28CIMC"></svg>
+            <p class="toaster-imc">Hola Mundo</p>
+            <p class="u-noMargin u-bold main-end text footer-graphic">CURVA DE CRECIMIENTO DEL NIÑO MENOR DE 5 AÑOS</p>
+          </article>
+        </section>
+      </div>
+
+      <div class="mayor" id="mayorGraphic">
+        <section class="graphicForm28C-wrapper" id="mayorGraphic">
+          <article class="GraficaPeso graphicForm28C-item">
+            <h4 class="graphicForm28C-title">JOEL ALEJANDRO RIVAS LOOR</h4>
+            <img src="assets/img/graficas/nino/peso.png" style="height: 41em;">
+            <svg class="Peso28CMayor"></svg>
+            <p class="toaster-peso-mayor"></p>
+            <p class="u-noMargin text footer-msp">MPS HCU - Form 028 A2/09</p>
+          </article>
+
+          <article class="GraficaLongitud graphicForm28C-item">
+            <h4 class="graphicForm28C-title">TALLA/EDAD - NIÑ0 MENOR DE 5 AÑOS (cm)</h4>
+            <img src="assets/img/graficas/nino/talla.png">
+            <svg class="Talla28CMayor"></svg>
+            <p class="toaster-talla-mayor"></p>
+            <p class="u-noMargin u-bold main-end text footer-graphic">
+              CURVA DE CRECIMIENTO DEL NIÑO MENOR DE 5 AÑOS
+            </p>
+          </article>
+        </section>
+        <section class="graphicForm28C-wrapper" id="mayorGraphic">
+          <article class="GraficaIMC graphicForm28C-item">
+            <h4 class="graphicForm28C-title">INDICE DE MASA CORPORAL - NIÑ0 MENOR DE 5 AÑOS (kg/m2)</h4>
+            <img src="assets/img/graficas/nino/imc.png">
+            <svg class="IMC28CMayor"></svg>
+            <p class="toaster-imc-mayor"></p>
+            <p class="u-noMargin text footer-msp">MPS HCU - Form 028 A2/09</p>
+            <p class="u-noMargin u-bold main-end text footer-graphic">
+              CURVA DE CRECIMIENTO DEL NIÑO MENOR DE 5 AÑOS
+            </p>
+          </article>
+        </section>
       </div>
     </section>
-
-    <section id="cie10-Workspace" class="none" ng-include="'src/doctor/form28C/cie10.html'"></section>
-    <section id="grafico-Workspace" class="none" ng-include="'src/doctor/form28C/grafico.html'"></section>
-
-    <div class="main-distribute s-100 margin-top">
-      <button class="waves-effect waves-light btn rouse" ng-click="handleGraphic()">Graficas</button>
-    </div>
 
     <div class="footer__form28 s-100">
       <p>SNS-MSP / HCU - form. 028C/{{year}}</p>
@@ -209,4 +92,6 @@
     </div>
 
   </article>
+  </div>
+
 </section>

@@ -1,8 +1,7 @@
 'use strict'
 
-const form28C = angular.module('Hospital')
-
-form28C.controller('form28CController',  function ($scope, $http, $stateParams, $location, $rootScope, form028CieService) {
+angular.module('Hospital')
+.controller('form28CReporteController',  function ($scope, $http, $stateParams, $location, $rootScope, form028CieService) {
   const paciente = $stateParams.id
   const turno = $stateParams.turno
 
@@ -55,87 +54,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     $scope.edad = duration(now, fecha)
   })
 
-  if ($stateParams.action !== 'edit') {
-    $http.get(`src/doctor/form28C/service/paciente.php?id=${paciente}&turno=${turno}`)
-    .then(response => {
-      if (response.data.turno === 1) $scope.activoForm28 = turno
-      $scope.data.antPersonales = response.data.paciente.hgc_antf_form28
-      $scope.data.antfamiliares = response.data.paciente.hgc_antf_form28
-    })
-  }
-
-  $scope.handleVacunas = () => Materialize.toast('Estamos en desarollo', 4000)
-
-  $scope.handleCie10 = () => {
-    $('#form28C-Workaspace').slideUp()
-    $('#cie10-Workspace').slideDown()
-    setTimeout(() => window.scrollTo(0, 0), 100)
-  }
-
-  $scope.handleGraphic = () => {
-    $('#form28C-Workaspace').slideUp()
-    $('#cie10-Workspace').slideUp()
-    $('#grafico-Workspace').slideDown()
-    setTimeout(() => window.scrollTo(0, 0), 100)
-  }
-
-  $scope.handleSave = function () {
-    const items_sistemas = Array.prototype.slice.call(document.querySelectorAll('.items_sistemas'))
-    const items_fisicico = Array.prototype.slice.call(document.querySelectorAll('.items_fisicico'))
-    let cieInputs = [...document.querySelectorAll('.cie--input')]
-
-    cie10Data = []
-    array_sistemas = []
-    array_fisicos = []
-
-    for (let i in cieInputs) {
-      if (cieInputs[i].checked === true) {
-        cie10Data.push({
-          codigo: cieInputs[i].dataset.codigo,
-          value: cieInputs[i].dataset.value
-        })
-      }
-    }
-
-    for(let i in items_sistemas) {
-      let sistemas = items_sistemas[i]
-      if(sistemas.checked === true) {
-        let tipo = sistemas.value.split('_')[0]
-        let id = sistemas.value.split('_')[1]
-        let observacion = document.getElementById(`input-system-${id}`).value
-        array_sistemas.push({ id, tipo, observacion })
-      }
-    }
-
-    for(let i in items_fisicico) {
-      let fisico = items_fisicico[i]
-      if(fisico.checked === true) {
-        let tipo = fisico.value.split('_')[0]
-        let id = fisico.value.split('_')[1]
-        let observacion = document.getElementById(`input-fisico-${id}`).value
-        array_fisicos.push({ id, tipo, observacion })
-      }
-    }
-
-    if (validarForm(cieInputs)) {
-      $scope.activoForm28 = false
-      $scope.data.sistemas = array_sistemas
-      $scope.data.fisicos = array_fisicos
-      $scope.data.ci10 = cie10Data
-
-      $http.post(`src/doctor/form28C/service/${$stateParams.action}.php`, $scope.data)
-        .then(response => {
-          if (response.data === '201') {
-            Materialize.toast('Se ha guardado con exito', 4000)
-            $location.path('/doctor')
-            $scope.activoForm28 = false
-          } else {
-            $scope.activoForm28 = false
-            Materialize.toast('Intente nuevamente', 4000)
-          }
-        })
-    }
-  }
 
   $http.get('src/doctor/form28C/service/sistemas.php')
     .then(response => $scope.sistemas = response.data)
@@ -143,59 +61,19 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
   $http.get('src/doctor/form28C/service/fisico.php')
     .then(response => $scope.fisicos = response.data)
 
-  function validarForm (cieInputs) {
-    const data = $scope.data
 
-    if (data.motivo === '') {
-      Materialize.toast('Ingrese el motivo de la consulta', 4000)
-      return false
-    }
-    if (data.enfermedad === '') {
-      Materialize.toast('Ingrese la enfermedad o problemas actual', 4000)
-      return false
-    }
-    if (array_sistemas.length !== $scope.sistemas.length) {
-      Materialize.toast('Debe selecionar la revision de organos y sistemas', 4000)
-      return false
-    }
-    if (array_fisicos.length !== $scope.fisicos.length) {
-      Materialize.toast('Debe selecionar los examenes fisicos', 4000)
-      return false
-    }
-    if (data.metodo === '') {
-      Materialize.toast('Ingrese el metodo del desarollo psicomotor', 4000)
-      return false
-    }
-    if (data.clasificacion === '') {
-      Materialize.toast('Ingrese la clasificacion del desarollo psicomotor', 4000)
-      return false
-    }
-    if (cieInputs.length === 0) {
-      Materialize.toast('Debe ingresar los cie10', 4000)
-      return false
-    }
-    if (cie10Data.length !== document.getElementById('cie-table').children.length) {
-      Materialize.toast('Debe selecionar los cie10', 4000)
-      return false
-    }
-    else return true
-  }
+    // Editar
+  setTimeout(
+    () => {
+      [...document.querySelectorAll('.input-field label')].map(item => {
+        item.classList.add('active')
+      })
+    },
+    500
+  )
 
-
-// Editar
-
-  if ($stateParams.action === 'edit') {
-    setTimeout(
-      () => {
-        [...document.querySelectorAll('.input-field label')].map(item => {
-          item.classList.add('active')
-        })
-      },
-      500
-    )
-
-    $http.get(`src/doctor/form28C/service/get.php?turno=${turno}`)
-    .then(response => {
+  $http.get(`src/doctor/form28C/service/get.php?turno=${turno}`)
+  .then(response => {
       const snap = response.data
 
       $scope.data = {
@@ -268,7 +146,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
                     id="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}pre" class="cie--input"
                     data-codigo='${cieResponse.hgc_codi_c10}' data-value='pre'
                   />
-                  <label for="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}pre"></label>
                 </p>
               </td>
               <td id="cie-def${form028CieService.data.index}">
@@ -277,7 +154,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
                     id="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}def" class="cie--input"
                     data-codigo='${cieResponse.hgc_codi_c10}' data-value='def' checked
                   />
-                  <label for="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}def"></label>
                 </p>
               </td>
             </tr>
@@ -290,7 +166,6 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
                     id="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}pre" class="cie--input"
                     data-codigo='${cieResponse.hgc_codi_c10}' data-value='pre' checked
                   />
-                  <label for="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}pre"></label>
                 </p>
               </td>
               <td id="cie-def${form028CieService.data.index}">
@@ -299,83 +174,107 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
                     id="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}def" class="cie--input"
                     data-codigo='${cieResponse.hgc_codi_c10}' data-value='def'
                   />
-                  <label for="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}def"></label>
                 </p>
               </td>
             </tr>
           `
           }
           $('#cie-table').append(template)
-          let filterCI10 = [...document.querySelectorAll('.filter-cie10')]
-          let nombreFilterCie10 = [...document.querySelectorAll('.filter-cie-nombre10')]
-          for (let i in filterCI10) filterCI10[i].addEventListener('keyup', handleFilter)
-          for (let i in nombreFilterCie10) nombreFilterCie10[i].addEventListener('keyup', handleFilterNombre)
           form028CieService.data.index++
         })
       })
 
-      function handleFilter (e) {
-        if (e.keyCode === 13) {
-          let index = e.target.dataset.index
-          let cie10 = $(`#column${index}`).val().trim()
-          let len = cie10.length
-
-          if (cie10 === '') {
-            Materialize.toast('Ingrese el codigo CIE10', 4000)
-          } else if (len < 3 || len > 4) {
-            Materialize.toast('Ingrese el codigo CIE10 correcto', 4000)
-          }
-          else {
-            $http.get(`src/doctor/form28C/service/filterCI10.php?codigo=${cie10}&len=${len}`)
-            .then(response => {
-              if (response.data === 'false') Materialize.toast('No hay registro de CIE10', 4000)
-              else renderCIE10(response.data, index)
-            })
-
-          }
-        }
-      }
-
-      function handleFilterNombre (e) {
-        if (e.keyCode === 13) {
-          let index = e.target.dataset.index
-          let cie10 = $(`#column-nombre-${index}`).val().trim()
-
-          if (cie10 === '')
-            Materialize.toast('Ingrese el nombre de CIE10', 4000)
-          else {
-            $http.get(`src/doctor/form28C/service/filterNombreCI10.php?nombre=${cie10}`)
-            .then(response => {
-              if (response.data === 'false') Materialize.toast('No hay registro de CIE10', 4000)
-              else renderCIE10 (response.data, index)
-            })
-          }
-        }
-      }
-
-      function renderCIE10 (data, index) {
-        let templatePRE = `<p>
-          <input name="${data.hgc_codi_c10}_${index}" type="radio"
-            id="${data.hgc_codi_c10}_${index}pre" class="cie--input"
-            data-codigo='${data.hgc_codi_c10}' data-value='pre'
-          />
-          <label for="${data.hgc_codi_c10}_${index}pre"></label>
-        </p>`
-
-        let templateDEF = `<p>
-          <input name="${data.hgc_codi_c10}_${index}" type="radio"
-            id="${data.hgc_codi_c10}_${index}def" class="cie--input"
-            data-codigo='${data.hgc_codi_c10}' data-value='def'
-          />
-          <label for="${data.hgc_codi_c10}_${index}def"></label>
-        </p>`
-        $(`#column-nombre-${index}`).val(data.hgc_desc_c10)
-        $(`#column${index}`).val(data.hgc_codi_c10)
-        $(`#cie-pre${index}`).html(templatePRE)
-        $(`#cie-def${index}`).html(templateDEF)
-      }
-
     })
+
+  $scope.export = () => {
+    html2canvas(document.getElementById('hoja1'), {
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+            content: [{
+                image: data,
+                width: 500,
+            }]
+        };
+        pdfMake.createPdf(docDefinition).download("formhoja1.pdf");
+        // pdfMake.createPdf(docDefinition).open();
+      }
+    })
+
+    html2canvas(document.getElementById('hoja2'), {
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+            content: [{
+              image: data,
+              width: 500,
+            }]
+        };
+        pdfMake.createPdf(docDefinition).download("formhoja2.pdf");
+        // pdfMake.createPdf(docDefinition).open();
+      }
+    })
+
+    html2canvas(document.getElementById('menorGraphic'), {
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+          content: [{
+            image: data,
+            width: 500,
+          }]
+        };
+        pdfMake.createPdf(docDefinition).download("menorGraphic.pdf");
+      }
+    })
+
+    html2canvas(document.getElementById('menorGraphic1'), {
+        onrendered: function (canvas) {
+          var data = canvas.toDataURL();
+          var docDefinition = {
+              content: [{
+                image: data,
+                width: 500,
+              }]
+          };
+          pdfMake.createPdf(docDefinition).download("menorGraphic1.pdf");
+        }
+      })
+
   }
 
+})
+/*
+a = document.querySelector('#exportthis')
+html2canvas(a, {
+  onrendered: function (canvas) {
+    console.log(canvas)
+ var a = document.createElement('a');
+        // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+        a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+        a.download = 'somefilename.jpg';
+        a.click();
+  }
+})
+*/
+a = $('#exportthis')
+
+html2canvas([a[0]], {
+  useCORS: true
+}).then(function (canvas){
+  if (navigator.msSaveBlob) {
+    var URL=window.URL;
+    var BlobBuilder = window.MSBlobBuilder;
+    navigator.saveBlob=navigator.msSaveBlob;
+    var imgBlob = canvas.msToBlob();
+
+    var showSave =  function (data, name, mimetype) {
+      var builder = new BlobBuilder();
+      builder.append(data);
+      var blob = builder.getBlob(mimetype||"application/octet-stream");
+      if (!name) name = "Download.bin";
+        navigator.saveBlob(blob, name);
+    };
+    showSave(imgBlob, 'barchart.png',"image/png");
+  }
 })

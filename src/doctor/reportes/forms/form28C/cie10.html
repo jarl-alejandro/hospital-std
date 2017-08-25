@@ -1,4 +1,11 @@
-<section ng-controller="cie10FilterFormController">
+<style>
+[type="radio"]:not(:checked), [type="radio"]:checked {
+  position: static;
+  opacity: 1;
+}
+</style>
+
+<section>
   <article class="s-100 l-75 cie-container">
     <table class="bordered striped highlight centered responsive-table cie-table">
       <thead>
@@ -9,39 +16,9 @@
           <th width="10%">DEF</th>
         </tr>
       </thead>
-      <tbody id="cie-table">
-        <tr>
-          <td id="cie-nombre1" class="input-field">
-            <input type="text" placeholder="Ingresa el nombre CIE 10"
-              class="u-noMargin filter-cie-nombre10" id="column-nombre-1" data-index="1" />
-          </td>
-          <td class="input-field">
-            <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
-            class="u-noMargin filter-cie10" id="column1" data-index="1" />
-          </td>
-          <td id="cie-pre1"></td>
-          <td id="cie-def1"></td>
-        </tr>
-        <tr>
-          <td id="cie-nombre2" class="input-field">
-            <input type="text" placeholder="Ingresa el nombre CIE 10"
-              class="u-noMargin filter-cie-nombre10" id="column-nombre-2" data-index="2" />
-          </td>
-          <td class="input-field">
-            <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
-            class="u-noMargin filter-cie10" id="column2" data-index="2" />
-          </td>
-          <td id="cie-pre2"></td>
-          <td id="cie-def2"></td>
-        </tr>
-      </tbody>
+      <tbody id="cie-table"></tbody>
     </table>
-
-    <button class="waves-effect waves-light btn primary" ng-click="handleNewCIE10()">
-      <i class="material-icons">add</i>
-    </button>
   </article>
-
   <article class="s-100 l-70 form-select">
     <div class="menu-form">
       <h6>11 PLAN DE TRATAMIENTO</h6>
@@ -87,11 +64,5 @@
       </table>
     </div>
   </article>
-
-  <div class='main-distribute s-100 margin-top'>
-    <button class="waves-effect waves-light btn danger" ng-click="handleBack()">Atras</button>
-    <button class='waves-effect waves-light btn primary' ng-click="handleSave()"
-      ng-disabled="activoForm28">Aceptar</button>
-  </div>
 
 </section>
