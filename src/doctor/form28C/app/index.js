@@ -2,7 +2,7 @@
 
 const form28C = angular.module('Hospital')
 
-form28C.controller('form28CController',  function ($scope, $http, $stateParams, $location, $rootScope) {
+form28C.controller('form28CController',  function ($scope, $http, $stateParams, $location, $rootScope, form028CieService) {
   const paciente = $stateParams.id
   const turno = $stateParams.turno
 
@@ -205,9 +205,16 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
         antPersonales:snap.form.hgc_antp_form28,
         antfamiliares: snap.form.hgc_antf_form28,
         planTratamiento: snap.form.hgc_pltra_form28,
+        prescripcion: {
+          fecha: snap.medicas.hgc_fec_presc,
+          tiempo: snap.medicas.hgc_hor_presc,
+          nota: snap.medicas.hgc_nota_presc,
+          prescipcion: snap.medicas.hgc_det_presc,
+        },
         paciente,
         turno
       }
+
       snap.detalle.map(item => {
         setTimeout(() => {
           let system = document.querySelector(`#input-system-${item.hgc_codi_dform28}`)
@@ -228,57 +235,144 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
       })
 
       $('#cie-table').html('')
+      $('#cie-table').html('')
+      form028CieService.data.index = 1
+
       snap.cie.map((item, index) => {
-        console.log(item);
         let len = item.hgc_cie_fci.length
         let cie10 = item.hgc_cie_fci
 
         $http.get(`src/doctor/form28C/service/filterCI10.php?codigo=${cie10}&len=${len}`)
         .then(response => {
           const cieResponse = response.data
-          let template = $(`
-            <tr>
-              <td id="cie-nombre${index}" class="input-field">
+          let template = `<tr>
+              <td id="cie-nombre${form028CieService.data.index}" class="input-field">
                 <input type="text" placeholder="Ingresa el nombre CIE 10" value="${cieResponse.hgc_desc_c10}"
-                  class="u-noMargin filter-cie-nombre10" id="column-nombre-${index}" data-index="${index}" />
+                  class="u-noMargin filter-cie-nombre10" id="column-nombre-${form028CieService.data.index}"
+                  data-index="${form028CieService.data.index}" />
               </td>
               <td class="input-field">
                 <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" value="${cieResponse.hgc_codi_c10}"
-                  class="u-noMargin filter-cie10" id="column${index}" data-index="${index}" />
+                  class="u-noMargin filter-cie10" id="column${form028CieService.data.index}"
+                  data-index="${form028CieService.data.index}"
+                />
               </td>
-              <td id="cie-pre${index}">
+          `
+          if (item.hgc_val_fci === 'def') {
+            template += `
+              <td id="cie-pre${form028CieService.data.index}">
                 <p>
-                  <input name="${cieResponse.hgc_codi_c10}_${index}" type="radio"
-                    id="${cieResponse.hgc_codi_c10}_${index}pre" class="cie--input"
+                  <input name="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}" type="radio"
+                    id="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}pre" class="cie--input"
                     data-codigo='${cieResponse.hgc_codi_c10}' data-value='pre'
                   />
-                  <label for="${cieResponse.hgc_codi_c10}_${index}pre"></label>
+                  <label for="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}pre"></label>
                 </p>
               </td>
-              <td id="cie-def${index}">
+              <td id="cie-def${form028CieService.data.index}">
                 <p>
-                  <input name="${cieResponse.hgc_codi_c10}_${index}" type="radio"
-                    id="${cieResponse.hgc_codi_c10}_${index}def" class="cie--input"
-                    data-codigo='${cieResponse.hgc_codi_c10}' data-value='def'
+                  <input name="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}" type="radio"
+                    id="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}def" class="cie--input"
+                    data-codigo='${cieResponse.hgc_codi_c10}' data-value='def' checked
                   />
-                  <label for="${cieResponse.hgc_codi_c10}_${index}def"></label>
+                  <label for="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}def"></label>
                 </p>
               </td>
             </tr>
-          `)
+          `
+          } else if (item.hgc_val_fci === 'pre') {
+            template += `
+              <td id="cie-pre${form028CieService.data.index}">
+                <p>
+                  <input name="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}" type="radio"
+                    id="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}pre" class="cie--input"
+                    data-codigo='${cieResponse.hgc_codi_c10}' data-value='pre' checked
+                  />
+                  <label for="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}pre"></label>
+                </p>
+              </td>
+              <td id="cie-def${form028CieService.data.index}">
+                <p>
+                  <input name="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}" type="radio"
+                    id="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}def" class="cie--input"
+                    data-codigo='${cieResponse.hgc_codi_c10}' data-value='def'
+                  />
+                  <label for="${cieResponse.hgc_codi_c10}_${form028CieService.data.index}def"></label>
+                </p>
+              </td>
+            </tr>
+          `
+          }
           $('#cie-table').append(template)
-          setTimeout(()=> {
-            const input = document.querySelector(`${cieResponse.hgc_codi_c10}_${index}def`)
-            console.log(input);
-          }, 5000)
-          // console.log(template[0].children[3].children[0].children[0]);
-          //
-          // if (template[0].children[3].children[0].children[0].dataset.value == item.hgc_val_fci) {
-          //   template[0].children[3].children[0].children[0].checked = true
-          // }
+          let filterCI10 = [...document.querySelectorAll('.filter-cie10')]
+          let nombreFilterCie10 = [...document.querySelectorAll('.filter-cie-nombre10')]
+          for (let i in filterCI10) filterCI10[i].addEventListener('keyup', handleFilter)
+          for (let i in nombreFilterCie10) nombreFilterCie10[i].addEventListener('keyup', handleFilterNombre)
+          form028CieService.data.index++
         })
-
       })
+
+      function handleFilter (e) {
+        if (e.keyCode === 13) {
+          let index = e.target.dataset.index
+          let cie10 = $(`#column${index}`).val().trim()
+          let len = cie10.length
+
+          if (cie10 === '') {
+            Materialize.toast('Ingrese el codigo CIE10', 4000)
+          } else if (len < 3 || len > 4) {
+            Materialize.toast('Ingrese el codigo CIE10 correcto', 4000)
+          }
+          else {
+            $http.get(`src/doctor/form28C/service/filterCI10.php?codigo=${cie10}&len=${len}`)
+            .then(response => {
+              if (response.data === 'false') Materialize.toast('No hay registro de CIE10', 4000)
+              else renderCIE10(response.data, index)
+            })
+
+          }
+        }
+      }
+
+      function handleFilterNombre (e) {
+        if (e.keyCode === 13) {
+          let index = e.target.dataset.index
+          let cie10 = $(`#column-nombre-${index}`).val().trim()
+
+          if (cie10 === '')
+            Materialize.toast('Ingrese el nombre de CIE10', 4000)
+          else {
+            $http.get(`src/doctor/form28C/service/filterNombreCI10.php?nombre=${cie10}`)
+            .then(response => {
+              if (response.data === 'false') Materialize.toast('No hay registro de CIE10', 4000)
+              else renderCIE10 (response.data, index)
+              console.log(response)
+            })
+          }
+        }
+      }
+
+      function renderCIE10 (data, index) {
+        let templatePRE = `<p>
+          <input name="${data.hgc_codi_c10}_${index}" type="radio"
+            id="${data.hgc_codi_c10}_${index}pre" class="cie--input"
+            data-codigo='${data.hgc_codi_c10}' data-value='pre'
+          />
+          <label for="${data.hgc_codi_c10}_${index}pre"></label>
+        </p>`
+
+        let templateDEF = `<p>
+          <input name="${data.hgc_codi_c10}_${index}" type="radio"
+            id="${data.hgc_codi_c10}_${index}def" class="cie--input"
+            data-codigo='${data.hgc_codi_c10}' data-value='def'
+          />
+          <label for="${data.hgc_codi_c10}_${index}def"></label>
+        </p>`
+        $(`#column-nombre-${index}`).val(data.hgc_desc_c10)
+        $(`#column${index}`).val(data.hgc_codi_c10)
+        $(`#cie-pre${index}`).html(templatePRE)
+        $(`#cie-def${index}`).html(templateDEF)
+      }
 
     })
   }

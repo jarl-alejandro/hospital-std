@@ -7,7 +7,7 @@ $turno = $_GET['turno'];
 
 $detalle = array();
 $cie = array();
-$medicas = array();
+// $medicas = array();
 
 $qs = $pdo->query("SELECT * FROM hgc_form28 WHERE hgc_turno_form28='$turno'");
 $form = $qs->fetch();
@@ -25,9 +25,7 @@ while ($row = $fcie->fetch()) {
   $cie[] = $row;
 }
 
-while ($row = $pre->fetch()) {
-  $medicas[] = $row;
-}
+$medicas = $pre->fetch();
 
 $json = array('form'=>$form, 'medicas'=> $medicas, 'detalle'=> $detalle, 'cie'=> $cie);
 echo json_encode($json);
