@@ -56,7 +56,7 @@ angular.module('Hospital')
     pesoCelda = parseFloat(pesoCelda + "." + parseInt(decimalPeso/2))
 
     let pointTalla = parseFloat(item.talla) - 90
-    if (pointTalla   !== 0) pointTalla = parseInt(pointTalla.toString().split("")[0])
+    if (pointTalla > 0) pointTalla = parseInt(pointTalla.toString().split("")[0])
 
     let imcData = item.imc - 10
     let celdaIMC = 14
