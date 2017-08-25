@@ -1,0 +1,624 @@
+<section ng-controller="hoja1Conroller" class="s-100 main-distribute">
+  <!-- Antecedentes Maternos -->
+  <div class="s-90 m-45 form-select">
+    <div class="menu-form">
+      <h6 class="form28__list">
+        <a style="color:white">1 ANTECEDENTES MATERNOS</a>
+        <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+          Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+        </a>
+      </h6>
+      <div style="display: flex;justify-content: space-around;">
+        <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+        <h6>OBSERVACIONES</h6>
+      </div>
+    </div>
+    <ul class="menu-form--list">
+      <li ng-repeat="materno in ant_maternos">
+        <p>{{ materno.hgc_desc_sisfi }}</p>
+        <p>
+          <input name="materno_{{ materno.hgc_id_sisfi }}"
+            id="si_{{ materno.hgc_id_sisfi }}"
+            class="items_materno items__form"
+            value="0_{{materno.hgc_id_sisfi}}_1" type="radio"
+          />
+          <label for="si_{{ materno.hgc_id_sisfi }}"></label>
+        </p>
+        <p>
+          <input name="materno_{{ materno.hgc_id_sisfi }}"
+            id="no_{{ materno.hgc_id_sisfi }}"
+            class="items_materno items__form"
+            value="1_{{materno.hgc_id_sisfi}}_1" type="radio"
+          />
+          <label for="no_{{ materno.hgc_id_sisfi }}"></label>
+        </p>
+        <div class="input-field s-90 l-55 no-margin">
+          <input type="text" placeholder="Ingrese una observacion"
+            id="input__form-{{ materno.hgc_id_sisfi }}">
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- /Antecedentes Maternos -->
+
+  <!-- Antecedentes familiares -->
+  <div class="s-90 m-45 form-select">
+    <div class="menu-form">
+      <h6 class="form28__list">
+        <a style="color:white">2 ANTECEDENTES FAMILIARES</a>
+        <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+          Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+        </a>
+      </h6>
+      <div style="display: flex;justify-content: space-around;">
+        <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+        <h6>OBSERVACIONES</h6>
+      </div>
+    </div>
+    <ul class="menu-form--list">
+      <li ng-repeat="fami in ant_familiares">
+        <p>{{ fami.hgc_desc_sisfi }}</p>
+        <p>
+          <input name="fami_{{ fami.hgc_id_sisfi }}"
+            id="si_{{ fami.hgc_id_sisfi }}"
+            class="items_fami items__form"
+            value="0_{{fami.hgc_id_sisfi}}_2" type="radio"
+          />
+          <label for="si_{{ fami.hgc_id_sisfi }}"></label>
+        </p>
+        <p>
+          <input name="fami_{{ fami.hgc_id_sisfi }}"
+            id="no_{{ fami.hgc_id_sisfi }}"
+            class="items_fami items__form"
+            value="1_{{fami.hgc_id_sisfi}}_2" type="radio"
+          />
+          <label for="no_{{ fami.hgc_id_sisfi }}"></label>
+        </p>
+        <div class="input-field s-90 l-55 no-margin">
+          <input type="text" placeholder="Ingrese una observacion"
+            id="input__form-{{ fami.hgc_id_sisfi }}" />
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- /Antecedentes familiares -->
+
+  <!-- Antecedentes obstreticos -->
+  <article class="s-100" style="position:relative;overflow: auto;height: 15.5em;margin-bottom:1em;"
+    ng-controller="validForm">
+    <p class="form__tag s-100">ANTECEDENTES OBSTRETICOS</p>
+    <article style="margin-top: -0.5em;">
+
+      <div class="s-45 m-30 l-15">
+        <label style="font-size: 10px;" for="fecha_embarazoAnt">
+          FECHA FIN EMBARAZO ANTERIOR
+        </label>
+        <input type="text" id="fecha_embarazoAnt"
+          class="input__antecedentes datepicker" ng-model="data.fechaEmbarazo"
+          ng-disabled="!abstre.embarazo"
+        >
+      </div>
+
+      <div class="s-15 m-5 obstretico_circle meno__1year obsetretico_label">
+        <div>
+          <input type="checkbox" id="menor1" ng-model="abstre.embarazo" />
+          <label for="menor1"></label>
+        </div>
+        <label for="menor1" class="label">MENOS DE 1 AÑO</label>
+      </div>
+
+    </article>
+
+    <article class="divider_absolute" style="left:14.5em;">
+      <div class="s-35 m-15 l-10" id="gestas_previas-container">
+        <label for="gestas_previas">GESTAS PREVIAS</label>
+        <input type="text" id="gestas_previas" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.gestasPrevias" maxlength="4"
+        >
+      </div>
+
+      <div class="s-10 m-5 obstretico_circle gemelar_previo obsetretico_label"
+        id="gemelar_previo_container">
+        <div>
+          <input type="checkbox" id="gemelar_previo" ng-model="abstre.gemelar"/>
+          <label for="gemelar_previo"></label>
+        </div>
+        <label for="gemelar_previo" class="label">GEMELAR PREVIO</label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" style="left:24.5em;">
+      <div class="s-20 m-15 l-10">
+        <label for="abortos">ABORTOS</label>
+        <input type="text" id="abortos" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar"
+          ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.abortos" maxlength="4"
+        >
+      </div>
+
+      <div class="s-20 m-15 l-10" id="partos__container">
+        <input type="text" id="partos" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.partos" maxlength="4"
+        >
+        <label for="partos" style="margin: -1.5em 1em 0 2em;display: block;">PARTOS</label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" id="partos-wrapper">
+      <div class="s-40 m-20 l-10" id="partos_vaginales-container">
+        <label for="partos__vaginales" style="font-size: 10px;">PARTOS VAGINALES</label>
+        <input type="text" id="partos__vaginales" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.partosVaginales" maxlength="4"
+        >
+      </div>
+
+      <div class="s-40 m-20 l-10" id="cesarias_container">
+        <input type="text" id="cesarias" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.cesarias" maxlength="4"
+        >
+        <label for="cesarias" style="margin: -1.5em 1em 0 2em;display: block;">CESARIAS</label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" id="partos-vaginales-wrapper">
+      <div class="s-35 m-15 l-10" id="nacido_vivos-container">
+        <label for="nacido_vivos" style="font-size: 10px;">NACIDOS VIVOS</label>
+        <input type="text" id="nacido_vivos" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.nacidosVivos" maxlength="4"
+        >
+      </div>
+
+      <div class="s-35 m-15 l-10" id="nacido_muerto-container">
+        <input type="text" id="nacido_muerto" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.nacidosMuertos" maxlength="4"
+        >
+        <label for="nacido_muerto" style="margin: -1.5em 1em 0 2em;display: block;">
+          NACIDOS MUERTES
+        </label>
+      </div>
+    </article>
+
+    <article class="divider_absolute" style="left:59em;">
+      <div class="s-30 m-15 l-10" id="hijos_vivos-container">
+        <label for="hijos_vivos" style="font-size: 10px;">HIJOS VIVOS</label>
+        <input type="text" id="hijos_vivos" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.hijosVivos" maxlength="4"
+        >
+      </div>
+    </article>
+
+    <article class="divider_absolute-muertos" style="left:57em;">
+      <div class="s-25 m-15 l-10" id="muerto7menor-container">
+        <input type="text" id="muerto7menor" class="input__antecedentes"
+          style="margin-left: -1.5em;" ng-disabled="!abstre.gemelar"
+          ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.muertosMenor7" maxlength="4"
+        >
+        <label for="muerto7menor"
+          style="margin: -1.5em 1em 0 0;display: block;font-size: 10px;">
+          MUERTOS < 7 DIAS
+        </label>
+      </div>
+
+      <div class="s-25 m-15 l-10" id="muerto7mayor-container">
+        <input type="text" id="muerto7mayor" class="input__antecedentes"
+          ng-disabled="!abstre.gemelar" ng-keypress="ValidaSoloNumeros()"
+          ng-model="data.muertosMayor7" maxlength="4"
+        >
+        <label for="muerto7mayor"
+          style="margin:-1.5em 1em 0 2em;display:block;font-size: 10px;">
+          MUERTOS > 7 DIAS
+        </label>
+      </div>
+    </article>
+
+  </article>
+  <!-- /Antecedentes obstreticos -->
+
+  <!-- Antecedentes Prenatales -->
+  <div class="s-100 form-select" style="margin-bottom:1em">
+    <div class="menu-form">
+      <h6 class="form28__list">
+        <a style="color:white">4 ANTECEDENTES PRENATALES</a>
+        <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+          Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+        </a>
+      </h6>
+      <div style="display: flex;justify-content: space-around;">
+        <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+        <h6>OBSERVACIONES</h6>
+      </div>
+    </div>
+    <ul class="menu-form--list grid-dinamic">
+      <li ng-repeat="prenat in ant_prenatales">
+        <p class="s-70 m-30">{{ prenat.hgc_desc_sisfi }}</p>
+        <p class="s-15 m-10">
+          <input name="prenat_{{ prenat.hgc_id_sisfi }}"
+            id="si_{{ prenat.hgc_id_sisfi }}"
+            class="items_prenat items__form"
+            value="0_{{prenat.hgc_id_sisfi}}_4" type="radio"
+          />
+          <label for="si_{{ prenat.hgc_id_sisfi }}"></label>
+        </p>
+        <p class="s-15 m-10">
+          <input name="prenat_{{ prenat.hgc_id_sisfi }}"
+            id="no_{{ prenat.hgc_id_sisfi }}"
+            class="items_prenat items__form"
+            value="1_{{prenat.hgc_id_sisfi}}_4" type="radio" />
+          <label for="no_{{ prenat.hgc_id_sisfi }}"></label>
+        </p>
+        <div class="input-field s-90 m-50 no-margin">
+          <input type="text" placeholder="Ingrese una observacion"
+            id="input__form-{{ prenat.hgc_id_sisfi }}"
+          />
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- /Antecedentes Prenatales -->
+
+  <!-- Nacimientos -->
+  <div class="s-100 form-select" style="margin-bottom:1em">
+    <div class="menu-form">
+      <h6 class="form28__list">
+        <a style="color:white;width: 8em;">5 Nacimiento</a>
+        <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+          Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+        </a>
+      </h6>
+      <div style="display: flex;justify-content: space-around;">
+        <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+        <h6>OBSERVACIONES</h6>
+      </div>
+    </div>
+    <ul class="menu-form--list grid-dinamic">
+      <li ng-repeat="nacim in nacimientos">
+        <p class="s-70 m-30">{{ nacim.hgc_desc_sisfi }}</p>
+        <p class="s-15 m-10">
+          <input name="nacim_{{ nacim.hgc_id_sisfi }}"
+            id="si_{{ nacim.hgc_id_sisfi }}"
+            class="items_nacim items__form"
+            value="0_{{nacim.hgc_id_sisfi}}_5" type="radio"
+          />
+          <label for="si_{{ nacim.hgc_id_sisfi }}"></label>
+        </p>
+        <p class="s-15 m-10">
+          <input name="nacim_{{ nacim.hgc_id_sisfi }}"
+            id="no_{{ nacim.hgc_id_sisfi }}"
+            class="items_nacim items__form"
+            value="1_{{nacim.hgc_id_sisfi}}_5" type="radio"
+          />
+          <label for="no_{{ nacim.hgc_id_sisfi }}"></label>
+        </p>
+        <div class="input-field s-90 m-50 no-margin">
+          <input type="text" placeholder="Ingrese una observacion"
+            id="input__form-{{ nacim.hgc_id_sisfi }}">
+        </div>
+      </li>
+    </ul>
+
+    <div class="main-end atendido-container">
+      <article class="atendidos-por__form s-100 m-60">
+        <ul class="atendidos__menu">
+          <li>ATENDIDO POR:</li>
+          <li>MEDIC</li>
+          <li>OESTE</li>
+          <li>ENFER</li>
+          <li>AUXIL</li>
+          <li>ESTUD</li>
+          <li>EMPIR</li>
+          <li>OTRO</li>
+        </ul>
+        <ul class="atendidos__menu">
+          <li>PARTO:</li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="parto_medic" />
+            <label for="parto_medic"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="parto_oeste" />
+            <label for="parto_oeste"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="parto_enfer" />
+            <label for="parto_enfer"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="parto_auxil" />
+            <label for="parto_auxil"></label>
+          </li>
+          <li class="atendidos__responsive">
+            <input type="checkbox" class="item_atendido" id="parto_estud" />
+            <label for="parto_estud"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="parto_empir" />
+            <label for="parto_empir"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="parto_otro" />
+            <label for="parto_otro"></label>
+          </li>
+        </ul>
+        <ul class="atendidos__menu">
+          <li>NEONATO:</li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="neonato_medic"
+            />
+            <label for="neonato_medic"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="neonato_oeste"
+            />
+            <label for="neonato_oeste"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="neonato_enfer"
+            />
+            <label for="neonato_enfer"></label>
+          </li>
+          <li class="atendidos__responsive">
+            <input type="checkbox" class="item_atendido" id="neonato_auxil"
+            />
+            <label for="neonato_auxil"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="neonato_estud"
+            />
+            <label for="neonato_estud"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="neonato_empir"
+            />
+            <label for="neonato_empir"></label>
+          </li>
+          <li>
+            <input type="checkbox" class="item_atendido" id="neonato_otro"
+            />
+            <label for="neonato_otro"></label>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+  <!-- /Nacimientos -->
+
+  <!-- Recien Nacido -->
+  <article class="s-100" ng-controller="validForm">
+    <p class="form__tag s-100">6 RECIEN NACIDO</p>
+    <article class="grid-dinamic">
+      <div class="s-100 l-95 form-select">
+      <section style="border-bottom:1px solid black">
+
+        <div class="menu-form">
+          <h6 class="form28__list">
+            <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+              Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+            </a>
+          </h6>
+          <div style="display: flex;justify-content: space-around;">
+            <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+            <h6>OBSERVACIONES</h6>
+          </div>
+        </div>
+        <ul>
+          <li style="display:flex;flex-wrap:wrap">
+            <p class="s-70 m-30">REANIMACION <br>
+              <span style="font-size: 12px;">(especifique tipo)</span>
+            </p>
+            <p class="s-15 m-10">
+              <input name="reanimacion" id="si_reanimacion"
+                class="items_recien" value="si" type="radio"
+                ng-model="data.reanimacionCheck"
+              />
+              <label for="si_reanimacion"></label>
+            </p>
+            <p class="s-15 m-10">
+              <input name="reanimacion" id="no_reanimacion"
+                class="items_recien" value="no" type="radio"
+                ng-model="data.reanimacionCheck"
+              />
+              <label for="no_reanimacion"></label>
+            </p>
+            <div class="input-field s-90 s-offset-5 m-45">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input-recien-reanimacion"
+                ng-model="data.reanimacion"
+              />
+            </div>
+          </li>
+        </ul>
+
+        <article class="form__grid_nacido">
+          <div class="input-field s-95">
+            <input id="apagar_1min" type="text"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
+              ng-model="data.apagar1Min"
+            />
+            <label for="apagar_1min">APAGAR 1 MIN</label>
+          </div>
+          <div class="input-field s-95">
+            <input id="apagar_5min" type="text"
+              ng-model="data.apagar5Min"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
+            />
+            <label for="apagar_5min">APAGAR 5 MIN</label>
+          </div>
+        </article>
+
+        <article class="form__grid_nacido_2">
+          <div class="input-field s-90">
+            <input id="peso_nacer" type="text"
+              ng-model="data.pesoNacer"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
+            />
+            <label for="peso_nacer">PESO AL NACER</label>
+          </div>
+          <div class="input-field s-90">
+            <input id="longitud" type="text"
+              ng-model="data.longitud"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
+            />
+            <label for="longitud">LONGITUD</label>
+          </div>
+          <div class="input-field s-90">
+            <input id="p_cefalico" type="text"
+              ng-model="data.pCefalico"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
+            />
+            <label for="p_cefalico">P. CEFALICO</label>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <article class="form__grid_nacido">
+          <div class="input-field s-90 m-100">
+            <input id="edad_gestion" type="text"
+              ng-model="data.edadGestion"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
+            />
+            <label for="edad_gestion" class="nacido__label">
+              EDAD GESTIONAL X EXAMEN FISICO
+            </label>
+          </div>
+          <div class="input-field s-90 m-100">
+            <input id="relacion_peso" type="text"
+              ng-model="data.relacionPeso"
+              ng-keypress="ValidaSoloNumeros()" maxlength="4"
+            />
+            <label for="relacion_peso" class="nacido__label">
+              RELACION PESO / EDAD GESTIONAL
+            </label>
+          </div>
+        </article>
+        <ul>
+          <li style="display:flex;flex-wrap:wrap">
+            <p class="s-70 m-30">TIPIFICACION SANGUINEA (registro grupo factor)</p>
+            <p class="s-15 m-10">
+              <input name="tipificacion_sangio" id="si_tipificacion_sangio"
+                class="items_tipifi" value="si" type="radio"
+                ng-model="data.tipoficacionSanguineaCheck"
+              />
+              <label for="si_tipificacion_sangio"></label>
+            </p>
+            <p class="s-15 m-10">
+              <input name="tipificacion_sangio" id="no_tipificacion_sangio"
+                class="items_tipifi" value="no" type="radio"
+                ng-model="data.tipoficacionSanguineaCheck"
+              />
+              <label for="no_tipificacion_sangio"></label>
+            </p>
+            <div class="input-field s-90 m-50">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input-recien-tipificacion_sangio"
+                ng-model="data.tipoficacionSanguinea"
+              />
+            </div>
+          </li>
+
+          <li style="display:flex;flex-wrap:wrap">
+            <p class="s-70 m-30">EXAMENES ESPECIALES (asociados a riesfo)</p>
+            <p class="s-15 m-10">
+              <input name="examen_especial" id="si_examen_especial"
+                class="items_examen_especial" value="si" type="radio"
+                ng-model="data.examenesEspecialesCheck"
+              />
+              <label for="si_examen_especial"></label>
+            </p>
+            <p class="s-15 m-10">
+              <input name="examen_especial" id="no_examen_especial"
+                class="items_examen_especial" value="no" type="radio"
+                ng-model="data.examenesEspecialesCheck"
+              />
+              <label for="no_examen_especial"></label>
+            </p>
+            <div class="input-field s-90 m-50">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input-recien-examen_especial" ng-model="data.examenesEspeciales"
+              />
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+      <!-- Lista -->
+      <div class="s-100 l-95 form-select">
+        <div class="menu-form">
+          <h6 class="form28__list">
+            <a style="color:white;font-size: 15px;margin-bottom: 7px;">
+              Marcar "<i class="material-icons" style="font-size: 16px;">done</i>"
+            </a>
+          </h6>
+          <div style="display: flex;justify-content: space-around;">
+            <h6>SI &nbsp;&nbsp;&nbsp;&nbsp; NO</h6>
+            <h6>OBSERVACIONES</h6>
+          </div>
+        </div>
+        <ul class="menu-form--list">
+
+          <li ng-repeat="recien in recien_nacidos">
+            <p class="s-70 m-30">{{ recien.hgc_desc_sisfi }}</p>
+            <p class="s-15 m-10">
+              <input name="recien_{{ recien.hgc_id_sisfi }}"
+                id="si_{{ recien.hgc_id_sisfi }}"
+                class="items_recien items__form"
+                value="0_{{recien.hgc_id_sisfi}}_6" type="radio"
+              />
+              <label for="si_{{ recien.hgc_id_sisfi }}"></label>
+            </p>
+            <p  class="s-15 m-10">
+              <input name="recien_{{ recien.hgc_id_sisfi }}"
+                id="no_{{ recien.hgc_id_sisfi }}"
+                class="items_recien items__form"
+                value="1_{{recien.hgc_id_sisfi}}_6" type="radio"
+              />
+              <label for="no_{{ recien.hgc_id_sisfi }}"></label>
+            </p>
+            <div class="input-field s-90 m-50 no-margin">
+              <input type="text" placeholder="Ingrese una observacion"
+                id="input__form-{{ recien.hgc_id_sisfi }}">
+            </div>
+          </li>
+
+          <li>
+            <div class="input-field s-95">
+              <input id="tamizaje" type="text" ng-model="data.tamizaje">
+              <label for="tamizaje">TAMIZAJE</label>
+            </div>
+          </li>
+          <li>
+            <div class="input-field s-95">
+              <input id="condicion_egreso" type="text" ng-model="data.condicionEgreso">
+              <label for="condicion_egreso">CONDICION AL EGRESO</label>
+            </div>
+          </li>
+          <li>
+            <div class="input-field s-95">
+              <input id="referido_de" type="text" ng-model="data.referido">
+              <label for="referido_de">REFERIDO DE</label>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- /Lista -->
+    </article>
+  </article>
+  <!-- /Recien Nacido -->
+
+  <div class='main-distribute s-100 margin-top' style="margin-bottom: 1em">
+    <button class='waves-effect waves-light btn primary' ng-click="handleNext()"
+      ng-disabled="activoForm28">SIGUIENTE
+    </button>
+  </div>
+
+</section>

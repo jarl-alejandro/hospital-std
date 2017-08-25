@@ -1,0 +1,628 @@
+<section class="Paper1" ng-controller="canvasFomr056Ctrl" ng-controller="validForm">
+  <input type="hidden" id="codigoForm056" />
+  <!-- Nombres del paciente y Establecimiento -->
+  <article class="grid-header">
+    <div class="form056-header-names">
+      <ul class="form056-header-names--head">
+        <li>APELLIDOS:</li>
+        <li>PATERNO</li>
+        <li>MATERNO</li>
+        <li>NOMBRES</li>
+      </ul>
+      <ul class="form056-header-names--body">
+        <li></li>
+        <li>{{ apellidos[0] }}</li>
+        <li>{{ apellidos[1] }}</li>
+        <li>{{ paciente.hgc_nom_pacie }}</li>
+      </ul>
+    </div>
+
+    <div class="form056-header-establecimiento">
+      <p class="u-noMargin"><strong>Nùmeros de Historia Clìnica:</strong>
+        {{ paciente.hgc_histo_hcli }}
+      </p>
+      <p class="u-noMargin"><strong>ESTABLECIMIENTO:</strong>
+        {{ empresa.hgc_nom_empr }}
+      </p>
+    </div>
+  </article>
+  <!-- End Nombres del paciente y Establecimiento -->
+
+  <!-- Informacion del paciente -->
+  <div class="grid-paciente">
+    <aside class="pacientes-informacion">
+      <fieldset style="margin-top:1em" class="s-100">
+        <label class="s-10 bold-input" style="display:inline-block">DIRECCIÒN</label>
+        <input style="display: inline-block;width: 89%;margin: 0;" value="VIA QUEVEDO"
+          disabled ng-model="paciente.hgc_direc_pacie" />
+
+        <div class="container-code-pronvia">
+          <div>
+            <label class="bold-input" style="display: inline-flex;width: 34%;text-align: center;">
+              PROVINCIA, CANTÒN, PARROQUIA
+            </label>
+            <input style="display: inline-block;width: 65%;margin: 0;" disabled ng-model="provincia" />
+          </div>
+          <div class="celda-code-container">
+          <p class="u-noMargin bold-input">Codigo</p>
+          <p class="u-noMargin celda-code"></p>
+          <p class="u-noMargin celda-code"></p>
+          <p class="u-noMargin celda-code"></p>
+          <p class="u-noMargin celda-code"></p>
+          <p class="u-noMargin celda-code"></p>
+          <p class="u-noMargin celda-code"></p>
+        </div>
+          <div class="grid-cellphone">
+            <label class="bold-input" style="display: inline-block">Telefono</label>
+            <input type="text" disabled ng-model="paciente.hgc_tele_pacie" />
+          </div>
+          <div>
+            <p>
+              <input type="checkbox" id="Domicilio" ng-checked="domicilioFlag" disabled />
+              <label for="Domicilio">Domicilio</label>
+            </p>
+          </div>
+        </div>
+
+        <article class="container-grid-lugar">
+          <div>
+            <label class="bold-input" style="width: 19%;display:inline-block">LUGAR DE NACIMIENTO</label>
+            <input style="display: inline-block;width: 79%;margin: 0;" disabled
+              ng-model="paciente.hgc_lunac_pacie" />
+          </div>
+          <div class="grid-cellphone">
+            <label class="bold-input" style="display: inline-block">Celular</label>
+            <input type="text" disabled ng-model="paciente.hgc_celu_pacie">
+          </div>
+          <div>
+            <p>
+              <input type="checkbox" id="mensaje" ng-checked="mensajeFlag" disabled />
+              <label for="mensaje">mensaje</label>
+            </p>
+          </div>
+        </article>
+
+      </fieldset>
+    </aside>
+
+    <aside class="paciente-nacimiento">
+      <p>FECHA DE NACIMIENTO</p>
+      <ul class="paciente-nacimiento--header">
+        <li>dia</li>
+        <li>mes</li>
+        <li>año</li>
+      </ul>
+      <ul>
+        <li>{{ nacimiento[2] }}</li>
+        <li>{{ nacimiento[1] }}</li>
+        <li>{{ nacimiento[0] }}</li>
+      </ul>
+    </aside>
+  </div>
+  <!-- End de la informacion del paciente -->
+
+  <!-- Consulta y Acompañante -->
+  <section class="Informacion-consulta">
+    <!-- Consulta principal -->
+    <article class="Informacion-consulta-paciente">
+      <p class="u-noMargin bold-input">CONSULTA PRINCIPAL Nº 1</p>
+      <div class="Informacion-consulta-fecha s-90">
+        <p class="u-noMargin bold-input">Fecha</p>
+        <div>
+          <ul class="Informacion-consulta-fecha--header">
+          <li>dia</li>
+          <li>mes</li>
+          <li>año</li>
+        </ul>
+          <ul class="Informacion-consulta-fecha--boody">
+          <li>{{ hoy[0] }}</li>
+          <li>{{ hoy[1] }}</li>
+          <li>{{ month[0] }}</li>
+          <li>{{ month[1] }}</li>
+          <li>{{ year[2] }}</li>
+          <li>{{ year[3] }}</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="Informacion-consulta-edad s-90">
+        <p class="u-noMargin bold-input">EDAD</p>
+        <div>
+          <ul class="Informacion-consulta-edad--header">
+            <li>años</li>
+            <li>meses</li>
+          </ul>
+          <ul class="Informacion-consulta-edad--boody">
+          <li>{{ ageYear[0] }}</li>
+          <li>{{ ageYear[1] }}</li>
+          <li>{{ ageMonth[0] }}</li>
+          <li>{{ ageMonth[1] }}</li>
+        </ul>
+          </div>
+      </div>
+    </article>
+    <!-- End Consulta principal -->
+
+    <!-- Acompañante -->
+    <article class="u-companion">
+      <div class="Informacion-consulta-companion">
+        <p class="s-100 u-noMargin bold-input">Acompañante</p>
+        <ul class="Informacion-consulta-companion--list">
+          <li>
+            <input type="radio" id="solo" name="acompaniente" value="1" data-name="Acompañante" />
+            <label for="solo">solo</label>
+          </li>
+          <li>
+            <input type="radio" id="madre" name="acompaniente" value="2" data-name="Acompañante" />
+            <label for="madre">madre</label>
+          </li>
+          <li>
+            <input type="radio" id="padre" name="acompaniente" value="3" data-name="Acompañante" />
+            <label for="padre">padre</label>
+          </li>
+          <li>
+            <input type="radio" id="ambos" name="acompaniente" value="4" data-name="Acompañante" />
+            <label for="ambos">ambos</label>
+          </li>
+          <li>
+            <input type="radio" id="pareja" name="acompaniente" value="5" data-name="Acompañante" />
+            <label for="pareja">pareja</label>
+          </li>
+          <li>
+            <input type="radio" id="amigo" name="acompaniente" value="6" data-name="Acompañante" />
+            <label for="amigo">amigo/a</label>
+          </li>
+          <li>
+            <input type="radio" id="pariente" name="acompaniente" value="7" data-name="Acompañante" />
+            <label for="pariente">pariente</label>
+          </li>
+          <li>
+            <input type="radio" id="otro" name="acompaniente" value="8" data-name="Acompañante" />
+            <label for="otro">otro</label>
+          </li>
+        </ul>
+      </div>
+      <div class="Informacion-consulta-civilStatus">
+        <p class="s-100 u-noMargin bold-input">ESTADO CIVIL</p>
+        <p class="u-noMargin">
+          <input type="radio" id="cilvilSoltero" name="estadocivil" value="1" data-name="Estado Civil" />
+          <label for="cilvilSoltero">soltero</label>
+        </p>
+        <p class="u-noMargin">
+          <input type="radio" id="civilUnion" name="estadocivil" value="2" data-name="Estado Civil" />
+          <label for="civilUnion">uniòn estado</label>
+        </p>
+        <p class="u-noMargin">
+          <input type="radio" id="civilSeparados" name="estadocivil" value="3" data-name="Estado Civil" />
+          <label for="civilSeparados">separados</label>
+        </p>
+      </div>
+    </article>
+    <!-- End Acompañante -->
+  </section>
+  <!-- End Consulta y Acompañante-->
+
+  <!-- Motivo de Consulta -->
+  <section class="Motivo-consulta" ng-controller="motivoConsultaCtrl056">
+    <article class="Motivo-consulta--self">
+      <p class="Motivo-consulta--title">
+        <a>1. MOTIVO DE CONSULTA (segùn adolescente):</a>
+        <a class="u-pointer motivo-add" ng-click="handleAddMotivoSelf()">
+          <i class="material-icons">add</i>
+        </a>
+      </p>
+      <ul class="Motivo-consulta--self-list" id="motivo-list">
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="input-1"
+            class="Motivo-consulta--self-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="cie-1"
+              class="cie-input-motivo code-motivo-self" maxlength="4" />
+          </p>
+        </li>
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="input-2"
+            class="Motivo-consulta--self-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="cie-2"
+              class="cie-input-motivo code-motivo-self" maxlength="4" />
+          </p>
+        </li>
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="input-3"
+            class="Motivo-consulta--self-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="cie-3"
+              class="cie-input-motivo code-motivo-self" maxlength="4" />
+          </p>
+        </li>
+      </ul>
+    </article>
+
+    <article class="Motivo-consulta--company">
+      <p class="Motivo-consulta--title">
+        <a>MOTIVO DE CONSULTA (segùn acompañante):</a>
+        <a class="u-pointer motivo-add" ng-click="handleAddMotivoCompany()">
+          <i class="material-icons">add</i>
+        </a>
+      </p>
+      <ul class="Motivo-consulta--self-list" id="motivo-list-company">
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-1"
+            class="Motivo-consulta--company-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10"  id="cie-company-1"
+              class="cie-input-motivo  code-motivo-company" maxlength="4" />
+          </p>
+        </li>
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-2"
+            class="Motivo-consulta--company-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="cie-company-2"
+              class="cie-input-motivo  code-motivo-company" maxlength="4" />
+          </p>
+        </li>
+        <li class="input-field Motivo-consulta--self-item">
+          <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-3"
+            class="Motivo-consulta--company-input" />
+          <p class="consulta-cie--code">
+            <input type="text" placeholder="Codigo cie10" id="cie-company-3"
+              class="cie-input-motivo  code-motivo-company" maxlength="4" />
+          </p>
+        </li>
+      </ul>
+    </article>
+  </section>
+  <!-- End Motivo de Consulta -->
+
+  <!-- Enfermedad actual -->
+  <article class="Enfermedad-actual">
+    <p class="Motivo-consulta--title">2. ENFERMEDAD ACTUAL</p>
+    <div class="input-field">
+      <textarea id="enfermedad-actual" class="materialize-textarea" ng-model="data.enfermedadActual"
+        placeholder="Ingresea la enfermedad actual"></textarea>
+    </div>
+  </article>
+  <!-- End Enfermedad actual -->
+
+  <!-- Antecedentes Personales -->
+  <article class="Antecedente-personales">
+    <p class="Motivo-consulta--title">
+      3. ANTECEDENTES PERSONALES
+      <a ng-click="refreshCheck('.Antecedente-personales--grid')" class="u-pointer"><i class="material-icons">cached</i></a>
+    </p>
+    <article class="Antecedente-personales--grid">
+      <div ng-repeat="item in antecendesPersonales" class="Antecedente-personales--item">
+        <p class="bold-input Antecedente-personales--name">{{ item.name }}</p>
+
+        <div class="Antecedente-personales--options">
+          <p ng-repeat="check in item.options">
+            <input name="{{ item.id }}" type="radio" id="{{ check.id }}"
+              class="{{ check.class }}-input" value="{{ check.val }}" value="{{$index+1}}" />
+            <label for="{{ check.id }}" class="{{ check.class }}">{{ check.name }}</label>
+          </p>
+        </div>
+
+      </div>
+    </article>
+    <p class="bold-input">Obeservaciones</p>
+    <div class="input-field">
+      <textarea id="ant_personales" class="materialize-textarea observacion" data-tipo="3"
+        placeholder="Ingresea una obeservaciones" style="padding:0"></textarea>
+    </div>
+  </article>
+  <!-- End Antecedentes Personales -->
+
+  <!-- Antecedentes Familiares -->
+  <article class="Antecedente-personales">
+    <p class="Motivo-consulta--title">4. ANTECEDENTES FAMILIARES
+      <a ng-click="refreshCheck('.Antecedente-familiares--grid')" class="u-pointer">
+        <i class="material-icons">cached</i>
+      </a>
+    </p>
+    <article class="Antecedente-familiares--grid">
+      <div ng-repeat="item in antecendesFamiliares" class="Antecedente-personales--item">
+        <p class="bold-input Antecedente-personales--name">{{ item.name }}</p>
+
+        <div class="Antecedente-personales--options">
+          <p ng-repeat="check in item.options">
+            <input type="radio" name="{{item.id}}" id="{{ check.id }}"
+              class="{{ check.class }}-input" value="{{$index+1}}" />
+            <label for="{{ check.id }}" class="{{ check.class }}">{{ check.name }}</label>
+          </p>
+        </div>
+
+      </div>
+    </article>
+    <p class="bold-input">Obeservaciones</p>
+    <div class="input-field">
+      <textarea id="ant-fami-observacion" class="materialize-textarea observacion" data-tipo="4"
+        placeholder="Ingresea una obeservaciones" style="padding:0"></textarea>
+    </div>
+  </article>
+  <!-- End Antecedentes Familiares -->
+
+  <section class="FamiliarVivienda-grid">
+    <!-- Familia -->
+    <section class="Familia">
+      <p class="Motivo-consulta--title s-80" style="margin:0">5. FAMILIA
+        <a ng-click="refreshCheck('.Familia-grid')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
+      <P class="u-noMargin Familia--title">CONVIVE CON</P>
+      <article class="Familia-grid">
+        <div class="Familia-header">
+          <p></p>
+          <p>No</p>
+          <p>En la casa</p>
+          <p>En el cuarto</p>
+        </div>
+        <div class="Familia-list" ng-repeat="item in familia">
+          <p class="Familia-name">{{ item.name }}</p>
+          <div class="Familia-options">
+            <p ng-repeat="check in item.options">
+              <input type="{{ check.type }}" name="{{item.id}}" id="{{ check.id }}"
+                class="{{ check.class }}-input" class="{{ check.class }}-input"
+                ng-click="shouldBeDisabled(check)" value="{{$index+1}}" />
+              <label for="{{ check.id }}" class="{{ check.class }}"></label>
+            </p>
+          </div>
+        </div>
+      </article>
+      <p class="u-noMargin Familia--title" style="margin-top:2em !important">VIVE
+        <a ng-click="refreshCheckVive('.Familia-list')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
+      <article class="Familia-grid">
+        <div class="Familia-header">
+          <p></p>
+          <p>No</p>
+          <p>Si</p>
+        </div>
+        <div class="Familia-list" ng-repeat="item in vive">
+          <p class="Familia-name">{{ item.name }}</p>
+          <div class="Familia-options">
+            <p ng-repeat="check in item.options">
+              <input type="radio" name="{{item.id}}" id="{{ check.id }}"
+                ng-disabled="item.id == 'vive4'" ng-click="shouldInsDisabled(check)"
+                class="{{ check.class }}-input" class="{{ check.class }}-input" value="{{$index+1}}" />
+              <label for="{{ check.id }}" class="{{ check.class }}"></label>
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+    <!-- End Familia -->
+
+    <!-- Trabajo Instruncion -->
+    <section class="Trabajo-Instruccion">
+      <!-- Nivel de Instrucciòn -->
+      <article class="Nivel-instruccion">
+        <p class="Nivel-instruccion-title cross-center main-distribute">Nivel de instrucciòn
+          <a ng-click="refreshCheck('.instruc056')" class="u-pointer main-center">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
+        <div class="grid-padres-madres">
+          <p class="Nivel-instruccion--padre">Padre o sustituto</p>
+          <p class="Nivel-instruccion--madre">Madre o sustituto</p>
+        </div>
+        <div ng-repeat="item in nivelInstruccion" class="Nivel-instruccion--item instruc056">
+          <p class="Nivel-instruccion--name">{{ item.instr }}</p>
+          <p ng-repeat="check in item.options">
+            <input name="hombre" type="radio" id="{{ check }}-hombre"  class="{{ check }}-input" value="{{$index+1}}" />
+            <label for="{{ check }}-hombre" class="{{check}}"></label>
+          </p>
+          <p ng-repeat="check in item.options">
+            <input name="mujer" type="radio" id="{{ check }}-mujer"  class="{{ check }}-input" value="{{$index+1}}" />
+            <label for="{{ check }}-mujer" class="{{check}}"></label>
+          </p>
+        </div>
+      </article>
+      <!-- /Nivel de Instrucciòn -->
+
+      <!-- Trabajo -->
+      <article class="Nivel-instruccion">
+        <p class="Nivel-instruccion-title cross-center main-distribute">TRABAJO
+          <a ng-click="refreshCheck('.trabajo056')" class="u-pointer main-center">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
+        <div class="grid-padres-madres">
+          <p class="Nivel-instruccion--padre">Padre o sustituto</p>
+          <p class="Nivel-instruccion--madre">Madre o sustituto</p>
+        </div>
+        <div ng-repeat="item in trabajo" class="Nivel-instruccion--item trabajo056">
+          <p class="Nivel-instruccion--name">{{ item.trab }}</p>
+          <p ng-repeat="check in item.options">
+            <input name="hombre-trabajo" type="radio" id="{{ check }}-hombre" class="{{ check }}-input" value="{{$index+1}}" />
+            <label for="{{ check }}-hombre" class="{{check}}"></label>
+          </p>
+          <p ng-repeat="check in item.options">
+            <input name="mujer-trabajo" type="radio" id="{{ check }}-mujer" class="{{ check }}-input" value="{{$index+1}}" />
+            <label for="{{ check }}-mujer" class="{{check}}"></label>
+          </p>
+
+        </div>
+      </article>
+      <!-- End Trabajo -->
+
+      <!-- OCUPACION -->
+      <article class="Ocupacion-instruccion">
+        <p class="bold-input u-noMargin">OCUPACIÒN</p>
+        <div class="input-field u-noMargin">
+          <input type="text" placeholder="Ingresa la ocupacion" ng-model="data.ocupacion" id="ocupacion056" />
+        </div>
+      </article>
+      <!-- End OCUPACION -->
+
+      <!-- Percepcion -->
+      <article class="Percepcion-familiar">
+        <a ng-click="refreshCheck('.Percepcion-familiar--list')" class="u-pointer main-center">
+          <i class="material-icons">cached</i>
+        </a>
+        <ul class="Percepcion-familiar--list">
+          <li class="Percepcion-familiar--item">Buena</li>
+          <li class="Percepcion-familiar--item">Regular</li>
+          <li class="Percepcion-familiar--item">Mala</li>
+          <li class="Percepcion-familiar--item small-size">No hay relaciòn</li>
+
+          <li class="Percepcion-familiar--item">
+            <input name="percepcionFami" type="radio" id="Buena" value="1" />
+            <label for="Buena"></label>
+          </li>
+          <li class="Percepcion-familiar--item">
+            <input name="percepcionFami" type="radio" id="Regular" value="2" />
+            <label for="Regular"></label>
+          </li>
+          <li class="Percepcion-familiar--item">
+            <input name="percepcionFami" type="radio" id="Mala" class="no-check-input" value="3" />
+            <label for="Mala" class="no-check"></label>
+          </li>
+          <li class="Percepcion-familiar--item">
+            <input name="percepcionFami" type="radio" id="no-relacion" class="no-check-input" value="4" />
+            <label for="no-relacion" class="no-check"></label>
+          </li>
+        </ul>
+      </article>
+      <!-- End Percepcion -->
+    </section>
+    <!-- End Trabajo Instruncion -->
+
+    <!-- Familiar -->
+    <section class="Familiar">
+      <article class="FamilarDriagama">
+        <h6 class="u-noMargin bold-input center-align">DIAGRAMA FAMILIAR</h6>
+        <div id="sketch">
+          <canvas id="paint" class="paint-driagrama"></canvas>
+        </div>
+      </article>
+
+      <article class="ApgarFamiliar">
+        <p class="ApgarFamiliar-title cross-center main-distribute">Apgar Familiar
+          <a ng-click="refreshCheck('.ApgarFamiliar')" class="u-pointer main-center">
+            <i class="material-icons">cached</i>
+          </a>
+        </p>
+        <p class="ApgarFamiliar-item">
+          <input name="apgarFamiliar" type="radio" id="severamenteDisfuncional" class="no-check-input" value="1" />
+          <label for="severamenteDisfuncional" class="no-check"> 0 - 3 Familias Severamente Disfuncional</label>
+        </p>
+        <p class="ApgarFamiliar-item">
+          <input name="apgarFamiliar" type="radio" id="mediamenteDisfuncional" class="no-check-input" value="2" />
+          <label for="mediamenteDisfuncional" class="no-check"> 4 - 6 Familias Mediamente Disfuncional</label>
+        </p>
+        <p class="ApgarFamiliar-item">
+          <input name="apgarFamiliar" type="radio" id="familiasFuncional" value="3" />
+          <label for="familiasFuncional"> 7 - 10 Familias Funcionales</label>
+        </p>
+
+      </article>
+
+      <article class="FamilarObservacion">
+        <p class="FamilarObservacion-title">Observaciones</p>
+        <div class="input-field FamilarObservacion-field">
+          <textarea id="observacion-familiar" placeholder="Ingrese las observaciones"
+            class="materialize-textarea FamilarObservacion-text observacion" data-tipo="5"></textarea>
+        </div>
+      </article>
+    </section>
+    <!-- End Familiar -->
+
+    <!-- Vivienda -->
+    <section class="Vivienda">
+      <p class="Motivo-consulta--title u-noMargin">6. VIVIENDA
+        <a ng-click="refreshCheck('.EnergiaElectrica')" class="u-pointer">
+          <i class="material-icons">cached</i>
+        </a>
+      </p>
+
+      <!-- Servicios Basicos -->
+      <article class="EnergiaElectrica">
+        <p class="bold-input EnergiaElectrica-title">ENERGIA ELÈCTRICA</p>
+        <ul class="EnergiaElectrica-list">
+          <li class="EnergiaElectrica-item">SI</li>
+          <li class="EnergiaElectrica-item">NO</li>
+          <li class="EnergiaElectrica-item">
+            <input name="energiaElectrica" type="radio" id="EnergiaElectrica-si" value="1" />
+            <label for="EnergiaElectrica-si"></label>
+          </li>
+          <li class="EnergiaElectrica-item">
+            <input name="energiaElectrica" type="radio" id="EnergiaElectrica-no"
+              class="no-check-input" value="2" />
+            <label for="EnergiaElectrica-no" class="no-check"></label>
+          </li>
+        </ul>
+      </article>
+      <!-- End Servicios Basicos -->
+
+      <!-- Servicios Basicos -->
+      <article class="ServiciosBasicos" style="position:relative">
+        <a ng-click="refreshCheck('.ServiciosBasicos-list')" class="u-pointer main-end"
+          style="position:absolute;">
+          <i class="material-icons">cached</i>
+        </a>
+
+        <p class="bold-input EnergiaElectrica-title" style="margin-top: 1.2em;">AGUA</p>
+        <ul class="ServiciosBasicos-list u-noMargin">
+          <li class="ServiciosBasicos-item">en el hogar</li>
+          <li class="ServiciosBasicos-item">fuera del hogar</li>
+          <li class="ServiciosBasicos-item">
+            <input name="aguaServiciosBasicos" type="radio" id="ServiciosBasicos-si" value="1" />
+            <label for="ServiciosBasicos-si"></label>
+          </li>
+          <li class="ServiciosBasicos-item">
+            <input name="aguaServiciosBasicos" type="radio" id="ServiciosBasicos-no"
+              class="no-check-input" value="2" />
+            <label for="ServiciosBasicos-no" class="no-check"></label>
+          </li>
+        </ul>
+
+        <p class="bold-input EnergiaElectrica-title">EXCRETAS</p>
+        <ul class="ServiciosBasicos-list u-noMargin">
+          <li class="ServiciosBasicos-item">
+            <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-si" value="1" />
+            <label for="ServiciosBasicos_excr-si"></label>
+          </li>
+          <li class="ServiciosBasicos-item">
+            <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-no"
+              class="no-check-input" value="2" />
+            <label for="ServiciosBasicos_excr-no" class="no-check"></label>
+          </li>
+        </ul>
+      </article>
+      <!-- End Servicios Basicos -->
+
+      <!-- Numero de Cuatos -->
+      <article class="Cuotas" ng-controller="validForm">
+        <p class="bold-input">NÙMEROS DE CUARTOS</p>
+        <div class="input-field">
+          <input type="text" maxlength="2" placeholder="Ingresa cuantos cuartos hay en casa"
+            ng-model="data.numerosCuartos" ng-keypress="ValidaSoloNumeros()" id="numerosCuartos056" />
+        </div>
+      </article>
+      <!-- End Numero de Cuatos -->
+
+      <!-- Observaciones -->
+      <article class="ObservacionesVivienda">
+        <p class="ObservacionesVivienda bold-input">Observaciones</p>
+        <div class="input-field">
+          <textarea class="materialize-textarea u-noMargin observacion" data-tipo="6" placeholder="Ingresa un observacion"
+            style="min-height: 10em;"></textarea>
+        </div>
+      </article>
+      <!-- End Observaciones -->
+
+    </section>
+    <!-- End Vivienda -->
+  </section>
+
+  <div class="main-center" style="margin-top:.5em;">
+  <a class="waves-effect waves-light btn primary" ng-click="handleNextPaper()">
+    <i class="material-icons right">send</i>Siguiente
+  </a>
+</div>
+</section>

@@ -22,6 +22,10 @@
     <script src='lib/select2.min.js'></script>
     <script src='lib/snap.svg-min.js'></script>
 
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
     <script src='js/a-say.js'></script>
 
   <!-- Para validar que si el usuario esta o no logueado y que rol es -->
@@ -40,6 +44,12 @@
 
     <!-- Calcular la edad -->
     <script src='js/calcularEdad.js'></script>
+
+    <!-- PDF -->
+    <!-- <script src="http://localhost:8080/ng-html-to-pdf-save/bower_components/jquery/dist/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
+    <script src="http://localhost:8080/ng-html-to-pdf-save/bower_components/jsPDF/dist/jspdf.debug.js"></script>
+    <script src="http://localhost:8080/ng-html-to-pdf-save/dist/saveHtmlToPdf.js"></script> -->
 
     <script src='src/perfil/app/index.js'></script>
     <script src='src/config/empresa/app/index.js'></script>
