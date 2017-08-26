@@ -164,7 +164,6 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
   }
 
   function renderByDate (fechaNacimiento) {
-    alert(fechaNacimiento)
     let nacimiento = calcularEdad(fechaNacimiento, true)
     $scope.objectNacimiento = nacimiento
 

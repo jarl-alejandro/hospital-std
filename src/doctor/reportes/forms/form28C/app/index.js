@@ -189,6 +189,8 @@ angular.module('Hospital')
     })
 
   $scope.exportPDF = () => {
+    convertoSVGToImage($('#exportthis'))
+
     html2canvas(document.getElementById('hoja1'), {
       useCORS: true,
       onrendered: function (canvas) {
@@ -249,6 +251,8 @@ angular.module('Hospital')
 
   $scope.exportPNG = () => {
     let jpg = document.querySelector('#exportthis')
+    convertoSVGToImage($('#exportthis'))
+
     html2canvas(jpg, {
       logging: true,
       profile: true,
@@ -270,11 +274,10 @@ angular.module('Hospital')
       let svg = $(item).html()
       let prop = $(item).attr('id')
       let canvas = document.createElement('canvas')
-      canvas.id = prop
+      canvas.classList.add(`${prop}-canvas`)
 
       let parent = item.parentElement
       parent.append(canvas)
-      console.log(item);
       canvg(canvas, `<svg>${svg}</svg>`)
     })
   }
