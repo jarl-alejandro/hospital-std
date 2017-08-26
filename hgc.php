@@ -11,7 +11,16 @@
   </head>
   <body>
     <section ui-view></section>
-  <!-- Librerias -->
+    <!-- Librerias -->
+    <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
+    <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+    <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <script src="js/html2canvas.svg.js"></script>
+
     <script type="text/javascript" src='lib/jquery.js'></script>
     <script type="text/javascript" src='lib/materialize.js'></script>
 
@@ -23,10 +32,8 @@
     <script src='lib/snap.svg-min.js'></script>
 
     <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script> -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.17/fabric.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-  <script src="js/html2canvas.min.js"></script>
-  <!-- <script src="js/html2canvas.svg.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 
     <script src='js/a-say.js'></script>
 

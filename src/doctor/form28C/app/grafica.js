@@ -12,10 +12,12 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
   const longitud = Snap('#form28CLongitud')
 
   setTimeout(() => {
-    renderByDate($scope.fechaNacimiento)
-    renderBySexo($scope.sexo)
     $http.get(`src/doctor/form28C/service/grafica.php?id=${$stateParams.id}`)
-    .then(response => renderGraphic(response.data))
+    .then(response => {
+      renderByDate($scope.fechaNacimiento)
+      renderBySexo($scope.sexo)
+      renderGraphic(response.data)
+    })
   }, 500)
 
   function renderGraphic (data) {
@@ -162,6 +164,7 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
   }
 
   function renderByDate (fechaNacimiento) {
+    alert(fechaNacimiento)
     let nacimiento = calcularEdad(fechaNacimiento, true)
     $scope.objectNacimiento = nacimiento
 

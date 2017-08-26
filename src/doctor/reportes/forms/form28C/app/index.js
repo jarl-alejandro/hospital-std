@@ -250,53 +250,33 @@ angular.module('Hospital')
   $scope.exportPNG = () => {
     let jpg = document.querySelector('#exportthis')
     html2canvas(jpg, {
+      logging: true,
+      profile: true,
       useCORS: true,
-      onrendered: function (canvas) {
-        let a = document.createElement('a');
-        a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-        a.download = 'Form028C.jpg';
-        a.click();
-      }
+      allowTaint: true,
+    }).then(function (canvas) {
+      canvas.toBlob(function(blob) {
+        saveAs(blob, 'form028c.png')
+      })
+    })
+  }
+
+
+  function convertoSVGToImage (targetElement) {
+    const listSVG = [...targetElement.find('svg')]
+
+    listSVG.map((item, index) => {
+      $(item).hide()
+      let svg = $(item).html()
+      let prop = $(item).attr('id')
+      let canvas = document.createElement('canvas')
+      canvas.id = prop
+
+      let parent = item.parentElement
+      parent.append(canvas)
+      console.log(item);
+      canvg(canvas, `<svg>${svg}</svg>`)
     })
   }
 
 })
-
-
-/*
-function generateScreenshot() {
-    html2canvas(document.getElementById('exportthis'), {
-            logging: true,
-            profile: true,
-            useCORS: true})
-          .then(function(canvas) {
-            let a = document.createElement('a');
-            a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-            a.download = 'FORM028c.jpg';
-            a.click();
-    });
-}
-
-a = $('#exportthis')
-
-html2canvas([a[0]], {
-  useCORS: true
-}).then(function (canvas){
-  if (navigator.msSaveBlob) {
-    var URL=window.URL;
-    var BlobBuilder = window.MSBlobBuilder;
-    navigator.saveBlob=navigator.msSaveBlob;
-    var imgBlob = canvas.msToBlob();
-
-    var showSave =  function (data, name, mimetype) {
-      var builder = new BlobBuilder();
-      builder.append(data);
-      var blob = builder.getBlob(mimetype||"application/octet-stream");
-      if (!name) name = "Download.bin";
-        navigator.saveBlob(blob, name);
-    };
-    // showSave(imgBlob, 'barchart.png',"image/png");
-
-  }
-})
-*/
