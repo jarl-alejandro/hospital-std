@@ -5,6 +5,8 @@ angular.module('Hospital')
   const paciente = $stateParams.id
   const turno = $stateParams.turno
 
+  $('.tooltipped').tooltip({delay: 50});
+
   const hoy = new Date()
   const dia = hoy.getDate() < 10 ? '0' + hoy.getDate() : hoy.getDate()
   const mes = hoy.getMonth() < 10 ? '0' + (hoy.getMonth() + 1) : (hoy.getMonth() + 1)
@@ -186,8 +188,9 @@ angular.module('Hospital')
 
     })
 
-  $scope.export = () => {
+  $scope.exportPDF = () => {
     html2canvas(document.getElementById('hoja1'), {
+      useCORS: true,
       onrendered: function (canvas) {
         var data = canvas.toDataURL();
         var docDefinition = {
@@ -197,11 +200,11 @@ angular.module('Hospital')
             }]
         };
         pdfMake.createPdf(docDefinition).download("formhoja1.pdf");
-        // pdfMake.createPdf(docDefinition).open();
       }
     })
 
     html2canvas(document.getElementById('hoja2'), {
+      useCORS: true,
       onrendered: function (canvas) {
         var data = canvas.toDataURL();
         var docDefinition = {
@@ -211,11 +214,11 @@ angular.module('Hospital')
             }]
         };
         pdfMake.createPdf(docDefinition).download("formhoja2.pdf");
-        // pdfMake.createPdf(docDefinition).open();
       }
     })
 
     html2canvas(document.getElementById('menorGraphic'), {
+      useCORS: true,
       onrendered: function (canvas) {
         var data = canvas.toDataURL();
         var docDefinition = {
@@ -229,6 +232,7 @@ angular.module('Hospital')
     })
 
     html2canvas(document.getElementById('menorGraphic1'), {
+        useCORS: true,
         onrendered: function (canvas) {
           var data = canvas.toDataURL();
           var docDefinition = {
@@ -243,20 +247,36 @@ angular.module('Hospital')
 
   }
 
-})
-/*
-a = document.querySelector('#exportthis')
-html2canvas(a, {
-  onrendered: function (canvas) {
-    console.log(canvas)
- var a = document.createElement('a');
-        // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+  $scope.exportPNG = () => {
+    let jpg = document.querySelector('#exportthis')
+    html2canvas(jpg, {
+      useCORS: true,
+      onrendered: function (canvas) {
+        let a = document.createElement('a');
         a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-        a.download = 'somefilename.jpg';
+        a.download = 'Form028C.jpg';
         a.click();
+      }
+    })
   }
+
 })
-*/
+
+
+/*
+function generateScreenshot() {
+    html2canvas(document.getElementById('exportthis'), {
+            logging: true,
+            profile: true,
+            useCORS: true})
+          .then(function(canvas) {
+            let a = document.createElement('a');
+            a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            a.download = 'FORM028c.jpg';
+            a.click();
+    });
+}
+
 a = $('#exportthis')
 
 html2canvas([a[0]], {
@@ -275,6 +295,8 @@ html2canvas([a[0]], {
       if (!name) name = "Download.bin";
         navigator.saveBlob(blob, name);
     };
-    showSave(imgBlob, 'barchart.png',"image/png");
+    // showSave(imgBlob, 'barchart.png',"image/png");
+
   }
 })
+*/

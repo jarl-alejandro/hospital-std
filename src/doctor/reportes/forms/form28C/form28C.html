@@ -1,11 +1,23 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
-  <div id="exportthis">
-    <div class="main-end">
-      <button class="waves-effect waves-light btn" ng-click="export()">Imprimir</button>
-    </div>
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">print</i>
+    </a>
+    <ul>
+      <li>
+        <a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Imprimir .pdf"
+          ng-click="exportPDF()"><i class="material-icons">picture_as_pdf</i></a>
+      </li>
+      <li>
+        <a class="btn-floating blue tooltipped" ng-click="exportPNG()" data-position="left" data-delay="50"
+          data-tooltip="Imprimir .img"><i class="material-icons">camera_alt</i></a>
+      </li>
+    </ul>
+  </div>
 
-  <article class="form ed-item">
+  <div id="exportthis">
+    <article class="form ed-item">
     <section id="hoja1" ng-include="'src/doctor/reportes/forms/form28C/hoja1.html'"></section>
     <section id="hoja2" ng-include="'src/doctor/reportes/forms/form28C/cie10.html'"></section>
     <!-- <section id="grafico-Workspace" ng-include="'src/doctor/reportes/forms/form28C/grafico.html'"></section> -->

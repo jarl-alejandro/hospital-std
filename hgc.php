@@ -25,8 +25,8 @@
     <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script> -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.17/fabric.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-  <script src="js/html2canvas.svg.js"></script>
+  <script src="js/html2canvas.min.js"></script>
+  <!-- <script src="js/html2canvas.svg.js"></script> -->
 
     <script src='js/a-say.js'></script>
 
