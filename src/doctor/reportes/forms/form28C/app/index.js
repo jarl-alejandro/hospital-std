@@ -259,7 +259,7 @@ angular.module('Hospital')
       useCORS: true,
       allowTaint: true,
     }).then(function (canvas) {
-      canvas.toBlob(function(blob) {
+      canvas.toBlob(function (blob) {
         saveAs(blob, 'form028c.png')
       })
     })
