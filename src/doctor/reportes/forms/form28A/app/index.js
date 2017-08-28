@@ -2,10 +2,11 @@
 
 angular.module('Hospital')
 .controller('reportform28ACtrl', function ($scope, $http, $stateParams, $location) {
-  alert('ok')
   const paciente = $stateParams.id
   const turno = $stateParams.turno
   const hoy = new Date()
+
+  $('.tooltipped').tooltip({delay: 50})
 
   const dia = hoy.getDate() < 10 ? '0' + hoy.getDate() : hoy.getDate()
   const mes = hoy.getMonth() < 10 ? '0' + (hoy.getMonth() + 1) : (hoy.getMonth() + 1)
@@ -82,249 +83,164 @@ angular.module('Hospital')
     }
   })
 
-  $scope.handleBack = () => {
-    $('#hoja__1').slideDown()
-    $('#hoja__2').slideUp()
-    setTimeout(() => window.scrollTo(0, 0), 100)
-  }
-
-  $scope.handleSave = () => {
-    const items_sistemas = [...document.querySelectorAll('.items_sistemas')]
-    const items_fisicico = [...document.querySelectorAll('.items_fisicico')]
-    const items__form = [...document.querySelectorAll('.items__form')]
-    const items_atendido = [...document.querySelectorAll('.item_atendido')]
-
-    array_sistemas = []
-    array_fisicos = []
-    array_form = []
-    array_atendido = []
-
-    for(let i in items_sistemas) {
-      let sistemas = items_sistemas[i]
-      if(sistemas.checked === true) {
-        let tipo = sistemas.value.split('_')[0]
-        let id = sistemas.value.split('_')[1]
-        let observacion = document.getElementById(`input-system-${id}`).value
-        array_sistemas.push({ id, tipo, observacion })
-      }
-    }
-
-    for(let i in items_fisicico) {
-      let fisico = items_fisicico[i]
-      if(fisico.checked === true) {
-        let tipo = fisico.value.split('_')[0]
-        let id = fisico.value.split('_')[1]
-        let observacion = document.getElementById(`input-fisico-${id}`).value
-        array_fisicos.push({ id, tipo, observacion })
-      }
-    }
-
-    for (let i in items__form) {
-      let item = items__form[i]
-      if (item.checked === true) {
-        let tipo = item.value.split('_')[0]
-        let id = item.value.split('_')[1]
-        let seccion = item.value.split('_')[2]
-        let observacion = document.getElementById(`input__form-${id}`).value
-
-        array_form.push({ id, tipo, observacion, seccion })
-      }
-    }
-
-    for (let i in items_atendido) {
-      let item = items_atendido[i]
-      if (item.checked === true) {
-        let tipo = item.id.split('_')[0]
-        let atendido = item.id.split('_')[1]
-
-        array_atendido.push({ atendido, tipo })
-      }
-    }
-
-    if (validarForm()) {
-      $scope.activoForm28 = true
-      $scope.data.sistemas = array_sistemas
-      $scope.data.fisicos = array_fisicos
-      $scope.data.form = array_form
-      $scope.data.atendido = array_atendido
-
-      $http.post(`src/doctor/form28A/service/${$stateParams.action}.php`, $scope.data)
-      .then(response => {
-        console.log(response)
-        if (response.data === '201') {
-          Materialize.toast('Se ha guardado con exito', 4000)
-          $location.path('/doctor')
-          $scope.activoForm28 = false
-        } else {
-        Materialize.toast('Intente nuevamente', 4000)
-          $scope.activoForm28 = false
-        }
+  // document.querySelector('.input-field label').classList.add('active')
+  setTimeout(
+    () => {
+      [...document.querySelectorAll('.input-field label')].map(item => {
+        item.classList.add('active')
       })
-    }
-  }
+    },
+    500
+  )
 
-  function validarForm () {
-    const data = $scope.data
-
-    if (data.motivo === '') {
-      Materialize.toast('Ingrese el motivo de la consulta', 4000)
-      return false
-    }
-    if (data.enfermedad === '') {
-      Materialize.toast('Ingrese la enfermedad o problemas actual', 4000)
-      return false
-    }
-    if (array_sistemas.length !== $scope.sistemas.length) {
-      Materialize.toast('Debe selecionar la revision de organos y sistemas', 4000)
-      return false
-    }
-    if (array_fisicos.length !== $scope.fisicos.length) {
-      Materialize.toast('Debe selecionar los examenes fisicos', 4000)
-      return false
-    } else return true
-  }
-
-
-  // Editar
-  if ($stateParams.action === 'edit') {
-    // document.querySelector('.input-field label').classList.add('active')
-    setTimeout(
-      () => {
-        [...document.querySelectorAll('.input-field label')].map(item => {
-          item.classList.add('active')
-        })
-      },
-      500
-    )
-
+  $http.get(`src/doctor/form28A/service/get.php?id=${paciente}&turno=${turno}`)
+  .then(response => {
+    const form = response.data
     $scope.data = {
-      motivo: '',
-      enfermedad: '',
+      motivo: form.form.hgc_moti_form28,
+      enfermedad: form.form.hgc_enfer_form28,
+      id: form.form.hgc_codi_form28,
       paciente,
       turno,
-      gestasPrevias: '',
-      abortos: '',
-      partos: '',
-      partosVaginales: '',
-      cesarias: '',
-      nacidosVivos: '',
-      hijosVivos: '',
-      muertosMenor7: '',
-      muertosMayor7: '',
-      nacidosMuertos: '',
-      fechaEmbarazo: '',
-      tamizaje: '',
-      condicionEgreso: '',
-      referido: '',
-      edadGestion: '',
-      relacionPeso: '',
-      tipoficacionSanguinea: '',
-      tipoficacionSanguineaCheck: 'no',
-      examenesEspeciales: '',
-      examenesEspecialesCheck: 'no',
-      apagar1Min: '',
-      apagar5Min: '',
-      longitud: '',
-      pCefalico: '',
-      pesoNacer: '',
-      reanimacion: '',
-      reanimacionCheck: 'no'
+      gestasPrevias: form.observacion.hgc_gpre_obst,
+      abortos: form.observacion.hgc_abor_obst,
+      partos: form.observacion.hgc_part_obst,
+      partosVaginales: form.observacion.hgc_pvag_obst,
+      cesarias: form.observacion.hgc_cesa_obst,
+      nacidosVivos: form.observacion.hgc_nviv_obst,
+      hijosVivos: form.observacion.hgc_nmue_obst,
+      muertosMenor7: form.observacion.hgc_hviv_obst,
+      muertosMayor7: form.observacion.hgc_mne7_obst,
+      nacidosMuertos: form.observacion.hgc_mma7_obst,
+      fechaEmbarazo: form.observacion.hgc_gpre_obst,
+      tamizaje: form.nacido.hgc_tami_nac,
+      condicionEgreso: form.nacido.hgc_coeg_nac,
+      referido: form.nacido.hgc_refe_nac,
+      edadGestion: form.nacido.hgc_edge_nac,
+      relacionPeso: form.nacido.hgc_repe_nac,
+      tipoficacionSanguinea: form.nacido.hgc_tipob_nac,
+      tipoficacionSanguineaCheck: form.nacido.hgc_tisa_nac,
+      examenesEspeciales: form.nacido.hgc_exob_nac,
+      examenesEspecialesCheck: form.nacido.hgc_exes_nac,
+      apagar1Min: form.nacido.hgc_ap1m_nac,
+      apagar5Min: form.nacido.hgc_ap5m_nac,
+      longitud: form.nacido.hgc_lon_nac,
+      pCefalico: form.nacido.hgc_pcef_nac,
+      pesoNacer: form.nacido.hgc_pena_nac,
+      reanimacion: form.nacido.hgc_reob_nac,
+      reanimacionCheck: form.nacido.hgc_rean_nac
     }
 
-    $http.get(`src/doctor/form28A/service/get.php?id=${paciente}&turno=${turno}`)
-    .then(response => {
-      const form = response.data
-      $scope.data = {
-        motivo: form.form.hgc_moti_form28,
-        enfermedad: form.form.hgc_enfer_form28,
-        id: form.form.hgc_codi_form28,
-        paciente,
-        turno,
-        gestasPrevias: form.observacion.hgc_gpre_obst,
-        abortos: form.observacion.hgc_abor_obst,
-        partos: form.observacion.hgc_part_obst,
-        partosVaginales: form.observacion.hgc_pvag_obst,
-        cesarias: form.observacion.hgc_cesa_obst,
-        nacidosVivos: form.observacion.hgc_nviv_obst,
-        hijosVivos: form.observacion.hgc_nmue_obst,
-        muertosMenor7: form.observacion.hgc_hviv_obst,
-        muertosMayor7: form.observacion.hgc_mne7_obst,
-        nacidosMuertos: form.observacion.hgc_mma7_obst,
-        fechaEmbarazo: form.observacion.hgc_gpre_obst,
-        tamizaje: form.nacido.hgc_tami_nac,
-        condicionEgreso: form.nacido.hgc_coeg_nac,
-        referido: form.nacido.hgc_refe_nac,
-        edadGestion: form.nacido.hgc_edge_nac,
-        relacionPeso: form.nacido.hgc_repe_nac,
-        tipoficacionSanguinea: form.nacido.hgc_tipob_nac,
-        tipoficacionSanguineaCheck: form.nacido.hgc_tisa_nac,
-        examenesEspeciales: form.nacido.hgc_exob_nac,
-        examenesEspecialesCheck: form.nacido.hgc_exes_nac,
-        apagar1Min: form.nacido.hgc_ap1m_nac,
-        apagar5Min: form.nacido.hgc_ap5m_nac,
-        longitud: form.nacido.hgc_lon_nac,
-        pCefalico: form.nacido.hgc_pcef_nac,
-        pesoNacer: form.nacido.hgc_pena_nac,
-        reanimacion: form.nacido.hgc_reob_nac,
-        reanimacionCheck: form.nacido.hgc_rean_nac
-      }
-
-      form.atendido.map(item => {
-        setTimeout(() => {
-          document.querySelector(`#${item.hgc_tipo_aten}_${item.hgc_desc_aten}`).checked = true
-        }, 100)
-      })
-
-      // let tipo = item.value.split('_')[0]
-      // let id = item.value.split('_')[1]
-      // let seccion = item.value.split('_')[2]
-      // let observacion = document.getElementById(`input__form-${id}`).value
-
-      form.detalle.map(item => {
-        setTimeout(() => {
-          let code = `${item.hgc_tipo_dform28}_${item.hgc_codi_dform28}_${item.hgc_secc_dform28}`
-          let input = document.querySelector(`input[value="${code}"]`)
-          let obs = document.querySelector(`#input__form-${item.hgc_codi_dform28}`)
-          let system = document.querySelector(`#input-system-${item.hgc_codi_dform28}`)
-          let fisico = document.querySelector(`#input-fisico-${item.hgc_codi_dform28}`)
-
-          if (obs !== null) {
-            obs.value = item.hgc_obser_dform28
-          } else if (system !== null) {
-            system.value = item.hgc_obser_dform28
-          } else if (fisico !== null) {
-            fisico.value = item.hgc_obser_dform28
-          }
-
-          if (input !== null) {
-            input.checked = true
-          }
-          else {
-            code = `${item.hgc_tipo_dform28}_${item.hgc_codi_dform28}`
-            input = document.querySelector(`input[value="${code}"]`)
-            input.checked = true
-          }
-        }, 100)
-
-      })
+    form.atendido.map(item => {
+      setTimeout(() => {
+        document.querySelector(`#${item.hgc_tipo_aten}_${item.hgc_desc_aten}`).checked = true
+      }, 100)
     })
-  }
 
-  $scope.export = () => {
-    alert('Ok')
-    html2canvas(document.getElementById('exportthis'), {
+    form.detalle.map(item => {
+      setTimeout(() => {
+        let code = `${item.hgc_tipo_dform28}_${item.hgc_codi_dform28}_${item.hgc_secc_dform28}`
+        let input = document.querySelector(`input[value="${code}"]`)
+        let obs = document.querySelector(`#input__form-${item.hgc_codi_dform28}`)
+        let system = document.querySelector(`#input-system-${item.hgc_codi_dform28}`)
+        let fisico = document.querySelector(`#input-fisico-${item.hgc_codi_dform28}`)
+
+        if (obs !== null) {
+          obs.value = item.hgc_obser_dform28
+        } else if (system !== null) {
+          system.value = item.hgc_obser_dform28
+        } else if (fisico !== null) {
+          fisico.value = item.hgc_obser_dform28
+        }
+
+        if (input !== null) {
+          input.checked = true
+        }
+        else {
+          code = `${item.hgc_tipo_dform28}_${item.hgc_codi_dform28}`
+          input = document.querySelector(`input[value="${code}"]`)
+          input !== null ? input.checked = true : null
+        }
+      }, 100)
+
+    })
+  })
+
+  $scope.exportPDF = () => {
+    convertoSVGToImage($('#exportthis'))
+
+    html2canvas(document.getElementById('hoja1'), {
+      useCORS: true,
       onrendered: function (canvas) {
         var data = canvas.toDataURL();
-        console.log(data);
         var docDefinition = {
             content: [{
                 image: data,
                 width: 500,
             }]
         };
-        pdfMake.createPdf(docDefinition).download("test.pdf");
+        pdfMake.createPdf(docDefinition).download("formhoja1.pdf");
       }
-    });
+    })
+
+    html2canvas(document.getElementById('hoja2'), {
+      useCORS: true,
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+            content: [{
+              image: data,
+              width: 500,
+            }]
+        };
+        pdfMake.createPdf(docDefinition).download("formhoja2.pdf");
+      }
+    })
+
+    html2canvas(document.getElementById('grafica-section'), {
+      useCORS: true,
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+          content: [{
+            image: data,
+            width: 500,
+          }]
+        };
+        pdfMake.createPdf(docDefinition).download("menorGraphic.pdf");
+      }
+    })
+
+  }
+
+  $scope.exportPNG = () => {
+    let jpg = document.querySelector('#exportthis')
+    convertoSVGToImage($('#exportthis'))
+
+    html2canvas(jpg, {
+      useCORS: true,
+    }).then(function (canvas) {
+      canvas.toBlob(function (blob) {
+        saveAs(blob, 'form028a.png')
+      })
+    })
+  }
+
+
+  function convertoSVGToImage (targetElement) {
+    const listSVG = [...targetElement.find('svg')]
+
+    listSVG.map((item, index) => {
+      $(item).hide()
+      let svg = $(item).html()
+      let prop = $(item).attr('id')
+      let canvas = document.createElement('canvas')
+      canvas.classList.add(`${prop}-canvas`)
+
+      let parent = item.parentElement
+      parent.append(canvas)
+      canvg(canvas, `<svg>${svg}</svg>`)
+    })
   }
 
 })
