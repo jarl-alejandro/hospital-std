@@ -1,7 +1,5 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace" style="width: 90%;">
-<div id="exportthis">
-
   <article class="form ed-item">
     <h2 class="Title s-100 no-margin">Form 28A</h2>
     <header style="background:inherit;flex-wrap:wrap" class="header__form28">
@@ -77,20 +75,17 @@
    <p class="form__tag">FUENTE DE INFORMACION:</p>
 
     <div id="hoja__1" class="main-distribute"
-      ng-include="'src/doctor/reportes/forms/form28A/1hoja.html'">
+      ng-include="'src/doctor/form28A/1hoja.html'">
     </div>
-    <!--<div id="hoja__2" class="main-distribute none"
+    <div id="hoja__2" class="main-distribute none"
       ng-include="'src/doctor/form28A/2hoja.html'">
     </div>
 
-    <div id="grafica" ng-include="'src/doctor/form28A/grafica.html'"></div> -->
+    <div id="grafica" ng-include="'src/doctor/form28A/grafica.html'"></div>
 
     <div class="footer__form28">
       <p>SHS-MSP / HCU form. 028A / {{year}}</p>
       <p>ATENCION AL NIÑO / NIÑA MENOR DE 2 MESES</p>
     </div>
   </article>
-
-</div>
-<button ng-click="export()">export</button>
 </section>

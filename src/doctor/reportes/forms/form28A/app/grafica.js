@@ -1,8 +1,7 @@
 'use struct'
 
-const grafica028A = angular.module('Hospital')
-
-grafica028A.controller('graficas028AController', function ($scope, $http, $stateParams) {
+angular.module('Hospital')
+.controller('graficas028AController', function ($scope, $http, $stateParams) {
   const s = Snap("#grafica_curva_crecimiento")
   const longitud = Snap('#grafica_curva_crecimientoLongitud')
   const perimetro = Snap('#grafica_curva_crecimientoPerimetro')
