@@ -3,13 +3,45 @@
   <style scoped>
     .workSpace {width: 100%;}
   </style>
+  <style>
+  [type="radio"]:not(:checked), [type="radio"]:checked {
+    position: static;
+    opacity: 1;
+  }
+  label{
+    padding: 0 !important;
+  }
+  label:after {
+    opacity: 0;
+  }
+  label::before {
+    opacity: 0;
+  }
+
+  </style>
   <!-- <section ng-controller="form056EditCtrl"></section> -->
 
-  <article class="form ed-item" ng-controller="form06SaveCtrl">
+  <article id="exportthis" class="form ed-item" ng-controller="form06SaveReporteCtrl">
     <h1 class="Title no-margin s-100">Form 056</h2>
-    <div ng-include="'src/doctor/form056/paper1.html'"></div>
-    <div ng-include="'src/doctor/form056/paper2.html'"></div>
+    <div ng-include="'src/doctor/reportes/forms/form056/paper1.html'"></div>
+    <div ng-include="'src/doctor/reportes/forms/form056/paper2.html'"></div>
   </article>
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">print</i>
+    </a>
+    <ul>
+      <li>
+        <a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Imprimir .pdf"
+          ng-click="exportPDF()"><i class="material-icons">picture_as_pdf</i></a>
+      </li>
+      <li>
+        <a class="btn-floating blue tooltipped" ng-click="exportPNG()" data-position="left" data-delay="50"
+          data-tooltip="Imprimir .img"><i class="material-icons">camera_alt</i></a>
+      </li>
+    </ul>
+  </div>
 
   <div ng-include="'src/doctor/form056/calendar.html'"></div>
 </section>

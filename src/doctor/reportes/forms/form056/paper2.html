@@ -1,4 +1,4 @@
-<section class="Paper2" ng-controller="validForm">
+<section ng-controller="validForm" style="margin-top: 24px;">
 
   <!-- Educacion -->
   <section class="EducacionPaper2">
@@ -1477,15 +1477,9 @@
 
     <p class="bold-input response">Response: {{ user.name }}</p>
     <div class="proximaVisit">
-      <a id="fecha_proxima_visita-link" class="waves-effect waves-teal btn-flat" ng-click="handleDateVisit()">Fecha proxima visita</a>
-      <a id="fecha_proxima_visita-linkOut" class="waves-effect waves-teal btn-flat">Fecha proxima visita</a>
+      <a style="display:block" id="fecha_proxima_visita-linkOut" class="waves-effect waves-teal btn-flat">Fecha proxima visita</a>
       <input type="text" disabled placeholder="año-mes-dia" id="fecha_proxima_visita"  />
     </div>
   </section>
   <!-- End DIAGNOSTICOS - CIE10 -->
-  <div class="main-distribute">
-    <!-- <button class="waves-effect waves-ligth btn danger">Cancelar</button> -->
-    <button class="waves-effect waves-ligth btn primary" ng-click="handleBackPaper1()">Atras</button>
-    <button class="waves-effect waves-ligth btn primary" ng-disabled="guardandoConsult" ng-click="saveForm()">Guardar Consulta</button>
-  </div>
 </section>

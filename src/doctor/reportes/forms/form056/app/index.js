@@ -1,8 +1,9 @@
 'use strict'
 
 angular.module('Hospital')
-.controller('formCtrl056', function ($scope, $http, $stateParams, $rootScope) {
+.controller('formReporteCtrl056', function ($scope, $http, $stateParams, $rootScope) {
   const fecha = new Date()
+  $('.tooltipped').tooltip({delay: 50});
 
   $scope.paciente = {}
   $scope.empresa = {}
@@ -417,5 +418,99 @@ angular.module('Hospital')
   }
 
   $scope.handleDateVisit = () => $('.month-turno').slideDown()
+
+  $scope.exportPDF = () => {
+    convertoSVGToImage($('#exportthis'))
+
+    html2canvas(document.getElementById('hoja1'), {
+      useCORS: true,
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+            content: [{
+                image: data,
+                width: 500,
+            }]
+        };
+        pdfMake.createPdf(docDefinition).download("formhoja1.pdf");
+      }
+    })
+
+    html2canvas(document.getElementById('hoja2'), {
+      useCORS: true,
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+            content: [{
+              image: data,
+              width: 500,
+            }]
+        };
+        pdfMake.createPdf(docDefinition).download("formhoja2.pdf");
+      }
+    })
+
+    html2canvas(document.getElementById('menorGraphic'), {
+      useCORS: true,
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+          content: [{
+            image: data,
+            width: 500,
+          }]
+        };
+        pdfMake.createPdf(docDefinition).download("menorGraphic.pdf");
+      }
+    })
+
+    html2canvas(document.getElementById('menorGraphic1'), {
+        useCORS: true,
+        onrendered: function (canvas) {
+          var data = canvas.toDataURL();
+          var docDefinition = {
+              content: [{
+                image: data,
+                width: 500,
+              }]
+          };
+          pdfMake.createPdf(docDefinition).download("menorGraphic1.pdf");
+        }
+      })
+
+  }
+
+  $scope.exportPNG = () => {
+    let jpg = document.querySelector('#exportthis')
+    convertoSVGToImage($('#exportthis'))
+
+    html2canvas(jpg, {
+      logging: true,
+      profile: true,
+      useCORS: true,
+      allowTaint: true,
+    }).then(function (canvas) {
+      canvas.toBlob(function (blob) {
+        saveAs(blob, 'form028c.png')
+      })
+    })
+  }
+
+
+  function convertoSVGToImage (targetElement) {
+    const listSVG = [...targetElement.find('svg')]
+
+    listSVG.map((item, index) => {
+      $(item).hide()
+      let svg = $(item).html()
+      let prop = $(item).attr('id')
+      let canvas = document.createElement('canvas')
+      canvas.classList.add(`${prop}-canvas`)
+
+      let parent = item.parentElement
+      parent.append(canvas)
+      canvg(canvas, `<svg>${svg}</svg>`)
+    })
+  }
 
 })

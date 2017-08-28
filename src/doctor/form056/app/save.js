@@ -89,8 +89,11 @@ angular.module('Hospital')
   $scope.action = $stateParams.action
 
   if ($scope.action === 'edit') {
+    alert('ok')
+    alert($stateParams.turno)
     $http.get(`src/doctor/form056/service/get.php?turno=${$stateParams.turno}`)
     .then(response => {
+      console.log(response);
       $('#fecha_proxima_visita-link').fadeOut()
       $('#fecha_proxima_visita-linkOut').css('display', 'inline-block')
       const form = response.data.form
@@ -99,8 +102,10 @@ angular.module('Hospital')
       const cie = response.data.cie
 
       //Fomr 056
-      document.querySelector(`.Informacion-consulta-companion input[value="${form.hgc_acom_f056}"]`).checked = true
-      document.querySelector(`.Informacion-consulta-civilStatus input[value="${form.hgc_civi_f056}"]`).checked = true
+      let companion = document.querySelector(`.Informacion-consulta-companion input[value="${form.hgc_acom_f056}"]`)
+      let civilStatus = document.querySelector(`.Informacion-consulta-civilStatus input[value="${form.hgc_civi_f056}"]`)
+      companion !== null ? companion.checked = true : null
+      civilStatus !== null ? civilStatus.checked = true : null
 
       $('#codigoForm056').val(form.hgc_codi_f056)
       $('#fecha_proxima_visita').val(form.hgc_fetpr_f056)
