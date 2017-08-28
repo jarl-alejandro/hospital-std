@@ -1,0 +1,68 @@
+<style>
+[type="radio"]:not(:checked), [type="radio"]:checked {
+  position: static;
+  opacity: 1;
+}
+</style>
+
+<section>
+  <article class="s-100 l-75 cie-container">
+    <table class="bordered striped highlight centered responsive-table cie-table">
+      <thead>
+        <tr>
+          <th width="55%">10 DIAGNÓSTICOS / <span>CIE</span></th>
+          <th width="25%">CIE</th>
+          <th width="10%">PRE</th>
+          <th width="10%">DEF</th>
+        </tr>
+      </thead>
+      <tbody id="cie-table"></tbody>
+    </table>
+  </article>
+  <article class="s-100 l-70 form-select">
+    <div class="menu-form">
+      <h6>11 PLAN DE TRATAMIENTO</h6>
+    </div>
+    <div class="input-field">
+      <textarea id="plandeTratamiento" class="materialize-textarea" ng-model="data.planTratamiento"
+        placeholder="Ingresa el plan de tratamiento"></textarea>
+    </div>
+  </article>
+
+  <article class="s-95 form-select">
+    <div class="menu-form">
+      <h6>12 EVOLUCIÒN PRESCRIPCIONES MÈDICAS</h6>
+    </div>
+    <div>
+      <table class="bordered striped highlight centered responsive-table cie-table">
+        <thead>
+          <tr>
+            <th style="border:0;" width="15%">FECHA</th>
+            <th style="border:0;border-left:1px solid #585757" width="15%">HORA</th>
+            <th style="border:0;border-left:1px solid #585757" width="35%">NOTAS DE EVOLUCION</th>
+            <th style="border:0;border-left:1px solid #585757" width="35%">PRESCRIPCIONES MÈDICAS</th>
+          </tr>
+        </thead>
+        <tbody class="table_preescipcion">
+          <tr>
+            <td class="input-field" style="border-left:0">
+              <input class="u-noMargin datepicker" type="text" ng-model="data.prescripcion.fecha"
+                placeholder="dd/mm/YYYY">
+            </td>
+            <td class="input-field">
+              <input class="u-noMargin timepicker" type="text" ng-model="data.prescripcion.tiempo"
+                placeholder="h:i">
+            </td>
+            <td class="input-field">
+              <input class="u-noMargin" type="text" ng-model="data.prescripcion.nota">
+            </td>
+            <td class="input-field">
+              <input class="u-noMargin" type="text" ng-model="data.prescripcion.prescipcion">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+</section>

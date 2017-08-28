@@ -1,0 +1,96 @@
+<hgc-menu-doctor></hgc-menu-doctor>
+<section class="workSpace" style="width: 90%;">
+<div id="exportthis">
+
+  <article class="form ed-item">
+    <h2 class="Title s-100 no-margin">Form 28A</h2>
+    <header style="background:inherit;flex-wrap:wrap" class="header__form28">
+      <div class="s-100 m-25">
+        <label for="">ESTABLECIMIENTO</label>
+        <input type="text" style="margin-bottom: 0" disabled ng-model="empresa.hgc_nom_empr">
+      </div>
+      <div  class="s-100 m-25">
+        <label for="">NOMBRES Y APELLIDOS</label>
+        <input type="text" style="margin-bottom: 0"
+          ng-model="pacient.paciente.paciente" disabled>
+      </div>
+      <div  class="s-100 m-10">
+        <label for="">SEXO(HM)</label>
+        <input type="text" style="margin-bottom: 0"
+          ng-model="pacient.sexo.hgc_desc_genero" disabled>
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">FECHA DE NACIMIENTO</label>
+        <input type="text" style="margin-bottom: 0"
+          ng-model="pacient.paciente.hgc_fecn_pacie" disabled>
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">Nº HISTORIA CLINICA</label>
+        <input type="text" style="margin-bottom: 0"
+          ng-model="pacient.paciente.hgc_histo_hcli" disabled>
+      </div>
+    </header>
+
+    <asider class="consultas s-100">
+      <div class="consultas-number">
+        <p><strong>CONSULTA:</strong> {{consulta}}</p>
+      </div>
+      <div class="consultas-fecha">
+        <p><strong>FECHA:</strong> {{fecha}}</p>
+      </div>
+      <div class="consultas-edad">
+        <p><strong>EDAD:</strong> {{edad.years}} años, {{edad.months}} meses, {{edad.days}} dias</p>
+      </div>
+    </asider>
+
+    <h2 class="Title s-100 no-margin">SIGNOS VITALES</h2>
+    <header style="background:inherit;flex-wrap:wrap" class="header__form28"
+      ng-controller="signosFormController">
+      <div class="s-100 m-20">
+        <label for="">TEMPERATURA</label>
+        <input type="text" style="margin-bottom: 0;color: black;" disabled
+          ng-model="signos.hgc_temp_sigvit"
+        >
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">PULSO</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_puls_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">PESO</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_peso_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">LONGITUD</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_longi_sigvit" disabled>
+      </div>
+      <div  class="s-100 m-20">
+        <label for="">PERIMETRO CEFALICO</label>
+        <input type="text" style="margin-bottom: 0;color: black;"
+          ng-model="signos.hgc_prence_sigvit" disabled>
+      </div>
+    </header>
+
+   <p class="form__tag">FUENTE DE INFORMACION:</p>
+
+    <div id="hoja__1" class="main-distribute"
+      ng-include="'src/doctor/reportes/forms/form28A/1hoja.html'">
+    </div>
+    <!--<div id="hoja__2" class="main-distribute none"
+      ng-include="'src/doctor/form28A/2hoja.html'">
+    </div>
+
+    <div id="grafica" ng-include="'src/doctor/form28A/grafica.html'"></div> -->
+
+    <div class="footer__form28">
+      <p>SHS-MSP / HCU form. 028A / {{year}}</p>
+      <p>ATENCION AL NIÑO / NIÑA MENOR DE 2 MESES</p>
+    </div>
+  </article>
+
+</div>
+<button ng-click="export()">export</button>
+</section>

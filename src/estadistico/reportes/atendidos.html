@@ -1,0 +1,107 @@
+<hgc-menu-doctor></hgc-menu-doctor>
+<section class="workSpace">
+  <h1 class="Title">Reportes</h2>
+  <article class="tableContainer">
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+          <tr>
+            <th width="5%">#</th>
+            <th width="10%">Historia Clinica</th>
+            <th width="25%">Paciente</th>
+            <th width="25%">Doctor</th>
+            <th width="30%"></th>
+          </tr>
+        </thead>
+      <tbody>
+          <tr ng-if="pacientes.length === 0">
+            <td colspan="5">No hay pacientes</td>
+          </tr>
+          <tr ng-repeat="paciente in pacientes">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ paciente.hgc_paci_turno }}</td>
+            <td>{{ paciente.paciente }}</td>
+            <td>{{ paciente.doctor }}</td>
+            <td>
+              <a class='waves-effect waves-light btn danger'
+                ng-click="handlePrint(paciente)">Ver</a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </article>
+  <div class="fixed-action-btn horizontal click-to-toggle">
+    <a class="btn-floating btn-large red">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul>
+      <li>
+        <button class="btn-floating red modal-trigger" ng-click="handleFilterByDate()">
+          <i class="material-icons">alarm</i>
+        </button>
+      </li>
+      <li>
+        <button class="btn-floating blue modal-trigger" ng-click="handleFilterPatient()">
+          <i class="material-icons">airline_seat_flat</i>
+        </button>
+      </li>
+      <li>
+        <button class="btn-floating green modal-trigger" ng-click="handleFilterDoctor()">
+          <i class="material-icons">accessibility</i>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div id="filterByDate" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="center-align">Filtrar por Fecha</h4>
+
+      <div class="input-field col s12">
+        <input id="fecha_inicio" type="text" class="datepicker">
+        <label for="fecha_inicio">Fecha Inicio</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="fecha_final" type="text" class="datepicker">
+        <label for="fecha_final">Fecha Final</label>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-ligth btn-flat">Cancelar</button>
+      <button class="waves-effect waves-ligth btn-flat primary" ng-click="handleAceptDate()">Aceptar</button>
+    </div>
+  </div>
+
+  <div id="filterByPatient" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="center-align">Filtrar por Paciente</h4>
+      <label>Paciente Selecionado</label>
+      <select id="patient_selected" class="browser-default">
+        <option value="" disabled selected>Selecione el paciente</option>
+        <option ng-repeat="patient in listPacientes" value="{{patient.hgc_paci_turno}}">{{patient.paciente}}</option>
+      </select>
+
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-ligth btn-flat">Cancelar</button>
+      <button class="waves-effect waves-ligth btn-flat primary" ng-click="handleAceptPatient()">Aceptar</button>
+    </div>
+  </div>
+
+  <div id="filterByDoctor" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="center-align">Filtrar por Doctor</h4>
+      <label>Doctor Selecionado</label>
+      <select id="doctor_selected" class="browser-default">
+        <option value="" disabled selected>Selecione el doctor</option>
+        <option ng-repeat="doctor in listPacientes" value="{{doctor.hgc_doct_turno}}">{{doctor.doctor}}</option>
+      </select>
+
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-ligth btn-flat">Cancelar</button>
+      <button class="waves-effect waves-ligth btn-flat primary" ng-click="handleAceptDoctor()">Aceptar</button>
+    </div>
+  </div>
+
+</section>

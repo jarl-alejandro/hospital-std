@@ -103,6 +103,7 @@
     <script src='src/estadistico/activar-turnos/app/index.js'></script>
     <script src='src/estadistico/agenda/app/index.js'></script>
     <script src='src/estadistico/pacientes/app/index.js'></script>
+    <script src='src/estadistico/reportes/app/index.js'></script>
 
     <script src='src/enfermera/signos-vitales/app/index.js'></script>
     <script src='src/enfermera/pacientes-atendidos/app/index.js'></script>
