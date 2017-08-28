@@ -29,3 +29,58 @@
         </tbody>
     </table>
   </article>
+  <div class="fixed-action-btn horizontal click-to-toggle">
+    <a class="btn-floating btn-large red">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul>
+      <li>
+        <button class="btn-floating red modal-trigger" ng-click="handleFilterByDate()">
+          <i class="material-icons">alarm</i>
+        </button>
+      </li>
+      <li>
+        <button class="btn-floating blue modal-trigger" ng-click="handleFilterPatient()">
+          <i class="material-icons">accessibility</i>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div id="filterByDate" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="center-align">Filtrar por Fecha</h4>
+
+      <div class="input-field col s12">
+        <input id="fecha_inicio" type="text" class="datepicker">
+        <label for="fecha_inicio">Fecha Inicio</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="fecha_final" type="text" class="datepicker">
+        <label for="fecha_final">Fecha Final</label>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-ligth btn-flat">Cancelar</button>
+      <button class="waves-effect waves-ligth btn-flat primary" ng-click="handleAceptDate()">Aceptar</button>
+    </div>
+  </div>
+
+  <div id="filterByPatient" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="center-align">Filtrar por Paciente</h4>
+      <label>Paciente Selecionado</label>
+      <select id="patient_selected" class="browser-default">
+        <option value="" disabled selected>Selecione el paciente</option>
+        <option ng-repeat="patient in listPacientes" value="{{patient.hgc_paci_turno}}">{{patient.paciente}}</option>
+      </select>
+
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-ligth btn-flat">Cancelar</button>
+      <button class="waves-effect waves-ligth btn-flat primary" ng-click="handleAceptPatient()">Aceptar</button>
+    </div>
+  </div>
+
+</section>
