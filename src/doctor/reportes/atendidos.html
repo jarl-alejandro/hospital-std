@@ -9,6 +9,7 @@
             <th width="10%">Historia Clinica</th>
             <th width="25%">Paciente</th>
             <th width="25%">Doctor</th>
+            <th width="25%">Fecha</th>
             <th width="30%"></th>
           </tr>
         </thead>
@@ -21,6 +22,7 @@
             <td>{{ paciente.hgc_paci_turno }}</td>
             <td>{{ paciente.paciente }}</td>
             <td>{{ paciente.doctor }}</td>
+            <td>{{ paciente.hgc_fech_turno }}</td>
             <td>
               <a class='waves-effect waves-light btn danger'
                 ng-click="handlePrint(paciente)">Ver</a>
