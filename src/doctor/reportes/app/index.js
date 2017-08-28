@@ -4,6 +4,8 @@ angular.module('Hospital')
 .controller('reportesController', function ($scope, $http, $location) {
   $scope.pacientes = []
   $scope.listPacientes = []
+  $('.tooltipped').tooltip({delay: 50})
+
   $('.browser-default').select2()
   $('select').material_select()
   $('.modal').modal();

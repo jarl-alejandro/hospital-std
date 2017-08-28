@@ -7,6 +7,7 @@ angular.module('Hospital')
   $('.browser-default').select2()
   $('select').material_select()
   $('.modal').modal();
+  $('.tooltipped').tooltip({delay: 50})
 
   $http.get('src/estadistico/reportes/service/getAll.php')
   .then(response => $scope.pacientes = response.data)
