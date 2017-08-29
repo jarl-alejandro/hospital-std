@@ -230,7 +230,7 @@ angular.module('Hospital')
     labelMonthPrev: 'Mes Anterior',
     labelMonthSelect: 'Selecione el mes',
     labelYearSelect: 'Selecione el año',
-    min: new Date(),
+    max: new Date(),
   })
 
 })
