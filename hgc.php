@@ -139,6 +139,7 @@
     <script src='src/doctor/reportes/forms/form28C/app/index.js'></script>
     <script src='src/doctor/reportes/forms/form056/app/index.js'></script>
     <script src='src/doctor/reportes/forms/form056/app/save.js'></script>
+    <script src='src/doctor/reportes/forms/hoja-devolucion/app/index.js'></script>
 
     <script src="src/horarios-doctores/app/index.js"></script>
     <script src='src/home/app/index.js'></script>

@@ -1,8 +1,22 @@
 <hgc-menu-doctor></hgc-menu-doctor>
+<style>
+  [type="radio"]:not(:checked), [type="radio"]:checked{
+    position: static;
+    opacity: 1;
+  }
+  label:after{
+    display: none;
+  }
+  label::before{
+    display: none;
+  }
+  label {
+    padding: 0 !important;
+  }
+</style>
 <section class="workSpace" style="width:98%">
-  <h1 class="Title">Hoja de Devolucion</h2>
-
-  <section ng-controller="validForm" style="background-color: white;padding: 1em;">
+  <section ng-controller="validForm" style="background-color: white;padding: 1em;" id="exportthis">
+    <h1 class="Title">Hoja de Devolucion</h2>
     <input type="hidden" id="codigoForm056" />
 
     <!-- Nombres del paciente y Establecimiento -->
@@ -230,13 +244,10 @@
     <!-- SignosVitales -->
 
     <!-- Motivo de Consulta -->
-    <section class="Motivo-consulta" ng-controller="cieHojaDevolucionCtrl">
+    <section class="Motivo-consulta">
       <article class="Motivo-consulta--self">
         <p class="Motivo-consulta--title">
             <a>1. MOTIVO DE CONSULTA (segùn adolescente):</a>
-            <a class="u-pointer motivo-add" ng-click="handleAddMotivoSelf()">
-              <i class="material-icons">add</i>
-            </a>
         </p>
         <ul class="Motivo-consulta--self-list" id="motivo-list">
             <li class="input-field Motivo-consulta--self-item">
@@ -269,9 +280,6 @@
       <article class="Motivo-consulta--company">
         <p class="Motivo-consulta--title">
             <a>MOTIVO DE CONSULTA (segùn acompañante):</a>
-            <a class="u-pointer motivo-add" ng-click="handleAddMotivoCompany()">
-              <i class="material-icons">add</i>
-            </a>
         </p>
         <ul class="Motivo-consulta--self-list" id="motivo-list-company">
             <li class="input-field Motivo-consulta--self-item">
@@ -314,12 +322,9 @@
     <!-- End Enfermedad actual -->
 
     <!-- CIE -->
-    <article class="DiagnosticoCIE10 l-90" ng-controller="cieHojaDevolucionCtrl">
+    <article class="DiagnosticoCIE10 l-90">
       <p class="Motivo-consulta--title">
         <a>15. DIAGNOSTICO - CIE:</a>
-        <a class="u-pointer motivo-add" ng-click="handleAddDiagnostico()">
-          <i class="material-icons">add</i>
-        </a>
       </p>
       <ul class="Motivo-consulta--self-list" id="diagnostico-list">
         <li class="input-field Motivo-consulta--self-item">
@@ -363,16 +368,21 @@
     <p class="bold-input response">Response: {{ user.name }}</p>
     <div class="proximaVisit">
       <a id="fecha_proxima_visita-link" class="waves-effect waves-teal btn-flat" ng-click="handleDateVisit()">Fecha proxima visita</a>
-      <a id="fecha_proxima_visita-linkOut" class="waves-effect waves-teal btn-flat" style="display:none">Fecha proxima visita</a>
-      <input type="text" disabled placeholder="año-mes-dia" id="fecha_proxima_visita"  />
-    </div>
-
-    <div class="main-distribute">
-      <button class="waves-effect waves-ligth btn primary" ng-disabled="guardandoConsult" ng-click="saveForm()">
-        Guardar Consulta
-      </button>
     </div>
   </section>
 
   <div ng-include="'src/doctor/hoja-devolucion/calendar.html'"></div>
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">print</i>
+    </a>
+    <ul>
+      <li>
+        <a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Imprimir .pdf" ng-click="exportPDF()"><i class="material-icons">picture_as_pdf</i></a>
+      </li>
+      <li>
+        <a class="btn-floating blue tooltipped" ng-click="exportPNG()" data-position="left" data-delay="50" data-tooltip="Imprimir .img"><i class="material-icons">camera_alt</i></a>
+      </li>
+    </ul>
+  </div>
 </section>
