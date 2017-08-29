@@ -89,8 +89,6 @@ angular.module('Hospital')
   $scope.action = $stateParams.action
 
   if ($scope.action === 'edit') {
-    alert('ok')
-    alert($stateParams.turno)
     $http.get(`src/doctor/form056/service/get.php?turno=${$stateParams.turno}`)
     .then(response => {
       console.log(response);

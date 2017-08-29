@@ -51,7 +51,6 @@ angular.module('Hospital')
 
   $scope.handleAceptDoctor = () => {
     let doctor = $('#doctor_selected')
-    alert(doctor.val())
     if (validarFormByDoctor(doctor)) {
       $http.get(`src/estadistico/reportes/service/getByDoctor.php?doctor=${doctor.val()}`)
       .then(response => $scope.pacientes = response.data)

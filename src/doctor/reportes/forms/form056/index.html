@@ -8,6 +8,10 @@
     position: static;
     opacity: 1;
   }
+  [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: static;
+    opacity: 1;
+  }
   label{
     padding: 0 !important;
   }
@@ -17,14 +21,2131 @@
   label::before {
     opacity: 0;
   }
-
+  .Motivo-consulta--title a[ng-click] {
+    display: none;
+  }
+  a[ng-click] > .material-icons {
+    display: none;
+  }
   </style>
   <!-- <section ng-controller="form056EditCtrl"></section> -->
 
   <article id="exportthis" class="form ed-item" ng-controller="form06SaveReporteCtrl">
-    <h1 class="Title no-margin s-100">Form 056</h2>
-    <div ng-include="'src/doctor/reportes/forms/form056/paper1.html'"></div>
-    <div ng-include="'src/doctor/reportes/forms/form056/paper2.html'"></div>
+    <article id="hoja1">
+      <h1 class="Title no-margin s-100">Form 056</h2>
+
+      <section class="Paper1" ng-controller="canvasFomr056Ctrl" ng-controller="validForm">
+        <input type="hidden" id="codigoForm056" />
+        <!-- Nombres del paciente y Establecimiento -->
+        <article class="grid-header">
+          <div class="form056-header-names">
+            <ul class="form056-header-names--head">
+              <li>APELLIDOS:</li>
+              <li>PATERNO</li>
+              <li>MATERNO</li>
+              <li>NOMBRES</li>
+            </ul>
+            <ul class="form056-header-names--body">
+              <li></li>
+              <li>{{ apellidos[0] }}</li>
+              <li>{{ apellidos[1] }}</li>
+              <li>{{ paciente.hgc_nom_pacie }}</li>
+            </ul>
+          </div>
+
+          <div class="form056-header-establecimiento">
+            <p class="u-noMargin"><strong>Nùmeros de Historia Clìnica:</strong>
+              {{ paciente.hgc_histo_hcli }}
+            </p>
+            <p class="u-noMargin"><strong>ESTABLECIMIENTO:</strong>
+              {{ empresa.hgc_nom_empr }}
+            </p>
+          </div>
+        </article>
+        <!-- End Nombres del paciente y Establecimiento -->
+
+        <!-- Informacion del paciente -->
+        <div class="grid-paciente">
+          <aside class="pacientes-informacion">
+            <fieldset style="margin-top:1em" class="s-100">
+              <label class="s-10 bold-input" style="display:inline-block">DIRECCIÒN</label>
+              <input style="display: inline-block;width: 89%;margin: 0;" value="VIA QUEVEDO"
+                disabled ng-model="paciente.hgc_direc_pacie" />
+
+              <div class="container-code-pronvia">
+                <div>
+                  <label class="bold-input" style="display: inline-flex;width: 34%;text-align: center;">
+                    PROVINCIA, CANTÒN, PARROQUIA
+                  </label>
+                  <input style="display: inline-block;width: 65%;margin: 0;" disabled ng-model="provincia" />
+                </div>
+                <div class="celda-code-container">
+                <p class="u-noMargin bold-input">Codigo</p>
+                <p class="u-noMargin celda-code"></p>
+                <p class="u-noMargin celda-code"></p>
+                <p class="u-noMargin celda-code"></p>
+                <p class="u-noMargin celda-code"></p>
+                <p class="u-noMargin celda-code"></p>
+                <p class="u-noMargin celda-code"></p>
+              </div>
+                <div class="grid-cellphone">
+                  <label class="bold-input" style="display: inline-block">Telefono</label>
+                  <input type="text" disabled ng-model="paciente.hgc_tele_pacie" />
+                </div>
+                <div>
+                  <p>
+                    <input type="checkbox" id="Domicilio" ng-checked="domicilioFlag" disabled />
+                    <label for="Domicilio">Domicilio</label>
+                  </p>
+                </div>
+              </div>
+
+              <article class="container-grid-lugar">
+                <div>
+                  <label class="bold-input" style="width: 19%;display:inline-block">LUGAR DE NACIMIENTO</label>
+                  <input style="display: inline-block;width: 79%;margin: 0;" disabled
+                    ng-model="paciente.hgc_lunac_pacie" />
+                </div>
+                <div class="grid-cellphone">
+                  <label class="bold-input" style="display: inline-block">Celular</label>
+                  <input type="text" disabled ng-model="paciente.hgc_celu_pacie">
+                </div>
+                <div>
+                  <p>
+                    <input type="checkbox" id="mensaje" ng-checked="mensajeFlag" disabled />
+                    <label for="mensaje">mensaje</label>
+                  </p>
+                </div>
+              </article>
+
+            </fieldset>
+          </aside>
+
+          <aside class="paciente-nacimiento">
+            <p>FECHA DE NACIMIENTO</p>
+            <ul class="paciente-nacimiento--header">
+              <li>dia</li>
+              <li>mes</li>
+              <li>año</li>
+            </ul>
+            <ul>
+              <li>{{ nacimiento[2] }}</li>
+              <li>{{ nacimiento[1] }}</li>
+              <li>{{ nacimiento[0] }}</li>
+            </ul>
+          </aside>
+        </div>
+        <!-- End de la informacion del paciente -->
+
+        <!-- Consulta y Acompañante -->
+        <section class="Informacion-consulta">
+          <!-- Consulta principal -->
+          <article class="Informacion-consulta-paciente">
+            <p class="u-noMargin bold-input">CONSULTA PRINCIPAL Nº 1</p>
+            <div class="Informacion-consulta-fecha s-90">
+              <p class="u-noMargin bold-input">Fecha</p>
+              <div>
+                <ul class="Informacion-consulta-fecha--header">
+                <li>dia</li>
+                <li>mes</li>
+                <li>año</li>
+              </ul>
+                <ul class="Informacion-consulta-fecha--boody">
+                <li>{{ hoy[0] }}</li>
+                <li>{{ hoy[1] }}</li>
+                <li>{{ month[0] }}</li>
+                <li>{{ month[1] }}</li>
+                <li>{{ year[2] }}</li>
+                <li>{{ year[3] }}</li>
+              </ul>
+              </div>
+            </div>
+
+            <div class="Informacion-consulta-edad s-90">
+              <p class="u-noMargin bold-input">EDAD</p>
+              <div>
+                <ul class="Informacion-consulta-edad--header">
+                  <li>años</li>
+                  <li>meses</li>
+                </ul>
+                <ul class="Informacion-consulta-edad--boody">
+                <li>{{ ageYear[0] }}</li>
+                <li>{{ ageYear[1] }}</li>
+                <li>{{ ageMonth[0] }}</li>
+                <li>{{ ageMonth[1] }}</li>
+              </ul>
+                </div>
+            </div>
+          </article>
+          <!-- End Consulta principal -->
+
+          <!-- Acompañante -->
+          <article class="u-companion">
+            <div class="Informacion-consulta-companion">
+              <p class="s-100 u-noMargin bold-input">Acompañante</p>
+              <ul class="Informacion-consulta-companion--list">
+                <li>
+                  <input type="radio" id="solo" name="acompaniente" value="1" data-name="Acompañante" />
+                  <label for="solo">solo</label>
+                </li>
+                <li>
+                  <input type="radio" id="madre" name="acompaniente" value="2" data-name="Acompañante" />
+                  <label for="madre">madre</label>
+                </li>
+                <li>
+                  <input type="radio" id="padre" name="acompaniente" value="3" data-name="Acompañante" />
+                  <label for="padre">padre</label>
+                </li>
+                <li>
+                  <input type="radio" id="ambos" name="acompaniente" value="4" data-name="Acompañante" />
+                  <label for="ambos">ambos</label>
+                </li>
+                <li>
+                  <input type="radio" id="pareja" name="acompaniente" value="5" data-name="Acompañante" />
+                  <label for="pareja">pareja</label>
+                </li>
+                <li>
+                  <input type="radio" id="amigo" name="acompaniente" value="6" data-name="Acompañante" />
+                  <label for="amigo">amigo/a</label>
+                </li>
+                <li>
+                  <input type="radio" id="pariente" name="acompaniente" value="7" data-name="Acompañante" />
+                  <label for="pariente">pariente</label>
+                </li>
+                <li>
+                  <input type="radio" id="otro" name="acompaniente" value="8" data-name="Acompañante" />
+                  <label for="otro">otro</label>
+                </li>
+              </ul>
+            </div>
+            <div class="Informacion-consulta-civilStatus">
+              <p class="s-100 u-noMargin bold-input">ESTADO CIVIL</p>
+              <p class="u-noMargin">
+                <input type="radio" id="cilvilSoltero" name="estadocivil" value="1" data-name="Estado Civil" />
+                <label for="cilvilSoltero">soltero</label>
+              </p>
+              <p class="u-noMargin">
+                <input type="radio" id="civilUnion" name="estadocivil" value="2" data-name="Estado Civil" />
+                <label for="civilUnion">uniòn estado</label>
+              </p>
+              <p class="u-noMargin">
+                <input type="radio" id="civilSeparados" name="estadocivil" value="3" data-name="Estado Civil" />
+                <label for="civilSeparados">separados</label>
+              </p>
+            </div>
+          </article>
+          <!-- End Acompañante -->
+        </section>
+        <!-- End Consulta y Acompañante-->
+
+        <!-- Motivo de Consulta -->
+        <section class="Motivo-consulta" ng-controller="motivoConsultaCtrl056">
+          <article class="Motivo-consulta--self">
+            <p class="Motivo-consulta--title">
+              <a>1. MOTIVO DE CONSULTA (segùn adolescente):</a>
+              <a class="u-pointer motivo-add" ng-click="handleAddMotivoSelf()">
+                <i class="material-icons">add</i>
+              </a>
+            </p>
+            <ul class="Motivo-consulta--self-list" id="motivo-list">
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="input-1"
+                  class="Motivo-consulta--self-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10" id="cie-1"
+                    class="cie-input-motivo code-motivo-self" maxlength="4" />
+                </p>
+              </li>
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="input-2"
+                  class="Motivo-consulta--self-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10" id="cie-2"
+                    class="cie-input-motivo code-motivo-self" maxlength="4" />
+                </p>
+              </li>
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="input-3"
+                  class="Motivo-consulta--self-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10" id="cie-3"
+                    class="cie-input-motivo code-motivo-self" maxlength="4" />
+                </p>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Motivo-consulta--company">
+            <p class="Motivo-consulta--title">
+              <a>MOTIVO DE CONSULTA (segùn acompañante):</a>
+              <a class="u-pointer motivo-add" ng-click="handleAddMotivoCompany()">
+                <i class="material-icons">add</i>
+              </a>
+            </p>
+            <ul class="Motivo-consulta--self-list" id="motivo-list-company">
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-1"
+                  class="Motivo-consulta--company-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10"  id="cie-company-1"
+                    class="cie-input-motivo  code-motivo-company" maxlength="4" />
+                </p>
+              </li>
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-2"
+                  class="Motivo-consulta--company-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10" id="cie-company-2"
+                    class="cie-input-motivo  code-motivo-company" maxlength="4" />
+                </p>
+              </li>
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="input-company-3"
+                  class="Motivo-consulta--company-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10" id="cie-company-3"
+                    class="cie-input-motivo  code-motivo-company" maxlength="4" />
+                </p>
+              </li>
+            </ul>
+          </article>
+        </section>
+        <!-- End Motivo de Consulta -->
+
+        <!-- Enfermedad actual -->
+        <article class="Enfermedad-actual">
+          <p class="Motivo-consulta--title">2. ENFERMEDAD ACTUAL</p>
+          <div class="input-field">
+            <textarea id="enfermedad-actual" class="materialize-textarea" ng-model="data.enfermedadActual"
+              placeholder="Ingresea la enfermedad actual"></textarea>
+          </div>
+        </article>
+        <!-- End Enfermedad actual -->
+
+        <!-- Antecedentes Personales -->
+        <article class="Antecedente-personales">
+          <p class="Motivo-consulta--title">
+            3. ANTECEDENTES PERSONALES
+            <a ng-click="refreshCheck('.Antecedente-personales--grid')" class="u-pointer"><i class="material-icons">cached</i></a>
+          </p>
+          <article class="Antecedente-personales--grid">
+            <div ng-repeat="item in antecendesPersonales" class="Antecedente-personales--item">
+              <p class="bold-input Antecedente-personales--name">{{ item.name }}</p>
+
+              <div class="Antecedente-personales--options">
+                <p ng-repeat="check in item.options">
+                  <input name="{{ item.id }}" type="radio" id="{{ check.id }}"
+                    class="{{ check.class }}-input" value="{{ check.val }}" value="{{$index+1}}" />
+                  <label for="{{ check.id }}" class="{{ check.class }}">{{ check.name }}</label>
+                </p>
+              </div>
+
+            </div>
+          </article>
+          <p class="bold-input">Obeservaciones</p>
+          <div class="input-field">
+            <textarea id="ant_personales" class="materialize-textarea observacion" data-tipo="3"
+              placeholder="Ingresea una obeservaciones" style="padding:0"></textarea>
+          </div>
+        </article>
+        <!-- End Antecedentes Personales -->
+
+        <!-- Antecedentes Familiares -->
+        <article class="Antecedente-personales">
+          <p class="Motivo-consulta--title">4. ANTECEDENTES FAMILIARES
+            <a ng-click="refreshCheck('.Antecedente-familiares--grid')" class="u-pointer">
+              <i class="material-icons">cached</i>
+            </a>
+          </p>
+          <article class="Antecedente-familiares--grid">
+            <div ng-repeat="item in antecendesFamiliares" class="Antecedente-personales--item">
+              <p class="bold-input Antecedente-personales--name">{{ item.name }}</p>
+
+              <div class="Antecedente-personales--options">
+                <p ng-repeat="check in item.options">
+                  <input type="radio" name="{{item.id}}" id="{{ check.id }}"
+                    class="{{ check.class }}-input" value="{{$index+1}}" />
+                  <label for="{{ check.id }}" class="{{ check.class }}">{{ check.name }}</label>
+                </p>
+              </div>
+
+            </div>
+          </article>
+          <p class="bold-input">Obeservaciones</p>
+          <div class="input-field">
+            <textarea id="ant-fami-observacion" class="materialize-textarea observacion" data-tipo="4"
+              placeholder="Ingresea una obeservaciones" style="padding:0"></textarea>
+          </div>
+        </article>
+        <!-- End Antecedentes Familiares -->
+    </article>
+    <article id="hoja2">
+        <section class="FamiliarVivienda-grid">
+          <!-- Familia -->
+          <section class="Familia">
+            <p class="Motivo-consulta--title s-80" style="margin:0">5. FAMILIA
+              <a ng-click="refreshCheck('.Familia-grid')" class="u-pointer">
+                <i class="material-icons">cached</i>
+              </a>
+            </p>
+            <P class="u-noMargin Familia--title">CONVIVE CON</P>
+            <article class="Familia-grid">
+              <div class="Familia-header">
+                <p></p>
+                <p>No</p>
+                <p>En la casa</p>
+                <p>En el cuarto</p>
+              </div>
+              <div class="Familia-list" ng-repeat="item in familia">
+                <p class="Familia-name">{{ item.name }}</p>
+                <div class="Familia-options">
+                  <p ng-repeat="check in item.options">
+                    <input type="{{ check.type }}" name="{{item.id}}" id="{{ check.id }}"
+                      class="{{ check.class }}-input" class="{{ check.class }}-input"
+                      ng-click="shouldBeDisabled(check)" value="{{$index+1}}" />
+                    <label for="{{ check.id }}" class="{{ check.class }}"></label>
+                  </p>
+                </div>
+              </div>
+            </article>
+            <p class="u-noMargin Familia--title" style="margin-top:2em !important">VIVE
+              <a ng-click="refreshCheckVive('.Familia-list')" class="u-pointer">
+                <i class="material-icons">cached</i>
+              </a>
+            </p>
+            <article class="Familia-grid">
+              <div class="Familia-header">
+                <p></p>
+                <p>No</p>
+                <p>Si</p>
+              </div>
+              <div class="Familia-list" ng-repeat="item in vive">
+                <p class="Familia-name">{{ item.name }}</p>
+                <div class="Familia-options">
+                  <p ng-repeat="check in item.options">
+                    <input type="radio" name="{{item.id}}" id="{{ check.id }}"
+                      ng-disabled="item.id == 'vive4'" ng-click="shouldInsDisabled(check)"
+                      class="{{ check.class }}-input" class="{{ check.class }}-input" value="{{$index+1}}" />
+                    <label for="{{ check.id }}" class="{{ check.class }}"></label>
+                  </p>
+                </div>
+              </div>
+            </article>
+          </section>
+          <!-- End Familia -->
+
+          <!-- Trabajo Instruncion -->
+          <section class="Trabajo-Instruccion">
+            <!-- Nivel de Instrucciòn -->
+            <article class="Nivel-instruccion">
+              <p class="Nivel-instruccion-title cross-center main-distribute">Nivel de instrucciòn
+                <a ng-click="refreshCheck('.instruc056')" class="u-pointer main-center">
+                  <i class="material-icons">cached</i>
+                </a>
+              </p>
+              <div class="grid-padres-madres">
+                <p class="Nivel-instruccion--padre">Padre o sustituto</p>
+                <p class="Nivel-instruccion--madre">Madre o sustituto</p>
+              </div>
+              <div ng-repeat="item in nivelInstruccion" class="Nivel-instruccion--item instruc056">
+                <p class="Nivel-instruccion--name">{{ item.instr }}</p>
+                <p ng-repeat="check in item.options">
+                  <input name="hombre" type="radio" id="{{ check }}-hombre"  class="{{ check }}-input" value="{{$index+1}}" />
+                  <label for="{{ check }}-hombre" class="{{check}}"></label>
+                </p>
+                <p ng-repeat="check in item.options">
+                  <input name="mujer" type="radio" id="{{ check }}-mujer"  class="{{ check }}-input" value="{{$index+1}}" />
+                  <label for="{{ check }}-mujer" class="{{check}}"></label>
+                </p>
+              </div>
+            </article>
+            <!-- /Nivel de Instrucciòn -->
+
+            <!-- Trabajo -->
+            <article class="Nivel-instruccion">
+              <p class="Nivel-instruccion-title cross-center main-distribute">TRABAJO
+                <a ng-click="refreshCheck('.trabajo056')" class="u-pointer main-center">
+                  <i class="material-icons">cached</i>
+                </a>
+              </p>
+              <div class="grid-padres-madres">
+                <p class="Nivel-instruccion--padre">Padre o sustituto</p>
+                <p class="Nivel-instruccion--madre">Madre o sustituto</p>
+              </div>
+              <div ng-repeat="item in trabajo" class="Nivel-instruccion--item trabajo056">
+                <p class="Nivel-instruccion--name">{{ item.trab }}</p>
+                <p ng-repeat="check in item.options">
+                  <input name="hombre-trabajo" type="radio" id="{{ check }}-hombre" class="{{ check }}-input" value="{{$index+1}}" />
+                  <label for="{{ check }}-hombre" class="{{check}}"></label>
+                </p>
+                <p ng-repeat="check in item.options">
+                  <input name="mujer-trabajo" type="radio" id="{{ check }}-mujer" class="{{ check }}-input" value="{{$index+1}}" />
+                  <label for="{{ check }}-mujer" class="{{check}}"></label>
+                </p>
+
+              </div>
+            </article>
+            <!-- End Trabajo -->
+
+            <!-- OCUPACION -->
+            <article class="Ocupacion-instruccion">
+              <p class="bold-input u-noMargin">OCUPACIÒN</p>
+              <div class="input-field u-noMargin">
+                <input type="text" placeholder="Ingresa la ocupacion" ng-model="data.ocupacion" id="ocupacion056" />
+              </div>
+            </article>
+            <!-- End OCUPACION -->
+
+            <!-- Percepcion -->
+            <article class="Percepcion-familiar">
+              <a ng-click="refreshCheck('.Percepcion-familiar--list')" class="u-pointer main-center">
+                <i class="material-icons">cached</i>
+              </a>
+              <ul class="Percepcion-familiar--list">
+                <li class="Percepcion-familiar--item">Buena</li>
+                <li class="Percepcion-familiar--item">Regular</li>
+                <li class="Percepcion-familiar--item">Mala</li>
+                <li class="Percepcion-familiar--item small-size">No hay relaciòn</li>
+
+                <li class="Percepcion-familiar--item">
+                  <input name="percepcionFami" type="radio" id="Buena" value="1" />
+                  <label for="Buena"></label>
+                </li>
+                <li class="Percepcion-familiar--item">
+                  <input name="percepcionFami" type="radio" id="Regular" value="2" />
+                  <label for="Regular"></label>
+                </li>
+                <li class="Percepcion-familiar--item">
+                  <input name="percepcionFami" type="radio" id="Mala" class="no-check-input" value="3" />
+                  <label for="Mala" class="no-check"></label>
+                </li>
+                <li class="Percepcion-familiar--item">
+                  <input name="percepcionFami" type="radio" id="no-relacion" class="no-check-input" value="4" />
+                  <label for="no-relacion" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+            <!-- End Percepcion -->
+          </section>
+          <!-- End Trabajo Instruncion -->
+
+          <!-- Familiar -->
+          <section class="Familiar">
+            <article class="FamilarDriagama">
+              <h6 class="u-noMargin bold-input center-align">DIAGRAMA FAMILIAR</h6>
+              <div id="sketch">
+                <canvas id="paint" class="paint-driagrama"></canvas>
+              </div>
+            </article>
+
+            <article class="ApgarFamiliar">
+              <p class="ApgarFamiliar-title cross-center main-distribute">Apgar Familiar
+                <a ng-click="refreshCheck('.ApgarFamiliar')" class="u-pointer main-center">
+                  <i class="material-icons">cached</i>
+                </a>
+              </p>
+              <p class="ApgarFamiliar-item">
+                <input name="apgarFamiliar" type="radio" id="severamenteDisfuncional" class="no-check-input" value="1" />
+                <label for="severamenteDisfuncional" class="no-check"> 0 - 3 Familias Severamente Disfuncional</label>
+              </p>
+              <p class="ApgarFamiliar-item">
+                <input name="apgarFamiliar" type="radio" id="mediamenteDisfuncional" class="no-check-input" value="2" />
+                <label for="mediamenteDisfuncional" class="no-check"> 4 - 6 Familias Mediamente Disfuncional</label>
+              </p>
+              <p class="ApgarFamiliar-item">
+                <input name="apgarFamiliar" type="radio" id="familiasFuncional" value="3" />
+                <label for="familiasFuncional"> 7 - 10 Familias Funcionales</label>
+              </p>
+
+            </article>
+
+            <article class="FamilarObservacion">
+              <p class="FamilarObservacion-title">Observaciones</p>
+              <div class="input-field FamilarObservacion-field">
+                <textarea id="observacion-familiar" placeholder="Ingrese las observaciones"
+                  class="materialize-textarea FamilarObservacion-text observacion" data-tipo="5"></textarea>
+              </div>
+            </article>
+          </section>
+          <!-- End Familiar -->
+
+          <!-- Vivienda -->
+          <section class="Vivienda">
+            <p class="Motivo-consulta--title u-noMargin">6. VIVIENDA
+              <a ng-click="refreshCheck('.EnergiaElectrica')" class="u-pointer">
+                <i class="material-icons">cached</i>
+              </a>
+            </p>
+
+            <!-- Servicios Basicos -->
+            <article class="EnergiaElectrica">
+              <p class="bold-input EnergiaElectrica-title">ENERGIA ELÈCTRICA</p>
+              <ul class="EnergiaElectrica-list">
+                <li class="EnergiaElectrica-item">SI</li>
+                <li class="EnergiaElectrica-item">NO</li>
+                <li class="EnergiaElectrica-item">
+                  <input name="energiaElectrica" type="radio" id="EnergiaElectrica-si" value="1" />
+                  <label for="EnergiaElectrica-si"></label>
+                </li>
+                <li class="EnergiaElectrica-item">
+                  <input name="energiaElectrica" type="radio" id="EnergiaElectrica-no"
+                    class="no-check-input" value="2" />
+                  <label for="EnergiaElectrica-no" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+            <!-- End Servicios Basicos -->
+
+            <!-- Servicios Basicos -->
+            <article class="ServiciosBasicos" style="position:relative">
+              <a ng-click="refreshCheck('.ServiciosBasicos-list')" class="u-pointer main-end"
+                style="position:absolute;">
+                <i class="material-icons">cached</i>
+              </a>
+
+              <p class="bold-input EnergiaElectrica-title" style="margin-top: 1.2em;">AGUA</p>
+              <ul class="ServiciosBasicos-list u-noMargin">
+                <li class="ServiciosBasicos-item">en el hogar</li>
+                <li class="ServiciosBasicos-item">fuera del hogar</li>
+                <li class="ServiciosBasicos-item">
+                  <input name="aguaServiciosBasicos" type="radio" id="ServiciosBasicos-si" value="1" />
+                  <label for="ServiciosBasicos-si"></label>
+                </li>
+                <li class="ServiciosBasicos-item">
+                  <input name="aguaServiciosBasicos" type="radio" id="ServiciosBasicos-no"
+                    class="no-check-input" value="2" />
+                  <label for="ServiciosBasicos-no" class="no-check"></label>
+                </li>
+              </ul>
+
+              <p class="bold-input EnergiaElectrica-title">EXCRETAS</p>
+              <ul class="ServiciosBasicos-list u-noMargin">
+                <li class="ServiciosBasicos-item">
+                  <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-si" value="1" />
+                  <label for="ServiciosBasicos_excr-si"></label>
+                </li>
+                <li class="ServiciosBasicos-item">
+                  <input name="excretasServiciosBasicos-excr" type="radio" id="ServiciosBasicos_excr-no"
+                    class="no-check-input" value="2" />
+                  <label for="ServiciosBasicos_excr-no" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+            <!-- End Servicios Basicos -->
+
+            <!-- Numero de Cuatos -->
+            <article class="Cuotas" ng-controller="validForm">
+              <p class="bold-input">NÙMEROS DE CUARTOS</p>
+              <div class="input-field">
+                <input type="text" maxlength="2" placeholder="Ingresa cuantos cuartos hay en casa"
+                  ng-model="data.numerosCuartos" ng-keypress="ValidaSoloNumeros()" id="numerosCuartos056" />
+              </div>
+            </article>
+            <!-- End Numero de Cuatos -->
+
+            <!-- Observaciones -->
+            <article class="ObservacionesVivienda">
+              <p class="ObservacionesVivienda bold-input">Observaciones</p>
+              <div class="input-field">
+                <textarea class="materialize-textarea u-noMargin observacion" data-tipo="6" placeholder="Ingresa un observacion"
+                  style="min-height: 10em;"></textarea>
+              </div>
+            </article>
+            <!-- End Observaciones -->
+
+          </section>
+          <!-- End Vivienda -->
+        </section>
+      <!-- </section> -->
+      <section ng-controller="validForm" style="margin-top: 24px;">
+
+        <!-- Educacion -->
+        <section class="EducacionPaper2">
+
+          <article class="EducacionEstudia">
+            <p class="Motivo-consulta--title EducacionPaper2-title" style="display:flex;">7. EDUCACION
+              <a ng-click="refreshCheck('.EducacionPaper2')" class="u-pointer">
+                <i class="material-icons">cached</i>
+              </a>
+            </p>
+            <p class="bold-input EducacionEstudia-title">ESTUDIA</p>
+            <ul class="EducacionEstudia-list">
+              <li class="EducacionEstudia-item">si</li>
+              <li class="EducacionEstudia-item">no</li>
+
+              <li class="EducacionEstudia-item">
+                <input name="EducacionEstudia" type="radio" id="EducacionEstudia-si" value="1" />
+                <label for="EducacionEstudia-si"></label>
+              </li>
+              <li class="EducacionEstudia-item">
+                <input name="EducacionEstudia" type="radio" id="EducacionEstudia-no"
+                  class="no-check-input" value="2" />
+                <label for="EducacionEstudia-no" class="no-check"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="NivelEstudia">
+            <p class="bold-input u-noMargin center-align">NIVEL</p>
+            <p class="u-noMargin">
+              <input name="nivelEducacion" type="radio" id="noEscolariz" class="no-check-input"
+                ng-click="noEscolariz()" value="1" />
+              <label for="noEscolariz" class="no-check">No escolariz</label>
+            </p>
+
+            <p class="u-noMargin">
+              <input name="nivelEducacion" type="radio" id="primNivel" ng-click="noEscolariz()" value="2" />
+              <label for="primNivel">Prim.</label>
+            </p>
+            <p class="u-noMargin">
+              <input name="nivelEducacion" type="radio" id="secNivel" ng-click="noEscolariz()" value="3" />
+              <label for="secNivel">Sec.</label>
+            </p>
+            <p class="u-noMargin">
+              <input name="nivelEducacion" type="radio" id="univNivel" ng-click="noEscolariz()" value="4" />
+              <label for="univNivel">Univ.</label>
+            </p>
+
+          </article>
+          <article class="EducacioPperEstudia noEscolirizadoCheck CursoGradoEstudia center-align">
+            <p class="bold-input center-align u-noMargin">GRADO CURSO</p>
+            <div class="input-field main-center">
+              <input type="text" placeholder="Ingresa el grado o curso"
+                style="width:95%" ng-disabled="flagEducacion" class="observacion" data-tipo="7.1" />
+            </div>
+          </article>
+
+          <article class="EducacioPperEstudia noEscolirizadoCheck ApprovedYearEstudia u-border-right">
+            <p class="bold-input center-align u-noMargin">AÑOS APROBADOS</p>
+            <div class="input-field main-center">
+              <input type="text" maxlength="4" placeholder="ingresa los años aprobados" ng-keypress="ValidaSoloNumeros()"
+                style="width:95%" ng-disabled="flagEducacion" class="observacion" data-tipo="7.2" />
+            </div>
+          </article>
+
+          <article class="EducacioPperEstudia noEscolirizadoCheck ProblemaEscuelaEstudia u-border-right">
+            <p class="bold-input center-align u-noMargin">PROBLEMAS EN LA ESCUELA</p>
+            <ul class="EducacionEstudia-list">
+              <li class="EducacionEstudia-item">si</li>
+              <li class="EducacionEstudia-item">no</li>
+
+              <li class="EducacionEstudia-item">
+                <input name="problemasEscuela" type="radio" id="problemasEscuela-si"
+                  ng-disabled="flagEducacion" value="1" />
+                <label for="problemasEscuela-si"></label>
+              </li>
+              <li class="problemasEscuela-item">
+                <input name="problemasEscuela" type="radio" id="problemasEscuela-no"
+                  class="no-check-input" ng-disabled="flagEducacion" value="2" />
+                <label for="problemasEscuela-no" class="no-check"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="EducacioPperEstudia noEscolirizadoCheck RepeatYearEstudia u-border-right">
+            <p class="bold-input center-align u-noMargin main-justify cross-center">
+              AÑOS REPETIDOS
+              <span class="problemasEscuela-item main-center">
+                <input type="checkbox" id="repeatYearCausa-no" class="no-check-input"
+                  ng-disabled="flagEducacion" value="1" name="repeatYearCausa" ng-click="repeatYearDisabled()" />
+                <label for="repeatYearCausa-no" class="no-check"></label>
+              </span>
+            </p>
+            <p class="u-noMargin">Causa</p>
+            <div class="input-field u-noMargin">
+              <input type="text" placeholder="Ingresa la causa" id="obsYearRepeat" ng-keypress="ValidaSoloNumeros()" maxlength="4"
+                ng-disabled="flagEducacion || !disabledInput" class="observacion" data-tipo="7.3" />
+            </div>
+          </article>
+
+          <article class="EducacioPperEstudia noEscolirizadoCheck DisercionEstudia u-border-right">
+            <div class="DisercionEstudia-grid">
+              <p class="bold-input u-noMargin">DESERCIÒN EXCLUSIÒN</p>
+              <ul class="DisercionEstudia-list">
+                <li class="DisercionEstudia-item">no</li>
+                <li class="DisercionEstudia-item">si</li>
+                <li class="DisercionEstudia-item">
+                  <input name="DisercionEstudia" type="radio" id="DisercionEstudia-no"
+                    ng-disabled="flagEducacion" value="1" ng-click="handleDeserExclDis()" />
+                  <label for="DisercionEstudia-no"></label>
+                </li>
+                <li class="DisercionEstudia-item">
+                  <input name="DisercionEstudia" type="radio" id="DisercionEstudia-si"
+                    class="no-check-input" ng-disabled="flagEducacion" value="2" ng-click="handleDeserExclDis()" />
+                  <label for="DisercionEstudia-si" class="no-check"></label>
+                </li>
+              </ul>
+            </div>
+            <p class="u-noMargin">Causa</p>
+            <div class="input-field u-noMargin">
+              <input type="text" placeholder="Ingresa una causa" class="observacion" data-tipo="7.4"
+                ng-disabled="flagEducacion || deserExclDis" id="causaDesercionExcl" />
+            </div>
+          </article>
+
+          <article class="EducacioPperEstudia EducacionNoFormalEstudia">
+            <div class="DisercionEstudia-grid">
+              <p class="bold-input u-noMargin">EDUCACION NO FORMAL</p>
+              <ul class="DisercionEstudia-list">
+                <li class="DisercionEstudia-item">no</li>
+                <li class="DisercionEstudia-item">si</li>
+                <li class="DisercionEstudia-item">
+                  <input name="EducacionNoFormalEstudia" type="radio"
+                    id="EducacionNoFormalEstudia-no" value="1" ng-click="handleDisEducaNoFormal()" />
+                  <label for="EducacionNoFormalEstudia-no"></label>
+                </li>
+                <li class="EducacionNoFormalEstudia-item">
+                  <input name="EducacionNoFormalEstudia" type="radio"
+                    id="EducacionNoFormalEstudia-si" value="2" ng-click="handleDisEducaNoFormal()" />
+                  <label for="EducacionNoFormalEstudia-si"></label>
+                </li>
+              </ul>
+            </div>
+            <p class="u-noMargin">¿Cual?</p>
+            <div class="input-field u-noMargin">
+              <input type="text" placeholder="Ingresa una causa" class="observacion"
+                data-tipo="7.5" id="cualEducFormal" ng-disabled="disabledEducNoForm" />
+            </div>
+          </article>
+
+        </section>
+        <article class="ObservacionesEducacion">
+          <p class="bold-input u-noMargin">Observaciones</p>
+          <div class="input-field s-100 u-noMargin" >
+            <input class="observacion" data-tipo="7" placeholder="Ingresa la observacion" />
+          </div>
+        </article>
+        <!-- End Educacion -->
+
+        <!-- Trabajo -->
+        <section class="TrabajoPaper">
+          <article class="TrabajoActividad u-border-right">
+            <div class="TrabajoActividad-header">
+              <p class="Motivo-consulta--title EducacionPaper2-title" style="display:flex">8. Trabajo
+                <a ng-click="refreshCheck('.TrabajoPaper')" class="u-pointer">
+                  <i class="material-icons">cached</i>
+                </a>
+              </p>
+              <p class="bold-input u-noMargin center-align TrabajoActividad-title">Actividad</p>
+            </div>
+            <ul class="TrabajoActividad-list">
+              <li class="TrabajoActividad-item">
+                <input name="TrabajoActividad" type="radio" id="TrabajoActividad-trabaja"
+                  ng-click="trabajaCheck()" value="1" />
+                <label for="TrabajoActividad-trabaja">trabaja</label>
+              </li>
+              <li class="TrabajoActividad-item">
+                <input name="TrabajoActividad" type="radio" id="TrabajoActividad-1vez"
+                  ng-click="trabajaCheck()" value="2" />
+                <label for="TrabajoActividad-1vez">busca 1era. vez</label>
+              </li>
+              <li class="TrabajoActividad-item">
+                <input name="TrabajoActividad" type="radio" id="TrabajoActividad-no-busco"
+                  ng-click="trabajaCheck()" value="3" />
+                <label for="TrabajoActividad-no-busco">no y no busco</label>
+              </li>
+              <li class="TrabajoActividad-item">
+                <input name="TrabajoActividad" type="radio" id="TrabajoActividad-desocupado"
+                  ng-click="trabajaCheck()" value="4" />
+                <label for="TrabajoActividad-desocupado">desocupado</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="u-border-right refresWorkPaper EdadInicioTrab">
+            <p class="bold-input u-noMargin center-align EdadInicioTrab-title">EDAD INICIO TRABAJO</p>
+            <p class="EdadInicioTrab-head">años</p>
+            <div class="input-field u-noMargin main-center">
+              <input type="text" placeholder="Ingresa la edad" maxlength="2" style="width:95%"
+                ng-disabled="flagTrabaja" class="observacion" data-tipo="8.1" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
+            </div>
+          </article>
+
+          <article class="u-border-right refresWorkPaper TrabajoByHoras">
+            <p class="bold-input u-noMargin center-align TrabajoByHoras-head">TRABAJA</p>
+            <div class="input-field u-noMargin main-center">
+              <input type="text" placeholder="Ingresa la edad" maxlength="2" style="width:95%"
+                ng-disabled="flagTrabaja" class="observacion" data-tipo="8.2" ng-keypress="ValidaSoloNumeros()" />
+            </div>
+            <span class="TrabajoByHoras-footer">horas por semana</span>
+          </article>
+
+          <article class="u-border-right refresWorkPaper HorasTrabajo">
+            <p class="bold-input u-noMargin center-align">HORAS DE TRABAJO</p>
+            <ul class="HorasTrabajo-list">
+              <li class="HorasTrabajo-item">
+                <input name="HorasTrabajo" type="radio" id="HorasTrabajo-morning"
+                  ng-disabled="flagTrabaja" value="1" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
+                <label for="HorasTrabajo-morning">mañana</label>
+              </li>
+              <li class="HorasTrabajo-item">
+                <input name="HorasTrabajo" type="radio" id="HorasTrabajo-allDay"
+                  class="no-check-input" ng-disabled="flagTrabaja" value="2" />
+                <label for="HorasTrabajo-allDay" class="no-check">todo el dia</label>
+              </li>
+              <li class="HorasTrabajo-item">
+                <input name="HorasTrabajo" type="radio" id="HorasTrabajo-late"
+                  ng-disabled="flagTrabaja" value="3" />
+                <label for="HorasTrabajo-late">tarde</label>
+              </li>
+              <li class="HorasTrabajo-item">
+                <input name="HorasTrabajo" type="radio" id="HorasTrabajo-noche"
+                  class="no-check-input" ng-disabled="flagTrabaja" value="4" />
+                <label for="HorasTrabajo-noche" class="no-check">Noche</label>
+              </li>
+              <li class="HorasTrabajo-item">
+                <input name="HorasTrabajo" type="radio" id="HorasTrabajo-fin-semana"
+                  ng-disabled="flagTrabaja" value="5" />
+                <label for="HorasTrabajo-fin-semana">fin de semana</label>
+              </li>
+              <li class="HorasTrabajo-item">
+                <input name="HorasTrabajo" type="radio" id="HorasTrabajo-nc"
+                  ng-disabled="flagTrabaja" value="6" />
+                <label for="HorasTrabajo-nc">n/c</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="u-border-right refresWorkPaper RazonTrabajo">
+            <p class="bold-input center-align u-noMargin">RAZON DE TRABAJO</p>
+            <p class="u-noMargin">
+              <input name="RazonTrabajo" type="radio" id="RazonTrabajo-economia"
+                ng-disabled="flagTrabaja" value="1" />
+              <label for="RazonTrabajo-economia">economia</label>
+            </p>
+            <p class="u-noMargin">
+              <input name="RazonTrabajo" type="radio" id="RazonTrabajo-autonomia"
+                ng-disabled="flagTrabaja" value="2" />
+              <label for="RazonTrabajo-autonomia">autonomia</label>
+            </p>
+            <p class="u-noMargin">
+              <input name="RazonTrabajo" type="radio" id="RazonTrabajo-like"
+                ng-disabled="flagTrabaja" value="3" />
+              <label for="RazonTrabajo-like">me gusta</label>
+            </p>
+            <ul class="RazonTrabajo-item--list u-noMargin">
+              <li>
+                <input name="RazonTrabajo" type="radio" id="RazonTrabajo-other"
+                  ng-disabled="flagTrabaja" value="4" />
+                <label for="RazonTrabajo-other">otra</label>
+              </li>
+              <li>
+                <input name="RazonTrabajo" type="radio" id="RazonTrabajo-nc"
+                  ng-disabled="flagTrabaja" value="5" />
+                <label for="RazonTrabajo-nc">n/c</label>
+              </li>
+            </ul>
+
+          </article>
+
+          <article class="u-border-right refresWorkPaper TrabajoLegalizado main-center">
+            <p class="bold-input center-align u-noMargin">TRABAJO LEGALIZADO</p>
+            <ul class="TrabajoLegalizado-list">
+              <li class="TrabajoLegalizado-item">si</li>
+              <li class="TrabajoLegalizado-item">no</li>
+              <li class="TrabajoLegalizado-item">n/c</li>
+              <li class="TrabajoLegalizado-item">
+                <input name="TrabajoLegalizado" type="radio" id="TrabajoLegalizado-si"
+                  ng-disabled="flagTrabaja" value="1" />
+                <label for="TrabajoLegalizado-si"></label>
+              </li>
+              <li class="TrabajoLegalizado-item">
+                <input name="TrabajoLegalizado" type="radio" id="TrabajoLegalizado-no"
+                  class="no-check-input" ng-disabled="flagTrabaja" value="2" />
+                <label for="TrabajoLegalizado-no" class="no-check"></label>
+              </li>
+              <li class="TrabajoLegalizado-item">
+                <input name="TrabajoLegalizado" type="radio" id="TrabajoLegalizado-nc"
+                  ng-disabled="flagTrabaja" value="3" />
+                <label for="TrabajoLegalizado-nc"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="refresWorkPaper main-center TrabajoInsalubre main-center">
+            <p class="bold-input center-align u-noMargin">TRABAJO INSALUBRE</p>
+            <ul class="TrabajoLegalizado-list">
+              <li class="TrabajoInsalubre-item">no</li>
+              <li class="TrabajoInsalubre-item">si</li>
+              <li class="TrabajoInsalubre-item">n/c</li>
+              <li class="TrabajoInsalubre-item">
+                <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-no"
+                  ng-disabled="flagTrabaja" value="1" ng-click="handleWorkDisabInsalubre()" />
+                <label for="TrabajoInsalubre-no"></label>
+              </li>
+              <li class="TrabajoInsalubre-item">
+                <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-si"
+                  class="no-check-input" ng-disabled="flagTrabaja" value="2" ng-click="handleWorkDisabInsalubre()" />
+                <label for="TrabajoInsalubre-si" class="no-check"></label>
+              </li>
+              <li class="TrabajoInsalubre-item">
+                <input name="TrabajoInsalubre" type="radio" id="TrabajoInsalubre-nc"
+                  ng-disabled="flagTrabaja" value="3" ng-click="handleWorkDisabInsalubre()" />
+                <label for="TrabajoInsalubre-nc"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="TipoTrabajo">
+            <p class="bold-input u-noMargin">TIPO DE TRABAJO</p>
+            <div class="input-field">
+              <textarea class="materialize-textarea" placeholder="Ingrese el tipo de trabajo" id="obserTypeWork"
+                ng-disabled="flagTrabaja || workInsalubreDis" class="observacion" data-tipo="8.3"></textarea>
+            </div>
+          </article>
+        </section>
+        <article class="ObservacionesTrabajoPaper">
+          <p class="bold-input u-noMargin">Observaciones</p>
+          <div class="input-field s-100 u-noMargin">
+            <input class="observacion" data-tipo="8" placeholder="Ingresa la observacion" />
+          </div>
+        </article>
+        <!-- End Trabajo -->
+
+        <!-- VidaSocial -->
+        <section class="VidaSocial">
+          <article class="u-border-right VidaSocialAceptacion">
+            <div class="VidaSocial-header">
+              <p class="Motivo-consulta--title u-noMargin">9. VIDA SOCIAL
+                <a ng-click="refreshCheck('.VidaSocial')" class="u-pointer">
+                  <i class="material-icons">cached</i>
+                </a>
+              </p>
+              <p class="u-noMargin bold-input center-align">ACEPTACION</p>
+            </div>
+            <ul class="VidaSocialAceptacion-list">
+              <li class="VidaSocialAceptacion-item">
+                <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-aceptado" value="1" />
+                <label for="VidaSocialAceptacion-aceptado">aceptado</label>
+              </li>
+              <li class="VidaSocialAceptacion-item">
+                <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-ignorado"
+                  class="no-check-input" value="2" />
+                <label for="VidaSocialAceptacion-ignorado" class="no-check">ignorado</label>
+              </li>
+              <li class="VidaSocialAceptacion-item">
+                <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-rechazado"
+                  class="no-check-input" value="3" />
+                <label for="VidaSocialAceptacion-rechazado" class="no-check">rechazado</label>
+              </li>
+              <li class="VidaSocialAceptacion-item">
+                <input name="VidaSocialAceptacion" type="radio" id="VidaSocialAceptacion-nosabe" value="4" />
+                <label for="VidaSocialAceptacion-nosabe">no sabe</label>
+              </li>
+            </ul>
+          </article>
+          <article class="u-border-right NoviaAmigo">
+            <div class="VidaSocial-novio">
+              <p class="u-noMargin center-align">NOVIO/A</p>
+              <ul class="VidaSocial-novio--list">
+                <li class="VidaSocial-novio--item">si</li>
+                <li class="VidaSocial-novio--item">no</li>
+
+                <li class="VidaSocial-novio--item">
+                  <input name="vidaSocialNovio" type="radio" id="vidaSocialNovio-si" value="1" />
+                  <label for="vidaSocialNovio-si"></label>
+                </li>
+                <li class="VidaSocial-novio--item">
+                  <input name="vidaSocialNovio" type="radio" id="vidaSocialNovio-no" value="2" />
+                  <label for="vidaSocialNovio-no"></label>
+                </li>
+              </ul>
+            </div>
+            <div class="VidaSocial-amigos">
+              <p class="u-noMargin center-align">AMIGOS</p>
+              <ul class="VidaSocial-novio--list">
+                <li class="VidaSocial-novio--item">si</li>
+                <li class="VidaSocial-novio--item">no</li>
+
+                <li class="VidaSocial-novio--item">
+                  <input name="vidaSocialAmigo" type="radio" id="vidaSocialAmigo-si" value="1" />
+                  <label for="vidaSocialAmigo-si"></label>
+                </li>
+                <li class="VidaSocial-novio--item">
+                  <input name="vidaSocialAmigo" type="radio" id="vidaSocialAmigo-no" value="2" />
+                  <label for="vidaSocialAmigo-no"></label>
+                </li>
+              </ul>
+            </div>
+          </article>
+          <article class="u-border-right ActividadGruapal">
+            <p class="bold-input u-noMargin center-align">ACTIVIDAD GRUPAL</p>
+            <ul class="ActividadGruapal-list center-align">
+              <li class="ActividadGruapal-item">si</li>
+              <li class="ActividadGruapal-item">no</li>
+              <li class="ActividadGruapal-item">
+                <input name="ActividadGruapal" type="radio" id="ActividadGruapal-si" value="1" />
+                <label for="ActividadGruapal-si"></label>
+              </li>
+              <li class="ActividadGruapal-item">
+                <input name="ActividadGruapal" type="radio" id="ActividadGruapal-no"
+                  class="no-check-input" value="2" />
+                <label for="ActividadGruapal-no" class="no-check"></label>
+              </li>
+            </ul>
+          </article>
+          <article class="u-border-right DeporteTv">
+            <div class="VidaSocialDeporte">
+              <p class="bold-input u-noMargin">DEPORTE</p>
+              <div class="input-field u-noMargin">
+                <input type="text" class="u-noMargin"  placeholder="horas por semanas"
+                  class="observacion" data-tipo="9.1" ng-keypress="ValidaSoloNumeros()" maxlength="3" />
+              </div>
+            </div>
+            <div class="VidaSocialTv">
+              <p class="bold-input u-noMargin">TV</p>
+              <div class="input-field u-noMargin">
+                <input type="text" class="u-noMargin"  placeholder="horas por dia"
+                  class="observacion" data-tipo="9.2" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
+              </div>
+            </div>
+          </article>
+          <article class="OtrasActividades">
+            <ul class="OtrasActividades-list center-align">
+              <li class="OtrasActividades-item bold-input">OTRAS ACTIVIDADES</li>
+              <li class="OtrasActividades-item">
+                <input name="OtrasActividades" type="radio" id="OtrasActividades-si" value="1"
+                  ng-click="handleDisabledOtherActividades()" />
+                <label for="OtrasActividades-si">si</label>
+              </li>
+              <li class="OtrasActividades-item">
+                <input name="OtrasActividades" type="radio" id="OtrasActividades-no" value="2"
+                  ng-click="handleDisabledOtherActividades()" />
+                <label for="OtrasActividades-no">no</label>
+              </li>
+              <li class="OtrasActividades-item">¿Cuàles?</li>
+            </ul>
+            <div class="input-field main-center">
+              <input type="text" placeholder="Escriba cuales son las avtividades que realiza"
+                style="width:95%" class="observacion obsActivity" data-tipo="9.3" ng-disabled="disabledOtherActiv" />
+            </div>
+          </article>
+        </section>
+        <article class="ObservacionesTrabajoPaper">
+          <p class="bold-input u-noMargin">Observaciones</p>
+          <div class="input-field s-100 u-noMargin">
+            <input class="observacion" data-tipo="9" placeholder="Ingresa la observacion" />
+          </div>
+        </article>
+        <!-- End VidaSocial -->
+
+        <!-- Habitos -->
+        <section class="Habitos">
+          <article class="u-border-right HabitosDreams">
+            <p class="Motivo-consulta--title u-noMargin">10. HABITOS
+              <a ng-click="refreshCheck('.Habitos')" class="u-pointer">
+                <i class="material-icons">cached</i>
+              </a>
+            </p>
+            <div class="HabitosDreams-grid">
+              <div class="Habitos-checked">
+                <p class="bold-input u-noMargin center-align">SUEÑO NORMAL</p>
+                <ul class="Habitos-list center-align">
+                  <li class="Habitos-item">si</li>
+                  <li class="Habitos-item">no</li>
+                  <li class="Habitos-item">
+                    <input name="Habitos" type="radio" id="Habitos-si" value="1" />
+                    <label for="Habitos-si"></label>
+                  </li>
+                  <li class="Habitos-item">
+                    <input name="Habitos" type="radio" id="Habitos-no"
+                      class="no-check-input" value="2" />
+                    <label for="Habitos-no" class="no-check"></label>
+                  </li>
+                </ul>
+              </div>
+              <div class="input-field u-noMargin">
+              <p class="bold-input u-noMargin cross-center main-center" style="height:4em">horas</p>
+              <input type="text" class="u-noMargin observacion" placeholder="Ingrese las horas"
+                ng-keypress="ValidaSoloNumeros()" maxlength="2" data-tipo="10.7"/>
+            </div>
+            </div>
+          </article>
+
+          <article class="u-border-right alimentacionAdecuada">
+            <p class="bold-input EducacionEstudia-title">ALIMENTACION ADECUADA</p>
+            <ul class="EducacionEstudia-list">
+              <li class="EducacionEstudia-item">si</li>
+              <li class="EducacionEstudia-item">no</li>
+
+              <li class="EducacionEstudia-item">
+                <input name="alimentacionAdecuada" type="radio" id="alimentacionAdecuada-si" value="1" />
+                <label for="alimentacionAdecuada-si"></label>
+              </li>
+              <li class="EducacionEstudia-item">
+                <input name="alimentacionAdecuada" type="radio" id="alimentacionAdecuada-no"
+                  class="no-check-input" value="2" />
+                <label for="alimentacionAdecuada-no" class="no-check"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="u-border-right comidasDia">
+            <p class="bold-input EducacionEstudia-title">COMIDAS POR DIA</p>
+            <p class="center-align">
+              <input name="comidaDia" type="checkbox" id="comidaDia" value="1" />
+              <label for="comidaDia"></label>
+            </p>
+          </article>
+
+          <article class="u-border-right ComidadDiaFamilia">
+            <p class="bold-input EducacionEstudia-title">COMIDAS POR DIA CON FAMILIA</p>
+            <p class="center-align">
+              <input name="alimentacion-adecuada" type="checkbox" id="comidaDiaFamilia" value="1" />
+              <label for="comidaDiaFamilia"></label>
+            </p>
+          </article>
+
+          <article class="u-border-right tabaco">
+            <p class="bold-input u-noMargin center-align">TABACO</p>
+            <div class="input-field main-center" style="margin-top:3em">
+              <input type="text" id="cigariilos-dia" style="width:92%" class="observacion" data-tipo="10.1"
+                ng-keypress="ValidaSoloNumeros()" maxlength="3" />
+              <label for="cigariilos-dia" style="font-size:12px;margin-left:3px">Cigarrillos por dia</label>
+            </div>
+          </article>
+
+          <article class="u-border-right edadInicioTabaco">
+            <p class="bold-input u-noMargin center-align">EDAD INICIO TABACO</p>
+            <div class="input-field main-center" style="margin-top:1.5em">
+              <input type="text" id="cigariilos-dia-start" style="width:92%"
+                class="observacion" data-tipo="10.2" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
+              <label for="cigariilos-dia-start" style="font-size:12px;margin-left:4px">años</label>
+            </div>
+          </article>
+
+          <article class="u-border-right Alcohol">
+            <p class="bold-input u-noMargin center-align">ALCOHOL</p>
+            <div class="input-field main-center" style="margin-top:3em">
+              <input type="text" id="alcohol" style="width:92%" class="observacion" data-tipo="10.3" ng-keypress="ValidaSoloNumeros()" maxlength="4" />
+              <label for="alcohol" style="font-size:11px;margin-left:3px">equivalente a litros de cerveza por semana</label>
+            </div>
+          </article>
+
+          <article class="u-border-right Alcohol-start">
+            <p class="bold-input u-noMargin center-align">EDAD INICIO ALCOHOL</p>
+            <div class="input-field main-center" style="margin-top:1.5em">
+              <input type="text" id="alcohol-start" style="width:92%" class="observacion" data-tipo="10.4"
+                ng-keypress="ValidaSoloNumeros()" maxlength="2" />
+              <label for="alcohol-start" style="font-size:11px;margin-left:3px">años</label>
+            </div>
+          </article>
+
+          <article class="u-border-right OtroToxico">
+            <p class="bold-input u-noMargin center-align">OTRO TÒXICO</p>
+
+            <ul class="OtroToxico-list u-noMargin center-align">
+              <li class="OtroToxico-item">no</li>
+              <li class="OtroToxico-item">si</li>
+              <li class="OtroToxico-item">
+                <input name="OtroToxico" type="radio" id="OtroToxico-no"
+                  value="1" ng-click="handleOtherToxico()" />
+                <label for="OtroToxico-no"></label>
+              </li>
+              <li class="OtroToxico-item">
+                <input name="OtroToxico" type="radio" id="OtroToxico-si"
+                  class="no-check-input" value="2" ng-click="handleOtherToxico()" />
+                <label for="OtroToxico-si" class="no-check"></label>
+              </li>
+            </ul>
+
+            <div class="input-field main-center" style="margin-top:1em">
+              <input type="text" id="frecunciaTypo" style="width:92%" class="observacion" data-tipo="10.5"
+                ng-disabled="otherToxico" />
+              <label for="frecunciaTypo" style="font-size:11px;margin-left:3px">frecuencia y tipo</label>
+            </div>
+          </article>
+
+          <article class="ConduceVehiculo">
+            <div class="ConduceVehiculo-grid">
+              <p class="bold-input u-noMargin center-align">CONDUCE VEHICULO</p>
+              <ul class="ConduceVehiculo-list u-noMargin center-align">
+                <li class="ConduceVehiculo-item">
+                  <input name="ConduceVehiculo" type="radio" id="ConduceVehiculo-no"
+                  value="1" ng-click="handleDriveCar()" />
+                  <label for="ConduceVehiculo-no">no</label>
+                </li>
+                <li class="ConduceVehiculo-item">
+                  <input name="ConduceVehiculo" type="radio" id="ConduceVehiculo-si"
+                  class="no-check-input" value="2" ng-click="handleDriveCar()" />
+                  <label for="ConduceVehiculo-si" class="no-check">si</label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="input-field main-center" style="margin-top:.5em">
+              <input type="text" id="cual-conduce-carro" style="width:92%" class="observacion" data-tipo="10.6"
+                ng-disabled="conduceVehiculoDisab" />
+              <label for="cual-conduce-carro" style="font-size:11px;margin-left:3px">¿Cuàl?</label>
+            </div>
+          </article>
+        </section>
+        <article class="ObservacionesHabitos">
+          <p class="bold-input u-noMargin">Observaciones</p>
+          <div class="input-field s-100 u-noMargin">
+            <input class="observacion" data-tipo="10" placeholder="Ingresa la observacion" />
+          </div>
+        </article>
+        <!-- End Habitos -->
+
+        <!-- Gineco -->
+        <section class="Ginecologia">
+          <article class="u-border-right MenarcaEspermarca">
+            <p class="Motivo-consulta--title u-noMargin">11. GINECO-UROLOGICO
+              <a ng-click="refreshCheck('.Ginecologia')" class="u-pointer">
+                <i class="material-icons">cached</i>
+              </a>
+            </p>
+            <p class="u-noMargin bold-input">MENARCA/ESPERMARCA</p>
+            <div class="MenarcaEspermarca-grid">
+              <div class="input-field u-noMargin">
+                <input type="text" id="menarca-year" class="observacion" data-tipo="11.1" ng-keypress="ValidaSoloNumeros()" maxlength="4" />
+                <label for="menarca-year">años</label>
+              </div>
+              <div class="input-field u-noMargin">
+                <input type="text" id="meses-year" class="observacion" data-tipo="11.2" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
+                <label for="meses-year">meses</label>
+              </div>
+            </div>
+          </article>
+
+          <article class="u-border-right FechaUltilMenstruacion">
+            <p class="u-noMargin bold-input center-align">FECHA DE LA ULTIMA MENSTRUACION</p>
+            <ul class="FechaUltilMenstruacion-list center-text u-noMargin">
+              <li class="FechaUltilMenstruacion-item">
+                <input name="FechaUltilMenstruacion" type="radio" id="FechaUltilMenstruacion-no"
+                  class="no-check-input" ng-disabled="urologia == false" value="1" />
+                <label for="FechaUltilMenstruacion-no" class="no-check">no</label>
+              </li>
+              <li class="FechaUltilMenstruacion-item">
+                <input name="FechaUltilMenstruacion" type="radio" id="FechaUltilMenstruacion-si"
+                  ng-disabled="urologia == false" value="2" />
+                <label for="FechaUltilMenstruacion-si">si</label>
+              </li>
+            </ul>
+
+            <ul class="FechaUltilMenstruacion-form u-noMargin">
+              <li class="input-field">
+                <input type="text" id="dia" ng-disabled="urologia == false" class="observacion" data-tipo="11.3" />
+                <label for="dia">dia</label>
+              </li>
+              <li class="input-field">
+                <input type="text" id="mes" ng-disabled="urologia == false" class="observacion" data-tipo="11.4" />
+                <label for="mes">mes</label>
+              </li>
+              <li class="input-field">
+                <input type="text" id="year" ng-disabled="urologia == false" class="observacion" data-tipo="11.5"/>
+                <label for="year">años</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="u-border-right CiclosRegulares">
+            <p class="u-noMargin bold-input center-align">Ciclos Regulares</p>
+            <ul class="CiclosRegulares-list center-align u-noMargin">
+              <li class="CiclosRegulares-item">si</li>
+              <li class="CiclosRegulares-item">no</li>
+              <li class="CiclosRegulares-item">n/c</li>
+              <li class="CiclosRegulares-item">
+                <input name="CiclosRegulares" type="radio" id="CiclosRegulares-si"
+                  ng-disabled="urologia == false" value="1" />
+                <label for="CiclosRegulares-si"></label>
+              </li>
+
+              <li class="CiclosRegulares-item">
+                <input name="CiclosRegulares" type="radio" id="CiclosRegulares-no"
+                  class="no-check-input" ng-disabled="urologia == false" value="2" />
+                <label for="CiclosRegulares-no" class="no-check"></label>
+              </li>
+              <li class="CiclosRegulares-item">
+                <input name="CiclosRegulares" type="radio" id="CiclosRegulares-nc"
+                  ng-disabled="urologia == false" value="3" />
+                <label for="CiclosRegulares-nc"></label>
+              </li>
+
+            </ul>
+          </article>
+
+          <article class="u-border-right Dismenorrea">
+            <p class="u-noMargin bold-input center-align">DISMENORREA</p>
+            <ul class="CiclosRegulares-list center-align u-noMargin">
+              <li class="CiclosRegulares-item">si</li>
+              <li class="CiclosRegulares-item">no</li>
+              <li class="CiclosRegulares-item">n/c</li>
+              <li class="CiclosRegulares-item">
+                <input name="Dismenorrea" type="radio" id="Dismenorrea-si" ng-disabled="urologia == false" value="1" />
+                <label for="Dismenorrea-si"></label>
+              </li>
+              <li class="CiclosRegulares-item">
+                <input name="Dismenorrea" type="radio" id="Dismenorrea-no"
+                  class="no-check-input" ng-disabled="urologia == false" value="2" />
+                <label for="Dismenorrea-no" class="no-check"></label>
+              </li>
+              <li class="CiclosRegulares-item">
+                <input name="Dismenorrea" type="radio" id="Dismenorrea-nc" ng-disabled="urologia == false" value="3" />
+                <label for="Dismenorrea-nc"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="u-border-right FlujoPatSec">
+            <p class="u-noMargin bold-input center-align">FLUJOS PATOLOGICOS SECRECION PENEANA</p>
+            <ul class="flujosPatologia-list center-align u-noMargin">
+              <li class="flujosPatologia-item">si</li>
+              <li class="flujosPatologia-item">no</li>
+              <li class="flujosPatologia-item">
+                <input name="flujosPatologia" type="radio" id="flujosPatologia-si" ng-disabled="urologia" value="1" />
+                <label for="flujosPatologia-si"></label>
+              </li>
+              <li class="flujosPatologia-item">
+                <input name="flujosPatologia" type="radio" id="flujosPatologia-no"
+                  class="no-check-input" ng-disabled="urologia" value="2" />
+                <label for="flujosPatologia-no" class="no-check"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="u-border-right EnferTransmSex">
+            <div class="EnferTransmSex-header">
+              <p class="bold-input u-noMargin">ENFERMEDADES DE TRANSMISION SEXUAL</p>
+              <ul class="CiclosRegulares-list center-align u-noMargin">
+                <li class="CiclosRegulares-item">
+                  <input name="EnfTranSexual" type="radio" id="EnfTranSexual-no"
+                    class="no-check-input" value="1" ng-click="handleTrasmiSexual()" />
+                  <label for="EnfTranSexual-no" class="no-check">no</label>
+                </li>
+                <li class="CiclosRegulares-item">
+                  <input name="EnfTranSexual" type="radio" id="EnfTranSexual-si" value="2"
+                    ng-click="handleTrasmiSexual()" />
+                  <label for="EnfTranSexual-si">si</label>
+                </li>
+              </ul>
+            </div>
+            <div class="input-field">
+              <input type="text" id="cual-trasmision-sexual" ng-disabled="trasmiSexuDis" class="observacion" data-tipo="11.6" />
+              <label for="cual-trasmision-sexual">¿Cual?</label>
+            </div>
+          </article>
+
+          <article class="u-border-right Embarazos">
+            <ul class="Embarazos-list">
+              <li class="Embarazos-item">
+                <input name="Embarazos" type="radio" id="Embarazos-no" class="no-check-input"
+                  ng-disabled="urologia == false" value="1" />
+                <label for="Embarazos-no" class="no-check">EMBARAZOS</label>
+              </li>
+              <li class="Embarazos-item">
+                <input name="Embarazos" type="radio" id="hijos-no" class="no-check-input"
+                  ng-disabled="urologia == false" value="2" />
+                <label for="hijos-no" class="no-check">HIJOS</label>
+              </li>
+              <li class="Embarazos-item">
+                <input name="Embarazos" type="radio" id="abortos-no" class="no-check-input"
+                  ng-disabled="urologia == false" value="3" />
+                <label for="abortos-no" class="no-check">ABORTOS</label>
+              </li>
+            </ul>
+          </article>
+        </section>
+        <article class="ObservacionesGinecologia">
+          <p class="bold-input u-noMargin">Observaciones</p>
+          <div class="input-field s-100 u-noMargin">
+            <input class="observacion" data-tipo="11" placeholder="Ingresa la observacion" />
+          </div>
+        </article>
+        <!-- End Gineco -->
+      </article>
+      <article id="hoja3">
+
+        <!-- Sexualidad -->
+        <section class="Sexualidad">
+          <article class="Sexualidad-item u-border-right">
+            <p class="Motivo-consulta--title u-noMargin">12. Sexualidad
+              <a ng-click="refreshCheck('.Sexualidad')" class="u-pointer">
+                <i class="material-icons">cached</i>
+              </a>
+            </p>
+            <div class="Sexualidad-item__grid">
+              <p class="Sexualidad-item__title bold-input">NECESITA INFORMACION</p>
+              <div class="Sexualidad-list">
+                <ul class="Sexualidad-list__menu">
+                  <li class="Sexualidad-list__item">Si</li>
+                  <li class="Sexualidad-list__item">No</li>
+                  <li class="Sexualidad-list__item">
+                    <input class="with-gap" name="necesitaInfo"
+                      type="radio" id="necesitaInfo-si" value="1" />
+                    <label for="necesitaInfo-si"></label>
+                  </li>
+                  <li class="Sexualidad-list__item">
+                    <input class="with-gap" name="necesitaInfo"
+                      type="radio" id="necesitaInfo-no" value="2" />
+                    <label for="necesitaInfo-no"></label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="Sexualidad-item u-border-right">
+            <div class="Sexualidad-relsex__grid">
+              <p class="Sexualidad-item__title bold-input">RELACIONES SEXUALES</p>
+              <ul class="Sexualidad-list__relsex">
+                <li class="Sexualidad-list__item">No</li>
+                <li class="Sexualidad-list__item">
+                  <input class="with-gap" name="tiposexalidad"
+                    type="radio" id="relacionesSexuales-no" ng-click="relacionesSexual()" value="1" />
+                  <label for="relacionesSexuales-no"></label>
+                </li>
+              </ul>
+            </div>
+            <ul class="Sexualidad-list-three Sex--item">
+              <li class="Sexualidad-three-item">hetero</li>
+              <li class="Sexualidad-three-item">homo</li>
+              <li class="Sexualidad-three-item">ambas</li>
+              <li class="Sexualidad-three-item">
+                <input class="with-gap" name="tiposexalidad"
+                  type="radio" id="tiposexalidad-hetero" ng-click="relacionesSexual()" value="2" />
+                <label for="tiposexalidad-hetero"></label>
+              </li>
+              <li class="Sexualidad-three-item">
+                <input class="with-gap" name="tiposexalidad"
+                  type="radio" id="tiposexalidad-homo" ng-click="relacionesSexual()" value="3" />
+                <label for="tiposexalidad-homo"></label>
+              </li>
+              <li class="Sexualidad-three-item">
+                <input class="with-gap" name="tiposexalidad"
+                  type="radio" id="tiposexalidad-ambas" ng-click="relacionesSexual()" value="4" />
+                <label for="tiposexalidad-ambas"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Sexualidad-item Sex--item u-border-right">
+            <p class="Sexualidad-item__title bold-input u-noMargin center-align">PAREJA</p>
+            <ul class="Sexualidad-pareja--list">
+              <li class="Sexualidad-pareja--item">
+                <input class="with-gap" name="perejasSexualidad"
+                  type="radio" id="perejasSexualidad-unica" ng-disabled="relacionesSexualCheck" value="1" />
+                <label for="perejasSexualidad-unica">pareja unica</label>
+              </li>
+              <li class="Sexualidad-pareja--item">
+                <input class="no-check-input" name="perejasSexualidad"
+                  type="radio" id="perejasSexualidad-varias" ng-disabled="relacionesSexualCheck" value="2" />
+                <label for="perejasSexualidad-varias"  class="no-check">varias parejas</label>
+              </li>
+              <li class="Sexualidad-pareja--item">
+                <input class="with-gap" name="perejasSexualidad"
+                  type="radio" id="perejasSexualidad-nc" ng-disabled="relacionesSexualCheck" value="3" />
+                <label for="perejasSexualidad-nc">n/c</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Sexualidad-item Sex--item u-border-right">
+            <p class="Sexualidad-item__title bold-input u-noMargin center-align">EDAD INICIO REL. SEX.</p>
+            <div class="InicioEdadSex-grid">
+              <div class="input-field" style="margin-left: 10px;">
+                <input type="text" id="edad-inicio-sex" ng-disabled="relacionesSexualCheck || ageStartDisab"
+                  class="observacion" data-tipo="12.1" ng-keypress="ValidaSoloNumeros()" maxlength="2" />
+                <label for="edad-inicio-sex">Años</label>
+              </div>
+              <div class="InicioEdadSex-check">
+                <label class="InicioEdadSex-check--title u-noMargin">voluntarias</label>
+
+                <ul class="InicioEdadSex-check--list">
+                  <li class="InicioEdadSex-check-item">si</li>
+                  <li class="InicioEdadSex-check-item">no</li>
+                  <li class="InicioEdadSex-check-item">
+                    <input class="with-gap" name="volundariaSex" ng-click="handleAgeStartSex()"
+                      type="radio" id="volundariaSex-si" ng-disabled="relacionesSexualCheck" value="1" />
+                    <label for="volundariaSex-si"></label>
+                  </li>
+                  <li class="InicioEdadSex-check-item">
+                    <input class="no-check-input" name="volundariaSex" ng-click="handleAgeStartSex()"
+                      type="radio" id="volundariaSex-no" ng-disabled="relacionesSexualCheck" value="2" />
+                    <label for="volundariaSex-no" class="no-check"></label>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </article>
+
+          <article class="Sexualidad-item Sex--item u-border-right">
+            <p class="Sexualidad-item__title u-noMargin center-align bold-input">
+              PROBLEMAS EN REL. SEX.
+            </p>
+            <ul class="Sexualidad-list-three">
+              <li class="Sexualidad-three-item">no</li>
+              <li class="Sexualidad-three-item">si</li>
+              <li class="Sexualidad-three-item">n/c</li>
+              <li class="Sexualidad-three-item">
+                <input class="with-gap" name="problem-rel-sex"
+                  type="radio" id="problem-rel-sex-no" ng-disabled="relacionesSexualCheck" value="1" />
+                <label for="problem-rel-sex-no"></label>
+              </li>
+              <li class="Sexualidad-three-item">
+                <input class="no-check-input" name="problem-rel-sex"
+                  type="radio" id="problem-rel-sex-si" ng-disabled="relacionesSexualCheck" value="2" />
+                <label for="problem-rel-sex-si" class="no-check"></label>
+              </li>
+              <li class="Sexualidad-three-item">
+                <input class="with-gap" name="problem-rel-sex"
+                  type="radio" id="problem-rel-sex-nc" ng-disabled="relacionesSexualCheck" value="3" />
+                <label for="problem-rel-sex-nc"></label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Sexualidad-item Sex--item u-border-right">
+            <p class="Sexualidad-item__title u-noMargin center-align bold-input">
+              ANTICONCEPCION
+            </p>
+            <ul class="Sexualidad-anticoncepcion">
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="with-gap" name="anticocepcion"
+                  type="radio" id="anticocepcion-siempre" ng-disabled="relacionesSexualCheck" value="1" />
+                <label for="anticocepcion-siempre">siempre</label>
+              </li>
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="no-check-input" name="anticocepcion"
+                  type="radio" id="anticocepcion-nunca" ng-disabled="relacionesSexualCheck" value="2" />
+                <label for="anticocepcion-nunca" class="no-check">nunca</label>
+              </li>
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="no-check-input" name="anticocepcion"
+                  type="radio" id="anticocepcion-aceves" ng-disabled="relacionesSexualCheck" value="3" />
+                <label for="anticocepcion-aceves" class="no-check">aveces</label>
+              </li>
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="with-gap" name="anticocepcion"
+                  type="radio" id="anticocepcion-nc" ng-disabled="relacionesSexualCheck" value="4" />
+                <label for="anticocepcion-nc">n/c</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Sexualidad-item Sex--item u-border-right">
+            <p class="Sexualidad-item__title u-noMargin center-align bold-input">
+              CONDON
+            </p>
+            <ul class="Sexualidad-anticoncepcion">
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="with-gap" name="condon"
+                  type="radio" id="condon-siempre" ng-disabled="relacionesSexualCheck" value="1" />
+                <label for="condon-siempre">siempre</label>
+              </li>
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="no-check-input" name="condon"
+                  type="radio" id="condon-nunca" ng-disabled="relacionesSexualCheck" value="2" />
+                <label for="condon-nunca" class="no-check">nunca</label>
+              </li>
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="no-check-input" name="condon"
+                  type="radio" id="condon-aceves" ng-disabled="relacionesSexualCheck" value="3" />
+                <label for="condon-aceves" class="no-check">a ceves</label>
+              </li>
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="with-gap" name="condon"
+                  type="radio" id="condon-nc" ng-disabled="relacionesSexualCheck" value="4" />
+                <label for="condon-nc">n/c</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Sexualidad-item Sex--item">
+            <p class="Sexualidad-item__title u-noMargin center-align bold-input">
+              ABUSO SEXUAL
+            </p>
+            <ul class="Sexualidad-anticoncepcion">
+              <li class="Sexualidad-anticoncepcion--item">no</li>
+              <li class="Sexualidad-anticoncepcion--item">si</li>
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="with-gap" name="abusoSexual"
+                  type="radio" id="abusoSexual-no" ng-disabled="relacionesSexualCheck" value="1" />
+                <label for="abusoSexual-no"></label>
+              </li>
+              <li class="Sexualidad-anticoncepcion--item">
+                <input class="no-check-input" name="abusoSexual"
+                  type="radio" id="abusoSexual-si" ng-disabled="relacionesSexualCheck" value="2" />
+                <label for="abusoSexual-si" class="no-check"></label>
+              </li>
+            </ul>
+          </article>
+
+        </section>
+        <article class="ObservacionesSexualidad">
+          <p class="bold-input u-noMargin">Observaciones</p>
+          <div class="input-field s-100 u-noMargin">
+            <input class="observacion" data-tipo="12" placeholder="Ingresa la observacion" />
+          </div>
+        </article>
+        <!-- End Sexualidad -->
+
+        <!-- SITUACION PSICOEMOCIONAL -->
+        <section class="Psicoemocional">
+          <article class="Psicoemocional-item">
+            <p class="Motivo-consulta--title u-noMargin" style="font-size:12px">SITUACION PSICOEMOCIONAL
+              <a ng-click="refreshCheck('.Psicoemocional')" class="u-pointer">
+                <i class="material-icons">cached</i>
+              </a>
+            </p>
+          </article>
+          <article class="Psicoemocional-item u-border-right">
+            <p class="bold-input u-noMargin">IMAGEN CORPORAL</p>
+            <ul class="Psicoemocional-list">
+              <li class="Psicoemocional-item">
+                <input class="with-gap" name="Psicoemocional"
+                  type="radio" id="Psicoemocional-conforme" value="1" />
+                <label for="Psicoemocional-conforme">conforme</label>
+              </li>
+              <li class="Psicoemocional-item">
+                <input class="with-gap" name="Psicoemocional"
+                  type="radio" id="Psicoemocional-crea-precacion" value="2" />
+                <label for="Psicoemocional-crea-precacion" style="font-size: 14px;">crea precacion</label>
+              </li>
+              <li class="Psicoemocional-item" style="width: 1100%;">
+                <input class="no-check-input" name="Psicoemocional"
+                  type="radio" id="Psicoemocional-impide-rel-adem" value="3" />
+                <label for="Psicoemocional-impide-rel-adem" class="no-check">impide relaciòn con demàs</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Psicoemocional-item u-border-right">
+            <p class="bold-input u-noMargin">AUTO PERCEPCION</p>
+            <ul class="Percepcion-list">
+              <li class="Psicoemocional-item"></li>
+              <li class="Psicoemocional-item">
+                <input class="no-check-input" name="Psicoemocional-autoPercep"
+                  type="radio" id="Psicoemocional-autoPercep-triste" value="1" />
+                <label for="Psicoemocional-autoPercep-triste" class="no-check">triste</label>
+              </li>
+              <li class="Psicoemocional-item">
+                <input class="no-check-input" name="Psicoemocional-autoPercep"
+                  type="radio" id="Psicoemocional-autoPercep-nervioso" value="2" />
+                <label for="Psicoemocional-autoPercep-nervioso" class="no-check">nervioso</label>
+              </li>
+              <li class="Psicoemocional-item">
+                <input class="with-gap" name="Psicoemocional-autoPercep"
+                  type="radio" id="Psicoemocional-autoPercep-alegre" value="3" />
+                <label for="Psicoemocional-autoPercep-alegre">alegre</label>
+              </li>
+              <li class="Psicoemocional-item">
+                <input class="no-check-input" name="Psicoemocional-autoPercep"
+                  type="radio" id="Psicoemocional-autoPercep-timido" value="4" />
+                <label for="Psicoemocional-autoPercep-timido" class="no-check">muy timido</label>
+              </li>
+              <li class="Psicoemocional-item">
+                <input class="with-gap" name="Psicoemocional-autoPercep"
+                  type="radio" id="Psicoemocional-autoPercep-otro" value="5" />
+                <label for="Psicoemocional-autoPercep-otro">otro</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Psicoemocional-item u-border-right">
+            <p class="bold-input u-noMargin">PREFERENDE ADULTO</p>
+            <ul class="PsicoPrefen-list">
+              <li class="PsicoPrefen"></li>
+              <li class="PsicoPrefen">
+                <input class="no-check-input" name="PsicoPrefen"
+                  type="radio" id="PsicoPrefen-autoPercep-padre" value="1" />
+                <label for="PsicoPrefen-autoPercep-padre" class="no-check">padre</label>
+              </li>
+              <li class="PsicoPrefen">
+                <input class="no-check-input" name="PsicoPrefen" type="radio"
+                  id="PsicoPrefen-autoPercep-otroFam" value="2" />
+                <label for="PsicoPrefen-autoPercep-otroFam" class="no-check">otro fam.</label>
+              </li>
+              <li class="PsicoPrefen">
+                <input class="with-gap" name="PsicoPrefen" type="radio" id="PsicoPrefen-madre" value="3" />
+                <label for="PsicoPrefen-madre">madre</label>
+              </li>
+              <li class="PsicoPrefen">
+                <input class="no-check-input" name="PsicoPrefen" type="radio"
+                  id="PsicoPrefen-autoPercep-fueraHogar" value="4" />
+                <label for="PsicoPrefen-autoPercep-fueraHogar" class="no-check">fuera del hogar</label>
+              </li>
+              <li class="PsicoPrefen">
+                <input class="with-gap" name="PsicoPrefen" type="radio" id="PsicoPrefen-ninguno" value="4" />
+                <label for="PsicoPrefen-ninguno">ninguno</label>
+              </li>
+            </ul>
+          </article>
+
+          <article class="Psicoemocional-item">
+            <p class="bold-input u-noMargin">PROYECTO DE VIDA</p>
+            <ul class="Psicoemocional-list">
+              <li class="Psicoemocional-item"></li>
+              <li class="Psicoemocional-item">
+                <input class="no-check-input" name="proyectoVida"
+                  type="radio" id="proyectoVida-confuso" value="1" />
+                <label for="proyectoVida-confuso" class="no-check">confuso</label>
+              </li>
+              <li class="Psicoemocional-item">
+                <input class="no-check-input" name="proyectoVida" type="radio"
+                  id="proyectoVida-claro" value="2" />
+                <label for="proyectoVida-claro" class="no-check">claro</label>
+              </li>
+              <li class="Psicoemocional-item">
+                <input class="with-gap" name="proyectoVida" type="radio" id="proyectoVida-ausente" value="3" />
+                <label for="proyectoVida-ausente">ausente</label>
+              </li>
+            </ul>
+          </article>
+        </section>
+        <article class="ObservacionesPsicoemocional">
+          <p class="bold-input u-noMargin">Observaciones</p>
+          <div class="input-field s-100 u-noMargin">
+            <input class="observacion" data-tipo="13" placeholder="Ingresa la observacion" />
+          </div>
+        </article>
+        <!-- End SITUACION PSICOEMOCIONAL -->
+
+        <!-- EXAMEN FISICO -->
+        <section class="ExamenFisico">
+          <section class="ExamenFisico-top">
+            <article class="ExamenFisico-top--item">
+              <p class="Motivo-consulta--title u-noMargin">14. EXAMEN FISICO
+                <a ng-click="refreshCheck('.ExamenFisico')" class="u-pointer">
+                  <i class="material-icons">cached</i>
+                </a>
+              </p>
+              <p class="bold-input">Aspecto General</p>
+              <ul class="ExamenFisico-list">
+                <li class="ExamenFisico-item">normal</li>
+                <li class="ExamenFisico-item">anormal</li>
+                <li class="ExamenFisico-item">
+                  <input class="with-gap" name="ExamenFisico" type="radio" id="ExamenFisico-normal" value="1" />
+                  <label for="ExamenFisico-normal"></label>
+                </li>
+                <li class="ExamenFisico-item">
+                  <input class="no-check-input" name="ExamenFisico" type="radio" id="ExamenFisico-anormal" value="2" />
+                  <label for="ExamenFisico-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+            <article class="ExamenFisico-top--item">
+              <div class="input-field centilWrapper">
+                <input type="text" id="ExamenFisico-peso" disabled ng-model="signos.hgc_peso_sigvit" />
+                <label for="ExamenFisico-peso" class="active">Peso (kg)</label>
+              </div>
+              <div class="input-field" style="padding:10px;margin-left: 10px;">
+                <input type="text" id="ExamenFisico-talla" disabled ng-model="signos.hgc_talla_sigvit" />
+                <label for="ExamenFisico-talla" class="active">Talla (mm)</label>
+              </div>
+            </article>
+            <article class="ExamenFisico-top--item">
+              <div class="input-field centilWrapper">
+                <input type="text" id="ExamenFisico-centilPesoEdad" disabled ng-model="cetilPesoEdad" />
+                <label for="ExamenFisico-centilPesoEdad" class="active">Centil peso/edad</label>
+              </div>
+              <div class="input-field" style="padding:10px;margin-left: 10px;">
+                <input type="text" id="ExamenFisico-DeTallaEdad" disabled ng-model="deTallaEdad" />
+                <label for="ExamenFisico-DeTallaEdad" class="active">DE talla/edad</label>
+              </div>
+            </article>
+            <article class="ExamenFisico-top--item cross-center" style="padding:10px">
+              <div class="input-field">
+                <input type="text" id="de-imc" ng-model="signos.hgc_imc_sigvit" disabled />
+                <label for="de-imc" class="active">DE / IMC</label>
+              </div>
+            </article>
+            <article class="ExamenFisico-top--item center-align">
+              <p class="bold-input">PIEL Y FANERAS</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="pielFaneras" type="radio" id="pielFaneras-normal"
+                    value="1" />
+                  <label for="pielFaneras-normal"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="pielFaneras" type="radio" id="pielFaneras-anormal"
+                    value="2" />
+                  <label for="pielFaneras-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+            <article class="ExamenFisico-top--item center-align">
+              <p class="bold-input">AGUDEZA Y VISUAL</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="agudezaVisual" type="radio" id="agudezaVisual-normal" value="1" />
+                  <label for="agudezaVisual-normal"></label>
+                </li>
+                <li class="agudezaVisual-item">
+                  <input class="no-check-input" name="agudezaVisual" type="radio" id="agudezaVisual-anormal" value="2" />
+                  <label for="agudezaVisual-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+            <article class="ExamenFisico-top--item center-align">
+              <p class="bold-input">AGUDEZA AUDITIVA</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="agudezaAuditiva" type="radio" id="agudezaAuditiva-normal" value="1" />
+                  <label for="agudezaAuditiva-normal"></label>
+                </li>
+                <li class="agudezaAuditiva-item">
+                  <input class="no-check-input" name="agudezaAuditiva" type="radio" id="agudezaAuditiva-anormal" value="2" />
+                  <label for="agudezaAuditiva-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+            <article class="ExamenFisico-top--item center-align">
+              <p class="bold-input">BOCA Y DIENTES</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="bocaDientes" type="radio" id="bocaDientes-normal" value="1" />
+                  <label for="bocaDientes-normal"></label>
+                </li>
+                <li class="bocaDientes-item">
+                  <input class="no-check-input" name="bocaDientes" type="radio" id="bocaDientes-anormal" value="2" />
+                  <label for="bocaDientes-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+            <article class="ExamenFisico-top--item center-align">
+              <p class="bold-input">CUELLO Y TIROIDES</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="cuelloTiroides" type="radio" id="cuelloTiroides-normal" value="1" />
+                  <label for="cuelloTiroides-normal"></label>
+                </li>
+                <li class="cuelloTiroides-item">
+                  <input class="no-check-input" name="cuelloTiroides" type="radio" id="cuelloTiroides-anormal" value="2" />
+                  <label for="cuelloTiroides-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+          </section>
+
+          <section class="ExamenFisico-bottom__fisic">
+            <article class="ExamenFisico-bottom__fisic--item u-border-right">
+              <p class="bold-input">TORAX Y MAMAS</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="torax_mamas" type="radio" id="torax_mamas-normal" value="1" />
+                  <label for="torax_mamas-normal"></label>
+                </li>
+                <li class="torax_mamas-item">
+                  <input class="no-check-input" name="torax_mamas" type="radio" id="torax_mamas-anormal" value="2" />
+                  <label for="torax_mamas-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+            <article class="ExamenFisico-bottom__fisic--item u-border-right">
+              <p class="bold-input">CARDIO PULMONAR</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="cardioPulmonar" type="radio" id="cardioPulmonar-normal" value="1" />
+                  <label for="cardioPulmonar-normal"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="cardioPulmonar" type="radio" id="cardioPulmonar-anormal" value="2" />
+                  <label for="cardioPulmonar-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+            <article class="ExamenFisico-bottom__fisic--item u-border-right">
+              <div class="input-field centilWrapper">
+                <input type="text" id="presionArterial" ng-model="signos.hgc_prart_sigvit" disabled />
+                <label for="presionArterial" class="active" style="font-size:10px">PRESION ARTERIAL</label>
+              </div>
+              <div class="input-field" style="padding:10px;margin-left: 10px;">
+                <input type="text" id="frecuen-cardiac" placeholder="latidos/min"
+                  ng-model="signos.hgc_frcar_sigvit" disabled />
+                <label for="frecuen-cardiac" class="active" style="font-size:10px">FRECUENCIA CARDIACA</label>
+              </div>
+            </article>
+
+            <article class="ExamenFisico-bottom__fisic--item u-border-right">
+              <p class="bold-input">ABDOMEN</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="abdomen" type="radio" id="abdomen-normal" value="1" />
+                  <label for="abdomen-normal"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="abdomen" type="radio" id="abdomen-anormal" value="2" />
+                  <label for="abdomen-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+            <article class="ExamenFisico-bottom__fisic--item u-border-right">
+              <p class="bold-input">GENITO URINARIO</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="genitoUrinario" type="radio" id="genitoUrinario-normal" value="1" />
+                  <label for="genitoUrinario-normal"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="genitoUrinario" type="radio" id="genitoUrinario-anormal" value="2"/>
+                  <label for="genitoUrinario-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+            <article class="ExamenFisico-bottom__fisic--item u-border-right">
+              <p class="bold-input">TANNER</p>
+              <ul class="tanner-list__grid">
+                <li class="pielFaneras-item">mamas</li>
+                <li class="pielFaneras-item">vello pub.</li>
+                <li class="pielFaneras-item">genitales</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="tanner" type="radio" id="tanner-mamas" value="1" />
+                  <label for="tanner-mamas"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="tanner" type="radio" id="tanner-velloPub" value="2" />
+                  <label for="tanner-velloPub" class="no-check"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="tanner" type="radio" id="tanner-genitales" value="3" />
+                  <label for="tanner-genitales" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+            <article class="ExamenFisico-bottom__fisic--item u-border-right">
+              <p class="bold-input">COLUMNA</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="columna" type="radio" id="columna-normal" value="1" />
+                  <label for="columna-normal"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="columna" type="radio" id="columna-anormal" value="2" />
+                  <label for="columna-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+            <article class="ExamenFisico-bottom__fisic--item u-border-right">
+              <p class="bold-input">EXTREMIDADES</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="extremidades" type="radio" id="extremidades-normal" value="1" />
+                  <label for="extremidades-normal"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="extremidades" type="radio" id="extremidades-anormal" value="2" />
+                  <label for="extremidades-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+            <article class="ExamenFisico-bottom__fisic--item">
+              <p class="bold-input">NEUROLOGICO</p>
+              <ul class="pielFaneras-list">
+                <li class="pielFaneras-item">normal</li>
+                <li class="pielFaneras-item">anormal</li>
+                <li class="pielFaneras-item">
+                  <input class="with-gap" name="neurologico" type="radio" id="neurologico-normal" value="1" />
+                  <label for="neurologico-normal"></label>
+                </li>
+                <li class="pielFaneras-item">
+                  <input class="no-check-input" name="neurologico" type="radio" id="neurologico-anormal" value="2" />
+                  <label for="neurologico-anormal" class="no-check"></label>
+                </li>
+              </ul>
+            </article>
+
+          </section>
+        </section>
+        <article class="ObservacionesExamenFisico">
+          <p class="bold-input u-noMargin">Observaciones</p>
+          <div class="input-field s-100 u-noMargin">
+            <input class="observacion" data-tipo="14" placeholder="Ingresa la observacion" />
+          </div>
+        </article>
+        <!-- END EXAMEN FISICO -->
+
+        <!-- DIAGNOSTICOS - CIE10 -->
+        <section ng-controller="motivoConsultaCtrl056">
+          <article class="DiagnosticoCIE10 l-90">
+            <p class="Motivo-consulta--title">
+              <a>15. DIAGNOSTICO - CIE:</a>
+              <a class="u-pointer motivo-add" ng-click="handleAddDiagnostico()">
+                <i class="material-icons">add</i>
+              </a>
+            </p>
+            <ul class="Motivo-consulta--self-list" id="diagnostico-list">
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-1"
+                class="Diagnostico-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-1"
+                  class="cie-input-motivo Diagnostico-code" maxlength="4" />
+                </p>
+              </li>
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-2"
+                class="Diagnostico-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-2"
+                  class="cie-input-motivo Diagnostico-code" maxlength="4" />
+                </p>
+              </li>
+              <li class="input-field Motivo-consulta--self-item">
+                <input type="text" placeholder="Ingrese el motivo de consulta" id="diagnostico-input-3"
+                class="Diagnostico-input" />
+                <p class="consulta-cie--code">
+                  <input type="text" placeholder="Codigo cie10" id="diagnostico-cie-3"
+                  class="cie-input-motivo Diagnostico-code" maxlength="4" />
+                </p>
+              </li>
+            </ul>
+          </article>
+
+          <article class="s-100 l-90 form-select">
+            <div class="menu-form">
+              <h6>INDICACIONES E INTERCONSULTAS</h6>
+            </div>
+            <div class="input-field">
+              <textarea id="plandeTratamiento" class="materialize-textarea"
+                ng-model="data.planTratamiento"
+                placeholder="Ingresa el plan de tratamiento"></textarea>
+            </div>
+          </article>
+
+          <p class="bold-input response">Response: {{ user.name }}</p>
+          <div class="proximaVisit">
+            <a style="display:block" id="fecha_proxima_visita-linkOut" class="waves-effect waves-teal btn-flat">Fecha proxima visita</a>
+            <input type="text" disabled placeholder="año-mes-dia" id="fecha_proxima_visita"  />
+          </div>
+        </section>
+        <!-- End DIAGNOSTICOS - CIE10 -->
+      <!-- </section> -->
+    </article>
+
   </article>
 
   <div class="fixed-action-btn">

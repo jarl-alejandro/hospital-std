@@ -3,7 +3,6 @@
 const graphicForm28C = angular.module('Hospital')
 
 graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $stateParams) {
-  alert('ok')
   $scope.fechaFlag = false
   $scope.objectNacimiento = {}
   $(`#graphic-${$scope.sexo}`).fadeIn()

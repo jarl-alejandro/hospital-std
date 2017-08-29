@@ -311,7 +311,6 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
   }
 
   $scope.export = () => {
-    alert('Ok')
     html2canvas(document.getElementById('exportthis'), {
       onrendered: function (canvas) {
         var data = canvas.toDataURL();

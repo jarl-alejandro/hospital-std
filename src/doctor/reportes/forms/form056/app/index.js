@@ -421,18 +421,19 @@ angular.module('Hospital')
 
   $scope.exportPDF = () => {
     convertoSVGToImage($('#exportthis'))
-
+// hoja1
     html2canvas(document.getElementById('hoja1'), {
       useCORS: true,
       onrendered: function (canvas) {
         var data = canvas.toDataURL();
+
         var docDefinition = {
             content: [{
                 image: data,
                 width: 500,
             }]
         };
-        pdfMake.createPdf(docDefinition).download("formhoja1.pdf");
+        pdfMake.createPdf(docDefinition).download("form056hoja1.pdf");
       }
     })
 
@@ -446,11 +447,11 @@ angular.module('Hospital')
               width: 500,
             }]
         };
-        pdfMake.createPdf(docDefinition).download("formhoja2.pdf");
+        pdfMake.createPdf(docDefinition).download("form056hoja2.pdf");
       }
     })
 
-    html2canvas(document.getElementById('menorGraphic'), {
+    html2canvas(document.getElementById('hoja3'), {
       useCORS: true,
       onrendered: function (canvas) {
         var data = canvas.toDataURL();
@@ -460,23 +461,23 @@ angular.module('Hospital')
             width: 500,
           }]
         };
-        pdfMake.createPdf(docDefinition).download("menorGraphic.pdf");
+        pdfMake.createPdf(docDefinition).download("form056hoja3.pdf");
       }
     })
 
-    html2canvas(document.getElementById('menorGraphic1'), {
-        useCORS: true,
-        onrendered: function (canvas) {
-          var data = canvas.toDataURL();
-          var docDefinition = {
-              content: [{
-                image: data,
-                width: 500,
-              }]
-          };
-          pdfMake.createPdf(docDefinition).download("menorGraphic1.pdf");
-        }
-      })
+    // html2canvas(document.getElementById('menorGraphic1'), {
+    //     useCORS: true,
+    //     onrendered: function (canvas) {
+    //       var data = canvas.toDataURL();
+    //       var docDefinition = {
+    //           content: [{
+    //             image: data,
+    //             width: 500,
+    //           }]
+    //       };
+    //       pdfMake.createPdf(docDefinition).download("form056Graphic1.pdf");
+    //     }
+    //   })
 
   }
 
@@ -491,7 +492,7 @@ angular.module('Hospital')
       allowTaint: true,
     }).then(function (canvas) {
       canvas.toBlob(function (blob) {
-        saveAs(blob, 'form028c.png')
+        saveAs(blob, 'form056.png')
       })
     })
   }
