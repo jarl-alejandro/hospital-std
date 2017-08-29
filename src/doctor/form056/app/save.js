@@ -225,4 +225,11 @@ angular.module('Hospital')
       $scope.handleAgeStartSex()
     })
   }
+
+  if ($stateParams.action === 'save') {
+    setTimeout(()=>{
+      $('#fecha_proxima_visita-linkOut').css('display', 'none')
+    }, 3000)
+  }
+
 })

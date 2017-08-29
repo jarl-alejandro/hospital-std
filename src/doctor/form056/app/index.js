@@ -21,6 +21,7 @@ angular.module('Hospital')
   $scope.hoy = $scope.hoy.toString().split('')
   $scope.month = $scope.month.toString().split('')
 
+
   $scope.antecendesPersonales = [
     { id:'ant1', name: 'PERINATALES normales', options: [
       {id:'ant1-1', name:'si', class:'si-check', val: 1},

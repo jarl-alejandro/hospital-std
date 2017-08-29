@@ -6,21 +6,25 @@ cie10FilterForm.controller('cie10FilterFormController', function ($scope, $http,
   const paciente = $stateParams.id
   let filterCI10 = [...document.querySelectorAll('.filter-cie10')]
   let nombreFilterCie10 = [...document.querySelectorAll('.filter-cie-nombre10')]
-
-  if ($stateParams.action !== 'edit') {
-    $('#cie-table').html('')
+  if ($stateParams.action === 'save') {
+    // $('#cie-table').html('')
 
     $http.get(`src/doctor/form28C/service/prescripciones-medicas.php?id=${paciente}`)
     .then(response => {
-      response.data.map(item => {
-        let template = `<tr>
-          <td style="border-left:0">${item.hgc_fec_presc}</td>
-          <td>${item.hgc_hor_presc}</td>
-          <td>${item.hgc_nota_presc}</td>
-          <td>${item.hgc_det_presc}</td>
-        </tr>`
-        $('.table_preescipcion').prepend(template)
-      })
+      console.log(response);
+      if (response.data.length > 0) {
+
+        response.data.map(item => {
+          let template = `<tr>
+            <td style="border-left:0">${item.hgc_fec_presc}</td>
+            <td>${item.hgc_hor_presc}</td>
+            <td>${item.hgc_nota_presc}</td>
+            <td>${item.hgc_det_presc}</td>
+          </tr>`
+          $('.table_preescipcion').prepend(template)
+        })
+
+      }
     })
   }
 

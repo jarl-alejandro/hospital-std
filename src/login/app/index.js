@@ -19,6 +19,7 @@ login.controller('loginController', function ($scope, $http, $location, $rootSco
       'email': $scope.data.email,
       'password': $scope.data.password
     }).then(response => {
+      console.log(response);
       if (response.data.status === 404) {
         Materialize.toast("Usuario incorrecto", 4000)
       }

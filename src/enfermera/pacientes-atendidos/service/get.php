@@ -3,9 +3,12 @@ include '../../../../helpers/conexion.php';
 date_default_timezone_set('America/Guayaquil');
 $hoy = date("Y-m-d");
 
-$query = $pdo->query("SELECT hgc_paci_turno, paciente, doctor, hgc_esta_turno,
-    MAX(hgc_id_turno) AS hgc_id_turno FROM view_turnos WHERE hgc_esta_turno='signosVitales'
-    GROUP BY hgc_paci_turno, paciente, doctor, hgc_esta_turno");
+$stamp = date('Y-m-d H:i:s');
+$newDate = strtotime( '-24 hour' , strtotime($stamp) );
+$newDate = date( 'Y-m-d H:i:s' , $newDate );
+
+$query = $pdo->query("SELECT * FROM view_turnos WHERE hgc_fecha_consulta BETWEEN '$newDate' AND '$stamp'
+    AND hgc_esta_turno='form' OR hgc_esta_turno='signosVitales'");
 
 $turnos = array();
 

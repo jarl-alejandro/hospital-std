@@ -72,9 +72,17 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     setTimeout(() => window.scrollTo(0, 0), 100)
   }
 
+  $scope.handleGraphicBack = () => {
+
+    $('#form28C-Workaspace').slideDown()
+    $('#cie10-Workspace').slideDown()
+    $('#grafico-Workspace').slideUp()
+    setTimeout(() => window.scrollTo(0, 0), 100)
+  }
+
   $scope.handleGraphic = () => {
     $('#form28C-Workaspace').slideUp()
-    $('#cie10-Workspace').slideUp()
+    $('#cie10-Workspace').slideDown()
     $('#grafico-Workspace').slideDown()
     setTimeout(() => window.scrollTo(0, 0), 100)
   }

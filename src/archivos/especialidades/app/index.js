@@ -23,7 +23,7 @@ especialidad.controller('especialidadController', function ($scope, $http) {
   }
 
 
-  $scope.handlezave = function () {
+  $scope.handleSave = function () {
     if ($scope.data.descripcion.trim() === '') {
       Materialize.toast('Debe ingresar la descripcion', 4000)
       return false
