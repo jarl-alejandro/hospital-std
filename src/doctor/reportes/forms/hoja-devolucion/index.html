@@ -370,13 +370,15 @@
       <a id="fecha_proxima_visita-link" class="waves-effect waves-teal btn-flat" ng-click="handleDateVisit()">Fecha proxima visita</a>
     </div>
   </section>
-
   <div ng-include="'src/doctor/hoja-devolucion/calendar.html'"></div>
   <div class="fixed-action-btn">
     <a class="btn-floating btn-large red">
       <i class="large material-icons">print</i>
     </a>
     <ul>
+      <li>
+        <a class="btn-floating green" ng-click="graphic()"><i class="material-icons">timeline</i></a>
+      </li>
       <li>
         <a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Imprimir .pdf" ng-click="exportPDF()"><i class="material-icons">picture_as_pdf</i></a>
       </li>

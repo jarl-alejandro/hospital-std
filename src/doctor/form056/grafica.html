@@ -2,12 +2,25 @@
 <section class="workSpace">
   <style scoped>
     .workSpace {width: 90%;}
+    /*img {
+      height: 10rem !important;
+    }
+    .graficaPaper__front, .graficaPaper__back {
+      position: static !important;
+      width: 100% !important;
+      height: 100% !important;
+      /*transform: rotateY(180deg);
+      backface-visibility: visible !important;
+    }
+    .graficaPaper{
+      height: auto;
+    }*/
   </style>
 
-  <article class="form ed-item" ng-controller="form06SaveCtrl">
+  <article class="form ed-item" ng-controller="form06SaveCtrl" id="exportthis">
     <h1 class="Title no-margin s-100">{{ title }}</h2>
 
-    <div class="grafica-container">
+    <div id="hoja1" class="grafica-container">
       <a class="waves-effect waves-light btn-flat grafica-container__cambiar" ng-click="handleToggleOne()">Cambiar Pagina</a>
       <section class="graficaPaper" ng-class="{'graficaPaper-active': graficaFlag}">
         <section class="graficaPaper__front">
@@ -50,7 +63,7 @@
       </section>
     </div>
 
-    <div class="grafica-container">
+    <div id="hoja2" class="grafica-container">
       <h5 class="center-align grafica__adolecente">ADOLESCENTE {{ sexo }}</h5>
       <a class="waves-effect waves-light btn-flat grafica-container__cambiar" ng-click="handleToggleTwo()">Cambiar Pagina</a>
       <section class="graficaPaper" ng-class="{'graficaPaper-active': graficaFlag2}">
@@ -89,4 +102,20 @@
 
     </div>
   </article>
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">print</i>
+    </a>
+    <ul>
+      <li>
+        <a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Imprimir .pdf"
+          ng-click="exportPDF()"><i class="material-icons">picture_as_pdf</i></a>
+      </li>
+      <li>
+        <a class="btn-floating blue tooltipped" ng-click="exportPNG()" data-position="left" data-delay="50"
+          data-tooltip="Imprimir .img"><i class="material-icons">camera_alt</i></a>
+      </li>
+    </ul>
+  </div>
 </section>

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('Hospital')
-.controller('formReporteCtrl056', function ($scope, $http, $stateParams, $rootScope) {
+.controller('formReporteCtrl056', function ($scope, $http, $stateParams, $rootScope, $location) {
   const fecha = new Date()
   $('.tooltipped').tooltip({delay: 50});
 
@@ -21,6 +21,10 @@ angular.module('Hospital')
 
   $scope.hoy = $scope.hoy.toString().split('')
   $scope.month = $scope.month.toString().split('')
+
+  $scope.graphic = () => {
+    $location.path(`/grafica-form056/${$stateParams.id}/${$stateParams.turno}`)
+  }
 
   $scope.antecendesPersonales = [
     { id:'ant1', name: 'PERINATALES normales', options: [

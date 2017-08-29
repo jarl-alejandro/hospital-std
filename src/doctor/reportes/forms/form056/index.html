@@ -27,6 +27,9 @@
   a[ng-click] > .material-icons {
     display: none;
   }
+  .btn-floating i {
+    display: inline-block !important;
+  }
   </style>
   <!-- <section ng-controller="form056EditCtrl"></section> -->
 
@@ -2153,6 +2156,9 @@
       <i class="large material-icons">print</i>
     </a>
     <ul>
+      <li>
+        <a class="btn-floating green" ng-click="graphic()"><i class="material-icons">timeline</i></a>
+      </li>
       <li>
         <a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Imprimir .pdf"
           ng-click="exportPDF()"><i class="material-icons">picture_as_pdf</i></a>

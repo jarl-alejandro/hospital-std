@@ -17,6 +17,10 @@ angular.module('Hospital')
   $scope.hoy = $scope.hoy.toString().split('')
   $scope.month = $scope.month.toString().split('')
 
+  $scope.graphic = () => {
+    $location.path(`/grafica-form056/${$stateParams.id}/${$stateParams.turno}`)
+  }
+
   $http.get(`src/doctor/form056/service/paciente.php?id=${$stateParams.id}`)
   .then(response => {
     console.log(response);

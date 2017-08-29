@@ -3,6 +3,7 @@
 angular.module('Hospital')
 .controller('formGraphic056ABCtrl', function ($scope, $http, $stateParams) {
   setTimeout(() => window.scrollTo(0, 0), 100)
+  $('.tooltipped').tooltip({delay: 50});
 
   $scope.paciente = {}
   $scope.graficaFlag = false
@@ -306,4 +307,71 @@ angular.module('Hospital')
     datoTallaX = cx
     datTallaY = celdaTalla * tallaData
   }
+
+
+    $scope.exportPDF = () => {
+      convertoSVGToImage($('#exportthis'))
+  // hoja1
+      html2canvas(document.getElementById('hoja1'), {
+        useCORS: true,
+        onrendered: function (canvas) {
+          var data = canvas.toDataURL();
+
+          var docDefinition = {
+              content: [{
+                  image: data,
+                  width: 500,
+              }]
+          };
+          pdfMake.createPdf(docDefinition).download("form056Graficahoja1.pdf");
+        }
+      })
+
+      html2canvas(document.getElementById('hoja2'), {
+        useCORS: true,
+        onrendered: function (canvas) {
+          var data = canvas.toDataURL();
+          var docDefinition = {
+              content: [{
+                image: data,
+                width: 500,
+              }]
+          };
+          pdfMake.createPdf(docDefinition).download("form056hoja2.pdf");
+        }
+      })
+    }
+
+    $scope.exportPNG = () => {
+      let jpg = document.querySelector('#exportthis')
+      convertoSVGToImage($('#exportthis'))
+
+      html2canvas(jpg, {
+        logging: true,
+        profile: true,
+        useCORS: true,
+        allowTaint: true,
+      }).then(function (canvas) {
+        canvas.toBlob(function (blob) {
+          saveAs(blob, 'form056Gragfica.png')
+        })
+      })
+    }
+
+
+    function convertoSVGToImage (targetElement) {
+      const listSVG = [...targetElement.find('svg')]
+
+      listSVG.map((item, index) => {
+        $(item).hide()
+        let svg = $(item).html()
+        let prop = $(item).attr('id')
+        let canvas = document.createElement('canvas')
+        canvas.classList.add(`${prop}-canvas`)
+
+        let parent = item.parentElement
+        parent.append(canvas)
+        canvg(canvas, `<svg>${svg}</svg>`)
+      })
+    }
 })
