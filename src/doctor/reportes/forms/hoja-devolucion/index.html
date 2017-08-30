@@ -367,9 +367,15 @@
 
     <p class="bold-input response">Response: {{ user.name }}</p>
     <div class="proximaVisit">
-      <a id="fecha_proxima_visita-link" class="waves-effect waves-teal btn-flat" ng-click="handleDateVisit()">Fecha proxima visita</a>
+      <!-- <a id="fecha_proxima_visita-link" class="waves-effect waves-teal btn-flat" ng-click="handleDateVisit()">Fecha proxima visita</a> -->
+      <a id="fecha_proxima_visita-linkOut" class="waves-effect waves-teal btn-flat" style="display:none">Fecha proxima visita</a>
+      <input type="text" disabled placeholder="año-mes-dia" id="fecha_proxima_visita"  />
     </div>
+    <!-- <div class="proximaVisit">
+      <a id="fecha_proxima_visita-link" class="waves-effect waves-teal btn-flat" ng-click="handleDateVisit()">Fecha proxima visita</a>
+    </div> -->
   </section>
+
   <div ng-include="'src/doctor/hoja-devolucion/calendar.html'"></div>
   <div class="fixed-action-btn">
     <a class="btn-floating btn-large red">

@@ -1,10 +1,17 @@
 <?php
+session_start();
+
 date_default_timezone_set('America/Guayaquil');
 require_once('../../../../helpers/conexion.php');
 require_once('../../../../mpd/mpdf.php');
 
 $id = $_GET['id'];
 $index = 0;
+
+$id_user = $_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'];
+
+$user = $pdo->query("SELECT * FROM view_user WHERE hgc_cedu_profe='$id_user'");
+$row_user = $user->fetch();
 
 $mpdf = new mPDF('c', 'A4-L');
 
@@ -139,7 +146,8 @@ while ($row = $qs->fetch()) {
           <td>'.$row["hgc_esta_sigvit"].'</td>
         </tr>
       </tbody>
-    </table>';
+    </table>
+    ';
   }
 
   if ($headerIndex == 6) {
@@ -151,7 +159,12 @@ while ($row = $qs->fetch()) {
   }
 }
 
-$content .= '</div>';
+$content .= '
+<div style="margin-top:8rem;text-align:center;margin-left: 40%;">
+  <p style="width:30%;text-align:center;">'.$row_user['hgc_nom_profe'].' '.$row_user['hgc_ape_profe'].':</p>
+  <p style="margin-top:2.5rem;width:30%;text-align:center;border-top: 1px solid black">Firmar</p>
+</div>
+</div>';
 $content .= '</body></html>';
 
 
