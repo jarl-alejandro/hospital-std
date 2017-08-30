@@ -75,6 +75,7 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   }
 
   function generateAgenda (data) {
+    console.log(data);
     $scope.DB = []
     for (let i in data) {
       let item = data[i]
@@ -281,9 +282,11 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
         $http.get(`src/estadistico/turnos/service/turno.php
           ?doctor=${doctor}&fecha=${fecha}`
         ).then(response => {
+          console.log(response);
           for (let i in response.data) {
             let item = response.data[i]
             let selector = `input[data-inicio="${item.hgc_hini_turno}"][data-fin="${item.hgc_fin_turno}"]`
+            console.log(selector);
             let li = document.querySelector(selector)
             li.checked = true
             li.disabled = true

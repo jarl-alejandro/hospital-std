@@ -14,7 +14,7 @@ $primerDia = date('Y-m-d', mktime(0,0,0, $month, 1, $year));
 $ultimoDia = date("Y-m-d", (mktime(0, 0, 0, $month+1, 1, $year) - 1));
 
 $qs = $pdo->query("SELECT * FROM view_turnos WHERE (hgc_fech_turno
-              BETWEEN '$primerDia' AND '$ultimoDia') AND hgc_doct_turno='$doctor'");
+              BETWEEN '$primerDia' AND '$ultimoDia') AND hgc_doct_turno='$doctor' AND hgc_hini_turno IS NOT NULL");
 
 while ($row = $qs->fetch()) {
   $turnos[] = $row;
