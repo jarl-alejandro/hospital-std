@@ -1,0 +1,64 @@
+.Establecimiento
+  &-header,
+  &-body
+    display grid
+    grid-template-columns 20% 19% 18% 9% 9% 25%
+    padding-left 0
+    margin 0
+  &-header
+    background-color #ccc
+    border-top 1px solid #2f2f2f
+    border-left 1px solid #2f2f2f
+    border-right 1px solid #2f2f2f
+    li
+      text-align center
+  &-body
+    li
+      border-top 1px solid #2f2f2f
+      border-left 1px solid #2f2f2f
+      border-bottom 1px solid #2f2f2f
+      padding 10px 0
+      &:last-child
+        border-right 1px solid #2f2f2f
+
+.header
+  background: #212121;
+  width: 100%;
+  color: white !important;
+  padding: 1px 1px 1px 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  text-transform: uppercase;
+  span
+    margin-right 15px
+
+.AntPersonalSenior
+  &-list
+    display flex
+    &__item
+      display flex
+      P
+        text-align center
+        border 1px solid #ccc
+        margin 0
+        display: flex;
+        justify-content: center;
+        align-items: center;
+.SignosVitales
+  &-inputs
+    display flex
+  &-list
+    margin 0
+    li
+      display: grid;
+      margin: 0;
+      grid-template-columns: repeat(2, 1fr);
+    input
+      margin 0 !important
+    p
+      margin 0
+      display flex
+      align-items center
+  &-border
+    border 1px solid #ccc !important

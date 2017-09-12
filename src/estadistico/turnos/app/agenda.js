@@ -33,7 +33,7 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     }
 
     $scope.month = index
-    var dateFin = new Date(hoy.getFullYear(), $scope.month, 0)
+    let dateFin = new Date(hoy.getFullYear(), $scope.month, 0)
     const diaFin = dateFin.getDate() < 10 ? "0" + dateFin.getDate() : dateFin.getDate()
     const mes = $scope.month < 10 ? "0" + $scope.month : $scope.month
 
@@ -52,7 +52,7 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
     })
 
     $http.get(`src/estadistico/turnos/service/horario.php
-      ?doctor=${doctor}&inicio=${inicio}&fin=${fin}`
+      ?doctor=${doctor}&mes=${$scope.month}&inicio=${inicio}&fin=${fin}`
     ).then(response => {
       $scope.horarioTrabajo = response.data
 
@@ -75,7 +75,6 @@ agendaTurno.controller('agendaTurnoController', function ($scope, $http) {
   }
 
   function generateAgenda (data) {
-    console.log(data);
     $scope.DB = []
     for (let i in data) {
       let item = data[i]

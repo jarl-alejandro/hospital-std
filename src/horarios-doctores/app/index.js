@@ -53,7 +53,7 @@ horariosDoctores.controller('horariosDocController', function ($scope, $http) {
   $scope.setHorario = (horario) => {
     const hoy = new Date()
     const mes = $scope.data.mes < 10 ? '0'+$scope.data.mes : $scope.data.mes
-    const dia = $scope.diaHorario < 10 ? '0'+$scope.diaHorario : $scope.diaHorario
+    const dia = $scope.diaHorario < 10 ? $scope.diaHorario : $scope.diaHorario
     const year = hoy.getFullYear()
     const ctx = {
       codigo: horario.hgc_codi_hora,

@@ -3,11 +3,12 @@ include '../../../../helpers/conexion.php';
 
 $doctor = $_GET["doctor"];
 $inicio = $_GET["inicio"];
+$mes = $_GET['mes'];
 $fin = $_GET["fin"];
 
 $array = array();
 
-$qs = $pdo->query("SELECT * FROM hgc_horar_doc WHERE hgc_med_hora='$doctor'");
+$qs = $pdo->query("SELECT * FROM hgc_horar_doc WHERE hgc_med_hora='$doctor' AND hgc_mes_hora='$mes'");
 $row = $qs->fetch();
 
 $codi = $row["hgc_codi_hora"];

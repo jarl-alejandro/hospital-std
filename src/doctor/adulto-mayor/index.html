@@ -1,0 +1,144 @@
+<hgc-menu-doctor></hgc-menu-doctor>
+<section class="workSpace" style="width: 100%;">
+  <style scoped>
+    .adulto-mayor__active {color: white;}
+  </style>
+  <article class="form ed-item">
+    <div class="Establecimiento">
+      <ul class="Establecimiento-header">
+        <li>ESTABLECIMIENTO</li>
+        <li>NOMBRE</li>
+        <li>APELLIDO</li>
+        <li>SEXO (M-F)</li>
+        <li>EDAD</li>
+        <li>Nº HISTORIA CLINICA</li>
+      </ul>
+      <ul class="Establecimiento-body">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <div class="input-field s-100" style="margin-top: 2rem;">
+      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.motivo"></textarea>
+      <label class="header" for="motivo-consulta">1. Motivo de Consulta</label>
+    </div>
+    <div class="input-field s-100">
+      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.enfermedad"></textarea>
+      <label class="header" for="motivo-consulta">2. Enfermedad o problema actual *</label>
+    </div>
+    <div class="input-field s-100">
+      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.enfermedad"></textarea>
+      <label class="header" for="motivo-consulta">3. Antecedentes personales
+        <span>Datos clinicos - QUIRURGICOS RELEVANTES Y GINECO OBSTETRICOS</span>
+      </label>
+    </div>
+
+    <div class='AntPersonalSenior'>
+      <label class="header">4. ANTECEDENTES FAMILIARES</label>
+      <ul class="AntPersonalSenior-list">
+        <li class="AntPersonalSenior-list__item">
+          <p>1. CARDIOPATIA</p>
+          <p>
+            <input type="checkbox" id="cardiopatia" />
+            <label for="cardiopatia"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>2. DIABETES</p>
+          <p>
+            <input type="checkbox" id="diabetis" />
+            <label for="diabetis"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>3. ENF. C. VASCULAR</p>
+          <p>
+            <input type="checkbox" id="envcvascular" />
+            <label for="envcvascular"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>4. HIPERTENSIÒN</p>
+          <p>
+            <input type="checkbox" id="hipertension" />
+            <label for="hipertension"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>5. CÀNCER</p>
+          <p>
+            <input type="checkbox" id="cancer" />
+            <label for="cancer"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>6. TUBERCULOSIS</p>
+          <p>
+            <input type="checkbox" id="tuberculosis" />
+            <label for="tuberculosis"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>7. ENF. MENTAL</p>
+          <p>
+            <input type="checkbox" id="enfMental" />
+            <label for="enfMental"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>8. ENF. INFECCIOSA</p>
+          <p>
+            <input type="checkbox" id="enfInfecciosa" />
+            <label for="enfInfecciosa"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>9. OTRO ANTECEDENTE</p>
+          <p>
+            <input type="checkbox" id="otroAntecedente" />
+            <label for="otroAntecedente"></label>
+          </p>
+        </li>
+        <li class="AntPersonalSenior-list__item">
+          <p>10. SIN ANTECEDENTES</p>
+          <p>
+            <input type="checkbox" id="sinAntecedentes" />
+            <label for="sinAntecedentes"></label>
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="SignosVitales">
+      <label class="header">6. SIGNOS VITAKES Y ANTROPOMETRIA</label>
+      <ul class="SignosVitales-list">
+        <li class="input-field">
+          <p class="SignosVitales-border">FECHA DE MEDICÌON</p>
+          <input class="SignosVitales-border" type="text" />
+        </li>
+        <li class="input-field">
+          <p class="SignosVitales-border">TEMPERATURA C</p>
+          <input class="SignosVitales-border" type="text" />
+        </li>
+        <li class="input-field">
+          <p class="SignosVitales-border">PESO ARTERIAL</p>
+          <input class="SignosVitales-border" type="text" />
+        </li>
+        <li class="input-field">
+          <p class="SignosVitales-border">PULSO/min / FRECUENCIA RESPIRATORIA</p>
+          <p class="SignosVitales-inputs SignosVitales-border"><input type="text" /> / <input type="text" /></p>
+        </li>
+        <li class="input-field">
+          <p class="SignosVitales-border">PESO/kg / TALLA/cm</p>
+          <p class="SignosVitales-inputs SignosVitales-border"><input type="text" /> / <input type="text" /></p>
+        </li>
+      </ul>
+    </div>
+
+  </article>
+</section>
