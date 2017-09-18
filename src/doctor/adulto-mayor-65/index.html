@@ -1,0 +1,601 @@
+<hgc-menu-doctor></hgc-menu-doctor>
+<section class="workSpace" style="width: 100%;">
+  <style scoped>
+    .adulto-mayor__active {
+      color: white;
+    }
+  </style>
+  <article class="form ed-item">
+    <div class="Establecimiento">
+      <ul class="Establecimiento-header">
+        <li>ESTABLECIMIENTO</li>
+        <li>APELLIDO Y NOMBRES</li>
+        <li>EDAD</li>
+        <li>VIVE CON</li>
+        <li style="font-size: 11px;">OCUPACION ANTERIOR / OCUPACION ACTUAL</li>
+        <li>Nº HISTORIA CLINICA</li>
+      </ul>
+      <ul class="Establecimiento-body">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <div class="input-field s-100" style="margin-top: 2rem;">
+      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.motivo"></textarea>
+      <label class="header" for="motivo-consulta">1. Motivo de Consulta</label>
+    </div>
+    <div class="input-field s-100">
+      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.enfermedad"></textarea>
+      <label class="header" for="motivo-consulta">2. Enfermedad o problema actual</label>
+    </div>
+
+    <div class="input-field col s6">
+      <input id="medicamentos_recibe" type="text" />
+      <label for="medicamentos_recibe">MEDICAMENTOS QUE RECIBE</label>
+    </div>
+
+    <u class="EstadoGeneral">
+      <li class="EstadoGeneral-title">Estado General</li>
+      <li class="EstadoGeneral-list">
+        <p>
+          <input name="estadoGeneral" type="radio" id="dependiente" />
+          <label for="dependiente">DEPENDIENTE</label>
+        </p>
+        <p>
+          <input name="estadoGeneral" type="radio" id="fragil" />
+          <label for="fragil">FRAGIL</label>
+        </p>
+        <p>
+          <input name="estadoGeneral" type="radio" id="independiente" />
+          <label for="independiente">INDEPENDIENTE</label>
+        </p>
+      </li>
+    </u>
+
+    <ul class="RevisionSistema">
+      <li class="RevisionSistema-title">3 Revisiòn Actual del Sistema
+        <p>Con patologia. Describir anotando el numero, Sin patologia. No Describir</p>
+      </li>
+      <li class="RevisionSistema-item no-boder--bottom">
+        <p>
+          1.- VISIÒN
+          <input name="RevisionSistema-vision" type="radio" id="vision-1" />
+          <label for="vision-1"></label>
+          <input name="RevisionSistema-vision" type="radio" id="vision-2" />
+          <label for="vision-2"></label>
+        </p>
+        <p>
+          2.- AUDISIÒN
+          <input name="RevisionSistema-audision" type="radio" id="audision-1" />
+          <label for="audision-1"></label>
+          <input name="RevisionSistema-audision" type="radio" id="audision-2" />
+          <label for="audision-2"></label>
+        </p>
+        <p>
+          3.- OLFATO Y GUSTO
+          <input name="RevisionSistema-olfatoGusto" type="radio" id="olfatoGusto-1" />
+          <label for="olfatoGusto-1"></label>
+          <input name="RevisionSistema-olfatoGusto" type="radio" id="olfatoGusto-2" />
+          <label for="olfatoGusto-2"></label>
+        </p>
+        <p>
+          4.- RESPIRATORIO
+          <input name="RevisionSistema-respiratorio" type="radio" id="respiratorio-1" />
+          <label for="respiratorio-1"></label>
+          <input name="RevisionSistema-respiratorio" type="radio" id="respiratorio-2" />
+          <label for="respiratorio-2"></label>
+        </p>
+        <p>
+          5.- CARDIO VASCULAR
+          <input name="RevisionSistema-cardioVascular" type="radio" id="cardioVascular-1" />
+          <label for="cardioVascular-1"></label>
+          <input name="RevisionSistema-cardioVascular" type="radio" id="cardioVascular-2" />
+          <label for="cardioVascular-2"></label>
+
+        </p>
+        <p>
+          6.- DIGESTIVO
+          <input name="RevisionSistema-digestivo" type="radio" id="digestivo-1" />
+          <label for="digestivo-1"></label>
+          <input name="RevisionSistema-digestivo" type="radio" id="digestivo-2" />
+          <label for="digestivo-2"></label>
+        </p>
+      </li>
+      <li class="RevisionSistema-item">
+        <p>
+          7.- GENITO UNITARIO
+          <input name="RevisionSistema-genitoUnitario" type="radio" id="genitoUnitario-1" />
+          <label for="genitoUnitario-1"></label>
+          <input name="RevisionSistema-genitoUnitario" type="radio" id="genitoUnitario-2" />
+          <label for="genitoUnitario-2"></label>
+        </p>
+        <p>
+          8.- MUSCULO ESQUELETICO
+          <input name="RevisionSistema-musculoEsqueletico" type="radio" id="musculoEsqueletico-1" />
+          <label for="musculoEsqueletico-1"></label>
+          <input name="RevisionSistema-musculoEsqueletico" type="radio" id="musculoEsqueletico-2" />
+          <label for="musculoEsqueletico-2"></label>
+        </p>
+        <p>
+          9.- ENDOCRINO
+          <input name="RevisionSistema-endocrino" type="radio" id="endocrino-1" />
+          <label for="endocrino-1"></label>
+          <input name="RevisionSistema-endocrino" type="radio" id="endocrino-2" />
+          <label for="endocrino-2"></label>
+        </p>
+        <p>
+          10.- HEMO LINAFATICO
+          <input name="RevisionSistema-hemoLimafatico" type="radio" id="hemoLimafatico-1" />
+          <label for="hemoLimafatico-1"></label>
+          <input name="RevisionSistema-hemoLimafatico" type="radio" id="hemoLimafatico-2" />
+          <label for="hemoLimafatico-2"></label>
+        </p>
+        <p>
+          11.- NERVIOS
+          <input name="RevisionSistema-nervios" type="radio" id="nervios-1" />
+          <label for="nervios-1"></label>
+          <input name="RevisionSistema-nervios" type="radio" id="nervios-2" />
+          <label for="nervios-2"></label>
+        </p>
+      </li>
+      <li class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+      </li>
+    </ul>
+
+    <ul class="AntecedentesPersonales">
+      <li class="RevisionSistema-title">4 Antecedentes Personales
+        <p>Con patologia. Describir anotando el numero, Sin patologia. No Describir</p>
+      </li>
+      <li class="AntecedentesPersonales-item no-boder--bottom">
+        <p class="AntecedentesPersonales-item--title">Alertas de riesgo</p>
+        <div>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="caida" />
+            <label for="caida">1.- CAIDA</label>
+          </p>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="dismovilidad" />
+            <label for="dismovilidad">2.- DISMOVILIDAD</label>
+          </p>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="perdidaPeso" />
+            <label for="perdidaPeso">3.- PERDIDA DE PESO</label>
+          </p>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="astenia" />
+            <label for="astenia">4.- ASTENIA</label>
+          </p>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="desorientacion" />
+            <label for="desorientacion">5.- DESORIENTACION</label>
+          </p>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="alteracionConportamiento" />
+            <label for="alteracionConportamiento">6.- ALTERACION DEL COPORTAMIENTO</label>
+          </p>
+        </div>
+      </li>
+
+      <li class="AntecedentesPersonales-item no-boder--bottom">
+        <p class="AntecedentesPersonales-item--title">Generales</p>
+        <div>
+          <p>
+             1.- INMUNIZACIONES
+            <input name="inmunizaciones" type="radio" id="inmunizaciones-1" />
+            <label for="inmunizaciones-1"></label>
+            <input name="inmunizaciones" type="radio" id="inmunizaciones-2" />
+            <label for="inmunizaciones-2"></label>
+          </p>
+          <p>
+            2.- HIGIENE GENERAL
+            <input name="higieneGeneral" type="radio" id="higieneGeneral-1" />
+            <label for="higieneGeneral-1"></label>
+            <input name="higieneGeneral" type="radio" id="higieneGeneral-2" />
+            <label for="higieneGeneral-2"></label>
+          </p>
+          <p>
+            3.- HIGIENE ORAL
+            <input name="higieneOral" type="radio" id="higieneOral-1" />
+            <label for="higieneOral-1"></label>
+            <input name="higieneOral" type="radio" id="higieneOral-2" />
+            <label for="higieneOral-2"></label>
+          </p>
+          <p>
+            4.- EJERCICIO
+            <input name="ejercicios" type="radio" id="ejercicios-1" />
+            <label for="ejercicios-1"></label>
+            <input name="ejercicios" type="radio" id="ejercicios-2" />
+            <label for="ejercicios-2"></label>
+          </p>
+          <p>
+            5.- ALIMENTACION
+            <input name="alimentacion" type="radio" id="alimentacion-1" />
+            <label for="alimentacion-1"></label>
+            <input name="alimentacion" type="radio" id="alimentacion-2" />
+            <label for="alimentacion-2"></label>
+          </p>
+          <p>
+            6.- ACTIVIDAD RECREATIVA
+            <input name="actividadRecreativa" type="radio" id="actividadRecreativa-1" />
+            <label for="actividadRecreativa-1"></label>
+            <input name="actividadRecreativa" type="radio" id="actividadRecreativa-2" />
+            <label for="actividadRecreativa-2"></label>
+          </p>
+
+        </div>
+      </li>
+      <li class="AntecedentesPersonales-item">
+        <div>
+          <p>
+            7.- CONTROLES DE SALUD 
+            <input name="controlesSalud" type="radio" id="controlesSalud-1" />
+            <label for="controlesSalud-1"></label>
+            <input name="controlesSalud" type="radio" id="controlesSalud-2" />
+            <label for="controlesSalud-2"></label>
+          </p>
+          <p>
+            8.- ALERGIAS
+            <input name="alergias" type="radio" id="alergias-1" />
+            <label for="alergias-1"></label>
+            <input name="alergias" type="radio" id="alergias-2" />
+            <label for="alergias-2"></label>
+          </p>
+          <p>
+            9.- OTROS
+            <input name="otros" type="radio" id="otros-1" />
+            <label for="otros-1"></label>
+            <input name="otros" type="radio" id="otros-2" />
+            <label for="otros-2"></label>
+          </p>
+        
+        </div>
+      </li>
+
+      <li class="AntecedentesPersonales-item no-boder--bottom">
+        <p class="AntecedentesPersonales-item--title">Habitos Nocivos</p>
+        <div>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="tabaquismo" />
+            <label for="tabaquismo">1.- TABAQUISMO</label>
+          </p>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="alcoholismo" />
+            <label for="alcoholismo">2.- ALCOHOLISMO</label>
+          </p>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="perdidaPeso" />
+            <label for="perdidaPeso">3.- ADDICIONES</label>
+          </p>
+          <p>
+            <input name="AntecedentesPersonales" type="radio" id="astenia" />
+            <label for="astenia">4.- OTRO HABITO</label>
+          </p>
+        </div>
+      </li>
+      <li class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+      </li>
+
+      <li class="AntecedentesPersonales-item no-boder--bottom">
+        <p class="AntecedentesPersonales-item--title" style="width: 14%;">CLINICO QUIRÙRGICOS</p>
+        <div>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="demartoLogico" />
+            <label for="demartoLogico">1.- DEMARTO-LÒGICOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="visuales" />
+            <label for="visuales">2.- VISUALES</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="otorrino" />
+            <label for="otorrino">3.- OTORRINO</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="estomatoLogicos" />
+            <label for="estomatoLogicos">4.- ESTOMATO-LOGICOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="endocrinos" />
+            <label for="endocrinos">5.- ENDOCRINOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="cardioVascular" />
+            <label for="cardioVascular">6.- CARDIO VASCULAR</label>
+          </p>
+        </div>
+      </li>
+
+      <li class="AntecedentesPersonales-item no-boder--bottom">
+        <div style="width: 100%;">
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="respiratorio" />
+            <label for="respiratorio">7.- RESPIRATORIO</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="digestivos" />
+            <label for="digestivos">8.- DIGESTIVOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="neurologicos" />
+            <label for="neurologicos">9.- NEUROLOGICOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="urologicos" />
+            <label for="urologicos">10.- UROLOGICOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="hemoloinfaticos" />
+            <label for="hemoloinfaticos">11.- HEMOLOINFATICOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="infecciosos" />
+            <label for="infecciosos">12.- INFECCIOSOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="oncologicos" />
+            <label for="oncologicos">13.- ONCOLÒGICOS</label>
+          </p>
+        </div>
+      </li>
+
+      <li class="AntecedentesPersonales-item no-boder--bottom">
+        <div style="width: 100%;">
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="musculoEsqueletico" />
+            <label for="musculoEsqueletico">14.- MUSCULO ESQUELÈTICOS</label>
+          </p>
+          <p>
+            <input name="clinicoQuirurgicos" type="radio" id="psiquiatricos" />
+            <label for="psiquiatricos">15.- PSIQUIÀTRICOS</label>
+          </p>
+        </div>
+      </li>
+      <li class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+      </li>
+    </ul>
+
+    <ul class="GinecosObstretricos">
+      <li class="GinecosObstretricos-title">GINECO OBSTETRICOS</li>
+      <li class="input-field">
+        <input id="edad_menopausia" type="text" />
+        <label for="edad_menopausia">1.EDAD MENOPAUSIA</label>
+      </li>
+      <li class="input-field">
+        <input id="edad_mamografia" type="text" />
+        <label for="edad_mamografia">2.EDAD DE ULTIMA MAMOGRAFIA</label>
+      </li>
+      <li class="input-field">
+        <input id="edad_citologia" type="text" />
+        <label for="edad_citologia">3.EDAD DE ULTIMA CITOLOGIA</label>
+      </li>
+      <li class="input-field">
+        <input id="edad_embarazos" type="text" />
+        <label for="edad_embarazos">4.EMBARAZOS</label>
+      </li>
+      <li class="input-field">
+        <input id="edad_partos" type="text" />
+        <label for="edad_partos">5. PARTOS</label>
+      </li>
+      <li class="input-field">
+        <input id="edad_cesareas" type="text" />
+        <label for="edad_cesareas">6. CESÀREAS</label>
+      </li>
+      <li class="input-field">
+        <input id="edad_terapiaHormonal" type="text" />
+        <label for="edad_terapiaHormonal">7.TERAPIA HORMONAL</label>
+      </li>
+    </ul>
+    <div class="input-field s-100">
+      <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+    </div>
+
+
+    <ul class="GinecosObstretricos">
+      <li class="GinecosObstretricos-title">ANDROLÒGICOS</li>
+      <li class="input-field">
+        <input id="edad_antigenoProstatico" type="text" />
+        <label for="edad_antigenoProstatico">1. EDAD ULTIMO ANTÌGENO PROSTÀTICO</label>
+      </li>
+      <li class="input-field">
+        <input id="terapiaHormonal" type="text" />
+        <label for="terapiaHormonal">2. TERAPIA HORMONAL</label>
+      </li>
+    </ul>
+
+    <ul class="farcologicos">
+      <li class="AntecedentesPersonales-item no-boder--bottom">
+        <p class="AntecedentesPersonales-item--title" style="width: 14%;">FARCOLÒGICOS</p>
+        <div>
+          <p>
+            <input name="farcologicos" type="radio" id="aines" />
+            <label for="aines">1.- AINES</label>
+          </p>
+          <p>
+            <input name="farcologicos" type="radio" id="analgesicos" />
+            <label for="analgesicos">2.- ANALGESICOS</label>
+          </p>
+          <p>
+            <input name="farcologicos" type="radio" id="anti_diabetis" />
+            <label for="anti_diabetis">3.- ANTI DIABETIS</label>
+          </p>
+          <p>
+            <input name="farcologicos" type="radio" id="anti_hipertensivo" />
+            <label for="anti_hipertensivo">4.- ANTI HIPERTENSIVO</label>
+          </p>
+          <p>
+            <input name="farcologicos" type="radio" id="anti_coagulantes" />
+            <label for="anti_coagulantes">5.-  ANTI COAGULANTES</label>
+          </p>
+          <p>
+            <input name="farcologicos" type="radio" id="psico-farmacos" />
+            <label for="psico-farmacos">6.- PSICO FÀRMACOS</label>
+          </p>
+          <p>
+            <input name="farcologicos" type="radio" id="antibioticos" />
+            <label for="antibioticos">7.- ANTIBIOTICOS</label>
+          </p>
+          <p>
+            <input name="farcologicos" type="radio" id="otros" />
+            <label for="otros">8.- OTROS</label>
+          </p>
+        </div>
+      </li>
+      <div class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+      </div>
+    </ul>
+
+    <ul class="AntecedentesPersonales">
+      <li class="RevisionSistema-title">5 Antecedentes Familiares Y sociales
+        <p>Con patologia. Describir anotando el numero, Sin patologia. No Describir</p>
+      </li>
+
+      <li class="AntecedentesPersonales-item no-boder--bottom">
+        <p class="AntecedentesPersonales-item--title">Generales</p>
+        <div>
+          <p>
+            1.- CARDIOPATÌAS
+            <input name="cardiopatia" type="radio" id="cardiopatia-1" />
+            <label for="cardiopatia-1"></label>
+            <input name="cardiopatia" type="radio" id="cardiopatia-2" />
+            <label for="cardiopatia-2"></label>
+          </p>
+          <p>
+            2.- DIABETIS
+            <input name="diabetis" type="radio" id="diabetis-1" />
+            <label for="diabetis-1"></label>
+            <input name="diabetis" type="radio" id="diabetis-2" />
+            <label for="diabetis-2"></label>
+          </p>
+          <p>
+            3.- HIPERTENCION ARTESANAL
+            <input name="hipertensionArtesanal" type="radio" id="hipertensionArtesanal-1" />
+            <label for="hipertensionArtesanal-1"></label>
+            <input name="hipertensionArtesanal" type="radio" id="hipertensionArtesanal-2" />
+            <label for="hipertensionArtesanal-2"></label>
+          </p>
+          <p>
+            4.- NEOPLASIA
+            <input name="neoplasia" type="radio" id="neoplasia-1" />
+            <label for="neoplasia-1"></label>
+            <input name="neoplasia" type="radio" id="neoplasia-2" />
+            <label for="neoplasia-2"></label>
+          </p>
+          <p>
+            5.- ALZHEIMER
+            <input name="alzherimer" type="radio" id="alzherimer-1" />
+            <label for="alzherimer-1"></label>
+            <input name="alzherimer" type="radio" id="alzherimer-2" />
+            <label for="alzherimer-2"></label>
+          </p>
+          <p>
+            6.- PARKINSON
+            <input name="parkison" type="radio" id="parkison-1" />
+            <label for="parkison-1"></label>
+            <input name="parkison" type="radio" id="parkison-2" />
+            <label for="parkison-2"></label>
+          </p>
+          <p>
+            7.- TUBERCULOSIS
+            <input name="tuberculosis" type="radio" id="tuberculosis-1" />
+            <label for="tuberculosis-1"></label>
+            <input name="tuberculosis" type="radio" id="tuberculosis-2" />
+            <label for="tuberculosis-2"></label>
+          </p>
+
+        </div>
+      </li>
+      <li class="AntecedentesPersonales-item">
+        <div>
+          <p>
+            8.- VIOLENCIA INTRAFAMILIAR
+            <input name="violenciaIntrafamiliar" type="radio" id="violenciaIntrafamiliar-1" />
+            <label for="violenciaIntrafamiliar-1"></label>
+            <input name="violenciaIntrafamiliar" type="radio" id="violenciaIntrafamiliar-2" />
+            <label for="violenciaIntrafamiliar-2"></label>
+          </p>
+          <p>
+            8.- SINDROME DEL CUIDADOR
+            <input name="sindromeCuidador" type="radio" id="sindromeCuidador-1" />
+            <label for="sindromeCuidador-1"></label>
+            <input name="sindromeCuidador" type="radio" id="sindromeCuidador-2" />
+            <label for="sindromeCuidador-2"></label>
+          </p>
+          <p>
+            9.- OTROS
+            <input name="otrosFamiliares" type="radio" id="otrosFamiliares-1" />
+            <label for="otrosFamiliares-1"></label>
+            <input name="otrosFamiliares" type="radio" id="otrosFamiliares-2" />
+            <label for="otrosFamiliares-2"></label>
+          </p>
+
+        </div>
+      </li>
+    </ul>
+
+    <article class="Signos">
+      <p class="RevisionSistema-title" style="margin:0">6 SIGNOS VITALES, ANTROPOMETRIA Y TAMIZAJE</p>
+      <ul>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">P. ARTERIAL ACOSTADO</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">P. ARTERIAL SENTADO</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">TEMPERATURA O</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">PULSO 7 min</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">FRECUENCIA RESPIR/min</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">Peso Kg</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">Talla /cm</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">IMC</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">PERIMETRO CINTURA</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">PERIMETRO CADERA</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">PERIMETRO PANTORRILLA</label>
+        </li>
+        <li class="input-field">
+          <input id="parterial" type="text" />
+          <label for="parterial">RESPONSABLES (siglas)</label>
+        </li>
+
+      </ul>
+    </article>
+
+  </article>
+</section>
+

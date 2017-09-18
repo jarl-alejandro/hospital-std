@@ -62,3 +62,104 @@
       align-items center
   &-border
     border 1px solid #ccc !important
+
+.EstadoGeneral
+  display flex
+  &-title
+    width 14%
+    list-style none
+    text-decoration none
+    border 1px solid #ccc
+    text-align center
+  &-list
+    display flex
+    justify-content space-around
+    width 89%
+    border-bottom 1px solid #ccc
+    border-top 1px solid #ccc
+    border-right 1px solid #ccc
+    padding-right 12px
+    p
+      margin 0
+.RevisionSistema
+  &-title
+    border-top 1px solid #cccccc
+    border-left 1px solid #cccccc
+    border-right 1px solid #cccccc
+    font-weight bold
+    border-right 1px solid #ccc
+    font-weight bold
+    padding 9px 9px
+    display flex
+    justify-content space-between
+  &-item
+    display flex
+    border 1px solid #cccccc
+    justify-content space-around
+    p
+      margin 0
+      display flex
+      align-items center
+.RevisionSistema-title p
+  margin 0
+.AntecedentesPersonales
+  &-item
+    display flex
+    p
+      margin 0
+    &--title
+      width 10%
+      border-top 1px solid #cccccc
+      border-bottom 1px solid #cccccc
+      border-left 1px solid #cccccc
+    div
+      display flex
+      justify-content space-around
+      width 91%
+      border 1px solid #cccccc
+      p
+        font-size 12px
+        display flex
+        align-items center
+.GinecosObstretricos
+  display grid
+  grid-template-columns repeat(8, 1fr)
+  label
+    font-size 9px
+    margin-left 17px
+  label.active
+    font-size 9px !important
+    margin-top 4px
+  &-title
+    font-size 11px
+    border 1px solid #cccccc
+    display flex
+    justify-content center
+    align-items center
+  .input-field
+    border-top 1px solid #cccccc
+    border-bottom 1px solid #cccccc
+    margin 0
+    input
+      width 85%
+      display flex
+      justify-content center
+      margin 0 auto
+  .input-field:last-child
+    border-right 1px solid #cccccc
+.farcologicos
+  label
+    font-size 11px !important
+.Signos
+  ul
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    border 1px solid #cccccc
+    margin 0
+  label
+    font-size 9px
+  label.active
+    font-size 9px !important
+  .input-field
+    input
+      width:  90%

@@ -131,6 +131,7 @@
     <script src='src/doctor/form056/app/grafica.js'></script>
 
     <script src='src/doctor/adulto-mayor/app/index.js'></script>
+    <script src='src/doctor/adulto-mayor-65/app/index.js'></script>
 
     <script src='src/doctor/hoja-devolucion/app/index.js'></script>
     <script src='src/doctor/hoja-devolucion/app/calendar.js'></script>
