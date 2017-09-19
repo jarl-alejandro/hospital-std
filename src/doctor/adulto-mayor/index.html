@@ -115,7 +115,7 @@
     </div>
 
     <div class="SignosVitales">
-      <label class="header">6. SIGNOS VITAKES Y ANTROPOMETRIA</label>
+      <label class="header">6. SIGNOS VITALES Y ANTROPOMETRIA</label>
       <ul class="SignosVitales-list">
         <li class="input-field">
           <p class="SignosVitales-border">FECHA DE MEDICÌON</p>
@@ -139,6 +139,165 @@
         </li>
       </ul>
     </div>
+
+    <div class="ExamenFisicoRegional">
+      <p class="ExamenFisicoRegional-title">
+         Examen Fìsico Regional
+        <span class="ExamenFisicoRegional-cp">
+           CP= CON EVIDENCIA DE PATOLOGIA MARCA "X" Y DESCRIBIR ABAJO ANOTANDO EL NÙMERO Y LETRA CORRESPONDIENTES
+        </span>
+        <span class="ExamenFisicoRegional-sp">
+           PS= SIN EVIDENCIA DE PATOLOGIA MARCA "X" Y NO DESCRIBIR
+        </span>
+      </p>
+      <ul class="ExamenFisicoRegional-list">
+        <li class="ExamenFisicoRegional--item">
+          1 CABEZA
+          <p>
+            <input class="with-gap" name="cabeza" type="radio" id="cabeza-1" />
+            <label for="cabeza-1"></label>
+            <input class="with-gap" name="cabeza" type="radio" id="cabeza-2" />
+            <label for="cabeza-2"></label>
+          </p>
+        </li>
+
+        <li class="ExamenFisicoRegional--item">
+          2 CUELLO
+          <p>
+            <input class="with-gap" name="cuello" type="radio" id="cuello-1" />
+            <label for="cuello-1"></label>
+            <input class="with-gap" name="cuello" type="radio" id="cuello-2" />
+            <label for="cuello-2"></label>
+          </p>
+        </li>
+
+        <li class="ExamenFisicoRegional--item">
+          3 TORAX
+          <p>
+            <input class="with-gap" name="torax" type="radio" id="torax-1" />
+            <label for="torax-1"></label>
+            <input class="with-gap" name="torax" type="radio" id="torax-2" />
+            <label for="torax-2"></label>
+          </p>
+        </li>
+
+        <li class="ExamenFisicoRegional--item">
+          4 ABDOMEN
+          <p>
+            <input class="with-gap" name="abdomen" type="radio" id="abdomen-1" />
+            <label for="abdomen-1"></label>
+            <input class="with-gap" name="abdomen" type="radio" id="abdomen-2" />
+            <label for="abdomen-2"></label>
+          </p>
+        </li>
+        <li class="ExamenFisicoRegional--item">
+          5 PELVIS
+          <p>
+            <input class="with-gap" name="pelvis" type="radio" id="pelvis-1" />
+            <label for="pelvis-1"></label>
+            <input class="with-gap" name="pelvis" type="radio" id="pelvis-2" />
+            <label for="pelvis-2"></label>
+          </p>
+        </li>
+        <li class="ExamenFisicoRegional--item">
+          6 EXTREMIDADES
+          <p>
+            <input class="with-gap" name="extremidades" type="radio" id="extremidades-1" />
+            <label for="extremidades-1"></label>
+            <input class="with-gap" name="extremidades" type="radio" id="extremidades-2" />
+            <label for="extremidades-2"></label>
+          </p>
+        </li>
+      </ul>
+      <div class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
+      </div>
+    </div>
+
+    <section class="main-justify">
+      <article class="s-100 l-75 cie-container" style="margin-top: 1rem">
+        <table class="bordered striped highlight centered responsive-table cie-table">
+          <thead>
+            <tr>
+              <th width="40%">10 DIAGNÓSTICOS / <span>CIE</span></th>
+              <th width="20%">CIE</th>
+              <th width="10%">PRE</th>
+              <th width="10%">DEF</th>
+            </tr>
+          </thead>
+          <tbody id="cie-table">
+            <tr>
+              <td id="cie-nombre1" class="input-field">
+                <input type="text" placeholder="Ingresa el nombre CIE 10" class="u-noMargin filter-cie-nombre10" id="column-nombre-1" data-index="1"
+                />
+              </td>
+              <td class="input-field">
+                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" class="u-noMargin filter-cie10" id="column1" data-index="1"
+                />
+              </td>
+              <td id="cie-pre1"></td>
+              <td id="cie-def1"></td>
+            </tr>
+            <tr>
+              <td id="cie-nombre2" class="input-field">
+                <input type="text" placeholder="Ingresa el nombre CIE 10" class="u-noMargin filter-cie-nombre10" id="column-nombre-2" data-index="2"
+                />
+              </td>
+              <td class="input-field">
+                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" class="u-noMargin filter-cie10" id="column2" data-index="2"
+                />
+              </td>
+              <td id="cie-pre2"></td>
+              <td id="cie-def2"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="waves-effect waves-light btn primary" ng-click="handleNewCIE10()">
+          <i class="material-icons">add</i>
+        </button>
+      </article>
+    </section>
+
+    <article class="PruebasDiagnostico">
+      <p class="PruebasDiagnostico--title">
+        9 PLAN DE TRATMIENTO
+        <span>REGISTRAR LOS PLANES: DIAGNÓSTICOS, TERAPEÙTA Y EDUCACIONAL</span>
+      </p>
+      <div class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
+      </div>
+    </article>
+
+    <!-- AKI -->
+    <div class="Footer">
+      <ul class="Footer-header">
+        <li>FECHA</li>
+        <li>HORA</li>
+        <li>NOMBRE DELPROFESIONAL</li>
+        <li>CODIGO</li>
+        <li>FIRMA</li>
+        <li>NUMERO DE HOJA</li>
+      </ul>
+      <ul class="Footer-body">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <p class="Footer-mesaje">
+        <span>SNS-MSP / HCU-form.057 / 2010</span>
+        <span>ATENCION AL ADULTO MAYOR (2)</span>
+      </p>
+    </div>
+
+    <div class='main-distribute'>
+      <a class="waves-effect waves-light btn danger">Cerrar</a>
+      <a class="waves-effect waves-light btn primary">Guardar</a>
+    </div>
+    <!-- /AKI -->
 
   </article>
 </section>

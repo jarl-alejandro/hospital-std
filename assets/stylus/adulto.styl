@@ -236,3 +236,46 @@
     display flex
     justify-content space-between
 
+.ExamenFisicoRegional
+  &-title
+    display grid
+    grid-template-columns 26% 41% 22%
+    justify-content space-between
+    border 1px solid #212020
+    background #ccc
+    margin 0
+  &-list
+    margin 0
+    display grid
+    grid-template-columns repeat(6, 1fr)
+  &--item
+    display flex
+    align-items center
+    border 1px solid #ccc
+    p
+      margin 0
+
+#formPlusAdultoMayor65
+  display none
+  background white
+  box-shadow 0 1px 1.5px rgba(0,0,0,0.3)
+  position fixed
+  top 7rem
+  left: 4%;
+  width: 91%;
+  padding: 11px;
+  border-radius 4px
+  z-index 11111111
+
+.SignosAdultoMayor
+  &-header
+    h3
+      margin 0
+      color white
+      text-align center
+      font-size 30px
+      padding 0 0 5px 0
+
+.AdultoMayorSignos
+  label
+    font-size 9px !important

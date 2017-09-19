@@ -89,7 +89,9 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $scope.handleShowForm = () => {
     const duracion = duration(new Date($scope.fechaNacimiento), new Date())
-    if (duracion.years >= 10) $('.formPlus056').slideDown()
+    console.log(duracion)
+    if (duracion.years >= 65) $('#formPlusAdultoMayor65').slideDown()
+    else if (duracion.years >= 10) $('.formPlus056').slideDown()
     else $('.formPlus').slideDown()
   }
   $scope.handleCancel = () => closeForm()
