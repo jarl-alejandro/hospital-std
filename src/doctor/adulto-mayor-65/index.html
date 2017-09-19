@@ -397,7 +397,6 @@
       <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
     </div>
 
-
     <ul class="GinecosObstretricos">
       <li class="GinecosObstretricos-title">ANDROLÒGICOS</li>
       <li class="input-field">
@@ -545,57 +544,438 @@
       <p class="RevisionSistema-title" style="margin:0">6 SIGNOS VITALES, ANTROPOMETRIA Y TAMIZAJE</p>
       <ul>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">P. ARTERIAL ACOSTADO</label>
+          <input id="parterialAcostado" type="text" />
+          <label for="parterialAcostado">P. ARTERIAL ACOSTADO</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">P. ARTERIAL SENTADO</label>
+          <input id="parterialSentada" type="text" />
+          <label for="parterialSentada">P. ARTERIAL SENTADO</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">TEMPERATURA O</label>
+          <input id="temperatura" type="text" />
+          <label for="temperatura">TEMPERATURA ºO</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">PULSO 7 min</label>
+          <input id="pulso7min" type="text" />
+          <label for="pulso7min">PULSO 7 min</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">FRECUENCIA RESPIR/min</label>
+          <input id="frecuencia" type="text" />
+          <label for="frecuencia">FRECUENCIA RESPIR/min</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">Peso Kg</label>
+          <input id="peso" type="text" />
+          <label for="peso">Peso Kg</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">Talla /cm</label>
+          <input id="talla" type="text" />
+          <label for="talla">Talla /cm</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">IMC</label>
+          <input id="imc" type="text" />
+          <label for="imc">IMC</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">PERIMETRO CINTURA</label>
+          <input id="perimetroCintura" type="text" />
+          <label for="perimetroCintura">PERIMETRO CINTURA</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">PERIMETRO CADERA</label>
+          <input id="perimetroCadera" type="text" />
+          <label for="perimetroCadera">PERIMETRO CADERA</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">PERIMETRO PANTORRILLA</label>
+          <input id="perimetroPantorrilla" type="text" />
+          <label for="perimetroPantorrilla">PERIMETRO PANTORRILLA</label>
         </li>
         <li class="input-field">
-          <input id="parterial" type="text" />
-          <label for="parterial">RESPONSABLES (siglas)</label>
+          <input id="responsables" type="text" />
+          <label for="responsables">RESPONSABLES (siglas)</label>
         </li>
 
       </ul>
+      <div class="AntecedentesPersonales-item no-boder--bottom">
+        <p class="AntecedentesPersonales-item--title" 
+          style="width: 10.5%;font-size: 14px;text-align: center;">TAMIZAJE PÀPIDO
+        </p>
+        <div class="TamizajeSignos">
+          <p>
+            <input name="tamizajePapido" type="radio" id="dificultadVisual" />
+            <label for="dificultadVisual">1.- DIFICULTAD VISUAL</label>
+          </p>
+          <p>
+            <input name="tamizajePapido" type="radio" id="dificultadAuditiva" />
+            <label for="dificultadAuditiva">2.- DIFICULTAD AUDITIVA</label>
+          </p>
+          <p>
+            <input name="tamizajePapido" type="radio" id="levantateAnda" />
+            <label for="levantateAnda">3.- "LEVANTATE Y ANDA" MAYOT A 15a</label>
+          </p>
+          <p>
+            <input name="tamizajePapido" type="radio" id="perdidaInvtOrina" />
+            <label for="perdidaInvtOrina">4.- PÈRDIDA INVT. DE ORINA</label>
+          </p>
+          <p>
+            <input name="tamizajePapido" type="radio" id="perdidaMemoriaReciente" />
+            <label for="perdidaMemoriaReciente">5.- PÈRDIDA DE MEMORIA RECIENTE</label>
+          </p>
+          <p>
+            <input name="tamizajePapido" type="radio" id="pierdePeso" />
+            <label for="pierdePeso">6.- PIERDE PESO MAS DE 4.5 KG. EN 6 MESES</label>
+          </p>
+        </div>
+      </div>
+
+      <div class="AntecedentesPersonales-item no-boder--bottom">
+        <div class="TamizajeSignos" style="width: 100%;">
+          <p>
+            <input name="tamizajePapido" type="radio" id="sienteTristeDeprimido" />
+            <label for="sienteTristeDeprimido">7.- SE SIENTE TRISTE O DEPRIMIDO</label>
+          </p>
+          <p>
+            <input name="tamizajePapido" type="radio" id="puedeBanarSolo" />
+            <label for="puedeBanarSolo">8.- PUEDE BAÑARSE SOLO</label>
+          </p>
+          <p>
+            <input name="tamizajePapido" type="radio" id="saleComprasSolo" />
+            <label for="saleComprasSolo">9.- SALE DE COMPRAS SOLOS</label>
+          </p>
+          <p>
+            <input name="tamizajePapido" type="radio" id="viveSola" />
+            <label for="viveSola">10.- VIVE SOLA</label>
+          </p>
+        </div>
+      </div>
     </article>
 
+    <article class="ExamenFisicoMayor">
+      <p class="ExamenFisicoMayor-title">
+        EXAMEN FÌSICOS
+        <span>REGIONAL (1 - 14) SISTÈMICO (1-9)</span>
+        <span>CON PATOLOGIA DESCRIBIR ANOTANDO EL NUMERO, SIN PATOLOGIANO DESCRIBIR</span>
+      </p>
+      <ul class="ExamenFisicoMayor-list">
+        <li class="ExamenFisicoMayor-item">
+          <p>
+            1.- PIFI
+            <input class="with-gap" name="pifi" type="radio" id="pifi-1" />
+            <label for="pifi-1"></label>
+            <input class="with-gap" name="pifi" type="radio" id="pifi-2" />
+            <label for="pifi-2"></label>
+          </p>
+          <p>
+            2.- CABEZA
+            <input class="with-gap" name="cabeza" type="radio" id="cabeza-1" />
+            <label for="cabeza-1"></label>
+            <input class="with-gap" name="cabeza" type="radio" id="cabeza-2" />
+            <label for="cabeza-2"></label>
+          </p>
+          <p>
+            3.- OJOS
+            <input class="with-gap" name="ojos" type="radio" id="ojos-1" />
+            <label for="ojos-1"></label>
+            <input class="with-gap" name="ojos" type="radio" id="ojos-2" />
+            <label for="ojos-2"></label>
+          </p>
+          <p>
+            4.- OÌDOS
+            <input class="with-gap" name="oidos" type="radio" id="oidos-1" />
+            <label for="oidos-1"></label>
+            <input class="with-gap" name="oidos" type="radio" id="oidos-2" />
+            <label for="oidos-2"></label>
+          </p>
+          <p>
+            1.- ORG. DE LOS SENTIDOS
+            <input class="with-gap" name="orgSentidos" type="radio" id="orgSentidos-1" />
+            <label for="orgSentidos-1"></label>
+            <input class="with-gap" name="orgSentidos" type="radio" id="orgSentidos-2" />
+            <label for="orgSentidos-2"></label>
+          </p>
+          <p>
+            2.- RESPIRATORIO
+            <input class="with-gap" name="respiratorioMayor" type="radio" id="respiratorioMayor-1" />
+            <label for="respiratorioMayor-1"></label>
+            <input class="with-gap" name="respiratorioMayor" type="radio" id="respiratorioMayor-2" />
+            <label for="respiratorioMayor-2"></label>
+          </p>
+          <p>
+            3.- CARDIO VASCULAR
+            <input class="with-gap" name="cardioVascularMayor" type="radio" id="cardioVascularMayor-1" />
+            <label for="cardioVascularMayor-1"></label>
+            <input class="with-gap" name="cardioVascularMayor" type="radio" id="cardioVascularMayor-2" />
+            <label for="cardioVascularMayor-2"></label>
+          </p>
+        </li>
+
+        <li class="ExamenFisicoMayor-item">
+          <p>
+            5.- BOCA
+            <input class="with-gap" name="boca" type="radio" id="boca-1" />
+            <label for="boca-1"></label>
+            <input class="with-gap" name="boca" type="radio" id="boca-2" />
+            <label for="boca-2"></label>
+          </p>
+          <p>
+            6.- NARIZ
+            <input class="with-gap" name="nariz" type="radio" id="nariz-1" />
+            <label for="nariz-1"></label>
+            <input class="with-gap" name="nariz" type="radio" id="nariz-2" />
+            <label for="nariz-2"></label>
+          </p>
+          <p>
+            7.- CUELLO
+            <input class="with-gap" name="cuello" type="radio" id="cuello-1" />
+            <label for="cuello-1"></label>
+            <input class="with-gap" name="cuello" type="radio" id="cuello-2" />
+            <label for="cuello-2"></label>
+          </p>
+          <p>
+            8.- AXILA-MAMA
+            <input class="with-gap" name="axilaMama" type="radio" id="axilaMama-1" />
+            <label for="axilaMama-1"></label>
+            <input class="with-gap" name="axilaMama" type="radio" id="axilaMama-2" />
+            <label for="axilaMama-2"></label>
+          </p>
+          <p>
+            4.- DIGESTIVO
+            <input class="with-gap" name="digestivoMayor" type="radio" id="digestivoMayor-1" />
+            <label for="digestivoMayor-1"></label>
+            <input class="with-gap" name="digestivoMayor" type="radio" id="digestivoMayor-2" />
+            <label for="digestivoMayor-2"></label>
+          </p>
+          <p>
+            5.- GENITO URINARIO
+            <input class="with-gap" name="genitoUrinario" type="radio" id="genitoUrinario-1" />
+            <label for="genitoUrinario-1"></label>
+            <input class="with-gap" name="genitoUrinario" type="radio" id="genitoUrinario-2" />
+            <label for="genitoUrinario-2"></label>
+          </p>
+          <p>
+            6.- MÙSCULO ESQUELETICO
+            <input class="with-gap" name="musculoEsqueleticoMayor" type="radio" id="musculoEsqueleticoMayor-1" />
+            <label for="musculoEsqueleticoMayor-1"></label>
+            <input class="with-gap" name="musculoEsqueleticoMayor" type="radio" id="musculoEsqueleticoMayor-2" />
+            <label for="musculoEsqueleticoMayor-2"></label>
+          </p>
+        </li>
+
+        <li class="ExamenFisicoMayor-item">
+          <p>
+            9.- TORAX
+            <input class="with-gap" name="torax" type="radio" id="torax-1" />
+            <label for="torax-1"></label>
+            <input class="with-gap" name="torax" type="radio" id="torax-2" />
+            <label for="torax-2"></label>
+          </p>
+          <p>
+            10.- ABDOMEN
+            <input class="with-gap" name="abdomen" type="radio" id="abdomen-1" />
+            <label for="abdomen-1"></label>
+            <input class="with-gap" name="abdomen" type="radio" id="abdomen-2" />
+            <label for="abdomen-2"></label>
+          </p>
+          <p>
+            11.- COLUMNA
+            <input class="with-gap" name="columna" type="radio" id="columna-1" />
+            <label for="columna-1"></label>
+            <input class="with-gap" name="columna" type="radio" id="columna-2" />
+            <label for="columna-2"></label>
+          </p>
+          <p>
+            12.- PERINÈ
+            <input class="with-gap" name="perine" type="radio" id="perine-1" />
+            <label for="perine-1"></label>
+            <input class="with-gap" name="perine" type="radio" id="perine-2" />
+            <label for="perine-2"></label>
+          </p>
+          <p>
+            7.- ENDOCRINO
+            <input class="with-gap" name="endocrinoMayor" type="radio" id="endocrinoMayor-1" />
+            <label for="endocrinoMayor-1"></label>
+            <input class="with-gap" name="endocrinoMayor" type="radio" id="endocrinoMayor-2" />
+            <label for="endocrinoMayor-2"></label>
+          </p>
+          <p>
+            8.- HEMO LINFÀTICO
+            <input class="with-gap" name="hemoLinfatico" type="radio" id="hemoLinfatico-1" />
+            <label for="hemoLinfatico-1"></label>
+            <input class="with-gap" name="hemoLinfatico" type="radio" id="hemoLinfatico-2" />
+            <label for="hemoLinfatico-2"></label>
+          </p>
+          <p>
+            9.- NEUROLÒGICOS
+            <input class="with-gap" name="neurologicos" type="radio" id="neurologicos-1" />
+            <label for="neurologicos-1"></label>
+            <input class="with-gap" name="neurologicos" type="radio" id="neurologicos-2" />
+            <label for="neurologicos-2"></label>
+          </p>
+        </li>
+
+        <!-- aki -->
+        <li class="ExamenFisicoMayor-item">
+          <p>
+            13.- M. SUPERIORES
+            <input class="with-gap" name="mSuperiores" type="radio" id="mSuperiores-1" />
+            <label for="mSuperiores-1"></label>
+            <input class="with-gap" name="mSuperiores" type="radio" id="mSuperiores-2" />
+            <label for="mSuperiores-2"></label>
+          </p>
+          <p>
+            14.- M. INFERIORES
+            <input class="with-gap" name="mInferiores" type="radio" id="mInferiores-1" />
+            <label for="mInferiores-1"></label>
+            <input class="with-gap" name="mInferiores" type="radio" id="mInferiores-2" />
+            <label for="mInferiores-2"></label>
+          </p>
+
+        </li>
+        <!-- /aki -->
+
+      </ul>
+      <div class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+      </div>
+    </article>
+
+    <section class="main-justify">
+      <article class="s-100 l-70 cie-container" style="margin-top: 1rem">
+        <table class="bordered striped highlight centered responsive-table cie-table">
+          <thead>
+            <tr>
+              <th width="40%">10 DIAGNÓSTICOS / <span>CIE</span></th>
+              <th width="20%">CIE</th>
+              <th width="10%">PRE</th>
+              <th width="10%">DEF</th>
+              <th width="15%" style="font-size: 9px;">CLINICO, SINDROMICO, PSICOLOGICO FUNCIONAL, NUTRICIONAL</th>
+            </tr>
+          </thead>
+          <tbody id="cie-table">
+            <tr>
+              <td id="cie-nombre1" class="input-field">
+                <input type="text" placeholder="Ingresa el nombre CIE 10" class="u-noMargin filter-cie-nombre10" id="column-nombre-1" data-index="1"
+                />
+              </td>
+              <td class="input-field">
+                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" class="u-noMargin filter-cie10" id="column1" data-index="1"
+                />
+              </td>
+              <td id="cie-pre1"></td>
+              <td id="cie-def1"></td>
+              <td id="cie-desc1"></td>
+            </tr>
+            <tr>
+              <td id="cie-nombre2" class="input-field">
+                <input type="text" placeholder="Ingresa el nombre CIE 10" class="u-noMargin filter-cie-nombre10" id="column-nombre-2" data-index="2"
+                />
+              </td>
+              <td class="input-field">
+                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" class="u-noMargin filter-cie10" id="column2" data-index="2"
+                />
+              </td>
+              <td id="cie-pre2"></td>
+              <td id="cie-def2"></td>
+              <td id="cie-desc2"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="waves-effect waves-light btn primary" ng-click="handleNewCIE10()">
+          <i class="material-icons">add</i>
+        </button>
+      </article>
+      <article class="s-100 l-25 sindromeGeriatricos">
+        <p class="sindromeGeriatricos-title">SINDROME GERIÀTRICOS</p>
+        <ul>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="fragilidad"  />
+            <label for="fragilidad">FRAGILIDAD</label>
+          </li>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="depresion" />
+            <label for="depresion">DEPRESIÒN</label>
+          </li>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="delirio"  />
+            <label for="delirio">DELIRIO</label>
+          </li>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="ulceraPorPresion" />
+            <label for="ulceraPorPresion">ÙLCERAS POR PRESION</label>
+          </li>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="incontinencia" />
+            <label for="incontinencia">INCONTINENCIA</label>
+          </li>
+
+        </ul>
+
+        <ul>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="dismovilidadSindrome" />
+            <label for="dismovilidadSindrome">DISMOVILIDAD</label>
+          </li>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="caidaSindrome" />
+            <label for="caidaSindrome">CAIDA</label>
+          </li>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="malNutricion" />
+            <label for="malNutricion">MAL NUTRICIÒN</label>
+          </li>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="demencia" />
+            <label for="demencia">DEMENCIA</label>
+          </li>
+          <li>
+            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="iatrogenia" />
+            <label for="iatrogenia">IATROGENIA</label>
+          </li>
+        </ul>
+
+      </article>
+    </section>
+
+    <article class="PruebasDiagnostico">
+      <p class="PruebasDiagnostico--title">
+        9 PRUEBAS DIAGNÓSTICOS
+        <span>REGISTRAR LOS EXAMENES DE LABORATORIO Y ESPECIALES SOLICITADAS</span>
+      </p>
+      <div class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
+      </div>
+    </article>
+
+    <article class="PruebasDiagnostico">
+      <p class="PruebasDiagnostico--title">
+        10 TRATAMIENTO
+        <span>1.- FUNCIONAL, 2.- NUTRICIONAL, 3.- PSICOLOGICO, 4.- SOCIAL, 5.- EDUCATIVO, 6.- FARMACOLOGICO</span>
+      </p>
+      <div class="input-field s-100">
+        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
+      </div>
+    </article>
+
+    <div class="Footer">
+      <ul class="Footer-header">
+        <li>PROFESIONAL</li>
+        <li>FIRMA</li>
+        <li>CÒDIGO</li>
+        <li>FECHA PRÒXIMA CITA</li>
+        <li>FECHA Y HORA DE ATENCIÒN</li>
+        <li>HOJA</li>
+      </ul>
+      <ul class="Footer-body">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <p class="Footer-mesaje">
+        <span>SNS-MSP / HCU-form.057 / 2010</span>
+        <span>ATENCION AL ADULTO MAYOR (2)</span>
+      </p>
+    </div>
   </article>
 </section>
 

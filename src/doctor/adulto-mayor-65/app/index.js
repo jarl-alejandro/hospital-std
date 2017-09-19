@@ -1,6 +1,6 @@
 'use strict'
 
 angular.module('Hospital')
-.controller('adultoMayor65Ctrl', function ($scope, $htt) {
+.controller('adultoMayor65Ctrl', function ($scope, $http) {
 
 })

@@ -12,6 +12,9 @@
     border-right 1px solid #2f2f2f
     li
       text-align center
+      display flex
+      align-items center
+      justify-content center
   &-body
     li
       border-top 1px solid #2f2f2f
@@ -152,8 +155,8 @@
     font-size 11px !important
 .Signos
   ul
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    display grid
+    grid-template-columns repeat(12, 1fr)
     border 1px solid #cccccc
     margin 0
   label
@@ -162,4 +165,74 @@
     font-size 9px !important
   .input-field
     input
-      width:  90%
+      width  90%
+.TamizajeSignos
+  label
+    font-size 10px !important
+.ExamenFisicoMayor
+  border 1px solid #cccccc
+  margin-top 0.5rem
+  &-title
+    margin 0
+    padding-left 9px
+    margin-top 4px
+    font-weight bold
+    color #424242
+    border-bottom 1px solid #ccc
+    display flex
+    justify-content space-between
+    padding-right 10px
+    span
+      font-weight normal
+      font-size 12px
+  &-list
+    margin 0
+  &-item
+    display flex
+    justify-content space-around
+    align-items center
+    border-bottom 1px solid #ccc
+    p
+      margin 0
+      display flex
+
+.sindromeGeriatricos
+  border 1px solid #ccc
+  margin-top 1rem
+  display flex
+  flex-wrap wrap
+  justify-content space-around
+  &-title
+    text-align center
+    border-bottom 1px solid #ccc
+    margin 0
+    width 100%
+  label
+    font-size 12px !important
+.PruebasDiagnostico
+  &--title
+    display flex
+    justify-content space-between
+    font-weight bold
+    border 1px solid #ccc
+    padding 0 18px
+    span
+      font-weight normal
+    
+.Footer
+  &-header
+    li
+      font-size 13px
+  &-body
+    li
+      border 1px solid #ccc
+      height 25px  
+  &-header
+  &-body
+    display grid
+    grid-template-columns repeat(6, 1fr)
+    text-align center
+  &-mesaje
+    display flex
+    justify-content space-between
+
