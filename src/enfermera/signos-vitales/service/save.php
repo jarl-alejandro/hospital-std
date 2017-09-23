@@ -23,6 +23,8 @@ $id = $obj->id;
 $hoy = date("Y/m/d");
 $hora = date("h:i");
 
+print_r($obj);
+
 if ($id == "") {
   $new = $pdo->prepare("UPDATE hgc_sigvit SET hgc_temp_sigvit=?, hgc_frcar_sigvit=?,
     hgc_frresp_sigvit=?, hgc_prart_sigvit=?, hgc_peso_sigvit=?, hgc_talla_sigvit=?,

@@ -63,6 +63,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       $scope.empresa = response.data.empresa
   })
 
+
   $http.get(`src/doctor/form28A/service/paciente.php?id=${id}`)
   .then(response => $scope.pacient = response.data)
 
@@ -265,6 +266,15 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     else return true
   }
 
+  setInterval(() => {
+    let active = localStorage.getItem('activar')
+    if (active === 'true') {
+      $http.get(`src/enfermera/signos-vitales/service/getAll.php?id=${$stateParams.id}`)
+      .then(response => $scope.signosVitales = response.data)
+      localStorage.setItem('activar', false)
+    }
+  }, 100)
+
 })
 
 singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $stateParams, $rootScope) {
@@ -364,5 +374,7 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
     }
     else return true
   }
+
+
 
 })

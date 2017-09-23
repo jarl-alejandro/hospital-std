@@ -93,61 +93,91 @@ while ($row = $qs->fetch()) {
   $headerIndex++;
 
   if ($row["hgc_talla_sigvit"] === '') {
-    $content .= '<table class="bordered highlight centered responsive-table">
+      $content .= '
+      <table class="bordered highlight centered responsive-table">
       <thead style="background: red">
-        <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
-          <th>#</th>
-          <th>FECHA</th>
-          <th>TEMPERATURA</th>
-          <th>PESO</th>
-          <th>P. Cefalico</th>
-          <th>Longitud</th>
-          <th>Pulso</th>
-        </tr>
+      <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
+      <th>#</th>
+      <th>FECHA</th>
+      <th>TEMPERATURA</th>
+      <th>PESO</th>
+      <th>P. Cefalico</th>
+      <th>Longitud</th>
+      <th>Pulso</th>
+      </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>'.$index.'</td>
-          <td>'.$row["hgc_fecha_sigvit"].'</td>
-          <td>'.$row["hgc_temp_sigvit"].'</td>
-          <td>'.$row["hgc_peso_sigvit"].'</td>
-          <td>'.$row["hgc_prence_sigvit"].'</td>
-          <td>'.$row["hgc_longi_sigvit"].'</td>
-          <td>'.$row["hgc_puls_sigvit"].'</td>
-        </tr>
+      <tr>
+      <td>'.$index.'</td>
+      <td>'.$row["hgc_fecha_sigvit"].'</td>
+      <td>'.$row["hgc_temp_sigvit"].'</td>
+      <td>'.$row["hgc_peso_sigvit"].'</td>
+      <td>'.$row["hgc_prence_sigvit"].'</td>
+      <td>'.$row["hgc_longi_sigvit"].'</td>
+      <td>'.$row["hgc_puls_sigvit"].'</td>
+      </tr>
       </tbody>
-    </table>';
+      </table>';
   }
   else {
-    $content .= '<table class="bordered highlight centered responsive-table">
+    if ($row['hgc_prence_sigvit'] === '') {
+      $content .= '<table class="bordered highlight centered responsive-table">
       <thead style="background: red">
-        <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
-          <th>#</th>
-          <th>FECHA</th>
-          <th>TEMPERATURA</th>
-          <th>F. CARDIACA</th>
-          <th>F. RESPIRATORIO</th>
-          <th>P. Arterial</th>
-          <th>PESO</th>
-          <th>TALLA</th>
-          <th>Estado Nutricional</th>
-        </tr>
+      <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
+      <th>#</th>
+      <th>FECHA</th>
+      <th>TEMPERATURA</th>
+      <th>PESO</th>
+      <th>Presion Acostado</th>
+      <th>Presion Sentado</th>
+      <th>Pulso</th>
+      </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>'.$index.'</td>
-          <td>'.$row["hgc_fecha_sigvit"].'</td>
-          <td>'.$row["hgc_temp_sigvit"].'</td>
-          <td>'.$row["hgc_frcar_sigvit"].'</td>
-          <td>'.$row["hgc_frresp_sigvit"].'</td>
-          <td>'.$row["hgc_prart_sigvit"].'</td>
-          <td>'.$row["hgc_peso_sigvit"].'</td>
-          <td>'.$row["hgc_talla_sigvit"].'</td>
-          <td>'.$row["hgc_esta_sigvit"].'</td>
-        </tr>
+      <tr>
+      <td>'.$index.'</td>
+      <td>'.$row["hgc_fecha_sigvit"].'</td>
+      <td>'.$row["hgc_temp_sigvit"].'</td>
+      <td>'.$row["hgc_peso_sigvit"].'</td>
+      <td>'.$row["hgc_pracost_sigvit"].'</td>
+      <td>'.$row["hgc_prsent_sigvit"].'</td>
+      <td>'.$row["hgc_puls_sigvit"].'</td>
+      </tr>
       </tbody>
-    </table>
-    ';
+      </table>';
+    }
+    else {
+      $content .= '
+      <table class="bordered highlight centered responsive-table">
+      <thead style="background: red">
+      <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
+      <th>#</th>
+      <th>FECHA</th>
+      <th>TEMPERATURA</th>
+      <th>F. CARDIACA</th>
+      <th>F. RESPIRATORIO</th>
+      <th>P. Arterial</th>
+      <th>PESO</th>
+      <th>TALLA</th>
+      <th>Estado Nutricional</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>'.$index.'</td>
+      <td>'.$row["hgc_fecha_sigvit"].'</td>
+      <td>'.$row["hgc_temp_sigvit"].'</td>
+      <td>'.$row["hgc_frcar_sigvit"].'</td>
+      <td>'.$row["hgc_frresp_sigvit"].'</td>
+      <td>'.$row["hgc_prart_sigvit"].'</td>
+      <td>'.$row["hgc_peso_sigvit"].'</td>
+      <td>'.$row["hgc_talla_sigvit"].'</td>
+      <td>'.$row["hgc_esta_sigvit"].'</td>
+      </tr>
+      </tbody>
+      </table>
+      ';
+    }
   }
 
   if ($headerIndex == 6) {
