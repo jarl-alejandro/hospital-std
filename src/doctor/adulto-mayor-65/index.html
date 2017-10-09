@@ -16,12 +16,12 @@
         <li>Nº HISTORIA CLINICA</li>
       </ul>
       <ul class="Establecimiento-body">
+        <li>{{empresa.hgc_nom_empr}}</li>
+        <li>{{pacient.paciente.paciente}}</li>
+        <li>{{edad.years}} años, {{edad.months}} meses, {{edad.days}} dias</li>
         <li></li>
         <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>{{pacient.paciente.hgc_histo_hcli}}</li>
       </ul>
     </div>
 
@@ -35,7 +35,7 @@
     </div>
 
     <div class="input-field col s6">
-      <input id="medicamentos_recibe" type="text" />
+      <input id="medicamentos_recibe" type="text" ng-model='data.medicamento' />
       <label for="medicamentos_recibe">MEDICAMENTOS QUE RECIBE</label>
     </div>
 
@@ -43,15 +43,15 @@
       <li class="EstadoGeneral-title">Estado General</li>
       <li class="EstadoGeneral-list">
         <p>
-          <input name="estadoGeneral" type="radio" id="dependiente" />
+          <input name="estadoGeneral" type="radio" id="dependiente" value='dependiente' class="estadoGeneral" />
           <label for="dependiente">DEPENDIENTE</label>
         </p>
         <p>
-          <input name="estadoGeneral" type="radio" id="fragil" />
+          <input name="estadoGeneral" type="radio" id="fragil" value='fragil' class="estadoGeneral" />
           <label for="fragil">FRAGIL</label>
         </p>
         <p>
-          <input name="estadoGeneral" type="radio" id="independiente" />
+          <input name="estadoGeneral" type="radio" id="independiente" value='independiente' class="estadoGeneral" />
           <label for="independiente">INDEPENDIENTE</label>
         </p>
       </li>
@@ -144,7 +144,7 @@
         </p>
       </li>
       <li class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+        <textarea id="motivo-consulta" ng-model='data.revisionSistema' class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
       </li>
     </ul>
 
@@ -156,27 +156,27 @@
         <p class="AntecedentesPersonales-item--title">Alertas de riesgo</p>
         <div>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="caida" />
+            <input name="AntecedentesPersonales" type="radio" id="caida" class="alertaRiesgo" value="caida" />
             <label for="caida">1.- CAIDA</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="dismovilidad" />
+            <input name="AntecedentesPersonales" type="radio" id="dismovilidad" class="alertaRiesgo" value="dismovilidad" />
             <label for="dismovilidad">2.- DISMOVILIDAD</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="perdidaPeso" />
+            <input name="AntecedentesPersonales" type="radio" id="perdidaPeso" class="alertaRiesgo" value="perdidaPeso" />
             <label for="perdidaPeso">3.- PERDIDA DE PESO</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="astenia" />
+            <input name="AntecedentesPersonales" type="radio" id="astenia" class="alertaRiesgo" value="astenia" />
             <label for="astenia">4.- ASTENIA</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="desorientacion" />
+            <input name="AntecedentesPersonales" type="radio" id="desorientacion" class="alertaRiesgo" value="desorientacion" />
             <label for="desorientacion">5.- DESORIENTACION</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="alteracionConportamiento" />
+            <input name="AntecedentesPersonales" type="radio" id="alteracionConportamiento" class="alertaRiesgo" value="alteracionConportamiento" />
             <label for="alteracionConportamiento">6.- ALTERACION DEL COPORTAMIENTO</label>
           </p>
         </div>
@@ -233,7 +233,7 @@
       <li class="AntecedentesPersonales-item">
         <div>
           <p>
-            7.- CONTROLES DE SALUD 
+            7.- CONTROLES DE SALUD
             <input name="controlesSalud" type="radio" id="controlesSalud-1" />
             <label for="controlesSalud-1"></label>
             <input name="controlesSalud" type="radio" id="controlesSalud-2" />
@@ -253,7 +253,7 @@
             <input name="otros" type="radio" id="otros-2" />
             <label for="otros-2"></label>
           </p>
-        
+
         </div>
       </li>
 
@@ -261,52 +261,52 @@
         <p class="AntecedentesPersonales-item--title">Habitos Nocivos</p>
         <div>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="tabaquismo" />
+            <input name="AntecedentesPersonales" type="radio" id="tabaquismo" value="tabaquismo" class="habitosNocivos" />
             <label for="tabaquismo">1.- TABAQUISMO</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="alcoholismo" />
+            <input name="AntecedentesPersonales" type="radio" id="alcoholismo" value="alcoholismo" class="habitosNocivos" />
             <label for="alcoholismo">2.- ALCOHOLISMO</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="perdidaPeso" />
-            <label for="perdidaPeso">3.- ADDICIONES</label>
+            <input name="AntecedentesPersonales" type="radio" id="addiciones" value="addiciones" class="habitosNocivos" />
+            <label for="addiciones">3.- ADDICIONES</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="astenia" />
-            <label for="astenia">4.- OTRO HABITO</label>
+            <input name="AntecedentesPersonales" type="radio" id="otroHabito" value="otroHabito" class="habitosNocivos" />
+            <label for="otroHabito">4.- OTRO HABITO</label>
           </p>
         </div>
       </li>
       <li class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+        <textarea id="motivo-consulta" ng-model='data.antecedentePersonales' class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
       </li>
 
       <li class="AntecedentesPersonales-item no-boder--bottom">
         <p class="AntecedentesPersonales-item--title" style="width: 14%;">CLINICO QUIRÙRGICOS</p>
         <div>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="demartoLogico" />
+            <input name="clinicoQuirurgicos" type="radio" id="demartoLogico" value="demartoLogico" class="clinicoQuirurgicos" />
             <label for="demartoLogico">1.- DEMARTO-LÒGICOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="visuales" />
+            <input name="clinicoQuirurgicos" type="radio" id="visuales" value="visuales" class="clinicoQuirurgicos" />
             <label for="visuales">2.- VISUALES</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="otorrino" />
+            <input name="clinicoQuirurgicos" type="radio" id="otorrino" value="otorrino" class="clinicoQuirurgicos" />
             <label for="otorrino">3.- OTORRINO</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="estomatoLogicos" />
+            <input name="clinicoQuirurgicos" type="radio" id="estomatoLogicos" value="estomatoLogicos" class="clinicoQuirurgicos" />
             <label for="estomatoLogicos">4.- ESTOMATO-LOGICOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="endocrinos" />
+            <input name="clinicoQuirurgicos" type="radio" id="endocrinos" value="endocrinos" class="clinicoQuirurgicos" />
             <label for="endocrinos">5.- ENDOCRINOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="cardioVascular" />
+            <input name="clinicoQuirurgicos" type="radio" id="cardioVascular" value="cardioVascular" class="clinicoQuirurgicos" />
             <label for="cardioVascular">6.- CARDIO VASCULAR</label>
           </p>
         </div>
@@ -315,31 +315,31 @@
       <li class="AntecedentesPersonales-item no-boder--bottom">
         <div style="width: 100%;">
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="respiratorio" />
+            <input name="clinicoQuirurgicos" type="radio" id="respiratorio" value="respiratorio" class="clinicoQuirurgicos" />
             <label for="respiratorio">7.- RESPIRATORIO</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="digestivos" />
+            <input name="clinicoQuirurgicos" type="radio" id="digestivos" value="digestivos" class="clinicoQuirurgicos" />
             <label for="digestivos">8.- DIGESTIVOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="neurologicos" />
+            <input name="clinicoQuirurgicos" type="radio" id="neurologicos" value="neurologicos" class="clinicoQuirurgicos" />
             <label for="neurologicos">9.- NEUROLOGICOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="urologicos" />
+            <input name="clinicoQuirurgicos" type="radio" id="urologicos" value="urologicos" class="clinicoQuirurgicos" />
             <label for="urologicos">10.- UROLOGICOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="hemoloinfaticos" />
+            <input name="clinicoQuirurgicos" type="radio" id="hemoloinfaticos" value="hemoloinfaticos" class="clinicoQuirurgicos" />
             <label for="hemoloinfaticos">11.- HEMOLOINFATICOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="infecciosos" />
+            <input name="clinicoQuirurgicos" type="radio" id="infecciosos" value="infecciosos" class="clinicoQuirurgicos" />
             <label for="infecciosos">12.- INFECCIOSOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="oncologicos" />
+            <input name="clinicoQuirurgicos" type="radio" id="oncologicos" value="oncologicos" class="clinicoQuirurgicos" />
             <label for="oncologicos">13.- ONCOLÒGICOS</label>
           </p>
         </div>
@@ -348,63 +348,63 @@
       <li class="AntecedentesPersonales-item no-boder--bottom">
         <div style="width: 100%;">
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="musculoEsqueletico" />
+            <input name="clinicoQuirurgicos" type="radio" id="musculoEsqueletico" value="musculoEsqueletico" class="clinicoQuirurgicos" />
             <label for="musculoEsqueletico">14.- MUSCULO ESQUELÈTICOS</label>
           </p>
           <p>
-            <input name="clinicoQuirurgicos" type="radio" id="psiquiatricos" />
+            <input name="clinicoQuirurgicos" type="radio" id="psiquiatricos" value="psiquiatricos" class="clinicoQuirurgicos" />
             <label for="psiquiatricos">15.- PSIQUIÀTRICOS</label>
           </p>
         </div>
       </li>
       <li class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+        <textarea id="motivo-consulta" ng-model='data.antecedentesPersoanles2' class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
       </li>
     </ul>
 
     <ul class="GinecosObstretricos">
       <li class="GinecosObstretricos-title">GINECO OBSTETRICOS</li>
       <li class="input-field">
-        <input id="edad_menopausia" type="text" />
+        <input id="edad_menopausia" type="text" ng-model='data.edadMenopausia' />
         <label for="edad_menopausia">1.EDAD MENOPAUSIA</label>
       </li>
       <li class="input-field">
-        <input id="edad_mamografia" type="text" />
+        <input id="edad_mamografia" type="text" ng-model='data.edadUltimaMamografia' />
         <label for="edad_mamografia">2.EDAD DE ULTIMA MAMOGRAFIA</label>
       </li>
       <li class="input-field">
-        <input id="edad_citologia" type="text" />
+        <input id="edad_citologia" type="text" ng-model='data.edadUltimaCitologia' />
         <label for="edad_citologia">3.EDAD DE ULTIMA CITOLOGIA</label>
       </li>
       <li class="input-field">
-        <input id="edad_embarazos" type="text" />
+        <input id="edad_embarazos" type="text" ng-model='data.embarazos' />
         <label for="edad_embarazos">4.EMBARAZOS</label>
       </li>
       <li class="input-field">
-        <input id="edad_partos" type="text" />
+        <input id="edad_partos" type="text" ng-model='data.partos' />
         <label for="edad_partos">5. PARTOS</label>
       </li>
       <li class="input-field">
-        <input id="edad_cesareas" type="text" />
+        <input id="edad_cesareas" type="text" ng-model='data.cesareas' />
         <label for="edad_cesareas">6. CESÀREAS</label>
       </li>
       <li class="input-field">
-        <input id="edad_terapiaHormonal" type="text" />
+        <input id="edad_terapiaHormonal" type="text" ng-model='data.terapiaHormonal' />
         <label for="edad_terapiaHormonal">7.TERAPIA HORMONAL</label>
       </li>
     </ul>
     <div class="input-field s-100">
-      <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+      <textarea id="motivo-consulta" ng-model='data.ginecoObstretricos' class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
     </div>
 
     <ul class="GinecosObstretricos">
       <li class="GinecosObstretricos-title">ANDROLÒGICOS</li>
       <li class="input-field">
-        <input id="edad_antigenoProstatico" type="text" />
+        <input id="edad_antigenoProstatico" type="text" ng-model='data.edadUltimoProstatico' />
         <label for="edad_antigenoProstatico">1. EDAD ULTIMO ANTÌGENO PROSTÀTICO</label>
       </li>
       <li class="input-field">
-        <input id="terapiaHormonal" type="text" />
+        <input id="terapiaHormonal" type="text" ng-model='data.terapia' />
         <label for="terapiaHormonal">2. TERAPIA HORMONAL</label>
       </li>
     </ul>
@@ -414,41 +414,41 @@
         <p class="AntecedentesPersonales-item--title" style="width: 14%;">FARCOLÒGICOS</p>
         <div>
           <p>
-            <input name="farcologicos" type="radio" id="aines" />
+            <input name="farcologicos" type="radio" id="aines" value="aines" class="farcologicos" />
             <label for="aines">1.- AINES</label>
           </p>
           <p>
-            <input name="farcologicos" type="radio" id="analgesicos" />
+            <input name="farcologicos" type="radio" id="analgesicos" value="analgesicos" class="farcologicos" />
             <label for="analgesicos">2.- ANALGESICOS</label>
           </p>
           <p>
-            <input name="farcologicos" type="radio" id="anti_diabetis" />
+            <input name="farcologicos" type="radio" id="anti_diabetis" value="anti_diabetis" class="farcologicos" />
             <label for="anti_diabetis">3.- ANTI DIABETIS</label>
           </p>
           <p>
-            <input name="farcologicos" type="radio" id="anti_hipertensivo" />
+            <input name="farcologicos" type="radio" id="anti_hipertensivo" value="anti_hipertensivo" class="farcologicos" />
             <label for="anti_hipertensivo">4.- ANTI HIPERTENSIVO</label>
           </p>
           <p>
-            <input name="farcologicos" type="radio" id="anti_coagulantes" />
+            <input name="farcologicos" type="radio" id="anti_coagulantes" value="anti_coagulantes" class="farcologicos" />
             <label for="anti_coagulantes">5.-  ANTI COAGULANTES</label>
           </p>
           <p>
-            <input name="farcologicos" type="radio" id="psico-farmacos" />
+            <input name="farcologicos" type="radio" id="psico-farmacos" value="farmacos" class="farcologicos" />
             <label for="psico-farmacos">6.- PSICO FÀRMACOS</label>
           </p>
           <p>
-            <input name="farcologicos" type="radio" id="antibioticos" />
+            <input name="farcologicos" type="radio" id="antibioticos" value="antibioticos" class="farcologicos" />
             <label for="antibioticos">7.- ANTIBIOTICOS</label>
           </p>
           <p>
-            <input name="farcologicos" type="radio" id="otros" />
+            <input name="farcologicos" type="radio" id="otros" value="otros" class="farcologicos" />
             <label for="otros">8.- OTROS</label>
           </p>
         </div>
       </li>
       <div class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+        <textarea id="motivo-consulta" ng-model='data.farcologicos' class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
       </div>
     </ul>
 
@@ -544,82 +544,82 @@
       <p class="RevisionSistema-title" style="margin:0">6 SIGNOS VITALES, ANTROPOMETRIA Y TAMIZAJE</p>
       <ul>
         <li class="input-field">
-          <input id="parterialAcostado" type="text" />
+          <input id="parterialAcostado" type="text" ng-model='data.arterialAcostado' />
           <label for="parterialAcostado">P. ARTERIAL ACOSTADO</label>
         </li>
         <li class="input-field">
-          <input id="parterialSentada" type="text" />
+          <input id="parterialSentada" type="text" ng-model='data.arterialSentado' />
           <label for="parterialSentada">P. ARTERIAL SENTADO</label>
         </li>
         <li class="input-field">
-          <input id="temperatura" type="text" />
+          <input id="temperatura" type="text" ng-model='data.temperatura' />
           <label for="temperatura">TEMPERATURA ºO</label>
         </li>
         <li class="input-field">
-          <input id="pulso7min" type="text" />
+          <input id="pulso7min" type="text" ng-model='data.pulso' />
           <label for="pulso7min">PULSO 7 min</label>
         </li>
         <li class="input-field">
-          <input id="frecuencia" type="text" />
+          <input id="frecuencia" type="text" ng-model='data.frecuenciaRespirar' />
           <label for="frecuencia">FRECUENCIA RESPIR/min</label>
         </li>
         <li class="input-field">
-          <input id="peso" type="text" />
+          <input id="peso" type="text" ng-model='data.peso' />
           <label for="peso">Peso Kg</label>
         </li>
         <li class="input-field">
-          <input id="talla" type="text" />
+          <input id="talla" type="text" ng-model='data.talla' />
           <label for="talla">Talla /cm</label>
         </li>
         <li class="input-field">
-          <input id="imc" type="text" />
+          <input id="imc" type="text" ng-model='data.imc' />
           <label for="imc">IMC</label>
         </li>
         <li class="input-field">
-          <input id="perimetroCintura" type="text" />
+          <input id="perimetroCintura" type="text" ng-model='data.perimetroCintura' />
           <label for="perimetroCintura">PERIMETRO CINTURA</label>
         </li>
         <li class="input-field">
-          <input id="perimetroCadera" type="text" />
+          <input id="perimetroCadera" type="text" ng-model='data.perimetroCadera' />
           <label for="perimetroCadera">PERIMETRO CADERA</label>
         </li>
         <li class="input-field">
-          <input id="perimetroPantorrilla" type="text" />
+          <input id="perimetroPantorrilla" type="text" ng-model='data.perimetroPantorrilla' />
           <label for="perimetroPantorrilla">PERIMETRO PANTORRILLA</label>
         </li>
         <li class="input-field">
-          <input id="responsables" type="text" />
+          <input id="responsables" type="text" ng-model='data.responsables' />
           <label for="responsables">RESPONSABLES (siglas)</label>
         </li>
 
       </ul>
       <div class="AntecedentesPersonales-item no-boder--bottom">
-        <p class="AntecedentesPersonales-item--title" 
+        <p class="AntecedentesPersonales-item--title"
           style="width: 10.5%;font-size: 14px;text-align: center;">TAMIZAJE PÀPIDO
         </p>
         <div class="TamizajeSignos">
           <p>
-            <input name="tamizajePapido" type="radio" id="dificultadVisual" />
+            <input name="tamizajePapido" type="radio" id="dificultadVisual" value="dificultadVisual" class="tamizajePapido" />
             <label for="dificultadVisual">1.- DIFICULTAD VISUAL</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="dificultadAuditiva" />
+            <input name="tamizajePapido" type="radio" id="dificultadAuditiva" value="dificultadAuditiva" class="tamizajePapido" />
             <label for="dificultadAuditiva">2.- DIFICULTAD AUDITIVA</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="levantateAnda" />
+            <input name="tamizajePapido" type="radio" id="levantateAnda" value="levantateAnda" class="tamizajePapido" />
             <label for="levantateAnda">3.- "LEVANTATE Y ANDA" MAYOR A 15a</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="perdidaInvtOrina" />
+            <input name="tamizajePapido" type="radio" id="perdidaInvtOrina" value="perdidaInvtOrina" class="tamizajePapido" />
             <label for="perdidaInvtOrina">4.- PÈRDIDA INVT. DE ORINA</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="perdidaMemoriaReciente" />
+            <input name="tamizajePapido" type="radio" id="perdidaMemoriaReciente" value="perdidaMemoriaReciente" class="tamizajePapido" />
             <label for="perdidaMemoriaReciente">5.- PÈRDIDA DE MEMORIA RECIENTE</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="pierdePeso" />
+            <input name="tamizajePapido" type="radio" id="pierdePeso" value="pierdePeso" class="tamizajePapido" />
             <label for="pierdePeso">6.- PIERDE PESO MAS DE 4.5 KG. EN 6 MESES</label>
           </p>
         </div>
@@ -628,19 +628,19 @@
       <div class="AntecedentesPersonales-item no-boder--bottom">
         <div class="TamizajeSignos" style="width: 100%;">
           <p>
-            <input name="tamizajePapido" type="radio" id="sienteTristeDeprimido" />
+            <input name="tamizajePapido" type="radio" id="sienteTristeDeprimido" value="sienteTristeDeprimido" class="tamizajePapido" />
             <label for="sienteTristeDeprimido">7.- SE SIENTE TRISTE O DEPRIMIDO</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="puedeBanarSolo" />
+            <input name="tamizajePapido" type="radio" id="puedeBanarSolo" value="puedeBanarSolo" class="tamizajePapido" />
             <label for="puedeBanarSolo">8.- PUEDE BAÑARSE SOLO</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="saleComprasSolo" />
+            <input name="tamizajePapido" type="radio" id="saleComprasSolo" value="saleComprasSolo" class="tamizajePapido" />
             <label for="saleComprasSolo">9.- SALE DE COMPRAS SOLOS</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="viveSola" />
+            <input name="tamizajePapido" type="radio" id="viveSola" value="viveSola" class="tamizajePapido" />
             <label for="viveSola">10.- VIVE SOLA</label>
           </p>
         </div>
@@ -829,7 +829,7 @@
         </li>
       </ul>
       <div class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+        <textarea id="motivo-consulta" ng-model='data.examenFisico' class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
       </div>
     </article>
 
@@ -883,51 +883,49 @@
         <p class="sindromeGeriatricos-title">SINDROME GERIÀTRICOS</p>
         <ul>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="fragilidad"  />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="fragilidad" value="fragilidad"  />
             <label for="fragilidad">FRAGILIDAD</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="depresion" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="depresion" value="depresion" />
             <label for="depresion">DEPRESIÒN</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="delirio"  />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="delirio" value="delirio"  />
             <label for="delirio">DELIRIO</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="ulceraPorPresion" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="ulceraPorPresion" value="ulceraPorPresion" />
             <label for="ulceraPorPresion">ÙLCERAS POR PRESION</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="incontinencia" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="incontinencia" value="incontinencia" />
             <label for="incontinencia">INCONTINENCIA</label>
           </li>
 
         </ul>
-
         <ul>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="dismovilidadSindrome" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="dismovilidadSindrome" value="dismovilidadSindrome" />
             <label for="dismovilidadSindrome">DISMOVILIDAD</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="caidaSindrome" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="caidaSindrome" value="caidaSindrome" />
             <label for="caidaSindrome">CAIDA</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="malNutricion" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="malNutricion" value="malNutricion" />
             <label for="malNutricion">MAL NUTRICIÒN</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="demencia" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="demencia" value="demencia" />
             <label for="demencia">DEMENCIA</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" type="radio" id="iatrogenia" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="iatrogenia" value="iatrogenia" />
             <label for="iatrogenia">IATROGENIA</label>
           </li>
         </ul>
-
       </article>
     </section>
 
@@ -937,7 +935,7 @@
         <span>REGISTRAR LOS EXAMENES DE LABORATORIO Y ESPECIALES SOLICITADAS</span>
       </p>
       <div class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
+        <textarea id="motivo-consulta" ng-model='data.pruebasDiagnostico' class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
       </div>
     </article>
 
@@ -947,7 +945,7 @@
         <span>1.- FUNCIONAL, 2.- NUTRICIONAL, 3.- PSICOLOGICO, 4.- SOCIAL, 5.- EDUCATIVO, 6.- FARMACOLOGICO</span>
       </p>
       <div class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
+        <textarea id="motivo-consulta" ng-model='data.tratamiento' class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
       </div>
     </article>
 
@@ -980,4 +978,3 @@
 
   </article>
 </section>
-

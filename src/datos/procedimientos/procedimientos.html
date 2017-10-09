@@ -1,0 +1,64 @@
+<hgc-menu></hgc-menu>
+
+<section class="workSpace">
+  <h1 class="Title">Procedimientos</h2>
+  <div class="floating-add">
+    <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
+  </div>
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="paises">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="10%">#</th>
+          <th width="30%">Procedimientos</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="procedimientos.length === 0">
+          <td colspan="5">No hay procedimientos</td>
+        </tr>
+        <tr ng-pagination="proc in procedimientos" ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ proc.hgc_desc_proce }}</td>
+          <td>
+            <button class='waves-effect waves-light btn primary'
+              ng-click="get(proc.hgc_id_proce, proc.hgc_desc_proce)">Editar
+            </button>
+            <button class='waves-effect waves-light btn danger'
+              ng-click="delete(proc.hgc_id_proce)">Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="procedimientos"></ng-pagination-control>
+    </div>
+  </article>
+
+  <div class="formContainer ed-item s-90 m-75 m-offset-5"
+    ng-class="{ 'formContainer-active': showForm }">
+    <article class="form ed-item s-100 m-75">
+      <header>
+        <h3>Registrar el procedimiento</h3>
+      </header>
+      <div class="main-distribute">
+        <div class="input-field s-100 m-45">
+          <input id="desc" type="text" ng-model='data.desc'>
+          <label for="desc">Ingresa el procedimientos</label>
+        </div>
+      </div>
+      <div class='main-distribute'>
+        <button class='waves-effect waves-light btn danger bxn'
+          ng-click="handleCancel()">Cancelar</button>
+        <button class='waves-effect waves-light btn primary bxn'
+          ng-click="handleSave()">Aceptar</button>
+      </div>
+    </article>
+  </div>
+</section>

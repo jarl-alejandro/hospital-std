@@ -22,6 +22,11 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $rootScope.signosVitales = []
   $scope.empresa = {}
   $scope.pacient = {}
+  $scope.procedimientos = []
+  $('.browser-default').select2()
+
+  $http.get('src/datos/procedimientos/service/getAll.php')
+  .then(response => $scope.procedimientos = response.data )
 
   $scope.data = {
     temperatura: '',
@@ -36,18 +41,18 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     pulso: '',
     turno,
     historiaClinica: id,
-    id: ''
+    id: '',
+    procedimiento: ''
   }
 
   $http.get(`src/enfermera/signos-vitales/service/turno.php?id=${turno}`)
   .then(response => {
-    console.log(response);
     if (response.data.hgc_esta_turno === 'pdf') {
       $('#filepdf').hide()
       $('#signosVitales').show()
     }
     if (response.data.hgc_esta_turno === 'signosVitales') {
-      $('#filepdf').show()
+      $('#filepdf').hide()
       $('#signosVitales').hide()
       // $scope.activeSignosBtn = true
     }
@@ -62,7 +67,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     if (response.data.cont === 1)
       $scope.empresa = response.data.empresa
   })
-
 
   $http.get(`src/doctor/form28A/service/paciente.php?id=${id}`)
   .then(response => $scope.pacient = response.data)
@@ -90,7 +94,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $scope.handleShowForm = () => {
     const duracion = duration(new Date($scope.fechaNacimiento), new Date())
-    console.log(duracion)
     if (duracion.years >= 65) $('#formPlusAdultoMayor65').slideDown()
     else if (duracion.years >= 10) $('.formPlus056').slideDown()
     else $('.formPlus').slideDown()
@@ -107,6 +110,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
       $http.post('src/enfermera/signos-vitales/service/save.php', $scope.data)
       .then(response => {
+        console.log(response);
 
         if (response.data === "201") {
           $scope.activeSignosBtn = true
@@ -159,6 +163,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
         $scope.data.longitud = signos.hgc_longi_sigvit
         $scope.data.pulso = signos.hgc_puls_sigvit
         $scope.data.id = signos.hgc_id_sigvit
+        $scope.data.procedimiento = signos.hgc_proc_sigvit
       }
 
       $('.formPlus-content label').addClass('active')
@@ -211,6 +216,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       historiaClinica: id,
       id: ''
     }
+    // $('#Procedimiento').val('').trigger('change')
   }
 
   function validar () {
@@ -263,6 +269,10 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
         return false
       } else return true
     }
+    if (data.procedimiento === '') {
+      Materialize.toast('Ingresa el procedimiento', 4000)
+      return false
+    }
     else return true
   }
 
@@ -271,6 +281,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     if (active === 'true') {
       $http.get(`src/enfermera/signos-vitales/service/getAll.php?id=${$stateParams.id}`)
       .then(response => $scope.signosVitales = response.data)
+      $scope.activeSignosBtn = true
       localStorage.setItem('activar', false)
     }
   }, 100)
@@ -286,7 +297,8 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
     talla: '',
     turno: $stateParams.turno,
     historiaClinica: $stateParams.id,
-    id: ''
+    id: '',
+    procedimiento: ''
   }
 
   $scope.handleCancel056 = () => closeForm056()
@@ -311,6 +323,7 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
     if ($('#idform056').val() !== '') {
       $scope.dataform056 = {
         id: $('#idform056').val(),
+        procedimiento: $('#Procedimiento56').val(),
         imc: $('#imc056').val(),
         frCardica: $('#fr-cardiaca056').val(),
         prArterial: $('#presion-arterial056').val(),
@@ -341,7 +354,8 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
       talla: '',
       turno: $stateParams.turno,
       historiaClinica: $stateParams.id,
-      id: ''
+      id: '',
+      procedimiento: ''
     }
   }
 
@@ -370,6 +384,11 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
     if (form.talla.trim() === '') {
       Materialize.toast('Ingrese el indice de masa corporal', 4000)
       $('#talla056').focus()
+      return false
+    }
+    if (form.procedimiento === '') {
+      Materialize.toast('Ingrese el procedimiento', 4000)
+      $('#Procedimiento56').focus()
       return false
     }
     else return true

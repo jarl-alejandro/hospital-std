@@ -1,0 +1,30 @@
+.Redaca
+  display grid
+  grid-template-columns repeat(2, 1fr)
+  grid-gap 1rem
+  margin 0 auto
+  width 50%
+  a
+    color white
+  &-item
+    color white
+    display flex
+    align-items center
+    justify-content center
+    box-shadow 0 1px 1.5px rgba(black, .5)
+    cursor pointer
+    text-transform uppercase
+    text-align center
+    font-size 36px
+    height 100px
+    transition all linear .3s
+    &:nth-child(1)
+      background-color #F44336
+    &:nth-child(2)
+      background-color #8BC34A
+    &:nth-child(3)
+      background-color #009688
+    &:nth-child(4)
+      background-color #FF9800
+    &:active
+      transform scale(0.7)

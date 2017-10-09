@@ -4,7 +4,10 @@ const pacientes = angular.module('Hospital')
 
 pacientes.controller('pacientesController', function ($scope, $http) {
   $('.formContainer').slideUp()
-  $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: ''}
+  $scope.data = {
+    id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '',
+    ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: '', estado: ''
+  }
   $scope.pacientes = []
   $scope.generos = []
 
@@ -18,7 +21,10 @@ pacientes.controller('pacientesController', function ($scope, $http) {
     $('.formContainer').slideDown()
   }
   $scope.handleCancel = function (e) {
-    $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: ''}
+    $scope.data = {
+      id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '',
+      ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: '', estado: ''
+    }
     $('.formContainer').slideUp()
   }
   $scope.handleSave = function (e) {
@@ -62,6 +68,10 @@ pacientes.controller('pacientesController', function ($scope, $http) {
       Materialize.toast("Ingresa el genero", 4000)
       return false
     }
+    if ($scope.data.estado == "") {
+      Materialize.toast("Ingresa el estado", 4000)
+      return false
+    }
 
     $http.post("src/estadistico/pacientes/service/save.php", { 'pacientes': $scope.data })
       .then(response => {
@@ -90,7 +100,8 @@ pacientes.controller('pacientesController', function ($scope, $http) {
       direccion: paciente.hgc_direc_pacie,
       email: paciente.hgc_emai_pacie,
       sexo: paciente.hgc_sexo_pacie,
-      ubicacion: paciente.hgc_ubica_hcli
+      ubicacion: paciente.hgc_ubica_hcli,
+      estado: paciente.hgc_esta_hcli
     }
     $('.formContainer').slideDown()
   }
@@ -107,6 +118,9 @@ pacientes.controller('pacientesController', function ($scope, $http) {
   }
 
   function clear () {
-    $scope.data = { id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '', ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: ''}
+    $scope.data = {
+      id: '', cedula: '', nombre: '', apellido: '', fechaNac: '', dni: '', telefono: '',
+      ceulular: '', direccion: '', email: '', sexo: '', profesion: '', ubicacion: '', estado: ''
+    }
   }
 })

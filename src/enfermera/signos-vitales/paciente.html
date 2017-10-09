@@ -132,6 +132,19 @@
             ng-keypress="ValidaSoloDecimal()" maxlength="5">
           <label for="peri-encefalico">Ingresa el perimetro encefalico (cm)</label>
         </div>
+
+        <!-- Procedimiento -->
+        <div class="input-field s-90 m-45">
+          <label for="Procedimiento">Procedimiento</label>
+          <select id="Procedimiento" class='browser-default' ng-model='data.procedimiento'>
+            <option value="" selected>Seleciona</option>
+            <option ng-repeat="proc in procedimientos" value="{{ proc.hgc_id_proce }}">
+              {{ proc.hgc_desc_proce }}
+            </option>
+          </select>
+        </div>
+        <!-- Procedimiento -->
+
         <div class='main-distribute s-100'>
           <button class='waves-effect waves-light btn danger'
             ng-click="handleCancel()">Cancelar
@@ -180,6 +193,18 @@
             ng-keypress="ValidaSoloDecimal()" maxlength="5">
           <label for="talla056">Ingresa la talla (ml)</label>
         </div>
+
+        <!-- Procedimiento -->
+        <div class="input-field s-90 m-45">
+          <label for="Procedimiento56">Procedimiento</label>
+          <select id="Procedimiento56" class='browser-default' ng-model='data.procedimiento'>
+            <option value="" selected>Seleciona</option>
+            <option ng-repeat="proc in procedimientos" value="{{ proc.hgc_id_proce }}">
+              {{ proc.hgc_desc_proce }}
+            </option>
+          </select>
+        </div>
+        <!-- Procedimiento -->
 
         <div class='main-distribute s-100'>
           <button class='waves-effect waves-light btn danger'

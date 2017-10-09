@@ -23,6 +23,9 @@ doctores.controller('doctoresController', function ($scope, $http) {
     sexo: '',
     profesion: '',
     rol: 'doctor',
+    nacionalidad: '',
+    autoidentificacion: '',
+    msp: '',
     especialidades: []
   }
   $scope.usuarios = []
@@ -98,6 +101,9 @@ doctores.controller('doctoresController', function ($scope, $http) {
       sexo: usuario.hgc_sexo_profe,
       profesion: usuario.hgc_profe_profe,
       rol: usuario.hgc_rol_usu,
+      nacionalidad: usuario.hgc_nac_profe,
+      autoidentificacion: usuario.hgc_auto_profe,
+      msp: usuario.hgc_msp_profe,
     }
     $('.formContainer label').addClass('active')
     $('.formContainer').slideDown()
@@ -150,6 +156,9 @@ doctores.controller('doctoresController', function ($scope, $http) {
       sexo: '',
       profesion: '',
       rol: 'doctor',
+      nacionalidad: '',
+      autoidentificacion: '',
+      msp: '',
       especialidades: []
     }
     $('.formContainer').slideUp()
@@ -218,6 +227,18 @@ doctores.controller('doctoresController', function ($scope, $http) {
     }
     if ($scope.data.especialidades.length === 0) {
       Materialize.toast('Selecione la/las especialidades del doctor', 4000)
+      return false
+    }
+    if ($scope.data.nacionalidad == "") {
+      Materialize.toast("Ingresa la nacionalidad", 4000)
+      return false
+    }
+    if ($scope.data.autoidentificacion == "") {
+      Materialize.toast("Ingresa la autoidentificacion", 4000)
+      return false
+    }
+    if ($scope.data.msp == "") {
+      Materialize.toast("Ingresa el codigo msp", 4000)
       return false
     }
     else return true

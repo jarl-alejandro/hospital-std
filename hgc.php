@@ -70,6 +70,7 @@
     <script src='src/datos/barrios/app/index.js'></script>
     <script src='src/datos/etnias/app/index.js'></script>
     <script src='src/datos/generos/app/index.js'></script>
+    <script src='src/datos/procedimientos/app/index.js'></script>
 
     <script src='src/archivos/profesiones/app/index.js'></script>
 
@@ -130,6 +131,8 @@
     <script src='src/doctor/form056/app/calendar.js'></script>
     <script src='src/doctor/form056/app/service.js'></script>
     <script src='src/doctor/form056/app/grafica.js'></script>
+
+    <script src='src/doctor/redaca/app/index.js'></script>
 
     <script src='src/doctor/adulto-mayor/app/index.js'></script>
     <script src='src/doctor/adulto-mayor-65/app/index.js'></script>

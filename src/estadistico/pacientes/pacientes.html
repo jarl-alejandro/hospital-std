@@ -42,7 +42,7 @@
     style="top:0.5em">
     <article class="form ed-item s-100 m-75 main-distribute">
       <header class="s-100">
-        <h3>Registrar profesion</h3>
+        <h3>Registrar Paciente</h3>
       </header>
       <article class="form__scroll"
         style="display:flex;flex-wrap: wrap;justify-content: center;">
@@ -92,6 +92,16 @@
         <div class="form__input s-100 m-45">
           <label for="ubicacion">Ingresa la ubicacion</label>
           <input id="ubicacion" type="text" ng-model='data.ubicacion' placeholder="A01-1-1-01" ng-disabled="true">
+        </div>
+
+        <div class="form__input s-100 m-45">
+          <label for="estado">Ingresa el estado</label>
+          <select ng-model='data.estado' id="estado" class='browser-default'>
+            <option value="" selected>Seleciona el estado</option>
+            <option value="Referencia">Referencia</option>
+            <option value="Contrareferencia">Contrareferencia</option>
+            <option value="Normal">Normal</option>
+          </select>
         </div>
       </article>
       <div class='main-distribute s-100'>
