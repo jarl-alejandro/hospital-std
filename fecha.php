@@ -6,9 +6,11 @@ mb_http_output('UTF-8');
 
 $cedula = $_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'];
 
-$Name = 'redaca.csv';
+$Name = 'redaca-fecha.csv';
 $FileName = "./$Name";
 $fecha = date('Y/m/d');
+$desde =  $_GET['desde'];
+$hasta =  $_GET['hasta'];
 
 $qs = $pdo->query("SELECT * FROM hgc_empresa");
 $row = $qs->fetch();
@@ -65,7 +67,8 @@ header('Content-Disposition: attachment; filename="'.$Name.'"');
 header("Content-Transfer-Encoding: binary");
 
 $index = 0;
-$qs = $pdo->query('SELECT * FROM view_form28');
+
+$qs = $pdo->query("SELECT * FROM view_form28 WHERE hgc_fech_form28 BETWEEN '$desde' AND '$hasta'");
 
 foreach ($qs as $row) {
   $index++;
@@ -141,7 +144,7 @@ foreach ($qs as $row) {
   }
 }
 
-$qs_056 = $pdo->query('SELECT * FROM view_form056');
+$qs_056 = $pdo->query("SELECT * FROM view_form056 WHERE hgc_fech_f056 BETWEEN '$desde' AND '$hasta'");
 
 foreach ($qs_056 as $row) {
 

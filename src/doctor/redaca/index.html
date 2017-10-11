@@ -1,11 +1,80 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
   <h1 class="Title">Redaca</h2>
-
+  <div class="mask"></div>
   <section class="Redaca">
     <article class="Redaca-item"><a href='generar.php'>Redaca General</a></article>
-    <article class="Redaca-item">Redaca Anual</article>
-    <article class="Redaca-item">Redaca Por Fecha</article>
-    <article class="Redaca-item">Redaca Mensual</article>
+    <article class="Redaca-item" ng-click='byYear()'>Redaca Anual</article>
+    <article class="Redaca-item" ng-click='byDate()'>Redaca Por Fecha</article>
+    <article class="Redaca-item" ng-click='byMonth()'>Redaca Mensual</article>
   </section>
+
+  <section class="Redaca-fecha">
+    <h2 class="Redaca-fecha--title">Filtrar por fecha</h2>
+    <div class="input-field col s12">
+      <input id="inicio" type="date" class="datepicker">
+      <label for="inicio">Fecha de inicio</label>
+    </div>
+
+    <div class="input-field col s12">
+      <input id="hasta" type="date" class="datepicker">
+      <label for="hasta">Fecha de final</label>
+    </div>
+    <div class="space--flex">
+      <a class="waves-effect waves-light btn danger" ng-click='handleMask()'>
+        <i class="material-icons right">close</i>Cerrar
+      </a>
+      <a class="waves-effect waves-light btn primary" ng-click='handleSave()'>
+        <i class="material-icons right">send</i>Aceptar
+      </a>
+    </div>
+  </section>
+
+  <section class="Redaca-anual" ng-controller='validForm'>
+    <h2 class="Redaca-fecha--title">Filtrar por año</h2>
+    <div class="input-field col s12">
+      <input id="year" type="text" maxlength="4" ng-keypress='ValidaSoloNumeros()' placeholder="2017"/>
+      <label for="year" class="active">Escribe el año que deseas</label>
+    </div>
+    <div class="space--flex">
+      <a class="waves-effect waves-light btn danger" ng-click='handleCloseYear()'>
+        <i class="material-icons right">close</i>Cerrar
+      </a>
+      <a class="waves-effect waves-light btn primary" ng-click='handleSaveYear()'>
+        <i class="material-icons right">send</i>Aceptar
+      </a>
+    </div>
+  </section>
+
+  <section class="Redaca-month">
+    <h2 class="Redaca-fecha--title">Filtrar por mes</h2>
+    <div class="form__input s-100" style="margin-bottom: 1rem">
+      <label for="month">Seleciona</label>
+      <select id="month" class='browser-default'>
+        <option value="" selected>Meses</option>
+        <option value="01">Enero</option>
+        <option value="02">Febrero</option>
+        <option value="03">Marzo</option>
+        <option value="04">Abril</option>
+        <option value="05">Mayo</option>
+        <option value="06">Junio</option>
+        <option value="07">Julio</option>
+        <option value="08">Agosto</option>
+        <option value="09">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+      </select>
+    </div>
+
+    <div class="space--flex">
+      <a class="waves-effect waves-light btn danger" ng-click='handleCloseMonth()'>
+        <i class="material-icons right">close</i>Cerrar
+      </a>
+      <a class="waves-effect waves-light btn primary" ng-click='handleSaveMonth()'>
+        <i class="material-icons right">send</i>Aceptar
+      </a>
+    </div>
+  </section>
+
 </section>
