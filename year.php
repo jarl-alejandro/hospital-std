@@ -95,7 +95,12 @@ foreach ($qs as $row) {
 
   if ($cie->rowCount() !== 0) {
     while ($cie_row = $cie->fetch()) {
-      $datos .= ";;;;;;;;;;;;;;;";
+      $datos .= utf8_decode($fecha.';'.$direccion.';'.$empresa.';HG;MSP;'.$doctor_nombre.';');
+      $datos .= utf8_decode($sexo.';'.$fecha.';Medico;'.$especialidad['hgc_desc_espe'].';');
+      $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
+      $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
+
+      // $datos .= ";;;;;;;;;;;;;;;";
 
       $nombre_cie = '';
       $code_cie = $cie_row['hgc_cie_fci'];
@@ -132,7 +137,12 @@ foreach ($qs as $row) {
     }
   }
   else {
-    $datos .= ";;;;;;;;;;;;;;;";
+    $datos .= utf8_decode($fecha.';'.$direccion.';'.$empresa.';HG;MSP;'.$doctor_nombre.';');
+    $datos .= utf8_decode($sexo.';'.$fecha.';Medico;'.$especialidad['hgc_desc_espe'].';');
+    $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
+    $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
+
+    // $datos .= ";;;;;;;;;;;;;;;";
 
     $datos .= utf8_decode($row['hgc_ape_pacie'].' '.$row['hgc_nom_pacie'].';');
     $datos .= utf8_decode($row['hgc_cedu_pacie'].';'.$row['hgc_desc_genero'].';');
@@ -172,7 +182,11 @@ foreach ($qs_056 as $row) {
 
   if ($cie->rowCount() !== 0) {
     while ($cie_row = $cie->fetch()) {
-      $datos .= ";;;;;;;;;;;;;;;";
+      // $datos .= ";;;;;;;;;;;;;;;";
+      $datos .= utf8_decode($fecha.';'.$direccion.';'.$empresa.';HG;MSP;'.$doctor_nombre.';');
+      $datos .= utf8_decode($sexo.';'.$fecha.';Medico;'.$especialidad['hgc_desc_espe'].';');
+      $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
+      $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
 
       $nombre_cie = '';
       $code_cie = $cie_row['hgc_cie_f056'];
@@ -208,7 +222,12 @@ foreach ($qs_056 as $row) {
     }
   }
   else {
-    $datos .= ";;;;;;;;;;;;;;;";
+    $datos .= utf8_decode($fecha.';'.$direccion.';'.$empresa.';HG;MSP;'.$doctor_nombre.';');
+    $datos .= utf8_decode($sexo.';'.$fecha.';Medico;'.$especialidad['hgc_desc_espe'].';');
+    $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
+    $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
+
+    // $datos .= ";;;;;;;;;;;;;;;";
 
     $datos .= utf8_decode($row['hgc_ape_pacie'].' '.$row['hgc_nom_pacie'].';');
     $datos .= utf8_decode($row['hgc_cedu_pacie'].';'.$row['hgc_desc_genero'].';');
