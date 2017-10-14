@@ -462,4 +462,16 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       templateUrl: 'src/doctor/redaca/index.html',
       resolve: { authenticated: auth_roles }
     })
+    .state('receta', {
+      url: '/receta',
+      controller: 'RecetaCtrl',
+      templateUrl: 'src/doctor/receta/index.html',
+      resolve: { authenticated: auth_roles }
+    })
+    .state('solicitud', {
+      url: '/solicitud',
+      controller: 'SolicitudCtrl',
+      templateUrl: 'src/doctor/solicitud/index.html',
+      resolve: { authenticated: auth_roles }
+    })
 })

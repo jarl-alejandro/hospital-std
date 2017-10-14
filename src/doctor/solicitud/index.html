@@ -1,0 +1,60 @@
+<hgc-menu-doctor></hgc-menu-doctor>
+<section class="workSpace">
+  <h1 class="Title">Solicitud</h2>
+  <section class="receta">
+    <div class="header-receta">
+      <img class="header-receta--img" src="media/empresa/{{empresa.hgc_ava_empr}}" />
+      <h2 class="header-receta--title">Ministerio de Salud Publica</h2>
+      <h2 class="header-receta--subtitle">{{ empresa.hgc_nom_empr }}</h2>
+    </div>
+    <article class="form-solicitud">
+      <div class="tipo">
+        <label>Tipo</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Selecione el tipo</option>
+          <option value="1">Primera vez</option>
+          <option value="2">Secuente</option>
+          <option value="3">Referencia</option>
+          <option value="3">Contrareferencia</option>
+          <option value="3">Hospitalizacion</option>
+        </select>
+      </div>
+      <div class="paciente">
+        <label>Paciente</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Selecione el paciente</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </div>
+      <div class="especialidad">
+        <label>Especialidad</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Selecione la especialidad</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </div>
+      <div class="input-field col s12">
+        <input id="inicio" type="date" class="datepicker">
+        <label for="inicio">Fecha de inicio</label>
+      </div>
+      <div class="medico">
+        <label>Especialista</label>
+        <select class="browser-default">
+          <option value="" disabled selected>Selecione al especialista</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </div>
+    </article>
+    <div class="Form-medicine--actions">
+      <button class="btn--flat">
+        <i class="material-icons">send</i>Guardar
+      </button>
+    </div>
+  </section>
+</section>

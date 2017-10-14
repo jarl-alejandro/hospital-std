@@ -133,6 +133,8 @@
     <script src='src/doctor/form056/app/grafica.js'></script>
 
     <script src='src/doctor/redaca/app/index.js'></script>
+    <script src='src/doctor/solicitud/app/index.js'></script>
+    <script src='src/doctor/receta/app/index.js'></script>
 
     <script src='src/doctor/adulto-mayor/app/index.js'></script>
     <script src='src/doctor/adulto-mayor-65/app/index.js'></script>

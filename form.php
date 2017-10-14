@@ -1,7 +1,3 @@
-<?php
-// echo date('Y');
-echo sha1("123456");
-?>
 <section class="workSpace">
   <form class='form ed-item s-50'>
     <header>
