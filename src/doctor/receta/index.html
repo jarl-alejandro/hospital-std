@@ -58,13 +58,18 @@
         </tbody>
       </table>
     </div>
+    <div class="Form-medicine--actions">
+      <button class="btn--flat " ng-click='save()'>
+        <i class="material-icons">send</i> Guardar
+      </button>
+    </div>
   </section>
 
   <section class="Form-medicine">
     <h2 class="Form-medicine--title">Agregar Medicina</h2>
     <div class="Form-medicine--search">
       <label for="buscar"><i class="material-icons">search</i></label>
-      <input type="text" placeholder="Buscar" id="buscar" />
+      <input type="text" placeholder="Buscar" id="buscar" ng-pagination-search="farmacia" />
     </div>
     <div class="Form-medicine--table">
       <table class="bordered highlight responsive-table">
@@ -73,32 +78,39 @@
             <th>Codigo</th>
             <th>Medicamento</th>
             <th>Unidad</th>
-            <th>Farmacia</th>
+            <th>Forma Farmaceutica</th>
             <th>Concentracion</th>
-            <th>prescripcion</th>
-            <th>principales inficaciones</th>
-            <th>Subinidicaciones</th>
-            <th>Prescripcion Compuesta</th>
+            <th>Presentacion</th>
+            <th>Principales indicaciones</th>
+            <th>Demas inidicaciones</th>
+            <th>Descripcion Completa</th>
+            <th></th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>34234</td>
-            <td>Paracetamol</td>
-            <td>Tomar cada 8 horas</td>
-            <td>Tomar cada 8 horas</td>
-            <td>Tomar cada 8 horas</td>
-            <td>Tomar cada 8 horas</td>
-            <td>Tomar cada 8 horas</td>
-            <td>Tomar cada 8 horas</td>
-            <td>Tomar cada 8 horas</td>
+          <tr ng-pagination="farma in farmacia" ng-pagination-size="4">
+            <td><p class='ellipsis'>{{ farma.hgc_cod_farm }}</p></td>
+            <td><p class='ellipsis'>{{ farma.hgc_det_farm }}</p></td>
+            <td><p class='ellipsis'>{{ farma.hgc_uni_farm }}</p></td>
+            <td><p class='ellipsis'>{{ farma.hgc_forfa_farm }}</p></td>
+            <td><p class='ellipsis'>{{ farma.hgc_conc_farm }}</p></td>
+            <td><p class='ellipsis'>{{ farma.hgc_prese_farm }}</p></td>
+            <td><p class='ellipsis'>{{ farma.hgc_prinidi_farm }}</p></td>
+            <td><p class='ellipsis'>{{ farma.hgc_subinidi_farm }}</p></td>
+            <td><p class='ellipsis'>{{ farma.hgc_prescom_farm }} </p></td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
             <td>
               <button class="btn--flat"><i class="material-icons">add</i></button>
             </td>
           </tr>
         </tbody>
       </table>
+      <div class="main-distribute paging-container">
+        <ng-pagination-control pagination-id="farmacia"></ng-pagination-control>
+      </div>
     </div>
     <div class="Form-medicine--actions">
       <button class="btn--flat cancel" ng-click='cancel()'>
