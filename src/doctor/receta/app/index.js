@@ -30,6 +30,16 @@ angular.module('Hospital')
       $http.post('src/doctor/receta/service/save.php', $scope.form)
       .then(response => {
         console.log(response);
+        if (response.data === '201') {
+          Materialize.toast('Se ha guardado con exito la receta', 4000)
+          $scope.receta = []
+          $scope.form = { paciente: '', especialidad: '', medico: '' }
+          $scope.medicos = []
+        }
+        else {
+          Materialize.toast('Tuvimos problemas', 4000)
+          console.log(response);
+        }
       })
     }
   }
