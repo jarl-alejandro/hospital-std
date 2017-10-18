@@ -1,7 +1,7 @@
 <?php
 include '../../../../helpers/conexion.php';
 
-$query = $pdo->query("SELECT * FROM view_solicitud");
+$query = $pdo->query("SELECT * FROM view_solicitud WHERE hgc_est_soli='true'");
 $solicitudes = array();
 
 while ($row = $query->fetch()) {

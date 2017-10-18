@@ -233,3 +233,33 @@
   33.3% {z-index: 2}
   66.6% {z-index: 1}
 }
+
+// Admision
+.solicitud-modal
+  background white
+  position absolute
+  left 16%
+  top 5rem
+  width 67%
+  z-index 11111
+  box-shadow 2px 2px 1.5px #565252, -2px -2px 1.5px #565252
+  border-radius 3px
+  display none
+
+.solicitud
+  &-body
+    width 85%
+    margin 0 auto
+    display grid
+    margin-top 1rem
+    grid-template-columns repeat(2, 1fr)
+    p
+      margin 0
+      color #585757
+      line-height 33px
+      font-size 17px
+  &-action
+    display flex
+    justify-content space-around
+    width 90%
+    margin 1rem auto
