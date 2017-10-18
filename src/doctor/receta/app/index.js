@@ -25,6 +25,10 @@ angular.module('Hospital')
     $('.Form-medicine').slideUp()
   }
 
+  $scope.delete = (index) => {
+    $scope.receta.splice(index, 1)
+  }
+
   $scope.save = () => {
     if (validForm() && validReceta()) {
       $scope.form.receta = $scope.receta

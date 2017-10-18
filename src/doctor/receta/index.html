@@ -75,6 +75,7 @@
             <th width="30%">Nombre</th>
             <th width="40%">Prescripcion</th>
             <th width="10%">Cant</th>
+            <th width="10%">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -90,6 +91,11 @@
               <input ng-model='item.cant' id='receta_cant--{{item.id}}' maxlength="4"
                 placeholder="Ingrese la cantidad de medicamento" ng-keypress='ValidaSoloNumeros()'
               />
+            </td>
+            <td>
+              <button class="btn--flat cancel" ng-click='delete($index)' ng-disabled='enableSend'>
+                <i class="material-icons">delete</i>
+              </button>
             </td>
           </tr>
         </tbody>
