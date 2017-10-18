@@ -1,5 +1,26 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
+  <style scoped>
+    .select2-container {z-index: 111 !important;}
+  </style>
+  <div ng-hide='isLoader' class="is-loader">
+    <div class="loader-mask"></div>
+    <div class="container-loader">
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
+    </div>
+    <h2 class="is-loader--title">Cargando datos........</h2>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+
   <h1 class="Title">Solicitud</h2>
   <section class="receta">
     <div class="header-receta">
@@ -7,52 +28,62 @@
       <h2 class="header-receta--title">Ministerio de Salud Publica</h2>
       <h2 class="header-receta--subtitle">{{ empresa.hgc_nom_empr }}</h2>
     </div>
+
     <article class="form-solicitud">
       <div class="tipo">
         <label>Tipo</label>
-        <select class="browser-default">
+        <select class="browser-default" ng-model='form.tipo' id="tipo">
           <option value="" disabled selected>Selecione el tipo</option>
-          <option value="1">Primera vez</option>
-          <option value="2">Secuente</option>
-          <option value="3">Referencia</option>
-          <option value="3">Contrareferencia</option>
-          <option value="3">Hospitalizacion</option>
+          <option value="Primera vez">Primera vez</option>
+          <option value="Secuente">Secuente</option>
+          <option value="Referencia">Referencia</option>
+          <option value="Contrareferencia">Contrareferencia</option>
+          <option value="Hospitalizacion">Hospitalizacion</option>
         </select>
       </div>
+
       <div class="paciente">
         <label>Paciente</label>
-        <select class="browser-default">
-          <option value="" disabled selected>Selecione el paciente</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+        <select class="browser-default" ng-model='form.paciente' id='paciente'>
+          <option value="" selected>Selecione el paciente</option>
+          <option ng-repeat='paciente in pacientes' value="{{paciente.hgc_codi_pacie}}">
+            {{ paciente.paciente }}
+          </option>
         </select>
       </div>
+
       <div class="especialidad">
         <label>Especialidad</label>
-        <select class="browser-default">
+        <select class="browser-default"
+          ng-model='form.especialidad'
+          id='especialidad'
+          ng-change='changeEspecialidad()'
+        >
           <option value="" disabled selected>Selecione la especialidad</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+          <option ng-repeat="espcialidad in espcialidades" value="{{ espcialidad.hgc_codi_espe }}">
+            {{ espcialidad.hgc_desc_espe }}
+          </option>
         </select>
       </div>
+
       <div class="input-field col s12">
         <input id="inicio" type="date" class="datepicker">
         <label for="inicio">Fecha de inicio</label>
       </div>
+
       <div class="medico">
         <label>Especialista</label>
-        <select class="browser-default">
+        <select class="browser-default" ng-model='form.medico' id='medico'>
           <option value="" disabled selected>Selecione al especialista</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+          <option ng-repeat='medico in medicos' value="{{medico.hgc_codi_profe}}">
+            {{ medico.doctor }}
+          </option>
         </select>
       </div>
     </article>
+
     <div class="Form-medicine--actions">
-      <button class="btn--flat">
+      <button class="btn--flat" ng-disabled='enableSend' ng-click='save()'>
         <i class="material-icons">send</i>Guardar
       </button>
     </div>
