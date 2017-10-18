@@ -10,7 +10,9 @@ angular.module('Hospital')
   $scope.espcialidades = []
   $scope.medicos = []
   $scope.isLoader = false
-  $('.browser-default').select2()
+  $scope.enableSend = false
+  let $select = $('.browser-default')
+  $select.select2()
   getData()
 
   $scope.medicineAdd = () => {
@@ -26,6 +28,7 @@ angular.module('Hospital')
   $scope.save = () => {
     if (validForm() && validReceta()) {
       $scope.form.receta = $scope.receta
+      $scope.enableSend = true
 
       $http.post('src/doctor/receta/service/save.php', $scope.form)
       .then(response => {
@@ -35,11 +38,15 @@ angular.module('Hospital')
           $scope.receta = []
           $scope.form = { paciente: '', especialidad: '', medico: '' }
           $scope.medicos = []
+          $('#paciente').val('')
+          $('#especialidad').val('')
+          $select.trigger('change.select2')
         }
         else {
           Materialize.toast('Tuvimos problemas', 4000)
           console.log(response);
         }
+        $scope.enableSend = false
       })
     }
   }

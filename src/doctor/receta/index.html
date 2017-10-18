@@ -33,7 +33,7 @@
       <div class="paciente">
         <label>Paciente</label>
         <select class="browser-default" ng-model='form.paciente' id='paciente'>
-          <option value="" disabled selected>Selecione el paciente</option>
+          <option value="" selected>Selecione el paciente</option>
           <option ng-repeat='paciente in pacientes' value="{{paciente.hgc_codi_pacie}}">
             {{ paciente.paciente }}
           </option>
@@ -46,7 +46,7 @@
           id='especialidad'
           ng-change='changeEspecialidad()'
         >
-          <option value="" disabled selected>Selecione la especialidad</option>
+          <option value="" selected>Selecione la especialidad</option>
           <option ng-repeat="espcialidad in espcialidades" value="{{ espcialidad.hgc_codi_espe }}">
             {{ espcialidad.hgc_desc_espe }}
           </option>
@@ -86,9 +86,9 @@
                 placeholder="Ingrese la prescripcion medica"
               />
             </td>
-            <td>
-              <input ng-model='item.cant' id='receta_cant--{{item.id}}'
-                placeholder="Ingrese la cantidad de medicamento"
+            <td ng-controller='validForm'>
+              <input ng-model='item.cant' id='receta_cant--{{item.id}}' maxlength="4"
+                placeholder="Ingrese la cantidad de medicamento" ng-keypress='ValidaSoloNumeros()'
               />
             </td>
           </tr>
@@ -96,7 +96,7 @@
       </table>
     </div>
     <div class="Form-medicine--actions">
-      <button class="btn--flat " ng-click='save()'>
+      <button class="btn--flat " ng-click='save()' ng-disabled='enableSend'>
         <i class="material-icons">send</i> Guardar
       </button>
     </div>
