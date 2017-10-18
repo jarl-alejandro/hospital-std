@@ -1,7 +1,28 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
+  <style scoped>
+    .select2-container {z-index: 1111 !important;}
+  </style>
   <h1 class="Title">Receta</h2>
-  <div class="mask" style="z-index:1111111111;"></div>
+  <div ng-hide='isLoader' class="is-loader">
+    <div class="loader-mask"></div>
+    <div class="container-loader">
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
+    </div>
+    <h2 class="is-loader--title">Cargando datos........</h2>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"/>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div class="mask" style="z-index:1111;"></div>
+
   <section class="receta">
     <div class="header-receta">
       <img class="header-receta--img" src="media/empresa/{{empresa.hgc_ava_empr}}" />
@@ -11,49 +32,65 @@
     <div class="receta-informativo">
       <div class="paciente">
         <label>Paciente</label>
-        <select class="browser-default">
+        <select class="browser-default" ng-model='form.paciente' id='paciente'>
           <option value="" disabled selected>Selecione el paciente</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+          <option ng-repeat='paciente in pacientes' value="{{paciente.hgc_codi_pacie}}">
+            {{ paciente.paciente }}
+          </option>
         </select>
       </div>
       <div class="especialidad">
         <label>Especialidad</label>
-        <select class="browser-default">
+        <select class="browser-default"
+          ng-model='form.especialidad'
+          id='especialidad'
+          ng-change='changeEspecialidad()'
+        >
           <option value="" disabled selected>Selecione la especialidad</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+          <option ng-repeat="espcialidad in espcialidades" value="{{ espcialidad.hgc_codi_espe }}">
+            {{ espcialidad.hgc_desc_espe }}
+          </option>
         </select>
       </div>
       <div class="medico">
         <label>Medico</label>
-        <select class="browser-default">
-          <option value="" disabled selected>Selecione al medico</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+        <select class="browser-default" ng-model='form.medico' id='medico'>
+          <option value="" selected>Selecione al medico</option>
+          <option ng-repeat='medico in medicos' value="{{medico.hgc_codi_profe}}">
+            {{ medico.doctor }}
+          </option>
         </select>
       </div>
     </div>
-    <div class="main-end">
-      <button class="btn--flat" ng-click="medicineAdd()"><i class="material-icons">add</i></button>
+    <div class="main-end btn-medicina">
+      <button class="btn--flat" ng-click="medicineAdd()">
+        <i class="material-icons">add</i> Agregar medicamento
+      </button>
     </div>
     <div class="receta-table">
       <table class="bordered highlight responsive-table">
         <thead>
           <tr>
-            <th>Codigo</th>
-            <th>Nombre</th>
-            <th>Prescripcion</th>
+            <th width="20%">Codigo</th>
+            <th width="30%">Nombre</th>
+            <th width="40%">Prescripcion</th>
+            <th width="10%">Cant</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>34234</td>
-            <td>Paracetamol</td>
-            <td>Tomar cada 8 horas</td>
+          <tr ng-repeat='item in receta'>
+            <td>{{ item.codigo }}</td>
+            <td>{{ item.detalle }}</td>
+            <td>
+              <input ng-model='item.prescripcion' id='receta_prescripcion--{{item.id}}'
+                placeholder="Ingrese la prescripcion medica"
+              />
+            </td>
+            <td>
+              <input ng-model='item.cant' id='receta_cant--{{item.id}}'
+                placeholder="Ingrese la cantidad de medicamento"
+              />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -103,7 +140,7 @@
             <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
             <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
             <td>
-              <button class="btn--flat"><i class="material-icons">add</i></button>
+              <button class="btn--flat" ng-click='add(farma)'><i class="material-icons">add</i></button>
             </td>
           </tr>
         </tbody>
