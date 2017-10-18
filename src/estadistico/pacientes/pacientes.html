@@ -5,6 +5,7 @@
   <div class="floating-add">
     <button class='btn-floating btn-large waves-effect waves-light primary' ng-click="handleShowForm()"><i class="material-icons">mode_edit</i></button>
   </div>
+
   <article class="tableContainer" style="padding: .5em">
     <div class="input-field s-90 s-offset-5">
       <input id="buscador" type="text" ng-pagination-search="pacientes">
@@ -38,6 +39,7 @@
       <ng-pagination-control pagination-id="pacientes"></ng-pagination-control>
     </div>
   </article>
+
   <div class="formContainer ed-item s-90 m-75 m-offset-5" ng-class="{ 'formContainer-active': showForm }"
     style="top:0.5em">
     <article class="form ed-item s-100 m-75 main-distribute">

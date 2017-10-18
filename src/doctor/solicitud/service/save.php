@@ -13,15 +13,17 @@ $paciente = $obj->paciente;
 $especialidad = $obj->especialidad;
 $medico = $obj->medico;
 $tipo = $obj->tipo;
+$fecha = $obj->fecha;
 
 $qs = $pdo->prepare("INSERT INTO hgc_solicitud (hgc_cod_soli, hgc_pac_soli, hgc_esps_soli, hgc_med_soli,
-  hgc_tip_soli) VALUES (?, ?, ?, ?, ?)");
+  hgc_tip_soli, hgc_fet_soli) VALUES (?, ?, ?, ?, ?, ?)");
 
 $qs->bindParam(1, $codigo);
 $qs->bindParam(2, $paciente);
 $qs->bindParam(3, $especialidad);
 $qs->bindParam(4, $medico);
 $qs->bindParam(5, $tipo);
+$qs->bindParam(6, $fecha);
 
 $qs->execute();
 

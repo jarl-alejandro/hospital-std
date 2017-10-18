@@ -2,4 +2,47 @@
 
 <section class="workSpace">
   <h1 class="Title">Solicitud</h2>
+
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="solicitud">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="5%">#</th>
+          <th width="5%">Codigo</th>
+          <th width="25%">Pacientes</th>
+          <th width="25%">Doctor</th>
+          <th width="10%">Tipo</th>
+          <th width="10%">Fecha</th>
+          <th width="20%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="solicitud.length === 0">
+          <td colspan="5">No hay solicitud</td>
+        </tr>
+        <tr ng-pagination="item in solicitud" ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ item.hgc_codi_espe }}</td>
+          <td>{{ item.paciente }}</td>
+          <td>{{ item.doctor }}</td>
+          <td>{{ item.hgc_tip_soli }}</td>
+          <td>{{ item.hgc_fet_soli }}</td>
+          <td style="display: flex;justify-content: space-between;">
+            <button class='waves-effect waves-light btn primary' style="margin-right: 5px;"
+              ng-click="get(item)">Ver
+            </button>
+            <button class='waves-effect waves-light btn danger' ng-click="delete(item)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="solicitud"></ng-pagination-control>
+    </div>
+  </article>
+
 </section>

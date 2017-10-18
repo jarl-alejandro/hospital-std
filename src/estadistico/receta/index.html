@@ -2,4 +2,42 @@
 
 <section class="workSpace">
   <h1 class="Title">Receta</h2>
+
+  <article class="tableContainer" style="padding: .5em">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="recetas">
+      <label for="buscador">Buscador</label>
+    </div>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th width="5%">#</th>
+          <th width="10%">Codigo</th>
+          <th width="20%">Paciente</th>
+          <th width="20%">Doctor</th>
+          <th width="20%">Especialidad</th>
+          <th width="30%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="recetas.length === 0">
+          <td colspan="5">No hay recetas</td>
+        </tr>
+        <tr ng-pagination="item in recetas" ng-pagination-size="5">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ item.hgc_cod_rec }}</td>
+          <td>{{ item.paciente }}</td>
+          <td>{{ item.doctor }}</td>
+          <td>{{ item.hgc_desc_espe }}</td>
+          <td>
+            <button class='waves-effect waves-light btn primary' ng-click="get(item)">Ver</button>
+            <button class='waves-effect waves-light btn danger' ng-click="delete(item)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="recetas"></ng-pagination-control>
+    </div>
+  </article>
 </section>
