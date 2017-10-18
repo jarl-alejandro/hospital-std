@@ -105,6 +105,8 @@
     <script src='src/estadistico/agenda/app/index.js'></script>
     <script src='src/estadistico/pacientes/app/index.js'></script>
     <script src='src/estadistico/reportes/app/index.js'></script>
+    <script src='src/estadistico/receta/app/index.js'></script>
+    <script src='src/estadistico/solicitud/app/index.js'></script>
 
     <script src='src/enfermera/signos-vitales/app/index.js'></script>
     <script src='src/enfermera/signos-vitales/app/adulto.js'></script>
