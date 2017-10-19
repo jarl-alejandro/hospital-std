@@ -13,14 +13,16 @@ $paciente = $obj->paciente;
 $especialidad = $obj->especialidad;
 $medico = $obj->medico;
 $receta = $obj->receta;
+$estado = 'false';
 
-$qs = $pdo->prepare("INSERT INTO hgc_receta (hgc_cod_rec, hgc_pac_rec, hgc_esp_rec, hgc_med_rec)
-  VALUES (?, ?, ?, ?)");
+$qs = $pdo->prepare("INSERT INTO hgc_receta (hgc_cod_rec, hgc_pac_rec, hgc_esp_rec, hgc_med_rec,
+  hgc_est_rec) VALUES (?, ?, ?, ?, ?)");
 
 $qs->bindParam(1, $codigo);
 $qs->bindParam(2, $paciente);
 $qs->bindParam(3, $especialidad);
 $qs->bindParam(4, $medico);
+$qs->bindParam(5, $estado);
 
 $qs->execute();
 

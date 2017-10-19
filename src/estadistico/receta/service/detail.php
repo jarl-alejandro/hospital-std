@@ -1,7 +1,9 @@
 <?php
 include '../../../../helpers/conexion.php';
 
-$query = $pdo->query("SELECT * FROM view_receta WHERE hgc_est_rec='false'");
+$id = $_GET['id'];
+
+$query = $pdo->query("SELECT * FROM v_receta_detail WHERE hgc_rec_rec='$id'");
 $recetas = array();
 
 while ($row = $query->fetch()) {

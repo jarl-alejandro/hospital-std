@@ -33,7 +33,6 @@ angular.module('Hospital')
   }
 
   $scope.print = () => {
-
     html2canvas(document.getElementById('exportthis'), {
       useCORS: true,
       onrendered: function (canvas) {

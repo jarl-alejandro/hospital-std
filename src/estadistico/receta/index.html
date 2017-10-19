@@ -21,7 +21,7 @@
       </thead>
       <tbody>
         <tr ng-if="recetas.length === 0">
-          <td colspan="5">No hay recetas</td>
+          <td colspan="6">No hay recetas</td>
         </tr>
         <tr ng-pagination="item in recetas" ng-pagination-size="5">
           <td>{{ $index + 1 }}</td>
@@ -31,7 +31,9 @@
           <td>{{ item.hgc_desc_espe }}</td>
           <td>
             <button class='waves-effect waves-light btn primary' ng-click="get(item)">Ver</button>
-            <button class='waves-effect waves-light btn danger' ng-click="delete(item)">Eliminar</button>
+            <button class='waves-effect waves-light btn danger'
+              ng-click="delete(item, $index)">Eliminar
+            </button>
           </td>
         </tr>
       </tbody>
@@ -40,4 +42,50 @@
       <ng-pagination-control pagination-id="recetas"></ng-pagination-control>
     </div>
   </article>
+  <div class="mask"></div>
+
+  <section class="Receta-modal">
+    <article id="exportthis">
+
+      <div class="header-receta" style="border-bottom: 2px solid #585757;width: 90%;margin: auto;">
+        <img class="header-receta--img" src="media/empresa/{{empresa.hgc_ava_empr}}" />
+        <h2 class="header-receta--title">Ministerio de Salud Publica</h2>
+        <h2 class="header-receta--subtitle">{{ empresa.hgc_nom_empr }}</h2>
+      </div>
+      <article class="Receta-body">
+        <header class="receta--head">
+          <p><strong>Codigo: </strong> {{ receta.maester.hgc_cod_rec }}</p>
+          <p><strong>Paciente: </strong> {{ receta.maester.paciente }}</p>
+          <p><strong>Doctor: </strong> {{ receta.maester.doctor }}</p>
+          <p><strong>Paciente: </strong> {{ receta.maester.hgc_desc_espe }}</p>
+        </header>
+        <div class="receta--body">
+          <table class="bordered highlight responsive-table">
+            <thead>
+              <tr>
+                <th>Codigo</th>
+                <th>Medicamento</th>
+                <th>Prescripcion</th>
+                <th>Cant</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat='detail in receta.detail'>
+                <td>{{ detail.hgc_cod_farm }}</td>
+                <td>{{ detail.hgc_det_farm }}</td>
+                <td>{{ detail.hgc_pre_rec }}</td>
+                <td>{{ detail.hgc_can_rec }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+    </article>
+    <div class="solicitud-action">
+      <button class="waves-effect waves-light btn danger" ng-click='cerrar()'>Cerrar</button>
+      <button class="waves-effect waves-light btn primary" ng-click='imprimir()'>Imprimir</button>
+    </div>
+  </section>
+
 </section>
