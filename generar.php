@@ -26,8 +26,8 @@ $fecha = date("d-m-Y", strtotime($doctor['hgc_fecn_profe']));
 $sexo_qs = $pdo->query("SELECT * FROM hgc_genero WHERE hgc_codi_genero='$sexo_id'");
 $sexo_row = $sexo_qs->fetch();
 $sexo = $sexo_row['hgc_desc_genero'];
-
 // End Sexo
+
 $espe_qs = $pdo->query("SELECT * FROM view_detalle_doc WHERE hgc_doc_det='$cedula'");
 $especialidad = $espe_qs->fetch();
 
@@ -93,8 +93,6 @@ foreach ($qs as $row) {
       $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
       $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
 
-      // $datos .= ";;;;;;;;;;;;;;;";
-
       $nombre_cie = '';
       $code_cie = $cie_row['hgc_cie_fci'];
 
@@ -114,7 +112,7 @@ foreach ($qs as $row) {
       $datos .= utf8_decode($row['hgc_cedu_pacie'].';'.$row['hgc_desc_genero'].';');
       $datos .= utf8_decode($row['hgc_fecn_pacie'].';'.$cedulaPadres.";".$row['hgc_desc_pais'].";");
       $datos .= utf8_decode($row['hgc_desc_etnia'].";".$row['hgc_desc_pais'].";");
-      $datos .= utf8_decode($row['hgc_afil_pacie'].";No definido;No definido;");
+      $datos .= utf8_decode($row['hgc_afil_pacie'].";".$turno_fetch['hgc_grup_sigvit'].";No definido;");
       $datos .= utf8_decode($row['hgc_desc_provi'].";".$row['hgc_desc_canton'].";");
       $datos .= utf8_decode($row['hgc_desc_parro'].";".$row['hgc_direc_pacie']);
 
@@ -125,7 +123,7 @@ foreach ($qs as $row) {
         $datos .= ";".$nombre_cie.";".$cie_row['hgc_cie_fci'].";Primera;";
       }
       $datos .= utf8_decode(";;".$turno_fetch['hgc_desc_proce']);
-      $datos .= utf8_decode(";No definido;".$row['hgc_esta_hcli'].";No definido");
+      $datos .= utf8_decode(";No definido;".$row['hgc_esta_hcli'].";".$turno_fetch['hgc_inter_turno']);
       $datos .= "\r\n";
     }
   }
@@ -142,11 +140,11 @@ foreach ($qs as $row) {
     $datos .= utf8_decode($row['hgc_fecn_pacie'].';'.$cedulaPadres.";");
     $datos .= utf8_decode($row['hgc_desc_pais'].";".$row['hgc_desc_etnia'].";");
     $datos .= utf8_decode($row['hgc_desc_pais'].";".$row['hgc_afil_pacie']);
-    $datos .= utf8_decode(";No definido;No definido;".$row['hgc_desc_provi'].";");
+    $datos .= utf8_decode(";".$turno_fetch['hgc_inter_turno'].";No definido;".$row['hgc_desc_provi'].";");
     $datos .= utf8_decode($row['hgc_desc_canton'].";".$row['hgc_desc_parro'].";");
     $datos .= utf8_decode($row['hgc_direc_pacie'].";;;;;;".$turno_fetch['hgc_desc_proce']);
     $datos .= utf8_decode(";No definido;");
-    $datos .= utf8_decode($row['hgc_esta_hcli'].";No definido");
+    $datos .= utf8_decode($row['hgc_esta_hcli'].";".$turno_fetch['hgc_inter_turno']);
     $datos .= "\r\n";
   }
 }
