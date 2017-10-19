@@ -152,11 +152,31 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     else {
       const duracion = duration(new Date($scope.fechaNacimiento), new Date())
       if (duracion.years >= 65) {
+
+        $('.mayor65--input label').addClass('active')
         $('#formPlusAdultoMayor65').slideDown()
+
+        let tami = document.querySelector(`.checkedAdulto[value="${signos.hgc_tami_sigvit}"]`)
+        tami.checked = true
+
+        $('.AdultoMayorSignos input').addClass('active')
+        $('#mayor65-parterialAcostado').val(signos.hgc_pracost_sigvit)
+        $('#mayor65-parterialSentada').val(signos.hgc_prsent_sigvit)
+        $('#mayor65-pulso7min').val(signos.hgc_puls_sigvit)
+        $('#mayor65-temperatura').val(signos.hgc_temp_sigvit)
+        $('#mayor65-frecuencia').val(signos.hgc_fre_sigvit)
+        $('#mayor65-peso').val(signos.hgc_peso_sigvit)
+        $('#mayor65-talla').val(signos.hgc_talla_sigvit)
+        $('#mayor65-imc').val(signos.hgc_imc_sigvit)
+        $('#mayor65-perimetroCintura').val(signos.hgc_percint_sigvit)
+        $('#mayor65-perimetroCadera').val(signos.hgc_percad_sigvit)
+        $('#mayor65-perimetroPantorrilla').val(signos.hgc_perpan_sigvit)
+        $('#mayor65-responsables').val(signos.hgc_resp_sigvit)
+        $('#formMayor65-procedimiento').val(signos.hgc_proc_sigvit)
+        $('#formMayor65-grupoPrioritado').val(signos.hgc_grup_sigvit)
       }
       else if (duracion.years < 65) {
         $('#formPlusAdultoMenor65').slideDown()
-        console.log(signos)
         $('#formMenor65-temperatura').val(signos.hgc_temp_sigvit)
         $('#formMenor65-presionArterial').val(signos.hgc_prart_sigvit)
         $('#formMenor65-pulso').val(signos.hgc_puls_sigvit)
