@@ -44,7 +44,6 @@
     </div>
 
     <div class="Informativo-colores">
-      <!-- <p class="Informativo-colores--title">Informativo de colores</p> -->
       <ul class="Informativo-colores--list">
         <li><span></span>Informativo de Colores: </li>
         <li><span class="estado_desactive"></span> Desactivado</li>
@@ -76,9 +75,20 @@
           Fecha <i class="material-icons">watch_later</i>
         </button>
 
+        <div class="s-90" style="margin: 0 auto">
+          <label>Interconsulta</label>
+          <select class="browser-default" id="interconsulta">
+            <option value="" selected>Selecione la interconsulta</option>
+            <option value="Interconsulta Solicitada">Interconsulta Solicitada</option>
+            <option value="Interconsulta Recibida">Interconsulta Recibida</option>
+          </select>
+        </div>
+
         <div class='main-distribute' style="margin-top:1em">
-          <button class='waves-effect waves-light btn danger' style="margin-right: 1em;"
-            ng-click="handleCancelForm()">Cancelar
+          <button class='waves-effect waves-light btn danger'
+            style="margin-right: 1em;"
+            ng-click="handleCancelForm()"
+          >Cancelar
           </button>
           <button class='waves-effect waves-light btn primary' ng-click="handleSave()">
             Aceptar

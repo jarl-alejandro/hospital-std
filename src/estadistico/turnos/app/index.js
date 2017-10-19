@@ -130,6 +130,7 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
         fecha: $scope.data.fecha,
         horaInicio: $scope.data.horaInical,
         horaFin: $scope.data.horaFinal,
+        interconsulta: $('#interconsulta').val(),
         id: ''
       }).then(response => {
         if (response.data === "201") {
@@ -142,6 +143,7 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
           $('#fecha').val('')
           $('#doctor').val('')
           $('#horaInicio').val('')
+          $('#interconsulta').val('')
           $http.get('src/estadistico/turnos/service/getAll.php')
             .then(response => $scope.turnos = response.data )
         }
@@ -163,17 +165,17 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   }
 
   function validar () {
-    if ($('#paciente').val() === '') {
+    if (!$scope.data.paciente) {
       Materialize.toast("Ingresa el paciente", 4000)
       $('#paciente').focus()
       return false
     }
-    if ($('#doctor').val() === '') {
+    if (!$scope.data.doctor) {
       Materialize.toast("Ingresa el doctor", 4000)
       $('#doctor').focus()
       return false
     }
-    if ($('#fecha').val() === '') {
+    if (!$scope.data.fecha) {
       Materialize.toast("Ingresa la fecha", 4000)
       $('#fecha').focus()
       return false
@@ -182,7 +184,13 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
       Materialize.toast("Ingrese la hora de inicio ", 4000)
       $('#horaInicio').focus()
       return false
-    } else return true
+    }
+    if ($('#interconsulta').val() === '') {
+      Materialize.toast("Ingrese la interconsulta ", 4000)
+      $('#interconsulta').focus()
+      return false
+    }
+    else return true
   }
 
   $scope.handleFecha = () => $('.month-turno').slideDown()
