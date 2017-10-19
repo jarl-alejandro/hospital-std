@@ -23,7 +23,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $scope.empresa = {}
   $scope.pacient = {}
   $scope.procedimientos = []
-  $('.browser-default').select2()
+  // $('.browser-default').select2()
 
   $http.get('src/datos/procedimientos/service/getAll.php')
   .then(response => $scope.procedimientos = response.data )
@@ -42,7 +42,8 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     turno,
     historiaClinica: id,
     id: '',
-    procedimiento: ''
+    procedimiento: '',
+    grupoPrioritado: ''
   }
 
   $http.get(`src/enfermera/signos-vitales/service/turno.php?id=${turno}`)
@@ -101,7 +102,8 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $scope.handleCancel = () => closeForm()
 
   $scope.handleReport = id => {
-    window.open (`src/enfermera/signos-vitales/reporte/signos-vitales.php?id=${id}`, "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
+    window.open (`src/enfermera/signos-vitales/reporte/signos-vitales.php?id=${id}`,
+      "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
   }
 
   $scope.handleSave = function handleSave () {
@@ -164,6 +166,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
         $scope.data.pulso = signos.hgc_puls_sigvit
         $scope.data.id = signos.hgc_id_sigvit
         $scope.data.procedimiento = signos.hgc_proc_sigvit
+        $scope.data.grupoPrioritado = signos.hgc_grup_sigvit
       }
 
       $('.formPlus-content label').addClass('active')
@@ -200,7 +203,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   function closeForm () {
     $('.formPlus').slideUp()
     $('label.active').removeClass('active')
-
     $scope.data = {
       temperatura: '',
       frCardica: '',
@@ -214,13 +216,15 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       pulso: '',
       turno,
       historiaClinica: id,
-      id: ''
+      id: '',
+      grupoPrioritado: ''
     }
     // $('#Procedimiento').val('').trigger('change')
   }
 
   function validar () {
     const data = $scope.data
+
     if (data.temperatura === '') {
       Materialize.toast('Ingrese la temperatura', 4000)
       return false
@@ -249,7 +253,17 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       if (data.prEncefalico === '') {
         Materialize.toast('Ingresa el perimetro encefalico', 4000)
         return false
-      } else return true
+      }
+      if (data.procedimiento === '') {
+        Materialize.toast('Ingresa el procedimiento', 4000)
+        return false
+      }
+      if (data.grupoPrioritado === '') {
+        Materialize.toast('Ingrese el grupo prioritado', 4000)
+        document.getElementById('grupoPrioritado').focus()
+        return false
+      }
+       else return true
     }
     else if ($scope.menor === true) {
       if (data.pulso === '') {
@@ -267,11 +281,17 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       if (data.prEncefalico === '') {
         Materialize.toast('Ingresa el perimetro encefalico', 4000)
         return false
-      } else return true
-    }
-    if (data.procedimiento === '') {
-      Materialize.toast('Ingresa el procedimiento', 4000)
-      return false
+      }
+      if (data.procedimiento === '') {
+        Materialize.toast('Ingresa el procedimiento', 4000)
+        return false
+      }
+      if (data.grupoPrioritado === '') {
+        Materialize.toast('Ingrese el grupo prioritado', 4000)
+        document.getElementById('grupoPrioritado').focus()
+        return false
+      }
+      else return true
     }
     else return true
   }
@@ -298,7 +318,8 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
     turno: $stateParams.turno,
     historiaClinica: $stateParams.id,
     id: '',
-    procedimiento: ''
+    procedimiento: '',
+    grupoPrioritado056: ''
   }
 
   $scope.handleCancel056 = () => closeForm056()
@@ -324,6 +345,7 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
       $scope.dataform056 = {
         id: $('#idform056').val(),
         procedimiento: $('#Procedimiento56').val(),
+        grupoPrioritado: $('#grupoPrioritado056').val(),
         imc: $('#imc056').val(),
         frCardica: $('#fr-cardiaca056').val(),
         prArterial: $('#presion-arterial056').val(),
@@ -339,7 +361,6 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
     $http.get(
       `src/enfermera/signos-vitales/service/getAll.php?id=${$stateParams.id}`
     ).then(response => $rootScope.signosVitales = response.data)
-
   }
 
   function closeForm056 () {
@@ -355,7 +376,8 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
       turno: $stateParams.turno,
       historiaClinica: $stateParams.id,
       id: '',
-      procedimiento: ''
+      procedimiento: '',
+      grupoPrioritado: ''
     }
   }
 
@@ -391,9 +413,11 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
       $('#Procedimiento56').focus()
       return false
     }
+    if (form.grupoPrioritado === '') {
+      Materialize.toast('Ingrese el grupo prioritado', 4000)
+      $('#grupoPrioritado056').focus()
+      return false
+    }
     else return true
   }
-
-
-
 })

@@ -1,7 +1,6 @@
 <hgc-menu-enfermera></hgc-menu-enfermera>
 <section class="workSpace">
   <h2 class="Title">Informacion de {{ paciente.paciente }}</h2>
-
   <header style="background:inherit" class="header__form28">
     <div class="s-100 m-25 white">
       <label class="center-align">ESTABLECIMIENTO</label>
@@ -30,7 +29,6 @@
         ng-model="pacient.paciente.hgc_histo_hcli" disabled class="black-text">
     </div>
   </header>
-
   <div class="floating-add">
 
     <button class='btn-floating btn-large waves-effect waves-light primary none'
@@ -44,6 +42,7 @@
     <input type="file" id="inputPDF" class="none" accept="application/pdf">
 
   </div>
+
   <article class="tableContainer">
     <table class="bordered highlight centered responsive-table">
       <thead>
@@ -82,11 +81,12 @@
     </table>
   </article>
 
-  <section class="formPlus ed-item s-80 m-75 m-offset-10" style="top:8em">
+  <section class="formPlus ed-item s-80 m-75 m-offset-10" style="top:5em">
     <div class="form ed-item s-100 m-75">
       <header>
         <h3>Signos Vitales</h3>
       </header>
+
       <article class="formPlus-content" ng-controller="validForm">
         <div class="input-field s-90 m-45">
           <input id="temperatura" type="text" ng-model="data.temperatura"
@@ -132,9 +132,8 @@
             ng-keypress="ValidaSoloDecimal()" maxlength="5">
           <label for="peri-encefalico">Ingresa el perimetro encefalico (cm)</label>
         </div>
-
         <!-- Procedimiento -->
-        <div class="input-field s-90 m-45">
+        <div class="s-90 m-45">
           <label for="Procedimiento">Procedimiento</label>
           <select id="Procedimiento" class='browser-default' ng-model='data.procedimiento'>
             <option value="" selected>Seleciona</option>
@@ -144,6 +143,36 @@
           </select>
         </div>
         <!-- Procedimiento -->
+
+        <div class="s-90 m-45" style="margin-bottom: 1rem">
+          <label>Grupos Prioritadas de Atencion</label>
+          <select class="browser-default" ng-model='data.grupoPrioritado' id="grupoPrioritado">
+            <option value="" selected>Selecione grupos prioritadas</option>
+            <option value="1. Embarazadas">1. Embarazadas</option>
+            <option value="2. Personas con discapacidad">
+              2. Personas con discapacidad
+            </option>
+            <option value="3. Personas por desastres Naturales">
+              3. Personas por desastres Naturales
+            </option>
+            <option value="4. Personas por desastres Antropogènicos">
+              4. Personas por desastres Antropogènicos
+            </option>
+            <option value="5. Enfermedades Catastròficas y Raras">
+              5. Enfermedades Catastròficas y Raras
+            </option>
+            <option value="6. Maltrato infantil">6. Maltrato infantil</option>
+            <option value="7. Privadas de la Libertad">7. Privadas de la Libertad</option>
+            <option value="8. Victimas de Violencia Fìsica">8. Victimas de Violencia Fìsica</option>
+            <option value="9. Victimas de Violencia Psicològica">
+              9. Victimas de Violencia Psicològica
+            </option>
+            <option value="10. Victimas de Violencia Sexual">10. Victimas de Violencia Sexual</option>
+            <option value="11. Trabajador/a Sexual">11. Trabajador/a Sexual</option>
+            <option value="12. HSH*">12. HSH*</option>
+            <option value="13. Planificaciòn Familiar*">13. Planificaciòn Familiar*</option>
+          </select>
+        </div>
 
         <div class='main-distribute s-100'>
           <button class='waves-effect waves-light btn danger'
@@ -158,7 +187,7 @@
     </div>
   </section>
 
-  <section class="formPlus056 ed-item s-80 m-75 m-offset-10" style="top:8em"
+  <section class="formPlus056 ed-item s-80 m-75 m-offset-10" style="top:5em"
     ng-controller="formCtrl056SigVit">
     <div class="form ed-item s-100 m-75">
       <header>
@@ -176,36 +205,58 @@
             ng-keypress="ValidaSoloDecimal()" maxlength="8">
           <label for="fr-cardiaca056">Ingresa la frecuencia cardiaca (latido / min)</label>
         </div>
-
         <div class="input-field s-90 m-45">
           <input id="presion-arterial056" type="text" ng-model="dataform056.prArterial" maxlength="8">
           <label for="presion-arterial056">Ingresa la presion arterial (100/70)</label>
         </div>
-
         <div class="input-field s-90 m-45">
           <input id="peso056" type="text" ng-model="dataform056.peso"
             ng-keypress="ValidaSoloDecimal()" maxlength="5">
           <label for="peso056">Ingresa el peso (kg)</label>
         </div>
-
         <div class="input-field s-90 m-45">
           <input id="talla056" type="text" ng-model="dataform056.talla"
             ng-keypress="ValidaSoloDecimal()" maxlength="5">
           <label for="talla056">Ingresa la talla (ml)</label>
         </div>
-
-        <!-- Procedimiento -->
         <div class="input-field s-90 m-45">
           <label for="Procedimiento56">Procedimiento</label>
-          <select id="Procedimiento56" class='browser-default' ng-model='data.procedimiento'>
+          <select id="Procedimiento56" class='browser-default' ng-model='dataform056.procedimiento'>
             <option value="" selected>Seleciona</option>
             <option ng-repeat="proc in procedimientos" value="{{ proc.hgc_id_proce }}">
               {{ proc.hgc_desc_proce }}
             </option>
           </select>
         </div>
-        <!-- Procedimiento -->
-
+        <div class="s-90 m-45" style="margin-bottom: 1rem">
+          <label>Grupos Prioritadas de Atencion</label>
+          <select class="browser-default" ng-model='dataform056.grupoPrioritado' id="grupoPrioritado056">
+            <option value="" selected>Selecione grupos prioritadas</option>
+            <option value="1. Embarazadas">1. Embarazadas</option>
+            <option value="2. Personas con discapacidad">
+              2. Personas con discapacidad
+            </option>
+            <option value="3. Personas por desastres Naturales">
+              3. Personas por desastres Naturales
+            </option>
+            <option value="4. Personas por desastres Antropogènicos">
+              4. Personas por desastres Antropogènicos
+            </option>
+            <option value="5. Enfermedades Catastròficas y Raras">
+              5. Enfermedades Catastròficas y Raras
+            </option>
+            <option value="6. Maltrato infantil">6. Maltrato infantil</option>
+            <option value="7. Privadas de la Libertad">7. Privadas de la Libertad</option>
+            <option value="8. Victimas de Violencia Fìsica">8. Victimas de Violencia Fìsica</option>
+            <option value="9. Victimas de Violencia Psicològica">
+              9. Victimas de Violencia Psicològica
+            </option>
+            <option value="10. Victimas de Violencia Sexual">10. Victimas de Violencia Sexual</option>
+            <option value="11. Trabajador/a Sexual">11. Trabajador/a Sexual</option>
+            <option value="12. HSH*">12. HSH*</option>
+            <option value="13. Planificaciòn Familiar*">13. Planificaciòn Familiar*</option>
+          </select>
+        </div>
         <div class='main-distribute s-100'>
           <button class='waves-effect waves-light btn danger'
             ng-click="handleCancel056()">Cancelar
