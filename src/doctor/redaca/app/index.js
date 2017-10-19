@@ -63,6 +63,7 @@ angular.module('Hospital')
     $('.mask').hide()
     $('.Redaca-month').slideUp()
     $('#month').val('')
+    $('.browser-default').select2()
   }
 
   $scope.handleSaveMonth = () => {
