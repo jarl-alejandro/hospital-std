@@ -95,9 +95,18 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $scope.handleShowForm = () => {
     const duracion = duration(new Date($scope.fechaNacimiento), new Date())
-    if (duracion.years >= 65) $('#formPlusAdultoMayor65').slideDown()
-    else if (duracion.years >= 10) $('.formPlus056').slideDown()
-    else $('.formPlus').slideDown()
+    if (duracion.years >= 65) {
+      $('#formPlusAdultoMayor65').slideDown()
+    }
+    else if (duracion.years < 65) {
+      $('#formPlusAdultoMenor65').slideDown()
+    }
+    else if (duracion.years >= 10) {
+      $('.formPlus056').slideDown()
+    }
+    else {
+      $('.formPlus').slideDown()
+    }
   }
   $scope.handleCancel = () => closeForm()
 
@@ -139,9 +148,26 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
     if (hoy > date) {
       Materialize.toast('No pude editar ya han pasado las 24 horas', 4000)
-    } else {
+    }
+    else {
       const duracion = duration(new Date($scope.fechaNacimiento), new Date())
-      if (duracion.years >= 10) {
+      if (duracion.years >= 65) {
+        $('#formPlusAdultoMayor65').slideDown()
+      }
+      else if (duracion.years < 65) {
+        $('#formPlusAdultoMenor65').slideDown()
+        console.log(signos)
+        $('#formMenor65-temperatura').val(signos.hgc_temp_sigvit)
+        $('#formMenor65-presionArterial').val(signos.hgc_prart_sigvit)
+        $('#formMenor65-pulso').val(signos.hgc_puls_sigvit)
+        $('#formMenor65-frecuencia').val(signos.hgc_fre_sigvit)
+        $('#formMenor65-peso').val(signos.hgc_peso_sigvit)
+        $('#formMenor65-talla').val(signos.hgc_talla_sigvit)
+        $('#formMenor65-idAdultoMenor65').val(signos.hgc_id_sigvit)
+        $('#formMenor65-procedimiento').val( signos.hgc_proc_sigvit)
+        $('#formMenor65-grupoPrioritado').val(signos.hgc_grup_sigvit)
+      }
+      else if (duracion.years >= 10) {
         $('.formPlus056').slideDown()
 
         $('#fr-cardiaca056').val(signos.hgc_frcar_sigvit)

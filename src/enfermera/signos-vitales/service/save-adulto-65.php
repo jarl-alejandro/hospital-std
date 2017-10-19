@@ -18,6 +18,8 @@ $perimetroCadera = $obj->perimetroCadera;
 $perimetroPantorrilla = $obj->perimetroPantorrilla;
 $responsables = $obj->responsables;
 $historiaClinica = $obj->historiaClinica;
+$procedimiento = $obj->procedimiento;
+$grupoPrioritado = $obj->grupoPrioritado;
 
 $id = $obj->id;
 $turno = $obj->turno;
@@ -25,10 +27,11 @@ $hoy = date("Y/m/d");
 $hora = date("h:i");
 
 if ($id == "") {
-  $new = $pdo->prepare('UPDATE hgc_sigvit SET hgc_pracost_sigvit=?, hgc_prsent_sigvit=?, hgc_temp_sigvit=?,
-  hgc_puls_sigvit=?, hgc_fre_sigvit=?, hgc_peso_sigvit=?, hgc_talla_sigvit=?, hgc_imc_sigvit=?, hgc_percint_sigvit=?,
-  hgc_percad_sigvit=?, hgc_perpan_sigvit=?, hgc_resp_sigvit=?, hgc_fecha_sigvit=?, hgc_hcli_sigvit=?, hgc_hora_sigvit=?
-  WHERE hgc_turno_sigvit=?');
+  $new = $pdo->prepare('UPDATE hgc_sigvit SET hgc_pracost_sigvit=?, hgc_prsent_sigvit=?,
+    hgc_temp_sigvit=?,   hgc_puls_sigvit=?,  hgc_fre_sigvit=?,     hgc_peso_sigvit=?,
+    hgc_talla_sigvit=?,  hgc_imc_sigvit=?,   hgc_percint_sigvit=?, hgc_percad_sigvit=?,
+    hgc_perpan_sigvit=?, hgc_resp_sigvit=?,  hgc_fecha_sigvit=?,   hgc_hcli_sigvit=?,
+    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=? WHERE hgc_turno_sigvit=?');
 
   $new->bindParam(1, $presionAcostada);
   $new->bindParam(2, $presionSentado);
@@ -45,17 +48,20 @@ if ($id == "") {
   $new->bindParam(13, $hoy);
   $new->bindParam(14, $historiaClinica);
   $new->bindParam(15, $hora);
-  $new->bindParam(16, $turno);
+  $new->bindParam(16, $procedimiento);
+  $new->bindParam(17, $grupoPrioritado);
+  $new->bindParam(18, $turno);
 
   $new->execute();
   $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");
 
 }
 else {
-  $new = $pdo->prepare('UPDATE hgc_sigvit SET hgc_pracost_sigvit=?, hgc_prsent_sigvit=?, hgc_temp_sigvit=?,
-  hgc_puls_sigvit=?, hgc_fre_sigvit=?, hgc_peso_sigvit=?, hgc_talla_sigvit=?, hgc_imc_sigvit=?, hgc_percint_sigvit=?,
-  hgc_percad_sigvit=?, hgc_perpan_sigvit=?, hgc_resp_sigvit=?, hgc_fecha_sigvit=?, hgc_hcli_sigvit=?, hgc_hora_sigvit=?
-  WHERE hgc_id_sigvit=?');
+  $new = $pdo->prepare('UPDATE hgc_sigvit SET hgc_pracost_sigvit=?, hgc_prsent_sigvit=?,
+    hgc_temp_sigvit=?,  hgc_puls_sigvit=?,    hgc_fre_sigvit=?,    hgc_peso_sigvit=?,   hgc_talla_sigvit=?,
+    hgc_imc_sigvit=?,   hgc_percint_sigvit=?, hgc_percad_sigvit=?, hgc_perpan_sigvit=?, hgc_resp_sigvit=?,
+    hgc_fecha_sigvit=?, hgc_hcli_sigvit=?,    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?
+    WHERE hgc_id_sigvit=?');
 
   $new->bindParam(1, $presionAcostada);
   $new->bindParam(2, $presionSentado);
@@ -72,7 +78,9 @@ else {
   $new->bindParam(13, $fecha);
   $new->bindParam(14, $historiaClinica);
   $new->bindParam(15, $hora);
-  $new->bindParam(16, $id);
+  $new->bindParam(16, $procedimiento);
+  $new->bindParam(17, $grupoPrioritado);
+  $new->bindParam(18, $id);
 
   $new->execute();
 }

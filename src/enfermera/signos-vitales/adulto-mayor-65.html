@@ -84,7 +84,6 @@
         </p>
       </div>
     </div>
-
     <div class="AntecedentesPersonales-item no-boder--bottom">
       <div class="TamizajeSignos" style="width: 100%;">
         <p>
@@ -103,6 +102,50 @@
           <input class="checkedAdulto" value="vive sola" name="tamizajePapido" type="radio" id="viveSola" />
           <label for="viveSola">10.- VIVE SOLA</label>
         </p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-around;">
+      <div class="s-90 m-45">
+        <label for="formMayor65-procedimiento">Procedimiento</label>
+        <select id="formMayor65-procedimiento"
+          class='browser-default'
+          ng-model='data.procedimiento'>
+          <option value="" selected>Seleciona</option>
+          <option ng-repeat="proc in procedimientos" value="{{ proc.hgc_id_proce }}">
+            {{ proc.hgc_desc_proce }}
+          </option>
+        </select>
+      </div>
+      <div class="s-90 m-45" style="margin-bottom: 1rem">
+        <label>Grupos Prioritadas de Atencion</label>
+        <select class="browser-default"
+          ng-model='data.grupoPrioritado'
+          id="formMayor65-grupoPrioritado">
+          <option value="" selected>Selecione grupos prioritadas</option>
+          <option value="Embarazadas">1. Embarazadas</option>
+          <option value="Personas con discapacidad">
+            2. Personas con discapacidad
+          </option>
+          <option value="Personas por desastres Naturales">
+            3. Personas por desastres Naturales
+          </option>
+          <option value="Personas por desastres Antropogènicos">
+            4. Personas por desastres Antropogènicos
+          </option>
+          <option value="Enfermedades Catastròficas y Raras">
+            5. Enfermedades Catastròficas y Raras
+          </option>
+          <option value="Maltrato infantil">6. Maltrato infantil</option>
+          <option value="Privadas de la Libertad">7. Privadas de la Libertad</option>
+          <option value="Victimas de Violencia Fìsica">8. Victimas de Violencia Fìsica</option>
+          <option value="Victimas de Violencia Psicològica">
+            9. Victimas de Violencia Psicològica
+          </option>
+          <option value="Victimas de Violencia Sexual">10. Victimas de Violencia Sexual</option>
+          <option value="Trabajador/a Sexual">11. Trabajador/a Sexual</option>
+          <option value="HSH*">12. HSH*</option>
+          <option value="Planificaciòn Familiar*">13. Planificaciòn Familiar*</option>
+        </select>
       </div>
     </div>
   </article>

@@ -1,0 +1,96 @@
+<div ng-controller="AdultMenorCtrlSignos">
+  <header class="SignosAdultoMayor-header primary">
+    <h3>Signos Vitales</h3>
+  </header>
+  <input type="hidden" id="idAdultoMenor65" />
+  <article class="Signos AdultoMayorSignos">
+    <div class="SignosVitales menorSignos">
+      <ul class="SignosVitales-list" style="display: block;">
+        <li class="input-field">
+          <p class="SignosVitales-border">FECHA DE MEDICÌON</p>
+          <input class="SignosVitales-border" type="text" ng-model='fecha' disabled />
+        </li>
+        <li class="input-field">
+          <p class="SignosVitales-border">TEMPERATURA C</p>
+          <input class="SignosVitales-border" type="text"
+            ng-model='formMenor65.temperatura'
+            id='formMenor65-temperatura'
+          />
+        </li>
+        <li class="input-field">
+          <p class="SignosVitales-border">PRESION ARTERIAL</p>
+          <input class="SignosVitales-border" type="text"
+            ng-model='formMenor65.presionArterial'
+            id='formMenor65-presionArterial'
+          />
+        </li>
+        <li class="input-field">
+          <p class="SignosVitales-border">PULSO/min / FRECUENCIA RESPIRATORIA</p>
+          <p class="SignosVitales-inputs SignosVitales-border">
+            <input type="text" ng-model='formMenor65.pulso' id='formMenor65-pulso' /> /
+            <input type="text" ng-model='formMenor65.frecuencia' id='formMenor65-frecuencia' />
+          </p>
+        </li>
+        <li class="input-field">
+          <p class="SignosVitales-border">PESO/kg / TALLA/cm</p>
+          <p class="SignosVitales-inputs SignosVitales-border">
+            <input type="text" ng-model='formMenor65.peso' id='formMenor65-peso' /> /
+            <input type="text" ng-model='formMenor65.talla' id='formMenor65-talla' />
+          </p>
+        </li>
+      </ul>
+
+      <div style="display: flex; justify-content: space-around;">
+        <div class="s-90 m-45">
+          <label for="Procedimiento">Procedimiento</label>
+          <select id="formMenor65-procedimiento"
+            class='browser-default'
+            ng-model='formMenor65.procedimiento'
+          >
+            <option value="" selected>Seleciona</option>
+            <option ng-repeat="proc in procedimientos" value="{{ proc.hgc_id_proce }}">
+              {{ proc.hgc_desc_proce }}
+            </option>
+          </select>
+        </div>
+        <div class="s-90 m-45" style="margin-bottom: 1rem">
+          <label>Grupos Prioritadas de Atencion</label>
+          <select class="browser-default"
+          ng-model='formMenor65.grupoPrioritado'
+          id="formMenor65-grupoPrioritado">
+          <option value="" selected>Selecione grupos prioritadas</option>
+          <option value="Embarazadas">1. Embarazadas</option>
+          <option value="Personas con discapacidad">
+            2. Personas con discapacidad
+          </option>
+          <option value="Personas por desastres Naturales">
+            3. Personas por desastres Naturales
+          </option>
+          <option value="Personas por desastres Antropogènicos">
+            4. Personas por desastres Antropogènicos
+          </option>
+          <option value="Enfermedades Catastròficas y Raras">
+            5. Enfermedades Catastròficas y Raras
+          </option>
+          <option value="Maltrato infantil">6. Maltrato infantil</option>
+          <option value="Privadas de la Libertad">7. Privadas de la Libertad</option>
+          <option value="Victimas de Violencia Fìsica">8. Victimas de Violencia Fìsica</option>
+          <option value="Victimas de Violencia Psicològica">
+            9. Victimas de Violencia Psicològica
+          </option>
+          <option value="Victimas de Violencia Sexual">10. Victimas de Violencia Sexual</option>
+          <option value="Trabajador/a Sexual">11. Trabajador/a Sexual</option>
+          <option value="HSH*">12. HSH*</option>
+          <option value="Planificaciòn Familiar*">13. Planificaciòn Familiar*</option>
+        </select>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <div class="main-distribute" style="margin-top:1rem">
+    <a class="waves-effect waves-light btn danger" ng-click="cerrarMenor65()">Cerrar</a>
+    <a class="waves-effect waves-light btn primary" ng-click="saveMenor65()">Guardar</a>
+  </div>
+</div>
