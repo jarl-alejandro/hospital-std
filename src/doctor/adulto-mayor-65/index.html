@@ -181,7 +181,6 @@
           </p>
         </div>
       </li>
-
       <li class="AntecedentesPersonales-item no-boder--bottom">
         <p class="AntecedentesPersonales-item--title">Generales</p>
         <div>
@@ -261,25 +260,34 @@
         <p class="AntecedentesPersonales-item--title">Habitos Nocivos</p>
         <div>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="tabaquismo" value="tabaquismo" class="habitosNocivos" />
-            <label for="tabaquismo">1.- TABAQUISMO</label>
+            <input name="AntecedentesPersonales-nacivos" type="radio"
+              id="tabaquismo-nacivos" value="tabaquismo"
+              class="habitosNocivos" />
+            <label for="tabaquismo-nacivos">1.- TABAQUISMO</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="alcoholismo" value="alcoholismo" class="habitosNocivos" />
-            <label for="alcoholismo">2.- ALCOHOLISMO</label>
+            <input name="AntecedentesPersonales-nacivos" type="radio"
+              id="alcoholismo-nacivos" value="alcoholismo"
+              class="habitosNocivos" />
+            <label for="alcoholismo-nacivos">2.- ALCOHOLISMO</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="addiciones" value="addiciones" class="habitosNocivos" />
-            <label for="addiciones">3.- ADDICIONES</label>
+            <input name="AntecedentesPersonales-nacivos" type="radio"
+              id="addiciones-nacivos" value="addiciones"
+              class="habitosNocivos" />
+            <label for="addiciones-nacivos">3.- ADDICIONES</label>
           </p>
           <p>
-            <input name="AntecedentesPersonales" type="radio" id="otroHabito" value="otroHabito" class="habitosNocivos" />
-            <label for="otroHabito">4.- OTRO HABITO</label>
+            <input name="AntecedentesPersonales-nacivos" type="radio"
+              id="otroHabito-nacivos" value="otroHabito"
+              class="habitosNocivos" />
+            <label for="otroHabito-nacivos">4.- OTRO HABITO</label>
           </p>
         </div>
       </li>
       <li class="input-field s-100">
-        <textarea id="motivo-consulta" ng-model='data.antecedentePersonales' class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
+        <textarea id="motivo-consulta" ng-model='data.antecedentePersonales' class="materialize-textarea"
+         placeholder="Describir anotando el numero de la patologia"></textarea>
       </li>
 
       <li class="AntecedentesPersonales-item no-boder--bottom">
@@ -846,31 +854,22 @@
             </tr>
           </thead>
           <tbody id="cie-table">
-            <tr>
-              <td id="cie-nombre1" class="input-field">
-                <input type="text" placeholder="Ingresa el nombre CIE 10" class="u-noMargin filter-cie-nombre10" id="column-nombre-1" data-index="1"
+            <tr ng-repeat='cie in cie10'>
+              <td id="cie-nombre{{$index+1}}" class="input-field">
+                <input type="text" placeholder="Ingresa el nombre CIE 10"
+                  class="u-noMargin filter-cie-nombre10" id="column-nombre-{{$index+1}}"
+                  data-index="{{$index+1}}" ng-model='cie.name' ng-keyup="cieGetName($event, cie)"
                 />
               </td>
               <td class="input-field">
-                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" class="u-noMargin filter-cie10" id="column1" data-index="1"
+                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
+                  class="u-noMargin filter-cie10" id="column{{$index+1}}" data-index="{{$index+1}}"
+                  ng-model='cie.cie'  ng-keyup="cieGet($event, cie)"
                 />
               </td>
-              <td id="cie-pre1"></td>
-              <td id="cie-def1"></td>
-              <td id="cie-desc1"></td>
-            </tr>
-            <tr>
-              <td id="cie-nombre2" class="input-field">
-                <input type="text" placeholder="Ingresa el nombre CIE 10" class="u-noMargin filter-cie-nombre10" id="column-nombre-2" data-index="2"
-                />
-              </td>
-              <td class="input-field">
-                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" class="u-noMargin filter-cie10" id="column2" data-index="2"
-                />
-              </td>
-              <td id="cie-pre2"></td>
-              <td id="cie-def2"></td>
-              <td id="cie-desc2"></td>
+              <td id="cie-pre{{$index+1}}"></td>
+              <td id="cie-def{{$index+1}}"></td>
+              <td id="cie-desc{{$index+1}}"></td>
             </tr>
           </tbody>
         </table>
@@ -883,46 +882,56 @@
         <p class="sindromeGeriatricos-title">SINDROME GERIÀTRICOS</p>
         <ul>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="fragilidad" value="fragilidad"  />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="fragilidad" value="fragilidad"  />
             <label for="fragilidad">FRAGILIDAD</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="depresion" value="depresion" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="depresion" value="depresion" />
             <label for="depresion">DEPRESIÒN</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="delirio" value="delirio"  />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="delirio" value="delirio"  />
             <label for="delirio">DELIRIO</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="ulceraPorPresion" value="ulceraPorPresion" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="ulceraPorPresion" value="ulceraPorPresion" />
             <label for="ulceraPorPresion">ÙLCERAS POR PRESION</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="incontinencia" value="incontinencia" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="incontinencia" value="incontinencia" />
             <label for="incontinencia">INCONTINENCIA</label>
           </li>
 
         </ul>
         <ul>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="dismovilidadSindrome" value="dismovilidadSindrome" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="dismovilidadSindrome" value="dismovilidadSindrome" />
             <label for="dismovilidadSindrome">DISMOVILIDAD</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="caidaSindrome" value="caidaSindrome" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="caidaSindrome" value="caidaSindrome" />
             <label for="caidaSindrome">CAIDA</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="malNutricion" value="malNutricion" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="malNutricion" value="malNutricion" />
             <label for="malNutricion">MAL NUTRICIÒN</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="demencia" value="demencia" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="demencia" value="demencia" />
             <label for="demencia">DEMENCIA</label>
           </li>
           <li>
-            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos" type="radio" id="iatrogenia" value="iatrogenia" />
+            <input class="with-gap" name="sindromeGeriatricos" class="sindromeGeriatricos"
+              type="radio" id="iatrogenia" value="iatrogenia" />
             <label for="iatrogenia">IATROGENIA</label>
           </li>
         </ul>

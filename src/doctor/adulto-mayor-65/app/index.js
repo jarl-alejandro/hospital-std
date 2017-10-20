@@ -8,6 +8,9 @@ angular.module('Hospital')
   $scope.pacient = {}
   $scope.empresa = {}
   $scope.data = {}
+  $scope.cie10 = [
+    { name: '', cie: '', tipo: '', clinico: '' }
+  ]
 
   $http.get(`src/doctor/form28A/service/paciente.php?id=${paciente}`)
   .then(response => $scope.pacient = response.data)
@@ -29,6 +32,31 @@ angular.module('Hospital')
     $scope.edad = duration(now, fecha)
   })
 
+  $scope.handleNewCIE10 = () => {
+    $scope.cie10.push({ name: '', cie: '', tipo: '', clinico: '' })
+  }
+
+  $scope.cieGetName = (event, item) => {
+    if (event.which === 13) {
+      $http.get(`src/doctor/form28C/service/filterNombreCI10.php?nombre=${item.name}`)
+      .then(response => {
+        console.log(response);
+        item.cie = response.data.hgc_codi_c10
+      })
+    }
+  }
+
+  $scope.cieGet = (event, item) => {
+    if (event.which === 13) {
+      console.log(item);
+      $http.get(`src/doctor/form28C/service/filterCI10.php?codigo=${item.cie}&len=${item.cie.length}`)
+      .then(response => {
+        console.log(response);
+        item.name = response.data.hgc_desc_c10
+      })
+    }
+  }
+
   $scope.save = function () {
     $scope.data.estadoGeneral = document.querySelector('.estadoGeneral:checked').value
     $scope.data.alertaRiesgo = document.querySelector('.alertaRiesgo:checked').value
@@ -36,10 +64,9 @@ angular.module('Hospital')
     $scope.data.clinicoQuirurgicos = document.querySelector('.clinicoQuirurgicos:checked').value
     $scope.data.farcologicos = document.querySelector('.farcologicos:checked').value
     $scope.data.tamizajePapido = document.querySelector('.tamizajePapido:checked').value
-    $scope.data.sindromeGeriatricos = document.querySelector('.sindromeGeriatricos:checked').value
+    $scope.data.sindromeGeriatricos = document.querySelector('.sindromeGeriatricos input:checked').value
 
     console.log($scope.data)
-    alert('ok')
   }
 
 })

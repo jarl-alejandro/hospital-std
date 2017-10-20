@@ -5,21 +5,19 @@
   </style>
   <article class="form ed-item">
     <div class="Establecimiento">
-      <ul class="Establecimiento-header">
+      <ul class="Establecimiento-header" style="grid-template-columns: 27% 27% 18% 9% 19%;">
         <li>ESTABLECIMIENTO</li>
-        <li>NOMBRE</li>
-        <li>APELLIDO</li>
+        <li>APELLIDO Y NOMBRES</li>
         <li>SEXO (M-F)</li>
         <li>EDAD</li>
         <li>Nº HISTORIA CLINICA</li>
       </ul>
-      <ul class="Establecimiento-body">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+      <ul class="Establecimiento-body" style="grid-template-columns: 27% 27% 18% 9% 19%;">
+        <li>{{empresa.hgc_nom_empr}}</li>
+        <li>{{pacient.paciente.paciente}}</li>
+        <li>{{ pacient.sexo.hgc_desc_genero }}</li>
+        <li>{{edad.years}} años, {{edad.months}} meses, {{edad.days}} dias</li>
+        <li>{{pacient.paciente.hgc_histo_hcli}}</li>
       </ul>
     </div>
 
