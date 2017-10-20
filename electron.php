@@ -11,14 +11,16 @@
   </head>
   <body>
     <section ui-view></section>
-  <!-- Librerias -->
+    <!-- Librerias -->
+    <script type="text/javascript" src="lib/rgbcolor.js"></script>
+    <script type="text/javascript" src="lib/StackBlur.js"></script>
+    <script type="text/javascript" src="lib/canvg.js"></script>
 
-    <script type="text/javascript">
-      window.nodeRequire = require;
-      delete window.require;
-      delete window.exports;
-      delete window.module;
-    </script>
+    <script src="lib/moment.min.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <script src="js/html2canvas.svg.js"></script>
+
     <script type="text/javascript" src='lib/jquery.js'></script>
     <script type="text/javascript" src='lib/materialize.js'></script>
 
@@ -29,19 +31,34 @@
     <script src='lib/select2.min.js'></script>
     <script src='lib/snap.svg-min.js'></script>
 
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script> -->
+    <script src="lib/pdfmake.min.js"></script>
+
     <script src='js/a-say.js'></script>
 
   <!-- Para validar que si el usuario esta o no logueado y que rol es -->
     <script src='js/authenticated.js'></script>
   <!-- Inicio de la aplicacion -->
     <script src='js/index.js'></script>
+    <script type="text/javascript" src="src/init.js"></script>
   <!-- functiones que valida los inputs -->
     <script src='js/valid.js'></script>
+
+    <script src='js/libs/sprintf.js'></script>
+    <script src='js/libs/base64.js'></script>
+    <script src='js/jspdf.js'></script>
   <!-- Direcitva  para el menu y que menu presenta-->
     <script src='src/menu/app/index.js'></script>
 
-  <!-- Calcular la edad -->
+    <!-- Calcular la edad -->
     <script src='js/calcularEdad.js'></script>
+
+    <!-- PDF -->
+    <!-- <script src="http://localhost:8080/ng-html-to-pdf-save/bower_components/jquery/dist/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
+    <script src="http://localhost:8080/ng-html-to-pdf-save/bower_components/jsPDF/dist/jspdf.debug.js"></script>
+    <script src="http://localhost:8080/ng-html-to-pdf-save/dist/saveHtmlToPdf.js"></script> -->
 
     <script src='src/perfil/app/index.js'></script>
     <script src='src/config/empresa/app/index.js'></script>
@@ -53,6 +70,7 @@
     <script src='src/datos/barrios/app/index.js'></script>
     <script src='src/datos/etnias/app/index.js'></script>
     <script src='src/datos/generos/app/index.js'></script>
+    <script src='src/datos/procedimientos/app/index.js'></script>
 
     <script src='src/archivos/profesiones/app/index.js'></script>
 
@@ -86,21 +104,59 @@
     <script src='src/estadistico/activar-turnos/app/index.js'></script>
     <script src='src/estadistico/agenda/app/index.js'></script>
     <script src='src/estadistico/pacientes/app/index.js'></script>
+    <script src='src/estadistico/reportes/app/index.js'></script>
+    <script src='src/estadistico/receta/app/index.js'></script>
+    <script src='src/estadistico/solicitud/app/index.js'></script>
 
     <script src='src/enfermera/signos-vitales/app/index.js'></script>
+    <script src='src/enfermera/signos-vitales/app/adulto.js'></script>
+    <script src='src/enfermera/signos-vitales/app/adulto-menor.js'></script>
     <script src='src/enfermera/pacientes-atendidos/app/index.js'></script>
 
     <script src='src/doctor/pacientes/app/index.js'></script>
     <script src='src/doctor/atendidos/app/index.js'></script>
+    <script src='src/doctor/reportes/app/index.js'></script>
+
+    <script src='src/doctor/form28C/app/serviceCie.js'></script>
     <script src='src/doctor/form28C/app/index.js'></script>
+    <script src='src/doctor/form28C/app/cie10.js'></script>
+    <script src='src/doctor/form28C/app/grafica.js'></script>
+    <script src='src/doctor/form28C/app/grafica-mayor.js'></script>
+
     <script src='src/doctor/form28A/app/index.js'></script>
     <script src='src/doctor/form28A/app/hoja1.js'></script>
     <script src='src/doctor/form28A/app/grafica.js'></script>
 
-    <script src="src/horarios-doctores/app/index.js"></script>
+    <script src='src/doctor/form056/app/index.js'></script>
+    <script src='src/doctor/form056/app/motivoConsulta.js'></script>
+    <script src='src/doctor/form056/app/canvas.js'></script>
+    <script src='src/doctor/form056/app/save.js'></script>
+    <script src='src/doctor/form056/app/calendar.js'></script>
+    <script src='src/doctor/form056/app/service.js'></script>
+    <script src='src/doctor/form056/app/grafica.js'></script>
 
+    <script src='src/doctor/redaca/app/index.js'></script>
+    <script src='src/doctor/solicitud/app/index.js'></script>
+    <script src='src/doctor/receta/app/index.js'></script>
+
+    <script src='src/doctor/adulto-mayor/app/index.js'></script>
+    <script src='src/doctor/adulto-mayor-65/app/index.js'></script>
+
+    <script src='src/doctor/hoja-devolucion/app/index.js'></script>
+    <script src='src/doctor/hoja-devolucion/app/calendar.js'></script>
+    <script src='src/doctor/hoja-devolucion/app/cie.js'></script>
+
+    <!-- Repotes -->
+    <script src='src/doctor/reportes/forms/form28A/app/index.js'></script>
+    <script src='src/doctor/reportes/forms/form28C/app/index.js'></script>
+    <script src='src/doctor/reportes/forms/form056/app/index.js'></script>
+    <script src='src/doctor/reportes/forms/form056/app/save.js'></script>
+    <script src='src/doctor/reportes/forms/hoja-devolucion/app/index.js'></script>
+
+    <script src="src/horarios-doctores/app/index.js"></script>
     <script src='src/home/app/index.js'></script>
     <script src='src/login/app/index.js'></script>
+
     <script type="text/javascript">
       $('ul.tabs').tabs()
     </script>
