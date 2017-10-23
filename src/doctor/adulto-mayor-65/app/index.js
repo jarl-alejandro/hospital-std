@@ -96,7 +96,6 @@ angular.module('Hospital')
       $scope.data.parametrosFisicos.push({ name: item.id, tipo: 3 })
     })
 
-
     $http.post(`src/doctor/adulto-mayor-65/service/${$stateParams.action}.php`, $scope.data)
     .then(response => {
       console.log(response)
@@ -111,10 +110,25 @@ angular.module('Hospital')
   if ($stateParams.action === 'edit') {
     $http.get(`src/doctor/adulto-mayor-65/service/get.php?turno=${turno}`)
     .then(response => {
-
       $('.input-field label').addClass('active')
-      let main = response.data.main
       $scope.cie10 = []
+      let main = response.data.main
+      let params = response.data.params
+
+      params.map(item => {
+        console.log(item);
+        if (item.hgc_tipo_ma65 === '1') {
+          document.querySelector(`.RevisionSistema-item input[id="${item.hgc_name_ma65}"]`).checked = true
+        }
+        if (item.hgc_tipo_ma65 === '2') {
+          document.querySelector(`.AntecedentesFamiliaresSociales input[id="${item.hgc_name_ma65}"]`)
+            .checked = true
+        }
+        if (item.hgc_tipo_ma65 === '3') {
+          document.querySelector(`.ExamenFisicoMayor-list input[id="${item.hgc_name_ma65}"]`)
+            .checked = true
+        }
+      })
 
       $scope.data = {
         id: main.hgc_codi_ma65,
