@@ -14,14 +14,6 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
         authenticated: authenticated
       }
     })
-    .state('login', {
-      url: '/login',
-      controller: 'loginController',
-      templateUrl: 'src/login/login.html',
-      resolve: {
-        authenticated: authenticated
-      }
-    })
     .state('perfil', {
       url: '/perfil',
       controller: 'perfilController',

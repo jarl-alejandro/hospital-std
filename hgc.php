@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html ng-app="Hospital">
   <head>
+    <?php
+      session_start();
+      $session = 'no';
+      if(!isset($_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'])) {
+        $session = 'si';
+      }
+    ?>
     <meta charset="utf-8">
     <title>Consultorio</title>
     <link rel="stylesheet" href="assets/css/materialize.css">
@@ -10,8 +17,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
+    <input type="hidden" id="session" value="<?=$session ?>" />
     <section ui-view></section>
     <!-- Librerias -->
+    <script type="text/javascript">
+      let session = document.getElementById('session').value
+      if (session === 'si') {
+        // location.href = './index.php'
+      }
+    </script>
     <script type="text/javascript" src="lib/rgbcolor.js"></script>
     <script type="text/javascript" src="lib/StackBlur.js"></script>
     <script type="text/javascript" src="lib/canvg.js"></script>

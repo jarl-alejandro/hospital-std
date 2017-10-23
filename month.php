@@ -242,4 +242,176 @@ foreach ($qs_056 as $row) {
   }
 }
 
+$qs_mayor = $pdo->query("SELECT * FROM view_form_mayor WHERE hgc_fecha_ma BETWEEN '$desde' AND '$hasta'");
+
+foreach ($qs_mayor as $row) {
+
+  $index++;
+  $fecha = $row['hgc_fecn_pacie'];
+  $hoy = date("Y-m-d");
+  $year = $hoy - $fecha;
+  $cedulaPadres = '';
+
+  $turno_id = $row['hgc_tur_ma'];
+  $turno_qs = $pdo->query("SELECT * FROM view_signosvital_proce WHERE hgc_turno_sigvit='$turno_id'");
+  $turno_fetch = $turno_qs->fetch();
+
+  if ($year <= 5) {
+    $cedulaPadres = $row['hgc_cedu_pacie'];
+  }
+
+  $codigo = $row['hgc_cod_ma'];
+
+  $cie = $pdo->query("SELECT * FROM hgc_detail_ma WHERE hgc_form_ma='$codigo'");
+
+  if ($cie->rowCount() !== 0) {
+    while ($cie_row = $cie->fetch()) {
+      // $datos .= ";;;;;;;;;;;;;;;";
+      $datos .= utf8_decode($fecha.';'.$direccion.';'.$empresa.';HG;MSP;'.$doctor_nombre.';');
+      $datos .= utf8_decode($sexo.';'.$fecha.';Medico;'.$especialidad['hgc_desc_espe'].';');
+      $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
+      $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
+
+      $nombre_cie = '';
+      $code_cie = $cie_row['hgc_cie_ma'];
+
+      $cie_raiz = $pdo->query("SELECT * FROM hgc_cie10 WHERE hgc_codi_c10='$code_cie'");
+
+      if ($cie_raiz->rowCount() === 0) {
+        $cie_sec = $pdo->query("SELECT * FROM hgc_cie101 WHERE hgc_codi_c10='$code_cie'");
+        $fetch = $cie_sec->fetch();
+        $nombre_cie = utf8_decode($fetch['hgc_desc_c10']);
+      }
+      else {
+        $fetch = $cie_raiz->fetch();
+        $nombre_cie = utf8_decode($fetch['hgc_desc_c10']);
+      }
+      $datos .= utf8_decode($row['hgc_ape_pacie'].' '.$row['hgc_nom_pacie'].';');
+      $datos .= utf8_decode($row['hgc_cedu_pacie'].';'.$row['hgc_desc_genero'].';');
+      $datos .= utf8_decode($row['hgc_fecn_pacie'].';'.$cedulaPadres.";".$row['hgc_desc_pais'].";");
+      $datos .= utf8_decode($row['hgc_desc_etnia'].";".$row['hgc_desc_pais'].";");
+      $datos .= utf8_decode($row['hgc_afil_pacie'].";No definido;No definido;");
+      $datos .= utf8_decode($row['hgc_desc_provi'].";".$row['hgc_desc_canton'].";");
+      $datos .= utf8_decode($row['hgc_desc_parro'].";".$row['hgc_direc_pacie']);
+
+      if (true) {
+        $datos .= ";".$nombre_cie.";".$cie_row['hgc_cie_ma'].";;Subsecuente";
+      }
+      else {
+        $datos .= ";".$nombre_cie.";".$cie_row['hgc_cie_ma'].";Primera;;";
+      }
+      $datos .= utf8_decode(";;".$turno_fetch['hgc_desc_proce'].";No definido;");
+      $datos .= utf8_decode($row['hgc_esta_hcli'].";No definido;");
+      $datos .= "\r\n";
+    }
+  }
+  else {
+    $datos .= utf8_decode($fecha.';'.$direccion.';'.$empresa.';HG;MSP;'.$doctor_nombre.';');
+    $datos .= utf8_decode($sexo.';'.$fecha.';Medico;'.$especialidad['hgc_desc_espe'].';');
+    $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
+    $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
+
+    // $datos .= ";;;;;;;;;;;;;;;";
+
+    $datos .= utf8_decode($row['hgc_ape_pacie'].' '.$row['hgc_nom_pacie'].';');
+    $datos .= utf8_decode($row['hgc_cedu_pacie'].';'.$row['hgc_desc_genero'].';');
+    $datos .= utf8_decode($row['hgc_fecn_pacie'].';'.$cedulaPadres.";");
+    $datos .= utf8_decode($row['hgc_desc_pais'].";".$row['hgc_desc_etnia'].";");
+    $datos .= utf8_decode($row['hgc_desc_pais'].";".$row['hgc_afil_pacie']);
+    $datos .= utf8_decode(";No definido;No definido;".$row['hgc_desc_provi'].";");
+    $datos .= utf8_decode($row['hgc_desc_canton'].";".$row['hgc_desc_parro'].";");
+    $datos .= utf8_decode($row['hgc_direc_pacie'].";;;;;;".$turno_fetch['hgc_desc_proce']);
+    $datos .= utf8_decode(";No definido;");
+    $datos .= utf8_decode($row['hgc_esta_hcli'].";No definido;");
+
+    $datos .= "\r\n";
+  }
+}
+
+$qs_mayor65 = $pdo->query("SELECT * FROM view_form_mayor65 WHERE hgc_fet_ma65 BETWEEN '$desde' AND '$hasta'");
+
+foreach ($qs_mayor65 as $row) {
+
+  $index++;
+  $fecha = $row['hgc_fecn_pacie'];
+  $hoy = date("Y-m-d");
+  $year = $hoy - $fecha;
+  $cedulaPadres = '';
+
+  $turno_id = $row['hgc_turno_ma65'];
+  $turno_qs = $pdo->query("SELECT * FROM view_signosvital_proce WHERE hgc_turno_sigvit='$turno_id'");
+  $turno_fetch = $turno_qs->fetch();
+
+  if ($year <= 5) {
+    $cedulaPadres = $row['hgc_cedu_pacie'];
+  }
+
+  $codigo = $row['hgc_codi_ma65'];
+
+  $cie = $pdo->query("SELECT * FROM hgc_detail_ma65 WHERE hgc_form_ma65='$codigo'");
+
+  if ($cie->rowCount() !== 0) {
+    while ($cie_row = $cie->fetch()) {
+      // $datos .= ";;;;;;;;;;;;;;;";
+      $datos .= utf8_decode($fecha.';'.$direccion.';'.$empresa.';HG;MSP;'.$doctor_nombre.';');
+      $datos .= utf8_decode($sexo.';'.$fecha.';Medico;'.$especialidad['hgc_desc_espe'].';');
+      $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
+      $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
+
+      $nombre_cie = '';
+      $code_cie = $cie_row['hgc_cie_ma65'];
+
+      $cie_raiz = $pdo->query("SELECT * FROM hgc_cie10 WHERE hgc_codi_c10='$code_cie'");
+
+      if ($cie_raiz->rowCount() === 0) {
+        $cie_sec = $pdo->query("SELECT * FROM hgc_cie101 WHERE hgc_codi_c10='$code_cie'");
+        $fetch = $cie_sec->fetch();
+        $nombre_cie = utf8_decode($fetch['hgc_desc_c10']);
+      }
+      else {
+        $fetch = $cie_raiz->fetch();
+        $nombre_cie = utf8_decode($fetch['hgc_desc_c10']);
+      }
+      $datos .= utf8_decode($row['hgc_ape_pacie'].' '.$row['hgc_nom_pacie'].';');
+      $datos .= utf8_decode($row['hgc_cedu_pacie'].';'.$row['hgc_desc_genero'].';');
+      $datos .= utf8_decode($row['hgc_fecn_pacie'].';'.$cedulaPadres.";".$row['hgc_desc_pais'].";");
+      $datos .= utf8_decode($row['hgc_desc_etnia'].";".$row['hgc_desc_pais'].";");
+      $datos .= utf8_decode($row['hgc_afil_pacie'].";No definido;No definido;");
+      $datos .= utf8_decode($row['hgc_desc_provi'].";".$row['hgc_desc_canton'].";");
+      $datos .= utf8_decode($row['hgc_desc_parro'].";".$row['hgc_direc_pacie']);
+
+      if (true) {
+        $datos .= ";".$nombre_cie.";".$cie_row['hgc_cie_ma65'].";;Subsecuente";
+      }
+      else {
+        $datos .= ";".$nombre_cie.";".$cie_row['hgc_cie_ma65'].";Primera;;";
+      }
+      $datos .= utf8_decode(";;".$turno_fetch['hgc_desc_proce'].";No definido;");
+      $datos .= utf8_decode($row['hgc_esta_hcli'].";No definido;");
+      $datos .= "\r\n";
+    }
+  }
+  else {
+    $datos .= utf8_decode($fecha.';'.$direccion.';'.$empresa.';HG;MSP;'.$doctor_nombre.';');
+    $datos .= utf8_decode($sexo.';'.$fecha.';Medico;'.$especialidad['hgc_desc_espe'].';');
+    $datos .= utf8_decode($doctor['hgc_nac_profe'].';'.$doctor['hgc_auto_profe'].';'.$cedula.';');
+    $datos .= utf8_decode($doctor['hgc_msp_profe'].';__________;');
+
+    // $datos .= ";;;;;;;;;;;;;;;";
+
+    $datos .= utf8_decode($row['hgc_ape_pacie'].' '.$row['hgc_nom_pacie'].';');
+    $datos .= utf8_decode($row['hgc_cedu_pacie'].';'.$row['hgc_desc_genero'].';');
+    $datos .= utf8_decode($row['hgc_fecn_pacie'].';'.$cedulaPadres.";");
+    $datos .= utf8_decode($row['hgc_desc_pais'].";".$row['hgc_desc_etnia'].";");
+    $datos .= utf8_decode($row['hgc_desc_pais'].";".$row['hgc_afil_pacie']);
+    $datos .= utf8_decode(";No definido;No definido;".$row['hgc_desc_provi'].";");
+    $datos .= utf8_decode($row['hgc_desc_canton'].";".$row['hgc_desc_parro'].";");
+    $datos .= utf8_decode($row['hgc_direc_pacie'].";;;;;;".$turno_fetch['hgc_desc_proce']);
+    $datos .= utf8_decode(";No definido;");
+    $datos .= utf8_decode($row['hgc_esta_hcli'].";No definido;");
+
+    $datos .= "\r\n";
+  }
+}
+
 echo $datos;
