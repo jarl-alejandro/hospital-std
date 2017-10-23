@@ -850,26 +850,52 @@
               <th width="20%">CIE</th>
               <th width="10%">PRE</th>
               <th width="10%">DEF</th>
-              <th width="15%" style="font-size: 9px;">CLINICO, SINDROMICO, PSICOLOGICO FUNCIONAL, NUTRICIONAL</th>
+              <th width="15%" style="font-size: 9px;">
+                CLINICO, SINDROMICO, PSICOLOGICO FUNCIONAL, NUTRICIONAL
+              </th>
             </tr>
           </thead>
           <tbody id="cie-table">
             <tr ng-repeat='cie in cie10'>
               <td id="cie-nombre{{$index+1}}" class="input-field">
                 <input type="text" placeholder="Ingresa el nombre CIE 10"
-                  class="u-noMargin filter-cie-nombre10" id="column-nombre-{{$index+1}}"
-                  data-index="{{$index+1}}" ng-model='cie.name' ng-keyup="cieGetName($event, cie)"
+                  class="u-noMargin filter-cie-nombre10"
+                  ng-model='cie.name'
+                  ng-keyup="cieGetName($event, cie)"
                 />
               </td>
               <td class="input-field">
                 <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
-                  class="u-noMargin filter-cie10" id="column{{$index+1}}" data-index="{{$index+1}}"
-                  ng-model='cie.cie'  ng-keyup="cieGet($event, cie)"
+                  class="u-noMargin filter-cie10"
+                  ng-model='cie.cie'
+                  ng-keyup="cieGet($event, cie)"
                 />
               </td>
-              <td id="cie-pre{{$index+1}}"></td>
-              <td id="cie-def{{$index+1}}"></td>
-              <td id="cie-desc{{$index+1}}"></td>
+              <td id="cie-pre{{$index+1}}">
+                <p ng-if='cie.isActive'>
+                  <input class="with-gap" name="cie{{$index+1}}"
+                    type="radio"
+                    id="{{ cie.cie }}_{{ $index+1 }}-1"
+                    ng-model='cie.check'
+                    value="pre"
+                  />
+                  <label for="{{ cie.cie }}_{{ $index+1 }}-1"></label>
+                </p>
+              </td>
+              <td id="cie-def{{$index+1}}">
+                <p ng-if='cie.isActive'>
+                  <input class="with-gap" name="cie{{$index+1}}"
+                    type="radio"
+                    id="{{ cie.cie }}_{{ $index+1 }}-2"
+                    ng-model='cie.check'
+                    value="def"
+                  />
+                  <label for="{{ cie.cie }}_{{ $index+1 }}-2"></label>
+                </p>
+              </td>
+              <td id="cie-desc{{$index+1}}">
+                <input placeholder="Ingrese" ng-model='cie.detalle' />
+              </td>
             </tr>
           </tbody>
         </table>

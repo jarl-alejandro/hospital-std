@@ -11,6 +11,13 @@
   </head>
   <body>
     <section ui-view></section>
+    <script type="text/javascript">
+      window.nodeRequire = require;
+      delete window.require;
+      delete window.exports;
+      delete window.module;
+    </script>
+
     <!-- Librerias -->
     <script type="text/javascript" src="lib/rgbcolor.js"></script>
     <script type="text/javascript" src="lib/StackBlur.js"></script>
@@ -31,8 +38,6 @@
     <script src='lib/select2.min.js'></script>
     <script src='lib/snap.svg-min.js'></script>
 
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script> -->
     <script src="lib/pdfmake.min.js"></script>
 
     <script src='js/a-say.js'></script>
@@ -53,12 +58,6 @@
 
     <!-- Calcular la edad -->
     <script src='js/calcularEdad.js'></script>
-
-    <!-- PDF -->
-    <!-- <script src="http://localhost:8080/ng-html-to-pdf-save/bower_components/jquery/dist/jquery.min.js"></script> -->
-    <!-- <script src="https://cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
-    <script src="http://localhost:8080/ng-html-to-pdf-save/bower_components/jsPDF/dist/jspdf.debug.js"></script>
-    <script src="http://localhost:8080/ng-html-to-pdf-save/dist/saveHtmlToPdf.js"></script> -->
 
     <script src='src/perfil/app/index.js'></script>
     <script src='src/config/empresa/app/index.js'></script>

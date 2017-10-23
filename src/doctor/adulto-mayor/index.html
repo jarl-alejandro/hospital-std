@@ -30,7 +30,7 @@
       <label class="header" for="motivo-consulta">2. Enfermedad o problema actual *</label>
     </div>
     <div class="input-field s-100">
-      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.enfermedad"></textarea>
+      <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.antpersonal"></textarea>
       <label class="header" for="motivo-consulta">3. Antecedentes personales
         <span>Datos clinicos - QUIRURGICOS RELEVANTES Y GINECO OBSTETRICOS</span>
       </label>
@@ -112,7 +112,7 @@
       </ul>
     </div>
 
-    <div class="SignosVitales">
+    <div class="SignosVitales" style="margin-bottom: 1rem;">
       <label class="header">6. SIGNOS VITALES Y ANTROPOMETRIA</label>
       <ul class="SignosVitales-list">
         <li class="input-field">
@@ -162,9 +162,13 @@
         <li class="ExamenFisicoRegional--item">
           2 CUELLO
           <p>
-            <input class="with-gap" name="cuello" type="radio" id="cuello-1" />
+            <input class="with-gap" name="cuello" type="radio" id="cuello-1"
+              ng-model='data.cuello' value="1"
+            />
             <label for="cuello-1"></label>
-            <input class="with-gap" name="cuello" type="radio" id="cuello-2" />
+            <input class="with-gap" name="cuello" type="radio" id="cuello-2"
+              ng-model='data.cuello' value="2"
+            />
             <label for="cuello-2"></label>
           </p>
         </li>
@@ -172,9 +176,13 @@
         <li class="ExamenFisicoRegional--item">
           3 TORAX
           <p>
-            <input class="with-gap" name="torax" type="radio" id="torax-1" />
+            <input class="with-gap" name="torax" type="radio" id="torax-1"
+              ng-model='data.torax' value="1"
+            />
             <label for="torax-1"></label>
-            <input class="with-gap" name="torax" type="radio" id="torax-2" />
+            <input class="with-gap" name="torax" type="radio" id="torax-2"
+              ng-model='data.torax' value="2"
+            />
             <label for="torax-2"></label>
           </p>
         </li>
@@ -182,33 +190,46 @@
         <li class="ExamenFisicoRegional--item">
           4 ABDOMEN
           <p>
-            <input class="with-gap" name="abdomen" type="radio" id="abdomen-1" />
+            <input class="with-gap" name="abdomen" type="radio" id="abdomen-1"
+              ng-model='data.abdomen' value="1"
+            />
             <label for="abdomen-1"></label>
-            <input class="with-gap" name="abdomen" type="radio" id="abdomen-2" />
+            <input class="with-gap" name="abdomen" type="radio" id="abdomen-2"
+              ng-model='data.abdomen' value="2"
+            />
             <label for="abdomen-2"></label>
           </p>
         </li>
         <li class="ExamenFisicoRegional--item">
           5 PELVIS
           <p>
-            <input class="with-gap" name="pelvis" type="radio" id="pelvis-1" />
+            <input class="with-gap" name="pelvis" type="radio" id="pelvis-1"
+              ng-model='data.pelvis' value="1"
+            />
             <label for="pelvis-1"></label>
-            <input class="with-gap" name="pelvis" type="radio" id="pelvis-2" />
+            <input class="with-gap" name="pelvis" type="radio" id="pelvis-2"
+              ng-model='data.pelvis' value="2"
+            />
             <label for="pelvis-2"></label>
           </p>
         </li>
         <li class="ExamenFisicoRegional--item">
           6 EXTREMIDADES
           <p>
-            <input class="with-gap" name="extremidades" type="radio" id="extremidades-1" />
+            <input class="with-gap" name="extremidades" type="radio" id="extremidades-1"
+              ng-model='data.extremidades' value="2"
+            />
             <label for="extremidades-1"></label>
-            <input class="with-gap" name="extremidades" type="radio" id="extremidades-2" />
+            <input class="with-gap" name="extremidades" type="radio" id="extremidades-2"
+              ng-model='data.extremidades' value="3"
+            />
             <label for="extremidades-2"></label>
           </p>
         </li>
       </ul>
       <div class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
+        <textarea id="motivo-consulta" class="materialize-textarea"
+          placeholder="Escribir las pruebas del diagnostico"></textarea>
       </div>
     </div>
 
@@ -224,29 +245,43 @@
             </tr>
           </thead>
           <tbody id="cie-table">
-            <tr>
-              <td id="cie-nombre1" class="input-field">
-                <input type="text" placeholder="Ingresa el nombre CIE 10" class="u-noMargin filter-cie-nombre10" id="column-nombre-1" data-index="1"
+            <tr ng-repeat='cie in cie10'>
+              <td id="cie-nombre{{$index+1}}" class="input-field">
+                <input type="text" placeholder="Ingresa el nombre CIE 10"
+                  class="u-noMargin filter-cie-nombre10"
+                  ng-model='cie.name'
+                  ng-keyup="cieGetName($event, cie)"
                 />
               </td>
               <td class="input-field">
-                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" class="u-noMargin filter-cie10" id="column1" data-index="1"
+                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10"
+                  class="u-noMargin filter-cie10"
+                  ng-model='cie.cie'
+                  ng-keyup="cieGet($event, cie)"
                 />
               </td>
-              <td id="cie-pre1"></td>
-              <td id="cie-def1"></td>
-            </tr>
-            <tr>
-              <td id="cie-nombre2" class="input-field">
-                <input type="text" placeholder="Ingresa el nombre CIE 10" class="u-noMargin filter-cie-nombre10" id="column-nombre-2" data-index="2"
-                />
+              <td id="cie-pre1">
+                <p ng-if='cie.isActive'>
+                  <input class="with-gap" name="cie{{$index+1}}"
+                    type="radio"
+                    id="{{ cie.cie }}_{{ $index+1 }}-1"
+                    ng-model='cie.check'
+                    value="pre"
+                  />
+                  <label for="{{ cie.cie }}_{{ $index+1 }}-1"></label>
+                </p>
               </td>
-              <td class="input-field">
-                <input type="text" maxlength="4" placeholder="Ingresa el codigo CIE 10" class="u-noMargin filter-cie10" id="column2" data-index="2"
-                />
+              <td id="cie-def1">
+                <p ng-if='cie.isActive'>
+                  <input class="with-gap" name="cie{{$index+1}}"
+                    type="radio"
+                    id="{{ cie.cie }}_{{ $index+1 }}-2"
+                    ng-model='cie.check'
+                    value="def"
+                  />
+                  <label for="{{ cie.cie }}_{{ $index+1 }}-2"></label>
+                </p>
               </td>
-              <td id="cie-pre2"></td>
-              <td id="cie-def2"></td>
             </tr>
           </tbody>
         </table>
@@ -263,7 +298,8 @@
         <span>REGISTRAR LOS PLANES: DIAGNÓSTICOS, TERAPEÙTA Y EDUCACIONAL</span>
       </p>
       <div class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea" placeholder="Escribir las pruebas del diagnostico"></textarea>
+        <textarea id="motivo-consulta" class="materialize-textarea"
+          placeholder="Escribir las pruebas del diagnostico" ng-model='data.tratamiento'></textarea>
       </div>
     </article>
 
@@ -292,8 +328,7 @@
     </div>
 
     <div class='main-distribute'>
-      <a class="waves-effect waves-light btn danger">Cerrar</a>
-      <a class="waves-effect waves-light btn primary">Guardar</a>
+      <a class="waves-effect waves-light btn primary" ng-click='save()'>Guardar</a>
     </div>
     <!-- /AKI -->
 
