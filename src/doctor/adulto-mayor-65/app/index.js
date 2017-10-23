@@ -7,10 +7,20 @@ angular.module('Hospital')
 
   $scope.pacient = {}
   $scope.empresa = {}
+  $scope.signos = {}
+
   $scope.data = { paciente, turno }
   $scope.cie10 = [
     { name: '', cie: '', isActive: false, check: '', detalle: '' }
   ]
+
+  $http.get(`src/doctor/adulto-mayor/service/signos.php?turno=${turno}`)
+  .then(response => {
+    $scope.signos = response.data
+    let tami = document.querySelector(`.checkedAdulto[value="${$scope.signos.hgc_tami_sigvit}"]`)
+    tami.checked = true
+    $('.Signos label').addClass('active')
+  })
 
   $http.get(`src/doctor/form28A/service/paciente.php?id=${paciente}`)
   .then(response => $scope.pacient = response.data)
@@ -63,7 +73,6 @@ angular.module('Hospital')
     $scope.data.habitosNocivos = document.querySelector('.habitosNocivos:checked').value
     $scope.data.clinicoQuirurgicos = document.querySelector('.clinicoQuirurgicos:checked').value
     $scope.data.farcologicos = document.querySelector('.farcologicos input:checked').value
-    $scope.data.tamizajePapido = document.querySelector('.tamizajePapido:checked').value
     $scope.data.sindromeGeriatricos = document.querySelector('.sindromeGeriatricos input:checked').value
 
     $scope.data.cie10 = $scope.cie10

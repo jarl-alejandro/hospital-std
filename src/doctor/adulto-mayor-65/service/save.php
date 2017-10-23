@@ -14,10 +14,7 @@ $stamp = date('Y-m-d H:i:s');
 $alertaRiesgo = $obj->alertaRiesgo;
 $antecedentePersonales = $obj->antecedentePersonales;
 $antecedentesPersoanles2 = $obj->antecedentesPersoanles2;
-$arterialAcostado = $obj->arterialAcostado;
-$arterialSentado = $obj->arterialSentado;
 $cesareas = $obj->cesareas;
-
 $clinicoQuirurgicos = $obj->clinicoQuirurgicos;
 $edadMenopausia = $obj->edadMenopausia;
 $edadUltimaCitologia = $obj->edadUltimaCitologia;
@@ -28,24 +25,14 @@ $enfermedad = $obj->enfermedad;
 $estadoGeneral = $obj->estadoGeneral;
 $examenFisico = $obj->examenFisico;
 $farcologicos = $obj->farcologicos;
-$frecuenciaRespirar = $obj->frecuenciaRespirar;
 $ginecoObstretricos = $obj->ginecoObstretricos;
 $habitosNocivos = $obj->habitosNocivos;
-$imc = $obj->imc;
 $medicamento = $obj->medicamento;
 $motivo = $obj->motivo;
 $partos = $obj->partos;
-$perimetroCadera = $obj->perimetroCadera;
-$perimetroPantorrilla = $obj->perimetroPantorrilla;
-$peso = $obj->peso;
 $pruebasDiagnostico = $obj->pruebasDiagnostico;
-$pulso = $obj->pulso;
-$responsables = $obj->responsables;
 $revisionSistema = $obj->revisionSistema;
 $sindromeGeriatricos = $obj->sindromeGeriatricos;
-$talla = $obj->talla;
-$tamizajePapido = $obj->tamizajePapido;
-$temperatura = $obj->temperatura;
 $terapia = $obj->terapia;
 $terapiaHormonal = $obj->terapiaHormonal;
 $tratamiento = $obj->tratamiento;
@@ -62,59 +49,43 @@ $pdo->query(
 
 $qs = $pdo->prepare(
   "INSERT INTO hgc_form_ma65 (hgc_codi_ma65, hgc_alri_ma65, hgc_antper_ma65, hgc_antper2_ma65,
-  hgc_arac_ma65, hgc_arsen_ma65, hgc_ces_ma65, hgc_cliqui_ma65, hgc_edmen_ma65, hgc_educit_ma65,
-  hgc_edumam_ma65, hgc_edupro_ma65, hgc_emb_ma65, hgc_enferm_ma65, hgc_estge_ma65, hgc_exafi_ma65,
-  hgc_farc_ma65, hgc_frere_ma65, hgc_gineob_ma65, hgc_habnoc_ma65, hgc_imc_ma65, hgc_medi_ma65,
-  hgc_moti_ma65, hgc_part_ma65, hgc_perca_ma65, hgc_perpan_ma65, hgc_peso_ma65, hgc_prueb_ma65,
-  hgc_pulso_ma65, hgc_resp_ma65, hgc_revsis_ma65, hgc_sisgeri_ma65, hgc_talla_ma65, hgc_tami_ma65,
-  hgc_temp_ma65, hgc_terap_ma65, hgc_terhor_ma65, hgc_tratamiento_ma65, hgc_fet_ma65, hgc_pac_ma65,
-  hgc_turno_ma65)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+  hgc_ces_ma65, hgc_cliqui_ma65, hgc_edmen_ma65, hgc_educit_ma65, hgc_edumam_ma65, hgc_edupro_ma65,
+  hgc_emb_ma65, hgc_enferm_ma65, hgc_estge_ma65, hgc_exafi_ma65, hgc_farc_ma65, hgc_gineob_ma65,
+  hgc_habnoc_ma65, hgc_medi_ma65, hgc_moti_ma65, hgc_part_ma65, hgc_prueb_ma65, hgc_revsis_ma65,
+  hgc_sisgeri_ma65, hgc_terap_ma65, hgc_terhor_ma65, hgc_tratamiento_ma65, hgc_fet_ma65,
+  hgc_pac_ma65, hgc_turno_ma65)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 );
 
 $qs->bindParam(1, $codigo);
 $qs->bindParam(2, $alertaRiesgo);
 $qs->bindParam(3, $antecedentePersonales);
 $qs->bindParam(4, $antecedentesPersoanles2);
-$qs->bindParam(5, $arterialAcostado);
-$qs->bindParam(6, $arterialSentado);
-$qs->bindParam(7, $cesareas);
-
-$qs->bindParam(8, $clinicoQuirurgicos);
-$qs->bindParam(9, $edadMenopausia);
-$qs->bindParam(10, $edadUltimaCitologia);
-$qs->bindParam(11, $edadUltimaMamografia);
-$qs->bindParam(12, $edadUltimoProstatico);
-$qs->bindParam(13, $embarazos);
-$qs->bindParam(14, $enfermedad);
-$qs->bindParam(15, $estadoGeneral);
-$qs->bindParam(16, $examenFisico);
-$qs->bindParam(17, $farcologicos);
-$qs->bindParam(18, $frecuenciaRespirar);
-$qs->bindParam(19, $ginecoObstretricos);
-$qs->bindParam(20, $habitosNocivos);
-$qs->bindParam(21, $imc);
-$qs->bindParam(22, $medicamento);
-$qs->bindParam(23, $motivo);
-$qs->bindParam(24, $partos);
-$qs->bindParam(25, $perimetroCadera);
-$qs->bindParam(26, $perimetroPantorrilla);
-$qs->bindParam(27, $peso);
-$qs->bindParam(28, $pruebasDiagnostico);
-$qs->bindParam(29, $pulso);
-$qs->bindParam(30, $responsables);
-$qs->bindParam(31, $revisionSistema);
-$qs->bindParam(32, $sindromeGeriatricos);
-$qs->bindParam(33, $talla);
-$qs->bindParam(34, $tamizajePapido);
-$qs->bindParam(35, $temperatura);
-$qs->bindParam(36, $terapia);
-$qs->bindParam(37, $terapiaHormonal);
-$qs->bindParam(38, $tratamiento);
-$qs->bindParam(39, $hoy);
-$qs->bindParam(40, $paciente);
-$qs->bindParam(41, $turno);
+$qs->bindParam(5, $cesareas);
+$qs->bindParam(6, $clinicoQuirurgicos);
+$qs->bindParam(7, $edadMenopausia);
+$qs->bindParam(8, $edadUltimaCitologia);
+$qs->bindParam(9, $edadUltimaMamografia);
+$qs->bindParam(10, $edadUltimoProstatico);
+$qs->bindParam(11, $embarazos);
+$qs->bindParam(12, $enfermedad);
+$qs->bindParam(13, $estadoGeneral);
+$qs->bindParam(14, $examenFisico);
+$qs->bindParam(15, $farcologicos);
+$qs->bindParam(16, $ginecoObstretricos);
+$qs->bindParam(17, $habitosNocivos);
+$qs->bindParam(18, $medicamento);
+$qs->bindParam(19, $motivo);
+$qs->bindParam(20, $partos);
+$qs->bindParam(21, $pruebasDiagnostico);
+$qs->bindParam(22, $revisionSistema);
+$qs->bindParam(23, $sindromeGeriatricos);
+$qs->bindParam(24, $terapia);
+$qs->bindParam(25, $terapiaHormonal);
+$qs->bindParam(26, $tratamiento);
+$qs->bindParam(27, $hoy);
+$qs->bindParam(28, $paciente);
+$qs->bindParam(29, $turno);
 
 $qs->execute();
 

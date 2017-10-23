@@ -17,7 +17,6 @@ angular.module('Hospital')
   $http.get(`src/doctor/adulto-mayor/service/signos.php?turno=${turno}`)
   .then(response => {
     $scope.signos = response.data
-    console.log($scope.signos);
   })
 
   $http.get(`src/doctor/form28A/service/paciente.php?id=${paciente}`)

@@ -67,7 +67,6 @@ angular.module('Hospital')
       $scope.data.tamizajeRapido = checked.value
       $http.post('src/enfermera/signos-vitales/service/save-adulto-65.php', $scope.data)
       .then(response => {
-        console.log(response);
       if (response.data === "201") {
         $scope.activeSignosBtn = true
         Materialize.toast('Se ha guarado con exito', 4000)

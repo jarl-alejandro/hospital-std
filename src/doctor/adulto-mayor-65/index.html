@@ -552,51 +552,51 @@
       <p class="RevisionSistema-title" style="margin:0">6 SIGNOS VITALES, ANTROPOMETRIA Y TAMIZAJE</p>
       <ul>
         <li class="input-field">
-          <input id="parterialAcostado" type="text" ng-model='data.arterialAcostado' />
+          <input id="parterialAcostado" type="text" ng-model='signos.hgc_pracost_sigvit' />
           <label for="parterialAcostado">P. ARTERIAL ACOSTADO</label>
         </li>
         <li class="input-field">
-          <input id="parterialSentada" type="text" ng-model='data.arterialSentado' />
+          <input id="parterialSentada" type="text" ng-model='signos.hgc_prsent_sigvit' />
           <label for="parterialSentada">P. ARTERIAL SENTADO</label>
         </li>
         <li class="input-field">
-          <input id="temperatura" type="text" ng-model='data.temperatura' />
+          <input id="temperatura" type="text" ng-model='signos.hgc_temp_sigvit' />
           <label for="temperatura">TEMPERATURA ºO</label>
         </li>
         <li class="input-field">
-          <input id="pulso7min" type="text" ng-model='data.pulso' />
+          <input id="pulso7min" type="text" ng-model='signos.hgc_puls_sigvit' />
           <label for="pulso7min">PULSO 7 min</label>
         </li>
         <li class="input-field">
-          <input id="frecuencia" type="text" ng-model='data.frecuenciaRespirar' />
+          <input id="frecuencia" type="text" ng-model='signos.hgc_fre_sigvit' />
           <label for="frecuencia">FRECUENCIA RESPIR/min</label>
         </li>
         <li class="input-field">
-          <input id="peso" type="text" ng-model='data.peso' />
+          <input id="peso" type="text" ng-model='signos.hgc_peso_sigvit' />
           <label for="peso">Peso Kg</label>
         </li>
         <li class="input-field">
-          <input id="talla" type="text" ng-model='data.talla' />
+          <input id="talla" type="text" ng-model='signos.hgc_talla_sigvit' />
           <label for="talla">Talla /cm</label>
         </li>
         <li class="input-field">
-          <input id="imc" type="text" ng-model='data.imc' />
+          <input id="imc" type="text" ng-model='signos.hgc_imc_sigvit' />
           <label for="imc">IMC</label>
         </li>
         <li class="input-field">
-          <input id="perimetroCintura" type="text" ng-model='data.perimetroCintura' />
+          <input id="perimetroCintura" type="text" ng-model='signos.hgc_percint_sigvit' />
           <label for="perimetroCintura">PERIMETRO CINTURA</label>
         </li>
         <li class="input-field">
-          <input id="perimetroCadera" type="text" ng-model='data.perimetroCadera' />
+          <input id="perimetroCadera" type="text" ng-model='signos.hgc_percad_sigvit' />
           <label for="perimetroCadera">PERIMETRO CADERA</label>
         </li>
         <li class="input-field">
-          <input id="perimetroPantorrilla" type="text" ng-model='data.perimetroPantorrilla' />
+          <input id="perimetroPantorrilla" type="text" ng-model='signos.hgc_perpan_sigvit' />
           <label for="perimetroPantorrilla">PERIMETRO PANTORRILLA</label>
         </li>
         <li class="input-field">
-          <input id="responsables" type="text" ng-model='data.responsables' />
+          <input id="responsables" type="text" ng-model='signos.hgc_resp_sigvit' />
           <label for="responsables">RESPONSABLES (siglas)</label>
         </li>
 
@@ -607,27 +607,27 @@
         </p>
         <div class="TamizajeSignos">
           <p>
-            <input name="tamizajePapido" type="radio" id="dificultadVisual" value="dificultadVisual" class="tamizajePapido" />
+            <input class="checkedAdulto" value="dificultad visual" name="tamizajePapido" type="radio" id="dificultadVisual" />
             <label for="dificultadVisual">1.- DIFICULTAD VISUAL</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="dificultadAuditiva" value="dificultadAuditiva" class="tamizajePapido" />
+            <input class="checkedAdulto" value="dificultad auditiva" name="tamizajePapido" type="radio" id="dificultadAuditiva" />
             <label for="dificultadAuditiva">2.- DIFICULTAD AUDITIVA</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="levantateAnda" value="levantateAnda" class="tamizajePapido" />
+            <input class="checkedAdulto" value="levantate y anda mayor a 15a" name="tamizajePapido" type="radio" id="levantateAnda" />
             <label for="levantateAnda">3.- "LEVANTATE Y ANDA" MAYOR A 15a</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="perdidaInvtOrina" value="perdidaInvtOrina" class="tamizajePapido" />
+            <input class="checkedAdulto" value="perdida invt. de orina" name="tamizajePapido" type="radio" id="perdidaInvtOrina" />
             <label for="perdidaInvtOrina">4.- PÈRDIDA INVT. DE ORINA</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="perdidaMemoriaReciente" value="perdidaMemoriaReciente" class="tamizajePapido" />
+            <input class="checkedAdulto" value="perdida de memoria reciente" name="tamizajePapido" type="radio" id="perdidaMemoriaReciente" />
             <label for="perdidaMemoriaReciente">5.- PÈRDIDA DE MEMORIA RECIENTE</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="pierdePeso" value="pierdePeso" class="tamizajePapido" />
+            <input class="checkedAdulto" value="pierde peso mas de 4.5 kg. en 6 meses" name="tamizajePapido" type="radio" id="pierdePeso" />
             <label for="pierdePeso">6.- PIERDE PESO MAS DE 4.5 KG. EN 6 MESES</label>
           </p>
         </div>
