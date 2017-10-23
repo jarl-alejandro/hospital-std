@@ -107,13 +107,18 @@ foreach ($cie10 as $row) {
   $detail->execute();
 }
 
-$params = $pdo->prepare("INSERT INTO hgc_params_ma65 (hgc_name_ma65, hgc_form_ma65) VALUES (?, ?)");
+$params = $pdo->prepare(
+  "INSERT INTO hgc_params_ma65 (hgc_name_ma65, hgc_form_ma65, hgc_tipo_ma65)
+  VALUES (?, ?, ?)"
+);
 
 foreach ($parametrosFisicos as $item) {
   $name = $item->name;
+  $tipo = $item->tipo;
 
   $params->bindParam(1, $name);
   $params->bindParam(2, $id);
+  $params->bindParam(3, $tipo);
   $params->execute();
 }
 

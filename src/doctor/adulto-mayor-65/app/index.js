@@ -80,20 +80,20 @@ angular.module('Hospital')
 
     Array.prototype.slice.apply(document.querySelectorAll('.RevisionSistema-item input:checked'))
     .map(item => {
-      $scope.data.parametrosFisicos.push({ name: item.id })
+      $scope.data.parametrosFisicos.push({ name: item.id, tipo: 1 })
     })
 
     Array.prototype.slice.apply(
       document.querySelectorAll('.AntecedentesFamiliaresSociales input:checked')
     )
     .map(item => {
-      $scope.data.parametrosFisicos.push({ name: item.id })
+      $scope.data.parametrosFisicos.push({ name: item.id, tipo: 2 })
     })
     Array.prototype.slice.apply(
       document.querySelectorAll('.ExamenFisicoMayor-list input:checked')
     )
     .map(item => {
-      $scope.data.parametrosFisicos.push({ name: item.id })
+      $scope.data.parametrosFisicos.push({ name: item.id, tipo: 3 })
     })
 
 
