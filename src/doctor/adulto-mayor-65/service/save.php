@@ -36,6 +36,7 @@ $sindromeGeriatricos = $obj->sindromeGeriatricos;
 $terapia = $obj->terapia;
 $terapiaHormonal = $obj->terapiaHormonal;
 $tratamiento = $obj->tratamiento;
+$parametrosFisicos = $obj->parametrosFisicos;
 
 $paciente = $obj->paciente;
 $turno = $obj->turno;
@@ -105,6 +106,17 @@ foreach ($cie10 as $row) {
 
   $detail->execute();
 }
+
+$params = $pdo->prepare("INSERT INTO hgc_params_ma65 (hgc_name_ma65, hgc_form_ma65) VALUES (?, ?)");
+
+foreach ($parametrosFisicos as $item) {
+  $name = $item->name;
+
+  $params->bindParam(1, $name);
+  $params->bindParam(2, $id);
+  $params->execute();
+}
+
 
 if ($qs) {
   echo 201;
