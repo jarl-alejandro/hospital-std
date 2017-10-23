@@ -1,17 +1,24 @@
 'use strict'
 
 angular.module('Hospital')
-.controller('adultoMayorCtrl', function ($scope, $http, $stateParams) {
+.controller('adultoMayorCtrl', function ($scope, $http, $stateParams, $location) {
   const paciente = $stateParams.id
   const turno = $stateParams.turno
 
   $scope.pacient = {}
   $scope.empresa = {}
+  $scope.signos = {}
   $scope.data = { paciente, turno }
   $scope.edad = { years: '', months: '', days: '' }
   $scope.cie10 = [
     { name: '', cie: '', isActive: false, check: '', detalle: '' }
   ]
+
+  $http.get(`src/doctor/adulto-mayor/service/signos.php?turno=${turno}`)
+  .then(response => {
+    $scope.signos = response.data
+    console.log($scope.signos);
+  })
 
   $http.get(`src/doctor/form28A/service/paciente.php?id=${paciente}`)
   .then(response => $scope.pacient = response.data)
@@ -35,7 +42,16 @@ angular.module('Hospital')
 
   $scope.save = () => {
     $scope.data.cie = $scope.cie10
-    console.log($scope.data)
+    $http.post(`src/doctor/adulto-mayor/service/${$stateParams.action}.php`, $scope.data)
+
+    .then(response => {
+      console.log(response);
+      if (response.data === '201') {
+        Materialize.toast('Se ha guardado con exito', 4000)
+        $location.path('/doctor')
+      }
+    })
+
   }
 
   $scope.handleNewCIE10 = () => {
@@ -62,6 +78,5 @@ angular.module('Hospital')
       })
     }
   }
-
 
 })

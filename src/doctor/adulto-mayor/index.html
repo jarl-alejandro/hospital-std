@@ -42,70 +42,70 @@
         <li class="AntPersonalSenior-list__item">
           <p>1. CARDIOPATIA</p>
           <p>
-            <input type="checkbox" id="cardiopatia" />
+            <input type="checkbox" id="cardiopatia" ng-model='data.cardiopatia' value="1" />
             <label for="cardiopatia"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>2. DIABETES</p>
           <p>
-            <input type="checkbox" id="diabetis" />
+            <input type="checkbox" id="diabetis" ng-model='data.diabetis' value="1" />
             <label for="diabetis"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>3. ENF. C. VASCULAR</p>
           <p>
-            <input type="checkbox" id="envcvascular" />
+            <input type="checkbox" id="envcvascular" ng-model='data.vascular' value="1" />
             <label for="envcvascular"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>4. HIPERTENSIÒN</p>
           <p>
-            <input type="checkbox" id="hipertension" />
+            <input type="checkbox" id="hipertension" ng-model='data.hipertension' />
             <label for="hipertension"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>5. CÀNCER</p>
           <p>
-            <input type="checkbox" id="cancer" />
+            <input type="checkbox" id="cancer" ng-model='data.cancer' />
             <label for="cancer"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>6. TUBERCULOSIS</p>
           <p>
-            <input type="checkbox" id="tuberculosis" />
+            <input type="checkbox" id="tuberculosis" ng-model='data.tuberculosis' />
             <label for="tuberculosis"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>7. ENF. MENTAL</p>
           <p>
-            <input type="checkbox" id="enfMental" />
+            <input type="checkbox" id="enfMental" ng-model='data.mental' />
             <label for="enfMental"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>8. ENF. INFECCIOSA</p>
           <p>
-            <input type="checkbox" id="enfInfecciosa" />
+            <input type="checkbox" id="enfInfecciosa" ng-model='data.infecciosa' />
             <label for="enfInfecciosa"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>9. OTRO ANTECEDENTE</p>
           <p>
-            <input type="checkbox" id="otroAntecedente" />
+            <input type="checkbox" id="otroAntecedente" ng-model='data.otroantece' />
             <label for="otroAntecedente"></label>
           </p>
         </li>
         <li class="AntPersonalSenior-list__item">
           <p>10. SIN ANTECEDENTES</p>
           <p>
-            <input type="checkbox" id="sinAntecedentes" />
+            <input type="checkbox" id="sinAntecedentes" ng-model='data.sinantecedente' />
             <label for="sinAntecedentes"></label>
           </p>
         </li>
@@ -117,23 +117,46 @@
       <ul class="SignosVitales-list">
         <li class="input-field">
           <p class="SignosVitales-border">FECHA DE MEDICÌON</p>
-          <input class="SignosVitales-border" type="text" />
+          <input class="SignosVitales-border" type="text"
+            ng-model='signos.hgc_fecha_sigvit' disabled
+            style="padding: 0 1rem;width: 95.1%;"
+          />
         </li>
         <li class="input-field">
           <p class="SignosVitales-border">TEMPERATURA C</p>
-          <input class="SignosVitales-border" type="text" />
+          <input class="SignosVitales-border" type="text"
+            ng-model='signos.hgc_temp_sigvit'disabled
+            style="padding: 0 1rem;width: 95.1%;"
+          />
         </li>
         <li class="input-field">
-          <p class="SignosVitales-border">PESO ARTERIAL</p>
-          <input class="SignosVitales-border" type="text" />
+          <p class="SignosVitales-border">PRESION ARTERIAL</p>
+          <input class="SignosVitales-border" type="text"
+            ng-model='signos.hgc_prart_sigvit'disabled
+            style="padding: 0 1rem;width: 95.1%;"
+          />
         </li>
         <li class="input-field">
           <p class="SignosVitales-border">PULSO/min / FRECUENCIA RESPIRATORIA</p>
-          <p class="SignosVitales-inputs SignosVitales-border"><input type="text" /> / <input type="text" /></p>
+          <p class="SignosVitales-inputs SignosVitales-border">
+            <input type="text" ng-model='signos.hgc_puls_sigvit' disabled
+              style="padding: 0 1rem;width: 95.1%;"
+            /> /
+            <input type="text" ng-model='signos.hgc_frresp_sigvit' disabled
+              style="padding: 0 1rem;width: 95.1%;"
+            />
+          </p>
         </li>
         <li class="input-field">
           <p class="SignosVitales-border">PESO/kg / TALLA/cm</p>
-          <p class="SignosVitales-inputs SignosVitales-border"><input type="text" /> / <input type="text" /></p>
+          <p class="SignosVitales-inputs SignosVitales-border">
+            <input type="text" ng-model='signos.hgc_peso_sigvit' disabled
+              style="padding: 0 1rem;width: 95.1%;"
+            /> /
+            <input type="text" ng-model='signos.hgc_talla_sigvit' disabled
+              style="padding: 0 1rem;width: 95.1%;"
+            />
+          </p>
         </li>
       </ul>
     </div>
