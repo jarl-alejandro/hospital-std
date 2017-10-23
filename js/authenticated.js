@@ -39,15 +39,13 @@ function authenticated ($q, $location, $http, $rootScope) {
 }
 
 
-function auth_roles ($q, $location, $http, $rootScope) {
+function auth_roles ($q, $rootScope) {
   let deferred = $q.defer()
 
   if (!JSON.parse(window.localStorage.getItem('user'))) {
-    $location.path('/')
-    location.reload()
+    location.href = './index.php'
   }
   $rootScope.user = JSON.parse(window.localStorage.getItem('user'))
-
 }
 
 

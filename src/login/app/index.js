@@ -28,7 +28,7 @@ login.controller('loginController', function ($scope, $http, $location, $rootSco
       }
       if (response.data.status === 200) {
         Materialize.toast("Ha iniciado sesion", 4000)
-        $location.path("/login")
+        location.reload()
       }
     })
   }
