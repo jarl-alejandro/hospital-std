@@ -3,6 +3,7 @@
   <style scoped>
     .adulto-mayor__active {color: white;}
   </style>
+  <input type="hidden" ng-model='data.id' />
   <article class="form ed-item">
     <div class="Establecimiento">
       <ul class="Establecimiento-header" style="grid-template-columns: 27% 27% 18% 9% 19%;">
@@ -175,9 +176,13 @@
         <li class="ExamenFisicoRegional--item">
           1 CABEZA
           <p>
-            <input class="with-gap" name="cabeza" type="radio" id="cabeza-1" />
+            <input class="with-gap" name="cabeza" type="radio" id="cabeza-1"
+              ng-model='data.cabeza' value="1"
+            />
             <label for="cabeza-1"></label>
-            <input class="with-gap" name="cabeza" type="radio" id="cabeza-2" />
+            <input class="with-gap" name="cabeza" type="radio" id="cabeza-2"
+              ng-model='data.cabeza' value="2"
+            />
             <label for="cabeza-2"></label>
           </p>
         </li>
@@ -251,7 +256,7 @@
         </li>
       </ul>
       <div class="input-field s-100">
-        <textarea id="motivo-consulta" class="materialize-textarea"
+        <textarea id="motivo-consulta" class="materialize-textarea" ng-model='data.examenFisico'
           placeholder="Escribir las pruebas del diagnostico"></textarea>
       </div>
     </div>

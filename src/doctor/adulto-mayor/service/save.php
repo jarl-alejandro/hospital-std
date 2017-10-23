@@ -37,6 +37,8 @@ $cuello = $obj->cuello;
 $enfermedad = $obj->enfermedad;
 $pelvis = $obj->pelvis;
 $torax = $obj->torax;
+$cabeza = $obj->cabeza;
+$examenFisico = $obj->examenFisico;
 
 $pdo->query(
   "UPDATE hgc_turno SET hgc_esta_turno='form', hgc_tipo_form='mayor', hgc_fecha_consulta='$stamp'
@@ -47,8 +49,8 @@ $qs = $pdo->prepare(
   "INSERT INTO hgc_form_ma (hgc_cod_ma, hgc_can_ma, hgc_car_ma, hgc_dia_ma, hgc_hip_ma,
   hgc_inf_ma, hgc_men_ma, hgc_otro_ma, hgc_sin_ma, hgc_vas_ma, hgc_tub_ma, hgc_tra_ma,
   hgc_ant_ma, hgc_ext_ma, hgc_abs_ma, hgc_cue_ma, hgc_enf_ma, hgc_pel_ma, hgc_tor_ma,
-  hgc_tur_ma, hgc_pac_ma, hgc_fecha_ma)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  hgc_tur_ma, hgc_pac_ma, hgc_fecha_ma, hgc_mot_ma, hgc_cab_ma, hgc_exf_ma)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
 $qs->bindParam(1, $codigo);
@@ -73,6 +75,9 @@ $qs->bindParam(19, $torax);
 $qs->bindParam(20, $turno);
 $qs->bindParam(21, $paciente);
 $qs->bindParam(22, $hoy);
+$qs->bindParam(23, $motivo);
+$qs->bindParam(24, $cabeza);
+$qs->bindParam(25, $examenFisico);
 
 $qs->execute();
 
