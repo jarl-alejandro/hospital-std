@@ -93,7 +93,33 @@
         </div>
         <div class="form__input s-100 m-45">
           <label for="ubicacion">Ingresa la ubicacion</label>
-          <input id="ubicacion" type="text" ng-model='data.ubicacion' placeholder="A01-1-1-01" ng-disabled="true">
+          <input id="ubicacion" type="text" ng-model='data.ubicacion'
+            placeholder="A01-1-1-01" ng-disabled="true">
+        </div>
+
+        <div class="form__input s-100 m-45">
+          <label for="parroquias">Parroquia</label>
+          <select ng-model='data.parroquia' id="parroquia" class='browser-default'>
+            <option value="" selected>Seleciona el parroquia</option>
+            <option ng-repeat="parroquia in parroquias" value="{{ parroquia.hgc_codi_parro }}">
+              {{ parroquia.hgc_desc_parro }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form__input s-100 m-45">
+          <label for="etnia">Etnias</label>
+          <select ng-model='data.etnia' id="etnia" class='browser-default'>
+            <option value="" selected>Seleciona el etnia</option>
+            <option ng-repeat="etnia in etnias" value="{{ etnia.hgc_codi_etnia }}">
+              {{ etnia.hgc_desc_etnia }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form__input s-100 m-45">
+          <label for="afiliado">Ingresa  afiliado</label>
+          <input id="afiliado" type="text" ng-model='data.afiliado' />
         </div>
 
         <div class="form__input s-100 m-45">

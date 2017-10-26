@@ -4,7 +4,7 @@
   </header>
   <input type="hidden" id="idAdultoMenor65" />
   <article class="Signos AdultoMayorSignos">
-    <div class="SignosVitales menorSignos">
+    <div class="SignosVitales menorSignos" ng-controller='validForm'>
       <ul class="SignosVitales-list" style="display: block;">
         <li class="input-field">
           <p class="SignosVitales-border">FECHA DE MEDICÌON</p>
@@ -13,6 +13,7 @@
         <li class="input-field">
           <p class="SignosVitales-border">TEMPERATURA C</p>
           <input class="SignosVitales-border" type="text"
+            ng-keypress='ValidaSoloDecimal()'
             ng-model='formMenor65.temperatura'
             id='formMenor65-temperatura'
           />
@@ -21,21 +22,24 @@
           <p class="SignosVitales-border">PRESION ARTERIAL</p>
           <input class="SignosVitales-border" type="text"
             ng-model='formMenor65.presionArterial'
+            ng-keypress='ValidaSoloDecimal()'
             id='formMenor65-presionArterial'
           />
         </li>
         <li class="input-field">
           <p class="SignosVitales-border">PULSO/min / FRECUENCIA RESPIRATORIA</p>
           <p class="SignosVitales-inputs SignosVitales-border">
-            <input type="text" ng-model='formMenor65.pulso' id='formMenor65-pulso' /> /
-            <input type="text" ng-model='formMenor65.frecuencia' id='formMenor65-frecuencia' />
+            <input type="text" ng-model='formMenor65.pulso' id='formMenor65-pulso'
+             ng-keypress='ValidaSoloDecimal()' /> /
+            <input type="text" ng-model='formMenor65.frecuencia' id='formMenor65-frecuencia'
+              ng-keypress='ValidaSoloDecimal()' />
           </p>
         </li>
         <li class="input-field">
           <p class="SignosVitales-border">PESO/kg / TALLA/cm</p>
           <p class="SignosVitales-inputs SignosVitales-border">
-            <input type="text" ng-model='formMenor65.peso' id='formMenor65-peso' /> /
-            <input type="text" ng-model='formMenor65.talla' id='formMenor65-talla' />
+            <input type="text" ng-model='formMenor65.peso' id='formMenor65-peso' ng-keypress='ValidaSoloDecimal()' /> /
+            <input type="text" ng-model='formMenor65.talla' id='formMenor65-talla' ng-keypress='ValidaSoloDecimal()' />
           </p>
         </li>
       </ul>
@@ -82,6 +86,7 @@
           <option value="Trabajador/a Sexual">11. Trabajador/a Sexual</option>
           <option value="HSH*">12. HSH*</option>
           <option value="Planificaciòn Familiar*">13. Planificaciòn Familiar*</option>
+          <option value="No define">14. No define</option>
         </select>
         </div>
       </div>

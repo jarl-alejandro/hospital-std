@@ -29,6 +29,11 @@ angular.module('Hospital')
     id: $('#idAdultoMayor65').val(),
   }
 
+  $scope.calcularImc = () => {
+    if (!!$scope.data.peso  && !!$scope.data.talla)
+      $scope.data.imc = (($scope.data.peso * 2) / $scope.data.talla).toFixed(2)
+  }
+
   $scope.cerrar = () => {
     closeForm()
   }

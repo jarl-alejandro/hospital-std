@@ -3,7 +3,7 @@
     <h3>Signos Vitales</h3>
   </header>
   <input type="hidden" id="idAdultoMayor65" />
-  <article class="Signos AdultoMayorSignos">
+  <article class="Signos AdultoMayorSignos" ng-controller='validForm'>
     <ul class="mayor65--input">
       <li class="input-field">
         <input id="mayor65-parterialAcostado" type="text" ng-model="data.presionAcostada" />
@@ -14,43 +14,56 @@
         <label for="mayor65-parterialSentada">P. ARTERIAL SENTADO</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-temperatura" type="text" ng-model="data.temperatura" />
-        <label for="mayor65-temperatura">TEMPERATURA ºO</label>
+        <input id="mayor65-temperatura" type="text" ng-model="data.temperatura"
+          ng-keypress='ValidaSoloDecimal()'
+        />
+        <label for="mayor65-temperatura">TEMPERATURA ºC</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-pulso7min" type="text" ng-model="data.pulso7" />
+        <input id="mayor65-pulso7min" type="text" ng-model="data.pulso7"
+          ng-keypress='ValidaSoloNumeros()'
+        />
         <label for="mayor65-pulso7min">PULSO 7 min</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-frecuencia" type="text" ng-model="data.frecuencia" />
+        <input id="mayor65-frecuencia" type="text" ng-model="data.frecuencia" ng-keypress='ValidaSoloNumeros()' />
         <label for="mayor65-frecuencia">FRECUENCIA RESPIR/min</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-peso" type="text" ng-model="data.peso" />
-        <label for="mayor65-peso">Peso Kg</label>
+        <input id="mayor65-peso" type="text" ng-model="data.peso"
+          ng-keypress='ValidaSoloDecimal()'
+          ng-change='calcularImc()'
+        />
+        <label for="mayor65-peso">Peso (Kg)</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-talla" type="text" ng-model="data.talla" />
+        <input id="mayor65-talla" type="text" ng-model="data.talla"
+          ng-keypress='ValidaSoloDecimal()'
+          ng-change='calcularImc()'
+        />
         <label for="mayor65-talla">Talla /cm</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-imc" type="text" ng-model="data.imc" />
-        <label for="mayor65-imc">IMC</label>
+        <input id="mayor65-imc" type="text" ng-model="data.imc" disabled />
+        <label for="mayor65-imc" class="active">IMC</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-perimetroCintura" type="text" ng-model="data.perimetroCintura" />
-        <label for="mayor65-perimetroCintura">PERIMETRO CINTURA</label>
+        <input id="mayor65-perimetroCintura" type="text" ng-model="data.perimetroCintura"
+        ng-keypress='ValidaSoloDecimal()' />
+        <label for="mayor65-perimetroCintura">PERIMETRO CINTURA (cm)</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-perimetroCadera" type="text" ng-model="data.perimetroCadera" />
-        <label for="mayor65-perimetroCadera">PERIMETRO CADERA</label>
+        <input id="mayor65-perimetroCadera" type="text" ng-model="data.perimetroCadera"
+        ng-keypress='ValidaSoloDecimal()'/>
+        <label for="mayor65-perimetroCadera">PERIMETRO CADERA (cm)</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-perimetroPantorrilla" type="text" ng-model="data.perimetroPantorrilla" />
-        <label for="mayor65-perimetroPantorrilla">PERIMETRO PANTORRILLA</label>
+        <input id="mayor65-perimetroPantorrilla" type="text" ng-model="data.perimetroPantorrilla"
+        ng-keypress='ValidaSoloDecimal()'/>
+        <label for="mayor65-perimetroPantorrilla">PERIMETRO PANTORRILLA (cm)</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-responsables" type="text" ng-model="data.responsables" />
+        <input id="mayor65-responsables" type="text" ng-model="data.responsables" maxlength="8" />
         <label for="mayor65-responsables">RESPONSABLES (siglas)</label>
       </li>
     </ul>
@@ -146,6 +159,7 @@
           <option value="Trabajador/a Sexual">11. Trabajador/a Sexual</option>
           <option value="HSH*">12. HSH*</option>
           <option value="Planificaciòn Familiar*">13. Planificaciòn Familiar*</option>
+          <option value="No define">14. No define</option>
         </select>
       </div>
     </div>

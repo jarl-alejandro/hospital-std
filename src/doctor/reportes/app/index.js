@@ -53,6 +53,7 @@ angular.module('Hospital')
   }
 
   $scope.handlePrint = turno => {
+    console.log(turno);
     if (turno.hgc_tipo_form === '056') {
       $location.path(`/reporte/form056/${turno.hgc_paci_turno}/${turno.hgc_id_turno}`)
     }
@@ -65,6 +66,13 @@ angular.module('Hospital')
     else if (turno.hgc_tipo_form === 'form28C') {
       $location.path(`/reporte/form28C/${turno.hgc_paci_turno}/${turno.hgc_id_turno}`)
     }
+    else if (turno.hgc_tipo_form === 'mayor') {
+      $location.path(`/reporte/adulto-mayor/${turno.hgc_paci_turno}/${turno.hgc_id_turno}`)
+    }
+    else if (turno.hgc_tipo_form === 'may65') {
+      $location.path(`/reporte/adulto-mayor-65/${turno.hgc_paci_turno}/${turno.hgc_id_turno}`)
+    }
+
   }
 
   $scope.handleEdit = turno => {

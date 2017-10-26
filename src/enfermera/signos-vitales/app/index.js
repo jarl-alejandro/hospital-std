@@ -23,6 +23,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
   $scope.empresa = {}
   $scope.pacient = {}
   $scope.procedimientos = []
+
   // $('.browser-default').select2()
 
   $http.get('src/datos/procedimientos/service/getAll.php')
@@ -95,16 +96,17 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $scope.handleShowForm = () => {
     const duracion = duration(new Date($scope.fechaNacimiento), new Date())
+    console.log(duracion);
     if (duracion.years >= 65) {
       $('#formPlusAdultoMayor65').slideDown()
     }
-    else if (duracion.years < 65) {
+    else if (duracion.years >= 19) {
       $('#formPlusAdultoMenor65').slideDown()
     }
     else if (duracion.years >= 10) {
       $('.formPlus056').slideDown()
     }
-    else {
+    else if (duracion.years >= 0){
       $('.formPlus').slideDown()
     }
   }

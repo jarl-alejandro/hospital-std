@@ -20,7 +20,6 @@ angular.module('Hospital')
     let tami = document.querySelector(`.checkedAdulto[value="${$scope.signos.hgc_tami_sigvit}"]`)
     tami.checked = true
     $('.Signos label').addClass('active')
-    $('.Signos input').attr('disabled', true)
   })
 
   $http.get(`src/doctor/form28A/service/paciente.php?id=${paciente}`)

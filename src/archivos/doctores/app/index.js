@@ -1,6 +1,5 @@
 'use strict'
 
-
 const doctores = angular.module('Hospital')
 
 doctores.controller('doctoresController', function ($scope, $http) {
@@ -112,7 +111,8 @@ doctores.controller('doctoresController', function ($scope, $http) {
   $scope.delete = function (id) {
     $http.post("src/archivos/doctores/service/delete.php", { id })
       .then(response => {
-        if (response.data == 201) {
+        console.log(response);
+        if (response.data == '201') {
           Materialize.toast("Se ha eliminado con exito", 4000)
           $http.get('src/archivos/doctores/service/getAll.php')
             .then(response => $scope.usuarios = response.data)

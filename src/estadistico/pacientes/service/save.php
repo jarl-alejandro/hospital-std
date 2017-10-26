@@ -22,14 +22,19 @@ $dni = $paciente->dni;
 $email = $paciente->email;
 $fechaNac = $paciente->fechaNac;
 $sexo = $paciente->sexo;
+$parroquia = $paciente->parroquia;
+$etnia = $paciente->etnia;
+
 $ubicacion = ubicacion_fisica_historial($apellido, $pdo);
 $apertura = date("Y-m-d");
 $hora = date("h:i:s");
 $estado = $paciente->estado;
+$afiliado = $paciente->afiliado;
 $user = $_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'];
 
 if ($id == "") {
-  $new = $pdo->prepare("INSERT INTO hgc_paciente (hgc_cedu_pacie, hgc_nom_pacie, hgc_ape_pacie, hgc_celu_pacie, hgc_tele_pacie, hgc_direc_pacie, hgc_dni_pacie, hgc_emai_pacie, hgc_fecn_pacie, hgc_sexo_pacie, hgc_esta_hcli) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $new = $pdo->prepare("INSERT INTO hgc_paciente (hgc_cedu_pacie, hgc_nom_pacie, hgc_ape_pacie, hgc_celu_pacie, hgc_tele_pacie, hgc_direc_pacie, hgc_dni_pacie, hgc_emai_pacie, hgc_fecn_pacie, hgc_sexo_pacie, hgc_esta_hcli, hgc_parro_pacie, hgc_etni_pacie, hgc_afil_pacie)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   $new->bindParam(1, $cedula);
   $new->bindParam(2, $nombre);
@@ -41,7 +46,10 @@ if ($id == "") {
   $new->bindParam(8, $email);
   $new->bindParam(9, $fechaNac);
   $new->bindParam(10, $sexo);
-  $new->bindParam(10, $estado);
+  $new->bindParam(11, $estado);
+  $new->bindParam(12, $parroquia);
+  $new->bindParam(13, $etnia);
+  $new->bindParam(14, $afiliado);
   $new->execute();
 
   $hcli = $pdo->prepare("INSERT INTO hgc_hclinica (hgc_histo_hcli, hgc_ubica_hcli,
@@ -55,9 +63,9 @@ if ($id == "") {
   $hcli->execute();
 }
 else {
-  $new = $pdo->query("UPDATE hgc_paciente SET hgc_cedu_pacie='$cedula', hgc_nom_pacie='$nombre', hgc_ape_pacie='$apellido', hgc_celu_pacie='$celular', hgc_tele_pacie='$telefono', hgc_direc_pacie='$direccion', hgc_dni_pacie='$dni', hgc_emai_pacie='$email', hgc_fecn_pacie='$fechaNac', hgc_sexo_pacie='$sexo', hgc_esta_hcli='$estado' WHERE hgc_codi_pacie='$id'");
+  $new = $pdo->query("UPDATE hgc_paciente SET hgc_cedu_pacie='$cedula', hgc_nom_pacie='$nombre', hgc_ape_pacie='$apellido', hgc_celu_pacie='$celular', hgc_tele_pacie='$telefono', hgc_direc_pacie='$direccion', hgc_dni_pacie='$dni', hgc_emai_pacie='$email', hgc_fecn_pacie='$fechaNac', hgc_sexo_pacie='$sexo', hgc_esta_hcli='$estado', hgc_parro_pacie='$parroquia', hgc_etni_pacie='$etnia',
+  hgc_afil_pacie='$afiliado' WHERE hgc_codi_pacie='$id'");
 }
-
 
 if ($new) {
   echo 201;

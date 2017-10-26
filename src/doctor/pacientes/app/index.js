@@ -22,7 +22,7 @@ doctor.controller('pacientesDoctorController', function ($scope, $http, $locatio
     if (duracion.years >= 65) {
       $location.path(`/adulto-mayor-65/${object.id}/${object.turno}/save`)
     }
-    else if (duracion.years < 65) {
+    else if (duracion.years >= 19) {
       $location.path(`/adulto-mayor/${object.id}/${object.turno}/save`)
     }
     else if (duracion.months < 2 && duracion.years <= 0) {

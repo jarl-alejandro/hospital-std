@@ -10,12 +10,20 @@ pacientes.controller('pacientesController', function ($scope, $http) {
   }
   $scope.pacientes = []
   $scope.generos = []
+  $scope.parroquias = []
+  $scope.etnias = []
 
   $http.get('src/datos/generos/service/getAll.php')
     .then(response => $scope.generos = response.data )
 
   $http.get('src/estadistico/pacientes/service/getAll.php')
     .then(response => $scope.pacientes = response.data )
+
+    $http.get('src/datos/parroquia/service/getAll.php')
+      .then(response => $scope.parroquias = response.data )
+
+    $http.get('src/datos/etnias/service/getAll.php')
+      .then(response => $scope.etnias = response.data )
 
   $scope.handleShowForm = function (e) {
     $('.formContainer').slideDown()
@@ -68,8 +76,20 @@ pacientes.controller('pacientesController', function ($scope, $http) {
       Materialize.toast("Ingresa el genero", 4000)
       return false
     }
+    if (!$scope.data.parroquia) {
+      Materialize.toast("Ingresa la parroquia", 4000)
+      return false
+    }
     if ($scope.data.estado == "") {
       Materialize.toast("Ingresa el estado", 4000)
+      return false
+    }
+    if (!$scope.data.etnia) {
+      Materialize.toast("Ingresa la etnia", 4000)
+      return false
+    }
+    if (!$scope.data.afiliado) {
+      Materialize.toast("Ingresa el afiliado", 4000)
       return false
     }
 
@@ -101,7 +121,10 @@ pacientes.controller('pacientesController', function ($scope, $http) {
       email: paciente.hgc_emai_pacie,
       sexo: paciente.hgc_sexo_pacie,
       ubicacion: paciente.hgc_ubica_hcli,
-      estado: paciente.hgc_esta_hcli
+      estado: paciente.hgc_esta_hcli,
+      parroquia: paciente.hgc_parro_pacie,
+      etnia: paciente.hgc_etni_pacie,
+      afiliado: paciente.hgc_afil_pacie,
     }
     $('.formContainer').slideDown()
   }
