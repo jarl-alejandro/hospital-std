@@ -50,15 +50,18 @@
         style="display:flex;flex-wrap: wrap;justify-content: center;">
         <div class="form__input s-100 m-45">
           <label for="cedula">Ingresa el cedula</label>
-          <input id="cedula" type="text" placeholder='Ejemplo: 1718769365' ng-model='data.cedula'>
+          <input id="cedula" type="text" placeholder='Ejemplo: 1718769365' ng-model='data.cedula'
+            maxlength="13" />
         </div>
         <div class="form__input s-100 m-45">
           <label for="nombre">Ingresa el nombre</label>
-          <input id="nombre" type="text" placeholder='Ejemplo: Juan Carlos' ng-model='data.nombre'>
+          <input id="nombre" type="text" placeholder='Ejemplo: Juan Carlos' ng-model='data.nombre'
+          maxlength="100">
         </div>
         <div class="form__input s-100 m-45">
           <label for="apellido">Ingresa el apellido</label>
-          <input id="apellido" type="text" placeholder='Ejemplo: Torres Tuares' ng-model='data.apellido'>
+          <input id="apellido" type="text" placeholder='Ejemplo: Torres Tuares' ng-model='data.apellido'
+          maxlength="100">
         </div>
         <div class="form__input s-100 m-45">
           <label for="fechaNac">Ingresa el fecha de nacimiento</label>
@@ -66,23 +69,23 @@
         </div>
         <div class="form__input s-100 m-45">
           <label for="dni">Ingresa el DNI</label>
-          <input id="dni" type="text" placeholder='Ejemplo: 22sjduyd' ng-model='data.dni'>
+          <input id="dni" type="text" placeholder='Ejemplo: 22sjduyd' ng-model='data.dni' maxlength="13">
         </div>
         <div class="form__input s-100 m-45">
           <label for="telefono">Ingresa el telefono</label>
-          <input id="telefono" type="text" placeholder='Ejemplo: 02379965' ng-model='data.telefono'>
+          <input id="telefono" type="text" placeholder='Ejemplo: 02379965' ng-model='data.telefono' maxlength="10">
         </div>
         <div class="form__input s-100 m-45">
-          <label for="ceulular">Ingresa el ceulular</label>
-          <input id="ceulular" type="text" placeholder='Ejemplo: 099389652' ng-model='data.ceulular'>
+          <label for="ceulular">Ingresa el celular</label>
+          <input id="ceulular" type="text" placeholder='Ejemplo: 099389652' ng-model='data.ceulular' maxlength="10">
         </div>
         <div class="form__input s-100 m-45">
           <label for="direccion">Ingresa el direccion</label>
-          <input id="direccion" type="text" placeholder='Ejemplo: Via Chone' ng-model='data.direccion'>
+          <input id="direccion" type="text" placeholder='Ejemplo: Via Chone' ng-model='data.direccion' maxlength="140">
         </div>
         <div class="form__input s-100 m-45">
           <label for="email">Ingresa el e-mail</label>
-          <input id="email" type="text" placeholder='Ejemplo: juancarlos@gmail.com' ng-model='data.email'>
+          <input id="email" type="text" placeholder='Ejemplo: juancarlos@gmail.com' ng-model='data.email' maxlength="80">
         </div>
         <div class="form__input s-100 m-45">
           <label for="sexo">Ingresa el genero</label>
@@ -119,7 +122,7 @@
 
         <div class="form__input s-100 m-45">
           <label for="afiliado">Ingresa  afiliado</label>
-          <input id="afiliado" type="text" ng-model='data.afiliado' />
+          <input id="afiliado" type="text" ng-model='data.afiliado' maxlength="60" />
         </div>
 
         <div class="form__input s-100 m-45">

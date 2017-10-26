@@ -53,15 +53,18 @@
         <div id="test-swipe-1" class="s-100">
           <div class="form__input">
             <label for="cedula">Ingresa el cedula</label>
-            <input id="cedula" type="text" placeholder='Ejemplo: 1718769365' ng-model='data.cedula'>
+            <input id="cedula" type="text" placeholder='Ejemplo: 1718769365' ng-model='data.cedula'
+              maxlength="13" >
           </div>
           <div class="form__input">
             <label for="nombre">Ingresa el nombre</label>
-            <input id="nombre" type="text" placeholder='Ejemplo: Juan Carlos' ng-model='data.nombre'>
+            <input id="nombre" type="text" placeholder='Ejemplo: Juan Carlos' ng-model='data.nombre'
+              maxlength="100">
           </div>
           <div class="form__input">
             <label for="apellido">Ingresa el apellido</label>
-            <input id="apellido" type="text" placeholder='Ejemplo: Torres Tuares' ng-model='data.apellido'>
+            <input id="apellido" type="text" placeholder='Ejemplo: Torres Tuares' ng-model='data.apellido'
+            maxlength="100">
           </div>
           <div class="form__input">
             <label for="fechaNac">Ingresa el fecha de nacimiento</label>
@@ -69,44 +72,51 @@
           </div>
           <div class="form__input">
             <label for="dni">Ingresa el DNI</label>
-            <input id="dni" type="text" placeholder='Ejemplo: 22sjduyd' ng-model='data.dni'>
+            <input id="dni" type="text" placeholder='Ejemplo: 22sjduyd' ng-model='data.dni' maxlength="13">
           </div>
           <div class="form__input">
             <label for="telefono">Ingresa el telefono</label>
-            <input id="telefono" type="text" placeholder='Ejemplo: 02379965' ng-model='data.telefono'>
+            <input id="telefono" type="text" placeholder='Ejemplo: 02379965' ng-model='data.telefono' maxlength="10">
           </div>
           <div class="form__input">
             <label for="ceulular">Ingresa el ceulular</label>
-            <input id="ceulular" type="text" placeholder='Ejemplo: 099389652' ng-model='data.ceulular'>
+            <input id="ceulular" type="text" placeholder='Ejemplo: 099389652' ng-model='data.ceulular'
+              maxlength="10">
           </div>
           <div class="form__input">
             <label for="direccion">Ingresa el direccion</label>
-            <input id="direccion" type="text" placeholder='Ejemplo: Via Chone' ng-model='data.direccion'>
+            <input id="direccion" type="text" placeholder='Ejemplo: Via Chone' ng-model='data.direccion'
+              maxlength="100" />
           </div>
         </div>
 
         <div id="test-swipe-2" class="s-100">
           <div class="form__input">
             <label for="email">Ingresa el e-mail</label>
-            <input id="email" type="text" placeholder='Ejemplo: juancarlos@gmail.com' ng-model='data.email'>
+            <input id="email" type="text" placeholder='Ejemplo: juancarlos@gmail.com'
+              ng-model='data.email' maxlength="80" />
           </div>
           <div class="form__input">
             <label for="sexo">Ingresa el genero</label>
             <select ng-model='data.sexo' id="sexo" class='browser-default'>
               <option value="" selected>Seleciona el sexo</option>
-              <option ng-repeat="sexo in generos" value="{{ sexo.hgc_codi_genero }}">{{ sexo.hgc_desc_genero }}</option>
+              <option ng-repeat="sexo in generos" value="{{ sexo.hgc_codi_genero }}">
+                {{ sexo.hgc_desc_genero }}
+              </option>
             </select>
           </div>
           <div class="form__input">
             <label for="profesion">Ingresa la profesion</label>
             <select ng-model='data.profesion' id="profesion" class='browser-default'>
               <option value="" selected>Seleciona el profesion</option>
-              <option ng-repeat="profesion in profesiones" value="{{ profesion.hgc_codi_profe }}">{{ profesion.hgc_desc_profe }}</option>
+              <option ng-repeat="profesion in profesiones" value="{{ profesion.hgc_codi_profe }}">
+                {{ profesion.hgc_desc_profe }}
+              </option>
             </select>
           </div>
           <div class="form__input s-100">
             <label for="rol">Ingresa el rol</label>
-            <select ng-model='data.rol' id="rol" class='browser-default'>
+            <select ng-model='data.rol' id="rol" class='browser-default' disabled>
               <option value="enfermera" selected>Enfermera</option>
             </select>
           </div>

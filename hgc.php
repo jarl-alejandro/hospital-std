@@ -68,12 +68,6 @@
     <!-- Calcular la edad -->
     <script src='js/calcularEdad.js'></script>
 
-    <!-- PDF -->
-    <!-- <script src="http://localhost:8080/ng-html-to-pdf-save/bower_components/jquery/dist/jquery.min.js"></script> -->
-    <!-- <script src="https://cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
-    <script src="http://localhost:8080/ng-html-to-pdf-save/bower_components/jsPDF/dist/jspdf.debug.js"></script>
-    <script src="http://localhost:8080/ng-html-to-pdf-save/dist/saveHtmlToPdf.js"></script> -->
-
     <script src='src/perfil/app/index.js'></script>
     <script src='src/config/empresa/app/index.js'></script>
 

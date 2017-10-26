@@ -16,6 +16,7 @@
             ng-keypress='ValidaSoloDecimal()'
             ng-model='formMenor65.temperatura'
             id='formMenor65-temperatura'
+            maxlength="5"
           />
         </li>
         <li class="input-field">
@@ -24,22 +25,33 @@
             ng-model='formMenor65.presionArterial'
             ng-keypress='ValidaSoloDecimal()'
             id='formMenor65-presionArterial'
+            maxlength="5"
           />
         </li>
         <li class="input-field">
           <p class="SignosVitales-border">PULSO/min / FRECUENCIA RESPIRATORIA</p>
           <p class="SignosVitales-inputs SignosVitales-border">
             <input type="text" ng-model='formMenor65.pulso' id='formMenor65-pulso'
-             ng-keypress='ValidaSoloDecimal()' /> /
+              ng-keypress='ValidaSoloDecimal()'
+              maxlength="5"
+            /> /
             <input type="text" ng-model='formMenor65.frecuencia' id='formMenor65-frecuencia'
-              ng-keypress='ValidaSoloDecimal()' />
+              ng-keypress='ValidaSoloDecimal()'
+              maxlength="5"
+            />
           </p>
         </li>
         <li class="input-field">
           <p class="SignosVitales-border">PESO/kg / TALLA/cm</p>
           <p class="SignosVitales-inputs SignosVitales-border">
-            <input type="text" ng-model='formMenor65.peso' id='formMenor65-peso' ng-keypress='ValidaSoloDecimal()' /> /
-            <input type="text" ng-model='formMenor65.talla' id='formMenor65-talla' ng-keypress='ValidaSoloDecimal()' />
+            <input type="text" ng-model='formMenor65.peso' id='formMenor65-peso'
+              ng-keypress='ValidaSoloDecimal()'
+              maxlength="5"
+            /> /
+            <input type="text" ng-model='formMenor65.talla' id='formMenor65-talla'
+              ng-keypress='ValidaSoloDecimal()'
+              maxlength="5"
+            />
           </p>
         </li>
       </ul>
@@ -60,8 +72,9 @@
         <div class="s-90 m-45" style="margin-bottom: 1rem">
           <label>Grupos Prioritadas de Atencion</label>
           <select class="browser-default"
-          ng-model='formMenor65.grupoPrioritado'
-          id="formMenor65-grupoPrioritado">
+            ng-model='formMenor65.grupoPrioritado'
+            id="formMenor65-grupoPrioritado"
+          >
           <option value="" selected>Selecione grupos prioritadas</option>
           <option value="Embarazadas">1. Embarazadas</option>
           <option value="Personas con discapacidad">

@@ -6,33 +6,42 @@
   <article class="Signos AdultoMayorSignos" ng-controller='validForm'>
     <ul class="mayor65--input">
       <li class="input-field">
-        <input id="mayor65-parterialAcostado" type="text" ng-model="data.presionAcostada" />
+        <input id="mayor65-parterialAcostado" type="text" ng-model="data.presionAcostada"
+          maxlength="8"
+        />
         <label for="mayor65-parterialAcostado">P. ARTERIAL ACOSTADO</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-parterialSentada" type="text" ng-model="data.presionSentado" />
+        <input id="mayor65-parterialSentada" type="text" ng-model="data.presionSentado"
+          maxlength="8"
+        />
         <label for="mayor65-parterialSentada">P. ARTERIAL SENTADO</label>
       </li>
       <li class="input-field">
         <input id="mayor65-temperatura" type="text" ng-model="data.temperatura"
+          maxlength="5"
           ng-keypress='ValidaSoloDecimal()'
         />
         <label for="mayor65-temperatura">TEMPERATURA ºC</label>
       </li>
       <li class="input-field">
         <input id="mayor65-pulso7min" type="text" ng-model="data.pulso7"
+          maxlength="5"
           ng-keypress='ValidaSoloNumeros()'
         />
         <label for="mayor65-pulso7min">PULSO 7 min</label>
       </li>
       <li class="input-field">
-        <input id="mayor65-frecuencia" type="text" ng-model="data.frecuencia" ng-keypress='ValidaSoloNumeros()' />
+        <input id="mayor65-frecuencia" type="text" ng-model="data.frecuencia"
+          maxlength="5" ng-keypress='ValidaSoloNumeros()'
+        />
         <label for="mayor65-frecuencia">FRECUENCIA RESPIR/min</label>
       </li>
       <li class="input-field">
         <input id="mayor65-peso" type="text" ng-model="data.peso"
           ng-keypress='ValidaSoloDecimal()'
           ng-change='calcularImc()'
+          maxlength="5"
         />
         <label for="mayor65-peso">Peso (Kg)</label>
       </li>
@@ -40,6 +49,7 @@
         <input id="mayor65-talla" type="text" ng-model="data.talla"
           ng-keypress='ValidaSoloDecimal()'
           ng-change='calcularImc()'
+          maxlength="5"
         />
         <label for="mayor65-talla">Talla /cm</label>
       </li>
@@ -49,17 +59,23 @@
       </li>
       <li class="input-field">
         <input id="mayor65-perimetroCintura" type="text" ng-model="data.perimetroCintura"
-        ng-keypress='ValidaSoloDecimal()' />
+          maxlength="5"
+          ng-keypress='ValidaSoloDecimal()'
+        />
         <label for="mayor65-perimetroCintura">PERIMETRO CINTURA (cm)</label>
       </li>
       <li class="input-field">
         <input id="mayor65-perimetroCadera" type="text" ng-model="data.perimetroCadera"
-        ng-keypress='ValidaSoloDecimal()'/>
+          ng-keypress='ValidaSoloDecimal()'
+          maxlength="5"
+        />
         <label for="mayor65-perimetroCadera">PERIMETRO CADERA (cm)</label>
       </li>
       <li class="input-field">
         <input id="mayor65-perimetroPantorrilla" type="text" ng-model="data.perimetroPantorrilla"
-        ng-keypress='ValidaSoloDecimal()'/>
+          maxlength="5"
+          ng-keypress='ValidaSoloDecimal()'
+        />
         <label for="mayor65-perimetroPantorrilla">PERIMETRO PANTORRILLA (cm)</label>
       </li>
       <li class="input-field">

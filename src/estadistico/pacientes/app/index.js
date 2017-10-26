@@ -40,6 +40,9 @@ pacientes.controller('pacientesController', function ($scope, $http) {
       Materialize.toast("Ingresa la cedula", 4000)
       return false
     }
+    if(!valida_ce($scope.data.cedula) ){
+      return false
+    }
     if ($scope.data.nombre == "") {
       Materialize.toast("Ingresa el nombre", 4000)
       return false
