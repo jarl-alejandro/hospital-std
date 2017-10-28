@@ -119,7 +119,11 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
 
   $scope.handleSave = function handleSave () {
     if (validar()) {
-      $scope.data.estado = $scope.data.peso / $scope.data.talla
+      let m = ($scope.data.talla / 100)
+      m = parseFloat(m)
+      m = m * 2
+      let imc = parseFloat($scope.data.peso) / m
+      $scope.data.estado = parseInt(imc)
 
       $http.post('src/enfermera/signos-vitales/service/save.php', $scope.data)
       .then(response => {
@@ -152,14 +156,19 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       Materialize.toast('No pude editar ya han pasado las 24 horas', 4000)
     }
     else {
-      const duracion = duration(new Date($scope.fechaNacimiento), new Date())
+      const duracion = duration(new Date($scope.fechaNacimiento), date)
       if (duracion.years >= 65) {
 
         $('.mayor65--input label').addClass('active')
         $('#formPlusAdultoMayor65').slideDown()
 
-        let tami = document.querySelector(`.checkedAdulto[value="${signos.hgc_tami_sigvit}"]`)
-        tami.checked = true
+        $http.get(`src/enfermera/signos-vitales/service/tamizaje.php?turno=${signos.hgc_turno_sigvit}`)
+        .then(response => {
+          response.data.map(item => {
+            let nombre = item.hgc_det_tam
+            document.querySelector(`.checkedAdulto[value="${nombre}"]`).checked = true
+          })
+        })
 
         $('.AdultoMayorSignos input').addClass('active')
         $('#mayor65-parterialAcostado').val(signos.hgc_pracost_sigvit)
@@ -177,7 +186,8 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
         $('#formMayor65-procedimiento').val(signos.hgc_proc_sigvit)
         $('#formMayor65-grupoPrioritado').val(signos.hgc_grup_sigvit)
       }
-      else if (duracion.years < 65) {
+      else if (duracion.years >= 19) {
+        console.log(signos);
         $('#formPlusAdultoMenor65').slideDown()
         $('#formMenor65-temperatura').val(signos.hgc_temp_sigvit)
         $('#formMenor65-presionArterial').val(signos.hgc_prart_sigvit)
@@ -198,6 +208,8 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
         $('#talla056').val(signos.hgc_talla_sigvit)
         $('#imc056').val(signos.hgc_imc_sigvit)
         $("#idform056").val(signos.hgc_id_sigvit)
+        $('#Procedimiento56').val(signos.hgc_proc_sigvit)
+        $('#grupoPrioritado056').val(signos.hgc_grup_sigvit)
       }
       else {
         $('.formPlus').slideDown()
@@ -372,6 +384,17 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
 
   $scope.handleCancel056 = () => closeForm056()
 
+  $scope.calcularImc = () => {
+    if (!!$scope.dataform056.peso && !!$scope.dataform056.talla) {
+      let m = ($scope.dataform056.talla / 100)
+      m = parseFloat(m)
+      m = m * 2
+      let imc = parseFloat($scope.dataform056.peso) / m
+      $scope.dataform056.imc = parseInt(imc)
+      $('#label-imc').addClass('active')
+    }
+  }
+
   $scope.handleSave056 = () => {
     editform056()
     if (validar056()) {
@@ -401,6 +424,8 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
         talla: $('#talla056').val(),
         turno: $stateParams.turno,
         historiaClinica: $stateParams.id,
+        procedimiento: $('#Procedimiento56').val(),
+        grupoPrioritado:  $('#grupoPrioritado056').val()
       }
     }
   }
@@ -431,11 +456,6 @@ singosVitales.controller('formCtrl056SigVit', function ($scope, $http, $statePar
 
   function validar056 () {
     const form = $scope.dataform056
-    if (form.imc.trim() === '') {
-      Materialize.toast('Ingrese el indice de masa corporal', 4000)
-      $('#imc056').focus()
-      return false
-    }
     if (form.frCardica.trim() === '') {
       Materialize.toast('Ingrese el indice de masa corporal', 4000)
       $('#fr-cardiaca056').focus()

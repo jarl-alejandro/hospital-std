@@ -1486,6 +1486,13 @@
   <div class="main-distribute">
     <!-- <button class="waves-effect waves-ligth btn danger">Cancelar</button> -->
     <button class="waves-effect waves-ligth btn primary" ng-click="handleBackPaper1()">Atras</button>
-    <button class="waves-effect waves-ligth btn primary" ng-disabled="guardandoConsult" ng-click="saveForm()">Guardar Consulta</button>
+    <button class="waves-effect waves-ligth btn primary" ng-disabled="guardandoConsult"
+      ng-if='!isActionGet'
+      ng-click="saveForm()">Guardar Consulta
+    </button>
+    <a class="waves-effect waves-light btn cyan green accent-3"
+      ng-if='isActionGet'
+      ui-sref='pacientesAtendidos'>Cerrar
+    </a>
   </div>
 </section>

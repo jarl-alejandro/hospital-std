@@ -337,6 +337,7 @@ angular.module('Hospital')
 
   $rootScope.noEscolariz = () => {
     $scope.flagEducacion = document.querySelector('#noEscolariz').checked
+
     if ($scope.flagEducacion === true) {
       $scope.refreshCheck('.noEscolirizadoCheck')
       const grid = [...document.querySelectorAll('.noEscolirizadoCheck input[type="text"]')]

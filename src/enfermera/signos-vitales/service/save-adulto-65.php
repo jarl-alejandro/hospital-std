@@ -20,6 +20,7 @@ $responsables = $obj->responsables;
 $historiaClinica = $obj->historiaClinica;
 $procedimiento = $obj->procedimiento;
 $grupoPrioritado = $obj->grupoPrioritado;
+
 $tamizajeRapido = $obj->tamizajeRapido;
 
 $id = $obj->id;
@@ -32,7 +33,7 @@ if ($id == "") {
     hgc_temp_sigvit=?,   hgc_puls_sigvit=?,  hgc_fre_sigvit=?,     hgc_peso_sigvit=?,
     hgc_talla_sigvit=?,  hgc_imc_sigvit=?,   hgc_percint_sigvit=?, hgc_percad_sigvit=?,
     hgc_perpan_sigvit=?, hgc_resp_sigvit=?,  hgc_fecha_sigvit=?,   hgc_hcli_sigvit=?,
-    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?, hgc_tami_sigvit=? WHERE hgc_turno_sigvit=?');
+    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=? WHERE hgc_turno_sigvit=?');
 
   $new->bindParam(1, $presionAcostada);
   $new->bindParam(2, $presionSentado);
@@ -51,11 +52,21 @@ if ($id == "") {
   $new->bindParam(15, $hora);
   $new->bindParam(16, $procedimiento);
   $new->bindParam(17, $grupoPrioritado);
-  $new->bindParam(18, $tamizajeRapido);
-  $new->bindParam(19, $turno);
+  $new->bindParam(18, $turno);
 
   $new->execute();
   $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");
+  $pdo->query("DELETE FROM hgc_tami_sigv WHERE hgc_turn_tam='$turno'");
+
+  $qs_detail = $pdo->prepare('INSERT INTO hgc_tami_sigv (hgc_turn_tam, hgc_det_tam) VALUES (?, ?)');
+
+  foreach ($tamizajeRapido as $row) {
+    $nombre = $row->name;
+    $qs_detail->bindParam(1, $turno);
+    $qs_detail->bindParam(2, $nombre);
+
+    $qs_detail->execute();
+  }
 
 }
 else {
@@ -63,7 +74,7 @@ else {
     hgc_temp_sigvit=?,  hgc_puls_sigvit=?,    hgc_fre_sigvit=?,    hgc_peso_sigvit=?,   hgc_talla_sigvit=?,
     hgc_imc_sigvit=?,   hgc_percint_sigvit=?, hgc_percad_sigvit=?, hgc_perpan_sigvit=?, hgc_resp_sigvit=?,
     hgc_fecha_sigvit=?, hgc_hcli_sigvit=?,    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?,
-    hgc_tami_sigvit=? WHERE hgc_id_sigvit=?');
+    WHERE hgc_id_sigvit=?');
 
   $new->bindParam(1, $presionAcostada);
   $new->bindParam(2, $presionSentado);
@@ -82,10 +93,21 @@ else {
   $new->bindParam(15, $hora);
   $new->bindParam(16, $procedimiento);
   $new->bindParam(17, $grupoPrioritado);
-  $new->bindParam(18, $tamizajeRapido);
-  $new->bindParam(19, $id);
+  $new->bindParam(18, $id);
 
   $new->execute();
+
+  $pdo->query("DELETE FROM hgc_tami_sigv WHERE hgc_turn_tam='$turno'");
+
+  $qs_detail = $pdo->prepare('INSERT INTO hgc_tami_sigv (hgc_turn_tam, hgc_det_tam) VALUES (?, ?)');
+
+  foreach ($tamizajeRapido as $row) {
+    $nombre = $row->name;
+    $qs_detail->bindParam(1, $turno);
+    $qs_detail->bindParam(2, $nombre);
+
+    $qs_detail->execute();
+  }
 }
 if ($new) {
   echo 201;

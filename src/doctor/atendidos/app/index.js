@@ -16,26 +16,32 @@ atendidos.controller('atendidosController', function ($scope, $http, $location) 
       "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
   }
 
-  $scope.handleEdit = turno => {
-    console.log(turno);
+  $scope.handleSee = turno => {
+    redirect_form(turno, 'get')
+  }
 
+  $scope.handleEdit = turno => {
+    redirect_form(turno, 'edit')
+  }
+
+  function redirect_form (turno, action) {
     if (turno.hgc_tipo_form === '056') {
-      $location.path(`/form056/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
+      $location.path(`/form056/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/${action}`)
     }
     else if (turno.hgc_tipo_form === 'hojadev') {
-      $location.path(`/hoja-devolucion/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
+      $location.path(`/hoja-devolucion/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/${action}`)
     }
     else if (turno.hgc_tipo_form === 'form28A') {
-      $location.path(`/form28A/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
+      $location.path(`/form28A/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/${action}`)
     }
     else if (turno.hgc_tipo_form === 'form28C') {
-      $location.path(`/form28C/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
+      $location.path(`/form28C/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/${action}`)
     }
     else if (turno.hgc_tipo_form === 'mayor') {
-      $location.path(`/adulto-mayor/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
+      $location.path(`/adulto-mayor/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/${action}`)
     }
     else if (turno.hgc_tipo_form === 'may65') {
-      $location.path(`/adulto-mayor-65/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
+      $location.path(`/adulto-mayor-65/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/${action}`)
     }
     else Materialize.toast('Esta en proceso...', 4000)
   }

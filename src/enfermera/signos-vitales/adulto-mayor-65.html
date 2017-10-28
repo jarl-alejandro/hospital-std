@@ -4,7 +4,7 @@
   </header>
   <input type="hidden" id="idAdultoMayor65" />
   <article class="Signos AdultoMayorSignos" ng-controller='validForm'>
-    <ul class="mayor65--input">
+    <ul class="mayor65--input" style="padding-top: 25px;">
       <li class="input-field">
         <input id="mayor65-parterialAcostado" type="text" ng-model="data.presionAcostada"
           maxlength="8"
@@ -89,27 +89,33 @@
       </p>
       <div class="TamizajeSignos">
         <p>
-          <input class="checkedAdulto" value="dificultad visual" name="tamizajePapido" type="radio" id="dificultadVisual" />
+          <input class="checkedAdulto" value="dificultad visual" name="tamizajePapido" type="checkbox"
+            id="dificultadVisual" />
           <label for="dificultadVisual">1.- DIFICULTAD VISUAL</label>
         </p>
         <p>
-          <input class="checkedAdulto" value="dificultad auditiva" name="tamizajePapido" type="radio" id="dificultadAuditiva" />
+          <input class="checkedAdulto" value="dificultad auditiva" name="tamizajePapido" type="checkbox"
+            id="dificultadAuditiva" />
           <label for="dificultadAuditiva">2.- DIFICULTAD AUDITIVA</label>
         </p>
         <p>
-          <input class="checkedAdulto" value="levantate y anda mayor a 15a" name="tamizajePapido" type="radio" id="levantateAnda" />
+          <input class="checkedAdulto" value="levantate y anda mayor a 15a" name="tamizajePapido" type="checkbox"
+            id="levantateAnda" />
           <label for="levantateAnda">3.- "LEVANTATE Y ANDA" MAYOR A 15a</label>
         </p>
         <p>
-          <input class="checkedAdulto" value="perdida invt. de orina" name="tamizajePapido" type="radio" id="perdidaInvtOrina" />
+          <input class="checkedAdulto" value="perdida invt. de orina" name="tamizajePapido" type="checkbox"
+            id="perdidaInvtOrina" />
           <label for="perdidaInvtOrina">4.- PÈRDIDA INVT. DE ORINA</label>
         </p>
         <p>
-          <input class="checkedAdulto" value="perdida de memoria reciente" name="tamizajePapido" type="radio" id="perdidaMemoriaReciente" />
+          <input class="checkedAdulto" value="perdida de memoria reciente" name="tamizajePapido" type="checkbox"
+            id="perdidaMemoriaReciente" />
           <label for="perdidaMemoriaReciente">5.- PÈRDIDA DE MEMORIA RECIENTE</label>
         </p>
         <p>
-          <input class="checkedAdulto" value="pierde peso mas de 4.5 kg. en 6 meses" name="tamizajePapido" type="radio" id="pierdePeso" />
+          <input class="checkedAdulto" value="pierde peso mas de 4.5 kg. en 6 meses" name="tamizajePapido" type="checkbox"
+            id="pierdePeso" />
           <label for="pierdePeso">6.- PIERDE PESO MAS DE 4.5 KG. EN 6 MESES</label>
         </p>
       </div>
@@ -117,19 +123,23 @@
     <div class="AntecedentesPersonales-item no-boder--bottom">
       <div class="TamizajeSignos" style="width: 100%;">
         <p>
-          <input class="checkedAdulto" value="se siente triste o deprimido" name="tamizajePapido" type="radio" id="sienteTristeDeprimido" />
+          <input class="checkedAdulto" value="se siente triste o deprimido" name="tamizajePapido" type="checkbox"
+            id="sienteTristeDeprimido" />
           <label for="sienteTristeDeprimido">7.- SE SIENTE TRISTE O DEPRIMIDO</label>
         </p>
         <p>
-          <input class="checkedAdulto" value="puede bañarse solo" name="tamizajePapido" type="radio" id="puedeBanarSolo" />
+          <input class="checkedAdulto" value="puede bañarse solo" name="tamizajePapido" type="checkbox"
+            id="puedeBanarSolo" />
           <label for="puedeBanarSolo">8.- PUEDE BAÑARSE SOLO</label>
         </p>
         <p>
-          <input class="checkedAdulto" value="sale de compras solos" name="tamizajePapido" type="radio" id="saleComprasSolo" />
+          <input class="checkedAdulto" value="sale de compras solos" name="tamizajePapido" type="checkbox"
+            id="saleComprasSolo" />
           <label for="saleComprasSolo">9.- SALE DE COMPRAS SOLOS</label>
         </p>
         <p>
-          <input class="checkedAdulto" value="vive sola" name="tamizajePapido" type="radio" id="viveSola" />
+          <input class="checkedAdulto" value="vive sola" name="tamizajePapido" type="checkbox"
+            id="viveSola" />
           <label for="viveSola">10.- VIVE SOLA</label>
         </p>
       </div>

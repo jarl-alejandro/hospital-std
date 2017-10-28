@@ -184,9 +184,14 @@ form28A.controller('form28AController', function ($scope, $http, $stateParams, $
     } else return true
   }
 
+  $scope.isActionGet = false
+
+  if ($stateParams.action === 'get') {
+    $scope.isActionGet = true
+  }
 
   // Editar
-  if ($stateParams.action === 'edit') {
+  if ($stateParams.action === 'edit' || $stateParams.action === 'get') {
     // document.querySelector('.input-field label').classList.add('active')
     setTimeout(
       () => {

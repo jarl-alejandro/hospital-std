@@ -63,6 +63,8 @@ $form = $obj->form;
 $hoy = date("Y/m/d");
 $hora = date("h:i");
 
+print_r($obj);
+
 // Formulario 028A
 $new = $pdo->prepare("INSERT INTO hgc_form28 (hgc_codi_form28, hgc_moti_form28,
   hgc_enfer_form28, hgc_paci_form28, hgc_turno_form28, hgc_fech_form28, hgc_hora_form28)

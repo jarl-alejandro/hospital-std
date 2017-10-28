@@ -189,10 +189,14 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
     else return true
   }
 
+  $scope.isActionGet = false
 
-// Editar
+  if ($stateParams.action === 'get') {
+    $scope.isActionGet = true
+  }
 
-  if ($stateParams.action === 'edit') {
+  // Editar
+  if ($stateParams.action === 'edit' || $stateParams.action === 'get') {
     setTimeout(
       () => {
         [...document.querySelectorAll('.input-field label')].map(item => {

@@ -460,21 +460,21 @@
               ng-model="data.pesoNacer"
               ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
-            <label for="peso_nacer">PESO AL NACER</label>
+            <label for="peso_nacer">PESO AL NACER (kg)</label>
           </div>
           <div class="input-field s-90">
             <input id="longitud" type="text"
               ng-model="data.longitud"
               ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
-            <label for="longitud">LONGITUD</label>
+            <label for="longitud">LONGITUD (cm)</label>
           </div>
           <div class="input-field s-90">
             <input id="p_cefalico" type="text"
               ng-model="data.pCefalico"
               ng-keypress="ValidaSoloNumeros()" maxlength="4"
             />
-            <label for="p_cefalico">P. CEFALICO</label>
+            <label for="p_cefalico">P. CEFALICO (cm)</label>
           </div>
         </article>
       </section>
@@ -493,7 +493,7 @@
           <div class="input-field s-90 m-100">
             <input id="relacion_peso" type="text"
               ng-model="data.relacionPeso"
-              ng-keypress="ValidaSoloNumeros()" maxlength="4"
+              maxlength="4"
             />
             <label for="relacion_peso" class="nacido__label">
               RELACION PESO / EDAD GESTIONAL

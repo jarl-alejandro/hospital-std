@@ -8,7 +8,29 @@ angular.module('Hospital')
   $scope.pacient = {}
   $scope.empresa = {}
   $scope.signos = {}
-  $scope.data = { paciente, turno }
+  $scope.data = {
+    paciente, turno,
+    cardiopatia: '',
+    diabetis: '',
+    vascular: '',
+    hipertension: '',
+    cancer: '',
+    tuberculosis: '',
+    mental: '',
+    infecciosa: '',
+    otroantece: '',
+    sinantecedente: '',
+    motivo: '',
+    enfermedad: '',
+    antpersonal: '',
+    tratamiento: '',
+    cabeza: '',
+    cuello: '',
+    torax: '',
+    abdomen: '',
+    pelvis: '',
+    extremidades: '',
+  }
   $scope.edad = { years: '', months: '', days: '' }
   $scope.cie10 = [
     { name: '', cie: '', isActive: false, check: '', detalle: '' }
@@ -40,6 +62,7 @@ angular.module('Hospital')
   })
 
   $scope.save = () => {
+    console.log($scope.data)
     $scope.data.cie = $scope.cie10
     $http.post(`src/doctor/adulto-mayor/service/${$stateParams.action}.php`, $scope.data)
     .then(response => {
@@ -77,7 +100,13 @@ angular.module('Hospital')
     }
   }
 
-  if ($stateParams.action === 'edit') {
+  $scope.isActionGet = false
+
+  if ($stateParams.action === 'get') {
+    $scope.isActionGet = true
+  }
+
+  if ($stateParams.action === 'edit' || $stateParams.action === 'get') {
     $http.get(`src/doctor/adulto-mayor/service/get.php?turno=${turno}`)
     .then(response => {
       $('.input-field label').addClass('active')

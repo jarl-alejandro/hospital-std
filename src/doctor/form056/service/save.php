@@ -24,9 +24,11 @@ $planTratamiento = $obj->planTratamiento;
 $ocupacion = $obj->ocupacion;
 $fechaProxima = $obj->fechaProxima;
 
-$form = $pdo->prepare("INSERT INTO hgc_form056 (hgc_codi_f056, hgc_paci_f056,
-  hgc_ncon_f056, hgc_fech_f056, hgc_acom_f056, hgc_civi_f056, hgc_enfe_f056,
-  hgc_ncuar_f056, hgc_turno_f056, hgc_indic_f056, hgc_ocup_f056, hgc_fetpr_f056)
+if ($fechaProxima == '') {
+  $fechaProxima = '2017-01-01';
+}
+
+$form = $pdo->prepare("INSERT INTO hgc_form056 (hgc_codi_f056, hgc_paci_f056, hgc_ncon_f056, hgc_fech_f056, hgc_acom_f056, hgc_civi_f056, hgc_enfe_f056, hgc_ncuar_f056, hgc_turno_f056, hgc_indic_f056, hgc_ocup_f056, hgc_fetpr_f056)
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $form->bindParam(1, $codigo);
@@ -111,3 +113,4 @@ if ($form) {
     WHERE hgc_id_turno='$turno'");
   echo "201";
 }
+

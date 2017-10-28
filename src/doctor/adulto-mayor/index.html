@@ -352,7 +352,11 @@
     </div>
 
     <div class='main-distribute'>
-      <a class="waves-effect waves-light btn primary" ng-click='save()'>Guardar</a>
+      <a class="waves-effect waves-light btn primary" ng-click='save()' ng-if='!isActionGet'>Guardar</a>
+      <a class="waves-effect waves-light btn cyan green accent-3"
+        ui-sref='pacientesAtendidos'
+        ng-if='isActionGet'>Cerrar
+      </a>
     </div>
     <!-- /AKI -->
 

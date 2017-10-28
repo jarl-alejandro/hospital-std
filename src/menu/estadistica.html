@@ -10,11 +10,13 @@
         <i class="material-icons">menu</i>
       </a>
       <ul class="right hide-on-med-and-down">
+        <li style="margin-right: 20px;text-transform: capitalize;">{{ user.rol }}: {{ user.name }}</li>
         <li>
           <div ng-if="!user.isAvatar" class="circle-avatar circle-avatar--name">{{ user.avatar }}</div>
-          <img ng-if="user.isAvatar" class="circle avatar-nav" width='58' ng-src="media/avatar/{{ user.avatar }}">
+          <img ng-if="user.isAvatar" class="circle avatar-nav" width='58'
+            ng-src="media/avatar/{{ user.avatar }}"
+          >
         </li>
-        <li><a data-activates="dropdown1" class="dropdown-button"><i class="material-icons">more_vert</i></a></li>
       </ul>
     </div>
   </nav>

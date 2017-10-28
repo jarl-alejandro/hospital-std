@@ -17,8 +17,16 @@ angular.module('Hospital')
   $http.get(`src/doctor/adulto-mayor/service/signos.php?turno=${turno}`)
   .then(response => {
     $scope.signos = response.data
-    let tami = document.querySelector(`.checkedAdulto[value="${$scope.signos.hgc_tami_sigvit}"]`)
-    tami.checked = true
+
+    $http.get(`src/enfermera/signos-vitales/service/tamizaje.php?turno=${$scope.signos.hgc_turno_sigvit}`)
+    .then(response => {
+      response.data.map(item => {
+        let nombre = item.hgc_det_tam
+        let checks = document.querySelector(`.checkedAdulto[value="${nombre}"]`)
+        if (!!checks) checks.checked = true
+      })
+    })
+
     $('.Signos label').addClass('active')
     $('.Signos input').attr('disabled', true)
   })
@@ -69,12 +77,23 @@ angular.module('Hospital')
   }
 
   $scope.save = function () {
-    $scope.data.estadoGeneral = document.querySelector('.estadoGeneral:checked').value
-    $scope.data.alertaRiesgo = document.querySelector('.alertaRiesgo:checked').value
-    $scope.data.habitosNocivos = document.querySelector('.habitosNocivos:checked').value
-    $scope.data.clinicoQuirurgicos = document.querySelector('.clinicoQuirurgicos:checked').value
-    $scope.data.farcologicos = document.querySelector('.farcologicos input:checked').value
-    $scope.data.sindromeGeriatricos = document.querySelector('.sindromeGeriatricos input:checked').value
+    if (!document.querySelector('.estadoGeneral:checked')) $scope.data.estadoGeneral = ''
+    else $scope.data.estadoGeneral = document.querySelector('.estadoGeneral:checked').value
+
+    if (!document.querySelector('.alertaRiesgo:checked')) $scope.data.alertaRiesgo = ''
+    else $scope.data.alertaRiesgo = document.querySelector('.alertaRiesgo:checked').value
+
+    if (!document.querySelector('.habitosNocivos:checked')) $scope.data.habitosNocivos = ''
+    else $scope.data.habitosNocivos = document.querySelector('.habitosNocivos:checked').value
+
+    if (!document.querySelector('.clinicoQuirurgicos:checked')) $scope.data.clinicoQuirurgicos = ''
+    else $scope.data.clinicoQuirurgicos = document.querySelector('.clinicoQuirurgicos:checked').value
+
+    if (!document.querySelector('.farcologicos input:checked')) $scope.data.farcologicos = ''
+    else $scope.data.farcologicos = document.querySelector('.farcologicos input:checked').value
+
+    if (!document.querySelector('.sindromeGeriatricos input:checked')) $scope.data.sindromeGeriatricos = ''
+    else $scope.data.sindromeGeriatricos = document.querySelector('.sindromeGeriatricos input:checked').value
 
     $scope.data.cie10 = $scope.cie10
     $scope.data.parametrosFisicos = []
@@ -108,7 +127,13 @@ angular.module('Hospital')
     })
   }
 
-  if ($stateParams.action === 'edit') {
+  $scope.isActionGet = false
+
+  if ($stateParams.action === 'get') {
+    $scope.isActionGet = true
+  }
+
+  if ($stateParams.action === 'edit' || $stateParams.action === 'get') {
     $http.get(`src/doctor/adulto-mayor-65/service/get.php?turno=${turno}`)
     .then(response => {
       $('.input-field label').addClass('active')

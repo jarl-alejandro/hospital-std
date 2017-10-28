@@ -609,27 +609,27 @@
         </p>
         <div class="TamizajeSignos">
           <p>
-            <input class="checkedAdulto" value="dificultad visual" name="tamizajePapido" type="radio" id="dificultadVisual" />
+            <input class="checkedAdulto" value="dificultad visual" name="tamizajePapido" type="checkbox" id="dificultadVisual" />
             <label for="dificultadVisual">1.- DIFICULTAD VISUAL</label>
           </p>
           <p>
-            <input class="checkedAdulto" value="dificultad auditiva" name="tamizajePapido" type="radio" id="dificultadAuditiva" />
+            <input class="checkedAdulto" value="dificultad auditiva" name="tamizajePapido" type="checkbox" id="dificultadAuditiva" />
             <label for="dificultadAuditiva">2.- DIFICULTAD AUDITIVA</label>
           </p>
           <p>
-            <input class="checkedAdulto" value="levantate y anda mayor a 15a" name="tamizajePapido" type="radio" id="levantateAnda" />
+            <input class="checkedAdulto" value="levantate y anda mayor a 15a" name="tamizajePapido" type="checkbox" id="levantateAnda" />
             <label for="levantateAnda">3.- "LEVANTATE Y ANDA" MAYOR A 15a</label>
           </p>
           <p>
-            <input class="checkedAdulto" value="perdida invt. de orina" name="tamizajePapido" type="radio" id="perdidaInvtOrina" />
+            <input class="checkedAdulto" value="perdida invt. de orina" name="tamizajePapido" type="checkbox" id="perdidaInvtOrina" />
             <label for="perdidaInvtOrina">4.- PÈRDIDA INVT. DE ORINA</label>
           </p>
           <p>
-            <input class="checkedAdulto" value="perdida de memoria reciente" name="tamizajePapido" type="radio" id="perdidaMemoriaReciente" />
+            <input class="checkedAdulto" value="perdida de memoria reciente" name="tamizajePapido" type="checkbox" id="perdidaMemoriaReciente" />
             <label for="perdidaMemoriaReciente">5.- PÈRDIDA DE MEMORIA RECIENTE</label>
           </p>
           <p>
-            <input class="checkedAdulto" value="pierde peso mas de 4.5 kg. en 6 meses" name="tamizajePapido" type="radio" id="pierdePeso" />
+            <input class="checkedAdulto" value="pierde peso mas de 4.5 kg. en 6 meses" name="tamizajePapido" type="checkbox" id="pierdePeso" />
             <label for="pierdePeso">6.- PIERDE PESO MAS DE 4.5 KG. EN 6 MESES</label>
           </p>
         </div>
@@ -638,19 +638,19 @@
       <div class="AntecedentesPersonales-item no-boder--bottom">
         <div class="TamizajeSignos" style="width: 100%;">
           <p>
-            <input name="tamizajePapido" type="radio" id="sienteTristeDeprimido" value="sienteTristeDeprimido" class="tamizajePapido" />
+            <input name="tamizajePapido" type="checkbox" id="sienteTristeDeprimido" value="sienteTristeDeprimido" class="tamizajePapido" />
             <label for="sienteTristeDeprimido">7.- SE SIENTE TRISTE O DEPRIMIDO</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="puedeBanarSolo" value="puedeBanarSolo" class="tamizajePapido" />
+            <input name="tamizajePapido" type="checkbox" id="puedeBanarSolo" value="puedeBanarSolo" class="tamizajePapido" />
             <label for="puedeBanarSolo">8.- PUEDE BAÑARSE SOLO</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="saleComprasSolo" value="saleComprasSolo" class="tamizajePapido" />
+            <input name="tamizajePapido" type="checkbox" id="saleComprasSolo" value="saleComprasSolo" class="tamizajePapido" />
             <label for="saleComprasSolo">9.- SALE DE COMPRAS SOLOS</label>
           </p>
           <p>
-            <input name="tamizajePapido" type="radio" id="viveSola" value="viveSola" class="tamizajePapido" />
+            <input name="tamizajePapido" type="checkbox" id="viveSola" value="viveSola" class="tamizajePapido" />
             <label for="viveSola">10.- VIVE SOLA</label>
           </p>
         </div>
@@ -1010,7 +1010,10 @@
     </div>
 
     <div class='main-distribute'>
-      <a class="waves-effect waves-light btn primary" ng-click="save()">Guardar</a>
+      <a class="waves-effect waves-light btn primary" ng-click="save()" ng-if='!isActionGet'>Guardar</a>
+      <a class="waves-effect waves-light btn cyan green accent-3" ui-sref='pacientesAtendidos'
+        ng-if='isActionGet'>Cerrar
+      </a>
     </div>
 
   </article>

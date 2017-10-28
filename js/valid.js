@@ -1,5 +1,3 @@
-'use strict'
-
 const validForm = angular.module('Hospital')
 
 validForm.controller('validForm', validOut)

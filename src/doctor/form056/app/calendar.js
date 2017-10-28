@@ -40,6 +40,7 @@ angular.module('Hospital')
     }
 
     $scope.month = index
+
     var dateFin = new Date(hoy.getFullYear(), $scope.month, 0)
     const diaFin = dateFin.getDate() < 10 ? "0" + dateFin.getDate() : dateFin.getDate()
     const mes = $scope.month < 10 ? "0" + $scope.month : $scope.month
@@ -48,23 +49,24 @@ angular.module('Hospital')
     const fin = `${hoy.getFullYear()}-${mes}-${diaFin}`
 
     $(document.querySelectorAll('.mes')[$scope.month - 1]).slideDown()
+    console.log(`src/doctor/form056/service/agenda.php?mes=${$scope.month}&doctor=${doctor}`)
 
     $http.get(
-      `src/doctor/form056/service/agenda.php
-      ?mes=${$scope.month}&doctor=${doctor}`
+      `src/doctor/form056/service/agenda.php?mes=${$scope.month}&doctor=${doctor}`
     ).then(response => {
       if (response.data.length === 0) {
         Materialize.toast('No hay agendado nada en este mes', 4000)
       } else generateAgenda(response.data)
     })
 
-    $http.get(`src/estadistico/turnos/service/horario.php
-      ?doctor=${doctor}&inicio=${inicio}&fin=${fin}`
+    $http.get(`src/estadistico/turnos/service/horario.php?doctor=${doctor}&inicio=${inicio}&fin=${fin}&mes=${$scope.month}`
     ).then(response => {
+        console.log(response)
       $scope.horarioTrabajo = response.data
 
       for (let i in $scope.horarioTrabajo) {
         let item = $scope.horarioTrabajo[i]
+
         const td = document.querySelector(`.fecha_${item.dia}`)
         td.children[1].dataset.trabajo = 1
         td.style = "background:#E91E63;transform: scale(.9);"

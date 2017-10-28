@@ -2,14 +2,18 @@
 <section class="workSpace">
   <h1 class="Title">Pacientes Atendidos</h2>
   <article class="tableContainer">
+    <div class="input-field s-90 s-offset-5">
+      <input id="buscador" type="text" ng-pagination-search="servicios">
+      <label for="buscador">Buscador</label>
+    </div>
     <table class="bordered highlight centered responsive-table">
       <thead>
           <tr>
             <th width="5%">#</th>
-            <th width="10%">Historia Clinica</th>
-            <th width="25%">Paciente</th>
-            <th width="25%">Doctor</th>
-            <th width="25%">Fecha</th>
+            <th width="15%">Historia Clinica</th>
+            <th width="20%">Paciente</th>
+            <th width="20%">Doctor</th>
+            <th width="10%">Fecha</th>
             <th width="30%"></th>
           </tr>
         </thead>
@@ -17,16 +21,22 @@
           <tr ng-if="pacientes.length === 0">
             <td colspan="5">No hay pacientes</td>
           </tr>
-          <tr ng-repeat="paciente in pacientes">
+          <tr ng-pagination="paciente in pacientes" ng-pagination-size="5">
             <td>{{ $index + 1 }}</td>
             <td>{{ paciente.hgc_paci_turno }}</td>
             <td>{{ paciente.paciente }}</td>
             <td>{{ paciente.doctor }}</td>
             <td>{{ paciente.hgc_fech_turno }}</td>
             <td>
+              <a class='waves-effect waves-light btn cyan green accent-3'
+                ng-click="handleSee(paciente)">Ver
+              </a>
               <a class='waves-effect waves-light btn primary' ng-click="handleEdit(paciente)">Editar</a>
             </td>
           </tr>
         </tbody>
     </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="consultorios"></ng-pagination-control>
+    </div>
   </article>

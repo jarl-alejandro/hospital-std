@@ -13,12 +13,16 @@
     <link rel="stylesheet" href="assets/css/materialize.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/select2.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+      #toast-container {
+        z-index: 100001111111111111111111111;
+      }
+    </style>
   </head>
   <body>
     <input type="hidden" id="session" value="<?=$session ?>" />
-    <section ui-view></section>
+    <section ui-view class="container--wallpaper"></section>
     <!-- Librerias -->
     <script type="text/javascript">
       let session = document.getElementById('session').value

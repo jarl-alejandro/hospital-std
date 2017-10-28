@@ -30,8 +30,14 @@ angular.module('Hospital')
   }
 
   $scope.calcularImc = () => {
-    if (!!$scope.data.peso  && !!$scope.data.talla)
-      $scope.data.imc = (($scope.data.peso * 2) / $scope.data.talla).toFixed(2)
+    if (!!$scope.data.peso  && !!$scope.data.talla) {
+      let m = ($scope.data.talla / 100)
+      m = parseFloat(m)
+      m = m * 2
+      let imc = parseFloat($scope.data.peso) / m
+      $scope.data.imc = parseInt(imc)
+      $('#label-imc').addClass('active')
+    }
   }
 
   $scope.cerrar = () => {
@@ -68,10 +74,20 @@ angular.module('Hospital')
   $scope.save = () => {
 
     if (validForm()) {
-      let checked = document.querySelector('.checkedAdulto:checked')
-      $scope.data.tamizajeRapido = checked.value
+      let checks = Array.prototype.slice.apply(document.querySelectorAll('.checkedAdulto'))
+      let tamizaje = []
+
+      checks.map(item => {
+        if (item.checked === true) {
+          tamizaje.push({ name: item.value})
+        }
+      })
+
+      $scope.data.tamizajeRapido = tamizaje
+
       $http.post('src/enfermera/signos-vitales/service/save-adulto-65.php', $scope.data)
       .then(response => {
+        console.log(response);
       if (response.data === "201") {
         $scope.activeSignosBtn = true
         Materialize.toast('Se ha guarado con exito', 4000)

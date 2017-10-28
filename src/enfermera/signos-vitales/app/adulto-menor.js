@@ -34,21 +34,30 @@ angular.module('Hospital')
 
   $scope.cerrarMenor65 = () => {
     $('#formPlusAdultoMenor65').slideUp()
-    setTimeout(() => {
-      $scope.formMenor65 = {
-        temperatura: $('#formMenor65-temperatura').val(''),
-        presionArterial: $('#formMenor65-presionArterial').val(''),
-        pulso: $('#formMenor65-pulso').val(''),
-        frecuencia: $('#formMenor65-frecuencia').val(''),
-        peso: $('#formMenor65-peso').val(''),
-        talla: $('#formMenor65-talla').val(''),
-        procedimiento: $('#formMenor65-procedimiento').val(''),
-        grupoPrioritado: $('#formMenor65-grupoPrioritado').val(''),
-        historiaClinica: id,
-        id: $('#idAdultoMenor65').val(''),
-        turno
-      }
-    }, 300)
+    $('#formMenor65-temperatura').val('')
+    $('#formMenor65-presionArterial').val('')
+    $('#formMenor65-pulso').val('')
+    $('#formMenor65-frecuencia').val('')
+    $('#formMenor65-peso').val('')
+    $('#formMenor65-talla').val('')
+    $('#formMenor65-procedimiento').val('')
+    $('#formMenor65-grupoPrioritado').val('')
+    $('#idAdultoMenor65').val('')
+
+    $scope.formMenor65 = {
+      temperatura: $('#formMenor65-temperatura').val(),
+      presionArterial: $('#formMenor65-presionArterial').val(),
+      pulso: $('#formMenor65-pulso').val(),
+      frecuencia: $('#formMenor65-frecuencia').val(),
+      peso: $('#formMenor65-peso').val(),
+      talla: $('#formMenor65-talla').val(),
+      procedimiento: $('#formMenor65-procedimiento').val(),
+      grupoPrioritado: $('#formMenor65-grupoPrioritado').val(),
+      historiaClinica: id,
+      id: $('#idAdultoMenor65').val(),
+      turno
+    }
+    // setTimeout(() => {}, 100)
   }
 
   $scope.saveMenor65 = () => {

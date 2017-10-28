@@ -197,11 +197,6 @@
       <input type="hidden" id="idform056" />
       <article class="formPlus-content" ng-controller="validForm">
         <div class="input-field s-90 m-45">
-          <input id="imc056" type="text" ng-model="dataform056.imc"
-            ng-keypress="ValidaSoloDecimal()" maxlength="5">
-          <label for="imc056">Indice de Masa corporal (IMC)</label>
-        </div>
-        <div class="input-field s-90 m-45">
           <input id="fr-cardiaca056" type="text" ng-model="dataform056.frCardica"
             ng-keypress="ValidaSoloDecimal()" maxlength="8">
           <label for="fr-cardiaca056">Ingresa la frecuencia cardiaca (latido / min)</label>
@@ -212,16 +207,21 @@
         </div>
         <div class="input-field s-90 m-45">
           <input id="peso056" type="text" ng-model="dataform056.peso"
-            ng-keypress="ValidaSoloDecimal()" maxlength="5">
+            ng-keypress="ValidaSoloDecimal()" maxlength="5" ng-change='calcularImc()'>
           <label for="peso056">Ingresa el peso (kg)</label>
         </div>
         <div class="input-field s-90 m-45">
           <input id="talla056" type="text" ng-model="dataform056.talla"
-            ng-keypress="ValidaSoloDecimal()" maxlength="5">
-          <label for="talla056">Ingresa la talla (ml)</label>
+            ng-keypress="ValidaSoloDecimal()" maxlength="5" ng-change='calcularImc()'>
+          <label for="talla056">Ingresa la talla (cm)</label>
         </div>
         <div class="input-field s-90 m-45">
-          <label for="Procedimiento56">Procedimiento</label>
+          <input id="imc056" type="text" ng-model="dataform056.imc"
+            ng-keypress="ValidaSoloDecimal()" disabled>
+          <label for="imc056" id='label-imc'>Indice de Masa corporal (IMC)</label>
+        </div>
+        <div class="input-field s-90 m-45">
+          <label for="Procedimiento56" class="active">Procedimiento</label>
           <select id="Procedimiento56" class='browser-default' ng-model='dataform056.procedimiento'>
             <option value="" selected>Seleciona</option>
             <option ng-repeat="proc in procedimientos" value="{{ proc.hgc_id_proce }}">

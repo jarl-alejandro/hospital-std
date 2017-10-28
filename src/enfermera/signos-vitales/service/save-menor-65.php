@@ -25,7 +25,7 @@ if ($id == "") {
   $new = $pdo->prepare('UPDATE hgc_sigvit SET hgc_temp_sigvit=?, hgc_prart_sigvit=?,
     hgc_puls_sigvit=?,  hgc_fre_sigvit=?,  hgc_peso_sigvit=?,
     hgc_talla_sigvit=?,  hgc_fecha_sigvit=?, hgc_hcli_sigvit=?,
-    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?  WHERE hgc_turno_sigvit=?');
+    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=? WHERE hgc_turno_sigvit=?');
 
   $new->bindParam(1, $temperatura);
   $new->bindParam(2, $presionArterial);

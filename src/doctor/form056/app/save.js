@@ -76,8 +76,13 @@ angular.module('Hospital')
     $scope.data.doctorTurno = localStorage.getItem('doctor')
     $scope.data.codigoForm = $('#codigoForm056').val()
 
+    if (!$scope.data.ocupacion) $scope.data.ocupacion = ''
+    if (!$scope.data.numerosCuartos) $scope.data.numerosCuartos = ''
+    console.log($scope.data)
+
     $http.post(`src/doctor/form056/service/${$stateParams.action}.php`, $scope.data)
     .then(response => {
+      console.log(response)
       $scope.guardandoConsult = false
       if (response.data === '201') {
         $location.path(`/grafica-form056/${$stateParams.id}/${$stateParams.turno}`)
@@ -86,14 +91,20 @@ angular.module('Hospital')
 
   }
 
+  $scope.isActionGet = false
+  if ($stateParams.action === 'get') {
+    $scope.isActionGet = true
+  }
+
   $scope.action = $stateParams.action
 
-  if ($scope.action === 'edit') {
+  if ($scope.action === 'edit' || $stateParams.action === 'get') {
     $http.get(`src/doctor/form056/service/get.php?turno=${$stateParams.turno}`)
     .then(response => {
       console.log(response);
       $('#fecha_proxima_visita-link').fadeOut()
       $('#fecha_proxima_visita-linkOut').css('display', 'inline-block')
+
       const form = response.data.form
       const anexo = response.data.anexo
       const observacion = response.data.observacion
