@@ -1,11 +1,26 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace" style="width: 100%;">
   <style scoped>
+    [type="radio"]:not(:checked),
+    [type="radio"]:checked {
+      position: static;
+      opacity: 1;
+    }
+    [type="radio"] + label:after {
+      display: none;
+    }
+    [type="radio"] + label::before {
+      display: none;
+    }
+    .container--wallpaper {
+      height: 263%;
+    }
     .adulto-mayor__active {
       color: white;
     }
   </style>
   <article class="form ed-item">
+  <div id="hoja1">
     <div class="Establecimiento">
       <ul class="Establecimiento-header">
         <li>ESTABLECIMIENTO</li>
@@ -461,6 +476,8 @@
         <textarea id="motivo-consulta" ng-model='data.farcologicos' class="materialize-textarea" placeholder="Describir anotando el numero de la patologia"></textarea>
       </div>
     </ul>
+  </div>
+  <div id="hoja2">
 
     <ul class="AntecedentesPersonales AntecedentesFamiliaresSociales">
       <li class="RevisionSistema-title">5 Antecedentes Familiares Y sociales
@@ -901,10 +918,6 @@
             </tr>
           </tbody>
         </table>
-
-        <button class="waves-effect waves-light btn primary" ng-click="handleNewCIE10()">
-          <i class="material-icons">add</i>
-        </button>
       </article>
       <article class="s-100 l-25 sindromeGeriatricos">
         <p class="sindromeGeriatricos-title">SINDROME GERIÀTRICOS</p>
@@ -987,31 +1000,17 @@
     </article>
 
     <div class="Footer">
-      <ul class="Footer-header">
-        <li>PROFESIONAL</li>
-        <li>FIRMA</li>
-        <li>CÒDIGO</li>
-        <li>FECHA PRÒXIMA CITA</li>
-        <li>FECHA Y HORA DE ATENCIÒN</li>
-        <li>HOJA</li>
-      </ul>
-      <ul class="Footer-body">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
       <p class="Footer-mesaje">
         <span>SNS-MSP / HCU-form.057 / 2010</span>
         <span>ATENCION AL ADULTO MAYOR (2)</span>
       </p>
     </div>
-
-    <div class='main-distribute'>
-      <a class="waves-effect waves-light btn primary" ng-click="save()">Guardar</a>
-    </div>
+  </div>
 
   </article>
+  <a class="btn-floating btn-large waves-effect waves-light green accent-3"
+    style="position: fixed;bottom: 3rem;right: 2rem;"
+    ng-click='handlePrintReport()'>
+    <i class="material-icons">print</i>
+  </a>
 </section>

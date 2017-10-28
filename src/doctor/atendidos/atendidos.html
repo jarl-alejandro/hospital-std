@@ -19,7 +19,7 @@
         </thead>
       <tbody>
           <tr ng-if="pacientes.length === 0">
-            <td colspan="5">No hay pacientes</td>
+            <td colspan="6">No hay pacientes</td>
           </tr>
           <tr ng-pagination="paciente in pacientes" ng-pagination-size="5">
             <td>{{ $index + 1 }}</td>
@@ -39,4 +39,72 @@
     <div class="main-distribute paging-container">
       <ng-pagination-control pagination-id="consultorios"></ng-pagination-control>
     </div>
+
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large orange darken-3">
+        <i class="large material-icons">menu</i>
+      </a>
+      <ul>
+        <li>
+          <a class="btn-floating green accent-3" ng-click='filter_alarm()'>
+            <i class="material-icons">alarm</i>
+          </a>
+        </li>
+        <li>
+          <a class="btn-floating light-green accent-3" ng-click='filter_pacient()'>
+            <i class="material-icons">accessibility</i>
+          </a>
+        </li>
+      </ul>
+    </div>
   </article>
+
+
+<div id="alarmas-modal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="center-align title-filter">Filtrar Por Fecha</h4>
+    <form class="alarmas-modal__forms">
+      <div class="input-field" style="width:100%">
+        <input id="fecha_inicio" type="text" class="datepicker" ng-model='data.inicio'>
+        <label for="fecha_inicio">Fecha Inicio</label>
+      </div>
+      <div class="input-field" style="width:100%">
+        <input id="fecha_final" type="text" class="datepicker" ng-model='data.final'>
+        <label for="fecha_final">Fecha Final</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer" style="text-align: center;">
+    <a class="waves-effect btn waves-ligth red darken-1" ng-click='onAlarmClose()'>
+      Cerrar
+    </a>
+    <a class="waves-effect btn waves-ligth green accent-3" ng-click='onAlarmAcept()'>
+      Aceptar
+    </a>
+  </div>
+</div>
+
+<div id="pacientes-modal" class="modal modal-fixed-footer" style="width:35%;height:51%;">
+  <div class="modal-content">
+    <h4 class="center-align title-filter">Filtrar Por Pacientes</h4>
+    <form class="alarmas-modal__forms" style="align-items: center;">
+      <div style="width:100%;">
+        <label>Pacientes</label>
+        <select class="browser-default" ng-model='data.paciente' id="paciente_select">
+          <option value="" disabled selected>Selecione el paciente</option>
+          <option ng-repeat='paciente in pacientesFilter' value="{{ paciente.hgc_paci_turno  }}">
+            {{ paciente.paciente }} - {{ paciente.hgc_paci_turno }}
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer" style="text-align: center;">
+    <a class="modal-action waves-effect btn waves-ligth red darken-1" ng-click='onCancelPaciente()'>
+      Cerrar
+    </a>
+    <a class="modal-action waves-effect btn waves-ligth green accent-3"ng-click='onAceptPaciente()'>
+      Aceptar
+    </a>
+  </div>
+</div>

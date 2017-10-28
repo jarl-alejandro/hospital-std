@@ -430,6 +430,18 @@ hospital.config(($stateProvider, $urlRouterProvider) => {
       templateUrl: 'src/doctor/reportes/forms/form056/index.html',
       resolve: { authenticated: auth_roles }
     })
+    .state('formAdultoMayorReporte', {
+      url: '/reporte/adulto-mayor/:id/:turno',
+      controller: 'adultoMayorReporteCtrl',
+      templateUrl: 'src/doctor/reportes/forms/adulto-mayor/index.html',
+      resolve: { authenticated: auth_roles }
+    })
+    .state('formAdultoMayor65Reporte', {
+      url: '/reporte/adulto-mayor-65/:id/:turno',
+      controller: 'adultoMayor65ReporteCtrl',
+      templateUrl: 'src/doctor/reportes/forms/adulto-mayor-65/index.html',
+      resolve: { authenticated: auth_roles }
+    })
     .state('hojasDevolucionReporte', {
       url: '/reporte/hojadev/:id/:turno',
       controller: 'hojadevReporteController',

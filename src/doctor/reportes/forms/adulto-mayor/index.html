@@ -1,10 +1,20 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace" style="width: 100%;">
-  <style scoped>
+  <style>
+    [type="radio"]:not(:checked),
+    [type="radio"]:checked {
+      position: static;
+      opacity: 1;
+    }
+    .container--wallpaper {
+      height: 142%;
+    }
     .adulto-mayor__active {color: white;}
   </style>
   <input type="hidden" ng-model='data.id' />
   <article class="form ed-item">
+  <div id="hoja1">
+
     <div class="Establecimiento">
       <ul class="Establecimiento-header" style="grid-template-columns: 27% 27% 18% 9% 19%;">
         <li>ESTABLECIMIENTO</li>
@@ -177,11 +187,9 @@
             <input class="with-gap" name="cabeza" type="radio" id="cabeza-1"
               ng-model='data.cabeza' value="1"
             />
-            <label for="cabeza-1"></label>
             <input class="with-gap" name="cabeza" type="radio" id="cabeza-2"
               ng-model='data.cabeza' value="2"
             />
-            <label for="cabeza-2"></label>
           </p>
         </li>
 
@@ -191,11 +199,9 @@
             <input class="with-gap" name="cuello" type="radio" id="cuello-1"
               ng-model='data.cuello' value="1"
             />
-            <label for="cuello-1"></label>
             <input class="with-gap" name="cuello" type="radio" id="cuello-2"
               ng-model='data.cuello' value="2"
             />
-            <label for="cuello-2"></label>
           </p>
         </li>
 
@@ -205,11 +211,9 @@
             <input class="with-gap" name="torax" type="radio" id="torax-1"
               ng-model='data.torax' value="1"
             />
-            <label for="torax-1"></label>
             <input class="with-gap" name="torax" type="radio" id="torax-2"
               ng-model='data.torax' value="2"
             />
-            <label for="torax-2"></label>
           </p>
         </li>
 
@@ -219,11 +223,9 @@
             <input class="with-gap" name="abdomen" type="radio" id="abdomen-1"
               ng-model='data.abdomen' value="1"
             />
-            <label for="abdomen-1"></label>
             <input class="with-gap" name="abdomen" type="radio" id="abdomen-2"
               ng-model='data.abdomen' value="2"
             />
-            <label for="abdomen-2"></label>
           </p>
         </li>
         <li class="ExamenFisicoRegional--item">
@@ -232,11 +234,9 @@
             <input class="with-gap" name="pelvis" type="radio" id="pelvis-1"
               ng-model='data.pelvis' value="1"
             />
-            <label for="pelvis-1"></label>
             <input class="with-gap" name="pelvis" type="radio" id="pelvis-2"
               ng-model='data.pelvis' value="2"
             />
-            <label for="pelvis-2"></label>
           </p>
         </li>
         <li class="ExamenFisicoRegional--item">
@@ -245,11 +245,9 @@
             <input class="with-gap" name="extremidades" type="radio" id="extremidades-1"
               ng-model='data.extremidades' value="2"
             />
-            <label for="extremidades-1"></label>
             <input class="with-gap" name="extremidades" type="radio" id="extremidades-2"
               ng-model='data.extremidades' value="3"
             />
-            <label for="extremidades-2"></label>
           </p>
         </li>
       </ul>
@@ -293,7 +291,6 @@
                     ng-model='cie.check'
                     value="pre"
                   />
-                  <label for="{{ cie.cie }}_{{ $index+1 }}-1"></label>
                 </p>
               </td>
               <td id="cie-def1">
@@ -304,18 +301,15 @@
                     ng-model='cie.check'
                     value="def"
                   />
-                  <label for="{{ cie.cie }}_{{ $index+1 }}-2"></label>
                 </p>
               </td>
             </tr>
           </tbody>
         </table>
 
-        <button class="waves-effect waves-light btn primary" ng-click="handleNewCIE10()">
-          <i class="material-icons">add</i>
-        </button>
       </article>
     </section>
+
     <article class="PruebasDiagnostico">
       <p class="PruebasDiagnostico--title">
         9 PLAN DE TRATMIENTO
@@ -328,33 +322,19 @@
     </article>
 
     <!-- AKI -->
-    <div class="Footer" style="display:none;">
-      <ul class="Footer-header">
-        <li>FECHA</li>
-        <li>HORA</li>
-        <li>NOMBRE DELPROFESIONAL</li>
-        <li>CODIGO</li>
-        <li>FIRMA</li>
-        <li>NUMERO DE HOJA</li>
-      </ul>
-      <ul class="Footer-body">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+    <div class="Footer">
       <p class="Footer-mesaje">
         <span>SNS-MSP / HCU-form.057 / 2010</span>
         <span>ATENCION AL ADULTO MAYOR (2)</span>
       </p>
     </div>
+  </div>
 
-    <div class='main-distribute'>
-      <a class="waves-effect waves-light btn primary" ng-click='save()'>Guardar</a>
-    </div>
     <!-- /AKI -->
-
   </article>
+  <a class="btn-floating btn-large waves-effect waves-light green accent-3"
+    style="position: fixed;bottom: 3rem;right: 2rem;"
+    ng-click='handlePrintReport()'>
+    <i class="material-icons">print</i>
+  </a>
 </section>

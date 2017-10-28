@@ -1,9 +1,12 @@
 'use strict'
 
 angular.module('Hospital')
-.controller('adultoMayorCtrl', function ($scope, $http, $stateParams, $location) {
+.controller('adultoMayorReporteCtrl', function ($scope, $http, $stateParams, $location) {
   const paciente = $stateParams.id
   const turno = $stateParams.turno
+
+  $('input').attr('disabled', true)
+  $('textarea').attr('disabled', true)
 
   $scope.pacient = {}
   $scope.empresa = {}
@@ -13,6 +16,22 @@ angular.module('Hospital')
   $scope.cie10 = [
     { name: '', cie: '', isActive: false, check: '', detalle: '' }
   ]
+
+  $scope.handlePrintReport = () => {
+    html2canvas(document.getElementById('hoja1'), {
+      useCORS: true,
+      onrendered: function (canvas) {
+        var data = canvas.toDataURL();
+        var docDefinition = {
+            content: [{
+                image: data,
+                width: 500,
+            }]
+        };
+        pdfMake.createPdf(docDefinition).download("formhoja1.pdf");
+      }
+    })
+  }
 
   $http.get(`src/doctor/adulto-mayor/service/signos.php?turno=${turno}`)
   .then(response => {
@@ -77,7 +96,7 @@ angular.module('Hospital')
     }
   }
 
-  if ($stateParams.action === 'edit') {
+  if (true) {
     $http.get(`src/doctor/adulto-mayor/service/get.php?turno=${turno}`)
     .then(response => {
       $('.input-field label').addClass('active')

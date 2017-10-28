@@ -75,24 +75,6 @@ angular.module('Hospital')
 
   }
 
-  $scope.handleEdit = turno => {
-    console.log(turno);
-
-    if (turno.hgc_tipo_form === '056') {
-      $location.path(`/form056/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
-    }
-    else if (turno.hgc_tipo_form === 'hojadev') {
-      $location.path(`/hoja-devolucion/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
-    }
-    else if (turno.hgc_tipo_form === 'form28A') {
-      $location.path(`/form28A/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
-    }
-    else if (turno.hgc_tipo_form === 'form28C') {
-      $location.path(`/form28C/${turno.hgc_paci_turno}/${turno.hgc_id_turno}/edit`)
-    }
-    else Materialize.toast('Esta en proceso...', 4000)
-  }
-
   function validarFormByPatient (patient) {
     if (patient.val() === '') {
       patient.focus()
