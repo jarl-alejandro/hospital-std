@@ -1,11 +1,21 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace" style="width: 100%;">
   <style scoped>
-  .container--wallpaper {
-    height: 263%;
-  }
+    .container--wallpaper {
+      height: 263%;
+    }
     .adulto-mayor__active {
       color: white;
+    }
+    @media (max-width: 768px) {
+      .container--wallpaper {
+        height: 323%;
+        width: 90rem;
+      }
+      .form {
+        overflow-x: scroll;
+        width: 88rem;
+      }
     }
   </style>
   <article class="form ed-item">
@@ -848,7 +858,7 @@
 
     <section class="main-justify">
       <article class="s-100 l-70 cie-container" style="margin-top: 1rem">
-        <table class="bordered striped highlight centered responsive-table cie-table">
+        <table class="bordered striped highlight centered cie-table">
           <thead>
             <tr>
               <th width="40%">10 DIAGNÓSTICOS / <span>CIE</span></th>
@@ -990,22 +1000,6 @@
     </article>
 
     <div class="Footer" style="display:none">
-      <ul class="Footer-header">
-        <li>PROFESIONAL</li>
-        <li>FIRMA</li>
-        <li>CÒDIGO</li>
-        <li>FECHA PRÒXIMA CITA</li>
-        <li>FECHA Y HORA DE ATENCIÒN</li>
-        <li>HOJA</li>
-      </ul>
-      <ul class="Footer-body">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
       <p class="Footer-mesaje">
         <span>SNS-MSP / HCU-form.057 / 2010</span>
         <span>ATENCION AL ADULTO MAYOR (2)</span>

@@ -104,6 +104,9 @@ angular.module('Hospital')
 
   if ($stateParams.action === 'get') {
     $scope.isActionGet = true
+    $('.main-justify .btn').hide()
+    $('input').attr('disabled', true)
+    $('textarea').attr('disabled', true)
   }
 
   if ($stateParams.action === 'edit' || $stateParams.action === 'get') {

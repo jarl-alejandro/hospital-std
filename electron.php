@@ -1,24 +1,42 @@
 <!DOCTYPE html>
 <html ng-app="Hospital">
   <head>
+    <?php
+      session_start();
+      $session = 'no';
+      if(!isset($_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'])) {
+        $session = 'si';
+      }
+    ?>
     <meta charset="utf-8">
     <title>Consultorio</title>
     <link rel="stylesheet" href="assets/css/materialize.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/select2.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>     -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <style>
+      #toast-container {
+        z-index: 100001111111111111111111111;
+      }
+    </style>
   </head>
   <body>
-    <section ui-view></section>
+    <input type="hidden" id="session" value="<?=$session ?>" />
+    <section ui-view class="container--wallpaper"></section>
+    <!-- Librerias -->
     <script type="text/javascript">
       window.nodeRequire = require;
       delete window.require;
       delete window.exports;
       delete window.module;
     </script>
-
-    <!-- Librerias -->
+    <script type="text/javascript">
+      let session = document.getElementById('session').value
+      if (session === 'si') {
+        // location.href = './index.php'
+      }
+    </script>
     <script type="text/javascript" src="lib/rgbcolor.js"></script>
     <script type="text/javascript" src="lib/StackBlur.js"></script>
     <script type="text/javascript" src="lib/canvg.js"></script>
@@ -31,6 +49,15 @@
     <script type="text/javascript" src='lib/jquery.js'></script>
     <script type="text/javascript" src='lib/materialize.js'></script>
 
+    <script type="text/javascript">
+    $(window).scroll(function(){
+        console.log('ola');
+        $('#menu').css({
+            'left': $(this).scrollLeft() + 30
+        });
+    });
+    </script>
+
     <script src='lib/angular.min.js'></script>
     <script src='lib/ui-router.js'></script>
     <script src='lib/angular-animate.min.js'></script>
@@ -38,6 +65,8 @@
     <script src='lib/select2.min.js'></script>
     <script src='lib/snap.svg-min.js'></script>
 
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script> -->
     <script src="lib/pdfmake.min.js"></script>
 
     <script src='js/a-say.js'></script>
@@ -151,6 +180,8 @@
     <script src='src/doctor/reportes/forms/form056/app/index.js'></script>
     <script src='src/doctor/reportes/forms/form056/app/save.js'></script>
     <script src='src/doctor/reportes/forms/hoja-devolucion/app/index.js'></script>
+    <script src='src/doctor/reportes/forms/adulto-mayor/app/index.js'></script>
+    <script src='src/doctor/reportes/forms/adulto-mayor-65/app/index.js'></script>
 
     <script src="src/horarios-doctores/app/index.js"></script>
     <script src='src/home/app/index.js'></script>

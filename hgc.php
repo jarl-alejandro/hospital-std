@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="assets/css/materialize.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/select2.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>     -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <style>
       #toast-container {
         z-index: 100001111111111111111111111;
@@ -41,6 +42,15 @@
 
     <script type="text/javascript" src='lib/jquery.js'></script>
     <script type="text/javascript" src='lib/materialize.js'></script>
+
+    <script type="text/javascript">
+    $(window).scroll(function(){
+        console.log('ola');
+        $('#menu').css({
+            'left': $(this).scrollLeft() + 30
+        });
+    });
+    </script>
 
     <script src='lib/angular.min.js'></script>
     <script src='lib/ui-router.js'></script>
