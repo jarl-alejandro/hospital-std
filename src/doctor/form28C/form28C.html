@@ -1,30 +1,49 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace">
+<style scoped>
+  .container--wallpaper {
+    height: 133%;
+  }
+  .adulto-mayor__active {color: white;}
+  .workSpace {
+    width: 96%;
+  }
+  @media (max-width: 768px) {
+    .container--wallpaper {
+      height: 200%;
+      width: 88rem;
+    }
+    .form {
+      overflow-x: scroll;
+      width: 88rem;
+    }
+  }
+</style>
   <article class="form ed-item">
     <h1 class="Title no-margin s-100">Form 28C</h2>
 
     <!-- Establecimiento -->
     <header style="background:inherit;flex-wrap:wrap" class="header__form28">
-      <div class="s-100 m-25">
+      <div class="s-25">
         <label for="">ESTABLECIMIENTO</label>
         <input type="text" style="margin-bottom: 0" disabled ng-model="empresa.hgc_nom_empr">
       </div>
-      <div  class="s-100 m-25">
+      <div  class="s-25">
         <label for="">NOMBRES Y APELLIDOS</label>
         <input type="text" style="margin-bottom: 0"
           ng-model="pacient.paciente.paciente" disabled>
       </div>
-      <div  class="s-100 m-10">
+      <div  class="s-10">
         <label for="">SEXO(HM)</label>
         <input type="text" style="margin-bottom: 0"
           ng-model="pacient.sexo.hgc_desc_genero" disabled>
       </div>
-      <div  class="s-100 m-20">
+      <div  class="s-20">
         <label for="">FECHA DE NACIMIENTO</label>
         <input type="text" style="margin-bottom: 0"
           ng-model="pacient.paciente.hgc_fecn_pacie" disabled>
       </div>
-      <div  class="s-100 m-20">
+      <div  class="s-20">
         <label for="">Nº HISTORIA CLINICA</label>
         <input type="text" style="margin-bottom: 0"
           ng-model="pacient.paciente.hgc_histo_hcli" disabled>
@@ -48,42 +67,42 @@
     <h2 class="Title s-100 no-margin">SIGNOS VITALES</h2>
     <header style="background:inherit;flex-wrap:wrap" class="header__form28"
       ng-controller="signosFormController">
-      <div class="s-100 m-10">
+      <div class="s-10">
         <label for="">TEMPERATURA (°C)</label>
         <input type="text" style="margin-bottom: 0;color: black;justify-content: inherit;" disabled
           ng-model="signos.hgc_temp_sigvit">
       </div>
-      <div  class="s-100 m-15">
+      <div  class="s-15">
         <label for="">Frecuencia Cardiaca (x min)</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_frcar_sigvit" disabled>
       </div>
-      <div  class="s-100 m-15">
+      <div  class="s-15">
         <label for="">Frecuencia Respiratoria (x min)</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_frresp_sigvit" disabled>
       </div>
-      <div  class="s-100 m-10">
+      <div  class="s-10">
         <label for="">Presion Arterial (mmHg)</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_frresp_sigvit" disabled>
       </div>
-      <div  class="s-100 m-10">
+      <div  class="s-10">
         <label for="">PESO (kg)</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_peso_sigvit" disabled>
       </div>
-      <div  class="s-100 m-10">
+      <div  class="s-10">
         <label for="">Talla (cm)</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_talla_sigvit" disabled>
       </div>
-      <div  class="s-100 m-15">
+      <div  class="s-15">
         <label for="">PERIMETRO CEFALICO (cm)</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_prence_sigvit" disabled>
       </div>
-      <div  class="s-100 m-15">
+      <div  class="s-15">
         <label for="">ESTADO NUTRICIONAL (peso / talla * 2)</label>
         <input type="text" style="margin-bottom: 0;color: black;"
           ng-model="signos.hgc_esta_sigvit" disabled>
@@ -92,26 +111,26 @@
     <!--  /SignosVitales -->
 
     <section id="form28C-Workaspace" class="main-distribute">
-      <div class="input-field s-90 m-45">
+      <div class="input-field s-45">
         <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.motivo"></textarea>
         <label for="motivo-consulta">Motivo de Consulta *</label>
       </div>
-      <div class="input-field s-90 m-45">
+      <div class="input-field s-45">
         <textarea id="motivo-consulta" class="materialize-textarea" ng-model="data.enfermedad"></textarea>
         <label for="motivo-consulta">Enfermedad o problema actual *</label>
       </div>
-      <div class="input-field s-90 m-45">
+      <div class="input-field s-45">
         <textarea id="antecedente-personal" class="materialize-textarea"
           ng-model="data.antPersonales"></textarea>
         <label for="antecedente-personal" class="active">Antecedentes personales</label>
       </div>
-      <div class="input-field s-90 m-45">
+      <div class="input-field s-45">
         <textarea id="antecedente-familiares" class="materialize-textarea"
           ng-model="data.antfamiliares"></textarea>
         <label for="antecedente-familiares" class="active">Antecedentes familiares</label>
       </div>
 
-      <div class="s-90 m-45 form-select">
+      <div class="s-45 form-select">
         <div class="menu-form">
           <h6 class="title">REVISIÒN ACTUAL DE ÒRGANOS Y SISTEMAS</h6>
           <div class="menu-form--action">
@@ -140,7 +159,7 @@
         </ul>
       </div>
 
-      <div class="s-90 m-45 form-select">
+      <div class="s-45 form-select">
         <div class="menu-form">
           <h6 class="title">EXAMEN FÌSICO</h6>
           <div class="menu-form--action">

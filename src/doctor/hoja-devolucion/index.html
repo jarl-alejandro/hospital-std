@@ -1,7 +1,27 @@
 <hgc-menu-doctor></hgc-menu-doctor>
 <section class="workSpace" style="width:98%">
   <h1 class="Title">Hoja de Devolucion</h2>
-
+  <style scoped>
+    .workSpace {
+      width: 100%;
+    }
+    .container--wallpaper {
+      height: 263%;
+    }
+    .adulto-mayor__active {
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .container--wallpaper {
+        height: 323%;
+        width: 90rem;
+      }
+      .form {
+        overflow-x: scroll;
+        width: 88rem;
+      }
+    }
+  </style>
   <section ng-controller="validForm" style="background-color: white;padding: 1em;">
     <input type="hidden" id="codigoForm056" />
 
