@@ -63,7 +63,6 @@ $form = $obj->form;
 $hoy = date("Y/m/d");
 $hora = date("h:i");
 
-print_r($obj);
 
 // Formulario 028A
 $new = $pdo->prepare("INSERT INTO hgc_form28 (hgc_codi_form28, hgc_moti_form28,
@@ -201,7 +200,6 @@ foreach ($atendido as $row) {
   $new_atendio->execute();
 }
 // END ATENDIDO
-
 if ($new) {
   echo 201;
 }

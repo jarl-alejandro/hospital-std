@@ -20,7 +20,7 @@ $historiaClinica = $obj->historiaClinica;
 $procedimiento = $obj->procedimiento;
 $id = $obj->id;
 $grupoPrioritado = $obj->grupoPrioritado;
-
+$tipoForm = $obj->tipoForm;
 $hoy = date("Y/m/d");
 $hora = date("h:i");
 
@@ -29,7 +29,7 @@ if ($id == "") {
     hgc_frresp_sigvit=?, hgc_prart_sigvit=?, hgc_peso_sigvit=?, hgc_talla_sigvit=?,
     hgc_prence_sigvit=?, hgc_esta_sigvit=?, hgc_longi_sigvit=?, hgc_puls_sigvit=?,
     hgc_fecha_sigvit=?, hgc_hcli_sigvit=?, hgc_hora_sigvit=?, hgc_proc_sigvit=?,
-    hgc_grup_sigvit=? WHERE hgc_turno_sigvit=?");
+    hgc_grup_sigvit=?, hgc_tform_sigvit=? WHERE hgc_turno_sigvit=?");
 
   $new->bindParam(1, $temperatura);
   $new->bindParam(2, $frCardica);
@@ -46,7 +46,8 @@ if ($id == "") {
   $new->bindParam(13, $hora);
   $new->bindParam(14, $procedimiento);
   $new->bindParam(15, $grupoPrioritado);
-  $new->bindParam(16, $turno);
+  $new->bindParam(16, $tipoForm);
+  $new->bindParam(17, $turno);
 
   $new->execute();
   $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");

@@ -37,6 +37,7 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
 
   $scope.handlePaciente = function (id) {
     $scope.data.paciente = id
+    $('#buscadorPaciente').val('')
     $('#pacienteModal').modal('close')
   }
 
@@ -194,4 +195,6 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
   }
 
   $scope.handleFecha = () => $('.month-turno').slideDown()
+
+  $scope.cerrarPaciente = () => $('#buscadorPaciente').val('')
 })

@@ -22,12 +22,13 @@ $id = $obj->id;
 $hoy = date("Y/m/d");
 $year = date("Y");
 $hora = date("h:i");
+$tipoForm = 'form056';
 
 if ($id == "") {
   $new = $pdo->prepare("UPDATE hgc_sigvit SET hgc_frcar_sigvit=?, hgc_prart_sigvit=?,
     hgc_peso_sigvit=?, hgc_talla_sigvit=?, hgc_imc_sigvit=?, hgc_fecha_sigvit=?,
-    hgc_hcli_sigvit=?, hgc_hora_sigvit=?, hgc_yea_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?
-    WHERE hgc_turno_sigvit=?");
+    hgc_hcli_sigvit=?, hgc_hora_sigvit=?, hgc_yea_sigvit=?, hgc_proc_sigvit=?,
+    hgc_grup_sigvit=?, hgc_tform_sigvit=? WHERE hgc_turno_sigvit=?");
 
   $new->bindParam(1, $frCardica);
   $new->bindParam(2, $prArterial);
@@ -40,7 +41,8 @@ if ($id == "") {
   $new->bindParam(9, $year);
   $new->bindParam(10, $procedimiento);
   $new->bindParam(11, $grupoPrioritado);
-  $new->bindParam(12, $turno);
+  $new->bindParam(12, $tipoForm);
+  $new->bindParam(13, $turno);
 
   $new->execute();
 

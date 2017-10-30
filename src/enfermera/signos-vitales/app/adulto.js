@@ -91,8 +91,8 @@ angular.module('Hospital')
       if (response.data === "201") {
         $scope.activeSignosBtn = true
         Materialize.toast('Se ha guarado con exito', 4000)
-        closeForm()
         localStorage.setItem('activar', true)
+        closeForm()
       }
     })
     }

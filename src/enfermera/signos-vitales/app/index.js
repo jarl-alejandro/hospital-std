@@ -12,6 +12,7 @@ singosVitales.controller('singosVitalesController', function ($scope, $http) {
 singosVitales.controller('pacienteSignoController', function ($scope, $http, $stateParams, $rootScope) {
   const id = $stateParams.id
   const turno = $stateParams.turno
+  $scope.tipo_form = ''
   const filePDF = document.getElementById('inputPDF')
   filePDF.addEventListener('change', handleUploadPDF)
 
@@ -90,8 +91,14 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     const moth = now.getMonth() - fecha.getMonth()
     const age = (year * 12) + moth
 
-    if (age < 2) $scope.menor = true
-    else $scope.menor = false
+    if (age < 2) {
+      $scope.menor = true
+      $scope.tipo_form = 'form028a'
+    }
+    else {
+      $scope.tipo_form = 'form028c'
+      $scope.menor = false
+    }
   })
 
   $scope.handleShowForm = () => {
@@ -124,6 +131,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       m = m * 2
       let imc = parseFloat($scope.data.peso) / m
       $scope.data.estado = parseInt(imc)
+      $scope.data.tipoForm = $scope.tipo_form
 
       $http.post('src/enfermera/signos-vitales/service/save.php', $scope.data)
       .then(response => {
@@ -356,14 +364,24 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     else return true
   }
 
+  $scope.sacar_edad = (nacimiento, fecha) => {
+    const duracion = duration(new Date(nacimiento), new Date(fecha))
+    console.log(duracion);
+    return `${duracion.years} años ${duracion.months} meses`
+  }
+
   setInterval(() => {
     let active = localStorage.getItem('activar')
     if (active === 'true') {
       $http.get(`src/enfermera/signos-vitales/service/getAll.php?id=${$stateParams.id}`)
-      .then(response => $scope.signosVitales = response.data)
-      $scope.activeSignosBtn = true
-      localStorage.setItem('activar', false)
+      .then(response =>  {
+        $scope.signosVitales = response.data
+        $scope.activeSignosBtn = true
+        localStorage.setItem('activar', false)
+        console.log('inicion');
+      })
     }
+    console.log('local----');
   }, 100)
 
 })

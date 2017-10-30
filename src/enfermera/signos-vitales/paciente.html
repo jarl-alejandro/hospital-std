@@ -49,9 +49,9 @@
         <tr>
           <th width="10%">#</th>
           <th width="15%">Fecha</th>
-          <th width="15%">Temperatura</th>
-          <th width="15%">Peso</th>
-          <th width="15%">Talla</th>
+          <th width="10%">Peso</th>
+          <th width="30%">Edad</th>
+          <th width="30%">Doctor</th>
           <th width="30%">
             <button class='waves-effect waves-light btn danger'
               ng-click="handleReport(pacientId)" style="margin:0">Imprimir
@@ -65,12 +65,12 @@
             <b>{{ paciente.paciente }}</b>
           </td>
         </tr>
-        <tr ng-repeat="signos in signosVitales">
+        <tr ng-pagination="signos in signosVitales" ng-pagination-size="5">
           <td>{{ $index +1 }}</td>
           <td>{{ signos.hgc_fecha_sigvit }}</td>
-          <td>{{ signos.hgc_temp_sigvit }}</td>
           <td>{{ signos.hgc_peso_sigvit }}</td>
-          <td>{{ signos.hgc_talla_sigvit }}</td>
+          <td>{{ sacar_edad(signos.hgc_fecn_pacie, signos.hgc_fecha_sigvit) }}</td>
+          <td>{{ signos.doctor }}</td>
           <td>
             <button class='waves-effect waves-light btn primary'
               ng-click="handleEdit(signos)">Editar
@@ -79,6 +79,9 @@
         </tr>
       </tbody>
     </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="signosVitales"></ng-pagination-control>
+    </div>
   </article>
 
   <section class="formPlus ed-item s-80 m-75 m-offset-10" style="top:5em">

@@ -65,9 +65,9 @@ angular.module('Hospital')
       $http.post('src/enfermera/signos-vitales/service/save-menor-65.php', $scope.formMenor65)
       .then(response => {
         if (response.data === '201') {
+          localStorage.setItem('activar', true)
           $scope.cerrarMenor65()
           Materialize.toast('Se ha guardado con exito', 4000)
-          localStorage.setItem('activar', true)
           // setTimeout(() => location.reload(), 300)
         }
         else {

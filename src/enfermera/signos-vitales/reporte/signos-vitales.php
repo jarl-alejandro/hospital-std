@@ -67,7 +67,6 @@ $content = '<!DOCTYPE html>
         font-size: 12px;
         border: 1px solid #585757;
         text-align: center;
-        line-height: 5px;
       }
       table thead tr th{
         background-color: #00bcd4;
@@ -92,92 +91,157 @@ while ($row = $qs->fetch()) {
   $index++;
   $headerIndex++;
 
-  if ($row["hgc_talla_sigvit"] === '') {
-      $content .= '
+  if ($row["hgc_tform_sigvit"] === 'form028a') {
+    $content .= ' hola
       <table class="bordered highlight centered responsive-table">
-      <thead style="background: red">
-      <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
-      <th>#</th>
-      <th>FECHA</th>
-      <th>TEMPERATURA</th>
-      <th>PESO</th>
-      <th>P. Cefalico</th>
-      <th>Longitud</th>
-      <th>Pulso</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>'.$index.'</td>
-      <td>'.$row["hgc_fecha_sigvit"].'</td>
-      <td>'.$row["hgc_temp_sigvit"].'</td>
-      <td>'.$row["hgc_peso_sigvit"].'</td>
-      <td>'.$row["hgc_prence_sigvit"].'</td>
-      <td>'.$row["hgc_longi_sigvit"].'</td>
-      <td>'.$row["hgc_puls_sigvit"].'</td>
-      </tr>
-      </tbody>
+        <thead style="background: red">
+          <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
+            <th>#</th>
+            <th>FECHA</th>
+            <th>TEMPERATURA</th>
+            <th>PESO</th>
+            <th>P. Cefalico</th>
+            <th>Longitud</th>
+            <th>Pulso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>'.$index.'</td>
+            <td>'.$row["hgc_fecha_sigvit"].'</td>
+            <td>'.$row["hgc_temp_sigvit"].'</td>
+            <td>'.$row["hgc_peso_sigvit"].'</td>
+            <td>'.$row["hgc_prence_sigvit"].'</td>
+            <td>'.$row["hgc_longi_sigvit"].'</td>
+            <td>'.$row["hgc_puls_sigvit"].'</td>
+          </tr>
+        </tbody>
       </table>';
   }
-  else {
-    if ($row['hgc_prence_sigvit'] === '') {
-      $content .= '<table class="bordered highlight centered responsive-table">
-      <thead style="background: red">
-      <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
-      <th>#</th>
-      <th>FECHA</th>
-      <th>TEMPERATURA</th>
-      <th>PESO</th>
-      <th>Presion Acostado</th>
-      <th>Presion Sentado</th>
-      <th>Pulso</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>'.$index.'</td>
-      <td>'.$row["hgc_fecha_sigvit"].'</td>
-      <td>'.$row["hgc_temp_sigvit"].'</td>
-      <td>'.$row["hgc_peso_sigvit"].'</td>
-      <td>'.$row["hgc_pracost_sigvit"].'</td>
-      <td>'.$row["hgc_prsent_sigvit"].'</td>
-      <td>'.$row["hgc_puls_sigvit"].'</td>
-      </tr>
-      </tbody>
-      </table>';
-    }
-    else {
-      $content .= '
+  else if ($row["hgc_tform_sigvit"] === 'form028c') {
+    $content .= '
       <table class="bordered highlight centered responsive-table">
+        <thead style="background: red">
+          <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
+            <th>#</th>
+            <th>FECHA</th>
+            <th>TEMPERATURA</th>
+            <th>F. CARDIACA</th>
+            <th>F. RESPIRATORIO</th>
+            <th>P. Arterial</th>
+            <th>PESO</th>
+            <th>TALLA</th>
+            <th>Estado Nutricional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>'.$index.'</td>
+            <td>'.$row["hgc_fecha_sigvit"].'</td>
+            <td>'.$row["hgc_temp_sigvit"].'</td>
+            <td>'.$row["hgc_frcar_sigvit"].'</td>
+            <td>'.$row["hgc_frresp_sigvit"].'</td>
+            <td>'.$row["hgc_prart_sigvit"].'</td>
+            <td>'.$row["hgc_peso_sigvit"].'</td>
+            <td>'.$row["hgc_talla_sigvit"].'</td>
+            <td>'.$row["hgc_esta_sigvit"].'</td>
+          </tr>
+        </tbody>
+      </table>
+    ';
+  }
+  else if ($row['hgc_tform_sigvit'] === 'form056') {
+    $content .= '
+    <table class="bordered highlight centered responsive-table">
       <thead style="background: red">
-      <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
-      <th>#</th>
-      <th>FECHA</th>
-      <th>TEMPERATURA</th>
-      <th>F. CARDIACA</th>
-      <th>F. RESPIRATORIO</th>
-      <th>P. Arterial</th>
-      <th>PESO</th>
-      <th>TALLA</th>
-      <th>Estado Nutricional</th>
-      </tr>
+        <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
+          <th>#</th>
+          <th>FECHA</th>
+          <th>FRECUENCIA CARDIACA (latido/min)</th>
+          <th>PRESION ARTERIAL (100/70)</th>
+          <th>PESO</th>
+          <th>TALLA</th>
+          <th>INDICE DE MASA CORPORAL (IMC)</th>
+        </tr>
       </thead>
       <tbody>
-      <tr>
-      <td>'.$index.'</td>
-      <td>'.$row["hgc_fecha_sigvit"].'</td>
-      <td>'.$row["hgc_temp_sigvit"].'</td>
-      <td>'.$row["hgc_frcar_sigvit"].'</td>
-      <td>'.$row["hgc_frresp_sigvit"].'</td>
-      <td>'.$row["hgc_prart_sigvit"].'</td>
-      <td>'.$row["hgc_peso_sigvit"].'</td>
-      <td>'.$row["hgc_talla_sigvit"].'</td>
-      <td>'.$row["hgc_esta_sigvit"].'</td>
-      </tr>
+        <tr>
+          <td>'.$index.'</td>
+          <td>'.$row["hgc_fecha_sigvit"].'</td>
+          <td>'.$row["hgc_frcar_sigvit"].'</td>
+          <td>'.$row["hgc_prart_sigvit"].'</td>
+          <td>'.$row["hgc_peso_sigvit"].'</td>
+          <td>'.$row["hgc_talla_sigvit"].'</td>
+          <td>'.$row["hgc_imc_sigvit"].'</td>
+        </tr>
       </tbody>
+    </table>';
+  }
+  else if ($row["hgc_tform_sigvit"] === 'menor65') {
+    $content .= '
+      <table class="bordered highlight centered responsive-table">
+        <thead style="background: red">
+          <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
+            <th>#</th>
+            <th>FECHA DE MEDICION</th>
+            <th>TEMPERATURA ºC</th>
+            <th>PRESION ARTERIAL</th>
+            <th>PULSO/min / FRECUENCIA RESPIRATORIO</th>
+            <th>PESO/kg / TALLA/cm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>'.$index.'</td>
+            <td>'.$row["hgc_fecha_sigvit"].'</td>
+            <td>'.$row["hgc_temp_sigvit"].'</td>
+            <td>'.$row["hgc_prart_sigvit"].'</td>
+            <td>'.$row["hgc_puls_sigvit"].'/'.$row["hgc_fre_sigvit"].'</td>
+            <td>'.$row["hgc_peso_sigvit"].'/'.$row["hgc_talla_sigvit"].'</td>
+          </tr>
+        </tbody>
       </table>
-      ';
-    }
+    ';
+  }
+  else if ($row["hgc_tform_sigvit"] === 'mayor65') {
+    $content .= '
+      <table class="bordered highlight centered responsive-table">
+        <thead style="background: red">
+          <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
+            <th>#</th>
+            <th>FECHA</th>
+            <th>P. ARTERIAL ACOSTADO</th>
+            <th>P. ARTERIAL SENTADO</th>
+            <th>TEMPERATURA ºC</th>
+            <th>PULSO 7min</th>
+            <th>FRECUENCIA RESPIR/min</th>
+            <th>PESO (kg)</th>
+            <th>TALLA (cm)</th>
+            <th>IMC</th>
+            <th>PERIMETRO CINTURA (cm)</th>
+            <th>PERIMETRO CADERA (cm)</th>
+            <th>PERIMETRO PANTORILLA (cm)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>'.$index.'</td>
+            <td>'.$row["hgc_fecha_sigvit"].'</td>
+            <td>'.$row["hgc_pracost_sigvit"].'</td>
+            <td>'.$row["hgc_prsent_sigvit"].'</td>
+            <td>'.$row["hgc_temp_sigvit"].'</td>
+            <td>'.$row["hgc_puls_sigvit"].'</td>
+            <td>'.$row["hgc_fre_sigvit"].'</td>
+            <td>'.$row["hgc_peso_sigvit"].'</td>
+            <td>'.$row["hgc_talla_sigvit"].'</td>
+            <td>'.$row["hgc_imc_sigvit"].'</td>
+            <td>'.$row["hgc_percint_sigvit"].'</td>
+            <td>'.$row["hgc_percad_sigvit"].'</td>
+            <td>'.$row["hgc_perpan_sigvit"].'</td>
+          </tr>
+        </tbody>
+      </table>
+    ';
   }
 
   if ($headerIndex == 6) {
