@@ -123,6 +123,8 @@
     <script src='src/enfermera/signos-vitales/app/adulto-menor.js'></script>
     <script src='src/enfermera/pacientes-atendidos/app/index.js'></script>
 
+    <script src='src/enfermera/reportes/app/index.js'></script>
+
     <script src='src/doctor/pacientes/app/index.js'></script>
     <script src='src/doctor/atendidos/app/index.js'></script>
     <script src='src/doctor/reportes/app/index.js'></script>

@@ -1,5 +1,38 @@
 <hgc-menu-enfermera></hgc-menu-enfermera>
 <section class="workSpace">
+  <style scoped>
+    #date-modal {
+      height: 31rem;
+      width: 37%;
+    }
+    .modal-title {
+      font-weight: bold;
+      color: #4a4a4a;
+    }
+    .grid-months {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+    .grid-months article {
+      background-color: #ccc;
+      height: 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 33px;
+      color: #4a4a4a;
+      border-radius: 4px;
+      box-shadow: 0 2px rgba(0,0,0,0.5);
+      transition: transform linear .5s;
+      cursor: pointer;
+      padding: 2px 5px;
+    }
+    .grid-months article:active {
+      transform: scale(.9);
+    }
+  </style>
   <h2 class="Title">Pacientes Atendidos</h2>
 
   <article class="tableContainer">
@@ -10,14 +43,18 @@
           <th width="23%">Historia Clinica</th>
           <th width="23%">Paciente</th>
           <th width="23%">Doctor</th>
-          <th width="23%"></th>
+          <th width="23%">
+            <a class="waves-effect waves-light btn cyan accent-3" ng-click='print_report()'>
+              <i class="material-icons">print</i>
+            </a>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr ng-if="pacientes.length === 0">
           <td colspan="5">No hay pacientes</td>
         </tr>
-        <tr ng-repeat="paciente in pacientes">
+        <tr ng-pagination="paciente in pacientes" ng-pagination-size="5">
           <td>{{ $index + 1 }}</td>
           <td>{{ paciente.hgc_paci_turno }}</td>
           <td>{{ paciente.paciente }}</td>
@@ -30,6 +67,99 @@
         </tr>
       </tbody>
     </table>
+    <div class="main-distribute paging-container">
+      <ng-pagination-control pagination-id="pacientes"></ng-pagination-control>
+    </div>
   </article>
 
+  <div id="date-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="modal-title center-align">Reportes Por Fecha</h4>
+      <article class="modal--body modal-grid">
+        <div class="input-field col s6">
+          <input id="fecha-desde" type="text" class="datepicker" />
+          <label for="fecha-desde">Fecha Desde</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="fecha-hasta" type="text" class="datepicker" />
+          <label for="fecha-hasta">Fecha Hasta</label>
+        </div>
+
+      </article>
+    </div>
+    <div class="modal-footer main-distribute">
+      <a class="btn waves-effect waves-light red darken-1">Cerrar</a>
+      <a class="btn waves-effect waves-light cyan accent-4">Aceptar</a>
+    </div>
+  </div>
+
+  <!-- <div id="day-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="modal-title center-align">Reporte Por Dia</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer main-distribute">
+      <a class="btn waves-effect waves-light red darken-1">Cerrar</a>
+      <a class="btn waves-effect waves-light cyan accent-4">Aceptar</a>
+    </div>
+  </div> -->
+
+  <div id="months-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="modal-title center-align">Reporte Por Meses</h4>
+      <section class="grid-months">
+        <article data-mes='1'>Enero</article>
+        <article data-mes='2'>Febrero</article>
+        <article data-mes='3'>Marzo</article>
+        <article data-mes='4'>Abril</article>
+        <article data-mes='5'>Mayo</article>
+        <article data-mes='6'>Junio</article>
+        <article data-mes='7'>Julio</article>
+        <article data-mes='8'>Agosto</article>
+        <article data-mes='9'>Septiembre</article>
+        <article data-mes='10'>Octubre</article>
+        <article data-mes='11'>Novimbre</article>
+        <article data-mes='12'>Diciembre</article>
+      </section>
+    </div>
+    <div class="modal-footer main-distribute">
+      <a class="btn waves-effect waves-light red darken-1">Cerrar</a>
+      <a class="btn waves-effect waves-light cyan accent-4">Aceptar</a>
+    </div>
+  </div>
+
+  <div class="fixed-action-btn horizontal">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">print</i>
+    </a>
+    <ul>
+      <li>
+        <a class="btn-floating green tooltipped"
+          data-position="top" data-delay="50" data-tooltip="Reporte General">
+          <i class="material-icons">picture_as_pdf</i>
+        </a>
+      </li>
+      <li>
+        <a class="btn-floating blue darken-1 tooltipped"
+          ng-click='modalAlarmIn()'
+          data-position="top" data-delay="50" data-tooltip="Reporte por fecha">
+          <i class="material-icons">alarm</i>
+        </a>
+      </li>
+      <li>
+        <a class="btn-floating blue tooltipped"
+          ng-click='modalDayIn()'
+          data-position="top" data-delay="50" data-tooltip="Reporte por dia">
+          <i class="material-icons">library_books</i>
+        </a>
+      </li>
+      <li>
+        <a class="btn-floating cyan accent-3 tooltipped"
+          ng-click='modalMonthsIn()'
+          data-position="top" data-delay="50" data-tooltip="Reporte por mensual">
+          <i class="material-icons">event</i>
+        </a>
+      </li>
+    </ul>
+  </div>
 </section>
