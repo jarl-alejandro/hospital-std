@@ -37,7 +37,7 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
 
   $scope.handlePaciente = function (id) {
     $scope.data.paciente = id
-    $('#buscadorPaciente').val('')
+    // $('#buscadorPaciente').val('')
     $('#pacienteModal').modal('close')
   }
 

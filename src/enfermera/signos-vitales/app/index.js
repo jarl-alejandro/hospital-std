@@ -87,17 +87,15 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     const parametros = $scope.paciente.hgc_fecn_pacie.split('-')
     const fecha = new Date(parametros[0], parametros[1] - 1, parametros[2])
     const now = new Date()
-    const year = now.getFullYear() - fecha.getFullYear()
-    const moth = now.getMonth() - fecha.getMonth()
-    const age = (year * 12) + moth
+    const duracion = duration(fecha, now)
 
-    if (age < 2) {
-      $scope.menor = true
-      $scope.tipo_form = 'form028a'
-    }
-    else {
+    if (duracion.months >= 2) {
       $scope.tipo_form = 'form028c'
       $scope.menor = false
+    }
+    else {
+      $scope.menor = true
+      $scope.tipo_form = 'form028a'
     }
   })
 
@@ -165,6 +163,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     }
     else {
       const duracion = duration(new Date($scope.fechaNacimiento), date)
+      console.log(duracion);
       if (duracion.years >= 65) {
 
         $('.mayor65--input label').addClass('active')

@@ -92,17 +92,17 @@ while ($row = $qs->fetch()) {
   $headerIndex++;
 
   if ($row["hgc_tform_sigvit"] === 'form028a') {
-    $content .= ' hola
+    $content .= '
       <table class="bordered highlight centered responsive-table">
         <thead style="background: red">
           <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
             <th>#</th>
             <th>FECHA</th>
-            <th>TEMPERATURA</th>
-            <th>PESO</th>
-            <th>P. Cefalico</th>
-            <th>Longitud</th>
-            <th>Pulso</th>
+            <th>TEMPERATURA ºC</th>
+            <th>PESO (kg)</th>
+            <th>P. Cefalico (cm)</th>
+            <th>Longitud (cm)</th>
+            <th>Pulso (x min)</th>
           </tr>
         </thead>
         <tbody>
@@ -125,13 +125,13 @@ while ($row = $qs->fetch()) {
           <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
             <th>#</th>
             <th>FECHA</th>
-            <th>TEMPERATURA</th>
-            <th>F. CARDIACA</th>
-            <th>F. RESPIRATORIO</th>
-            <th>P. Arterial</th>
-            <th>PESO</th>
-            <th>TALLA</th>
-            <th>Estado Nutricional</th>
+            <th>TEMPERATURA ºC</th>
+            <th>F. CARDIACA latido/min</th>
+            <th>F. RESPIRATORIO (R x min)</th>
+            <th>P. Arterial (mmhg)</th>
+            <th>PESO (kg)</th>
+            <th>TALLA (cm)</th>
+            <th>Estado Nutricional (imc)</th>
           </tr>
         </thead>
         <tbody>
@@ -157,10 +157,10 @@ while ($row = $qs->fetch()) {
         <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
           <th>#</th>
           <th>FECHA</th>
-          <th>FRECUENCIA CARDIACA (latido/min)</th>
-          <th>PRESION ARTERIAL (100/70)</th>
-          <th>PESO</th>
-          <th>TALLA</th>
+          <th>F. CARDIACA (latido/min)</th>
+          <th>P. ARTERIAL (mmhg)</th>
+          <th>PESO (kg)</th>
+          <th>TALLA (cm)</th>
           <th>INDICE DE MASA CORPORAL (IMC)</th>
         </tr>
       </thead>
@@ -185,8 +185,8 @@ while ($row = $qs->fetch()) {
             <th>#</th>
             <th>FECHA DE MEDICION</th>
             <th>TEMPERATURA ºC</th>
-            <th>PRESION ARTERIAL</th>
-            <th>PULSO/min / FRECUENCIA RESPIRATORIO</th>
+            <th>PRESION ARTERIAL (mmhg)</th>
+            <th>PULSO/min / FRECUENCIA RESPIRATORIO (R x min)</th>
             <th>PESO/kg / TALLA/cm</th>
           </tr>
         </thead>
@@ -210,8 +210,8 @@ while ($row = $qs->fetch()) {
           <tr bgcolor="#FFFF80" style="display:flex: align-items: center;">
             <th>#</th>
             <th>FECHA</th>
-            <th>P. ARTERIAL ACOSTADO</th>
-            <th>P. ARTERIAL SENTADO</th>
+            <th>P. ARTERIAL ACOSTADO (mmhg)</th>
+            <th>P. ARTERIAL SENTADO (mmhg)</th>
             <th>TEMPERATURA ºC</th>
             <th>PULSO 7min</th>
             <th>FRECUENCIA RESPIR/min</th>

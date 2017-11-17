@@ -91,11 +91,11 @@
   <div class='main-distribute s-100 margin-top'>
     <button class="waves-effect waves-light btn danger" ng-click="handleBack()">Atras</button>
     <button class='waves-effect waves-light btn primary' ng-click="handleSave()"
-      ng-if='isActionGet'
+      ng-if='!isActionGet'
       ng-disabled="activoForm28">Aceptar
     </button>
     <a class="waves-effect waves-light btn cyan green accent-3"
-      ng-if='isActionGet'
+      ng-if='!isActionGet'
       ui-sref='pacientesAtendidos'>Cerrar
     </a>
   </div>

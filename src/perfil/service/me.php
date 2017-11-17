@@ -11,7 +11,8 @@ if(isset($_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'])) {
 
   $json = array('status'=>200, 'user'=>$row);
   echo json_encode($json);
-} else {
+}
+else {
   $json = array('status'=>404);
   echo json_encode($json);
 }

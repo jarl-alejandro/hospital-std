@@ -4,6 +4,7 @@ function authenticated ($q, $location, $http, $rootScope) {
   let deferred = $q.defer()
   $http.get('src/perfil/service/me.php')
   .then(response => {
+    console.log(response);
     if (response.data.status === 404) deferred.resolve()
     else {
       const user = response.data.user
