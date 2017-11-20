@@ -14,6 +14,7 @@ graphicForm28C.controller('graphicForm28Ctrl', function ($scope, $http, $statePa
   setTimeout(() => {
     $http.get(`src/doctor/form28C/service/grafica.php?id=${$stateParams.id}`)
     .then(response => {
+      console.log(response)
       renderByDate($scope.fechaNacimiento)
       renderBySexo($scope.sexo)
       renderGraphic(response.data)

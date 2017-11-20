@@ -109,7 +109,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
 
     for(let i in items_sistemas) {
       let sistemas = items_sistemas[i]
-      if(sistemas.checked === true) {
+      if (sistemas.checked === true) {
         let tipo = sistemas.value.split('_')[0]
         let id = sistemas.value.split('_')[1]
         let observacion = document.getElementById(`input-system-${id}`).value

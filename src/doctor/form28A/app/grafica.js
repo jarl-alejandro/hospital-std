@@ -156,7 +156,7 @@ grafica028A.controller('graficas028AController', function ($scope, $http, $state
   }
 
   function coordinateYLongitud (longitudParam) {
-    let celda = 70
+    let celda = 12
     let y = 0
     let decimal = 0
     let longitud = parseInt(longitudParam.toString().split(".")[0])

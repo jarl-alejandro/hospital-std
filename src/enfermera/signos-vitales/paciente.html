@@ -117,6 +117,7 @@
         </div>
         <div class="input-field s-90 m-45">
           <input id="peso" type="text" ng-model="data.peso"
+             ng-change="estadoNutricionaChange()"
             ng-keypress="ValidaSoloDecimal()" maxlength="5">
           <label for="peso">Ingresa el peso (kg)</label>
         </div>
@@ -127,9 +128,15 @@
         </div>
         <div class="input-field s-90 m-45" ng-hide="menor">
           <input id="talla" type="text" ng-model="data.talla"
+            ng-change="estadoNutricionaChange()"
             ng-keypress="ValidaSoloDecimal()" maxlength="5">
           <label for="talla">Ingresa la talla (cm)</label>
         </div>
+        <div class="input-field s-90 m-45" ng-hide="menor">
+          <input id="estado" type="text" ng-model="data.estado" disabled />
+          <label for="estado">Estado nutricional</label>
+        </div>
+
         <div class="input-field s-90 m-45">
           <input id="peri-encefalico" type="text" ng-model="data.prEncefalico"
             ng-keypress="ValidaSoloDecimal()" maxlength="5">

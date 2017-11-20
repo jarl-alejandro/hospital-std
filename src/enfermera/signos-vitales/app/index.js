@@ -122,14 +122,18 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     window.open (`src/enfermera/signos-vitales/reporte/signos-vitales.php?id=${id}`,
       "_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=50, left=60, width=1200, height=600")
   }
+  $scope.estadoNutricionaChange = () => {
 
+    if (!!$scope.data.peso && !! $scope.data.talla) {
+      let m = $scope.data.talla / 100;
+      m = parseFloat(m);
+      m = m * 2;
+      let imc = parseFloat($scope.data.peso) / m;
+      $scope.data.estado = parseInt(imc);
+    }
+  }
   $scope.handleSave = function handleSave () {
     if (validar()) {
-      let m = ($scope.data.talla / 100)
-      m = parseFloat(m)
-      m = m * 2
-      let imc = parseFloat($scope.data.peso) / m
-      $scope.data.estado = parseInt(imc)
       $scope.data.tipoForm = $scope.tipo_form
 
       $http.post('src/enfermera/signos-vitales/service/save.php', $scope.data)
@@ -164,7 +168,6 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
     }
     else {
       const duracion = duration(new Date($scope.fechaNacimiento), new Date(fecha))
-
       if (duracion.years >= 65) {
 
         $('.mayor65--input label').addClass('active')
@@ -209,6 +212,7 @@ singosVitales.controller('pacienteSignoController', function ($scope, $http, $st
       }
       else if (duracion.years >= 10) {
         $('.formPlus056').slideDown()
+        console.log(signos);
 
         $('#fr-cardiaca056').val(signos.hgc_frcar_sigvit)
         $('#presion-arterial056').val(signos.hgc_prart_sigvit)
