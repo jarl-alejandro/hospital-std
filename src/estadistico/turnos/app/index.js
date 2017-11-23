@@ -41,6 +41,12 @@ turnos.controller('turnosController', function ($scope, $http, $location) {
     $('#pacienteModal').modal('close')
   }
 
+  $scope.sacar_edad = (paciente) => {
+    const nacimiento = paciente.hgc_fecn_pacie;
+    const duracion = duration(new Date(nacimiento), new Date());
+    return `${duracion.years} años ${duracion.months} meses`;
+  };
+
   $scope.handleHorario = () => {
     let horario_turno = Array.prototype.slice.call(
       document.querySelectorAll('.horario__turno')

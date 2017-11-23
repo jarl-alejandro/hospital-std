@@ -34,6 +34,7 @@
     }
   </style>
   <h2 class="Title">Pacientes Atendidos</h2>
+
   <article class="tableContainer">
     <table class="bordered highlight centered responsive-table">
       <thead>
@@ -43,10 +44,9 @@
           <th width="23%">Paciente</th>
           <th width="23%">Doctor</th>
           <th width="23%">
-            <button ng-click="printAtendidos()"
-              class="btn waves-effect waves-light cyan accent-3">
+            <a class="waves-effect waves-light btn cyan accent-3" ng-click='print_report()'>
               <i class="material-icons">print</i>
-            </button>
+            </a>
           </th>
         </tr>
       </thead>
@@ -77,50 +77,54 @@
       <h4 class="modal-title center-align">Reportes Por Fecha</h4>
       <article class="modal--body modal-grid">
         <div class="input-field col s6">
-          <input id="fecha-desde" type="text" class="datepicker" ng-model="dates.desde" />
+          <input id="fecha-desde" type="text" class="datepicker" />
           <label for="fecha-desde">Fecha Desde</label>
         </div>
         <div class="input-field col s6">
-          <input id="fecha-hasta" type="text" class="datepicker" ng-model="dates.hasta" />
+          <input id="fecha-hasta" type="text" class="datepicker" />
           <label for="fecha-hasta">Fecha Hasta</label>
         </div>
+
       </article>
     </div>
     <div class="modal-footer main-distribute">
-      <a ng-click="closeFilterDate()"
-        class="btn waves-effect waves-light red darken-1">
-        Cerrar
-      </a>
-      <a ng-click="onFilterByDate()"
-        class="btn waves-effect waves-light cyan accent-4">
-        Aceptar
-      </a>
+      <a class="btn waves-effect waves-light red darken-1">Cerrar</a>
+      <a class="btn waves-effect waves-light cyan accent-4">Aceptar</a>
     </div>
   </div>
+
+  <!-- <div id="day-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="modal-title center-align">Reporte Por Dia</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer main-distribute">
+      <a class="btn waves-effect waves-light red darken-1">Cerrar</a>
+      <a class="btn waves-effect waves-light cyan accent-4">Aceptar</a>
+    </div>
+  </div> -->
 
   <div id="months-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4 class="modal-title center-align">Reporte Por Meses</h4>
       <section class="grid-months">
-        <article ng-click='filter_months(01)'>Enero</article>
-        <article ng-click='filter_months(02)'>Febrero</article>
-        <article ng-click='filter_months(03)'>Marzo</article>
-        <article ng-click='filter_months(04)'>Abril</article>
-        <article ng-click='filter_months(05)'>Mayo</article>
-        <article ng-click='filter_months(06)'>Junio</article>
-        <article ng-click='filter_months(07)'>Julio</article>
-        <article ng-click='filter_months(08)'>Agosto</article>
-        <article ng-click='filter_months(09)'>Septiembre</article>
-        <article ng-click='filter_months(10)'>Octubre</article>
-        <article ng-click='filter_months(11)'>Novimbre</article>
-        <article ng-click='filter_months(12)'>Diciembre</article>
+        <article data-mes='1'>Enero</article>
+        <article data-mes='2'>Febrero</article>
+        <article data-mes='3'>Marzo</article>
+        <article data-mes='4'>Abril</article>
+        <article data-mes='5'>Mayo</article>
+        <article data-mes='6'>Junio</article>
+        <article data-mes='7'>Julio</article>
+        <article data-mes='8'>Agosto</article>
+        <article data-mes='9'>Septiembre</article>
+        <article data-mes='10'>Octubre</article>
+        <article data-mes='11'>Novimbre</article>
+        <article data-mes='12'>Diciembre</article>
       </section>
     </div>
     <div class="modal-footer main-distribute">
-      <a ng-click="filter_close()"
-        class="btn waves-effect waves-light red darken-1">
-        Cerrar
-      </a>
+      <a class="btn waves-effect waves-light red darken-1">Cerrar</a>
+      <a class="btn waves-effect waves-light cyan accent-4">Aceptar</a>
     </div>
   </div>
 
@@ -130,8 +134,7 @@
     </a>
     <ul>
       <li>
-        <a ng-click="filterGeneral()"
-          class="btn-floating green tooltipped"
+        <a class="btn-floating green tooltipped"
           data-position="top" data-delay="50" data-tooltip="Reporte General">
           <i class="material-icons">picture_as_pdf</i>
         </a>

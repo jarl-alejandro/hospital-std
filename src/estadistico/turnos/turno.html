@@ -115,6 +115,7 @@
           <th>#</th>
           <th>Historia clinica</th>
           <th>Cliente</th>
+          <th>Edad</th>
           <th>Accion</th>
         </tr>
       </thead>
@@ -126,6 +127,7 @@
           <td>{{ $index + 1 }}</td>
           <td>{{ paciente.hgc_histo_hcli }}</td>
           <td>{{ paciente.paciente }}</td>
+          <td>{{ sacar_edad(paciente) }}</td>
           <td>
             <button class="waves-effect waves-light btn primary modal-action modal-close"
               ng-click="handlePaciente(paciente.hgc_histo_hcli)">

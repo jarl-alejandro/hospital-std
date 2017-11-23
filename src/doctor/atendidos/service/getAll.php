@@ -13,7 +13,8 @@ $newDate = strtotime( '-24 hour' , strtotime($stamp) );
 $newDate = date( 'Y-m-d H:i:s' , $newDate );
 
 $query = $pdo->query(
-  "SELECT * FROM view_turnos WHERE hgc_esta_turno='form' AND  hgc_doct_turno='$id_doctor' ORDER BY hgc_fech_turno DESC"
+  "SELECT * FROM view_turnos_sigvit WHERE hgc_esta_turno='form' AND  hgc_doct_turno='$id_doctor'
+  ORDER BY hgc_fecha_sigvit DESC"
 );
 
 $turnos = array();

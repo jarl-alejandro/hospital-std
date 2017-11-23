@@ -1,4 +1,4 @@
-<?php
+<?php  session_start();
 include '../../../../helpers/conexion.php';
 date_default_timezone_set('America/Guayaquil');
 
@@ -28,13 +28,14 @@ $turno = $obj->turno;
 $hoy = date("Y/m/d");
 $hora = date("h:i");
 $tipoForm = 'mayor65';
+$userId = $_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'];
 
 if ($id == "") {
   $new = $pdo->prepare('UPDATE hgc_sigvit SET hgc_pracost_sigvit=?, hgc_prsent_sigvit=?,
     hgc_temp_sigvit=?,   hgc_puls_sigvit=?,  hgc_fre_sigvit=?,     hgc_peso_sigvit=?,
     hgc_talla_sigvit=?,  hgc_imc_sigvit=?,   hgc_percint_sigvit=?, hgc_percad_sigvit=?,
     hgc_perpan_sigvit=?, hgc_resp_sigvit=?,  hgc_fecha_sigvit=?,   hgc_hcli_sigvit=?,
-    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?, hgc_tform_sigvit=?
+    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?, hgc_tform_sigvit=?, hgc_enfer_sigvit=?
     WHERE hgc_turno_sigvit=?');
 
   $new->bindParam(1, $presionAcostada);
@@ -55,7 +56,8 @@ if ($id == "") {
   $new->bindParam(16, $procedimiento);
   $new->bindParam(17, $grupoPrioritado);
   $new->bindParam(18, $tipoForm);
-  $new->bindParam(19, $turno);
+  $new->bindParam(19, $userId);
+  $new->bindParam(20, $turno);
 
   $new->execute();
   $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");
@@ -76,7 +78,7 @@ else {
   $new = $pdo->prepare('UPDATE hgc_sigvit SET hgc_pracost_sigvit=?, hgc_prsent_sigvit=?,
     hgc_temp_sigvit=?,  hgc_puls_sigvit=?,    hgc_fre_sigvit=?,    hgc_peso_sigvit=?,   hgc_talla_sigvit=?,
     hgc_imc_sigvit=?,   hgc_percint_sigvit=?, hgc_percad_sigvit=?, hgc_perpan_sigvit=?, hgc_resp_sigvit=?,
-    hgc_fecha_sigvit=?, hgc_hcli_sigvit=?,    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?,
+    hgc_fecha_sigvit=?, hgc_hcli_sigvit=?,    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?, hgc_enfer_sigvit=?
     WHERE hgc_id_sigvit=?');
 
   $new->bindParam(1, $presionAcostada);
@@ -96,7 +98,8 @@ else {
   $new->bindParam(15, $hora);
   $new->bindParam(16, $procedimiento);
   $new->bindParam(17, $grupoPrioritado);
-  $new->bindParam(18, $id);
+  $new->bindParam(18, $userId);
+  $new->bindParam(19, $id);
 
   $new->execute();
 

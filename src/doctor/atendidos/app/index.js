@@ -12,6 +12,7 @@ atendidos.controller('atendidosController', function ($scope, $http, $location) 
     inicio: '',
     final: ''
   }
+  
 
   $http.get('src/doctor/atendidos/service/getAll.php')
   .then(response => $scope.pacientes = response.data)
@@ -21,6 +22,13 @@ atendidos.controller('atendidosController', function ($scope, $http, $location) 
     $scope.pacientesFilter = response.data
     $('.browser-default').select2()
   })
+
+  $scope.sacar_edad = (paciente) => {
+    const nacimiento = paciente.hgc_fecn_pacie;
+    const consulta = paciente.hgc_fecha_consulta;
+    const duracion = duration(new Date(nacimiento), new Date(consulta));
+    return `${duracion.years} años ${duracion.months} meses`;
+  }
 
   $scope.onAceptPaciente = () => {
     if (!$scope.data.paciente) {

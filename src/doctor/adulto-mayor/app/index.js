@@ -30,6 +30,7 @@ angular.module('Hospital')
     abdomen: '',
     pelvis: '',
     extremidades: '',
+    examenFisico: ''
   }
   $scope.edad = { years: '', months: '', days: '' }
   $scope.cie10 = [

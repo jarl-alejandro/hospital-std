@@ -135,6 +135,7 @@ form28C.controller('form28CController',  function ($scope, $http, $stateParams, 
 
       $http.post(`src/doctor/form28C/service/${$stateParams.action}.php`, $scope.data)
         .then(response => {
+          console.log(response)
           if (response.data === '201') {
             Materialize.toast('Se ha guardado con exito', 4000)
             $location.path('/doctor')

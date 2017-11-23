@@ -40,6 +40,7 @@ $torax = $obj->torax;
 $cabeza = $obj->cabeza;
 $examenFisico = $obj->examenFisico;
 
+
 $pdo->query(
   "UPDATE hgc_turno SET hgc_esta_turno='form', hgc_tipo_form='mayor', hgc_fecha_consulta='$stamp'
   WHERE hgc_id_turno='$turno'"

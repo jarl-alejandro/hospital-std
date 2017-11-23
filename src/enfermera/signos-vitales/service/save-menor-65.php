@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 include '../../../../helpers/conexion.php';
 date_default_timezone_set('America/Guayaquil');
 
@@ -21,12 +21,13 @@ $grupoPrioritado = $obj->grupoPrioritado;
 $hoy = date("Y/m/d");
 $hora = date("h:i");
 $tipoForm = 'menor65';
+$userId = $_SESSION['87ea5dfc8b8e384d848979496e706390b497e547'];
 
 if ($id == "") {
   $new = $pdo->prepare('UPDATE hgc_sigvit SET hgc_temp_sigvit=?, hgc_prart_sigvit=?,
     hgc_puls_sigvit=?,  hgc_fre_sigvit=?,  hgc_peso_sigvit=?,
     hgc_talla_sigvit=?,  hgc_fecha_sigvit=?, hgc_hcli_sigvit=?,
-    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?, hgc_tform_sigvit=?
+    hgc_hora_sigvit=?, hgc_proc_sigvit=?, hgc_grup_sigvit=?, hgc_tform_sigvit=?, hgc_enfer_sigvit=?
     WHERE hgc_turno_sigvit=?');
 
   $new->bindParam(1, $temperatura);
@@ -41,7 +42,8 @@ if ($id == "") {
   $new->bindParam(10, $procedimiento);
   $new->bindParam(11, $grupoPrioritado);
   $new->bindParam(12, $tipoForm);
-  $new->bindParam(13, $turno);
+  $new->bindParam(13, $userId);
+  $new->bindParam(14, $turno);
 
   $new->execute();
   $pdo->query("UPDATE hgc_turno SET hgc_esta_turno='signosVitales' WHERE hgc_id_turno='$turno'");
@@ -52,7 +54,7 @@ else {
     hgc_puls_sigvit=?,  hgc_fre_sigvit=?,  hgc_peso_sigvit=?,
     hgc_talla_sigvit=?, hgc_fecha_sigvit=?, hgc_hcli_sigvit=?,
     hgc_hora_sigvit=?, hgc_proc_sigvit=?,
-    hgc_grup_sigvit=?   WHERE hgc_id_sigvit=?');
+    hgc_grup_sigvit=?, hgc_enfer_sigvit=?  WHERE hgc_id_sigvit=?');
 
     $new->bindParam(1, $temperatura);
     $new->bindParam(2, $presionArterial);
@@ -65,7 +67,8 @@ else {
     $new->bindParam(9, $hora);
     $new->bindParam(10, $procedimiento);
     $new->bindParam(11, $grupoPrioritado);
-    $new->bindParam(12, $id);
+    $new->bindParam(12, $userId);
+    $new->bindParam(13, $id);
 
     $new->execute();
 }

@@ -55,11 +55,13 @@ angular.module('Hospital')
   setTimeout(()=> {
     $http.get(`src/doctor/form056/service/grafica.php?id=${$stateParams.id}`)
     .then(response => {
-      response.data.map((data, index) => graphicIMC(data.hgc_imc_sigvit, data.hgc_fecha_sigvit, index))
-      response.data.map((data, index) => graphicPeso(data.hgc_peso_sigvit, data.hgc_fecha_sigvit, index))
-      response.data.map((data, index) => graphicTalla(data.hgc_talla_sigvit, data.hgc_fecha_sigvit, index))
+      response.data.map((data, index) => {
+        graphicIMC(data.hgc_imc_sigvit, data.hgc_fecha_sigvit, index);
+        graphicTalla(data.hgc_talla_sigvit, data.hgc_fecha_sigvit, index)
+        graphicPeso(data.hgc_peso_sigvit, data.hgc_fecha_sigvit, index)
+      })
     })
-
+    
     $http.get(`src/doctor/form056/service/grafica_speed.php?id=${$stateParams.id}`)
     .then(response => {
       let data = response.data
